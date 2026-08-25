@@ -23,7 +23,7 @@ Required
 | `description` | `string` | description is an arbitrary string that usually provides guidelines on when this priority class should be used. |
 | `globalDefault` | `boolean` | globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `preemptionPolicy` | `string` | preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Possible enum values:  - `"Never"` means that pod never preempts other pods with lower priority.  - `"PreemptLowerPriority"` means that pod can preempt other pods with lower priority. |
 | `value` | `integer` | value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec. |
 
@@ -71,7 +71,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -88,7 +88,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PriorityClassList`](/rest_api/objects/index#io-k8s-api-scheduling-v1-PriorityClassList) schema |
+| 200 - OK | [`PriorityClassList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-scheduling-v1-PriorityClassList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -112,15 +112,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |  |
+| `body` | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
-| 201 - Created | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
-| 202 - Accepted | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 200 - OK | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 201 - Created | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 202 - Accepted | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/scheduling.k8s.io/v1/watch/priorityclasses {#_apisschedulingk8siov1watchpriorityclasses}
@@ -139,7 +139,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/scheduling.k8s.io/v1/priorityclasses/{{ name }} {#_apisschedulingk8siov1priorityclasses_name}
@@ -170,8 +170,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -188,7 +188,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 200 - OK | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -212,8 +212,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
-| 201 - Created | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 200 - OK | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 201 - Created | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -237,14 +237,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |  |
+| `body` | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
-| 201 - Created | [`PriorityClass`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 200 - OK | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
+| 201 - Created | [`PriorityClass`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/scheduling.k8s.io/v1/watch/priorityclasses/{{ name }} {#_apisschedulingk8siov1watchpriorityclasses_name}
@@ -269,5 +269,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

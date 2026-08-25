@@ -8,4 +8,4 @@ You can use a variety of techniques to make sure that the containers you deploy 
 
 **Additional resources**
 
-- [Input secrets and config maps](/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)
+- [Input secrets and config maps](/openshift-docs-markdown/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)

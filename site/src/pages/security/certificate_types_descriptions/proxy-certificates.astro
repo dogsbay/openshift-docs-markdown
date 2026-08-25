@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"proxy-certificates","text":"Proxy certificates"}];
 const nav = navData;
-const currentPath = "/security/certificate_types_descriptions/proxy-certificates";
+const currentPath = "/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/certificate_types_descriptions"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Proxy certificates {#proxy-certificates}\n\nProxy certificates allow platform components to trust custom certificate authorities when making egress connections. Understanding proxy certificates helps you configure secure external access for services that require custom certificate authority (CA) trust bundles.\n\n**Additional resources**\n\n- [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)\n\n**Additional resources**\n\n- [Using shared system certificates](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/securing_networks/using-shared-system-certificates)\n","mdUrl":"/security/certificate_types_descriptions/proxy-certificates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Proxy certificates {#proxy-certificates}\n\nProxy certificates allow platform components to trust custom certificate authorities when making egress connections. Understanding proxy certificates helps you configure secure external access for services that require custom certificate authority (CA) trust bundles.\n\n**Additional resources**\n\n- [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)\n\n**Additional resources**\n\n- [Using shared system certificates](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/securing_networks/using-shared-system-certificates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Proxy certificates allow platform components to trust custom certificate authorities when making egress connections. Understanding proxy certificates helps you configure secure external access for services that require custom certificate authority (CA) trust bundles.</p>
       <p class="/modules/proxy-cert-purpose.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy">Configuring the cluster-wide proxy</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy">Configuring the cluster-wide proxy</a></li></ul>
       <p class="/modules/proxy-cert-location.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/securing_networks/using-shared-system-certificates">Using shared system certificates</a></li></ul>

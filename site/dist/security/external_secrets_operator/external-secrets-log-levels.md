@@ -16,10 +16,10 @@ For the complete list of fields and allowed values, see the `ExternalSecretsConf
 
 **Additional resources**
 
-- [External Secrets Operator for Red Hat OpenShift APIs](/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
+- [External Secrets Operator for Red Hat OpenShift APIs](/openshift-docs-markdown/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
 
 <a name="external-secrets-log-levels_additional-resources"></a>**Additional resources**
 
-- [External Secrets Operator for Red Hat OpenShift APIs](/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
-- [cert-manager Operator for Red Hat Openshift](/security/cert_manager_operator/index#cert-manager-operator-about)
-- [Installing the cert-manager-Operator for Red Hat Openshift](/security/cert_manager_operator/cert-manager-operator-install#cert-manager-operator-install)
+- [External Secrets Operator for Red Hat OpenShift APIs](/openshift-docs-markdown/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
+- [cert-manager Operator for Red Hat Openshift](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-about)
+- [Installing the cert-manager-Operator for Red Hat Openshift](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#cert-manager-operator-install)

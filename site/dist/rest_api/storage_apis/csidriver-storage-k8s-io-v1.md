@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character (\[a-z0-9A-Z\]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character (\[a-z0-9A-Z\]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | CSIDriverSpec is the specification of a CSIDriver. |
 
 ### .spec {#_spec}
@@ -122,7 +122,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -139,7 +139,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIDriverList`](/rest_api/objects/index#io-k8s-api-storage-v1-CSIDriverList) schema |
+| 200 - OK | [`CSIDriverList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-storage-v1-CSIDriverList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -163,15 +163,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |  |
+| `body` | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/csidrivers {#_apisstoragek8siov1watchcsidrivers}
@@ -190,7 +190,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/csidrivers/{{ name }} {#_apisstoragek8siov1csidrivers_name}
@@ -221,8 +221,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -239,7 +239,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -263,8 +263,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -288,14 +288,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |  |
+| `body` | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSIDriver`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSIDriver`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/csidrivers/{{ name }} {#_apisstoragek8siov1watchcsidrivers_name}
@@ -320,5 +320,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

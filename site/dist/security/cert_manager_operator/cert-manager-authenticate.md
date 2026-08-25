@@ -8,10 +8,10 @@ To enable the operator to manage components on your cloud provider, authenticate
 
 <a name="additional-resources_cert-manager-authenticate-gcp"></a>**Additional resources**
 
-- [Configuring the Cloud Credential Operator utility](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
+- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
 <a name="additional-resources_cert-manager-authenticate-gcp-workload-identity"></a>**Additional resources**
 
-- [Configuring the Cloud Credential Operator utility](/installing/installing_gcp/installing-gcp-customizations#cco-ccoctl-configuring_installing-gcp-customizations)
-- [Manual mode with short-term credentials for components](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)
-- [Default behavior of the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-default_about-cloud-credential-operator)
+- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#cco-ccoctl-configuring_installing-gcp-customizations)
+- [Manual mode with short-term credentials for components](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)
+- [Default behavior of the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-default_about-cloud-credential-operator)

@@ -25,8 +25,8 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `labels` | `object (string)` | labels is a optional set of labels that are applied to every object during the Template to Config transformation. |
 | `message` | `string` | message is an optional instructional message that will be displayed when this template is instantiated. This field should inform the user how to utilize the newly created resources. Parameter substitution will be performed on the message before being displayed so that generated credentials and other parameters can be included in the output. |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `objects` | [`array (RawExtension)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${{ PARAMETER_REFERENCE }}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `objects` | [`array (RawExtension)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${{ PARAMETER_REFERENCE }}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
 | `parameters` | `array` | parameters is an optional array of Parameters used during the Template to Config transformation. |
 | `parameters[]` | `object` | Parameter defines a name/value variable that is to be processed during the Template to Config transformation. |
 
@@ -111,7 +111,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateList`](/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateList) schema |
+| 200 - OK | [`TemplateList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/templates {#_apistemplateopenshiftiov1watchtemplates}
@@ -130,7 +130,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templates {#_apistemplateopenshiftiov1namespaces_namespace_templates}
@@ -155,7 +155,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -172,7 +172,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateList`](/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateList) schema |
+| 200 - OK | [`TemplateList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -196,15 +196,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |  |
+| `body` | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
-| 201 - Created | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
-| 202 - Accepted | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 200 - OK | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 201 - Created | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 202 - Accepted | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templates {#_apistemplateopenshiftiov1watchnamespaces_namespace_templates}
@@ -223,7 +223,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templates/{{ name }} {#_apistemplateopenshiftiov1namespaces_namespace_templates_name}
@@ -254,8 +254,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
-| 202 - Accepted | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 200 - OK | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 202 - Accepted | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -272,7 +272,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 200 - OK | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -296,8 +296,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
-| 201 - Created | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 200 - OK | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 201 - Created | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -321,14 +321,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |  |
+| `body` | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
-| 201 - Created | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 200 - OK | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 201 - Created | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/processedtemplates {#_apistemplateopenshiftiov1namespaces_namespace_processedtemplates}
@@ -354,15 +354,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |  |
+| `body` | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
-| 201 - Created | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
-| 202 - Accepted | [`Template`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 200 - OK | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 201 - Created | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
+| 202 - Accepted | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templates/{{ name }} {#_apistemplateopenshiftiov1watchnamespaces_namespace_templates_name}
@@ -387,5 +387,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

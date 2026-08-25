@@ -2,7 +2,7 @@
 // Source: networking/hardware_networks/using-sriov-multicast.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Using high performance multicast\n---\n\n# Using high performance multicast {#using-sriov-multicast}\n\nYou can use multicast on your Single Root I/O Virtualization (SR-IOV) hardware network.\n\nBefore you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n";
+const body = "---\ntitle: Using high performance multicast\n---\n\n# Using high performance multicast {#using-sriov-multicast}\n\nYou can use multicast on your Single Root I/O Virtualization (SR-IOV) hardware network.\n\nBefore you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

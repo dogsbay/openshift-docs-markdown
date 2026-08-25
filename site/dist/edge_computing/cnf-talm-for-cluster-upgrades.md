@@ -10,14 +10,14 @@ Using {{ rh_rhacm }} and `{{ policy_gen_cr }}` CRs is the recommended approach f
 
 **Additional resources**
 
-- [About the PolicyGenerator CRD](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator)
+- [About the PolicyGenerator CRD](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator)
 
 **Additional resources**
 
-- [About the PolicyGenerator CRD](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator)
+- [About the PolicyGenerator CRD](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator)
 
 **Additional resources**
 
-- [OpenShift Container Platform Troubleshooting Operator Issues](/support/troubleshooting/troubleshooting-operator-issues#troubleshooting-operator-issues)
-- [Updating managed policies with {{ cgu_operator_full }}](/edge_computing/policygenerator_for_ztp/ztp-talm-updating-managed-policies-pg#ztp-topology-aware-lifecycle-manager)
-- [About the PolicyGenerator CRD](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator)
+- [OpenShift Container Platform Troubleshooting Operator Issues](/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues#troubleshooting-operator-issues)
+- [Updating managed policies with {{ cgu_operator_full }}](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-talm-updating-managed-policies-pg#ztp-topology-aware-lifecycle-manager)
+- [About the PolicyGenerator CRD](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator)

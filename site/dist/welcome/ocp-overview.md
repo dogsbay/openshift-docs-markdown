@@ -21,6 +21,6 @@ OpenShift Container Platform is a platform for developing and running containeri
 
 ## Additional resources {#additional-resources_ocp-overview}
 
-- [Preparing to install on a single node](/installing/installing_sno/install-sno-preparing-to-install-sno#preparing-to-install-sno)
+- [Preparing to install on a single node](/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno#preparing-to-install-sno)
 - [OpenShift Virtualization - Reference Implementation Guide (Red Hat Knowledgebase)](https://access.redhat.com/articles/7067871)
 - [Explore Solution Patterns (Solution Patterns from Red Hat documentation)](https://www.solutionpatterns.io/patterns/)

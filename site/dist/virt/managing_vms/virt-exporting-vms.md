@@ -16,4 +16,4 @@ Alternatively, you can use the `virtctl vmexport` command to create a `VirtualMa
 ## Additional resources {#additional-resources_virt-exporting-vms}
 
 - [Migration Toolkit for Virtualization](https://access.redhat.com/products/migration-toolkits-virtualization)
-- [virtctl vmexport command](/virt/getting_started/virt-using-the-cli-tools#vm-export-commands_virt-using-the-cli-tools)
+- [virtctl vmexport command](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#vm-export-commands_virt-using-the-cli-tools)

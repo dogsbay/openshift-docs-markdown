@@ -12,4 +12,4 @@ For installer-provisioned or user-provisioned infrastructure installations, you 
 
 ## Additional resources {#_additional_resources}
 
-- [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning)
+- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)

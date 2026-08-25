@@ -16,15 +16,15 @@ One way to create this infrastructure is to use the provided CloudFormation temp
 
 **Additional resources**
 
-- [Installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
-- [Configuring an {{ aws_short }} account](/installing/installing_aws/installing-aws-account#installing-aws-account)
+- [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
+- [Configuring an {{ aws_short }} account](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account)
 - [Managing access keys for IAM users ({{ aws_short }} documentation)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
-- [Requirements for a cluster with user-provisioned infrastructure on {{ aws_short }}](/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs)
+- [Requirements for a cluster with user-provisioned infrastructure on {{ aws_short }}](/openshift-docs-markdown/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs)
 - [Install the {{ aws_short }} CLI Using the Bundled Installer (Linux, macOS, or UNIX) ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/install-bundle.html)
-- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall)
-- [Manually creating long-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
+- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall)
+- [Manually creating long-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
 
 **Additional resources**
 
@@ -32,7 +32,7 @@ One way to create this infrastructure is to use the provided CloudFormation temp
 
 **Additional resources**
 
-- [Manually creating long-term credentials](/installing/installing_aws/ipi/installing-restricted-networks-aws-installer-provisioned#manually-create-iam_installing-restricted-networks-aws-installer-provisioned)
+- [Manually creating long-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-restricted-networks-aws-installer-provisioned#manually-create-iam_installing-restricted-networks-aws-installer-provisioned)
 
 **Additional resources**
 
@@ -40,22 +40,22 @@ One way to create this infrastructure is to use the provided CloudFormation temp
 
 **Additional resources**
 
-- [{{ op_system }} AMIs for the {{ aws_short }} infrastructure ({{ aws_short }} documentation)](/installing/installing_aws/upi/installing-aws-user-infra#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra)
+- [{{ op_system }} AMIs for the {{ aws_short }} infrastructure ({{ aws_short }} documentation)](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra)
 
 **Additional resources**
 
-- [Monitoring installation progress](/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
-- [Gathering bootstrap node diagnostic data](/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
+- [Monitoring installation progress](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
+- [Gathering bootstrap node diagnostic data](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
 
 **Additional resources**
 
-- [Accessing the web console](/web_console/web-console#web-console)
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 - [Managing {{ aws_short }} resources as a single unit with CloudFormation stacks ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
-- [Customizing your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Configuring image streams](/post_installation_configuration/cluster-tasks#post-install-must-gather-disconnected)
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
-- [Image configuration resources](/openshift_images/image-configuration#images-configuration-cas_image-configuration)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Changing the cloud provider credentials configuration](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)
+- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+- [Customizing your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Configuring image streams](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-must-gather-disconnected)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
+- [Image configuration resources](/openshift-docs-markdown/openshift_images/image-configuration#images-configuration-cas_image-configuration)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Changing the cloud provider credentials configuration](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

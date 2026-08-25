@@ -10,7 +10,7 @@ You can also migrate your current cluster with single-architecture compute machi
 
 ## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-aws}
 
-- [Installing a cluster on AWS with customizations](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
-- [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
-- [Tested instance types for AWS 64-bit ARM](/installing/installing_aws/ipi/installing-aws-customizations#installation-aws-arm-tested-machine-types_installing-aws-customizations)
-- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
+- [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
+- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
+- [Tested instance types for AWS 64-bit ARM](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-aws-arm-tested-machine-types_installing-aws-customizations)
+- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)

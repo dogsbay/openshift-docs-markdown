@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | SelfSubjectRulesReviewSpec defines the specification for SelfSubjectRulesReview. |
 | `status` | `object` | SubjectRulesReviewStatus contains the result of a rules check. This check can be incomplete depending on the set of authorizers the server is configured with and any errors experienced during evaluation. Because authorization rules are additive, if a rule appears in a list it’s safe to assume the subject has that permission, even if that list is incomplete. |
 
@@ -152,13 +152,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`SelfSubjectRulesReview`](/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |  |
+| `body` | [`SelfSubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SelfSubjectRulesReview`](/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |
-| 201 - Created | [`SelfSubjectRulesReview`](/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |
-| 202 - Accepted | [`SelfSubjectRulesReview`](/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |
+| 200 - OK | [`SelfSubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |
+| 201 - Created | [`SelfSubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |
+| 202 - Accepted | [`SelfSubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectrulesreview-authorization-k8s-io-v1#selfsubjectrulesreview-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

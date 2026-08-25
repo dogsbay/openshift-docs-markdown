@@ -17,11 +17,11 @@ By using the `oc adm` command, you can mirror release and catalog images in Open
 
 **Additional resources**
 
-- [Viewing the image pull source](/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation)
+- [Viewing the image pull source](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation)
 
 **Additional resources**
 
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 - [Docker v2-2](https://docs.docker.com/registry/spec/manifest-v2-2/)
 - [Service Mesh Operator mirroring failed](https://access.redhat.com/solutions/6975305)
 
@@ -31,12 +31,12 @@ By using the `oc adm` command, you can mirror release and catalog images in Open
 
 **Additional resources**
 
-- [Populating the software catalog from mirrored Operator catalogs](/post_installation_configuration/preparing-for-users#post-install-mirrored-catalogs_post-install-preparing-for-users)
-- [Updating or filtering a file-based catalog image](/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
+- [Populating the software catalog from mirrored Operator catalogs](/openshift-docs-markdown/post_installation_configuration/preparing-for-users#post-install-mirrored-catalogs_post-install-preparing-for-users)
+- [Updating or filtering a file-based catalog image](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
 
 ## Additional resources {#restricted-networks-additional-resources}
 
-- [Gathering data about specific features](/support/gathering-cluster-data#gathering-data-specific-features_gathering-cluster-data)
-- [Installing a cluster on vSphere in a disconnected environment with user-provisioned infrastructure](/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere)
-- [Installing a user-provisioned bare-metal cluster on a disconnected environment](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal)
-- [Installing a cluster on {{ aws_short }} in a disconnected environment with user-provisioned infrastructure](/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws)
+- [Gathering data about specific features](/openshift-docs-markdown/support/gathering-cluster-data#gathering-data-specific-features_gathering-cluster-data)
+- [Installing a cluster on vSphere in a disconnected environment with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere)
+- [Installing a user-provisioned bare-metal cluster on a disconnected environment](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal)
+- [Installing a cluster on {{ aws_short }} in a disconnected environment with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws)

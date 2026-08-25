@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"update-cnf-update-prep","text":"Configuring application pods before updating your OpenShift Container Platform cluster"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration","post_installation_configuration/day_2_core_cnf_clusters","post_installation_configuration/day_2_core_cnf_clusters/updating"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring application pods before updating your OpenShift Container Platform cluster {#update-cnf-update-prep}\n\nConfigure application pods to ensure workload availability during OpenShift Container Platform updates. For example, use deployment strategies, pod disruption budgets, anti-affinity rules, and health probes to maintain high availability and prevent service disruption. In the telecommunications industry, most containerized network function (CNF) vendors follow the guidance in Red Hat best practices for Kubernetes to ensure that the cluster can schedule pods properly during an upgrade.\n\n> [!IMPORTANT]\n> Always deploy pods in groups by using `Deployment` resources. `Deployment` resources spread the workload across all of the available pods ensuring there is no single point of failure. When a pod that is managed by a `Deployment` resource is deleted, a new pod takes its place automatically.\n\n**Additional resources**\n\n- [Red Hat best practices for Kubernetes](https://redhat-best-practices-for-k8s.github.io/guide/)\n\n**Additional resources**\n\n- [Specifying the number of pods that must be up with pod disruption budgets](/post_installation_configuration/cluster-tasks#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks)\n- [Configuring an OpenShift Container Platform cluster for pods](/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-configuring_nodes-pods-configuring)\n- [Pod preemption and other scheduler settings](/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority)\n\n**Additional resources**\n\n- [Configuring a pod affinity rule](/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-configuring_nodes-scheduler-pod-affinity)\n\n**Additional resources**\n\n- [Understanding health checks](/applications/application-health#application-health-about_application-health)\n","mdUrl":"/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring application pods before updating your OpenShift Container Platform cluster {#update-cnf-update-prep}\n\nConfigure application pods to ensure workload availability during OpenShift Container Platform updates. For example, use deployment strategies, pod disruption budgets, anti-affinity rules, and health probes to maintain high availability and prevent service disruption. In the telecommunications industry, most containerized network function (CNF) vendors follow the guidance in Red Hat best practices for Kubernetes to ensure that the cluster can schedule pods properly during an upgrade.\n\n> [!IMPORTANT]\n> Always deploy pods in groups by using `Deployment` resources. `Deployment` resources spread the workload across all of the available pods ensuring there is no single point of failure. When a pod that is managed by a `Deployment` resource is deleted, a new pod takes its place automatically.\n\n**Additional resources**\n\n- [Red Hat best practices for Kubernetes](https://redhat-best-practices-for-k8s.github.io/guide/)\n\n**Additional resources**\n\n- [Specifying the number of pods that must be up with pod disruption budgets](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks)\n- [Configuring an OpenShift Container Platform cluster for pods](/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-configuring_nodes-pods-configuring)\n- [Pod preemption and other scheduler settings](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority)\n\n**Additional resources**\n\n- [Configuring a pod affinity rule](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-configuring_nodes-scheduler-pod-affinity)\n\n**Additional resources**\n\n- [Understanding health checks](/openshift-docs-markdown/applications/application-health#application-health-about_application-health)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,14 +106,14 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul><li><a href="https://redhat-best-practices-for-k8s.github.io/guide/">Red Hat best practices for Kubernetes</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/post_installation_configuration/cluster-tasks#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks">Specifying the number of pods that must be up with pod disruption budgets</a></li>
-      <li><a href="/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-configuring_nodes-pods-configuring">Configuring an OpenShift Container Platform cluster for pods</a></li>
-      <li><a href="/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority">Pod preemption and other scheduler settings</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks">Specifying the number of pods that must be up with pod disruption budgets</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-configuring_nodes-pods-configuring">Configuring an OpenShift Container Platform cluster for pods</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority">Pod preemption and other scheduler settings</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-configuring_nodes-scheduler-pod-affinity">Configuring a pod affinity rule</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-configuring_nodes-scheduler-pod-affinity">Configuring a pod affinity rule</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/applications/application-health#application-health-about_application-health">Understanding health checks</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/applications/application-health#application-health-about_application-health">Understanding health checks</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

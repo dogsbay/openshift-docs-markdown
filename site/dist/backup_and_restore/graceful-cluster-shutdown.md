@@ -8,6 +8,6 @@ You can shut down your OpenShift Container Platform cluster for planned maintena
 
 ## Additional resources {#additional-resources_restarting-restoring-cluster}
 
-- [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
-- [Restoring to an earlier cluster state](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
-- [Restarting the cluster gracefully](/backup_and_restore/graceful-cluster-restart#graceful-restart-cluster)
+- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
+- [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
+- [Restarting the cluster gracefully](/openshift-docs-markdown/backup_and_restore/graceful-cluster-restart#graceful-restart-cluster)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-azure-stack-hub-network-customizations","text":"Installing a cluster on Azure Stack Hub with network customizations"},{"depth":2,"slug":"prerequisites_installing-azure-stack-hub-network-customizations","text":"Prerequisites"},{"depth":2,"slug":"next-steps_installing-azure-stack-hub-network-customizations","text":"Next steps"}];
 const nav = navData;
-const currentPath = "/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-network-customizations";
+const currentPath = "/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-network-customizations";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_azure_stack_hub","installing/installing_azure_stack_hub/ipi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Azure Stack Hub with network customizations {#installing-azure-stack-hub-network-customizations}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster with a customized network configuration on infrastructure that the installation program provisions on Azure Stack Hub. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.\n\n> [!NOTE]\n> While you can select `azure` when using the installation program to deploy a cluster using installer-provisioned infrastructure, this option is only supported for the Azure Public Cloud.\n\n## Prerequisites {#prerequisites_installing-azure-stack-hub-network-customizations}\n\n- You reviewed details about the [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation) processes.\n- You read the documentation on [selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing).\n- You have installed Azure Stack Hub version 2008 or later.\n- You [configured an Azure Stack Hub account](/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account) to host the cluster.\n- If you use a firewall, you [configured it to allow the sites](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.\n- You verified that you have approximately 16 GB of local disk space. Installing the cluster requires that you download the {{ op_system }} virtual hard drive (VHD) cluster image and upload it to your Azure Stack Hub environment so that it is accessible during deployment. Decompressing the VHD files requires this amount of local disk space.\n\n**Additional resources**\n\n- [Installation configuration parameters for Azure Stack Hub](/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)\n\n<a name=\"additional-resources_installing-azure-stack-hub-network-customizations-cco\"></a>**Additional resources**\n\n- [Updating a cluster using the web console](/updating/updating_a_cluster/updating-cluster-web-console#manually-maintained-credentials-upgrade_updating-cluster-web-console)\n- [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#manually-maintained-credentials-upgrade_updating-cluster-cli)\n\n<a name=\"additional-resources_installing-azure-stack-hub-network-customizations-console\"></a>**Additional resources**\n\n- [Accessing the web console](/web_console/web-console#web-console)\n\n## Next steps {#next-steps_installing-azure-stack-hub-network-customizations}\n\n- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)\n- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- Optional: [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- Optional: [Remove cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)\n","mdUrl":"/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-network-customizations.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Azure Stack Hub with network customizations {#installing-azure-stack-hub-network-customizations}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster with a customized network configuration on infrastructure that the installation program provisions on Azure Stack Hub. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.\n\n> [!NOTE]\n> While you can select `azure` when using the installation program to deploy a cluster using installer-provisioned infrastructure, this option is only supported for the Azure Public Cloud.\n\n## Prerequisites {#prerequisites_installing-azure-stack-hub-network-customizations}\n\n- You reviewed details about the [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation) processes.\n- You read the documentation on [selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing).\n- You have installed Azure Stack Hub version 2008 or later.\n- You [configured an Azure Stack Hub account](/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account) to host the cluster.\n- If you use a firewall, you [configured it to allow the sites](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.\n- You verified that you have approximately 16 GB of local disk space. Installing the cluster requires that you download the {{ op_system }} virtual hard drive (VHD) cluster image and upload it to your Azure Stack Hub environment so that it is accessible during deployment. Decompressing the VHD files requires this amount of local disk space.\n\n**Additional resources**\n\n- [Installation configuration parameters for Azure Stack Hub](/openshift-docs-markdown/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)\n\n<a name=\"additional-resources_installing-azure-stack-hub-network-customizations-cco\"></a>**Additional resources**\n\n- [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#manually-maintained-credentials-upgrade_updating-cluster-web-console)\n- [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#manually-maintained-credentials-upgrade_updating-cluster-cli)\n\n<a name=\"additional-resources_installing-azure-stack-hub-network-customizations-console\"></a>**Additional resources**\n\n- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)\n\n## Next steps {#next-steps_installing-azure-stack-hub-network-customizations}\n\n- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)\n- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- Optional: [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- Optional: [Remove cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-network-customizations.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,21 +104,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <h2 id="prerequisites_installing-azure-stack-hub-network-customizations" class="group scroll-mt-20">Prerequisites<a href="#prerequisites_installing-azure-stack-hub-network-customizations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li>You reviewed details about the <a href="/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a> processes.</li>
-      <li>You read the documentation on <a href="/installing/overview/installing-preparing#installing-preparing">selecting a cluster installation method and preparing it for users</a>.</li>
+      <li>You reviewed details about the <a href="/openshift-docs-markdown/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a> processes.</li>
+      <li>You read the documentation on <a href="/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing">selecting a cluster installation method and preparing it for users</a>.</li>
       <li>You have installed Azure Stack Hub version 2008 or later.</li>
-      <li>You <a href="/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account">configured an Azure Stack Hub account</a> to host the cluster.</li>
-      <li>If you use a firewall, you <a href="/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">configured it to allow the sites</a> that your cluster requires access to.</li>
+      <li>You <a href="/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account">configured an Azure Stack Hub account</a> to host the cluster.</li>
+      <li>If you use a firewall, you <a href="/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">configured it to allow the sites</a> that your cluster requires access to.</li>
       <li>You verified that you have approximately 16 GB of local disk space. Installing the cluster requires that you download the {"{"}{"{"} op_system {"}"}{"}"} virtual hard drive (VHD) cluster image and upload it to your Azure Stack Hub environment so that it is accessible during deployment. Decompressing the VHD files requires this amount of local disk space.</li>
       </ul>
       <p class="/modules/installation-initializing-manual.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash">Installation configuration parameters for Azure Stack Hub</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash">Installation configuration parameters for Azure Stack Hub</a></li></ul>
       <p class="/modules/manually-create-identity-access-management.md"></p>
       <p><Fragment set:html={"<a name=\"additional-resources_installing-azure-stack-hub-network-customizations-cco\">"} /><Fragment set:html={"</a>"} /><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/updating/updating_a_cluster/updating-cluster-web-console#manually-maintained-credentials-upgrade_updating-cluster-web-console">Updating a cluster using the web console</a></li>
-      <li><a href="/updating/updating_a_cluster/updating-cluster-cli#manually-maintained-credentials-upgrade_updating-cluster-cli">Updating a cluster using the CLI</a></li>
+      <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#manually-maintained-credentials-upgrade_updating-cluster-web-console">Updating a cluster using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#manually-maintained-credentials-upgrade_updating-cluster-cli">Updating a cluster using the CLI</a></li>
       </ul>
       <p class="/modules/nw-network-config.md"></p>
       <p class="/modules/nw-modifying-operator-install-config.md"></p>
@@ -128,13 +128,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/cli-logging-in-kubeadmin.md"></p>
       <p class="/modules/logging-in-by-using-the-web-console.md"></p>
       <p><Fragment set:html={"<a name=\"additional-resources_installing-azure-stack-hub-network-customizations-console\">"} /><Fragment set:html={"</a>"} /><strong>Additional resources</strong></p>
-      <ul><li><a href="/web_console/web-console#web-console">Accessing the web console</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/web_console/web-console#web-console">Accessing the web console</a></li></ul>
       <h2 id="next-steps_installing-azure-stack-hub-network-customizations" class="group scroll-mt-20">Next steps<a href="#next-steps_installing-azure-stack-hub-network-customizations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
-      <li>Optional: <a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
-      <li>Optional: <a href="/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration">Remove cloud provider credentials</a></li>
+      <li><a href="/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
+      <li>Optional: <a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
+      <li>Optional: <a href="/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration">Remove cloud provider credentials</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

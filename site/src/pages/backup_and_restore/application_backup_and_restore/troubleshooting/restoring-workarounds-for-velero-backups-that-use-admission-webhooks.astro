@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"restoring-workarounds-for-velero-backups-that-use-admission-webhooks","text":"Restoring workarounds for Velero backups that use admission webhooks"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/troubleshooting/restoring-workarounds-for-velero-backups-that-use-admission-webhooks";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/restoring-workarounds-for-velero-backups-that-use-admission-webhooks";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/troubleshooting"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restoring workarounds for Velero backups that use admission webhooks {#restoring-workarounds-for-velero-backups-that-use-admission-webhooks}\n\nResolve restore failures caused by admission webhooks by applying workarounds for workloads such as Knative and {{ ibm_title }} AppConnect resources. This helps you to successfully restore workloads that have mutating or validating admission webhooks.\n\nVelero has limited abilities to resolve admission webhook issues during a restore. If you have workloads with admission webhooks, you might need to use an additional Velero plugin or make changes to how you restore the workload. Typically, workloads with admission webhooks require you to create a resource of a specific kind first. This is especially true if your workload has child resources because admission webhooks typically block child resources.\n\nFor example, creating or restoring a top-level object such as `service.serving.knative.dev` typically creates child resources automatically. If you do this first, you will not need to use Velero to create and restore these resources. This avoids the problem of child resources being blocked by an admission webhook that Velero might use.\n\n> [!NOTE]\n> Velero plugins are started as separate processes. After a Velero operation has completed, either successfully or not, it exits. Receiving a `received EOF, stopping recv loop` message in the debug logs indicates that a plugin operation has completed. It does not mean that an error has occurred.\n\n**Additional resources**\n\n- [Admission plugins](/architecture/admission-plug-ins#admission-plug-ins)\n- [Webhook admission plugins](/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)\n- [Types of webhook admission plugins](/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)\n","mdUrl":"/backup_and_restore/application_backup_and_restore/troubleshooting/restoring-workarounds-for-velero-backups-that-use-admission-webhooks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restoring workarounds for Velero backups that use admission webhooks {#restoring-workarounds-for-velero-backups-that-use-admission-webhooks}\n\nResolve restore failures caused by admission webhooks by applying workarounds for workloads such as Knative and {{ ibm_title }} AppConnect resources. This helps you to successfully restore workloads that have mutating or validating admission webhooks.\n\nVelero has limited abilities to resolve admission webhook issues during a restore. If you have workloads with admission webhooks, you might need to use an additional Velero plugin or make changes to how you restore the workload. Typically, workloads with admission webhooks require you to create a resource of a specific kind first. This is especially true if your workload has child resources because admission webhooks typically block child resources.\n\nFor example, creating or restoring a top-level object such as `service.serving.knative.dev` typically creates child resources automatically. If you do this first, you will not need to use Velero to create and restore these resources. This avoids the problem of child resources being blocked by an admission webhook that Velero might use.\n\n> [!NOTE]\n> Velero plugins are started as separate processes. After a Velero operation has completed, either successfully or not, it exits. Receiving a `received EOF, stopping recv loop` message in the debug logs indicates that a plugin operation has completed. It does not mean that an error has occurred.\n\n**Additional resources**\n\n- [Admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-plug-ins)\n- [Webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)\n- [Types of webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/restoring-workarounds-for-velero-backups-that-use-admission-webhooks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -110,9 +110,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/workaround-for-openshift-adp-controller-segmentation-fault.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/architecture/admission-plug-ins#admission-plug-ins">Admission plugins</a></li>
-      <li><a href="/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins">Webhook admission plugins</a></li>
-      <li><a href="/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins">Types of webhook admission plugins</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/admission-plug-ins#admission-plug-ins">Admission plugins</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins">Webhook admission plugins</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins">Types of webhook admission plugins</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

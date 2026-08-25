@@ -28,5 +28,5 @@ You must consider the following limitations before implementing a primary UDN:
 
 ## Additional resources {#additional-resources_virt-connecting-vm-to-primary-udn}
 
-- [About user-defined networks](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
-- [About BGP EVPN for primary cluster user-defined networks](/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)
+- [About user-defined networks](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
+- [About BGP EVPN for primary cluster user-defined networks](/openshift-docs-markdown/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)

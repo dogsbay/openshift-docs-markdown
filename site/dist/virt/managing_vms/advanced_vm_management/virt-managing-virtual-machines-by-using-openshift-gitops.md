@@ -11,7 +11,7 @@ With GitOps, you can set up VM deployments based on configuration files stored i
 **Prerequisites**
 
 - You have a GitHub account. For instructions to set up an account, see [Creating an account on GitHub](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).
-- OpenShift Virtualuzation has been installed on your OpenShift cluster. For instructions, see [OpenShift Virtualization installation](/virt/install/installing-virt#installing-virt).
+- OpenShift Virtualuzation has been installed on your OpenShift cluster. For instructions, see [OpenShift Virtualization installation](/openshift-docs-markdown/virt/install/installing-virt#installing-virt).
 - The OpenShift GitOps operator has been installed on your OpenShift cluster. For instructions, see [Installing GitOps](https://docs.openshift.com/gitops/1.15/installing_gitops/preparing-gitops-install.html).
 
 **Procedure**

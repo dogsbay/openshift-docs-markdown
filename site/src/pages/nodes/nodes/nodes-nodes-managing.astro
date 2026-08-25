@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-nodes-managing","text":"Managing nodes"},{"depth":2,"slug":"additional-resources_nodes-nodes-managing","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/nodes/nodes-nodes-managing";
+const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing nodes {#nodes-nodes-managing}\n\nOpenShift Container Platform uses a KubeletConfig custom resource (CR) to manage the configuration of nodes. By creating an instance of a `KubeletConfig` object, a managed machine config is created to override setting on the node.\n\n> [!NOTE]\n> Logging in to remote machines for the purpose of changing their configuration is not supported.\n\n## Additional resources {#additional-resources_nodes-nodes-managing}\n\n- [Managing control plane machines with control plane machine sets](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n- [PSI - Pressure Stall Information (Linux Kernel documentation)](https://docs.kernel.org/accounting/psi.html)\n","mdUrl":"/nodes/nodes/nodes-nodes-managing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing nodes {#nodes-nodes-managing}\n\nOpenShift Container Platform uses a KubeletConfig custom resource (CR) to manage the configuration of nodes. By creating an instance of a `KubeletConfig` object, a managed machine config is created to override setting on the node.\n\n> [!NOTE]\n> Logging in to remote machines for the purpose of changing their configuration is not supported.\n\n## Additional resources {#additional-resources_nodes-nodes-managing}\n\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n- [PSI - Pressure Stall Information (Linux Kernel documentation)](https://docs.kernel.org/accounting/psi.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -112,7 +112,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-nodes-psi-enable.md"></p>
       <h2 id="additional-resources_nodes-nodes-managing" class="group scroll-mt-20">Additional resources<a href="#additional-resources_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines">Managing control plane machines with control plane machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines">Managing control plane machines with control plane machine sets</a></li>
       <li><a href="https://docs.kernel.org/accounting/psi.html">PSI - Pressure Stall Information (Linux Kernel documentation)</a></li>
       </ul>
     </article>

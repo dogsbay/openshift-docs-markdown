@@ -2,7 +2,7 @@
 // Source: backup_and_restore/application_backup_and_restore/installing/uninstalling-oadp.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Uninstalling the OpenShift API for Data Protection\n---\n\n# Uninstalling the OpenShift API for Data Protection {#uninstalling-oadp}\n\nYou uninstall the OpenShift API for Data Protection (OADP) by deleting the OADP Operator.\n\n## Additional resources {#additional-resources_uninstalling-oadp}\n\n- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-cluster)\n";
+const body = "---\ntitle: Uninstalling the OpenShift API for Data Protection\n---\n\n# Uninstalling the OpenShift API for Data Protection {#uninstalling-oadp}\n\nYou uninstall the OpenShift API for Data Protection (OADP) by deleting the OADP Operator.\n\n## Additional resources {#additional-resources_uninstalling-oadp}\n\n- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-cluster)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

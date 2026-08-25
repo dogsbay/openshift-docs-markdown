@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"architecture-rhcos","text":"{{ op_system_first }}"}];
 const nav = navData;
-const currentPath = "/architecture/architecture-rhcos";
+const currentPath = "/openshift-docs-markdown/architecture/architecture-rhcos";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["architecture"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ op_system_first }} {#architecture-rhcos}\n\n{{ op_system_first }} represents the next generation of single-purpose container operating system technology by providing the quality standards of {{ op_system_base_full }} with automated, remote upgrade features.\n\n{{ op_system }} is supported only as a component of OpenShift Container Platform 4.22 for all OpenShift Container Platform machines. {{ op_system }} is the only supported operating system for all node types in OpenShift Container Platform. {{ op_system }} is deployed in OpenShift Container Platform 4.22 in two general ways:\n\n- If you install your cluster on infrastructure that the installation program provisions, {{ op_system }} images are downloaded to the target platform during installation. Suitable Ignition config files, which control the {{ op_system }} configuration, are also downloaded and used to deploy the machines.\n- If you install your cluster on infrastructure that you manage, you must follow the installation documentation to obtain the {{ op_system }} images, generate Ignition config files, and use the Ignition config files to provision your machines.\n\n**Additional resources**\n\n- [cloud-init documentation](https://cloud-init.io/)\n- [Kickstart installations](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/installation_guide/index#chap-kickstart-installations)\n","mdUrl":"/architecture/architecture-rhcos.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ op_system_first }} {#architecture-rhcos}\n\n{{ op_system_first }} represents the next generation of single-purpose container operating system technology by providing the quality standards of {{ op_system_base_full }} with automated, remote upgrade features.\n\n{{ op_system }} is supported only as a component of OpenShift Container Platform 4.22 for all OpenShift Container Platform machines. {{ op_system }} is the only supported operating system for all node types in OpenShift Container Platform. {{ op_system }} is deployed in OpenShift Container Platform 4.22 in two general ways:\n\n- If you install your cluster on infrastructure that the installation program provisions, {{ op_system }} images are downloaded to the target platform during installation. Suitable Ignition config files, which control the {{ op_system }} configuration, are also downloaded and used to deploy the machines.\n- If you install your cluster on infrastructure that you manage, you must follow the installation documentation to obtain the {{ op_system }} images, generate Ignition config files, and use the Ignition config files to provision your machines.\n\n**Additional resources**\n\n- [cloud-init documentation](https://cloud-init.io/)\n- [Kickstart installations](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/installation_guide/index#chap-kickstart-installations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/architecture/architecture-rhcos.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

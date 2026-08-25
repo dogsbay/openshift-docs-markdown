@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-about-live-migration","text":"About live migration"},{"depth":2,"slug":"additional-resources_virt-about-live-migration","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/live_migration/virt-about-live-migration";
+const currentPath = "/openshift-docs-markdown/virt/live_migration/virt-about-live-migration";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/live_migration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About live migration {#virt-about-live-migration}\n\nLive migration moves a running virtual machine to another node without interrupting the workload. It enables smooth transitions during cluster upgrades and node maintenance. Traffic is encrypted using TLS by default.\n\n## Additional resources {#additional-resources_virt-about-live-migration}\n\n- [Default cluster roles for {{ VirtProductName }}](/virt/about_virt/virt-security-policies#default-cluster-roles-for-virt_virt-security-policies)\n- [Prometheus queries for live migration](/virt/monitoring/virt-prometheus-queries#virt-live-migration-metrics_virt-prometheus-queries)\n- [Configure eviction and run strategies](/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)\n","mdUrl":"/virt/live_migration/virt-about-live-migration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About live migration {#virt-about-live-migration}\n\nLive migration moves a running virtual machine to another node without interrupting the workload. It enables smooth transitions during cluster upgrades and node maintenance. Traffic is encrypted using TLS by default.\n\n## Additional resources {#additional-resources_virt-about-live-migration}\n\n- [Default cluster roles for {{ VirtProductName }}](/openshift-docs-markdown/virt/about_virt/virt-security-policies#default-cluster-roles-for-virt_virt-security-policies)\n- [Prometheus queries for live migration](/openshift-docs-markdown/virt/monitoring/virt-prometheus-queries#virt-live-migration-metrics_virt-prometheus-queries)\n- [Configure eviction and run strategies](/openshift-docs-markdown/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/live_migration/virt-about-live-migration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,9 +101,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-vm-migration-dual-stream.md"></p>
       <h2 id="additional-resources_virt-about-live-migration" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-about-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/about_virt/virt-security-policies#default-cluster-roles-for-virt_virt-security-policies">Default cluster roles for {"{"}{"{"} VirtProductName {"}"}{"}"}</a></li>
-      <li><a href="/virt/monitoring/virt-prometheus-queries#virt-live-migration-metrics_virt-prometheus-queries">Prometheus queries for live migration</a></li>
-      <li><a href="/virt/nodes/virt-eviction-strategies#virt-eviction-strategies">Configure eviction and run strategies</a></li>
+      <li><a href="/openshift-docs-markdown/virt/about_virt/virt-security-policies#default-cluster-roles-for-virt_virt-security-policies">Default cluster roles for {"{"}{"{"} VirtProductName {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/virt/monitoring/virt-prometheus-queries#virt-live-migration-metrics_virt-prometheus-queries">Prometheus queries for live migration</a></li>
+      <li><a href="/openshift-docs-markdown/virt/nodes/virt-eviction-strategies#virt-eviction-strategies">Configure eviction and run strategies</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

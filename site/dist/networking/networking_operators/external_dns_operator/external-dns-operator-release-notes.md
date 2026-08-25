@@ -13,4 +13,4 @@ These release notes track the development of the External DNS Operator in OpenSh
 
 **Additional resources**
 
-- [Creating DNS records in a different {{ aws_short }} Account using a shared VPC](/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws)
+- [Creating DNS records in a different {{ aws_short }} Account using a shared VPC](/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws)

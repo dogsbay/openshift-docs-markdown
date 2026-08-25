@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-fips","text":"Support for FIPS cryptography"},{"depth":2,"slug":"additional-resources_installing-fips","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/overview/installing-fips";
+const currentPath = "/openshift-docs-markdown/installing/overview/installing-fips";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/overview"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Support for FIPS cryptography {#installing-fips}\n\nYou can install an OpenShift Container Platform cluster in FIPS mode.\n\nOpenShift Container Platform is designed for FIPS. When running {{ op_system_base_full }} or {{ op_system_first }} booted in FIPS mode, OpenShift Container Platform core components use the {{ op_system_base }} cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.\n\nFor more information about the NIST validation program, see \"Cryptographic Module Validation Program\" in the *Additional resources* section. For the latest NIST status for the individual versions of {{ op_system_base }} cryptographic libraries that have been submitted for validation, see \"Compliance Activities and Government Standards\" in the *Additional resources* section.\n\n> [!IMPORTANT]\n> To enable FIPS mode for your cluster, you must run the installation program from a {{ op_system_base }} 9 computer that is configured to operate in FIPS mode, and you must use a FIPS-capable version of the installation program. See the section titled *Obtaining a FIPS-capable installation program using `oc adm extract`*.\n>\n> For more information about configuring FIPS mode on {{ op_system_base }}, see \"Installing the system in FIPS mode\" in the *Additional resources* section.\n\nFor the {{ op_system_first }} machines in your cluster, this change is applied when the machines are deployed based on the status of an option in the `install-config.yaml` file, which governs the cluster options that a user can change during cluster deployment. With {{ op_system_base_full }} machines, you must enable FIPS mode when you install the operating system on the machines that you plan to use as worker machines.\n\nBecause FIPS must be enabled before the operating system that your cluster uses boots for the first time, you cannot enable FIPS after you deploy a cluster.\n\n## Additional resources {#additional-resources_installing-fips}\n\n- [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)\n- [Compliance Activities and Government Standards](https://access.redhat.com/articles/2918071#fips-140-2-and-fips-140-3-2)\n- [Installing the system in FIPS mode](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/assembly_installing-the-system-in-fips-mode_security-hardening)\n- [Extracting the OpenShift Container Platform installation program](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#retrieving-the-openshift-installer_ipi-install-installation-workflow)\n\n**Additional resources**\n\n- [RHEL core crypto components](https://access.redhat.com/articles/3655361)\n\n**Additional resources**\n\n- [Encrypt the etcd data](/etcd/etcd-encrypt#etcd-encrypt)\n- [Customizing nodes](/installing/install_config/installing-customizing#installing-customizing)\n\n**Additional resources**\n\n- [Encrypting etcd data](/etcd/etcd-encrypt#etcd-encrypt)\n","mdUrl":"/installing/overview/installing-fips.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Support for FIPS cryptography {#installing-fips}\n\nYou can install an OpenShift Container Platform cluster in FIPS mode.\n\nOpenShift Container Platform is designed for FIPS. When running {{ op_system_base_full }} or {{ op_system_first }} booted in FIPS mode, OpenShift Container Platform core components use the {{ op_system_base }} cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.\n\nFor more information about the NIST validation program, see \"Cryptographic Module Validation Program\" in the *Additional resources* section. For the latest NIST status for the individual versions of {{ op_system_base }} cryptographic libraries that have been submitted for validation, see \"Compliance Activities and Government Standards\" in the *Additional resources* section.\n\n> [!IMPORTANT]\n> To enable FIPS mode for your cluster, you must run the installation program from a {{ op_system_base }} 9 computer that is configured to operate in FIPS mode, and you must use a FIPS-capable version of the installation program. See the section titled *Obtaining a FIPS-capable installation program using `oc adm extract`*.\n>\n> For more information about configuring FIPS mode on {{ op_system_base }}, see \"Installing the system in FIPS mode\" in the *Additional resources* section.\n\nFor the {{ op_system_first }} machines in your cluster, this change is applied when the machines are deployed based on the status of an option in the `install-config.yaml` file, which governs the cluster options that a user can change during cluster deployment. With {{ op_system_base_full }} machines, you must enable FIPS mode when you install the operating system on the machines that you plan to use as worker machines.\n\nBecause FIPS must be enabled before the operating system that your cluster uses boots for the first time, you cannot enable FIPS after you deploy a cluster.\n\n## Additional resources {#additional-resources_installing-fips}\n\n- [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)\n- [Compliance Activities and Government Standards](https://access.redhat.com/articles/2918071#fips-140-2-and-fips-140-3-2)\n- [Installing the system in FIPS mode](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/assembly_installing-the-system-in-fips-mode_security-hardening)\n- [Extracting the OpenShift Container Platform installation program](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#retrieving-the-openshift-installer_ipi-install-installation-workflow)\n\n**Additional resources**\n\n- [RHEL core crypto components](https://access.redhat.com/articles/3655361)\n\n**Additional resources**\n\n- [Encrypt the etcd data](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)\n- [Customizing nodes](/openshift-docs-markdown/installing/install_config/installing-customizing#installing-customizing)\n\n**Additional resources**\n\n- [Encrypting etcd data](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/overview/installing-fips.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -113,18 +113,18 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules">Cryptographic Module Validation Program</a></li>
       <li><a href="https://access.redhat.com/articles/2918071#fips-140-2-and-fips-140-3-2">Compliance Activities and Government Standards</a></li>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/assembly_installing-the-system-in-fips-mode_security-hardening">Installing the system in FIPS mode</a></li>
-      <li><a href="/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#retrieving-the-openshift-installer_ipi-install-installation-workflow">Extracting the OpenShift Container Platform installation program</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#retrieving-the-openshift-installer_ipi-install-installation-workflow">Extracting the OpenShift Container Platform installation program</a></li>
       </ul>
       <p class="/modules/installation-about-fips-validation.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://access.redhat.com/articles/3655361">RHEL core crypto components</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/etcd/etcd-encrypt#etcd-encrypt">Encrypt the etcd data</a></li>
-      <li><a href="/installing/install_config/installing-customizing#installing-customizing">Customizing nodes</a></li>
+      <li><a href="/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt">Encrypt the etcd data</a></li>
+      <li><a href="/openshift-docs-markdown/installing/install_config/installing-customizing#installing-customizing">Customizing nodes</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/etcd/etcd-encrypt#etcd-encrypt">Encrypting etcd data</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt">Encrypting etcd data</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -14,8 +14,8 @@ schedule workloads in a multi-architecture cluster.
 
 **Additional resources**
 
-- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
-- [Controlling pod placement using node taints](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)
-- [Controlling pod placement on nodes using node affinity](/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)
-- [Controlling pod placement using the scheduler](/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
-- [Modifying a compute machine set](/machine_management/modifying-machineset#machineset-modifying_modifying-machineset)
+- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
+- [Controlling pod placement using node taints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)
+- [Controlling pod placement on nodes using node affinity](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)
+- [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
+- [Modifying a compute machine set](/openshift-docs-markdown/machine_management/modifying-machineset#machineset-modifying_modifying-machineset)

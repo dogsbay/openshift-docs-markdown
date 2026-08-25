@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"understanding-update-channels-releases","text":"Understanding update channels and releases"}];
 const nav = navData;
-const currentPath = "/updating/understanding_updates/understanding-update-channels-release";
+const currentPath = "/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["updating","updating/understanding_updates"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding update channels and releases {#understanding-update-channels-releases}\n\nUpdate channels are the mechanism by which users declare the OpenShift Container Platform minor version they intend to update their clusters to. They also allow users to choose the timing and level of support their updates will have through the `fast`, `stable`, `candidate`, and `eus` channel options.\n\nThe Cluster Version Operator uses an update graph based on the channel declaration, along with other conditional information, to provide a list of recommended and conditional updates available to the cluster.\n","mdUrl":"/updating/understanding_updates/understanding-update-channels-release.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding update channels and releases {#understanding-update-channels-releases}\n\nUpdate channels are the mechanism by which users declare the OpenShift Container Platform minor version they intend to update their clusters to. They also allow users to choose the timing and level of support their updates will have through the `fast`, `stable`, `candidate`, and `eus` channel options.\n\nThe Cluster Version Operator uses an update graph based on the channel declaration, along with other conditional information, to provide a list of recommended and conditional updates available to the cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

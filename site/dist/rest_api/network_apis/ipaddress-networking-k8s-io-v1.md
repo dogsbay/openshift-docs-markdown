@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | IPAddressSpec describe the attributes in an IP Address. |
 
 ### .spec {#_spec}
@@ -103,7 +103,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -120,7 +120,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressList`](/rest_api/objects/index#io-k8s-api-networking-v1-IPAddressList) schema |
+| 200 - OK | [`IPAddressList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-networking-v1-IPAddressList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -144,15 +144,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |  |
+| `body` | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
-| 201 - Created | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
-| 202 - Accepted | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 200 - OK | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 201 - Created | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 202 - Accepted | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/networking.k8s.io/v1/watch/ipaddresses {#_apisnetworkingk8siov1watchipaddresses}
@@ -171,7 +171,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/networking.k8s.io/v1/ipaddresses/{{ name }} {#_apisnetworkingk8siov1ipaddresses_name}
@@ -202,8 +202,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -220,7 +220,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 200 - OK | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -244,8 +244,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
-| 201 - Created | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 200 - OK | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 201 - Created | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -269,14 +269,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |  |
+| `body` | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
-| 201 - Created | [`IPAddress`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 200 - OK | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
+| 201 - Created | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/networking.k8s.io/v1/watch/ipaddresses/{{ name }} {#_apisnetworkingk8siov1watchipaddresses_name}
@@ -301,5 +301,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

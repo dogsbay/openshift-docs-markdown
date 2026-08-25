@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | TemplateInstanceSpec describes the desired state of a TemplateInstance. |
 | `status` | `object` | TemplateInstanceStatus describes the current state of a TemplateInstance. |
 
@@ -95,8 +95,8 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `labels` | `object (string)` | labels is a optional set of labels that are applied to every object during the Template to Config transformation. |
 | `message` | `string` | message is an optional instructional message that will be displayed when this template is instantiated. This field should inform the user how to utilize the newly created resources. Parameter substitution will be performed on the message before being displayed so that generated credentials and other parameters can be included in the output. |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `objects` | [`array (RawExtension)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${{ PARAMETER_REFERENCE }}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `objects` | [`array (RawExtension)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${{ PARAMETER_REFERENCE }}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
 | `parameters` | `array` | parameters is an optional array of Parameters used during the Template to Config transformation. |
 | `parameters[]` | `object` | Parameter defines a name/value variable that is to be processed during the Template to Config transformation. |
 
@@ -180,7 +180,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the last time a condition status transitioned from one state to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the last time a condition status transitioned from one state to another. |
 | `message` | `string` | message is a human readable description of the details of the last transition, complementing reason. |
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False or Unknown. |
@@ -208,7 +208,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `ref` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | ref is a reference to the created object.  When used under .spec, only name and namespace are used; these can contain references to parameters which will be substituted following the usual rules. |
+| `ref` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | ref is a reference to the created object.  When used under .spec, only name and namespace are used; these can contain references to parameters which will be substituted following the usual rules. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -259,7 +259,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstanceList`](/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateInstanceList) schema |
+| 200 - OK | [`TemplateInstanceList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateInstanceList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/templateinstances {#_apistemplateopenshiftiov1watchtemplateinstances}
@@ -278,7 +278,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances}
@@ -303,7 +303,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -320,7 +320,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstanceList`](/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateInstanceList) schema |
+| 200 - OK | [`TemplateInstanceList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-template-v1-TemplateInstanceList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -344,15 +344,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |  |
+| `body` | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
-| 202 - Accepted | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 202 - Accepted | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances {#_apistemplateopenshiftiov1watchnamespaces_namespace_templateinstances}
@@ -371,7 +371,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }} {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances_name}
@@ -402,8 +402,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -420,7 +420,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -444,8 +444,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -469,14 +469,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |  |
+| `body` | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances/{{ name }} {#_apistemplateopenshiftiov1watchnamespaces_namespace_templateinstances_name}
@@ -501,7 +501,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}/status {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances_name_status}
@@ -526,7 +526,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -550,8 +550,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -575,12 +575,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |  |
+| `body` | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`TemplateInstance`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

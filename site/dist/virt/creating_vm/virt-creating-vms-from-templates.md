@@ -26,4 +26,4 @@ Customize before starting the VM
 
 ## Additional resources {#additional-resources_virt-creating-vms-from-templates}
 
-- [Managing automatic boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)
+- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)

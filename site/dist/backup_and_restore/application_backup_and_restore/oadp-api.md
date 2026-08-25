@@ -27,5 +27,5 @@ OADP API
 
 - [Velero API types](https://velero.io/docs/main/api-types/)
 - [OADP Operator (Go documentation)](https://pkg.go.dev/github.com/openshift/oadp-operator)
-- [OADP plugins](/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features-plugins)
+- [OADP plugins](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features-plugins)
 - [Complete schema definitions for the type `PodConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig)

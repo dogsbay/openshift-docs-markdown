@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"upi-aws-preparing-to-install","text":"Preparing to install a cluster on AWS"}];
 const nav = navData;
-const currentPath = "/installing/installing_aws/upi/upi-aws-preparing-to-install";
+const currentPath = "/openshift-docs-markdown/installing/installing_aws/upi/upi-aws-preparing-to-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_aws","installing/installing_aws/upi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to install a cluster on AWS {#upi-aws-preparing-to-install}\n\nYou prepare to install an OpenShift Container Platform cluster on AWS by completing the following steps:\n\n- Verifying internet connectivity for your cluster.\n- [Configuring an AWS account](/installing/installing_aws/installing-aws-account#installing-aws-account).\n- Downloading the installation program.\n\n  > [!NOTE]\n  > If you are installing in a disconnected environment, you extract the installation program from the mirrored content. For more information, see [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images).\n- Installing the {{ oc_first }}.\n\n  > [!NOTE]\n  > If you are installing in a disconnected environment, install `oc` to the mirror host.\n- Generating an SSH key pair. You can use this key pair to authenticate into the OpenShift Container Platform cluster’s nodes after it is deployed.\n- [Preparing the user-provisioned infrastructure.](/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs)\n- If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the `kube-system` namespace, [manually creating long-term credentials for AWS](/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations) or [configuring an AWS cluster to use short-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations) with Amazon Web Services Security Token Service (AWS STS).\n\n**Additional resources**\n\n- See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service.\n","mdUrl":"/installing/installing_aws/upi/upi-aws-preparing-to-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to install a cluster on AWS {#upi-aws-preparing-to-install}\n\nYou prepare to install an OpenShift Container Platform cluster on AWS by completing the following steps:\n\n- Verifying internet connectivity for your cluster.\n- [Configuring an AWS account](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account).\n- Downloading the installation program.\n\n  > [!NOTE]\n  > If you are installing in a disconnected environment, you extract the installation program from the mirrored content. For more information, see [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images).\n- Installing the {{ oc_first }}.\n\n  > [!NOTE]\n  > If you are installing in a disconnected environment, install `oc` to the mirror host.\n- Generating an SSH key pair. You can use this key pair to authenticate into the OpenShift Container Platform cluster’s nodes after it is deployed.\n- [Preparing the user-provisioned infrastructure.](/openshift-docs-markdown/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs)\n- If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the `kube-system` namespace, [manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations) or [configuring an AWS cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations) with Amazon Web Services Security Token Service (AWS STS).\n\n**Additional resources**\n\n- See [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/upi/upi-aws-preparing-to-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,13 +98,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>You prepare to install an OpenShift Container Platform cluster on AWS by completing the following steps:</p>
       <ul>
       <li>Verifying internet connectivity for your cluster.</li>
-      <li><a href="/installing/installing_aws/installing-aws-account#installing-aws-account">Configuring an AWS account</a>.</li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account">Configuring an AWS account</a>.</li>
       <li>
       Downloading the installation program.
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>If you are installing in a disconnected environment, you extract the installation program from the mirrored content. For more information, see <a href="/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images">Mirroring images for a disconnected installation</a>.</p>
+          <p>If you are installing in a disconnected environment, you extract the installation program from the mirrored content. For more information, see <a href="/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images">Mirroring images for a disconnected installation</a>.</p>
         </AlertDescription>
       </Alert>
       </li>
@@ -118,8 +118,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       </li>
       <li>Generating an SSH key pair. You can use this key pair to authenticate into the OpenShift Container Platform cluster’s nodes after it is deployed.</li>
-      <li><a href="/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs">Preparing the user-provisioned infrastructure.</a></li>
-      <li>If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the <code>kube-system</code> namespace, <a href="/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations">manually creating long-term credentials for AWS</a> or <a href="/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations">configuring an AWS cluster to use short-term credentials</a> with Amazon Web Services Security Token Service (AWS STS).</li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs">Preparing the user-provisioned infrastructure.</a></li>
+      <li>If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the <code>kube-system</code> namespace, <a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations">manually creating long-term credentials for AWS</a> or <a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations">configuring an AWS cluster to use short-term credentials</a> with Amazon Web Services Security Token Service (AWS STS).</li>
       </ul>
       <p class="/modules/installation-obtaining-installer.md"></p>
       <p class="/modules/cli-installing-cli-linux.md"></p>
@@ -128,7 +128,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/ssh-agent-using.md"></p>
       <p class="/modules/cluster-telemetry.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li>See <a href="/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a> for more information about the Telemetry service.</li></ul>
+      <ul><li>See <a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a> for more information about the Telemetry service.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

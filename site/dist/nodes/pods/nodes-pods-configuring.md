@@ -10,11 +10,11 @@ By keeping your cluster efficient, you can provide a better environment for your
 
 **Additional resources**
 
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [Unhealthy Pod Eviction Policy (Kubernetes documentation)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)
 
 ## Additional resources {#additional-resources_nodes-pods-configuring}
 
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [Unhealthy Pod Eviction Policy (Kubernetes documentation)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)
 - [Example States (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#example-states)

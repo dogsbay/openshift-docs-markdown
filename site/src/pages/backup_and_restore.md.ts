@@ -2,7 +2,7 @@
 // Source: backup_and_restore.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Backup and restore\n---\n\n# Backup and restore {#backup-restore-overview}\n\nLearn how to back up and restore your OpenShift Container Platform cluster’s control plane and how to back up and restore applications running on the cluster.\n\n**Additional resources**\n\n- [Quorum protection with machine lifecycle hooks](/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)\n";
+const body = "---\ntitle: Backup and restore\n---\n\n# Backup and restore {#backup-restore-overview}\n\nLearn how to back up and restore your OpenShift Container Platform cluster’s control plane and how to back up and restore applications running on the cluster.\n\n**Additional resources**\n\n- [Quorum protection with machine lifecycle hooks](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

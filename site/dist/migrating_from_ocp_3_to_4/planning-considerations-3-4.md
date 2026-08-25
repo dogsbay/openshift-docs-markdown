@@ -14,4 +14,4 @@ To preserve the source DNS domain of migrated applications, select one of the tw
 
 **Additional resources**
 
-- See [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress) for more information.
+- See [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress) for more information.

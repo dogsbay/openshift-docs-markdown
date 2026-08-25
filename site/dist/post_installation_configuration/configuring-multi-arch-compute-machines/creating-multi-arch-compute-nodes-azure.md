@@ -10,7 +10,7 @@ You can also migrate your current cluster with single-architecture compute machi
 
 ## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-azure}
 
-- [Installing a cluster on Azure with customizations](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
-- [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
-- [Creating a compute machine set on Azure](/machine_management/creating_machinesets/creating-machineset-azure#creating-machineset-azure)
-- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
+- [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
+- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
+- [Creating a compute machine set on Azure](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#creating-machineset-azure)
+- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)

@@ -19,10 +19,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `identity` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | identity is a reference to an identity |
+| `identity` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | identity is a reference to an identity |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `user` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | user is a reference to a user |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `user` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | user is a reference to a user |
 
 ## API endpoints {#_api_endpoints}
 
@@ -61,15 +61,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |  |
+| `body` | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
-| 201 - Created | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
-| 202 - Accepted | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 200 - OK | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 201 - Created | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 202 - Accepted | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/user.openshift.io/v1/useridentitymappings/{{ name }} {#_apisuseropenshiftiov1useridentitymappings_name}
@@ -100,8 +100,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -118,7 +118,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 200 - OK | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -142,8 +142,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
-| 201 - Created | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 200 - OK | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 201 - Created | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -167,12 +167,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |  |
+| `body` | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
-| 201 - Created | [`UserIdentityMapping`](/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 200 - OK | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
+| 201 - Created | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

@@ -2,7 +2,7 @@
 // Source: installing/installing_openstack/deploying-openstack-with-rootVolume-etcd-on-local-disk.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Deploying on OpenStack with rootVolume and etcd on local disk\n---\n\n# Deploying on OpenStack with rootVolume and etcd on local disk {#deploying-openstack-on-local-disk}\n\nAfter installation, you can resolve and prevent performance issues of your {{ rh_openstack_first }} installation by moving etcd from a root volume (provided by {{ rh_openstack }} Cinder) to a dedicated ephemeral local disk.\n\n## Additional resources {#additional-resources_deploying-openstack-on-local-disk}\n\n- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)\n- [Overview of backup and restore options](/backup_and_restore/index#backup-restore-operations-overview)\n";
+const body = "---\ntitle: Deploying on OpenStack with rootVolume and etcd on local disk\n---\n\n# Deploying on OpenStack with rootVolume and etcd on local disk {#deploying-openstack-on-local-disk}\n\nAfter installation, you can resolve and prevent performance issues of your {{ rh_openstack_first }} installation by moving etcd from a root volume (provided by {{ rh_openstack }} Cinder) to a dedicated ephemeral local disk.\n\n## Additional resources {#additional-resources_deploying-openstack-on-local-disk}\n\n- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)\n- [Overview of backup and restore options](/openshift-docs-markdown/backup_and_restore/index#backup-restore-operations-overview)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

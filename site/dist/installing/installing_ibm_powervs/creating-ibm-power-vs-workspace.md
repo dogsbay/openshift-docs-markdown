@@ -8,4 +8,4 @@ To host your OpenShift Container Platform cluster on {{ ibm_power_server_name }}
 
 ## Additional resources {#additional-resources_creating-ibm-power-vs-workspace}
 
-- [Installing a cluster on {{ ibm_power_server_name }} with customizations](/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations)
+- [Installing a cluster on {{ ibm_power_server_name }} with customizations](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations)

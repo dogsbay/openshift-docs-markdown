@@ -8,6 +8,6 @@ You can configure worker node batching to control how many worker nodes update s
 
 ## Additional resources {#additional-resources_core-cluster-upgrades-worker-batching}
 
-- [Configuring application pods before updating your OpenShift Container Platform cluster](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-cnf-update-prep)
+- [Configuring application pods before updating your OpenShift Container Platform cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-cnf-update-prep)
 - [Kubernetes PodDisruptionBudget documentation](https://kubernetes.io/docs/tasks/run-application/configure-pdb/)
 - [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/)

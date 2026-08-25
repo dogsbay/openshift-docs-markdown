@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"update-paths","text":"Update paths"}];
 const nav = navData;
-const currentPath = "/extensions/ce/update-paths";
+const currentPath = "/openshift-docs-markdown/extensions/ce/update-paths";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["extensions","extensions/ce"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Update paths {#update-paths}\n\n{{ olmv1_first }} supports {{ olmv0 }} semantics for update paths, also known as upgrade edges or upgrade constraints. Support includes `replaces`, `skips`, and `skipRange` directives, with a few noted differences.\n\nBy supporting {{ olmv0 }} semantics, {{ olmv1 }} accurately reflects the update graph from catalogs.\n\n{{ olmv1 }} differs from the original {{ olmv0 }} implementation in the following ways:\n\n- If there are multiple possible successors, {{ olmv1 }} behavior differs in the following ways:\n\n  - In {{ olmv0 }}, the successor closest to the channel head is chosen.\n  - In {{ olmv1 }}, the successor with the highest semantic version (semver) is chosen.\n- Consider the following set of file-based catalog (FBC) channel entries:\n\n  ```yaml\n  # ...\n  - name: example.v3.0.0\n    skips: [\"example.v2.0.0\"]\n  - name: example.v2.0.0\n    skipRange: >=1.0.0 <2.0.0\n  ```\n\n  If `1.0.0` is installed, {{ olmv1 }} behavior differs in the following ways:\n\n  - {{ olmv0_caps }} will not detect an update path to `v2.0.0` because `v2.0.0` is skipped and not on the `replaces` chain.\n  - {{ olmv1 }} will detect the update path because {{ olmv1 }} does not have a concept of a `replaces` chain. {{ olmv1 }} finds all entries that have a `replace`, `skip`, or `skipRange` value that covers the currently installed version.\n\n**Additional resources**\n\n- [{{ olmv0_caps }} upgrade semantics](/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)\n\n**Additional resources**\n\n- [Support for version ranges](/extensions/ce/update-paths#olmv1-version-range-support_update-paths)\n\n**Additional resources**\n\n- [Deprecated API Migration Guide (Kubernetes documentation)](https://kubernetes.io/docs/reference/using-api/deprecation-guide/)\n\n**Additional resources**\n\n- [Understanding cluster Operator condition types](/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates)\n- [Upgrading installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n- [Cluster Operators reference -> {{ olmv1_first }} Operator](/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)\n","mdUrl":"/extensions/ce/update-paths.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Update paths {#update-paths}\n\n{{ olmv1_first }} supports {{ olmv0 }} semantics for update paths, also known as upgrade edges or upgrade constraints. Support includes `replaces`, `skips`, and `skipRange` directives, with a few noted differences.\n\nBy supporting {{ olmv0 }} semantics, {{ olmv1 }} accurately reflects the update graph from catalogs.\n\n{{ olmv1 }} differs from the original {{ olmv0 }} implementation in the following ways:\n\n- If there are multiple possible successors, {{ olmv1 }} behavior differs in the following ways:\n\n  - In {{ olmv0 }}, the successor closest to the channel head is chosen.\n  - In {{ olmv1 }}, the successor with the highest semantic version (semver) is chosen.\n- Consider the following set of file-based catalog (FBC) channel entries:\n\n  ```yaml\n  # ...\n  - name: example.v3.0.0\n    skips: [\"example.v2.0.0\"]\n  - name: example.v2.0.0\n    skipRange: >=1.0.0 <2.0.0\n  ```\n\n  If `1.0.0` is installed, {{ olmv1 }} behavior differs in the following ways:\n\n  - {{ olmv0_caps }} will not detect an update path to `v2.0.0` because `v2.0.0` is skipped and not on the `replaces` chain.\n  - {{ olmv1 }} will detect the update path because {{ olmv1 }} does not have a concept of a `replaces` chain. {{ olmv1 }} finds all entries that have a `replace`, `skip`, or `skipRange` value that covers the currently installed version.\n\n**Additional resources**\n\n- [{{ olmv0_caps }} upgrade semantics](/openshift-docs-markdown/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)\n\n**Additional resources**\n\n- [Support for version ranges](/openshift-docs-markdown/extensions/ce/update-paths#olmv1-version-range-support_update-paths)\n\n**Additional resources**\n\n- [Deprecated API Migration Guide (Kubernetes documentation)](https://kubernetes.io/docs/reference/using-api/deprecation-guide/)\n\n**Additional resources**\n\n- [Understanding cluster Operator condition types](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates)\n- [Upgrading installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n- [Cluster Operators reference -> {{ olmv1_first }} Operator](/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/ce/update-paths.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -115,20 +115,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow">{"{"}{"{"} olmv0_caps {"}"}{"}"} upgrade semantics</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow">{"{"}{"{"} olmv0_caps {"}"}{"}"} upgrade semantics</a></li></ul>
       <p class="/modules/olmv1-version-range-comparisons.md"></p>
       <p class="/modules/olmv1-about-target-versions.md"></p>
       <p class="/modules/olmv1-forcing-an-update-or-rollback.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/extensions/ce/update-paths#olmv1-version-range-support_update-paths">Support for version ranges</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/extensions/ce/update-paths#olmv1-version-range-support_update-paths">Support for version ranges</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://kubernetes.io/docs/reference/using-api/deprecation-guide/">Deprecated API Migration Guide (Kubernetes documentation)</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates">Understanding cluster Operator condition types</a></li>
-      <li><a href="/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Upgrading installed Operators</a></li>
-      <li><a href="/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster">Deleting Operators from a cluster</a></li>
-      <li><a href="/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference">Cluster Operators reference -&gt; {"{"}{"{"} olmv1_first {"}"}{"}"} Operator</a></li>
+      <li><a href="/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates">Understanding cluster Operator condition types</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Upgrading installed Operators</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster">Deleting Operators from a cluster</a></li>
+      <li><a href="/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference">Cluster Operators reference -&gt; {"{"}{"{"} olmv1_first {"}"}{"}"} Operator</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

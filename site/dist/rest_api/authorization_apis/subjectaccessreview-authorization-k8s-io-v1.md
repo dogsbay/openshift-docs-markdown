@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | SubjectAccessReviewSpec is a description of the access request.  Exactly one of ResourceAuthorizationAttributes and NonResourceAuthorizationAttributes must be set |
 | `status` | `object` | SubjectAccessReviewStatus |
 
@@ -105,7 +105,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
-| `requirements` | [`array (FieldSelectorRequirement)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-FieldSelectorRequirement) | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
+| `requirements` | [`array (FieldSelectorRequirement)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-FieldSelectorRequirement) | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 
 ### .spec.resourceAttributes.labelSelector {#_specresourceattributeslabelselector}
 
@@ -120,7 +120,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
-| `requirements` | [`array (LabelSelectorRequirement)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement) | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
+| `requirements` | [`array (LabelSelectorRequirement)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement) | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 
 ### .status {#_status}
 
@@ -173,13 +173,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`SubjectAccessReview`](/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |  |
+| `body` | [`SubjectAccessReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SubjectAccessReview`](/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |
-| 201 - Created | [`SubjectAccessReview`](/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |
-| 202 - Accepted | [`SubjectAccessReview`](/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |
+| 200 - OK | [`SubjectAccessReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |
+| 201 - Created | [`SubjectAccessReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |
+| 202 - Accepted | [`SubjectAccessReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectaccessreview-authorization-k8s-io-v1#subjectaccessreview-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

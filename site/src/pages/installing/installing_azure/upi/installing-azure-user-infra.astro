@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-azure-user-infra","text":"Installing a cluster on Azure using ARM templates"},{"depth":2,"slug":"additional-resources_installing-azure-user-infra","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_azure/upi/installing-azure-user-infra";
+const currentPath = "/openshift-docs-markdown/installing/installing_azure/upi/installing-azure-user-infra";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_azure","installing/installing_azure/upi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Azure using ARM templates {#installing-azure-user-infra}\n\nTo install OpenShift Container Platform on Microsoft Azure with infrastructure that you provide, you can use Azure Resource Manager (ARM) templates to create required resources and complete the user-provisioned installation.\n\nSeveral ARM templates are provided to assist in completing these steps or to help model your own. See \"Azure Resource Manager templates overview\".\n\n> [!IMPORTANT]\n> The steps for performing a user-provisioned infrastructure installation are provided as an example only. Installing a cluster with infrastructure you provide requires knowledge of the cloud provider and the installation process of OpenShift Container Platform. Several ARM templates are provided to assist in completing these steps or to help model your own. You are also free to create the required resources through other methods; the templates are just an example.\n\n**Additional resources**\n\n- [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)\n- [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)\n- [Configuring an Azure account](/installing/installing_azure/installing-azure-account#installing-azure-account)\n- [Install the Azure CLI (Azure documentation)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)\n- [Alternatives to storing administrator-level secrets in the kube-system project](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-manual-modes_installing-azure-customizations)\n- [Configuring the firewall to allow required sites](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)\n\n**Additional resources**\n\n- [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)\n\n**Additional resources**\n\n- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Azure subscription and service limits, quotas, and constraints ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)\n\n**Additional resources**\n\n- [Example for creating DNS zones](/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra)\n\n**Additional resources**\n\n- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)\n\n**Additional resources**\n\n- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n\n**Additional resources**\n\n- [Azure resource groups (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups)\n\n**Additional resources**\n\n- [Configuring a public DNS zone in Azure](#installation-azure-network-config_installing-azure-user-infra)\n\n**Additional resources**\n\n- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n## Additional resources {#additional-resources_installing-azure-user-infra}\n\n- [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)\n","mdUrl":"/installing/installing_azure/upi/installing-azure-user-infra.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Azure using ARM templates {#installing-azure-user-infra}\n\nTo install OpenShift Container Platform on Microsoft Azure with infrastructure that you provide, you can use Azure Resource Manager (ARM) templates to create required resources and complete the user-provisioned installation.\n\nSeveral ARM templates are provided to assist in completing these steps or to help model your own. See \"Azure Resource Manager templates overview\".\n\n> [!IMPORTANT]\n> The steps for performing a user-provisioned infrastructure installation are provided as an example only. Installing a cluster with infrastructure you provide requires knowledge of the cloud provider and the installation process of OpenShift Container Platform. Several ARM templates are provided to assist in completing these steps or to help model your own. You are also free to create the required resources through other methods; the templates are just an example.\n\n**Additional resources**\n\n- [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)\n- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)\n- [Configuring an Azure account](/openshift-docs-markdown/installing/installing_azure/installing-azure-account#installing-azure-account)\n- [Install the Azure CLI (Azure documentation)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)\n- [Alternatives to storing administrator-level secrets in the kube-system project](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-manual-modes_installing-azure-customizations)\n- [Configuring the firewall to allow required sites](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)\n\n**Additional resources**\n\n- [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)\n\n**Additional resources**\n\n- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Azure subscription and service limits, quotas, and constraints ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)\n\n**Additional resources**\n\n- [Example for creating DNS zones](/openshift-docs-markdown/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra)\n\n**Additional resources**\n\n- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)\n\n**Additional resources**\n\n- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n\n**Additional resources**\n\n- [Azure resource groups (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups)\n\n**Additional resources**\n\n- [Configuring a public DNS zone in Azure](#installation-azure-network-config_installing-azure-user-infra)\n\n**Additional resources**\n\n- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n## Additional resources {#additional-resources_installing-azure-user-infra}\n\n- [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_azure/upi/installing-azure-user-infra.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,35 +107,35 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview">Azure Resource Manager templates overview (Azure documentation)</a></li>
-      <li><a href="/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a></li>
-      <li><a href="/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
-      <li><a href="/installing/installing_azure/installing-azure-account#installing-azure-account">Configuring an Azure account</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_azure/installing-azure-account#installing-azure-account">Configuring an Azure account</a></li>
       <li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">Install the Azure CLI (Azure documentation)</a></li>
-      <li><a href="/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-manual-modes_installing-azure-customizations">Alternatives to storing administrator-level secrets in the kube-system project</a></li>
-      <li><a href="/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">Configuring the firewall to allow required sites</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-manual-modes_installing-azure-customizations">Alternatives to storing administrator-level secrets in the kube-system project</a></li>
+      <li><a href="/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">Configuring the firewall to allow required sites</a></li>
       </ul>
       <p class="/modules/installation-azure-config-project-overview.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name">Resolve reserved resource name errors (Azure documentation)</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li>
       <li><a href="https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits">Azure subscription and service limits, quotas, and constraints ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra">Example for creating DNS zones</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra">Example for creating DNS zones</a></li></ul>
       <p class="/modules/installation-azure-subscription-tenant-id.md"></p>
       <p class="/modules/installation-azure-identities.md"></p>
       <p class="/modules/minimum-required-permissions-upi-azure.md"></p>
       <p class="/modules/installation-using-azure-managed-identities.md"></p>
       <p class="/modules/installation-creating-azure-service-principal.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes">About the Cloud Credential Operator</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes">About the Cloud Credential Operator</a></li></ul>
       <p class="/modules/installation-user-infra-requirements-overview.md"></p>
       <p class="/modules/installation-machine-requirements.md"></p>
       <p class="/modules/installation-minimum-resource-requirements.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li></ul>
       <p class="/modules/installation-azure-arm-tested-machine-types.md"></p>
       <p class="/modules/installation-azure-marketplace-subscribe.md"></p>
       <p class="/modules/installation-obtaining-installer.md"></p>
@@ -174,7 +174,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-azure-user-infra-completing.md"></p>
       <p class="/modules/cluster-telemetry.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li></ul>
       <h2 id="additional-resources_installing-azure-user-infra" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-azure-user-infra" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview">Azure Resource Manager templates overview (Azure documentation)</a></li></ul>
     </article>

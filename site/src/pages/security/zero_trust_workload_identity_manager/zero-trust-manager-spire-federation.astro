@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"zero-trust-manager-spire-federation_{{ context }}","text":"Zero Trust Workload Identity Manager SPIRE federation"}];
 const nav = navData;
-const currentPath = "/security/zero_trust_workload_identity_manager/zero-trust-manager-spire-federation";
+const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-spire-federation";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/zero_trust_workload_identity_manager"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Zero Trust Workload Identity Manager SPIRE federation {#zero-trust-manager-spire-federation_{{ context }}}\n\nConfigure SPIRE federation to enable workloads in different trust domains to securely authenticate each other across clusters, cloud providers, and organizational boundaries. By establishing trust relationships between separate SPIRE deployments, you can build a zero-trust architecture that spans multiple environments without compromising security or sharing secrets.\n\nFederation works by securely sharing trust bundles between SPIRE servers through dedicated federation endpoints. Each SPIRE deployment maintains its own trust domain and cryptographic identity, while being able to verify identities from federated trust domains. This approach enables cross-cluster communication, multi-cloud deployments, and secure integration with external partners.\n\nSetting up SPIRE federation involves the following high-level steps:\n\n1. Choose an authentication profile: Select either `https_spiffe` or `https_web`.\n2. Configure the bundle endpoints: Each cluster exposes its trust bundle through a federation endpoint secured by the chosen authentication profile.\n3. Bootstrap the initial trust: Manually fetch and configure the initial trust bundle from each remote cluster.\n4. Establish federation relationships: Create `ClusterFederatedTrustDomain` resources to define which clusters trust each other.\n5. Configure automatic synchronization: The SPIRE Controller Manager automatically keeps trust bundles synchronized after initial setup.\n","mdUrl":"/security/zero_trust_workload_identity_manager/zero-trust-manager-spire-federation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Zero Trust Workload Identity Manager SPIRE federation {#zero-trust-manager-spire-federation_{{ context }}}\n\nConfigure SPIRE federation to enable workloads in different trust domains to securely authenticate each other across clusters, cloud providers, and organizational boundaries. By establishing trust relationships between separate SPIRE deployments, you can build a zero-trust architecture that spans multiple environments without compromising security or sharing secrets.\n\nFederation works by securely sharing trust bundles between SPIRE servers through dedicated federation endpoints. Each SPIRE deployment maintains its own trust domain and cryptographic identity, while being able to verify identities from federated trust domains. This approach enables cross-cluster communication, multi-cloud deployments, and secure integration with external partners.\n\nSetting up SPIRE federation involves the following high-level steps:\n\n1. Choose an authentication profile: Select either `https_spiffe` or `https_web`.\n2. Configure the bundle endpoints: Each cluster exposes its trust bundle through a federation endpoint secured by the chosen authentication profile.\n3. Bootstrap the initial trust: Manually fetch and configure the initial trust bundle from each remote cluster.\n4. Establish federation relationships: Create `ClusterFederatedTrustDomain` resources to define which clusters trust each other.\n5. Configure automatic synchronization: The SPIRE Controller Manager automatically keeps trust bundles synchronized after initial setup.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-spire-federation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

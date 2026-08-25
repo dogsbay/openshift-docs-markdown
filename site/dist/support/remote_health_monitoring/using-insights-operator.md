@@ -8,8 +8,8 @@ The {{ insights_operator }} periodically gathers configuration and component fai
 
 **Additional resources**
 
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)
 
 **Additional resources**
 

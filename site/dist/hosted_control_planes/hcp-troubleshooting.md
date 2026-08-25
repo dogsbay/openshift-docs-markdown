@@ -8,7 +8,7 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 
 **Additional resources**
 
-- [Installing the {{ hcp }} command-line interface](/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli)
+- [Installing the {{ hcp }} command-line interface](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli)
 
 **Additional resources**
 
@@ -32,4 +32,4 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 
 **Additional resources**
 
-- [Connectivity monitoring for {{ hcp }}](/hosted_control_planes/hcp-observability#hcp-connectivity-metrics_hcp-observability)
+- [Connectivity monitoring for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-connectivity-metrics_hcp-observability)

@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NamespaceSpec describes the attributes on a Namespace. |
 | `status` | `object` | NamespaceStatus is information about the current status of a Namespace. |
 
@@ -78,7 +78,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
 | `message` | `string` | Human-readable message indicating details about last transition. |
 | `reason` | `string` | Unique, one-word, CamelCase reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -129,7 +129,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NamespaceList`](/rest_api/objects/index#io-k8s-api-core-v1-NamespaceList) schema |
+| 200 - OK | [`NamespaceList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-NamespaceList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -153,15 +153,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
+| `body` | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
-| 201 - Created | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
-| 202 - Accepted | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 202 - Accepted | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces {#_apiv1watchnamespaces}
@@ -180,7 +180,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ name }} {#_apiv1namespaces_name}
@@ -211,8 +211,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -229,7 +229,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -253,8 +253,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
-| 201 - Created | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -278,14 +278,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
+| `body` | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
-| 201 - Created | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ name }} {#_apiv1watchnamespaces_name}
@@ -310,7 +310,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ name }}/status {#_apiv1namespaces_name_status}
@@ -335,7 +335,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -359,8 +359,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
-| 201 - Created | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -384,14 +384,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
+| `body` | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
-| 201 - Created | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ name }}/finalize {#_apiv1namespaces_name_finalize}
@@ -423,12 +423,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
+| `body` | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
-| 201 - Created | [`Namespace`](/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 200 - OK | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
+| 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |

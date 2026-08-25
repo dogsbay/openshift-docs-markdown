@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nbde-managing-encryption-keys","text":"Tang server encryption key management"}];
 const nav = navData;
-const currentPath = "/security/network_bound_disk_encryption/nbde-managing-encryption-keys";
+const currentPath = "/openshift-docs-markdown/security/network_bound_disk_encryption/nbde-managing-encryption-keys";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/network_bound_disk_encryption"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tang server encryption key management {#nbde-managing-encryption-keys}\n\nThe cryptographic mechanism to recreate the encryption key is based on the *blinded key* stored on the node and the private key of the involved Tang servers.\n\n> [!NOTE]\n> To protect against the possibility of an attacker who has obtained both the Tang server private key and the node’s encrypted disk, periodic rekeying is advisable.\n>\n> You must perform the rekeying operation for every node before you can delete the old key from the Tang server.\n\nThe following sections provide procedures for rekeying and deleting old keys.\n","mdUrl":"/security/network_bound_disk_encryption/nbde-managing-encryption-keys.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tang server encryption key management {#nbde-managing-encryption-keys}\n\nThe cryptographic mechanism to recreate the encryption key is based on the *blinded key* stored on the node and the private key of the involved Tang servers.\n\n> [!NOTE]\n> To protect against the possibility of an attacker who has obtained both the Tang server private key and the node’s encrypted disk, periodic rekeying is advisable.\n>\n> You must perform the rekeying operation for every node before you can delete the old key from the Tang server.\n\nThe following sections provide procedures for rekeying and deleting old keys.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/network_bound_disk_encryption/nbde-managing-encryption-keys.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

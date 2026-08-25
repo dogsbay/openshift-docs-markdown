@@ -12,8 +12,8 @@ By using the NUMA Resources Operator, you can schedule high-performance workload
 
 **Additional resources**
 
-- [Scheduling pods using a secondary scheduler](/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#secondary-scheduler-configuring)
-- [Changing where high-performance workloads run](/scalability_and_performance/cnf-numa-aware-scheduling#cnf-changing-where-high-performance-workloads-run_numa-aware)
+- [Scheduling pods using a secondary scheduler](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#secondary-scheduler-configuring)
+- [Changing where high-performance workloads run](/openshift-docs-markdown/scalability_and_performance/cnf-numa-aware-scheduling#cnf-changing-where-high-performance-workloads-run_numa-aware)
 
 ## Installing the NUMA Resources Operator {#installing-the-numa-resources-operator_numa-aware}
 
@@ -21,13 +21,13 @@ NUMA Resources Operator deploys resources that allow you to schedule NUMA-aware 
 
 **Additional resources**
 
-- [Configuring image registry repository mirroring](/disconnected/updating/disconnected-update#images-configuration-registry-mirror-configuring_updating-disconnected-cluster)
-- [About the Performance Profile Creator](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Configuring image registry repository mirroring](/openshift-docs-markdown/disconnected/updating/disconnected-update#images-configuration-registry-mirror-configuring_updating-disconnected-cluster)
+- [About the Performance Profile Creator](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)
 
 **Additional resources**
 
-- [Creating a performance profile](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Creating a performance profile](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 
 **Additional resources**
 
-- [Configuring image registry repository mirroring](/disconnected/updating/disconnected-update#images-configuration-registry-mirror_updating-disconnected-cluster)
+- [Configuring image registry repository mirroring](/openshift-docs-markdown/disconnected/updating/disconnected-update#images-configuration-registry-mirror_updating-disconnected-cluster)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-oadp-kubevirt","text":"Configuring the {{ oadp_full }} with {{ VirtProductName }}"},{"depth":2,"slug":"additional-resources_installing-oadp-kubevirt","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/installing"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the {{ oadp_full }} with {{ VirtProductName }} {#installing-oadp-kubevirt}\n\nYou can install the {{ oadp_first }} with {{ VirtProductName }} by installing the OADP Operator and configuring a backup location. Then, you can install the Data Protection Application.\n\nBack up and restore virtual machines by using the {{ oadp_full }}.\n\n{{ oadp_full }} with {{ VirtProductName }} supports the following backup and restore storage options:\n\n- Container Storage Interface (CSI) backups\n- Container Storage Interface (CSI) backups with DataMover\n\nThe following storage options are excluded:\n\n- File system backup and restore\n- Volume snapshot backups and restores\n\nTo install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog.\n\n> [!IMPORTANT]\n> Red Hat only supports the combination of {{ oadp_short }} versions 1.3.0 and later, and {{ VirtProductName }} versions 4.14 and later.\n>\n> {{ oadp_short }} versions before 1.3.0 are not supported for back up and restore of {{ VirtProductName }}.\n\n## Additional resources {#additional-resources_installing-oadp-kubevirt}\n\n- [Application backup and restore operations](/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview)\n- [Backing up applications with File System Backup: Kopia or Restic](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc)\n- [{{ oadp_short }} plugins](/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-plugins_oadp-features-plugins)\n- [`Backup` custom resource (CR)](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)\n- [`Restore` CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n- \\[Velero {{ velero_version }}\\](https://velero.io/docs/v{{ velero_version }})\n","mdUrl":"/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the {{ oadp_full }} with {{ VirtProductName }} {#installing-oadp-kubevirt}\n\nYou can install the {{ oadp_first }} with {{ VirtProductName }} by installing the OADP Operator and configuring a backup location. Then, you can install the Data Protection Application.\n\nBack up and restore virtual machines by using the {{ oadp_full }}.\n\n{{ oadp_full }} with {{ VirtProductName }} supports the following backup and restore storage options:\n\n- Container Storage Interface (CSI) backups\n- Container Storage Interface (CSI) backups with DataMover\n\nThe following storage options are excluded:\n\n- File system backup and restore\n- Volume snapshot backups and restores\n\nTo install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog.\n\n> [!IMPORTANT]\n> Red Hat only supports the combination of {{ oadp_short }} versions 1.3.0 and later, and {{ VirtProductName }} versions 4.14 and later.\n>\n> {{ oadp_short }} versions before 1.3.0 are not supported for back up and restore of {{ VirtProductName }}.\n\n## Additional resources {#additional-resources_installing-oadp-kubevirt}\n\n- [Application backup and restore operations](/openshift-docs-markdown/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview)\n- [Backing up applications with File System Backup: Kopia or Restic](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc)\n- [{{ oadp_short }} plugins](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-plugins_oadp-features-plugins)\n- [`Backup` custom resource (CR)](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)\n- [`Restore` CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- \\[Velero {{ velero_version }}\\](https://velero.io/docs/v{{ velero_version }})\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -134,12 +134,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/oadp-incremental-backup-support.md"></p>
       <h2 id="additional-resources_installing-oadp-kubevirt" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-oadp-kubevirt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview">Application backup and restore operations</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc">Backing up applications with File System Backup: Kopia or Restic</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-plugins_oadp-features-plugins">{"{"}{"{"} oadp_short {"}"}{"}"} plugins</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications"><code>Backup</code> custom resource (CR)</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications"><code>Restore</code> CR</a></li>
-      <li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview">Application backup and restore operations</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc">Backing up applications with File System Backup: Kopia or Restic</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-plugins_oadp-features-plugins">{"{"}{"{"} oadp_short {"}"}{"}"} plugins</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications"><code>Backup</code> custom resource (CR)</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications"><code>Restore</code> CR</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
       <li>[Velero {"{"}{"{"} velero_version {"}"}{"}"}](https://velero.io/docs/v{"{"}{"{"} velero_version {"}"}{"}"})</li>
       </ul>
     </article>

@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | SubjectRulesReviewSpec adds information about how to conduct the check |
 | `status` | `object` | SubjectRulesReviewStatus is contains the result of a rules check |
 
@@ -91,7 +91,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiGroups` | `array (string)` | apiGroups is the name of the APIGroup that contains the resources.  If this field is empty, then both kubernetes and origin API groups are assumed. That means that if an action is requested against one of the enumerated resources in either the kubernetes or the origin API group, the request will be allowed |
-| `attributeRestrictions` | [`RawExtension`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
+| `attributeRestrictions` | [`RawExtension`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
 | `nonResourceURLs` | `array (string)` | NonResourceURLsSlice is a set of partial urls that a user should have access to.  \*s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. |
 | `resourceNames` | `array (string)` | resourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed. |
 | `resources` | `array (string)` | resources is a list of resources this rule applies to.  ResourceAll represents all resources. |
@@ -128,13 +128,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`SubjectRulesReview`](/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |  |
+| `body` | [`SubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SubjectRulesReview`](/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |
-| 201 - Created | [`SubjectRulesReview`](/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |
-| 202 - Accepted | [`SubjectRulesReview`](/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |
+| 200 - OK | [`SubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |
+| 201 - Created | [`SubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |
+| 202 - Accepted | [`SubjectRulesReview`](/openshift-docs-markdown/rest_api/authorization_apis/subjectrulesreview-authorization-openshift-io-v1#subjectrulesreview-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

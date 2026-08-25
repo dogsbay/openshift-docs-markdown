@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"disconnected-install-ibmz-hcp","text":"Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-disconnected/disconnected-install-ibmz-hcp";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/disconnected-install-ibmz-hcp";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-disconnected"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment {#disconnected-install-ibmz-hcp}\n\n{{ hcp_capital }} deployments in disconnected environments function differently than in a standalone OpenShift Container Platform.\n\n{{ hcp_capital }} involves two distinct environments:\n\n- Control plane: Located in the management cluster, where the {{ hcp }} pods are run and managed by the Control Plane Operator.\n- Data plane: Located in the workers of the hosted cluster, where the workload and a few other pods run, managed by the Hosted Cluster Config Operator.\n\nThe `ImageContentSourcePolicy` (ICSP) custom resource for the data plane is managed through the `ImageContentSources` API in the hosted cluster manifest.\n\nFor the control plane, ICSP objects are managed in the management cluster. These objects are parsed by the HyperShift Operator and are shared as `registry-overrides` entries with the Control Plane Operator. These entries are injected into any one of the available  deployments in the {{ hcp }} namespace as an argument.\n\nTo work with disconnected registries in the {{ hcp }}, you must first create the appropriate ICSP in the management cluster. Then, to deploy disconnected workloads in the data plane, you need to add the entries that you want into the `ImageContentSources` field in the hosted cluster manifest.\n\n**Additional resources**\n\n- [Mirror registry for Red Hat OpenShift introduction](/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n","mdUrl":"/hosted_control_planes/hcp-disconnected/disconnected-install-ibmz-hcp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment {#disconnected-install-ibmz-hcp}\n\n{{ hcp_capital }} deployments in disconnected environments function differently than in a standalone OpenShift Container Platform.\n\n{{ hcp_capital }} involves two distinct environments:\n\n- Control plane: Located in the management cluster, where the {{ hcp }} pods are run and managed by the Control Plane Operator.\n- Data plane: Located in the workers of the hosted cluster, where the workload and a few other pods run, managed by the Hosted Cluster Config Operator.\n\nThe `ImageContentSourcePolicy` (ICSP) custom resource for the data plane is managed through the `ImageContentSources` API in the hosted cluster manifest.\n\nFor the control plane, ICSP objects are managed in the management cluster. These objects are parsed by the HyperShift Operator and are shared as `registry-overrides` entries with the Control Plane Operator. These entries are injected into any one of the available  deployments in the {{ hcp }} namespace as an argument.\n\nTo work with disconnected registries in the {{ hcp }}, you must first create the appropriate ICSP in the management cluster. Then, to deploy disconnected workloads in the data plane, you need to add the entries that you want into the `ImageContentSources` field in the hosted cluster manifest.\n\n**Additional resources**\n\n- [Mirror registry for Red Hat OpenShift introduction](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/disconnected-install-ibmz-hcp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,8 +104,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/hcp-ibm-z-dc-prereqs.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry">Mirror registry for Red Hat OpenShift introduction</a></li>
-      <li><a href="/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry">Mirror registry for Red Hat OpenShift introduction</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
       </ul>
       <p class="/modules/hcp-ibm-z-update-reg-ca.md"></p>
       <p class="/modules/hcp-ibm-z-adding-reg-ca-hostedcluster.md"></p>

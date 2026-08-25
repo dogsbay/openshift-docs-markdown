@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"albo-sts-cluster","text":"Preparing an AWS STS cluster for the AWS Load Balancer Operator"},{"depth":2,"slug":"additional-resources-albo-sts-cluster_albo-sts-cluster","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/networking/networking_operators/aws_load_balancer_operator/preparing-sts-cluster-for-albo";
+const currentPath = "/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/preparing-sts-cluster-for-albo";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/networking_operators","networking/networking_operators/aws_load_balancer_operator"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing an AWS STS cluster for the AWS Load Balancer Operator {#albo-sts-cluster}\n\nTo install the {{ aws_first }} Load Balancer Operator on a cluster that uses the {{ sts_first }}, prepare the cluster by configuring the `CredentialsRequest` object. This ensures the Operator can bootstrap the {{ aws_short }} Load Balancer Controller and access the required secrets.\n\nThe {{ aws_short }} Load Balancer Operator waits until the required secrets are created and available.\n\nBefore you start any {{ sts_first }} procedures, ensure that you meet the following prerequisites:\n\n- You installed the {{ oc_first }}.\n- You know the infrastructure ID of your cluster. To show this ID, run the following command in your CLI:\n\n  ```terminal\n  $ oc get infrastructure cluster -o=jsonpath=\"{.status.infrastructureName}\"\n  ```\n- You know the OpenID Connect (OIDC) DNS information for your cluster. To show this information, enter the following command in your CLI:\n\n  ```terminal\n  $ oc get authentication.config cluster -o=jsonpath=\"{.spec.serviceAccountIssuer}\"\n  ```\n\n  where:\n\n  `{.spec.serviceAccountIssuer}`\n  :   Specifies an OIDC DNS URL. An example URL is `https://rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n- You logged into the {{ aws_short }} management console, navigated to **IAM** -> **Access management** -> **Identity providers**, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is `arn:aws:iam::777777777777:oidc-provider/<oidc_dns_url>`.\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n## Additional resources {#additional-resources-albo-sts-cluster_albo-sts-cluster}\n\n- [Configuring the Cloud Credential Operator utility](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n","mdUrl":"/networking/networking_operators/aws_load_balancer_operator/preparing-sts-cluster-for-albo.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing an AWS STS cluster for the AWS Load Balancer Operator {#albo-sts-cluster}\n\nTo install the {{ aws_first }} Load Balancer Operator on a cluster that uses the {{ sts_first }}, prepare the cluster by configuring the `CredentialsRequest` object. This ensures the Operator can bootstrap the {{ aws_short }} Load Balancer Controller and access the required secrets.\n\nThe {{ aws_short }} Load Balancer Operator waits until the required secrets are created and available.\n\nBefore you start any {{ sts_first }} procedures, ensure that you meet the following prerequisites:\n\n- You installed the {{ oc_first }}.\n- You know the infrastructure ID of your cluster. To show this ID, run the following command in your CLI:\n\n  ```terminal\n  $ oc get infrastructure cluster -o=jsonpath=\"{.status.infrastructureName}\"\n  ```\n- You know the OpenID Connect (OIDC) DNS information for your cluster. To show this information, enter the following command in your CLI:\n\n  ```terminal\n  $ oc get authentication.config cluster -o=jsonpath=\"{.spec.serviceAccountIssuer}\"\n  ```\n\n  where:\n\n  `{.spec.serviceAccountIssuer}`\n  :   Specifies an OIDC DNS URL. An example URL is `https://rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n- You logged into the {{ aws_short }} management console, navigated to **IAM** -> **Access management** -> **Identity providers**, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is `arn:aws:iam::777777777777:oidc-provider/<oidc_dns_url>`.\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n## Additional resources {#additional-resources-albo-sts-cluster_albo-sts-cluster}\n\n- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/preparing-sts-cluster-for-albo.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -114,16 +114,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>You logged into the {"{"}{"{"} aws_short {"}"}{"}"} management console, navigated to <strong>IAM</strong> -&gt; <strong>Access management</strong> -&gt; <strong>Identity providers</strong>, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is <code>arn:aws:iam::777777777777:oidc-provider/&lt;oidc_dns_url&gt;</code>.</li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">the Cloud Credential Operator utility (<code>ccoctl</code>)</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">the Cloud Credential Operator utility (<code>ccoctl</code>)</a></li></ul>
       <p class="/modules/using-ccoctl-create-iam-role-alb-operator.md"></p>
       <p class="/modules/using-aws-cli-create-iam-role-alb-operator.md"></p>
       <p class="/modules/specifying-role-arn-albo-sts.md"></p>
       <p class="/modules/the-iam-role-albo-controller.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">the Cloud Credential Operator utility (<code>ccoctl</code>)</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">the Cloud Credential Operator utility (<code>ccoctl</code>)</a></li></ul>
       <p class="/modules/using-aws-cli-create-iam-role-alb-controller.md"></p>
       <h2 id="additional-resources-albo-sts-cluster_albo-sts-cluster" class="group scroll-mt-20">Additional resources<a href="#additional-resources-albo-sts-cluster_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">Configuring the Cloud Credential Operator utility</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">Configuring the Cloud Credential Operator utility</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

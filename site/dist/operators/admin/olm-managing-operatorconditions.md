@@ -8,4 +8,4 @@ You can manage Operator conditions in OpenShift Container Platform by using Oper
 
 ## Additional resources {#olm-managing-operatorconditions-addtl-resources}
 
-- [Operator conditions](/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)
+- [Operator conditions](/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)

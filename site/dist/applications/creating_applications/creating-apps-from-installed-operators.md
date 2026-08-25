@@ -8,4 +8,4 @@ You can deploy applications on your OpenShift Container Platform cluster from Op
 
 **Additional resources**
 
-- [What are Operators?](/operators/understanding/olm-what-operators-are#olm-what-operators-are)
+- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are)

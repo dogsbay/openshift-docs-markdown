@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification. |
 | `status` | `object` | APIServiceStatus contains derived information about an API server |
 
@@ -103,7 +103,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
 | `message` | `string` | Human-readable message indicating details about last transition. |
 | `reason` | `string` | Unique, one-word, CamelCase reason for the condition’s last transition. |
 | `status` | `string` | Status is the status of the condition. Can be True, False, Unknown. |
@@ -158,7 +158,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -175,7 +175,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIServiceList`](/rest_api/objects/index#io-k8s-kube-aggregator-pkg-apis-apiregistration-v1-APIServiceList) schema |
+| 200 - OK | [`APIServiceList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-kube-aggregator-pkg-apis-apiregistration-v1-APIServiceList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -199,15 +199,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |  |
+| `body` | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
-| 201 - Created | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
-| 202 - Accepted | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 200 - OK | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 201 - Created | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 202 - Accepted | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apiregistration.k8s.io/v1/watch/apiservices {#_apisapiregistrationk8siov1watchapiservices}
@@ -226,7 +226,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apiregistration.k8s.io/v1/apiservices/{{ name }} {#_apisapiregistrationk8siov1apiservices_name}
@@ -257,8 +257,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -275,7 +275,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 200 - OK | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -299,8 +299,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
-| 201 - Created | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 200 - OK | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 201 - Created | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -324,14 +324,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |  |
+| `body` | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
-| 201 - Created | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 200 - OK | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 201 - Created | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apiregistration.k8s.io/v1/watch/apiservices/{{ name }} {#_apisapiregistrationk8siov1watchapiservices_name}
@@ -356,7 +356,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apiregistration.k8s.io/v1/apiservices/{{ name }}/status {#_apisapiregistrationk8siov1apiservices_name_status}
@@ -381,7 +381,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 200 - OK | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -405,8 +405,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
-| 201 - Created | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 200 - OK | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 201 - Created | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -430,12 +430,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |  |
+| `body` | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
-| 201 - Created | [`APIService`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 200 - OK | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
+| 201 - Created | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

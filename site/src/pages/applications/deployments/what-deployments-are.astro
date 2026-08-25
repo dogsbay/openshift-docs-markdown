@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"what-deployments-are","text":"Understanding deployments"},{"depth":2,"slug":"what-deployments-are-build-blocks","text":"Building blocks of a deployment"}];
 const nav = navData;
-const currentPath = "/applications/deployments/what-deployments-are";
+const currentPath = "/openshift-docs-markdown/applications/deployments/what-deployments-are";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["applications","applications/deployments"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding deployments {#what-deployments-are}\n\nYou can use `Deployment` and `DeploymentConfig` objects in OpenShift Container Platform to describe the desired state of an application and to manage pods through replica sets or replication controllers. Use `Deployment` objects unless you need a feature that only `DeploymentConfig` objects provide.\n\nThe `Deployment` and `DeploymentConfig` API objects provide two similar but different methods for fine-grained management over common user applications. They are composed of the following separate API objects:\n\n- A `Deployment` or `DeploymentConfig` object, either of which describes the desired state of a particular component of the application as a pod template.\n- `Deployment` objects involve one or more *replica sets*, which contain a point-in-time record of the state of a deployment as a pod template. Similarly, `DeploymentConfig` objects involve one or more *replication controllers*, which preceded replica sets.\n- One or more pods, which represent an instance of a particular version of an application.\n\n## Building blocks of a deployment {#what-deployments-are-build-blocks}\n\nDeployments and deployment configs are enabled by the use of native Kubernetes API objects `ReplicaSet` and `ReplicationController`, respectively, as their building blocks.\n\nUsers do not have to manipulate replica sets, replication controllers, or pods owned by `Deployment` or `DeploymentConfig` objects. The deployment systems ensure changes are propagated appropriately.\n\n> [!TIP]\n> If the existing deployment strategies are not suited for your use case and you must run manual steps during the lifecycle of your deployment, then you should consider creating a custom deployment strategy.\n\nThe following sections provide further details on these objects.\n","mdUrl":"/applications/deployments/what-deployments-are.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding deployments {#what-deployments-are}\n\nYou can use `Deployment` and `DeploymentConfig` objects in OpenShift Container Platform to describe the desired state of an application and to manage pods through replica sets or replication controllers. Use `Deployment` objects unless you need a feature that only `DeploymentConfig` objects provide.\n\nThe `Deployment` and `DeploymentConfig` API objects provide two similar but different methods for fine-grained management over common user applications. They are composed of the following separate API objects:\n\n- A `Deployment` or `DeploymentConfig` object, either of which describes the desired state of a particular component of the application as a pod template.\n- `Deployment` objects involve one or more *replica sets*, which contain a point-in-time record of the state of a deployment as a pod template. Similarly, `DeploymentConfig` objects involve one or more *replication controllers*, which preceded replica sets.\n- One or more pods, which represent an instance of a particular version of an application.\n\n## Building blocks of a deployment {#what-deployments-are-build-blocks}\n\nDeployments and deployment configs are enabled by the use of native Kubernetes API objects `ReplicaSet` and `ReplicationController`, respectively, as their building blocks.\n\nUsers do not have to manipulate replica sets, replication controllers, or pods owned by `Deployment` or `DeploymentConfig` objects. The deployment systems ensure changes are propagated appropriately.\n\n> [!TIP]\n> If the existing deployment strategies are not suited for your use case and you must run manual steps during the lifecycle of your deployment, then you should consider creating a custom deployment strategy.\n\nThe following sections provide further details on these objects.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/deployments/what-deployments-are.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

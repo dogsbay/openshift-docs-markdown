@@ -22,7 +22,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"hcp-disaster-recovery-aws","text":"Disaster recovery for a hosted cluster in AWS"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-aws";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -41,9 +41,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp_high_availability"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disaster recovery for a hosted cluster in AWS  {#hcp-disaster-recovery-aws}\n\nYou can recover a hosted cluster to the same region within {{ aws_first }}. For example, you need disaster recovery when the upgrade of a management cluster fails and the hosted cluster is in a read-only state.\n\nThe disaster recovery process involves the following steps:\n\n1. Backing up the hosted cluster on the source management cluster\n2. Restoring the hosted cluster on a destination management cluster\n3. Deleting the hosted cluster from the source management cluster\n\nYour workloads remain running during the process. The Cluster API might be unavailable for a period, but that does not affect the services that are running on the worker nodes.\n\n> [!IMPORTANT]\n> Both the source management cluster and the destination management cluster must have the `--external-dns` flags to maintain the API server URL. See the following example:\n>\n> ```terminal {title=\"Example: External DNS flags\"}\n> --external-dns-provider=aws \\\n> --external-dns-credentials=<path_to_aws_credentials_file> \\\n> --external-dns-domain-filter=<basedomain>\n> ```\n>\n> If you do not include the `--external-dns` flags to maintain the API server URL, you cannot migrate the hosted cluster.\n","mdUrl":"/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disaster recovery for a hosted cluster in AWS  {#hcp-disaster-recovery-aws}\n\nYou can recover a hosted cluster to the same region within {{ aws_first }}. For example, you need disaster recovery when the upgrade of a management cluster fails and the hosted cluster is in a read-only state.\n\nThe disaster recovery process involves the following steps:\n\n1. Backing up the hosted cluster on the source management cluster\n2. Restoring the hosted cluster on a destination management cluster\n3. Deleting the hosted cluster from the source management cluster\n\nYour workloads remain running during the process. The Cluster API might be unavailable for a period, but that does not affect the services that are running on the worker nodes.\n\n> [!IMPORTANT]\n> Both the source management cluster and the destination management cluster must have the `--external-dns` flags to maintain the API server URL. See the following example:\n>\n> ```terminal {title=\"Example: External DNS flags\"}\n> --external-dns-provider=aws \\\n> --external-dns-credentials=<path_to_aws_credentials_file> \\\n> --external-dns-domain-filter=<basedomain>\n> ```\n>\n> If you do not include the `--external-dns` flags to maintain the API server URL, you cannot migrate the hosted cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -84,10 +84,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

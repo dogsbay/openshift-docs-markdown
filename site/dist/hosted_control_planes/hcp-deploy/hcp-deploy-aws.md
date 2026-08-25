@@ -15,24 +15,24 @@ You can use the {{ mce_short }} console or the hosted control plane command-line
 - [Configuring Ansible Automation Platform jobs to run on hosted clusters](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#ansible-config-hosted-cluster)
 - [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 - [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
-- [Manually enabling the {{ hcp }} feature](/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)
-- [Disabling the {{ hcp }} feature](/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)
-- [Deploying the SR-IOV Operator for {{ hcp }}](/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#sriov-operator-hosted-control-planes_configuring-sriov-operator)
+- [Manually enabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)
+- [Disabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)
+- [Deploying the SR-IOV Operator for {{ hcp }}](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#sriov-operator-hosted-control-planes_configuring-sriov-operator)
 
 **Additional resources**
 
-- [Disabling the automatic import of hosted clusters into {{ mce_short }}](/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
-- [Running hosted clusters on an ARM64 architecture](/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-enable-arm-amd_hcp-deploy-aws)
+- [Disabling the automatic import of hosted clusters into {{ mce_short }}](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
+- [Running hosted clusters on an ARM64 architecture](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-enable-arm-amd_hcp-deploy-aws)
 
 **Additional resources**
 
-- [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
+- [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
 
 **Additional resources**
 
-- [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
+- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
 - [Create an OpenShift Container Platform Cluster: {{ aws_short }} (ARM)](https://console.redhat.com/openshift/install/aws/arm)
-- [Creating an {{ aws_short }} IAM role and STS credentials](/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)
+- [Creating an {{ aws_short }} IAM role and STS credentials](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)
 
 **Additional resources**
 
@@ -40,7 +40,7 @@ You can use the {{ mce_short }} console or the hosted control plane command-line
 
 **Additional resources**
 
-- [Enabling {{ aws_short }} PrivateLink for {{ hcp }}](/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws)
-- [Creating an {{ aws_short }} IAM role and STS credentials](/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)
-- [Identity and Access Management (IAM) permissions](/hosted_control_planes/hcp-manage/hcp-manage-aws#hcp-manage-aws-infra-req_hcp-managing-aws)
+- [Enabling {{ aws_short }} PrivateLink for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws)
+- [Creating an {{ aws_short }} IAM role and STS credentials](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)
+- [Identity and Access Management (IAM) permissions](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-aws#hcp-manage-aws-infra-req_hcp-managing-aws)
 - [Tutorial: Configuring private network access using a Linux Bastion Host](https://docs.aws.amazon.com/mwaa/latest/userguide/tutorials-private-network-bastion.html)

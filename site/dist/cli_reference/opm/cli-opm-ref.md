@@ -23,6 +23,6 @@ $ opm <command> [<subcommand>] [<argument>] [<flags>]
 
 **Additional resources**
 
-- [Operator Framework packaging format](/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
-- [Managing custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)
-- [Mirroring images for a disconnected installation using the oc-mirror plugin](/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)
+- [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
+- [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)
+- [Mirroring images for a disconnected installation using the oc-mirror plugin](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)

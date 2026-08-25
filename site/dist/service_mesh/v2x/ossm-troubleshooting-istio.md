@@ -10,14 +10,14 @@ This section describes how to identify and resolve common problems in {{ SMProdu
 
 In addition to the information in this section, be sure to review the following topics:
 
-- [What are Operators?](/operators/understanding/olm-what-operators-are)
-- [Operator Lifecycle Management concepts](/operators/understanding/olm/olm-understanding-olm).
-- [OpenShift Operator troubleshooting section](/support/troubleshooting/troubleshooting-operator-issues).
-- [OpenShift installation troubleshooting section](/support/troubleshooting/troubleshooting-installations).
+- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are)
+- [Operator Lifecycle Management concepts](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm).
+- [OpenShift Operator troubleshooting section](/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues).
+- [OpenShift installation troubleshooting section](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations).
 
 ## Troubleshooting the control plane {#_troubleshooting_the_control_plane}
 
-The Service Mesh *control plane* is composed of Istiod, which consolidates several previous control plane components (Citadel, Galley, Pilot) into a single binary. Deploying the `ServiceMeshControlPlane` also creates the other components that make up {{ SMProductName }} as described in the [architecture](/service_mesh/v2x/ossm-architecture#ossm-architecture_ossm-architecture) topic.
+The Service Mesh *control plane* is composed of Istiod, which consolidates several previous control plane components (Citadel, Galley, Pilot) into a single binary. Deploying the `ServiceMeshControlPlane` also creates the other components that make up {{ SMProductName }} as described in the [architecture](/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#ossm-architecture_ossm-architecture) topic.
 
 ## Troubleshooting the data plane {#_troubleshooting_the_data_plane}
 
@@ -25,8 +25,8 @@ The *data plane* is a set of intelligent proxies that intercept and control all 
 
 {{ SMProductName }} relies on a proxy sidecar within the application’s pod to provide service mesh capabilities to the application.
 
-For more information about sidecar injection, see [Enabling automatic injection](/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-automatic-sidecar-injection_deploying-applications-ossm)
+For more information about sidecar injection, see [Enabling automatic injection](/openshift-docs-markdown/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-automatic-sidecar-injection_deploying-applications-ossm)
 
-For more information about troubleshooting pod issues, see [Investigating pod issues](/support/troubleshooting/investigating-pod-issues)
+For more information about troubleshooting pod issues, see [Investigating pod issues](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues)
 
 For prompt support, supply diagnostic information for both OpenShift Container Platform and {{ SMProductName }}.

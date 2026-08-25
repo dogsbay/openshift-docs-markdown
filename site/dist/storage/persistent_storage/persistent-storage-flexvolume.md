@@ -19,4 +19,4 @@ Pods interact with FlexVolume drivers through the `flexvolume` in-tree plugin.
 
 **Additional resources**
 
-- [Expanding persistent volumes](/storage/expanding-persistent-volumes#expanding-persistent-volumes)
+- [Expanding persistent volumes](/openshift-docs-markdown/storage/expanding-persistent-volumes#expanding-persistent-volumes)

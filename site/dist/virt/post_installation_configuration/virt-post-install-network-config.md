@@ -14,8 +14,8 @@ After you install {{ VirtProductName }}, you can install networking Operators an
 
 ## Additional resources {#additional-resources_virt-post-install-network-config}
 
-- [Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
-- [SR-IOV Operator](/networking/hardware_networks/about-sriov#about-sriov)
-- [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb)
-- [Attaching a virtual machine (VM) to a Linux bridge network](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge)
-- [Attaching a virtual machine (VM) to an SR-IOV network](/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)
+- [Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
+- [SR-IOV Operator](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)
+- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)
+- [Attaching a virtual machine (VM) to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge)
+- [Attaching a virtual machine (VM) to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)

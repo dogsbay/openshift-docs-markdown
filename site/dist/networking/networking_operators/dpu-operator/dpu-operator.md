@@ -8,4 +8,4 @@ As a cluster administrator, you can add the Data Processing Unit (DPU) Operator 
 
 **Additional resources**
 
-- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
+- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)

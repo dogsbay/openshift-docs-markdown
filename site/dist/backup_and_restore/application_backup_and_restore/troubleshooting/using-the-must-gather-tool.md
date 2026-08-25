@@ -10,4 +10,4 @@ The `must-gather` tool is a container and does not run all the time. The tool ru
 
 **Additional resources**
 
-- [Gathering cluster data](/support/gathering-cluster-data#gathering-cluster-data)
+- [Gathering cluster data](/openshift-docs-markdown/support/gathering-cluster-data#gathering-cluster-data)

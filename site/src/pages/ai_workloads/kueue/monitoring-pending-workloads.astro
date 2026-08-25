@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"monitoring-pending-workloads-install-kueue","text":"Monitoring pending workloads"}];
 const nav = navData;
-const currentPath = "/ai_workloads/kueue/monitoring-pending-workloads";
+const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/monitoring-pending-workloads";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring pending workloads {#monitoring-pending-workloads-install-kueue}\n\n{{ kueue_name }} provides the `VisibilityOnDemand` feature to monitor pending workloads. A workload is an application that runs to completion. It can be composed by one or multiple pods that, loosely or tightly coupled, as a whole, complete a task. A workload is the unit of admission in {{ kueue_name }}.\n\nThe `VisibilityOnDemand` feature provides the ability for batch administrators to monitor the pipeline of pending jobs in the cluster queue and the local queue and batch users just for local queue, and help users to estimate when their jobs will start.\n\nYou can regulate inbound requests and high request volumes, and provide user permissions for viewing the pending workloads.\n\n**Additional resources**\n\n- [API Priority and Fairness](https://kubernetes.io/docs/concepts/cluster-administration/flow-control/)\n\n**Additional resources**\n\n- [Configuring role-based permissions](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/ai_workloads/red-hat-build-of-kueue#rbac-permissions)\n","mdUrl":"/ai_workloads/kueue/monitoring-pending-workloads.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring pending workloads {#monitoring-pending-workloads-install-kueue}\n\n{{ kueue_name }} provides the `VisibilityOnDemand` feature to monitor pending workloads. A workload is an application that runs to completion. It can be composed by one or multiple pods that, loosely or tightly coupled, as a whole, complete a task. A workload is the unit of admission in {{ kueue_name }}.\n\nThe `VisibilityOnDemand` feature provides the ability for batch administrators to monitor the pipeline of pending jobs in the cluster queue and the local queue and batch users just for local queue, and help users to estimate when their jobs will start.\n\nYou can regulate inbound requests and high request volumes, and provide user permissions for viewing the pending workloads.\n\n**Additional resources**\n\n- [API Priority and Fairness](https://kubernetes.io/docs/concepts/cluster-administration/flow-control/)\n\n**Additional resources**\n\n- [Configuring role-based permissions](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/ai_workloads/red-hat-build-of-kueue#rbac-permissions)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/monitoring-pending-workloads.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

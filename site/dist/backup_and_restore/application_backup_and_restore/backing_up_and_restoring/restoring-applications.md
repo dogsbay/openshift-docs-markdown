@@ -8,4 +8,4 @@ Restore application backups by previewing resources before running the restore, 
 
 **Additional resources**
 
-- [Triggering updates on image stream changes](/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes)
+- [Triggering updates on image stream changes](/openshift-docs-markdown/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes)

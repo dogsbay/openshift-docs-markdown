@@ -8,9 +8,9 @@ Because OpenShift Container Platform is a certified Kubernetes distribution, you
 
 **Additional resources**
 
-- [Understanding authentication](/authentication/understanding-authentication#understanding-authentication)
+- [Understanding authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication)
 
 **Additional resources**
 
 - [kubectl (Kubernetes documentation)](https://kubernetes.io/docs/reference/kubectl/overview/)
-- [Getting started with the OpenShift CLI](/cli_reference/openshift_cli/getting-started-cli#cli-getting-started)
+- [Getting started with the OpenShift CLI](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-getting-started)

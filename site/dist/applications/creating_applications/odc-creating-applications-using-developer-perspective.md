@@ -38,14 +38,14 @@ The **Developer** perspective in the web console provides you the following opti
 - **Helm Chart repositories**: Use this option to add Helm Chart repositories in a namespace.
 - **Re-ordering of resources**: Use these resources to re-order pinned resources added to your navigation pane. The drag-and-drop icon is displayed on the left side of the pinned resource when you hover over it in the navigation pane. The dragged resource can be dropped only in the section where it resides.
 
-Note that certain options, such as **Pipelines**, **Event Source**, and **Import Virtual Machines**, are displayed only when the [OpenShift Pipelines Operator](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html#op-installing-pipelines-operator-in-web-console_installing-pipelines), [{{ ServerlessOperatorName }}](https://docs.openshift.com/serverless/1.28/install/install-serverless-operator.html#serverless-install-web-console_install-serverless-operator), and [OpenShift Virtualization Operator](/virt/install/installing-virt#virt-subscribing-cli_installing-virt) are installed, respectively.
+Note that certain options, such as **Pipelines**, **Event Source**, and **Import Virtual Machines**, are displayed only when the [OpenShift Pipelines Operator](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html#op-installing-pipelines-operator-in-web-console_installing-pipelines), [{{ ServerlessOperatorName }}](https://docs.openshift.com/serverless/1.28/install/install-serverless-operator.html#serverless-install-web-console_install-serverless-operator), and [OpenShift Virtualization Operator](/openshift-docs-markdown/virt/install/installing-virt#virt-subscribing-cli_installing-virt) are installed, respectively.
 
 ## Prerequisites {#prerequisites_odc-creating-applications-using-developer-perspective}
 
 To create applications using the **Developer** perspective ensure that:
 
-- You have [logged in to the web console](/web_console/web-console#web-console).
-- You have created a project or have access to a project with the appropriate [roles and permissions](/authentication/using-rbac#default-roles_using-rbac) to create applications and other workloads in OpenShift Container Platform.
+- You have [logged in to the web console](/openshift-docs-markdown/web_console/web-console#web-console).
+- You have created a project or have access to a project with the appropriate [roles and permissions](/openshift-docs-markdown/authentication/using-rbac#default-roles_using-rbac) to create applications and other workloads in OpenShift Container Platform.
 
 To create serverless applications, in addition to the preceding prerequisites, ensure that:
 
@@ -57,5 +57,5 @@ To create serverless applications, in addition to the preceding prerequisites, e
 - For more information about Knative routing settings for {{ ServerlessProductName }}, see [Routing](https://docs.openshift.com/serverless/1.28/knative-serving/external-ingress-routing/routing-overview.html#routing-overview).
 - For more information about domain mapping settings for {{ ServerlessProductName }}, see [Configuring a custom domain for a Knative service](https://docs.openshift.com/serverless/1.28/knative-serving/config-custom-domains/serverless-custom-domains.html#serverless-custom-domains).
 - For more information about Knative autoscaling settings for {{ ServerlessProductName }}, see [Autoscaling](https://docs.openshift.com/serverless/1.28/knative-serving/autoscaling/serverless-autoscaling-developer.html#serverless-autoscaling-developer).
-- For more information about adding a new user to a project, see [Working with projects](/applications/projects/working-with-projects#odc-providing-project-permissions-using-developer-perspective_projects).
-- For more information about creating a Helm Chart repository, see [Creating Helm Chart repositories](/applications/working_with_helm_charts/configuring-custom-helm-chart-repositories#odc-creating-helm-releases-using-developer-perspective_configuring-custom-helm-chart-repositories).
+- For more information about adding a new user to a project, see [Working with projects](/openshift-docs-markdown/applications/projects/working-with-projects#odc-providing-project-permissions-using-developer-perspective_projects).
+- For more information about creating a Helm Chart repository, see [Creating Helm Chart repositories](/openshift-docs-markdown/applications/working_with_helm_charts/configuring-custom-helm-chart-repositories#odc-creating-helm-releases-using-developer-perspective_configuring-custom-helm-chart-repositories).

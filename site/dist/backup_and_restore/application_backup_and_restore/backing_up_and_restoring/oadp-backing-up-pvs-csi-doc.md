@@ -10,5 +10,5 @@ For more information, see *CSI volume snapshots* and *Creating a Backup CR*.
 
 **Additional resources**
 
-- [CSI volume snapshots](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-overview_persistent-storage-csi-snapshots)
-- [Creating a Backup CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)
+- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-overview_persistent-storage-csi-snapshots)
+- [Creating a Backup CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)

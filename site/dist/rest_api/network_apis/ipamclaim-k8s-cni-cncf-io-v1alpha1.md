@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` |  |
 | `status` | `object` | IPAMClaimStatus contains the observed status of the IPAMClaim. |
 
@@ -150,7 +150,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaimList`](/rest_api/objects/index#io-cncf-cni-k8s-v1alpha1-IPAMClaimList) schema |
+| 200 - OK | [`IPAMClaimList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-k8s-v1alpha1-IPAMClaimList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims}
@@ -169,7 +169,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -186,7 +186,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaimList`](/rest_api/objects/index#io-cncf-cni-k8s-v1alpha1-IPAMClaimList) schema |
+| 200 - OK | [`IPAMClaimList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-k8s-v1alpha1-IPAMClaimList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -210,15 +210,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |  |
+| `body` | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
-| 201 - Created | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
-| 202 - Accepted | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 201 - Created | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 202 - Accepted | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }} {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name}
@@ -249,8 +249,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -267,7 +267,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -291,7 +291,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -315,14 +315,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |  |
+| `body` | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
-| 201 - Created | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 201 - Created | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}/status {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name_status}
@@ -347,7 +347,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -371,7 +371,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -395,12 +395,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |  |
+| `body` | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
-| 201 - Created | [`IPAMClaim`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
+| 201 - Created | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |

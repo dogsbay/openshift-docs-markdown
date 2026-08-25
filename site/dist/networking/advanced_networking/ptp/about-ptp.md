@@ -22,4 +22,4 @@ Use the OpenShift Container Platform web console or OpenShift CLI (`oc`) to inst
 
 **Additional resources**
 
-- [Disabling chrony time service](/machine_configuration/machine-configs-configure#cnf-disable-chronyd_machine-configs-configure)
+- [Disabling chrony time service](/openshift-docs-markdown/machine_configuration/machine-configs-configure#cnf-disable-chronyd_machine-configs-configure)

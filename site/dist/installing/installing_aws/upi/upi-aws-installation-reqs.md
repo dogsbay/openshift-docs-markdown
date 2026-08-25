@@ -10,4 +10,4 @@ For a cluster that has user-provisioned infrastructure, you must deploy all of t
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)

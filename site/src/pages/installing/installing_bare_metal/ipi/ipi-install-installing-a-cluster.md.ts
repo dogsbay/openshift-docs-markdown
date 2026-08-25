@@ -2,7 +2,7 @@
 // Source: installing/installing_bare_metal/ipi/ipi-install-installing-a-cluster.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Installing a cluster\n---\n\n# Installing a cluster {#ipi-install-installing-a-cluster}\n\nYou can install a cluster after setting up the environment for an OpenShift Container Platform installation. Ensure you have completed the prerequisites before installing a cluster.\n\n## Additional resources {#additional-resources_creating_manifest_ignition}\n\n- [Understanding update channels and releases](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)\n";
+const body = "---\ntitle: Installing a cluster\n---\n\n# Installing a cluster {#ipi-install-installing-a-cluster}\n\nYou can install a cluster after setting up the environment for an OpenShift Container Platform installation. Ensure you have completed the prerequisites before installing a cluster.\n\n## Additional resources {#additional-resources_creating_manifest_ignition}\n\n- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

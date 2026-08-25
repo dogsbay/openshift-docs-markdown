@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-nodes-resources-configuring","text":"Allocating resources for nodes in an OpenShift Container Platform cluster"},{"depth":2,"slug":"nodes-nodes-resources-configuring_additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/nodes/nodes-nodes-resources-configuring";
+const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Allocating resources for nodes in an OpenShift Container Platform cluster {#nodes-nodes-resources-configuring}\n\nBy default, upon node start up OpenShift Container Platform automatically calculates and reserves a portion of the CPU and memory resources for use by the underlying node components, such as `kubelet` and `kube-proxy`, and the remaining system components, such as `sshd` and `NetworkManager`. Review the information in this section to determine if these automatic settings are appropriate for your cluster.\n\nYou can modify the CPU and memory resources for these node and system components, as needed, by creating a `Kubelet Config` CR.\n\n> [!IMPORTANT]\n> If you updated your cluster from a version earlier than 4.21, automatic allocation of system resources is disabled by default. To enable the feature, delete the `50-worker-auto-sizing-disabled` machine config.\n\n## Additional resources {#nodes-nodes-resources-configuring_additional-resources}\n\n- [Creating a KubeletConfig CR to edit kubelet parameters](/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom)\n- [Node metrics data (Kubernetes documentation)](https://kubernetes.io/docs/reference/instrumentation/node-metrics/)\n","mdUrl":"/nodes/nodes/nodes-nodes-resources-configuring.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Allocating resources for nodes in an OpenShift Container Platform cluster {#nodes-nodes-resources-configuring}\n\nBy default, upon node start up OpenShift Container Platform automatically calculates and reserves a portion of the CPU and memory resources for use by the underlying node components, such as `kubelet` and `kube-proxy`, and the remaining system components, such as `sshd` and `NetworkManager`. Review the information in this section to determine if these automatic settings are appropriate for your cluster.\n\nYou can modify the CPU and memory resources for these node and system components, as needed, by creating a `Kubelet Config` CR.\n\n> [!IMPORTANT]\n> If you updated your cluster from a version earlier than 4.21, automatic allocation of system resources is disabled by default. To enable the feature, delete the `50-worker-auto-sizing-disabled` machine config.\n\n## Additional resources {#nodes-nodes-resources-configuring_additional-resources}\n\n- [Creating a KubeletConfig CR to edit kubelet parameters](/openshift-docs-markdown/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom)\n- [Node metrics data (Kubernetes documentation)](https://kubernetes.io/docs/reference/instrumentation/node-metrics/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -109,7 +109,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-nodes-resources-configuring-setting.md"></p>
       <h2 id="nodes-nodes-resources-configuring_additional-resources" class="group scroll-mt-20">Additional resources<a href="#nodes-nodes-resources-configuring_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom">Creating a KubeletConfig CR to edit kubelet parameters</a></li>
+      <li><a href="/openshift-docs-markdown/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom">Creating a KubeletConfig CR to edit kubelet parameters</a></li>
       <li><a href="https://kubernetes.io/docs/reference/instrumentation/node-metrics/">Node metrics data (Kubernetes documentation)</a></li>
       </ul>
     </article>

@@ -25,36 +25,36 @@ Cloud providers use different terms for their implementation of this authenticat
 
 **Additional resources**
 
-- [Configuring an {{ aws_short }} cluster to use short-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
+- [Configuring an {{ aws_short }} cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
 
 **Additional resources**
 
-- [CCO-based workflow for OLM-managed Operators with {{ aws_short }} {{ sts_short }}](/operators/operator_sdk/token_auth/osdk-cco-aws-sts#osdk-cco-aws-sts)
+- [CCO-based workflow for OLM-managed Operators with {{ aws_short }} {{ sts_short }}](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-aws-sts#osdk-cco-aws-sts)
 
 **Additional resources**
 
-- [Configuring a {{ gcp_short }} cluster to use short-term credentials](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-with-short-term-creds_installing-gcp-customizations)
+- [Configuring a {{ gcp_short }} cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-with-short-term-creds_installing-gcp-customizations)
 
 **Additional resources**
 
-- [CCO-based workflow for OLM-managed Operators with {{ gcp_wid_first }}](/operators/operator_sdk/token_auth/osdk-cco-gcp#osdk-cco-gcp)
+- [CCO-based workflow for OLM-managed Operators with {{ gcp_wid_first }}](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-gcp#osdk-cco-gcp)
 
 **Additional resources**
 
-- [Configuring {{ gcp_wid_short }} authentication for applications on {{ gcp_short }}](/nodes/pods/nodes-pods-short-term-auth#nodes-pods-short-term-auth-configuring-gcp_nodes-pods-short-term-auth)
+- [Configuring {{ gcp_wid_short }} authentication for applications on {{ gcp_short }}](/openshift-docs-markdown/nodes/pods/nodes-pods-short-term-auth#nodes-pods-short-term-auth-configuring-gcp_nodes-pods-short-term-auth)
 
 **Additional resources**
 
-- [Configuring a global {{ azure_first }} cluster to use short-term credentials](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
+- [Configuring a global {{ azure_first }} cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
 
 **Additional resources**
 
-- [CCO-based workflow for OLM-managed Operators with {{ entra_first }}](/operators/operator_sdk/token_auth/osdk-cco-azure#osdk-cco-azure)
+- [CCO-based workflow for OLM-managed Operators with {{ entra_first }}](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-azure#osdk-cco-azure)
 
 ## Additional resources {#additional-resources_cco-short-term-creds}
 
-- [Enabling token-based authentication](/post_installation_configuration/changing-cloud-credentials-configuration#post-install-enable-token-auth_changing-cloud-credentials-configuration)
-- [Configuring an {{ aws_short }} cluster to use short-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
-- [Configuring a {{ gcp_short }} cluster to use short-term credentials](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-with-short-term-creds_installing-gcp-customizations)
-- [Configuring a global {{ azure_first }} cluster to use short-term credentials](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
-- [Preparing to update a cluster with manually maintained credentials](/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)
+- [Enabling token-based authentication](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#post-install-enable-token-auth_changing-cloud-credentials-configuration)
+- [Configuring an {{ aws_short }} cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
+- [Configuring a {{ gcp_short }} cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-with-short-term-creds_installing-gcp-customizations)
+- [Configuring a global {{ azure_first }} cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
+- [Preparing to update a cluster with manually maintained credentials](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"cli-administrator-commands","text":"OpenShift CLI administrator command reference"},{"depth":2,"slug":"additional-resources_cli-administrator-commands","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/cli_reference/openshift_cli/administrator-cli-commands";
+const currentPath = "/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["cli_reference","cli_reference/openshift_cli"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift CLI administrator command reference {#cli-administrator-commands}\n\nTo learn more about the {{ oc_first }} administrator commands, review their descriptions and example commands. You must have `cluster-admin` or equivalent permissions to use these commands.\n\nFor developer commands, see the \"OpenShift CLI developer command reference\".\n\nRun `oc adm -h` to list all administrator commands or run `oc <command> --help` to get additional details for a specific command.\n\n## Additional resources {#additional-resources_cli-administrator-commands}\n\n- [OpenShift CLI developer command reference](/cli_reference/openshift_cli/developer-cli-commands#cli-developer-commands)\n","mdUrl":"/cli_reference/openshift_cli/administrator-cli-commands.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift CLI administrator command reference {#cli-administrator-commands}\n\nTo learn more about the {{ oc_first }} administrator commands, review their descriptions and example commands. You must have `cluster-admin` or equivalent permissions to use these commands.\n\nFor developer commands, see the \"OpenShift CLI developer command reference\".\n\nRun `oc adm -h` to list all administrator commands or run `oc <command> --help` to get additional details for a specific command.\n\n## Additional resources {#additional-resources_cli-administrator-commands}\n\n- [OpenShift CLI developer command reference](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#cli-developer-commands)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Run <code>oc adm -h</code> to list all administrator commands or run <code>oc &lt;command&gt; --help</code> to get additional details for a specific command.</p>
       <p class="/modules/oc-adm-by-example-content.md"></p>
       <h2 id="additional-resources_cli-administrator-commands" class="group scroll-mt-20">Additional resources<a href="#additional-resources_cli-administrator-commands" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/cli_reference/openshift_cli/developer-cli-commands#cli-developer-commands">OpenShift CLI developer command reference</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#cli-developer-commands">OpenShift CLI developer command reference</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

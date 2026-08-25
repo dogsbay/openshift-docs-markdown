@@ -2,7 +2,7 @@
 // Source: hosted_control_planes/hcp-manage/hcp-manage-virt.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Managing {{ hcp }} on {{ VirtProductName }}\n---\n\n# Managing {{ hcp }} on {{ VirtProductName }} {#hcp-manage-virt}\n\nAfter you deploy a hosted cluster on {{ VirtProductName }}, you can manage the cluster.\n\n**Additional resources**\n\n- [Cloning a data volume using smart-cloning](/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#smart-cloning_virt-creating-vms-by-cloning-pvcs)\n\n**Additional resources**\n\n- [Installing the descheduler](/nodes/scheduling/descheduler/nodes-descheduler-configuring#nodes-descheduler-installing_virt-enabling-descheduler-evictions)\n";
+const body = "---\ntitle: Managing {{ hcp }} on {{ VirtProductName }}\n---\n\n# Managing {{ hcp }} on {{ VirtProductName }} {#hcp-manage-virt}\n\nAfter you deploy a hosted cluster on {{ VirtProductName }}, you can manage the cluster.\n\n**Additional resources**\n\n- [Cloning a data volume using smart-cloning](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#smart-cloning_virt-creating-vms-by-cloning-pvcs)\n\n**Additional resources**\n\n- [Installing the descheduler](/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-configuring#nodes-descheduler-installing_virt-enabling-descheduler-evictions)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

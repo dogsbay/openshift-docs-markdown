@@ -29,15 +29,15 @@ If insufficient information is available to define a complete `configs.imageregi
 
 ## Additional resources {#_additional_resources}
 
-- [Configuring pod topology spread constraints](/nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints#nodes-scheduler-pod-topology-spread-constraints)
+- [Configuring pod topology spread constraints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints#nodes-scheduler-pod-topology-spread-constraints)
 
 ## Additional resources {#_additional_resources}
 
-- [Configuring the registry for AWS user-provisioned infrastructure](/registry/configuring_registry_storage/configuring-registry-storage-aws-user-infrastructure#configuring-registry-storage-aws-user-infrastructure)
-- [Configuring the registry for {{ gcp_short }} user-provisioned infrastructure](/registry/configuring_registry_storage/configuring-registry-storage-gcp-user-infrastructure#configuring-registry-storage-gcp-user-infrastructure)
-- [Configuring the registry for Azure user-provisioned infrastructure](/registry/configuring_registry_storage/configuring-registry-storage-azure-user-infrastructure#configuring-registry-storage-azure-user-infrastructure)
-- [Configuring the registry for bare metal](/registry/configuring_registry_storage/configuring-registry-storage-baremetal#configuring-registry-storage-baremetal)
-- [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#configuring-registry-storage-vsphere)
-- [Configuring the registry for {{ rh_openstack }}](/registry/configuring_registry_storage/configuring-registry-storage-osp#configuring-registry-storage-openstack)
-- [Configuring the registry for {{ rh_storage_first }}](/registry/configuring_registry_storage/configuring-registry-storage-rhodf#configuring-registry-storage-rhodf)
-- [Configuring the registry for Nutanix](/registry/configuring_registry_storage/configuring-registry-storage-nutanix#configuring-registry-storage-nutanix)
+- [Configuring the registry for AWS user-provisioned infrastructure](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-aws-user-infrastructure#configuring-registry-storage-aws-user-infrastructure)
+- [Configuring the registry for {{ gcp_short }} user-provisioned infrastructure](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-gcp-user-infrastructure#configuring-registry-storage-gcp-user-infrastructure)
+- [Configuring the registry for Azure user-provisioned infrastructure](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-azure-user-infrastructure#configuring-registry-storage-azure-user-infrastructure)
+- [Configuring the registry for bare metal](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-baremetal#configuring-registry-storage-baremetal)
+- [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#configuring-registry-storage-vsphere)
+- [Configuring the registry for {{ rh_openstack }}](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-osp#configuring-registry-storage-openstack)
+- [Configuring the registry for {{ rh_storage_first }}](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-rhodf#configuring-registry-storage-rhodf)
+- [Configuring the registry for Nutanix](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-nutanix#configuring-registry-storage-nutanix)

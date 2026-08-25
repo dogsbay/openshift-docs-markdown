@@ -12,4 +12,4 @@ These release notes track the development of the {{ run_once_operator }} for Ope
 
 **Additional resources**
 
-- [About the {{ run_once_operator }}](/nodes/pods/run_once_duration_override/index#rodoo-about_run-once-duration-override-about)
+- [About the {{ run_once_operator }}](/openshift-docs-markdown/nodes/pods/run_once_duration_override/index#rodoo-about_run-once-duration-override-about)

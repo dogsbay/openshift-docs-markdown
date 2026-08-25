@@ -15,4 +15,4 @@ For example, you might create infrastructure Windows machine sets and related ma
 
 ## Additional resources {#_additional_resources}
 
-- [Overview of machine management](/machine_management/index#overview-of-machine-management)
+- [Overview of machine management](/openshift-docs-markdown/machine_management/index#overview-of-machine-management)

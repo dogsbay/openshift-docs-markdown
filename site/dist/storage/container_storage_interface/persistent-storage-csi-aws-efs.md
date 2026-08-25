@@ -8,16 +8,16 @@ You can provision and manage AWS Elastic File System (EFS) storage in OpenShift 
 
 **Additional resources**
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
 
 {% include "./modules/persistent-storage-csi-about.md" %}
 
 **Additional resources**
 
-- [Installing the AWS EFS CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-csi-olm-operator-install_persistent-storage-csi-aws-efs)
-- [Configuring the Cloud Credential Operator utility](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
-- [Installing the AWS EFS CSI Driver](/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-csi-efs-driver-install_persistent-storage-csi-aws-efs)
+- [Installing the AWS EFS CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-csi-olm-operator-install_persistent-storage-csi-aws-efs)
+- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
+- [Installing the AWS EFS CSI Driver](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-csi-efs-driver-install_persistent-storage-csi-aws-efs)
 
 **Additional resources**
 
@@ -30,7 +30,7 @@ You can provision and manage AWS Elastic File System (EFS) storage in OpenShift 
 **Additional resources**
 
 - [AWS EFS CSI driver](https://github.com/openshift/aws-efs-csi-driver)
-- [Creating the AWS EFS storage class](/storage/container_storage_interface/persistent-storage-csi-aws-efs#storage-create-storage-class_persistent-storage-csi-aws-efs)
+- [Creating the AWS EFS storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-aws-efs#storage-create-storage-class_persistent-storage-csi-aws-efs)
 
 **Additional resources**
 
@@ -39,4 +39,4 @@ You can provision and manage AWS Elastic File System (EFS) storage in OpenShift 
 
 ## Additional resources {#additional-resources_persistent-storage-csi-aws-efs}
 
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

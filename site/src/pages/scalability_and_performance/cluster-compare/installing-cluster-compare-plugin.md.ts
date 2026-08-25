@@ -2,7 +2,7 @@
 // Source: scalability_and_performance/cluster-compare/installing-cluster-compare-plugin.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Installing the cluster-compare plugin\n---\n\n# Installing the cluster-compare plugin {#installing-cluster-compare-plugin}\n\nYou can extract the `cluster-compare` plugin from a container image in the Red Hat container catalog and use it as a plugin to the `oc` command.\n\n## Additional resources {#_additional_resources}\n\n- [Extending the OpenShift CLI with plugins](/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins)\n";
+const body = "---\ntitle: Installing the cluster-compare plugin\n---\n\n# Installing the cluster-compare plugin {#installing-cluster-compare-plugin}\n\nYou can extract the `cluster-compare` plugin from a container image in the Red Hat container catalog and use it as a plugin to the `oc` command.\n\n## Additional resources {#_additional_resources}\n\n- [Extending the OpenShift CLI with plugins](/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

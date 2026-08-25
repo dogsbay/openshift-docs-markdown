@@ -12,5 +12,5 @@ The following example YAML snippets show provider specification and failure doma
 
 ## Additional resources {#additional-resources_cpmso-config-options-aws}
 
-- [Updating the control plane configuration](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
-- [Configuring {{ aws_full }} features for control plane machines](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-supported-features-aws#cpmso-supported-features-aws)
+- [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
+- [Configuring {{ aws_full }} features for control plane machines](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-supported-features-aws#cpmso-supported-features-aws)

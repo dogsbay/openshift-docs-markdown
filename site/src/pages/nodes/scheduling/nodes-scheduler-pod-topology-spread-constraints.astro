@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-scheduler-pod-topology-spread-constraints","text":"Controlling pod placement by using pod topology spread constraints"},{"depth":2,"slug":"nodes-scheduler-pod-topology-spread-constraints-example-use-cases","text":"Example use cases"},{"depth":2,"slug":"nodes-scheduler-pod-topology-spread-constraints-considerations","text":"Important considerations"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints";
+const currentPath = "/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/scheduling"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Controlling pod placement by using pod topology spread constraints {#nodes-scheduler-pod-topology-spread-constraints}\n\nTo achieve high availability and more efficient resource utilization, you can use pod topology spread constraints to control the placement of your pods across nodes, zones, regions, or other user-defined topology domains.\n\n## Example use cases {#nodes-scheduler-pod-topology-spread-constraints-example-use-cases}\n\n- As an administrator, I want my workload to automatically scale between two to fifteen pods. I want to ensure that when there are only two pods, they are not placed on the same node, to avoid a single point of failure.\n- As an administrator, I want to distribute my pods evenly across multiple infrastructure zones to reduce latency and network costs. I want to ensure that my cluster can self-heal if issues arise.\n\n## Important considerations {#nodes-scheduler-pod-topology-spread-constraints-considerations}\n\n- Pods in an OpenShift Container Platform cluster are managed by *workload controllers* such as deployments, stateful sets, or daemon sets. These controllers define the desired state for a group of pods, including how they are distributed and scaled across the nodes in the cluster. You should set the same pod topology spread constraints on all pods in a group to avoid confusion. When using a workload controller, such as a deployment, the pod template typically handles this for you.\n- Mixing different pod topology spread constraints can make OpenShift Container Platform behavior confusing and troubleshooting more difficult. You can avoid this by ensuring that all nodes in a topology domain are consistently labeled. OpenShift Container Platform automatically populates well-known labels, such as `kubernetes.io/hostname`. This helps avoid the need for manual labeling of nodes. These labels provide essential topology information, ensuring consistent node labeling across the cluster.\n- Only pods within the same namespace are matched and grouped together when spreading due to a constraint.\n- You can specify multiple pod topology spread constraints, but you must ensure that they do not conflict with each other. All pod topology spread constraints must be satisfied for a pod to be placed.\n\n## Additional resources {#_additional_resources}\n\n- [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)\n","mdUrl":"/nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Controlling pod placement by using pod topology spread constraints {#nodes-scheduler-pod-topology-spread-constraints}\n\nTo achieve high availability and more efficient resource utilization, you can use pod topology spread constraints to control the placement of your pods across nodes, zones, regions, or other user-defined topology domains.\n\n## Example use cases {#nodes-scheduler-pod-topology-spread-constraints-example-use-cases}\n\n- As an administrator, I want my workload to automatically scale between two to fifteen pods. I want to ensure that when there are only two pods, they are not placed on the same node, to avoid a single point of failure.\n- As an administrator, I want to distribute my pods evenly across multiple infrastructure zones to reduce latency and network costs. I want to ensure that my cluster can self-heal if issues arise.\n\n## Important considerations {#nodes-scheduler-pod-topology-spread-constraints-considerations}\n\n- Pods in an OpenShift Container Platform cluster are managed by *workload controllers* such as deployments, stateful sets, or daemon sets. These controllers define the desired state for a group of pods, including how they are distributed and scaled across the nodes in the cluster. You should set the same pod topology spread constraints on all pods in a group to avoid confusion. When using a workload controller, such as a deployment, the pod template typically handles this for you.\n- Mixing different pod topology spread constraints can make OpenShift Container Platform behavior confusing and troubleshooting more difficult. You can avoid this by ensuring that all nodes in a topology domain are consistently labeled. OpenShift Container Platform automatically populates well-known labels, such as `kubernetes.io/hostname`. This helps avoid the need for manual labeling of nodes. These labels provide essential topology information, ensuring consistent node labeling across the cluster.\n- Only pods within the same namespace are matched and grouped together when spreading due to a constraint.\n- You can specify multiple pod topology spread constraints, but you must ensure that they do not conflict with each other. All pod topology spread constraints must be satisfied for a pod to be placed.\n\n## Additional resources {#_additional_resources}\n\n- [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,7 +107,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p class="/modules/nodes-scheduler-pod-topology-spread-constraints-examples.md"></p>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working">Understanding how to update labels on nodes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working">Understanding how to update labels on nodes</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

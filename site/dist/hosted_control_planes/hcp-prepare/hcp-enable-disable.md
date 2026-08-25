@@ -10,4 +10,4 @@ You can uninstall the HyperShift Operator and disable the {{ hcp }} feature. Whe
 
 **Additional resources**
 
-- [Destroying a hosted cluster](/hosted_control_planes/hcp-destroy/hcp-destroy-aws#hcp-destroy-aws)
+- [Destroying a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-aws#hcp-destroy-aws)

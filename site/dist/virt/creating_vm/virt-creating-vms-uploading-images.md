@@ -15,13 +15,13 @@ You can create a Windows VM by uploading a Windows image to a PVC. Then you clon
 
 ## Additional resources {#additional-resources_virt-creating-vms-uploading-images}
 
-- [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
-- [Installing VirtIO drivers on Windows VMs](/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-install-virtio-drivers-on-windows-vms)
+- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
+- [Installing VirtIO drivers on Windows VMs](/openshift-docs-markdown/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-install-virtio-drivers-on-windows-vms)
 - [Red Hat VirtIO drivers download page](https://access.redhat.com/downloads/content/479/virtio-win/noarch/package-latest)
 - [How to check virtio-win drivers version on Windows guest](https://access.redhat.com/solutions/764103)
 - [Installing and updating VirtIO drivers for Windows virtual machines](https://access.redhat.com/solutions/6957701)
-- [Cloning VMs](/virt/creating_vm/virt-cloning-vms#virt-cloning-vms)
-- [Cloning a PVC to a data volume](/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#virt-cloning-pvc-to-dv-cli_virt-creating-vms-by-cloning-pvcs)
+- [Cloning VMs](/openshift-docs-markdown/virt/creating_vm/virt-cloning-vms#virt-cloning-vms)
+- [Cloning a PVC to a data volume](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#virt-cloning-pvc-to-dv-cli_virt-creating-vms-by-cloning-pvcs)
 - link:https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation\[Sysprep (Generalize) a Windows installation\]
 - [Configuration pass of Windows Setup (generalize)](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/generalize)
 - [Configuration pass of Windows Setup (specialize)](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/specialize)

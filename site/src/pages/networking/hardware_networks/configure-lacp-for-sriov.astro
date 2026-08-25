@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"sriov-lacp-sriov","text":"High availability for pod-level bonds on SR-IOV networks"}];
 const nav = navData;
-const currentPath = "/networking/hardware_networks/configure-lacp-for-sriov";
+const currentPath = "/openshift-docs-markdown/networking/hardware_networks/configure-lacp-for-sriov";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/hardware_networks"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# High availability for pod-level bonds on SR-IOV networks {#sriov-lacp-sriov}\n\nFor workloads by using pod-level bonding with SR-IOV virtual functions (VFs), despite an upstream switch failure, an underlying physical function (PF) might still report an `up` state. This creates a silent failure, as attached VFs remain up and pods continue to send traffic to a dead endpoint, causing packet loss.\n\nThe PF Status Relay Operator solves this issue by using Link Aggregation Control Protocol (LACP) as an active health check. In this configuration, each physical function (PF) is in its own single-member LACP bond with the upstream switch. When the Operator detects an LACP failure on a PF bond, it changes the link state of the attached VFs from `auto` to `disabled`. This action triggers the pod’s `active-backup` bond to fail over to its backup network path, maintaining high availability.\n","mdUrl":"/networking/hardware_networks/configure-lacp-for-sriov.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# High availability for pod-level bonds on SR-IOV networks {#sriov-lacp-sriov}\n\nFor workloads by using pod-level bonding with SR-IOV virtual functions (VFs), despite an upstream switch failure, an underlying physical function (PF) might still report an `up` state. This creates a silent failure, as attached VFs remain up and pods continue to send traffic to a dead endpoint, causing packet loss.\n\nThe PF Status Relay Operator solves this issue by using Link Aggregation Control Protocol (LACP) as an active health check. In this configuration, each physical function (PF) is in its own single-member LACP bond with the upstream switch. When the Operator detects an LACP failure on a PF bond, it changes the link state of the attached VFs from `auto` to `disabled`. This action triggers the pod’s `active-backup` bond to fail over to its backup network path, maintaining high availability.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/configure-lacp-for-sriov.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

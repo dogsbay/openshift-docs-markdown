@@ -8,5 +8,5 @@ Monitoring and auditing an OpenShift Container Platform cluster is an important 
 
 **Additional resources**
 
-- [List of system events](/nodes/clusters/nodes-containers-events#nodes-containers-events)
-- [Viewing audit logs](/security/audit-log-view#audit-log-view)
+- [List of system events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events)
+- [Viewing audit logs](/openshift-docs-markdown/security/audit-log-view#audit-log-view)

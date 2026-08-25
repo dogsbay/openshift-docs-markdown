@@ -15,4 +15,4 @@ You must ensure that your nodes running in vSphere are running on the hardware v
 
 **Additional resources**
 
-- [Evacuating pods on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)
+- [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)

@@ -14,4 +14,4 @@ For information on how to convert your cluster, see the "Converting a connected 
 
 ## Additional resources {#additional-resources_converting-to-disconnected}
 
-- [Converting a connected cluster to a disconnected cluster](/disconnected/connected-to-disconnected#converting-to-disconnected)
+- [Converting a connected cluster to a disconnected cluster](/openshift-docs-markdown/disconnected/connected-to-disconnected#converting-to-disconnected)

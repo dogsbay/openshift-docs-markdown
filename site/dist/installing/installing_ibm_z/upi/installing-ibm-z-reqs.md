@@ -15,12 +15,12 @@ For a cluster that contains user-provisioned infrastructure, you must deploy all
 - [Processors Resource/Systems Manager Planning Guide ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/systems-hardware/zsystems/3932-A02?topic=library-prsm-planning-guide)
 - [IBM Dynamic Partition Manager (DPM) Guide ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/systems-hardware/zsystems/3932-A02?topic=library-dynamic-partition-manager-dpm-guide)
 - [Topics in LPAR performance](https://www.vm.ibm.com/library/presentations/lparperf.pdf)
-- [Recommended host practices for {{ ibm_z_name }} & {{ ibm_linuxone_name }} environments](/scalability_and_performance/ibm-z-recommended-host-practices#ibm-z-recommended-host-practices)
+- [Recommended host practices for {{ ibm_z_name }} & {{ ibm_linuxone_name }} environments](/openshift-docs-markdown/scalability_and_performance/ibm-z-recommended-host-practices#ibm-z-recommended-host-practices)
 
 ## Additional resources {#additional-resources_storage_installing-ibm-z-reqs}
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 ## Additional resources {#additional-resources_network_installing-ibm-z-reqs}
 
-- [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
+- [Configuring chrony time service](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)

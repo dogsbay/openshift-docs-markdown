@@ -8,4 +8,4 @@ Review the {{ secondary_scheduler_operator_full }} release notes to track its de
 
 The {{ secondary_scheduler_operator }} allows you to deploy a custom secondary scheduler in your OpenShift Container Platform cluster.
 
-For more information, see [About the {{ secondary_scheduler_operator }}](/nodes/scheduling/secondary_scheduler/index#nodes-secondary-scheduler-about_nodes-secondary-scheduler-about).
+For more information, see [About the {{ secondary_scheduler_operator }}](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/index#nodes-secondary-scheduler-about_nodes-secondary-scheduler-about).

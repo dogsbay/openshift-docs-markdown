@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"post-install-image-config","text":"Configuring image streams and image registries"},{"depth":2,"slug":"post-install-image-config-disconnected","text":"Configuring image streams for a disconnected cluster"},{"depth":2,"slug":"additional-resources_post-install-image-config","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/post-install-image-config";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/post-install-image-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring image streams and image registries {#post-install-image-config}\n\nYou can configure image streams, image registries, and pull secrets after installation to control how your cluster accesses, imports, and stores container images.\n\nYou can update the global pull secret for your cluster by either replacing the current pull secret or appending a new pull secret. The procedure is required when users use a separate registry to store images than the registry used during installation. For more information, see \"Using image pull secrets\".\n\nFor information about images and configuring image streams or image registries, see the following documentation:\n\n- Overview of images\n- Image Registry Operator in OpenShift Container Platform\n- Configuring image registry settings\n\n## Configuring image streams for a disconnected cluster {#post-install-image-config-disconnected}\n\nAfter installing OpenShift Container Platform in a disconnected environment, configure the image streams for the Cluster Samples Operator and the `must-gather` image stream.\n\n## Additional resources {#additional-resources_post-install-image-config}\n\n- [Using image pull secrets](/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)\n- [Overview of images](/openshift_images/index#overview-of-images)\n- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#configuring-registry-operator)\n- [Configuring image registry settings](/openshift_images/image-configuration#image-configuration)\n","mdUrl":"/post_installation_configuration/post-install-image-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring image streams and image registries {#post-install-image-config}\n\nYou can configure image streams, image registries, and pull secrets after installation to control how your cluster accesses, imports, and stores container images.\n\nYou can update the global pull secret for your cluster by either replacing the current pull secret or appending a new pull secret. The procedure is required when users use a separate registry to store images than the registry used during installation. For more information, see \"Using image pull secrets\".\n\nFor information about images and configuring image streams or image registries, see the following documentation:\n\n- Overview of images\n- Image Registry Operator in OpenShift Container Platform\n- Configuring image registry settings\n\n## Configuring image streams for a disconnected cluster {#post-install-image-config-disconnected}\n\nAfter installing OpenShift Container Platform in a disconnected environment, configure the image streams for the Cluster Samples Operator and the `must-gather` image stream.\n\n## Additional resources {#additional-resources_post-install-image-config}\n\n- [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)\n- [Overview of images](/openshift-docs-markdown/openshift_images/index#overview-of-images)\n- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)\n- [Configuring image registry settings](/openshift-docs-markdown/openshift_images/image-configuration#image-configuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/post-install-image-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -108,10 +108,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/images-cluster-sample-imagestream-import.md"></p>
       <h2 id="additional-resources_post-install-image-config" class="group scroll-mt-20">Additional resources<a href="#additional-resources_post-install-image-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets">Using image pull secrets</a></li>
-      <li><a href="/openshift_images/index#overview-of-images">Overview of images</a></li>
-      <li><a href="/registry/configuring-registry-operator#configuring-registry-operator">Image Registry Operator in OpenShift Container Platform</a></li>
-      <li><a href="/openshift_images/image-configuration#image-configuration">Configuring image registry settings</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets">Using image pull secrets</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/index#overview-of-images">Overview of images</a></li>
+      <li><a href="/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator">Image Registry Operator in OpenShift Container Platform</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/image-configuration#image-configuration">Configuring image registry settings</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

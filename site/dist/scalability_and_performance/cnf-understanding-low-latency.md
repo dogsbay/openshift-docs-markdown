@@ -14,4 +14,4 @@ Maintaining a network architecture with the lowest possible latency is key for m
 
 **Additional resources**
 
-- [Configuring Hyper-Threading for a cluster](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-configuring-hyperthreading-for-a-cluster_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Configuring Hyper-Threading for a cluster](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-configuring-hyperthreading-for-a-cluster_cnf-tuning-low-latency-nodes-with-perf-profile)

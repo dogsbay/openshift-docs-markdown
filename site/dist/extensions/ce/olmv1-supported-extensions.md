@@ -12,14 +12,14 @@ As a Technology Preview feature, you can configure an extension to watch a speci
 
 **Additional resources**
 
-- [Bundle format](/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)
-- [Operator conditions](/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)
+- [Bundle format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)
+- [Operator conditions](/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)
 
 **Additional resources**
 
-- [Types of webhook admission plugins](/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)
-- [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#add-service-certificate_service-ca-certificates)
-- [OpenShift Service CA Operator](/operators/operator-reference#openshift-service-ca-operator_operator-reference)
+- [Types of webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)
+- [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#add-service-certificate_service-ca-certificates)
+- [OpenShift Service CA Operator](/openshift-docs-markdown/operators/operator-reference#openshift-service-ca-operator_operator-reference)
 - [Validating admission webhooks (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook)
 - [Mutating admission webhooks (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook)
 - [Conversion webhooks (Kubernetes documentation)](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion)

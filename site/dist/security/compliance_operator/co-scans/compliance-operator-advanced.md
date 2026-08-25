@@ -8,5 +8,5 @@ As an advanced user, you can use options in the Compliance Operator for the purp
 
 ## Additional resources {#additional-resources_compliance-advanced}
 
-- [Configuring priority and preemption](/nodes/pods/nodes-pods-priority#nodes-pods-priority-configuring_nodes-pods-priority)
-- [Managing security context constraints](/authentication/managing-security-context-constraints#managing-pod-security-policies)
+- [Configuring priority and preemption](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#nodes-pods-priority-configuring_nodes-pods-priority)
+- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#managing-pod-security-policies)

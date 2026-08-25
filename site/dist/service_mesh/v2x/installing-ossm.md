@@ -11,7 +11,7 @@ To install {{ SMProductName }}, first install the {{ SMProductName }} Operator a
 
 **Prerequisites**
 
-- Read the [Preparing to install {{ SMProductName }}](/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation) process.
+- Read the [Preparing to install {{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation) process.
 - An account with the `cluster-admin` role. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.
 
 The following steps show how to install a basic instance of {{ SMProductName }} on OpenShift Container Platform.
@@ -21,4 +21,4 @@ The following steps show how to install a basic instance of {{ SMProductName }} 
 
 ## Next steps {#_next_steps}
 
-- The {{ SMProductName }} Operator does not create the {{ SMProductShortName }} custom resource definitions (CRDs) until you deploy a {{ SMProductShortName }} control plane. You can use the `ServiceMeshControlPlane` resource to install and configure the {{ SMProductShortName }} components. For more information, see [Creating the ServiceMeshControlPlane](/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp).
+- The {{ SMProductName }} Operator does not create the {{ SMProductShortName }} custom resource definitions (CRDs) until you deploy a {{ SMProductShortName }} control plane. You can use the `ServiceMeshControlPlane` resource to install and configure the {{ SMProductShortName }} components. For more information, see [Creating the ServiceMeshControlPlane](/openshift-docs-markdown/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp).

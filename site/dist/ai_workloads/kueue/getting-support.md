@@ -22,4 +22,4 @@ The Red Hat Knowledgebase provides rich content aimed at helping you make the m
 - [Red Hat Knowledgebase](https://access.redhat.com/knowledgebase)
 - [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291)
 - [Customer Support page](https://access.redhat.com/support/cases/#/case/list)
-- [Support overview](/support/index#support-overview)
+- [Support overview](/openshift-docs-markdown/support/index#support-overview)

@@ -19,21 +19,21 @@ Configuring multi-architecture compute machines involves some additional conside
 
 **Additional resources**
 
-- [Creating a cluster with multi-architecture compute machines on Azure](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure#creating-multi-arch-compute-nodes-azure)
-- [Creating a cluster with multi-architecture compute machines on AWS](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws#creating-multi-arch-compute-nodes-aws)
-- [Creating a cluster with multi-architecture compute machines on {{ gcp_short }}](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-google-cloud#creating-multi-arch-compute-nodes-google-cloud)
-- [Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)
-- [Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with z/VM](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z#creating-multi-arch-compute-nodes-ibm-z)
-- [Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with {{ op_system_base }} KVM](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z-kvm#creating-multi-arch-compute-nodes-ibm-z-kvm)
-- [Creating a cluster with multi-architecture compute machines on {{ ibm_power_name }}](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power#creating-multi-arch-compute-nodes-ibm-power)
+- [Creating a cluster with multi-architecture compute machines on Azure](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure#creating-multi-arch-compute-nodes-azure)
+- [Creating a cluster with multi-architecture compute machines on AWS](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws#creating-multi-arch-compute-nodes-aws)
+- [Creating a cluster with multi-architecture compute machines on {{ gcp_short }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-google-cloud#creating-multi-arch-compute-nodes-google-cloud)
+- [Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)
+- [Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with z/VM](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z#creating-multi-arch-compute-nodes-ibm-z)
+- [Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with {{ op_system_base }} KVM](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z-kvm#creating-multi-arch-compute-nodes-ibm-z-kvm)
+- [Creating a cluster with multi-architecture compute machines on {{ ibm_power_name }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power#creating-multi-arch-compute-nodes-ibm-power)
 
 **Additional resources**
 
-- [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
+- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
 
 ## Additional resources {#additional-resources_multi-architecture-configuration}
 
 - [Assigning pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 - [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)
-- [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)
-- [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
+- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
+- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)

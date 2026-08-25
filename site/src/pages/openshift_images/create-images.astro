@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"creating-images","text":"Creating images"},{"depth":2,"slug":"additional-resources_create-images","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/openshift_images/create-images";
+const currentPath = "/openshift-docs-markdown/openshift_images/create-images";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["openshift_images"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating images {#creating-images}\n\nYou can create your own container images based on pre-built base images. This process includes following best practices for writing images, defining metadata, testing images, and using a custom builder workflow with Source-to-Image (S2I). After you create an image, you can push it to the {{ product_registry }}.\n\n## Additional resources {#additional-resources_create-images}\n\n- [S2I README](https://github.com/openshift/source-to-image/blob/master/README.md#installation)\n","mdUrl":"/openshift_images/create-images.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating images {#creating-images}\n\nYou can create your own container images based on pre-built base images. This process includes following best practices for writing images, defining metadata, testing images, and using a custom builder workflow with Source-to-Image (S2I). After you create an image, you can push it to the {{ product_registry }}.\n\n## Additional resources {#additional-resources_create-images}\n\n- [S2I README](https://github.com/openshift/source-to-image/blob/master/README.md#installation)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/create-images.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

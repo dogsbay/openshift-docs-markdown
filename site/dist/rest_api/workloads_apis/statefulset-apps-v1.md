@@ -23,7 +23,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | A StatefulSetSpec is the specification of a StatefulSet. |
 | `status` | `object` | StatefulSetStatus represents the current state of a StatefulSet. |
 
@@ -49,11 +49,11 @@ Required
 | `podManagementPolicy` | `string` | podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once. Possible enum values:  - `"OrderedReady"` will create pods in strictly increasing order on scale up and strictly decreasing order on scale down, progressing only when the previous pod is ready or terminated. At most one pod will be changed at any time.  - `"Parallel"` will create and delete pods as soon as the stateful set replica count is changed, and will not wait for pods to be ready or complete termination. |
 | `replicas` | `integer` | replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1. |
 | `revisionHistoryLimit` | `integer` | revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet’s revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10. |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over pods that should match the replica count. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over pods that should match the replica count. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
 | `serviceName` | `string` | serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where "pod-specific-string" is managed by the StatefulSet controller. |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format <statefulsetname>-<podindex>. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3". The only allowed template.spec.restartPolicy value is "Always". |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format <statefulsetname>-<podindex>. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3". The only allowed template.spec.restartPolicy value is "Always". |
 | `updateStrategy` | `object` | StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy. |
-| `volumeClaimTemplates` | [`array (PersistentVolumeClaim)`](/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) | volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name. |
+| `volumeClaimTemplates` | [`array (PersistentVolumeClaim)`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) | volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name. |
 
 ### .spec.ordinals {#_specordinals}
 
@@ -111,7 +111,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. This field is beta-level and is enabled by default. The field applies to all pods in the range 0 to Replicas-1. That means if there is any unavailable pod in the range 0 to Replicas-1, it will be counted towards MaxUnavailable. This setting might not be effective for the OrderedReady podManagementPolicy. That policy ensures pods are created and become ready one at a time. |
+| `maxUnavailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. This field is beta-level and is enabled by default. The field applies to all pods in the range 0 to Replicas-1. That means if there is any unavailable pod in the range 0 to Replicas-1, it will be counted towards MaxUnavailable. This setting might not be effective for the OrderedReady podManagementPolicy. That policy ensures pods are created and become ready one at a time. |
 | `partition` | `integer` | Partition indicates the ordinal at which the StatefulSet should be partitioned for updates. During a rolling update, all pods from ordinal Replicas-1 to Partition are updated. All pods from ordinal Partition-1 to 0 remain untouched. This is helpful in being able to do a canary based deployment. The default value is 0. |
 
 ### .status {#_status}
@@ -167,7 +167,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
 | `message` | `string` | A human readable message indicating details about the transition. |
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -222,7 +222,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSetList`](/rest_api/objects/index#io-k8s-api-apps-v1-StatefulSetList) schema |
+| 200 - OK | [`StatefulSetList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-StatefulSetList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/statefulsets {#_apisappsv1watchstatefulsets}
@@ -241,7 +241,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/statefulsets {#_apisappsv1namespaces_namespace_statefulsets}
@@ -266,7 +266,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -283,7 +283,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSetList`](/rest_api/objects/index#io-k8s-api-apps-v1-StatefulSetList) schema |
+| 200 - OK | [`StatefulSetList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-StatefulSetList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -307,15 +307,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |  |
+| `body` | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
-| 201 - Created | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
-| 202 - Accepted | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 200 - OK | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 201 - Created | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 202 - Accepted | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets {#_apisappsv1watchnamespaces_namespace_statefulsets}
@@ -334,7 +334,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }} {#_apisappsv1namespaces_namespace_statefulsets_name}
@@ -365,8 +365,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -383,7 +383,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 200 - OK | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -407,8 +407,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
-| 201 - Created | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 200 - OK | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 201 - Created | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -432,14 +432,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |  |
+| `body` | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
-| 201 - Created | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 200 - OK | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 201 - Created | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets/{{ name }} {#_apisappsv1watchnamespaces_namespace_statefulsets_name}
@@ -464,7 +464,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/status {#_apisappsv1namespaces_namespace_statefulsets_name_status}
@@ -489,7 +489,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 200 - OK | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -513,8 +513,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
-| 201 - Created | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 200 - OK | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 201 - Created | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -538,12 +538,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |  |
+| `body` | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
-| 201 - Created | [`StatefulSet`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 200 - OK | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
+| 201 - Created | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |

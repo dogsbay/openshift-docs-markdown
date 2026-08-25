@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"persistent-storage-using-azure-file","text":"Persistent storage using Azure File"}];
 const nav = navData;
-const currentPath = "/storage/persistent_storage/persistent-storage-azure-file";
+const currentPath = "/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure-file";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["storage","storage/persistent_storage"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using Azure File {#persistent-storage-using-azure-file}\n\nOpenShift Container Platform supports Microsoft Azure File volumes. You can provision your OpenShift Container Platform cluster with persistent storage using Azure. Some familiarity with Kubernetes and Azure is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure. You can provision Azure File volumes dynamically.\n\nPersistent volumes are not bound to a single project or namespace, and you can share them across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace, and can be requested by users for use in applications.\n\n> [!IMPORTANT]\n> High availability of storage in the infrastructure is left to the underlying storage provider.\n\n> [!IMPORTANT]\n> Azure File volumes use Server Message Block.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.13 and later provides automatic migration for the Azure File in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes. For more information about migration, see \"CSI automatic migration\".\n\n**Additional resources**\n\n- [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n- [Azure Files](https://azure.microsoft.com/en-us/services/storage/files/)\n","mdUrl":"/storage/persistent_storage/persistent-storage-azure-file.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using Azure File {#persistent-storage-using-azure-file}\n\nOpenShift Container Platform supports Microsoft Azure File volumes. You can provision your OpenShift Container Platform cluster with persistent storage using Azure. Some familiarity with Kubernetes and Azure is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure. You can provision Azure File volumes dynamically.\n\nPersistent volumes are not bound to a single project or namespace, and you can share them across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace, and can be requested by users for use in applications.\n\n> [!IMPORTANT]\n> High availability of storage in the infrastructure is left to the underlying storage provider.\n\n> [!IMPORTANT]\n> Azure File volumes use Server Message Block.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.13 and later provides automatic migration for the Azure File in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes. For more information about migration, see \"CSI automatic migration\".\n\n**Additional resources**\n\n- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n- [Azure Files](https://azure.microsoft.com/en-us/services/storage/files/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure-file.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -119,7 +119,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration">CSI automatic migration</a></li>
+      <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration">CSI automatic migration</a></li>
       <li><a href="https://azure.microsoft.com/en-us/services/storage/files/">Azure Files</a></li>
       </ul>
       <p class="/modules/storage-persistent-storage-azure-file-pod.md"></p>

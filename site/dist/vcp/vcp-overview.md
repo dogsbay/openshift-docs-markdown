@@ -29,8 +29,8 @@ With this approach, you can use installation workflows such as Agent-based Insta
 
 ## Additional resources {#additional-resources_vcp-overview}
 
-- [Prerequisites for virtualized control planes](/vcp/vcp-prerequisites#vcp-prerequisites)
-- [Installing KubeVirt Redfish](/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish)
-- [Configuring KubeVirt Redfish for VM management](/virt/post_installation_configuration/virt-kubevirt-redfish#virt-kubevirt-redfish)
-- [BMC addressing for installer-provisioned infrastructure](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
-- [Deploying far edge sites with ZTP](/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)
+- [Prerequisites for virtualized control planes](/openshift-docs-markdown/vcp/vcp-prerequisites#vcp-prerequisites)
+- [Installing KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish)
+- [Configuring KubeVirt Redfish for VM management](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#virt-kubevirt-redfish)
+- [BMC addressing for installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
+- [Deploying far edge sites with ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)

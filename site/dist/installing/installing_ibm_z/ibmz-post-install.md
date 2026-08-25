@@ -20,12 +20,12 @@ You can configure devices by adding udev rules by using the Machine Config Opera
 
 **Additional resources**
 
-- [Machine configuration overview](/machine_configuration/index#machine-config-overview)
+- [Machine configuration overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
 
 **Additional resources**
 
-- [Install and configure the Local Storage Operator](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
-- [Observing and updating the node network state and configuration](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)
+- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
+- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)
 
 **Additional resources**
 
@@ -34,5 +34,5 @@ You can configure devices by adding udev rules by using the Machine Config Opera
 
 **Additional resources**
 
-- [Install and configure the Local Storage Operator](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
-- [Observing and updating the node network state and configuration](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)
+- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
+- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-virt","text":"Installing {{ VirtProductName }}"},{"depth":2,"slug":"additional-resources_installing-virt","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/install/installing-virt";
+const currentPath = "/openshift-docs-markdown/virt/install/installing-virt";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/install"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing {{ VirtProductName }} {#installing-virt}\n\nInstall {{ VirtProductName }} to add virtualization functionality to your OpenShift Container Platform cluster.\n\n> [!IMPORTANT]\n> If you install {{ VirtProductName }} in a restricted environment with no internet connectivity, you must configure {{ olm_first }} for a disconnected environment.\n>\n> If you have limited internet connectivity, you can configure proxy support in {{ olm }} to access the software catalog.\n\n{% include \"./modules/virt-installing-virt-operator.md\" %}\n\n## Additional resources {#additional-resources_installing-virt}\n\n- [Installing a cluster for {{ VirtProductName }} using the Agent-based Installer](/installing/installing_with_agent_based_installer/installing-ove#installing-ove)\n- [Installing with the virtualization operator bundle (Assisted Installer)](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/customizing-with-bundles-and-operators#openshift-virtualization-operator_customizing-with-bundles-and-operators)\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n- [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [Self validation checkup](/virt/post_installation_configuration/virt-self-validation-checkups#virt-self-validation-checkups)\n- [Configure certificate rotation](/virt/post_installation_configuration/virt-configuring-certificate-rotation#virt-configuring-certificate-rotation)\n- [Creating a hostpath provisioner with a basic storage pool](/virt/storage/virt-configuring-local-storage-with-hpp#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp)\n","mdUrl":"/virt/install/installing-virt.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing {{ VirtProductName }} {#installing-virt}\n\nInstall {{ VirtProductName }} to add virtualization functionality to your OpenShift Container Platform cluster.\n\n> [!IMPORTANT]\n> If you install {{ VirtProductName }} in a restricted environment with no internet connectivity, you must configure {{ olm_first }} for a disconnected environment.\n>\n> If you have limited internet connectivity, you can configure proxy support in {{ olm }} to access the software catalog.\n\n{% include \"./modules/virt-installing-virt-operator.md\" %}\n\n## Additional resources {#additional-resources_installing-virt}\n\n- [Installing a cluster for {{ VirtProductName }} using the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove)\n- [Installing with the virtualization operator bundle (Assisted Installer)](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/customizing-with-bundles-and-operators#openshift-virtualization-operator_customizing-with-bundles-and-operators)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [Self validation checkup](/openshift-docs-markdown/virt/post_installation_configuration/virt-self-validation-checkups#virt-self-validation-checkups)\n- [Configure certificate rotation](/openshift-docs-markdown/virt/post_installation_configuration/virt-configuring-certificate-rotation#virt-configuring-certificate-rotation)\n- [Creating a hostpath provisioner with a basic storage pool](/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/install/installing-virt.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,13 +107,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-deploying-operator-cli.md /modules/virt-subscribing-cli.md">{"{"}% include "./modules/virt-installing-virt-operator.md" %{"}"} </p>
       <h2 id="additional-resources_installing-virt" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/installing/installing_with_agent_based_installer/installing-ove#installing-ove">Installing a cluster for {"{"}{"{"} VirtProductName {"}"}{"}"} using the Agent-based Installer</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove">Installing a cluster for {"{"}{"{"} VirtProductName {"}"}{"}"} using the Agent-based Installer</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/customizing-with-bundles-and-operators#openshift-virtualization-operator_customizing-with-bundles-and-operators">Installing with the virtualization operator bundle (Assisted Installer)</a></li>
-      <li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
-      <li><a href="/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support">Configuring proxy support in Operator Lifecycle Manager</a></li>
-      <li><a href="/virt/post_installation_configuration/virt-self-validation-checkups#virt-self-validation-checkups">Self validation checkup</a></li>
-      <li><a href="/virt/post_installation_configuration/virt-configuring-certificate-rotation#virt-configuring-certificate-rotation">Configure certificate rotation</a></li>
-      <li><a href="/virt/storage/virt-configuring-local-storage-with-hpp#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp">Creating a hostpath provisioner with a basic storage pool</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support">Configuring proxy support in Operator Lifecycle Manager</a></li>
+      <li><a href="/openshift-docs-markdown/virt/post_installation_configuration/virt-self-validation-checkups#virt-self-validation-checkups">Self validation checkup</a></li>
+      <li><a href="/openshift-docs-markdown/virt/post_installation_configuration/virt-configuring-certificate-rotation#virt-configuring-certificate-rotation">Configure certificate rotation</a></li>
+      <li><a href="/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp">Creating a hostpath provisioner with a basic storage pool</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

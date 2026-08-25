@@ -10,7 +10,7 @@ You can configure the operating system of your nodes and extend capabilities to 
 
 **Additional resources**
 
-- [Operator Controller](/extensions/arch/operator-controller#operator-controller)
-- [Catalogd](/extensions/arch/catalogd#catalogd)
-- [Updating a cluster extension](/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)
-- [Installing extensions](/extensions/ce/managing-ce#managing-ce)
+- [Operator Controller](/openshift-docs-markdown/extensions/arch/operator-controller#operator-controller)
+- [Catalogd](/openshift-docs-markdown/extensions/arch/catalogd#catalogd)
+- [Updating a cluster extension](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)
+- [Installing extensions](/openshift-docs-markdown/extensions/ce/managing-ce#managing-ce)

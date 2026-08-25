@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | CredentialsRequestSpec defines the desired state of CredentialsRequest |
 | `status` | `object` | CredentialsRequestStatus defines the observed state of CredentialsRequest |
 
@@ -163,7 +163,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequestList`](/rest_api/objects/index#io-openshift-cloudcredential-v1-CredentialsRequestList) schema |
+| 200 - OK | [`CredentialsRequestList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-cloudcredential-v1-CredentialsRequestList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/cloudcredential.openshift.io/v1/namespaces/{{ namespace }}/credentialsrequests {#_apiscloudcredentialopenshiftiov1namespaces_namespace_credentialsrequests}
@@ -182,7 +182,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -199,7 +199,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequestList`](/rest_api/objects/index#io-openshift-cloudcredential-v1-CredentialsRequestList) schema |
+| 200 - OK | [`CredentialsRequestList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-cloudcredential-v1-CredentialsRequestList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -223,15 +223,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |  |
+| `body` | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
-| 201 - Created | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
-| 202 - Accepted | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 200 - OK | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 201 - Created | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 202 - Accepted | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/cloudcredential.openshift.io/v1/namespaces/{{ namespace }}/credentialsrequests/{{ name }} {#_apiscloudcredentialopenshiftiov1namespaces_namespace_credentialsrequests_name}
@@ -262,8 +262,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -280,7 +280,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 200 - OK | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -304,7 +304,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 200 - OK | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -328,14 +328,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |  |
+| `body` | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
-| 201 - Created | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 200 - OK | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 201 - Created | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/cloudcredential.openshift.io/v1/namespaces/{{ namespace }}/credentialsrequests/{{ name }}/status {#_apiscloudcredentialopenshiftiov1namespaces_namespace_credentialsrequests_name_status}
@@ -360,7 +360,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 200 - OK | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -384,7 +384,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 200 - OK | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -408,12 +408,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |  |
+| `body` | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
-| 201 - Created | [`CredentialsRequest`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 200 - OK | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
+| 201 - Created | [`CredentialsRequest`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

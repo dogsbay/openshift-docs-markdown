@@ -2,12 +2,12 @@
 
 ## Overview
 
-- [Welcome](/welcome.md)
-- [Introduction to OpenShift Container Platform](/welcome/ocp-overview.md)
-- [Learn more about OpenShift Container Platform](/welcome/learn_more_about_openshift.md)
-- [Kubernetes overview](/welcome/kubernetes-overview.md)
-- [OpenShift editions](/welcome/openshift-editions.md)
-- [Glossary](/welcome/glossary.md)
-- [OpenShift Kubernetes Engine overview](/welcome/oke_about.md)
-- [Providing documentation feedback](/welcome/providing-feedback-on-red-hat-documentation.md)
-- [Legal notice](/welcome/legal-notice.md)
+- [Welcome](https://dogsbay.github.io/openshift-docs-markdown/welcome.md)
+- [Introduction to OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/welcome/ocp-overview.md)
+- [Learn more about OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/welcome/learn_more_about_openshift.md)
+- [Kubernetes overview](https://dogsbay.github.io/openshift-docs-markdown/welcome/kubernetes-overview.md)
+- [OpenShift editions](https://dogsbay.github.io/openshift-docs-markdown/welcome/openshift-editions.md)
+- [Glossary](https://dogsbay.github.io/openshift-docs-markdown/welcome/glossary.md)
+- [OpenShift Kubernetes Engine overview](https://dogsbay.github.io/openshift-docs-markdown/welcome/oke_about.md)
+- [Providing documentation feedback](https://dogsbay.github.io/openshift-docs-markdown/welcome/providing-feedback-on-red-hat-documentation.md)
+- [Legal notice](https://dogsbay.github.io/openshift-docs-markdown/welcome/legal-notice.md)

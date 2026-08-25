@@ -61,9 +61,9 @@ First-time installation of SPO version 0.10.0 does not require migration. Also, 
 
 ## Additional resources {#additional-resources_spo-audit-logging}
 
-- [About security profiles](/security/security_profiles_operator/spo-understanding#spo-about_spo-understanding)
-- [Installing the Security Profiles Operator](/security/security_profiles_operator/spo-enabling#spo-installing_spo-enabling)
+- [About security profiles](/openshift-docs-markdown/security/security_profiles_operator/spo-understanding#spo-about_spo-understanding)
+- [Installing the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-enabling#spo-installing_spo-enabling)
 - [Migration procedure](https://access.redhat.com/articles/7130594)
-- [Use the log enricher](/security/security_profiles_operator/spo-advanced#spo-log-enricher_spo-advanced)
-- [Troubleshooting the Security Profiles Operator](/security/security_profiles_operator/spo-troubleshooting#spo-inspecting-seccomp-profiles_spo-troubleshooting)
-- [Uninstalling SPO](/security/security_profiles_operator/spo-uninstalling#spo-uninstalling)
+- [Use the log enricher](/openshift-docs-markdown/security/security_profiles_operator/spo-advanced#spo-log-enricher_spo-advanced)
+- [Troubleshooting the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-troubleshooting#spo-inspecting-seccomp-profiles_spo-troubleshooting)
+- [Uninstalling SPO](/openshift-docs-markdown/security/security_profiles_operator/spo-uninstalling#spo-uninstalling)

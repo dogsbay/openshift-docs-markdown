@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | HostUpdatePolicySpec defines the desired state of HostUpdatePolicy. |
 | `status` | `object` | HostUpdatePolicyStatus defines the observed state of HostUpdatePolicy. |
 
@@ -82,7 +82,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HostUpdatePolicyList`](/rest_api/objects/index#io-metal3-v1alpha1-HostUpdatePolicyList) schema |
+| 200 - OK | [`HostUpdatePolicyList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-HostUpdatePolicyList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies}
@@ -101,7 +101,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -118,7 +118,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HostUpdatePolicyList`](/rest_api/objects/index#io-metal3-v1alpha1-HostUpdatePolicyList) schema |
+| 200 - OK | [`HostUpdatePolicyList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-HostUpdatePolicyList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -142,15 +142,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |  |
+| `body` | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
-| 201 - Created | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
-| 202 - Accepted | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
+| 200 - OK | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
+| 201 - Created | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
+| 202 - Accepted | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies_name}
@@ -181,8 +181,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -199,7 +199,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
+| 200 - OK | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -223,7 +223,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
+| 200 - OK | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -247,12 +247,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |  |
+| `body` | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
-| 201 - Created | [`HostUpdatePolicy`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
+| 200 - OK | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
+| 201 - Created | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |

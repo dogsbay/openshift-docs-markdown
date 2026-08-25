@@ -19,5 +19,5 @@ After you have an etcd backup, you can restore to a previous cluster state.
 
 **Additional resources**
 
-- [Restoring to an earlier cluster state](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
-- [Recovering an unhealthy etcd cluster for {{ hcp }}](/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster)
+- [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
+- [Recovering an unhealthy etcd cluster for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster)

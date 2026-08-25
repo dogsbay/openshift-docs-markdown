@@ -8,14 +8,14 @@ As an alternative to using `secret` objects to provide sensitive information, su
 
  **Additional resources**
 
-- [CSI inline ephemeral volumes](/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [CSI inline ephemeral volumes](/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
 
 {% include "./modules/mounting-secrets-external-secrets-store.md" %}
 
 ## Additional resources {#additional-resources_nodes-pods-secrets-store}
 
-- [Configuring the Cloud Credential Operator utility](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
-- [Installing Helm](/applications/working_with_helm_charts/installing-helm#installing-helm)
+- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
+- [Installing Helm](/openshift-docs-markdown/applications/working_with_helm_charts/installing-helm#installing-helm)
 - [Red Hat third-party support policy](https://access.redhat.com/third-party-software-support)

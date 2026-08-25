@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"ossm-kiali-ossmc-plugin","text":"OpenShift Service Mesh Console plugin"},{"depth":2,"slug":"additional-resources_ossm-kiali-ossmc-plugin","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/service_mesh/v2x/ossm-kiali-ossmc-plugin";
+const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-kiali-ossmc-plugin";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Service Mesh Console plugin {#ossm-kiali-ossmc-plugin}\n\nThe {{ SMPlugin }} is an extension to the OpenShift Container Platform web console that provides visibility into your Service Mesh. With the OSSMC plugin installed, a new **Service Mesh** menu option is available in the navigation menu on the left side of the web console, as well as new **Service Mesh** tabs that enhance the existing **Workloads** and **Services** console pages.\n\n> [!IMPORTANT]\n> If you are using a certificate that your browser does not initially trust, you must tell your browser to trust the certificate first before you are able to access the {{ SMPluginShort }}. To do this, go to the Kiali standalone user interface (UI) and tell the browser to accept its certificate.\n\n## Additional resources {#additional-resources_ossm-kiali-ossmc-plugin}\n\n- [.spec.kiali.serviceNamespace](https://kiali.io/docs/configuration/ossmconsoles.kiali.io/#.spec.kiali.serviceNamespace)\n","mdUrl":"/service_mesh/v2x/ossm-kiali-ossmc-plugin.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Service Mesh Console plugin {#ossm-kiali-ossmc-plugin}\n\nThe {{ SMPlugin }} is an extension to the OpenShift Container Platform web console that provides visibility into your Service Mesh. With the OSSMC plugin installed, a new **Service Mesh** menu option is available in the navigation menu on the left side of the web console, as well as new **Service Mesh** tabs that enhance the existing **Workloads** and **Services** console pages.\n\n> [!IMPORTANT]\n> If you are using a certificate that your browser does not initially trust, you must tell your browser to trust the certificate first before you are able to access the {{ SMPluginShort }}. To do this, go to the Kiali standalone user interface (UI) and tell the browser to accept its certificate.\n\n## Additional resources {#additional-resources_ossm-kiali-ossmc-plugin}\n\n- [.spec.kiali.serviceNamespace](https://kiali.io/docs/configuration/ossmconsoles.kiali.io/#.spec.kiali.serviceNamespace)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-kiali-ossmc-plugin.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

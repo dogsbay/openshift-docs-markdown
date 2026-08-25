@@ -19,10 +19,10 @@ For information about configuring your cloud provider to use manual mode, see th
 
 ## Additional resources {#additional-resources_cco-mode-manual}
 
-- [Manually creating long-term credentials for AWS](/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
-- [Manually creating long-term credentials for Azure](/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)
-- [Manually creating long-term credentials for {{ gcp_short }}](/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)
-- [Configuring IAM for {{ ibm_cloud_name }}](/installing/installing_ibm_cloud/configuring-iam-ibm-cloud#configuring-iam-ibm-cloud)
-- [Configuring IAM for Nutanix](/installing/installing_nutanix/installing-nutanix-installer-provisioned#manually-create-iam-nutanix_installing-nutanix-installer-provisioned)
-- [About the Cloud Credential Operator in manual mode with short-term credentials for components](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)
-- [Preparing to update a cluster with manually maintained credentials](/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)
+- [Manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
+- [Manually creating long-term credentials for Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)
+- [Manually creating long-term credentials for {{ gcp_short }}](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)
+- [Configuring IAM for {{ ibm_cloud_name }}](/openshift-docs-markdown/installing/installing_ibm_cloud/configuring-iam-ibm-cloud#configuring-iam-ibm-cloud)
+- [Configuring IAM for Nutanix](/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-installer-provisioned#manually-create-iam-nutanix_installing-nutanix-installer-provisioned)
+- [About the Cloud Credential Operator in manual mode with short-term credentials for components](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)
+- [Preparing to update a cluster with manually maintained credentials](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)

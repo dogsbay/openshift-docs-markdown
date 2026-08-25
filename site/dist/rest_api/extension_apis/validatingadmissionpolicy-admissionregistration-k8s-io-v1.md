@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. |
 | `spec` | `object` | ValidatingAdmissionPolicySpec is the specification of the desired behavior of the AdmissionPolicy. |
 | `status` | `object` | ValidatingAdmissionPolicyStatus represents the status of an admission validation policy. |
 
@@ -130,8 +130,8 @@ Type
 | `excludeResourceRules` | `array` | ExcludeResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy should not care about. The exclude rules take precedence over include rules (if a resource matches both, it is excluded) |
 | `excludeResourceRules[]` | `object` | NamedRuleWithOperations is a tuple of Operations and Resources with ResourceNames. |
 | `matchPolicy` | `string` | matchPolicy defines how the "MatchResources" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent". - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included `apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]`, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the ValidatingAdmissionPolicy. - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included `apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]`, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the ValidatingAdmissionPolicy. Defaults to "Equivalent" Possible enum values:  - `"Equivalent"` means requests should be sent to the webhook if they modify a resource listed in rules via another API group or version.  - `"Exact"` means requests should only be sent to the webhook if they exactly match a given rule. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1";  you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "runlevel",       "operator": "NotIn",       "values": \[         "0",         "1"       \]     }   \] } If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "environment",       "operator": "In",       "values": \[         "prod",         "staging"       \]     }   \] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors. Default to the empty LabelSelector, which matches everything. |
-| `objectSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | ObjectSelector decides whether to run the validation based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1";  you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "runlevel",       "operator": "NotIn",       "values": \[         "0",         "1"       \]     }   \] } If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "environment",       "operator": "In",       "values": \[         "prod",         "staging"       \]     }   \] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors. Default to the empty LabelSelector, which matches everything. |
+| `objectSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | ObjectSelector decides whether to run the validation based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. |
 | `resourceRules` | `array` | ResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy matches. The policy cares about an operation if it matches *any* Rule. |
 | `resourceRules[]` | `object` | NamedRuleWithOperations is a tuple of Operations and Resources with ResourceNames. |
 
@@ -233,7 +233,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `expression` | `string` | Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables: - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request([ref](/pkg/apis/admission/types.go#AdmissionRequest)). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value.   For example, a variable named 'foo' can be accessed as 'variables.foo'. - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.   See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the   request resource. The `apiVersion`, `kind`, `metadata.name` and `metadata.generateName` are always accessible from the root of the object. No other metadata properties are accessible. Only property names of the form `[a-zA-Z_.-/][a-zA-Z0-9_.-/]*` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to 'underscores' - '.' escapes to 'dot' - '-' escapes to 'dash' - '/' escapes to 'slash' - Property names that exactly match a CEL RESERVED keyword escape to '**{{ keyword }}\_\_'. The keywords are: 	  "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if", 	  "import", "let", "loop", "package", "namespace", "return". Examples:   - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"}   - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"}   - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"} Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. \[1, 2\] == \[2, 1\]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type:   - 'set': `X + Y` performs a union where the array positions of all elements in `X` are preserved and     non-intersecting elements in `Y` are appended, retaining their partial order.   - 'map': `X + Y` performs a merge where the array positions of all keys in `X` are preserved but the values     are overwritten by values in `Y` when the key sets of `X` and `Y` intersect. Elements in `Y` with     non-intersecting keys are appended, retaining their partial order. Required. |
+| `expression` | `string` | Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables: - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request([ref](/openshift-docs-markdown/pkg/apis/admission/types.go#AdmissionRequest)). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value.   For example, a variable named 'foo' can be accessed as 'variables.foo'. - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.   See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the   request resource. The `apiVersion`, `kind`, `metadata.name` and `metadata.generateName` are always accessible from the root of the object. No other metadata properties are accessible. Only property names of the form `[a-zA-Z_.-/][a-zA-Z0-9_.-/]*` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to 'underscores' - '.' escapes to 'dot' - '-' escapes to 'dash' - '/' escapes to 'slash' - Property names that exactly match a CEL RESERVED keyword escape to '**{{ keyword }}\_\_'. The keywords are: 	  "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if", 	  "import", "let", "loop", "package", "namespace", "return". Examples:   - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"}   - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"}   - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"} Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. \[1, 2\] == \[2, 1\]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type:   - 'set': `X + Y` performs a union where the array positions of all elements in `X` are preserved and     non-intersecting elements in `Y` are appended, retaining their partial order.   - 'map': `X + Y` performs a merge where the array positions of all keys in `X` are preserved but the values     are overwritten by values in `Y` when the key sets of `X` and `Y` intersect. Elements in `Y` with     non-intersecting keys are appended, retaining their partial order. Required. |
 | `message` | `string` | Message represents the message displayed when validation fails. The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is "failed rule: {{ Rule }}". e.g. "must be a URL with the host matching spec.host" If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is "failed Expression: {{ Expression }}". |
 | `messageExpression` | `string` | messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the `expression` except for 'authorizer' and 'authorizer.requestResource'. Example: "object.x must be less than max ("+string(params.max)+")" |
 | `reason` | `string` | Reason represents a machine-readable description of why this validation failed. If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: "Unauthorized", "Forbidden", "Invalid", "RequestEntityTooLarge". If not set, StatusReasonInvalid is used in the response to the client. |
@@ -281,7 +281,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | [`array (Condition)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | The conditions represent the latest available observations of a policy’s current state. |
+| `conditions` | [`array (Condition)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | The conditions represent the latest available observations of a policy’s current state. |
 | `observedGeneration` | `integer` | The generation observed by the controller. |
 | `typeChecking` | `object` | TypeChecking contains results of type checking the expressions in the ValidatingAdmissionPolicy |
 
@@ -378,7 +378,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -395,7 +395,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicyList`](/rest_api/objects/index#io-k8s-api-admissionregistration-v1-ValidatingAdmissionPolicyList) schema |
+| 200 - OK | [`ValidatingAdmissionPolicyList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-admissionregistration-v1-ValidatingAdmissionPolicyList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -419,15 +419,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |  |
+| `body` | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
-| 202 - Accepted | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 202 - Accepted | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/admissionregistration.k8s.io/v1/watch/validatingadmissionpolicies {#_apisadmissionregistrationk8siov1watchvalidatingadmissionpolicies}
@@ -446,7 +446,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{{ name }} {#_apisadmissionregistrationk8siov1validatingadmissionpolicies_name}
@@ -477,8 +477,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -495,7 +495,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -519,8 +519,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -544,14 +544,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |  |
+| `body` | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/admissionregistration.k8s.io/v1/watch/validatingadmissionpolicies/{{ name }} {#_apisadmissionregistrationk8siov1watchvalidatingadmissionpolicies_name}
@@ -576,7 +576,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{{ name }}/status {#_apisadmissionregistrationk8siov1validatingadmissionpolicies_name_status}
@@ -601,7 +601,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -625,8 +625,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -650,12 +650,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |  |
+| `body` | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicy`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicy`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

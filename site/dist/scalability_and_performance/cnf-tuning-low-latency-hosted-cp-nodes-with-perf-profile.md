@@ -8,8 +8,8 @@ Tune hosted control planes for low latency by applying a performance profile. Wi
 
 **Additional resources**
 
-- [Gathering data about your cluster](/support/gathering-cluster-data#nodes-nodes-managing)
+- [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#nodes-nodes-managing)
 
 **Additional resources**
 
-- [Performance Profile Creator arguments](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#performance-profile-creator-arguments_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Performance Profile Creator arguments](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#performance-profile-creator-arguments_cnf-tuning-low-latency-nodes-with-perf-profile)

@@ -15,8 +15,8 @@ You can cancel a live migration by using the web console or the command line. Th
 
 ## Additional resources {#additional-resources_virt-initiating-live-migration}
 
-- [About live migration permissions](/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
-- [Initiating live migration by using the web console](/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration)
-- [Initiating live migration by using the CLI](/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration)
-- [Canceling live migration by using the web console](/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration)
-- [Canceling live migration by using the CLI](/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration)
+- [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
+- [Initiating live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration)
+- [Initiating live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration)
+- [Canceling live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration)
+- [Canceling live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration)

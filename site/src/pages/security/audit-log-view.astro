@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"audit-log-view","text":"Viewing audit logs"},{"depth":2,"slug":"viewing-audit-logs-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/security/audit-log-view";
+const currentPath = "/openshift-docs-markdown/security/audit-log-view";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing audit logs {#audit-log-view}\n\nOpenShift Container Platform auditing provides a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.\n\n## Additional resources {#viewing-audit-logs-additional-resources}\n\n- [Must-gather tool](/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)\n- [API audit log event structure](https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72)\n- [Configuring the audit log policy](/security/audit-log-policy-config#audit-log-policy-config)\n","mdUrl":"/security/audit-log-view.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing audit logs {#audit-log-view}\n\nOpenShift Container Platform auditing provides a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.\n\n## Additional resources {#viewing-audit-logs-additional-resources}\n\n- [Must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)\n- [API audit log event structure](https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72)\n- [Configuring the audit log policy](/openshift-docs-markdown/security/audit-log-policy-config#audit-log-policy-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/audit-log-view.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,9 +99,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/gathering-data-audit-logs.md"></p>
       <h2 id="viewing-audit-logs-additional-resources" class="group scroll-mt-20">Additional resources<a href="#viewing-audit-logs-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/support/gathering-cluster-data#about-must-gather_gathering-cluster-data">Must-gather tool</a></li>
+      <li><a href="/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data">Must-gather tool</a></li>
       <li><a href="https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72">API audit log event structure</a></li>
-      <li><a href="/security/audit-log-policy-config#audit-log-policy-config">Configuring the audit log policy</a></li>
+      <li><a href="/openshift-docs-markdown/security/audit-log-policy-config#audit-log-policy-config">Configuring the audit log policy</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

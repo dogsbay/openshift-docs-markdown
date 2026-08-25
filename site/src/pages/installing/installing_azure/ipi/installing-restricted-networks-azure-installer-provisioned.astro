@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-restricted-networks-azure-installer-provisioned","text":"Installing a cluster on Azure in a disconnected environment"},{"depth":2,"slug":"prerequisites_installing-restricted-networks-azure-installer-provisioned","text":"Prerequisites"},{"depth":2,"slug":"additional-resources_installing-restricted-networks-azure-installer-provisioned","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned";
+const currentPath = "/openshift-docs-markdown/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_azure","installing/installing_azure/ipi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Azure in a disconnected environment {#installing-restricted-networks-azure-installer-provisioned}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster on Microsoft Azure in a restricted network by creating an internal mirror of the installation release content on an existing Azure Virtual Network (VNet).\n\n> [!IMPORTANT]\n> You can install an OpenShift Container Platform cluster by using mirrored installation release content, but your cluster requires internet access to use the Azure APIs.\n\n## Prerequisites {#prerequisites_installing-restricted-networks-azure-installer-provisioned}\n\n- You have mirrored the images for a disconnected installation to your registry and obtained the `imageContentSources` data for your version of OpenShift Container Platform. For more information, see \"Mirroring images for a disconnected installation by using the oc adm command\".\n\n  > [!IMPORTANT]\n  > Because the installation media is on the mirror host, you can use that computer to complete all installation steps.\n- You have an existing VNet in Azure. While installing a cluster in a restricted network that uses installer-provisioned infrastructure, you cannot use the installer-provisioned VNet. You must use a user-provisioned VNet that satisfies one of the following requirements:\n\n  - The VNet contains the mirror registry.\n  - The VNet has firewall rules or a peering connection to access the mirror registry hosted elsewhere.\n\n**Additional resources**\n\n- [About the OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)\n- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)\n- [Availability zones](https://azure.microsoft.com/en-us/global-infrastructure/availability-zones/)\n- [Regions](https://azure.microsoft.com/en-us/global-infrastructure/regions/)\n\n**Additional resources**\n\n- [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)\n\n**Additional resources**\n\n- [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)\n\n## Additional resources {#additional-resources_installing-restricted-networks-azure-installer-provisioned}\n\n- [Mirroring images for a disconnected installation by using the oc adm command](/disconnected/installing-mirroring-installation-images#installation-about-mirror-registry_installing-mirroring-installation-images)\n- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n","mdUrl":"/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Azure in a disconnected environment {#installing-restricted-networks-azure-installer-provisioned}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster on Microsoft Azure in a restricted network by creating an internal mirror of the installation release content on an existing Azure Virtual Network (VNet).\n\n> [!IMPORTANT]\n> You can install an OpenShift Container Platform cluster by using mirrored installation release content, but your cluster requires internet access to use the Azure APIs.\n\n## Prerequisites {#prerequisites_installing-restricted-networks-azure-installer-provisioned}\n\n- You have mirrored the images for a disconnected installation to your registry and obtained the `imageContentSources` data for your version of OpenShift Container Platform. For more information, see \"Mirroring images for a disconnected installation by using the oc adm command\".\n\n  > [!IMPORTANT]\n  > Because the installation media is on the mirror host, you can use that computer to complete all installation steps.\n- You have an existing VNet in Azure. While installing a cluster in a restricted network that uses installer-provisioned infrastructure, you cannot use the installer-provisioned VNet. You must use a user-provisioned VNet that satisfies one of the following requirements:\n\n  - The VNet contains the mirror registry.\n  - The VNet has firewall rules or a peering connection to access the mirror registry hosted elsewhere.\n\n**Additional resources**\n\n- [About the OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)\n- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)\n- [Availability zones](https://azure.microsoft.com/en-us/global-infrastructure/availability-zones/)\n- [Regions](https://azure.microsoft.com/en-us/global-infrastructure/regions/)\n\n**Additional resources**\n\n- [Installation configuration parameters for Azure](/openshift-docs-markdown/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)\n\n**Additional resources**\n\n- [Installation configuration parameters for Azure](/openshift-docs-markdown/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)\n\n## Additional resources {#additional-resources_installing-restricted-networks-azure-installer-provisioned}\n\n- [Mirroring images for a disconnected installation by using the oc adm command](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-about-mirror-registry_installing-mirroring-installation-images)\n- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -128,13 +128,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-about-custom-azure-vnet-isolation.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes">About the OVN-Kubernetes network plugin</a></li>
-      <li><a href="/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">Configuring your firewall</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes">About the OVN-Kubernetes network plugin</a></li>
+      <li><a href="/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">Configuring your firewall</a></li>
       <li><a href="https://azure.microsoft.com/en-us/global-infrastructure/availability-zones/">Availability zones</a></li>
       <li><a href="https://azure.microsoft.com/en-us/global-infrastructure/regions/">Regions</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure">Installation configuration parameters for Azure</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure">Installation configuration parameters for Azure</a></li></ul>
       <p class="/modules/installation-azure-tested-machine-types.md"></p>
       <p class="/modules/installation-azure-arm-tested-machine-types.md"></p>
       <p class="/modules/installation-azure-trusted-launch.md"></p>
@@ -143,7 +143,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installing-azure-managing-dns-solution.md"></p>
       <p class="/modules/installation-azure-config-yaml-simple.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure">Installation configuration parameters for Azure</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure">Installation configuration parameters for Azure</a></li></ul>
       <p class="/modules/installing-azure-manual-modes.md"></p>
       <p class="/modules/manually-create-identity-access-management.md"></p>
       <p class="/modules/installing-azure-with-short-term-creds.md"></p>
@@ -155,9 +155,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/cli-logging-in-kubeadmin.md"></p>
       <h2 id="additional-resources_installing-restricted-networks-azure-installer-provisioned" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-restricted-networks-azure-installer-provisioned" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/disconnected/installing-mirroring-installation-images#installation-about-mirror-registry_installing-mirroring-installation-images">Mirroring images for a disconnected installation by using the oc adm command</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
-      <li><a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-about-mirror-registry_installing-mirroring-installation-images">Mirroring images for a disconnected installation by using the oc adm command</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

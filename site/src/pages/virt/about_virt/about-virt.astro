@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"about-virt","text":"About {{ VirtProductName }}"},{"depth":2,"slug":"additional-resources_about-virt","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/about_virt/about-virt";
+const currentPath = "/openshift-docs-markdown/virt/about_virt/about-virt";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/about_virt"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About {{ VirtProductName }} {#about-virt}\n\n{{ VirtProductName }} provides a comprehensive virtualization solution that allows you to run and manage virtual machine workloads alongside container workloads in your OpenShift Container Platform cluster.\n\n## Additional resources {#additional-resources_about-virt}\n\n- [{{ ove_first }} and related products](https://www.redhat.com/en/resources/self-managed-openshift-subscription-guide#section-8)\n- [OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)\n- [Optimizing ODF PersistentVolumes for Windows VMs](https://access.redhat.com/articles/6978371)\n- [Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance)\n- [Supported compliance profiles](/security/compliance_operator/co-scans/compliance-operator-supported-profiles#compliance-operator-supported-profiles)\n- [{{ VirtProductName }} supported limits](/virt/about_virt/virt-supported-limits#virt-supported-limits)\n- [OVN-Kubernetes purpose](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes)\n- [Glossary of common terms for OpenShift Container Platform storage](/storage/index#openshift-storage-common-terms_storage-overview)\n- [About {{ sno }}](/installing/installing_sno/install-sno-preparing-to-install-sno#install-sno-about-installing-on-a-single-node_install-sno-preparing)\n- [Using the OpenShift Assisted Installer Service to Deploy an OpenShift Cluster on Bare Metal and vSphere](https://cloud.redhat.com/blog/using-the-openshift-assisted-installer-service-to-deploy-an-openshift-cluster-on-metal-and-vsphere)\n- [Certified OpenShift CNI Plug-ins](https://access.redhat.com/articles/5436171)\n- [NIST-certified tool](https://www.nist.gov/)\n- [Red Hat Ecosystem Catalog](https://red.ht/workswithvirt)\n- [Pod disruption budgets](/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority)\n- [About live migration](/virt/live_migration/virt-about-live-migration#virt-about-live-migration)\n- [Configure eviction and run strategies](/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)\n- [Tuning & Scaling Guide in the Red Hat Knowledgebase](https://access.redhat.com/articles/6994974)\n","mdUrl":"/virt/about_virt/about-virt.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About {{ VirtProductName }} {#about-virt}\n\n{{ VirtProductName }} provides a comprehensive virtualization solution that allows you to run and manage virtual machine workloads alongside container workloads in your OpenShift Container Platform cluster.\n\n## Additional resources {#additional-resources_about-virt}\n\n- [{{ ove_first }} and related products](https://www.redhat.com/en/resources/self-managed-openshift-subscription-guide#section-8)\n- [OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)\n- [Optimizing ODF PersistentVolumes for Windows VMs](https://access.redhat.com/articles/6978371)\n- [Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance)\n- [Supported compliance profiles](/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-supported-profiles#compliance-operator-supported-profiles)\n- [{{ VirtProductName }} supported limits](/openshift-docs-markdown/virt/about_virt/virt-supported-limits#virt-supported-limits)\n- [OVN-Kubernetes purpose](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes)\n- [Glossary of common terms for OpenShift Container Platform storage](/openshift-docs-markdown/storage/index#openshift-storage-common-terms_storage-overview)\n- [About {{ sno }}](/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno#install-sno-about-installing-on-a-single-node_install-sno-preparing)\n- [Using the OpenShift Assisted Installer Service to Deploy an OpenShift Cluster on Bare Metal and vSphere](https://cloud.redhat.com/blog/using-the-openshift-assisted-installer-service-to-deploy-an-openshift-cluster-on-metal-and-vsphere)\n- [Certified OpenShift CNI Plug-ins](https://access.redhat.com/articles/5436171)\n- [NIST-certified tool](https://www.nist.gov/)\n- [Red Hat Ecosystem Catalog](https://red.ht/workswithvirt)\n- [Pod disruption budgets](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority)\n- [About live migration](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration)\n- [Configure eviction and run strategies](/openshift-docs-markdown/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)\n- [Tuning & Scaling Guide in the Red Hat Knowledgebase](https://access.redhat.com/articles/6994974)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/about-virt.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,21 +100,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="additional-resources_about-virt" class="group scroll-mt-20">Additional resources<a href="#additional-resources_about-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://www.redhat.com/en/resources/self-managed-openshift-subscription-guide#section-8">{"{"}{"{"} ove_first {"}"}{"}"} and related products</a></li>
-      <li><a href="/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes">OVN-Kubernetes</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes">OVN-Kubernetes</a></li>
       <li><a href="https://access.redhat.com/articles/6978371">Optimizing ODF PersistentVolumes for Windows VMs</a></li>
-      <li><a href="/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance">Compliance Operator</a></li>
-      <li><a href="/security/compliance_operator/co-scans/compliance-operator-supported-profiles#compliance-operator-supported-profiles">Supported compliance profiles</a></li>
-      <li><a href="/virt/about_virt/virt-supported-limits#virt-supported-limits">{"{"}{"{"} VirtProductName {"}"}{"}"} supported limits</a></li>
-      <li><a href="/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes">OVN-Kubernetes purpose</a></li>
-      <li><a href="/storage/index#openshift-storage-common-terms_storage-overview">Glossary of common terms for OpenShift Container Platform storage</a></li>
-      <li><a href="/installing/installing_sno/install-sno-preparing-to-install-sno#install-sno-about-installing-on-a-single-node_install-sno-preparing">About {"{"}{"{"} sno {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance">Compliance Operator</a></li>
+      <li><a href="/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-supported-profiles#compliance-operator-supported-profiles">Supported compliance profiles</a></li>
+      <li><a href="/openshift-docs-markdown/virt/about_virt/virt-supported-limits#virt-supported-limits">{"{"}{"{"} VirtProductName {"}"}{"}"} supported limits</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes">OVN-Kubernetes purpose</a></li>
+      <li><a href="/openshift-docs-markdown/storage/index#openshift-storage-common-terms_storage-overview">Glossary of common terms for OpenShift Container Platform storage</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno#install-sno-about-installing-on-a-single-node_install-sno-preparing">About {"{"}{"{"} sno {"}"}{"}"}</a></li>
       <li><a href="https://cloud.redhat.com/blog/using-the-openshift-assisted-installer-service-to-deploy-an-openshift-cluster-on-metal-and-vsphere">Using the OpenShift Assisted Installer Service to Deploy an OpenShift Cluster on Bare Metal and vSphere</a></li>
       <li><a href="https://access.redhat.com/articles/5436171">Certified OpenShift CNI Plug-ins</a></li>
       <li><a href="https://www.nist.gov/">NIST-certified tool</a></li>
       <li><a href="https://red.ht/workswithvirt">Red Hat Ecosystem Catalog</a></li>
-      <li><a href="/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority">Pod disruption budgets</a></li>
-      <li><a href="/virt/live_migration/virt-about-live-migration#virt-about-live-migration">About live migration</a></li>
-      <li><a href="/virt/nodes/virt-eviction-strategies#virt-eviction-strategies">Configure eviction and run strategies</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority">Pod disruption budgets</a></li>
+      <li><a href="/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration">About live migration</a></li>
+      <li><a href="/openshift-docs-markdown/virt/nodes/virt-eviction-strategies#virt-eviction-strategies">Configure eviction and run strategies</a></li>
       <li><a href="https://access.redhat.com/articles/6994974">Tuning &amp; Scaling Guide in the Red Hat Knowledgebase</a></li>
       </ul>
     </article>

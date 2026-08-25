@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"optimizing-cpu-usage","text":"Optimizing CPU usage with mount namespace encapsulation"},{"depth":2,"slug":"optimizing-cpu-usage-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/scalability_and_performance/optimization/optimizing-cpu-usage";
+const currentPath = "/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-cpu-usage";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["scalability_and_performance","scalability_and_performance/optimization"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing CPU usage with mount namespace encapsulation {#optimizing-cpu-usage}\n\nYou can optimize CPU usage in OpenShift Container Platform clusters by using mount namespace encapsulation to provide a private namespace for kubelet and CRI-O processes. This reduces the cluster CPU resources used by systemd with no difference in functionality.\n\n## Additional resources {#optimizing-cpu-usage-additional-resources}\n\n- [What are namespaces](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-limits-for-applications_monitoring-and-managing-system-status-and-performance#what-namespaces-are_setting-limits-for-applications)\n- [Manage containers in namespaces by using nsenter](https://www.redhat.com/sysadmin/container-namespaces-nsenter)\n- [MachineConfig](/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1)\n","mdUrl":"/scalability_and_performance/optimization/optimizing-cpu-usage.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing CPU usage with mount namespace encapsulation {#optimizing-cpu-usage}\n\nYou can optimize CPU usage in OpenShift Container Platform clusters by using mount namespace encapsulation to provide a private namespace for kubelet and CRI-O processes. This reduces the cluster CPU resources used by systemd with no difference in functionality.\n\n## Additional resources {#optimizing-cpu-usage-additional-resources}\n\n- [What are namespaces](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-limits-for-applications_monitoring-and-managing-system-status-and-performance#what-namespaces-are_setting-limits-for-applications)\n- [Manage containers in namespaces by using nsenter](https://www.redhat.com/sysadmin/container-namespaces-nsenter)\n- [MachineConfig](/openshift-docs-markdown/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-cpu-usage.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,7 +101,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-limits-for-applications_monitoring-and-managing-system-status-and-performance#what-namespaces-are_setting-limits-for-applications">What are namespaces</a></li>
       <li><a href="https://www.redhat.com/sysadmin/container-namespaces-nsenter">Manage containers in namespaces by using nsenter</a></li>
-      <li><a href="/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1">MachineConfig</a></li>
+      <li><a href="/openshift-docs-markdown/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1">MachineConfig</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

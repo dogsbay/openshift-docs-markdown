@@ -15,4 +15,4 @@ As standalone systems, these hosts operate independently of the OpenShift Contai
 
 **Additional resources**
 
-- [About BMC addressing](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
+- [About BMC addressing](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)

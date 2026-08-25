@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ServiceSpec describes the attributes that a user creates on a service. |
 | `status` | `object` | ServiceStatus represents the current status of a service. |
 
@@ -86,7 +86,7 @@ Required
 | `nodePort` | `integer` | The port on each node on which this service is exposed when type is NodePort or LoadBalancer.  Usually assigned by the system. If a value is specified, in-range, and not in use it will be used, otherwise the operation will fail.  If not specified, a port will be allocated if this Service requires one.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type from NodePort to ClusterIP). More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport |
 | `port` | `integer` | The port that will be exposed by this service. |
 | `protocol` | `string` | The IP protocol for this port. Supports "TCP", "UDP", and "SCTP". Default is TCP. Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
-| `targetPort` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod’s container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service |
+| `targetPort` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod’s container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service |
 
 ### .spec.sessionAffinityConfig {#_specsessionaffinityconfig}
 
@@ -128,7 +128,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | [`array (Condition)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | Current service state |
+| `conditions` | [`array (Condition)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | Current service state |
 | `loadBalancer` | `object` | LoadBalancerStatus represents the status of a load-balancer. |
 
 ### .status.loadBalancer {#_statusloadbalancer}
@@ -253,7 +253,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceList`](/rest_api/objects/index#io-k8s-api-core-v1-ServiceList) schema |
+| 200 - OK | [`ServiceList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ServiceList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/services {#_apiv1watchservices}
@@ -272,7 +272,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/services {#_apiv1namespaces_namespace_services}
@@ -297,7 +297,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -314,7 +314,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceList`](/rest_api/objects/index#io-k8s-api-core-v1-ServiceList) schema |
+| 200 - OK | [`ServiceList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ServiceList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -338,15 +338,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |  |
+| `body` | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
-| 201 - Created | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
-| 202 - Accepted | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
+| 201 - Created | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
+| 202 - Accepted | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/services {#_apiv1watchnamespaces_namespace_services}
@@ -365,7 +365,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/services/{{ name }} {#_apiv1namespaces_namespace_services_name}
@@ -396,8 +396,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
-| 202 - Accepted | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
+| 202 - Accepted | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -414,7 +414,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -438,8 +438,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
-| 201 - Created | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
+| 201 - Created | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -463,14 +463,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |  |
+| `body` | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
-| 201 - Created | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
+| 201 - Created | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/services/{{ name }} {#_apiv1watchnamespaces_namespace_services_name}
@@ -495,7 +495,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/services/{{ name }}/status {#_apiv1namespaces_namespace_services_name_status}
@@ -520,7 +520,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -544,8 +544,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
-| 201 - Created | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
+| 201 - Created | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -569,12 +569,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |  |
+| `body` | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
-| 201 - Created | [`Service`](/rest_api/network_apis/service-v1#service-v1) schema |
+| 200 - OK | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
+| 201 - Created | [`Service`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |

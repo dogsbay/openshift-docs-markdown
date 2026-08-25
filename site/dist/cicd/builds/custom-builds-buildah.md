@@ -13,6 +13,6 @@ If you require this capability in order to build and push images, add the Builda
 
 ## Prerequisites {#_prerequisites}
 
-- Review how to [grant custom build permissions](/cicd/builds/securing-builds-by-strategy#securing-builds-by-strategy).
+- Review how to [grant custom build permissions](/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy#securing-builds-by-strategy).
 
 {% include "./modules/builds-create-custom-build-artifacts.md" %}

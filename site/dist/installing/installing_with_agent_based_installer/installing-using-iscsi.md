@@ -12,22 +12,22 @@ The assets you create in these procedures deploy a single-node OpenShift Contain
 
 **Additional resources**
 
-- [DHCP](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-DHCP_preparing-to-install-with-agent-based-installer)
-- [About root device hints](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)
+- [DHCP](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-DHCP_preparing-to-install-with-agent-based-installer)
+- [About root device hints](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)
 
 **Additional resources**
 
-- [Installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
-- [Port requirements for the rendezvous host](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer)
+- [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [Port requirements for the rendezvous host](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer)
 
 **Additional resources**
 
-- [Deploying with dual-stack networking](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
-- [Configuring the install-config yaml file](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-the-install-config-file_ipi-install-installation-workflow)
-- [Configuring a three-node cluster](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-three-node-cluster_installing-restricted-networks-bare-metal)
-- [About root device hints](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)
+- [Deploying with dual-stack networking](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
+- [Configuring the install-config yaml file](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-the-install-config-file_ipi-install-installation-workflow)
+- [Configuring a three-node cluster](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-three-node-cluster_installing-restricted-networks-bare-metal)
+- [About root device hints](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)
 - [NMState state examples (NMState documentation)](https://nmstate.io/examples.html)
-- [Optional: Creating additional manifest files](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-ocp-agent-opt-manifests_installing-with-agent-based-installer)
-- [Verifying the supported architecture for an Agent-based installation](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#agent-install-verifying-architectures_installing-with-agent-based-installer)
+- [Optional: Creating additional manifest files](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-ocp-agent-opt-manifests_installing-with-agent-based-installer)
+- [Verifying the supported architecture for an Agent-based installation](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#agent-install-verifying-architectures_installing-with-agent-based-installer)

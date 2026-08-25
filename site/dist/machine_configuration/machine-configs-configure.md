@@ -18,12 +18,12 @@ There might be situations where the configuration on a node does not fully match
 ## Additional resources {#additional-resources_machine-configs-configure}
 
 - [How to update ssh keys after installation in OpenShift 4? (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/3868301)
-- [Container image signatures](/security/container_security/security-container-signature#security-container-signature)
+- [Container image signatures](/openshift-docs-markdown/security/container_security/security-container-signature#security-container-signature)
 - [Enabling SCTP in OpenShift Container Platform 4 (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/4727321)
 - [How to provide custom iSCSI initiatornames for nodes in OpenShift Container Platform 4.x (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/5170251)
 - [Configuration Specification v3.5.0 (Ignition documentation)](https://coreos.github.io/ignition/configuration-v3_5/)
-- [Understanding configuration drift detection](/machine_configuration/index#machine-config-drift-detection_machine-config-overview)
-- [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
-- [Enabling multipathing with kernel arguments on RHCOS](/installing/installing_bare_metal/upi/installing-bare-metal#rhcos-enabling-multipath_installing-bare-metal)
-- [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Understanding configuration drift detection](/openshift-docs-markdown/machine_configuration/index#machine-config-drift-detection_machine-config-overview)
+- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
+- [Enabling multipathing with kernel arguments on RHCOS](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#rhcos-enabling-multipath_installing-bare-metal)
+- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

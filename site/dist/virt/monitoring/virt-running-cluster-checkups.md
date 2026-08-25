@@ -10,4 +10,4 @@ As a developer or cluster administrator, you can use predefined checkups to impr
 
 ## Additional resources {#additional-resources_running-cluster-checkups}
 
-- [Connecting a virtual machine to a Linux bridge network](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
+- [Connecting a virtual machine to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)

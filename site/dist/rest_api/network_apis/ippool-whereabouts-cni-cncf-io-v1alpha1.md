@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | IPPoolSpec defines the desired state of IPPool |
 
 ### .spec {#_spec}
@@ -106,7 +106,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPPoolList`](/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-IPPoolList) schema |
+| 200 - OK | [`IPPoolList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-IPPoolList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools}
@@ -125,7 +125,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -142,7 +142,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPPoolList`](/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-IPPoolList) schema |
+| 200 - OK | [`IPPoolList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-IPPoolList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -166,15 +166,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |  |
+| `body` | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
-| 201 - Created | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
-| 202 - Accepted | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 201 - Created | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 202 - Accepted | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools/{{ name }} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools_name}
@@ -205,8 +205,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -223,7 +223,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -247,7 +247,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -271,12 +271,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |  |
+| `body` | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
-| 201 - Created | [`IPPool`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 201 - Created | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |

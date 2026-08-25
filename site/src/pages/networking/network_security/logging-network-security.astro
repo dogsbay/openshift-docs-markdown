@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"logging-network-security","text":"Audit logging for network security"},{"depth":2,"slug":"logging-network-security-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/networking/network_security/logging-network-security";
+const currentPath = "/openshift-docs-markdown/networking/network_security/logging-network-security";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/network_security"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Audit logging for network security {#logging-network-security}\n\nThe OVN-Kubernetes network plugin uses Open Virtual Network (OVN) access control lists (ACLs) to manage `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `NetworkPolicy`, and `EgressFirewall` objects. Audit logging exposes `Allow` and `Deny` ACL events for `NetworkPolicy`, `EgressFirewall` and `BaselineAdminNetworkPolicy` custom resources (CR). Logging also exposes `Allow`, `Deny`, and `Pass` ACL events for `AdminNetworkPolicy` (ANP) CR.\n\n> [!NOTE]\n> Audit logging is available for only the [OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes).\n\n**Additional resources**\n\n- [Understanding network policy APIs](/networking/network_security/network-policy-apis#network-policy-apis)\n\n## Additional resources {#logging-network-security-additional-resources}\n\n- [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)\n- [Configuring an egress firewall for a project](/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)\n","mdUrl":"/networking/network_security/logging-network-security.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Audit logging for network security {#logging-network-security}\n\nThe OVN-Kubernetes network plugin uses Open Virtual Network (OVN) access control lists (ACLs) to manage `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `NetworkPolicy`, and `EgressFirewall` objects. Audit logging exposes `Allow` and `Deny` ACL events for `NetworkPolicy`, `EgressFirewall` and `BaselineAdminNetworkPolicy` custom resources (CR). Logging also exposes `Allow`, `Deny`, and `Pass` ACL events for `AdminNetworkPolicy` (ANP) CR.\n\n> [!NOTE]\n> Audit logging is available for only the [OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes).\n\n**Additional resources**\n\n- [Understanding network policy APIs](/openshift-docs-markdown/networking/network_security/network-policy-apis#network-policy-apis)\n\n## Additional resources {#logging-network-security-additional-resources}\n\n- [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)\n- [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/logging-network-security.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,22 +99,22 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Audit logging is available for only the <a href="/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes">OVN-Kubernetes network plugin</a>.</p>
+          <p>Audit logging is available for only the <a href="/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes">OVN-Kubernetes network plugin</a>.</p>
         </AlertDescription>
       </Alert>
       <p class="/modules/nw-audit-configuration.md"></p>
       <p class="/modules/nw-operator-cr.md"></p>
       <p class="/modules/nw-networkpolicy-audit-concept.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/network_security/network-policy-apis#network-policy-apis">Understanding network policy APIs</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/network_security/network-policy-apis#network-policy-apis">Understanding network policy APIs</a></li></ul>
       <p class="/modules/nw-banp-audit-logging-concept.md"></p>
       <p class="/modules/nw-networkpolicy-audit-configure.md"></p>
       <p class="/modules/nw-networkpolicy-audit-enable.md"></p>
       <p class="/modules/nw-networkpolicy-audit-disable.md"></p>
       <h2 id="logging-network-security-additional-resources" class="group scroll-mt-20">Additional resources<a href="#logging-network-security-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/network_security/network_policy/about-network-policy#about-network-policy">About network policy</a></li>
-      <li><a href="/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn">Configuring an egress firewall for a project</a></li>
+      <li><a href="/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy">About network policy</a></li>
+      <li><a href="/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn">Configuring an egress firewall for a project</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

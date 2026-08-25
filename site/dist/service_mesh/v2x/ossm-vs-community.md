@@ -8,4 +8,4 @@ title: Service Mesh and Istio differences
 
 #### Additional resources {#additional-resources_ossm-vs-istio-v2x}
 
-- [Automatic route creation](/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)
+- [Automatic route creation](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)

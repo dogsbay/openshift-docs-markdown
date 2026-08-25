@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-creating-vms-from-container-disks","text":"Creating VMs by using container disks"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-container-disks","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/creating_vm/virt-creating-vms-from-container-disks";
+const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-container-disks";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by using container disks {#virt-creating-vms-from-container-disks}\n\nYou can create virtual machines (VMs) by using container disks built from operating system images.\n\nYou can enable auto updates for your container disks. For more information, see \"Additional resources\".\n\n> [!IMPORTANT]\n> If the container disks are large, the I/O traffic might increase and cause worker nodes to be unavailable. You can perform the following tasks to reclaim resources:\n>\n> - Prune `DeploymentConfig` objects.\n> - Configure garbage collection.\n\nYou create a VM from a container disk by performing the following steps:\n\n1. Build an operating system image into a container disk and upload it to your container registry.\n2. If your container registry does not have TLS, configure your environment to disable TLS for your registry.\n3. Create a VM with the container disk as the disk source by using the OpenShift Container Platform web console or the command line.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-container-disks}\n\n- [Managing automatic boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n- [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Pruning objects to reclaim resources](/applications/pruning-objects#pruning-deployments_pruning-objects)\n- [Configuring garbage collection for containers and images](/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring)\n","mdUrl":"/virt/creating_vm/virt-creating-vms-from-container-disks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by using container disks {#virt-creating-vms-from-container-disks}\n\nYou can create virtual machines (VMs) by using container disks built from operating system images.\n\nYou can enable auto updates for your container disks. For more information, see \"Additional resources\".\n\n> [!IMPORTANT]\n> If the container disks are large, the I/O traffic might increase and cause worker nodes to be unavailable. You can perform the following tasks to reclaim resources:\n>\n> - Prune `DeploymentConfig` objects.\n> - Configure garbage collection.\n\nYou create a VM from a container disk by performing the following steps:\n\n1. Build an operating system image into a container disk and upload it to your container registry.\n2. If your container registry does not have TLS, configure your environment to disable TLS for your registry.\n3. Create a VM with the container disk as the disk source by using the OpenShift Container Platform web console or the command line.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-container-disks}\n\n- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Pruning objects to reclaim resources](/openshift-docs-markdown/applications/pruning-objects#pruning-deployments_pruning-objects)\n- [Configuring garbage collection for containers and images](/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-container-disks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -125,10 +125,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-creating-vm-container-disk-cli.md"></p>
       <h2 id="additional-resources_virt-creating-vms-from-container-disks" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-creating-vms-from-container-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates">Managing automatic boot source updates</a></li>
-      <li><a href="/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent">Installing the QEMU guest agent</a></li>
-      <li><a href="/applications/pruning-objects#pruning-deployments_pruning-objects">Pruning objects to reclaim resources</a></li>
-      <li><a href="/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring">Configuring garbage collection for containers and images</a></li>
+      <li><a href="/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates">Managing automatic boot source updates</a></li>
+      <li><a href="/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent">Installing the QEMU guest agent</a></li>
+      <li><a href="/openshift-docs-markdown/applications/pruning-objects#pruning-deployments_pruning-objects">Pruning objects to reclaim resources</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring">Configuring garbage collection for containers and images</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

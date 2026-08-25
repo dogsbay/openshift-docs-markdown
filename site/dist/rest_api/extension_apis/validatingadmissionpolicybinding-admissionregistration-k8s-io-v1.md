@@ -22,7 +22,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. |
 | `spec` | `object` | ValidatingAdmissionPolicyBindingSpec is the specification of the ValidatingAdmissionPolicyBinding. |
 
 ### .spec {#_spec}
@@ -57,8 +57,8 @@ Type
 | `excludeResourceRules` | `array` | ExcludeResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy should not care about. The exclude rules take precedence over include rules (if a resource matches both, it is excluded) |
 | `excludeResourceRules[]` | `object` | NamedRuleWithOperations is a tuple of Operations and Resources with ResourceNames. |
 | `matchPolicy` | `string` | matchPolicy defines how the "MatchResources" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent". - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included `apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]`, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the ValidatingAdmissionPolicy. - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included `apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]`, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the ValidatingAdmissionPolicy. Defaults to "Equivalent" Possible enum values:  - `"Equivalent"` means requests should be sent to the webhook if they modify a resource listed in rules via another API group or version.  - `"Exact"` means requests should only be sent to the webhook if they exactly match a given rule. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1";  you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "runlevel",       "operator": "NotIn",       "values": \[         "0",         "1"       \]     }   \] } If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "environment",       "operator": "In",       "values": \[         "prod",         "staging"       \]     }   \] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors. Default to the empty LabelSelector, which matches everything. |
-| `objectSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | ObjectSelector decides whether to run the validation based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1";  you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "runlevel",       "operator": "NotIn",       "values": \[         "0",         "1"       \]     }   \] } If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": {   "matchExpressions": \[     {       "key": "environment",       "operator": "In",       "values": \[         "prod",         "staging"       \]     }   \] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors. Default to the empty LabelSelector, which matches everything. |
+| `objectSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | ObjectSelector decides whether to run the validation based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. |
 | `resourceRules` | `array` | ResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy matches. The policy cares about an operation if it matches *any* Rule. |
 | `resourceRules[]` | `object` | NamedRuleWithOperations is a tuple of Operations and Resources with ResourceNames. |
 
@@ -135,7 +135,7 @@ Type
 | `name` | `string` | name is the name of the resource being referenced. One of `name` or `selector` must be set, but `name` and `selector` are mutually exclusive properties. If one is set, the other must be unset. A single parameter used for all admission requests can be configured by setting the `name` field, leaving `selector` blank, and setting namespace if `paramKind` is namespace-scoped. |
 | `namespace` | `string` | namespace is the namespace of the referenced resource. Allows limiting the search for params to a specific namespace. Applies to both `name` and `selector` fields. A per-namespace parameter may be used by specifying a namespace-scoped `paramKind` in the policy and leaving this field empty. - If `paramKind` is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error. - If `paramKind` is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error. |
 | `parameterNotFoundAction` | `string` | `parameterNotFoundAction` controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to `Allow`, then no matched parameters will be treated as successful validation by the binding. If set to `Deny`, then no matched parameters will be subject to the `failurePolicy` of the policy. Allowed values are `Allow` or `Deny` Required |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind. If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together. One of `name` or `selector` must be set, but `name` and `selector` are mutually exclusive properties. If one is set, the other must be unset. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind. If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together. One of `name` or `selector` must be set, but `name` and `selector` are mutually exclusive properties. If one is set, the other must be unset. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -181,7 +181,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -198,7 +198,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicyBindingList`](/rest_api/objects/index#io-k8s-api-admissionregistration-v1-ValidatingAdmissionPolicyBindingList) schema |
+| 200 - OK | [`ValidatingAdmissionPolicyBindingList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-admissionregistration-v1-ValidatingAdmissionPolicyBindingList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -222,15 +222,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |  |
+| `body` | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
-| 202 - Accepted | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 202 - Accepted | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/admissionregistration.k8s.io/v1/watch/validatingadmissionpolicybindings {#_apisadmissionregistrationk8siov1watchvalidatingadmissionpolicybindings}
@@ -249,7 +249,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/admissionregistration.k8s.io/v1/validatingadmissionpolicybindings/{{ name }} {#_apisadmissionregistrationk8siov1validatingadmissionpolicybindings_name}
@@ -280,8 +280,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -298,7 +298,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -322,8 +322,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -347,14 +347,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |  |
+| `body` | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
-| 201 - Created | [`ValidatingAdmissionPolicyBinding`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 200 - OK | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
+| 201 - Created | [`ValidatingAdmissionPolicyBinding`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/admissionregistration.k8s.io/v1/watch/validatingadmissionpolicybindings/{{ name }} {#_apisadmissionregistrationk8siov1watchvalidatingadmissionpolicybindings_name}
@@ -379,5 +379,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

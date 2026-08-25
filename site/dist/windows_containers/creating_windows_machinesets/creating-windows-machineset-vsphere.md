@@ -17,9 +17,9 @@ For example, you might create infrastructure Windows machine sets and related ma
 
 ## Additional resources {#additional-resources_creating-windows-machineset-vsphere}
 
-- [Configuring a secret for the Windows Machine Config Operator](/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)
-- [VMware vSphere infrastructure requirements](/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs)
-- [Overview of machine management](/machine_management/index#overview-of-machine-management)
+- [Configuring a secret for the Windows Machine Config Operator](/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)
+- [VMware vSphere infrastructure requirements](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs)
+- [Overview of machine management](/openshift-docs-markdown/machine_management/index#overview-of-machine-management)
 - [Object Names and IDs specification (Kubernetes documentation)](https://kubernetes.io/docs/concepts/overview/working-with-objects/names)
 - [Password must meet complexity requirements (Microsoft documentation)](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements)
 - [vSphere Virtual Machine Administration (vSphere documentation)](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration.html)

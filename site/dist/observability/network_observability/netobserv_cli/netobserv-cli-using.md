@@ -10,4 +10,4 @@ The Network Observability CLI filters and visualizes network flow and packet tel
 
 **Additional resources**
 
-- [Network Observability CLI reference](/observability/network_observability/netobserv_cli/netobserv-cli-reference#network-observability-netobserv-cli-reference_netobserv-cli-reference)
+- [Network Observability CLI reference](/openshift-docs-markdown/observability/network_observability/netobserv_cli/netobserv-cli-reference#network-observability-netobserv-cli-reference_netobserv-cli-reference)

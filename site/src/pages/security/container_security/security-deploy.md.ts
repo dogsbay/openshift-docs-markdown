@@ -2,7 +2,7 @@
 // Source: security/container_security/security-deploy.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Deploying containers\n---\n\n# Deploying containers {#security-deploy}\n\nYou can use a variety of techniques to make sure that the containers you deploy hold the latest production-quality content and that they have not been tampered with, such as setting up build triggers and using signatures.\n\n**Additional resources**\n\n- [Input secrets and config maps](/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)\n";
+const body = "---\ntitle: Deploying containers\n---\n\n# Deploying containers {#security-deploy}\n\nYou can use a variety of techniques to make sure that the containers you deploy hold the latest production-quality content and that they have not been tampered with, such as setting up build triggers and using signatures.\n\n**Additional resources**\n\n- [Input secrets and config maps](/openshift-docs-markdown/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

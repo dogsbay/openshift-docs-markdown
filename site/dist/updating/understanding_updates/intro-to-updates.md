@@ -10,14 +10,14 @@ Platform administrators can view new update options either by going to **Adminis
 
 **Additional resources**
 
-- [Understanding update channels and releases](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
+- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
 
 **Additional resources**
 
-- [Machine Config Overview](/machine_configuration/index#machine-config-overview)
-- [Using the OpenShift Update Service in a disconnected environment](/disconnected/updating/disconnected-update-osus#update-service-overview_updating-disconnected-cluster-osus)
-- [Update channels](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels_understanding-update-channels-releases)
+- [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
+- [Using the OpenShift Update Service in a disconnected environment](/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#update-service-overview_updating-disconnected-cluster-osus)
+- [Update channels](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels_understanding-update-channels-releases)
 
 ## Additional resources {#understanding-openshift-updates-additional-resources}
 
-- [How cluster updates work](/updating/understanding_updates/how-updates-work#how-updates-work)
+- [How cluster updates work](/openshift-docs-markdown/updating/understanding_updates/how-updates-work#how-updates-work)

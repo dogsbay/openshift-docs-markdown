@@ -31,7 +31,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the desired egress router. |
 | `status` | `object` | Observed status of EgressRouter. |
 
@@ -257,7 +257,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouterList`](/rest_api/objects/index#io-openshift-operator-network-v1-EgressRouterList) schema |
+| 200 - OK | [`EgressRouterList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-network-v1-EgressRouterList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters}
@@ -276,7 +276,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -293,7 +293,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouterList`](/rest_api/objects/index#io-openshift-operator-network-v1-EgressRouterList) schema |
+| 200 - OK | [`EgressRouterList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-network-v1-EgressRouterList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -317,15 +317,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |  |
+| `body` | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
-| 201 - Created | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
-| 202 - Accepted | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 200 - OK | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 201 - Created | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 202 - Accepted | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }} {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name}
@@ -356,8 +356,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -374,7 +374,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 200 - OK | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -398,7 +398,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 200 - OK | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -422,14 +422,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |  |
+| `body` | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
-| 201 - Created | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 200 - OK | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 201 - Created | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}/status {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name_status}
@@ -454,7 +454,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 200 - OK | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -478,7 +478,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 200 - OK | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -502,12 +502,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |  |
+| `body` | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
-| 201 - Created | [`EgressRouter`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 200 - OK | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
+| 201 - Created | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

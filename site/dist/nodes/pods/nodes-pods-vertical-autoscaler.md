@@ -20,7 +20,7 @@ The VPA can also update certain custom resource object that manage pods. For mor
 
 ## Additional resources {#additional-resources_nodes-pods-vertical-autoscaler}
 
-- [Example custom resources for the Vertical Pod Autoscaler](/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vertical-autoscaler-custom-resource_nodes-pods-vertical-autoscaler)
-- [About using the Vertical Pod Autoscaler Operator](/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vertical-autoscaler-using-about_nodes-pods-vertical-autoscaler)
-- [Adjust pod resource levels without pod disruption](/nodes/pods/nodes-pods-adjust-resources-in-place#nodes-pods-adjust-resources-in-place)
-- [Understanding OOM kill policy](/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-oom_nodes-cluster-resource-configure)
+- [Example custom resources for the Vertical Pod Autoscaler](/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vertical-autoscaler-custom-resource_nodes-pods-vertical-autoscaler)
+- [About using the Vertical Pod Autoscaler Operator](/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vertical-autoscaler-using-about_nodes-pods-vertical-autoscaler)
+- [Adjust pod resource levels without pod disruption](/openshift-docs-markdown/nodes/pods/nodes-pods-adjust-resources-in-place#nodes-pods-adjust-resources-in-place)
+- [Understanding OOM kill policy](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-oom_nodes-cluster-resource-configure)

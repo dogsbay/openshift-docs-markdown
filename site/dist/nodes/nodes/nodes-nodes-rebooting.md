@@ -12,5 +12,5 @@ Another challenge is how to handle nodes that are running critical infrastructur
 
 ## Additional resources {#additional-resources_nodes-nodes-rebooting}
 
-- [Placing pods relative to other pods using affinity and anti-affinity rules](/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)
-- [Backing up etcd data](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
+- [Placing pods relative to other pods using affinity and anti-affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)
+- [Backing up etcd data](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)

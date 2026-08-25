@@ -16,36 +16,36 @@ To create an infrastructure node, see "Creating a compute machine set", "Creatin
 
 **Additional resources**
 
-- [Machine sets that deploy machines as Spot Instances](/machine_management/creating_machinesets/creating-machineset-aws#machineset-non-guaranteed-instance_creating-machineset-aws)
+- [Machine sets that deploy machines as Spot Instances](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-aws#machineset-non-guaranteed-instance_creating-machineset-aws)
 
 **Additional resources**
 
-- [Machine sets that deploy machines as Spot VMs](/machine_management/creating_machinesets/creating-machineset-azure#machineset-non-guaranteed-instance_creating-machineset-azure)
-- [Using the Azure Marketplace offering](/machine_management/creating_machinesets/creating-machineset-azure#installation-azure-marketplace-subscribe_creating-machineset-azure)
+- [Machine sets that deploy machines as Spot VMs](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#machineset-non-guaranteed-instance_creating-machineset-azure)
+- [Using the Azure Marketplace offering](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#installation-azure-marketplace-subscribe_creating-machineset-azure)
 
 **Additional resources**
 
-- [Machine sets that deploy machines as preemptible VM instances](/machine_management/creating_machinesets/creating-machineset-gcp#machineset-non-guaranteed-instance_legacy-preempt)
+- [Machine sets that deploy machines as preemptible VM instances](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-gcp#machineset-non-guaranteed-instance_legacy-preempt)
 
 **Additional resources**
 
-- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
+- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
 **Additional resources**
 
-- [OpenShift Container Platform infrastructure components](/machine_management/creating-infrastructure-machinesets#infrastructure-components_creating-infrastructure-machinesets)
-- [Moving resources to infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets)
+- [OpenShift Container Platform infrastructure components](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#infrastructure-components_creating-infrastructure-machinesets)
+- [Moving resources to infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets)
 
 **Additional resources**
 
-- [Node configuration management with machine config pools](/architecture/control-plane#architecture-machine-config-pools_control-plane)
+- [Node configuration management with machine config pools](/openshift-docs-markdown/architecture/control-plane#architecture-machine-config-pools_control-plane)
 
 **Additional resources**
 
-- [OpenShift Container Platform infrastructure components](/machine_management/creating-infrastructure-machinesets#infrastructure-components_creating-infrastructure-machinesets)
-- [Controlling pod placement using the scheduler](/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
-- [Moving resources to infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets)
-- [Understanding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
+- [OpenShift Container Platform infrastructure components](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#infrastructure-components_creating-infrastructure-machinesets)
+- [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
+- [Moving resources to infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets)
+- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
 
 **Additional resources**
 
@@ -54,6 +54,6 @@ To create an infrastructure node, see "Creating a compute machine set", "Creatin
 ## Additional resources {#additional-resources_creating-infrastructure-machinesets}
 
 - [OpenShift sizing and subscription guide for enterprise Kubernetes](https://www.redhat.com/en/resources/openshift-subscription-sizing-guide)
-- [Create an infrastructure machine set](/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets)
-- [Label an infrastructure node](/machine_management/creating-infrastructure-machinesets#creating-an-infra-node_creating-infrastructure-machinesets)
-- [Use a machine config pool](/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets)
+- [Create an infrastructure machine set](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets)
+- [Label an infrastructure node](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-an-infra-node_creating-infrastructure-machinesets)
+- [Use a machine config pool](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets)

@@ -25,33 +25,33 @@ In OpenShift Container Platform version 4.22, you can install a cluster on VMwar
 
 **Additional resources**
 
-- [Additional VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
-- [Deprecated VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
-- [vSphere automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration-sc-vsphere_persistent-storage-csi-migration)
-- [VMware vSphere CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-top-aware_persistent-storage-csi-vsphere)
+- [Additional VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
+- [Deprecated VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
+- [vSphere automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration-sc-vsphere_persistent-storage-csi-migration)
+- [VMware vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-top-aware_persistent-storage-csi-vsphere)
 
 **Additional resources**
 
-- [Installation configuration parameters for vSphere](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
+- [Installation configuration parameters for vSphere](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
 **Additional resources**
 
-- [Configuring registry storage for VMware vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
+- [Configuring registry storage for VMware vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
 **Additional resources**
 
-- [Adding compute machines to vSphere manually](/machine_management/user_infra/adding-vsphere-compute-user-infra#adding-vsphere-compute-user-infra)
+- [Adding compute machines to vSphere manually](/openshift-docs-markdown/machine_management/user_infra/adding-vsphere-compute-user-infra#adding-vsphere-compute-user-infra)
 
 **Additional resources**
 
-- [Preparing to install a cluster using user-provisioned infrastructure](/installing/installing_vsphere/upi/upi-vsphere-preparing-to-install#upi-vsphere-preparing-to-install)
-- [Installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring your firewall for OpenShift Container Platform](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
-- [Available cluster customizations](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#configuring-registry-storage-vsphere)
-- [Viewing the events from the vSphere Problem Detector Operator](/installing/installing_vsphere/using-vsphere-problem-detector-operator#vsphere-problem-detector-viewing-events_vsphere-problem-detector)
-- [vSphere persistent disks encryption](/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)
+- [Preparing to install a cluster using user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-preparing-to-install#upi-vsphere-preparing-to-install)
+- [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring your firewall for OpenShift Container Platform](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [Available cluster customizations](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#configuring-registry-storage-vsphere)
+- [Viewing the events from the vSphere Problem Detector Operator](/openshift-docs-markdown/installing/installing_vsphere/using-vsphere-problem-detector-operator#vsphere-problem-detector-viewing-events_vsphere-problem-detector)
+- [vSphere persistent disks encryption](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)

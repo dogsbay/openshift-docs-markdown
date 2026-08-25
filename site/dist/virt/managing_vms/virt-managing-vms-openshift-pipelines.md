@@ -29,4 +29,4 @@ The example Windows pipeline is located in the pipeline catalog (ArtifactHub).
 - [Windows EFI installer pipeline (ArtifactHub)](https://artifacthub.io/packages/tekton-pipeline/redhat-pipelines/windows-efi-installer)
 - [Installing {{ pipelines_shortname }}](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html)
 - [Creating CI/CD solutions for applications using {{ pipelines_title }}](https://docs.openshift.com/pipelines/latest/create/creating-applications-with-cicd-pipelines.html)
-- [Creating a Windows VM](/virt/creating_vm/virt-creating-vms-uploading-images#virt-creating-windows-vm_virt-creating-vms-uploading-images)
+- [Creating a Windows VM](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-uploading-images#virt-creating-windows-vm_virt-creating-vms-uploading-images)

@@ -21,7 +21,7 @@ Type
 | `data` | `object (string)` | Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '\\_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process. |
 | `immutable` | `boolean` | Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## API endpoints {#_api_endpoints}
 
@@ -67,7 +67,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ConfigMapList`](/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapList) schema |
+| 200 - OK | [`ConfigMapList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/configmaps {#_apiv1watchconfigmaps}
@@ -86,7 +86,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/configmaps {#_apiv1namespaces_namespace_configmaps}
@@ -111,7 +111,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -128,7 +128,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ConfigMapList`](/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapList) schema |
+| 200 - OK | [`ConfigMapList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -152,15 +152,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |  |
+| `body` | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
-| 201 - Created | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
-| 202 - Accepted | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 200 - OK | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 201 - Created | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 202 - Accepted | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/configmaps {#_apiv1watchnamespaces_namespace_configmaps}
@@ -179,7 +179,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/configmaps/{{ name }} {#_apiv1namespaces_namespace_configmaps_name}
@@ -210,8 +210,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -228,7 +228,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 200 - OK | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -252,8 +252,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
-| 201 - Created | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 200 - OK | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 201 - Created | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -277,14 +277,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |  |
+| `body` | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
-| 201 - Created | [`ConfigMap`](/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 200 - OK | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
+| 201 - Created | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/configmaps/{{ name }} {#_apiv1watchnamespaces_namespace_configmaps_name}
@@ -309,5 +309,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

@@ -2,7 +2,7 @@
 
 ## Tutorials
 
-- [Tutorials overview](/tutorials.md)
-- [Deploying an application by using the web console](/tutorials/dev-app-web-console.md)
-- [Deploying an application by using the CLI](/tutorials/dev-app-cli.md)
-- [Additional hands-on learning](/tutorials/additional-tutorials.md)
+- [Tutorials overview](https://dogsbay.github.io/openshift-docs-markdown/tutorials.md)
+- [Deploying an application by using the web console](https://dogsbay.github.io/openshift-docs-markdown/tutorials/dev-app-web-console.md)
+- [Deploying an application by using the CLI](https://dogsbay.github.io/openshift-docs-markdown/tutorials/dev-app-cli.md)
+- [Additional hands-on learning](https://dogsbay.github.io/openshift-docs-markdown/tutorials/additional-tutorials.md)

@@ -23,6 +23,6 @@ In the **Developer** perspective of the web console, you can use the **Helm** pa
 
 ## Using Helm in the web terminal {#_using_helm_in_the_web_terminal}
 
-You can use Helm by [Accessing the web terminal](/web_console/web_terminal/odc-using-web-terminal#odc-access-web-terminal_odc-using-web-terminal) in the **Developer** perspective of the web console.
+You can use Helm by [Accessing the web terminal](/openshift-docs-markdown/web_console/web_terminal/odc-using-web-terminal#odc-access-web-terminal_odc-using-web-terminal) in the **Developer** perspective of the web console.
 
 {% include "./modules/helm-adding-helm-chart-repositories.md" %}

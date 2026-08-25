@@ -30,12 +30,12 @@ Before you start any {{ sts_first }} procedures, ensure that you meet the follow
 
 **Additional resources**
 
-- [the Cloud Credential Operator utility (`ccoctl`)](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
+- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
 **Additional resources**
 
-- [the Cloud Credential Operator utility (`ccoctl`)](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
+- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
 ## Additional resources {#additional-resources-albo-sts-cluster_albo-sts-cluster}
 
-- [Configuring the Cloud Credential Operator utility](/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
+- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)

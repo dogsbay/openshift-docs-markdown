@@ -2,7 +2,7 @@
 // Source: service_mesh/v2x/ossm-gateway-migration.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Gateway migration\n---\n\n# Gateway migration {#ossm-gateway-migration}\n\nAs a network administrator, the preferred method for deploying ingress and egress gateways is with a `Deployment` resource using gateway injection.\n\n## Additional resources {#additional-resources_gateway-migration}\n\n- [Enabling gateway injection](/service_mesh/v2x/ossm-traffic-manage#ossm-automatic-gateway-injection_traffic-management)\n- [Deploying automatic gateway injection](/service_mesh/v2x/ossm-traffic-manage#ossm-deploying-automatic-gateway-injection_traffic-management)\n";
+const body = "---\ntitle: Gateway migration\n---\n\n# Gateway migration {#ossm-gateway-migration}\n\nAs a network administrator, the preferred method for deploying ingress and egress gateways is with a `Deployment` resource using gateway injection.\n\n## Additional resources {#additional-resources_gateway-migration}\n\n- [Enabling gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-automatic-gateway-injection_traffic-management)\n- [Deploying automatic gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-deploying-automatic-gateway-injection_traffic-management)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

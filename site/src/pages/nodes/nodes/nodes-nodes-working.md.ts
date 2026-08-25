@@ -2,7 +2,7 @@
 // Source: nodes/nodes/nodes-nodes-working.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Working with nodes\n---\n\n# Working with nodes {#nodes-nodes-working}\n\nAs an administrator, you can perform several tasks to make your clusters more efficient.\n\n## Additional resources {#additional-resources_nodes-nodes-working}\n\n- [Evacuating pods on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n- [Manually scaling a compute machine set](/machine_management/manually-scaling-machineset#machineset-manually-scaling-manually-scaling-machineset)\n";
+const body = "---\ntitle: Working with nodes\n---\n\n# Working with nodes {#nodes-nodes-working}\n\nAs an administrator, you can perform several tasks to make your clusters more efficient.\n\n## Additional resources {#additional-resources_nodes-nodes-working}\n\n- [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n- [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling-manually-scaling-machineset)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

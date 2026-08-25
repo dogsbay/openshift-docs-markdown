@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-mirroring-installation-images","text":"Mirroring images for a disconnected installation by using the oc adm command"},{"depth":2,"slug":"restricted-networks-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/disconnected/installing-mirroring-installation-images";
+const currentPath = "/openshift-docs-markdown/disconnected/installing-mirroring-installation-images";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["disconnected"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Mirroring images for a disconnected installation by using the oc adm command {#installing-mirroring-installation-images}\n\nYou can ensure your clusters only use container images that satisfy your organizational controls on external content. Before you install a cluster on infrastructure that you provision in a restricted network, you must mirror the required container images into that environment.\n\nBy using the `oc adm` command, you can mirror release and catalog images in OpenShift. To mirror container images, you must have a registry for mirroring.\n\n> [!IMPORTANT]\n> - The `oc adm release mirror` command is deprecated as of OpenShift Container Platform 4.22 and will be removed in a future release. As an alternative, use the oc-mirror plugin v2.\n> - You must have access to the internet to obtain the necessary container images. In this procedure, you place your mirror registry on a mirror host that has access to both your network and the internet. If you do not have access to a mirror host, use the \"Mirroring Operator catalogs for use with disconnected clusters\" procedure to copy images to a device you can move across network boundaries with.\n\n> [!NOTE]\n> When using the `oc adm release mirror` command, release image signatures are not automatically mirrored to the disconnected registry. Missing release signatures prevent cluster upgrades, as `ClusterImagePolicy` requires all release images to be verified. To ensure image signatures are correctly mirrored, it is recommended to use the oc-mirror v2 plugin.\n\n**Additional resources**\n\n- [Viewing the image pull source](/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation)\n\n**Additional resources**\n\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n- [Docker v2-2](https://docs.docker.com/registry/spec/manifest-v2-2/)\n- [Service Mesh Operator mirroring failed](https://access.redhat.com/solutions/6975305)\n\n**Additional resources**\n\n- [Unauthorized error thrown while using catalog mirror command with Quay registry](https://access.redhat.com/solutions/5440741)\n\n**Additional resources**\n\n- [Populating the software catalog from mirrored Operator catalogs](/post_installation_configuration/preparing-for-users#post-install-mirrored-catalogs_post-install-preparing-for-users)\n- [Updating or filtering a file-based catalog image](/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)\n\n## Additional resources {#restricted-networks-additional-resources}\n\n- [Gathering data about specific features](/support/gathering-cluster-data#gathering-data-specific-features_gathering-cluster-data)\n- [Installing a cluster on vSphere in a disconnected environment with user-provisioned infrastructure](/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere)\n- [Installing a user-provisioned bare-metal cluster on a disconnected environment](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal)\n- [Installing a cluster on {{ aws_short }} in a disconnected environment with user-provisioned infrastructure](/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws)\n","mdUrl":"/disconnected/installing-mirroring-installation-images.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Mirroring images for a disconnected installation by using the oc adm command {#installing-mirroring-installation-images}\n\nYou can ensure your clusters only use container images that satisfy your organizational controls on external content. Before you install a cluster on infrastructure that you provision in a restricted network, you must mirror the required container images into that environment.\n\nBy using the `oc adm` command, you can mirror release and catalog images in OpenShift. To mirror container images, you must have a registry for mirroring.\n\n> [!IMPORTANT]\n> - The `oc adm release mirror` command is deprecated as of OpenShift Container Platform 4.22 and will be removed in a future release. As an alternative, use the oc-mirror plugin v2.\n> - You must have access to the internet to obtain the necessary container images. In this procedure, you place your mirror registry on a mirror host that has access to both your network and the internet. If you do not have access to a mirror host, use the \"Mirroring Operator catalogs for use with disconnected clusters\" procedure to copy images to a device you can move across network boundaries with.\n\n> [!NOTE]\n> When using the `oc adm release mirror` command, release image signatures are not automatically mirrored to the disconnected registry. Missing release signatures prevent cluster upgrades, as `ClusterImagePolicy` requires all release images to be verified. To ensure image signatures are correctly mirrored, it is recommended to use the oc-mirror v2 plugin.\n\n**Additional resources**\n\n- [Viewing the image pull source](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation)\n\n**Additional resources**\n\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- [Docker v2-2](https://docs.docker.com/registry/spec/manifest-v2-2/)\n- [Service Mesh Operator mirroring failed](https://access.redhat.com/solutions/6975305)\n\n**Additional resources**\n\n- [Unauthorized error thrown while using catalog mirror command with Quay registry](https://access.redhat.com/solutions/5440741)\n\n**Additional resources**\n\n- [Populating the software catalog from mirrored Operator catalogs](/openshift-docs-markdown/post_installation_configuration/preparing-for-users#post-install-mirrored-catalogs_post-install-preparing-for-users)\n- [Updating or filtering a file-based catalog image](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)\n\n## Additional resources {#restricted-networks-additional-resources}\n\n- [Gathering data about specific features](/openshift-docs-markdown/support/gathering-cluster-data#gathering-data-specific-features_gathering-cluster-data)\n- [Installing a cluster on vSphere in a disconnected environment with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere)\n- [Installing a user-provisioned bare-metal cluster on a disconnected environment](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal)\n- [Installing a cluster on {{ aws_short }} in a disconnected environment with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected/installing-mirroring-installation-images.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -115,7 +115,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installing-mirroring-installation-images-prerequisites.md"></p>
       <p class="/modules/installation-about-mirror-registry.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation">Viewing the image pull source</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation">Viewing the image pull source</a></li></ul>
       <p class="/modules/cli-installing-cli-linux.md"></p>
       <p class="/modules/cli-installing-cli-windows.md"></p>
       <p class="/modules/cli-installing-cli-macos.md"></p>
@@ -126,7 +126,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/olm-mirroring-catalog.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
       <li><a href="https://docs.docker.com/registry/spec/manifest-v2-2/">Docker v2-2</a></li>
       <li><a href="https://access.redhat.com/solutions/6975305">Service Mesh Operator mirroring failed</a></li>
       </ul>
@@ -138,15 +138,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/olm-mirroring-catalog-post.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/post_installation_configuration/preparing-for-users#post-install-mirrored-catalogs_post-install-preparing-for-users">Populating the software catalog from mirrored Operator catalogs</a></li>
-      <li><a href="/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs">Updating or filtering a file-based catalog image</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/preparing-for-users#post-install-mirrored-catalogs_post-install-preparing-for-users">Populating the software catalog from mirrored Operator catalogs</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs">Updating or filtering a file-based catalog image</a></li>
       </ul>
       <h2 id="restricted-networks-additional-resources" class="group scroll-mt-20">Additional resources<a href="#restricted-networks-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/support/gathering-cluster-data#gathering-data-specific-features_gathering-cluster-data">Gathering data about specific features</a></li>
-      <li><a href="/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere">Installing a cluster on vSphere in a disconnected environment with user-provisioned infrastructure</a></li>
-      <li><a href="/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal">Installing a user-provisioned bare-metal cluster on a disconnected environment</a></li>
-      <li><a href="/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws">Installing a cluster on {"{"}{"{"} aws_short {"}"}{"}"} in a disconnected environment with user-provisioned infrastructure</a></li>
+      <li><a href="/openshift-docs-markdown/support/gathering-cluster-data#gathering-data-specific-features_gathering-cluster-data">Gathering data about specific features</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere">Installing a cluster on vSphere in a disconnected environment with user-provisioned infrastructure</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal">Installing a user-provisioned bare-metal cluster on a disconnected environment</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws">Installing a cluster on {"{"}{"{"} aws_short {"}"}{"}"} in a disconnected environment with user-provisioned infrastructure</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

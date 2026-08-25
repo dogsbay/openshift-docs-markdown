@@ -13,34 +13,34 @@ When you encounter a problem, the first step is to find the specific area where 
 
 **Additional resources**
 
-- [oc get](/cli_reference/openshift_cli/developer-cli-commands#oc-get)
-- [Reviewing pod status](/support/troubleshooting/investigating-pod-issues#reviewing-pod-status_investigating-pod-issues)
+- [oc get](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get)
+- [Reviewing pod status](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#reviewing-pod-status_investigating-pod-issues)
 
 **Additional resources**
 
-- [oc logs](/cli_reference/openshift_cli/developer-cli-commands#oc-logs)
-- [Logging](/security/container_security/security-monitoring#security-monitoring-cluster-logging_security-monitoring)
-- [Inspecting pod and container logs](/support/troubleshooting/investigating-pod-issues#inspecting-pod-and-container-logs_investigating-pod-issues)
+- [oc logs](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-logs)
+- [Logging](/openshift-docs-markdown/security/container_security/security-monitoring#security-monitoring-cluster-logging_security-monitoring)
+- [Inspecting pod and container logs](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#inspecting-pod-and-container-logs_investigating-pod-issues)
 
 **Additional resources**
 
-- [oc describe](/cli_reference/openshift_cli/developer-cli-commands#oc-describe)
+- [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)
 
 **Additional resources**
 
-- [Watching cluster events](/security/container_security/security-monitoring#security-monitoring-events_security-monitoring)
+- [Watching cluster events](/openshift-docs-markdown/security/container_security/security-monitoring#security-monitoring-events_security-monitoring)
 
 **Additional resources**
 
-- [oc rsh](/cli_reference/openshift_cli/developer-cli-commands#oc-rsh)
-- [Accessing running pods](/support/troubleshooting/investigating-pod-issues#accessing-running-pods_investigating-pod-issues)
+- [oc rsh](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-rsh)
+- [Accessing running pods](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#accessing-running-pods_investigating-pod-issues)
 
 **Additional resources**
 
-- [oc debug](/cli_reference/openshift_cli/developer-cli-commands#oc-debug)
-- [Starting debug pods with root access](/support/troubleshooting/investigating-pod-issues#starting-debug-pods-with-root-access_investigating-pod-issues)
+- [oc debug](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-debug)
+- [Starting debug pods with root access](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#starting-debug-pods-with-root-access_investigating-pod-issues)
 
 **Additional resources**
 
-- [oc exec](/cli_reference/openshift_cli/developer-cli-commands#oc-exec)
-- [Executing remote commands in containers](/nodes/containers/nodes-containers-remote-commands#nodes-containers-remote-commands-about_nodes-containers-remote-commands)
+- [oc exec](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-exec)
+- [Executing remote commands in containers](/openshift-docs-markdown/nodes/containers/nodes-containers-remote-commands#nodes-containers-remote-commands-about_nodes-containers-remote-commands)

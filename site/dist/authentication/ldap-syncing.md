@@ -17,10 +17,10 @@ For more information on configuring LDAP, see "Configuring an LDAP identity prov
 
 **Additional resources**
 
-- [Configuring an LDAP identity provider](/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider)
-- [Creating cron jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs-creating-cron_nodes-nodes-jobs)
+- [Configuring an LDAP identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider)
+- [Creating cron jobs](/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs-creating-cron_nodes-nodes-jobs)
 
 **Additional resources**
 
 - [LDAP nested membership sync](#ldap-syncing-nesting-about_ldap-syncing-groups)
-- [Configuring an LDAP identity provider](/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider)
+- [Configuring an LDAP identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider)

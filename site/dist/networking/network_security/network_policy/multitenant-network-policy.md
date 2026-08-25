@@ -13,4 +13,4 @@ As a cluster administrator, you can configure your network policies to provide m
 
 ## Additional resources {#multitenant-network-policy-additional-resources}
 
-- [Defining a default network policy for a project](/networking/network_security/network_policy/default-network-policy#default-network-policy)
+- [Defining a default network policy for a project](/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy)

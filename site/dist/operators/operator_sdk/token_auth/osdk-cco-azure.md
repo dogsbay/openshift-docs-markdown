@@ -37,6 +37,6 @@ The **Install Operator** page in the web console allows cluster administrators t
 
 **Additional resources**
 
-- [OLM-managed Operator support for authentication with {{ entra_first }}](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure-olm_cco-short-term-creds)
-- [Installing from OperatorHub using the web console](/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)
-- [Installing from OperatorHub using the CLI](/operators/admin/olm-adding-operators-to-cluster#olm-installing-operator-from-software-catalog-using-cli_olm-adding-operators-to-a-cluster)
+- [OLM-managed Operator support for authentication with {{ entra_first }}](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure-olm_cco-short-term-creds)
+- [Installing from OperatorHub using the web console](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)
+- [Installing from OperatorHub using the CLI](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-operator-from-software-catalog-using-cli_olm-adding-operators-to-a-cluster)

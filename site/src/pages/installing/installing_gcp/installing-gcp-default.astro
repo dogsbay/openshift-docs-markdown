@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"installing-gcp-default","text":"Installing a cluster quickly on {{ gcp_short }}"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"},{"depth":2,"slug":"_next_steps","text":"Next steps"}];
 const nav = navData;
-const currentPath = "/installing/installing_gcp/installing-gcp-default";
+const currentPath = "/openshift-docs-markdown/installing/installing_gcp/installing-gcp-default";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_gcp"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster quickly on {{ gcp_short }} {#installing-gcp-default}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster on {{ gcp_first }} that uses the default configuration options.\n\n## Prerequisites {#_prerequisites}\n\n- You reviewed details about the [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation) processes.\n- You read the documentation on [selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing).\n- You [configured a {{ gcp_short }} project](/installing/installing_gcp/installing-gcp-account#installing-gcp-account) to host the cluster.\n- If you use a firewall, you [configured it to allow the sites](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.\n- If you are installing using a [Private Service Connect (PSC) endpoint](https://cloud.google.com/vpc/docs/private-service-connect), you must configure the endpoint in the same Virtual Private Cloud (VPC) where you install the cluster, specified in the `install-config.yaml` file, as described in [Installing a cluster on {{ gcp_short }} into an existing VPC](/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc).\n\n**Additional resources**\n\n- See [Accessing the web console](/web_console/web-console#web-console) for more details about accessing and understanding the OpenShift Container Platform web console.\n\n**Additional resources**\n\n- See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service\n\n## Next steps {#_next_steps}\n\n- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).\n- If necessary, you can [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).\n","mdUrl":"/installing/installing_gcp/installing-gcp-default.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster quickly on {{ gcp_short }} {#installing-gcp-default}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster on {{ gcp_first }} that uses the default configuration options.\n\n## Prerequisites {#_prerequisites}\n\n- You reviewed details about the [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation) processes.\n- You read the documentation on [selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing).\n- You [configured a {{ gcp_short }} project](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-account#installing-gcp-account) to host the cluster.\n- If you use a firewall, you [configured it to allow the sites](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.\n- If you are installing using a [Private Service Connect (PSC) endpoint](https://cloud.google.com/vpc/docs/private-service-connect), you must configure the endpoint in the same Virtual Private Cloud (VPC) where you install the cluster, specified in the `install-config.yaml` file, as described in [Installing a cluster on {{ gcp_short }} into an existing VPC](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc).\n\n**Additional resources**\n\n- See [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console) for more details about accessing and understanding the OpenShift Container Platform web console.\n\n**Additional resources**\n\n- See [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service\n\n## Next steps {#_next_steps}\n\n- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations).\n- If necessary, you can [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_gcp/installing-gcp-default.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,11 +95,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>In OpenShift Container Platform version 4.22, you can install a cluster on {"{"}{"{"} gcp_first {"}"}{"}"} that uses the default configuration options.</p>
       <h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li>You reviewed details about the <a href="/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a> processes.</li>
-      <li>You read the documentation on <a href="/installing/overview/installing-preparing#installing-preparing">selecting a cluster installation method and preparing it for users</a>.</li>
-      <li>You <a href="/installing/installing_gcp/installing-gcp-account#installing-gcp-account">configured a {"{"}{"{"} gcp_short {"}"}{"}"} project</a> to host the cluster.</li>
-      <li>If you use a firewall, you <a href="/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">configured it to allow the sites</a> that your cluster requires access to.</li>
-      <li>If you are installing using a <a href="https://cloud.google.com/vpc/docs/private-service-connect">Private Service Connect (PSC) endpoint</a>, you must configure the endpoint in the same Virtual Private Cloud (VPC) where you install the cluster, specified in the <code>install-config.yaml</code> file, as described in <a href="/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc">Installing a cluster on {"{"}{"{"} gcp_short {"}"}{"}"} into an existing VPC</a>.</li>
+      <li>You reviewed details about the <a href="/openshift-docs-markdown/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a> processes.</li>
+      <li>You read the documentation on <a href="/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing">selecting a cluster installation method and preparing it for users</a>.</li>
+      <li>You <a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-account#installing-gcp-account">configured a {"{"}{"{"} gcp_short {"}"}{"}"} project</a> to host the cluster.</li>
+      <li>If you use a firewall, you <a href="/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">configured it to allow the sites</a> that your cluster requires access to.</li>
+      <li>If you are installing using a <a href="https://cloud.google.com/vpc/docs/private-service-connect">Private Service Connect (PSC) endpoint</a>, you must configure the endpoint in the same Virtual Private Cloud (VPC) where you install the cluster, specified in the <code>install-config.yaml</code> file, as described in <a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc">Installing a cluster on {"{"}{"{"} gcp_short {"}"}{"}"} into an existing VPC</a>.</li>
       </ul>
       <p class="/modules/ssh-agent-using.md"></p>
       <p class="/modules/installation-obtaining-installer.md"></p>
@@ -109,13 +109,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/cli-installing-cli-macos.md"></p>
       <p class="/modules/cli-logging-in-kubeadmin.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li>See <a href="/web_console/web-console#web-console">Accessing the web console</a> for more details about accessing and understanding the OpenShift Container Platform web console.</li></ul>
+      <ul><li>See <a href="/openshift-docs-markdown/web_console/web-console#web-console">Accessing the web console</a> for more details about accessing and understanding the OpenShift Container Platform web console.</li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li>See <a href="/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a> for more information about the Telemetry service</li></ul>
+      <ul><li>See <a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a> for more information about the Telemetry service</li></ul>
       <h2 id="_next_steps" class="group scroll-mt-20">Next steps<a href="#_next_steps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a>.</li>
-      <li>If necessary, you can <a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a>.</li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a>.</li>
+      <li>If necessary, you can <a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a>.</li>
       </ul>
     </article>
   </MarkdownContentStack>

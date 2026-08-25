@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-using-secondary-networks-ssh","text":"Use a secondary network for SSH access"},{"depth":2,"slug":"prerequisites_virt-using-secondary-networks-ssh","text":"Prerequisites"}];
 const nav = navData;
-const currentPath = "/virt/managing_vms/ssh/virt-using-secondary-networks-ssh";
+const currentPath = "/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-secondary-networks-ssh";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/ssh"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Use a secondary network for SSH access {#virt-using-secondary-networks-ssh}\n\nYou can configure a secondary network, attach a virtual machine (VM) to the secondary network interface, and connect to the DHCP-allocated IP address by using SSH.\n\n> [!IMPORTANT]\n> Secondary networks provide excellent performance because the traffic is not handled by the cluster network stack. However, the VMs are exposed directly to the secondary network and are not protected by firewalls. If a VM is compromised, an intruder could gain access to the secondary network. You must configure appropriate security within the operating system of the VM if you use this method.\n\nFor additional information about networking options, see the Multus and SR-IOV documentation in the \"{{ VirtProductName }} Tuning & Scaling Guide\".\n\n> [!NOTE]\n> You can also access a VM attached to a secondary network interface by using the cluster FQDN.\n\n## Prerequisites {#prerequisites_virt-using-secondary-networks-ssh}\n\n- You configured a secondary network such as Linux bridge or SR-IOV.\n- You created a network attachment definition for a Linux bridge network or the SR-IOV Network Operator created a network attachment definition when you created an `SriovNetwork` object.\n","mdUrl":"/virt/managing_vms/ssh/virt-using-secondary-networks-ssh.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Use a secondary network for SSH access {#virt-using-secondary-networks-ssh}\n\nYou can configure a secondary network, attach a virtual machine (VM) to the secondary network interface, and connect to the DHCP-allocated IP address by using SSH.\n\n> [!IMPORTANT]\n> Secondary networks provide excellent performance because the traffic is not handled by the cluster network stack. However, the VMs are exposed directly to the secondary network and are not protected by firewalls. If a VM is compromised, an intruder could gain access to the secondary network. You must configure appropriate security within the operating system of the VM if you use this method.\n\nFor additional information about networking options, see the Multus and SR-IOV documentation in the \"{{ VirtProductName }} Tuning & Scaling Guide\".\n\n> [!NOTE]\n> You can also access a VM attached to a secondary network interface by using the cluster FQDN.\n\n## Prerequisites {#prerequisites_virt-using-secondary-networks-ssh}\n\n- You configured a secondary network such as Linux bridge or SR-IOV.\n- You created a network attachment definition for a Linux bridge network or the SR-IOV Network Operator created a network attachment definition when you created an `SriovNetwork` object.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-secondary-networks-ssh.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -2,7 +2,7 @@
 
 ## Virtualized control planes
 
-- [Understanding virtualized control planes](/vcp/vcp-overview.md)
-- [Prerequisites for virtualized control planes](/vcp/vcp-prerequisites.md)
-- [Preparing the environment for virtualized control planes](/vcp/vcp-preparing-environment.md)
-- [Deploying a virtualized control plane](/vcp/vcp-installing-cluster.md)
+- [Understanding virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-overview.md)
+- [Prerequisites for virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-prerequisites.md)
+- [Preparing the environment for virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-preparing-environment.md)
+- [Deploying a virtualized control plane](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-installing-cluster.md)

@@ -8,4 +8,4 @@ As a cluster administrator, you can edit an existing network policy for a namesp
 
 ## Additional resources {#editing-network-policy-additional-resources}
 
-- [Creating a network policy](/networking/network_security/network_policy/creating-network-policy#creating-network-policy)
+- [Creating a network policy](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#creating-network-policy)

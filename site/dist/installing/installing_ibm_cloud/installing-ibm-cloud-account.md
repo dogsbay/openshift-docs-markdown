@@ -22,4 +22,4 @@ You must have a subscription account; free or trial accounts are not supported.
 
 ## Additional resources {#additional-resources_installing-ibm-cloud-account}
 
-- [Configuring IAM for {{ ibm_cloud_name }}](/installing/installing_ibm_cloud/configuring-iam-ibm-cloud#configuring-iam-ibm-cloud)
+- [Configuring IAM for {{ ibm_cloud_name }}](/openshift-docs-markdown/installing/installing_ibm_cloud/configuring-iam-ibm-cloud#configuring-iam-ibm-cloud)

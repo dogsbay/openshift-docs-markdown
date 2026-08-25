@@ -8,9 +8,9 @@ You should understand how OpenShift Container Platform secures attached storage 
 
 **Additional resources**
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-- [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning)
-- [Persistent storage using NFS](/storage/persistent_storage/persistent-storage-nfs#persistent-storage-using-nfs)
-- [Persistent storage using AWS Elastic Block Store](/storage/persistent_storage/persistent-storage-aws#persistent-storage-aws)
-- [Persistent storage using GCE Persistent Disk](/storage/persistent_storage/persistent-storage-gce#persistent-storage-using-gce)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)
+- [Persistent storage using NFS](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-nfs#persistent-storage-using-nfs)
+- [Persistent storage using AWS Elastic Block Store](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-aws#persistent-storage-aws)
+- [Persistent storage using GCE Persistent Disk](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-gce#persistent-storage-using-gce)

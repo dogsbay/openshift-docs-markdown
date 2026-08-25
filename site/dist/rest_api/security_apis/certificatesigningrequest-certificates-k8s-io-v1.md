@@ -28,7 +28,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) |  |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) |  |
 | `spec` | `object` | CertificateSigningRequestSpec contains the certificate request. |
 | `status` | `object` | CertificateSigningRequestStatus contains conditions used to indicate approved/denied/failed status of the request, and the issued certificate. |
 
@@ -110,8 +110,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition last transitioned from one status to another. If unset, when a new condition type is added or an existing condition’s status is changed, the server defaults this to the current time. |
-| `lastUpdateTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastUpdateTime is the time of the last update to this condition |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition last transitioned from one status to another. If unset, when a new condition type is added or an existing condition’s status is changed, the server defaults this to the current time. |
+| `lastUpdateTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastUpdateTime is the time of the last update to this condition |
 | `message` | `string` | message contains a human readable message with details about the request state |
 | `reason` | `string` | reason indicates a brief reason for the request state |
 | `status` | `string` | status of the condition, one of True, False, Unknown. Approved, Denied, and Failed conditions may not be "False" or "Unknown". |
@@ -171,7 +171,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -188,7 +188,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequestList`](/rest_api/objects/index#io-k8s-api-certificates-v1-CertificateSigningRequestList) schema |
+| 200 - OK | [`CertificateSigningRequestList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-certificates-v1-CertificateSigningRequestList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -212,15 +212,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
+| `body` | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 201 - Created | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 202 - Accepted | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 201 - Created | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 202 - Accepted | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/certificates.k8s.io/v1/watch/certificatesigningrequests {#_apiscertificatesk8siov1watchcertificatesigningrequests}
@@ -239,7 +239,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/certificates.k8s.io/v1/certificatesigningrequests/{{ name }} {#_apiscertificatesk8siov1certificatesigningrequests_name}
@@ -270,8 +270,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -288,7 +288,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -312,8 +312,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 201 - Created | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 201 - Created | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -337,14 +337,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
+| `body` | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 201 - Created | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 201 - Created | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/certificates.k8s.io/v1/watch/certificatesigningrequests/{{ name }} {#_apiscertificatesk8siov1watchcertificatesigningrequests_name}
@@ -369,7 +369,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/certificates.k8s.io/v1/certificatesigningrequests/{{ name }}/status {#_apiscertificatesk8siov1certificatesigningrequests_name_status}
@@ -394,7 +394,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -418,8 +418,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 201 - Created | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 201 - Created | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -443,14 +443,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
+| `body` | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 201 - Created | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 201 - Created | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/certificates.k8s.io/v1/certificatesigningrequests/{{ name }}/approval {#_apiscertificatesk8siov1certificatesigningrequests_name_approval}
@@ -475,7 +475,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -499,8 +499,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 201 - Created | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 201 - Created | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -524,12 +524,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
+| `body` | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
-| 201 - Created | [`CertificateSigningRequest`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 200 - OK | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
+| 201 - Created | [`CertificateSigningRequest`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

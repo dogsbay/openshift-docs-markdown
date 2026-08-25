@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"creating-windows-machineset-aws","text":"Creating a Windows machine set on AWS"},{"depth":2,"slug":"prerequisites_creating-windows-machineset-aws","text":"Prerequisites"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws";
+const currentPath = "/openshift-docs-markdown/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["windows_containers","windows_containers/creating_windows_machinesets"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a Windows machine set on AWS {#creating-windows-machineset-aws}\n\nYou can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ aws_full }} cluster, where you can run Windows container workloads.\n\nFor example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see \"Overview of machine management\" in the *Additional resources* section.\n\n## Prerequisites {#prerequisites_creating-windows-machineset-aws}\n\n- You installed the Windows Machine Config Operator (WMCO) using Operator Lifecycle Manager (OLM).\n- You are using a supported Windows Server as the operating system image.\n\n  Use one of the following `aws` commands, as appropriate for your Windows Server release, to query valid AMI images:\n\n  ```terminal {title=\"Example Windows Server 2025 command\"}\n  $ aws ec2 describe-images --region <aws_region_name> --filters \"Name=name,Values=Windows_Server-2025*English*Core*Base*\" \"Name=is-public,Values=true\" --query \"reverse(sort_by(Images, &CreationDate))[*].{name: Name, id: ImageId}\" --output table\n  ```\n\n  ```terminal {title=\"Example Windows Server 2022 command\"}\n  $ aws ec2 describe-images --region <aws_region_name> --filters \"Name=name,Values=Windows_Server-2022*English*Core*Base*\" \"Name=is-public,Values=true\" --query \"reverse(sort_by(Images, &CreationDate))[*].{name: Name, id: ImageId}\" --output table\n  ```\n\n  ```terminal {title=\"Example Windows Server 2019 command\"}\n  $ aws ec2 describe-images --region <aws_region_name> --filters \"Name=name,Values=Windows_Server-2019*English*Core*Base*\" \"Name=is-public,Values=true\" --query \"reverse(sort_by(Images, &CreationDate))[*].{name: Name, id: ImageId}\" --output table\n  ```\n\n  where:\n\n  <aws_region_name>\n  :   Specifies the name of your AWS region.\n- For disconnected clusters, the Windows AMI must have the EC2LaunchV2 agent version 2.0.2107 or later installed. For more information, see \"Install the latest version of EC2Launch v2 (AWS documentation)\" in the *Additional references* section.\n\n## Additional resources {#_additional_resources}\n\n- [Overview of machine management](/machine_management/index#overview-of-machine-management)\n- [Install the latest version of EC2Launch v2 (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2launch-v2-install.html)\n","mdUrl":"/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a Windows machine set on AWS {#creating-windows-machineset-aws}\n\nYou can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ aws_full }} cluster, where you can run Windows container workloads.\n\nFor example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see \"Overview of machine management\" in the *Additional resources* section.\n\n## Prerequisites {#prerequisites_creating-windows-machineset-aws}\n\n- You installed the Windows Machine Config Operator (WMCO) using Operator Lifecycle Manager (OLM).\n- You are using a supported Windows Server as the operating system image.\n\n  Use one of the following `aws` commands, as appropriate for your Windows Server release, to query valid AMI images:\n\n  ```terminal {title=\"Example Windows Server 2025 command\"}\n  $ aws ec2 describe-images --region <aws_region_name> --filters \"Name=name,Values=Windows_Server-2025*English*Core*Base*\" \"Name=is-public,Values=true\" --query \"reverse(sort_by(Images, &CreationDate))[*].{name: Name, id: ImageId}\" --output table\n  ```\n\n  ```terminal {title=\"Example Windows Server 2022 command\"}\n  $ aws ec2 describe-images --region <aws_region_name> --filters \"Name=name,Values=Windows_Server-2022*English*Core*Base*\" \"Name=is-public,Values=true\" --query \"reverse(sort_by(Images, &CreationDate))[*].{name: Name, id: ImageId}\" --output table\n  ```\n\n  ```terminal {title=\"Example Windows Server 2019 command\"}\n  $ aws ec2 describe-images --region <aws_region_name> --filters \"Name=name,Values=Windows_Server-2019*English*Core*Base*\" \"Name=is-public,Values=true\" --query \"reverse(sort_by(Images, &CreationDate))[*].{name: Name, id: ImageId}\" --output table\n  ```\n\n  where:\n\n  <aws_region_name>\n  :   Specifies the name of your AWS region.\n- For disconnected clusters, the Windows AMI must have the EC2LaunchV2 agent version 2.0.2107 or later installed. For more information, see \"Install the latest version of EC2Launch v2 (AWS documentation)\" in the *Additional references* section.\n\n## Additional resources {#_additional_resources}\n\n- [Overview of machine management](/openshift-docs-markdown/machine_management/index#overview-of-machine-management)\n- [Install the latest version of EC2Launch v2 (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2launch-v2-install.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -115,7 +115,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/machineset-creating.md"></p>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/machine_management/index#overview-of-machine-management">Overview of machine management</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/index#overview-of-machine-management">Overview of machine management</a></li>
       <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2launch-v2-install.html">Install the latest version of EC2Launch v2 (AWS documentation)</a></li>
       </ul>
     </article>

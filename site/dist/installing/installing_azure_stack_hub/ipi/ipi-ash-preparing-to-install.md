@@ -15,9 +15,9 @@ Prepare to install an OpenShift Container Platform cluster on Azure Stack Hub by
 
 **Additional resources**
 
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
 ## Additional resources {#additional-resources_ash-preparing-to-install-ipi}
 
-- [Configuring an Azure Stack Hub account](/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)
-- [Manually manage cloud credentials](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)
+- [Configuring an Azure Stack Hub account](/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)
+- [Manually manage cloud credentials](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)

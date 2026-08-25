@@ -8,4 +8,4 @@ title: CSI automatic migration
 
 **Additional resources**
 
-- [Changing the default storage class](/storage/container_storage_interface/persistent-storage-csi-sc-manage#change-default-storage-class_persistent-storage-csi-sc-manage)
+- [Changing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#change-default-storage-class_persistent-storage-csi-sc-manage)

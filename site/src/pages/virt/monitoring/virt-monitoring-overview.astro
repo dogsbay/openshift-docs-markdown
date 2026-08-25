@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-monitoring-overview","text":"Monitoring overview"}];
 const nav = navData;
-const currentPath = "/virt/monitoring/virt-monitoring-overview";
+const currentPath = "/openshift-docs-markdown/virt/monitoring/virt-monitoring-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/monitoring"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring overview {#virt-monitoring-overview}\n\nMonitor the health of your cluster and virtual machines (VMs) to have a unified operational view of your environment. This ensures high availability and optimal resource performance.\n\nYou can monitor the health of your cluster and VMs with the following tools:\n\nMonitoring {{ VirtProductName }} VM health status\n:   View the overall health of your {{ VirtProductName }} environment in the web console by navigating to the **Home** -> **Overview** page in the OpenShift Container Platform web console. The **Status** card displays the overall health of {{ VirtProductName }} based on the alerts and conditions.\n\n[OpenShift Container Platform cluster checkup framework](/virt/monitoring/virt-running-cluster-checkups#virt-running-cluster-checkups)\n:   Run automated tests with the OpenShift Container Platform cluster checkup framework to ensure that your cluster, including cluster storage, is optimally configured for {{ VirtProductName }}.\n\n[Prometheus queries for virtual resources](/virt/monitoring/virt-prometheus-queries#virt-prometheus-queries)\n:   Query vCPU, network, storage, and guest memory swapping usage and live migration progress.\n\n[VM custom metrics](/virt/monitoring/virt-exposing-custom-metrics-for-vms#virt-exposing-custom-metrics-for-vms)\n:   Configure the `node-exporter` service to expose internal VM metrics and processes.\n\n[VM health checks](/virt/monitoring/virt-monitoring-vm-health#virt-monitoring-vm-health)\n:   Configure readiness, liveness, and guest agent ping probes and a watchdog for VMs.\n\n[Runbooks](/virt/monitoring/virt-runbooks#virt-runbooks)\n\n:   Diagnose and resolve issues that trigger {{ VirtProductName }} [alerts](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/monitoring_key_concepts/key-concepts#about-managing-alerts_key-concepts) in the OpenShift Container Platform web console.\n","mdUrl":"/virt/monitoring/virt-monitoring-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring overview {#virt-monitoring-overview}\n\nMonitor the health of your cluster and virtual machines (VMs) to have a unified operational view of your environment. This ensures high availability and optimal resource performance.\n\nYou can monitor the health of your cluster and VMs with the following tools:\n\nMonitoring {{ VirtProductName }} VM health status\n:   View the overall health of your {{ VirtProductName }} environment in the web console by navigating to the **Home** -> **Overview** page in the OpenShift Container Platform web console. The **Status** card displays the overall health of {{ VirtProductName }} based on the alerts and conditions.\n\n[OpenShift Container Platform cluster checkup framework](/openshift-docs-markdown/virt/monitoring/virt-running-cluster-checkups#virt-running-cluster-checkups)\n:   Run automated tests with the OpenShift Container Platform cluster checkup framework to ensure that your cluster, including cluster storage, is optimally configured for {{ VirtProductName }}.\n\n[Prometheus queries for virtual resources](/openshift-docs-markdown/virt/monitoring/virt-prometheus-queries#virt-prometheus-queries)\n:   Query vCPU, network, storage, and guest memory swapping usage and live migration progress.\n\n[VM custom metrics](/openshift-docs-markdown/virt/monitoring/virt-exposing-custom-metrics-for-vms#virt-exposing-custom-metrics-for-vms)\n:   Configure the `node-exporter` service to expose internal VM metrics and processes.\n\n[VM health checks](/openshift-docs-markdown/virt/monitoring/virt-monitoring-vm-health#virt-monitoring-vm-health)\n:   Configure readiness, liveness, and guest agent ping probes and a watchdog for VMs.\n\n[Runbooks](/openshift-docs-markdown/virt/monitoring/virt-runbooks#virt-runbooks)\n\n:   Diagnose and resolve issues that trigger {{ VirtProductName }} [alerts](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/monitoring_key_concepts/key-concepts#about-managing-alerts_key-concepts) in the OpenShift Container Platform web console.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/monitoring/virt-monitoring-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,16 +97,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Monitoring {"{"}{"{"} VirtProductName {"}"}{"}"} VM health status</dt>
       <dd class="ml-6 text-muted-foreground"><p>View the overall health of your {"{"}{"{"} VirtProductName {"}"}{"}"} environment in the web console by navigating to the <strong>Home</strong> -&gt; <strong>Overview</strong> page in the OpenShift Container Platform web console. The <strong>Status</strong> card displays the overall health of {"{"}{"{"} VirtProductName {"}"}{"}"} based on the alerts and conditions.</p></dd>
-      <dt class="font-semibold"><a href="/virt/monitoring/virt-running-cluster-checkups#virt-running-cluster-checkups">OpenShift Container Platform cluster checkup framework</a></dt>
+      <dt class="font-semibold"><a href="/openshift-docs-markdown/virt/monitoring/virt-running-cluster-checkups#virt-running-cluster-checkups">OpenShift Container Platform cluster checkup framework</a></dt>
       <dd class="ml-6 text-muted-foreground"><p>Run automated tests with the OpenShift Container Platform cluster checkup framework to ensure that your cluster, including cluster storage, is optimally configured for {"{"}{"{"} VirtProductName {"}"}{"}"}.</p></dd>
-      <dt class="font-semibold"><a href="/virt/monitoring/virt-prometheus-queries#virt-prometheus-queries">Prometheus queries for virtual resources</a></dt>
+      <dt class="font-semibold"><a href="/openshift-docs-markdown/virt/monitoring/virt-prometheus-queries#virt-prometheus-queries">Prometheus queries for virtual resources</a></dt>
       <dd class="ml-6 text-muted-foreground"><p>Query vCPU, network, storage, and guest memory swapping usage and live migration progress.</p></dd>
-      <dt class="font-semibold"><a href="/virt/monitoring/virt-exposing-custom-metrics-for-vms#virt-exposing-custom-metrics-for-vms">VM custom metrics</a></dt>
+      <dt class="font-semibold"><a href="/openshift-docs-markdown/virt/monitoring/virt-exposing-custom-metrics-for-vms#virt-exposing-custom-metrics-for-vms">VM custom metrics</a></dt>
       <dd class="ml-6 text-muted-foreground"><p>Configure the <code>node-exporter</code> service to expose internal VM metrics and processes.</p></dd>
-      <dt class="font-semibold"><a href="/virt/monitoring/virt-monitoring-vm-health#virt-monitoring-vm-health">VM health checks</a></dt>
+      <dt class="font-semibold"><a href="/openshift-docs-markdown/virt/monitoring/virt-monitoring-vm-health#virt-monitoring-vm-health">VM health checks</a></dt>
       <dd class="ml-6 text-muted-foreground"><p>Configure readiness, liveness, and guest agent ping probes and a watchdog for VMs.</p></dd>
       </dl>
-      <p><a href="/virt/monitoring/virt-runbooks#virt-runbooks">Runbooks</a></p>
+      <p><a href="/openshift-docs-markdown/virt/monitoring/virt-runbooks#virt-runbooks">Runbooks</a></p>
       <p>:   Diagnose and resolve issues that trigger {"{"}{"{"} VirtProductName {"}"}{"}"} <a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/monitoring_key_concepts/key-concepts#about-managing-alerts_key-concepts">alerts</a> in the OpenShift Container Platform web console.</p>
     </article>
   </MarkdownContentStack>

@@ -10,4 +10,4 @@ The kubelet configuration is currently serialized as an Ignition configuration, 
 
 ## Additional resources {#additional-resources_machine-configs-custom}
 
-- [About the container engine and container runtime](/nodes/containers/nodes-containers-using#nodes-containers-runtimes)
+- [About the container engine and container runtime](/openshift-docs-markdown/nodes/containers/nodes-containers-using#nodes-containers-runtimes)

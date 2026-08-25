@@ -15,8 +15,8 @@ In OpenShift Container Platform version 4.22, you can choose one of the followin
 **Additional resources**
 
 - [{{ ai_full }}](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
-- [Installing an on-premise cluster using the {{ ai_full }}](/installing/installing_on_prem_assisted/installing-on-prem-assisted#installing-on-prem-assisted)
-- [Installing a cluster on any platform](/installing/installing_platform_agnostic/installing-platform-agnostic#installing-platform-agnostic)
+- [Installing an on-premise cluster using the {{ ai_full }}](/openshift-docs-markdown/installing/installing_on_prem_assisted/installing-on-prem-assisted#installing-on-prem-assisted)
+- [Installing a cluster on any platform](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#installing-platform-agnostic)
 
 ## Prerequisites {#_prerequisites}
 
@@ -35,14 +35,14 @@ In OpenShift Container Platform version 4.22, you can choose one of the followin
 
 **Additional resources**
 
-- [Installation configuration parameters for Nutanix](/installing/installing_nutanix/installation-config-parameters-nutanix#installation-config-parameters-nutanix)
+- [Installation configuration parameters for Nutanix](/openshift-docs-markdown/installing/installing_nutanix/installation-config-parameters-nutanix#installation-config-parameters-nutanix)
 
 ## Additional resources {#_additional_resources}
 
-- [OpenShift Container Platform installation and update processes](/architecture/architecture-installation#architecture-installation)
-- [Configuring your firewall to grant required access](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Configuring your firewall to grant required access](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
 - [Nutanix AOS Security Guide](https://portal.nutanix.com/page/documents/details?targetId=Nutanix-Security-Guide-v6_1:mul-security-ssl-certificate-pc-t.html)
-- [Configuring a custom PKI](/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Configuring a custom PKI](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)

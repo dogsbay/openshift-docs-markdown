@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-node-placement-virt-components","text":"Specifying nodes for {{ VirtProductName }} components"},{"depth":2,"slug":"additional-resources_virt-node-placement-virt-components","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/post_installation_configuration/virt-node-placement-virt-components";
+const currentPath = "/openshift-docs-markdown/virt/post_installation_configuration/virt-node-placement-virt-components";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/post_installation_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Specifying nodes for {{ VirtProductName }} components {#virt-node-placement-virt-components}\n\nYou can configure node placement rules to specify where {{ VirtProductName }} Operators, workloads, and controllers are deployed. Custom placement rules allow you to isolate virtual machine (VM) traffic or dedicate specialized compute resources to critical workloads.\n\n> [!IMPORTANT]\n> You can configure node placement rules for some components after installing {{ VirtProductName }}, but virtual machines cannot be present if you want to configure node placement rules for workloads.\n\n## Additional resources {#additional-resources_virt-node-placement-virt-components}\n\n- [Specifying nodes for virtual machines](/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)\n- [Placing pods on specific nodes using node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)\n- [Controlling pod placement on nodes using node affinity rules](/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)\n- [Controlling pod placement using node taints](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)\n","mdUrl":"/virt/post_installation_configuration/virt-node-placement-virt-components.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Specifying nodes for {{ VirtProductName }} components {#virt-node-placement-virt-components}\n\nYou can configure node placement rules to specify where {{ VirtProductName }} Operators, workloads, and controllers are deployed. Custom placement rules allow you to isolate virtual machine (VM) traffic or dedicate specialized compute resources to critical workloads.\n\n> [!IMPORTANT]\n> You can configure node placement rules for some components after installing {{ VirtProductName }}, but virtual machines cannot be present if you want to configure node placement rules for workloads.\n\n## Additional resources {#additional-resources_virt-node-placement-virt-components}\n\n- [Specifying nodes for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)\n- [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)\n- [Controlling pod placement on nodes using node affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)\n- [Controlling pod placement using node taints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-node-placement-virt-components.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,10 +107,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-node-placement-rule-examples.md"></p>
       <h2 id="additional-resources_virt-node-placement-virt-components" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-node-placement-virt-components" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms">Specifying nodes for virtual machines</a></li>
-      <li><a href="/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors">Placing pods on specific nodes using node selectors</a></li>
-      <li><a href="/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity">Controlling pod placement on nodes using node affinity rules</a></li>
-      <li><a href="/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations">Controlling pod placement using node taints</a></li>
+      <li><a href="/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms">Specifying nodes for virtual machines</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors">Placing pods on specific nodes using node selectors</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity">Controlling pod placement on nodes using node affinity rules</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations">Controlling pod placement using node taints</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

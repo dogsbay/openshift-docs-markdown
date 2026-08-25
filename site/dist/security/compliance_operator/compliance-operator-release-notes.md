@@ -10,6 +10,6 @@ These release notes track the development of the Compliance Operator in the Open
 
 ## Additional resources {#compliance-operator-release-notes_additional-resources}
 
-- [Understanding the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
-- [Updating the Compliance Operator](/security/compliance_operator/co-management/compliance-operator-updating#olm-preparing-upgrade_compliance-operator-updating)
+- [Understanding the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
+- [Updating the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-updating#olm-preparing-upgrade_compliance-operator-updating)
 - [Product Compliance](https://access.redhat.com/compliance)

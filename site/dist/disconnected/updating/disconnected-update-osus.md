@@ -17,12 +17,12 @@ The following steps outline the high-level workflow about updating a cluster in 
 
 **Additional resources**
 
-- [About the OpenShift Update Service](/updating/understanding_updates/intro-to-updates#update-service-about_understanding-openshift-updates)
-- [Understanding update channels and releases](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
+- [About the OpenShift Update Service](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#update-service-about_understanding-openshift-updates)
+- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
 
 **Additional resources**
 
-- [Configuring additional trust stores for image registry access](/registry/configuring-registry-operator#images-configuration-cas_configuring-registry-operator)
+- [Configuring additional trust stores for image registry access](/openshift-docs-markdown/registry/configuring-registry-operator#images-configuration-cas_configuring-registry-operator)
 
 **Additional resources**
 
@@ -30,21 +30,21 @@ The following steps outline the high-level workflow about updating a cluster in 
 
 **Additional resources**
 
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
-- [Installing Operators in your namespace](/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
+- [Installing Operators in your namespace](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)
 
 **Additional resources**
 
-- [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
+- [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 
 **Additional resources**
 
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 
 ## Additional resources {#additional-resources_updating-disconnected-cluster-osus}
 
-- [Mirroring OpenShift Container Platform images](/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
-- [Updating a cluster using the web console](/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
-- [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli)
-- [Performing a Control Plane Only update](/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
-- [Performing a canary rollout update](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools)
+- [Mirroring OpenShift Container Platform images](/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
+- [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
+- [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli)
+- [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
+- [Performing a canary rollout update](/openshift-docs-markdown/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools)

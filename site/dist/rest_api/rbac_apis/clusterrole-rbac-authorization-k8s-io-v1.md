@@ -19,7 +19,7 @@ Type
 | `aggregationRule` | `object` | AggregationRule describes how to locate ClusterRoles to aggregate into the ClusterRole |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
 | `rules` | `array` | Rules holds all the PolicyRules for this ClusterRole |
 | `rules[]` | `object` | PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. |
 
@@ -35,7 +35,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `clusterRoleSelectors` | [`array (LabelSelector)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole’s permissions will be added |
+| `clusterRoleSelectors` | [`array (LabelSelector)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole’s permissions will be added |
 
 ### .rules {#_rules}
 
@@ -112,7 +112,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -129,7 +129,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRoleList`](/rest_api/objects/index#io-k8s-api-rbac-v1-ClusterRoleList) schema |
+| 200 - OK | [`ClusterRoleList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-rbac-v1-ClusterRoleList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -153,15 +153,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |  |
+| `body` | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
-| 201 - Created | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
-| 202 - Accepted | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 201 - Created | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 202 - Accepted | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/watch/clusterroles {#_apisrbacauthorizationk8siov1watchclusterroles}
@@ -180,7 +180,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/clusterroles/{{ name }} {#_apisrbacauthorizationk8siov1clusterroles_name}
@@ -211,8 +211,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -229,7 +229,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -253,8 +253,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
-| 201 - Created | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 201 - Created | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -278,14 +278,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |  |
+| `body` | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
-| 201 - Created | [`ClusterRole`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
+| 201 - Created | [`ClusterRole`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/watch/clusterroles/{{ name }} {#_apisrbacauthorizationk8siov1watchclusterroles_name}
@@ -310,5 +310,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

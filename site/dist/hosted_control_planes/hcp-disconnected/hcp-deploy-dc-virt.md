@@ -16,17 +16,17 @@ To get started, you must meet the following requirements:
 
 **Additional resources**
 
-- [About disconnected installation mirroring](/disconnected/index#installing-mirroring-disconnected-about)
+- [About disconnected installation mirroring](/openshift-docs-markdown/disconnected/index#installing-mirroring-disconnected-about)
 
 **Additional resources**
 
-- [Mirroring an image set in a partially disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
-- [Mirroring an image set in a fully disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
+- [Mirroring an image set in a partially disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
+- [Mirroring an image set in a fully disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
 - [Install on disconnected networks](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#install-on-disconnected-networks)
 
 **Additional resources**
 
-- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
+- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
 **Additional resources**
 
@@ -35,4 +35,4 @@ To get started, you must meet the following requirements:
 
 **Additional resources**
 
-- [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
+- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)

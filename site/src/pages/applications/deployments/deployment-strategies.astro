@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"deployment-strategies","text":"Using deployment strategies"},{"depth":2,"slug":"choosing-deployment-strategies","text":"Choosing a deployment strategy"}];
 const nav = navData;
-const currentPath = "/applications/deployments/deployment-strategies";
+const currentPath = "/openshift-docs-markdown/applications/deployments/deployment-strategies";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["applications","applications/deployments"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using deployment strategies {#deployment-strategies}\n\nTo upgrade applications with little or no downtime in OpenShift Container Platform, you can use a deployment strategy. Choose strategies that use `DeploymentConfig` object features or router features depending on whether you need to affect all routes or only specific ones.\n\nBecause users generally access applications through a route handled by a router, deployment strategies can focus on `DeploymentConfig` object features or routing features. Strategies that focus on `DeploymentConfig` object features impact all routes that use the application. Strategies that use router features target individual routes.\n\nMost deployment strategies are supported through the `DeploymentConfig` object, and some additional strategies are supported through router features.\n\n## Choosing a deployment strategy {#choosing-deployment-strategies}\n\nConsider the following when choosing a deployment strategy:\n\n- Long-running connections must be handled gracefully.\n- Database conversions can be complex and must be done and rolled back along with the application.\n- If the application is a hybrid of microservices and traditional components, downtime might be required to complete the transition.\n- You must have the infrastructure to do this.\n- If you have a non-isolated test environment, you can break both new and old versions.\n\nA deployment strategy uses readiness checks to determine if a new pod is ready for use. If a readiness check fails, the `DeploymentConfig` object retries to run the pod until it times out. The default timeout is `10m`, a value set in `TimeoutSeconds` in `dc.spec.strategy.*params`.\n\n**Additional resources**\n\n- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)\n- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)\n\n**Additional resources**\n\n- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)\n- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)\n","mdUrl":"/applications/deployments/deployment-strategies.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using deployment strategies {#deployment-strategies}\n\nTo upgrade applications with little or no downtime in OpenShift Container Platform, you can use a deployment strategy. Choose strategies that use `DeploymentConfig` object features or router features depending on whether you need to affect all routes or only specific ones.\n\nBecause users generally access applications through a route handled by a router, deployment strategies can focus on `DeploymentConfig` object features or routing features. Strategies that focus on `DeploymentConfig` object features impact all routes that use the application. Strategies that use router features target individual routes.\n\nMost deployment strategies are supported through the `DeploymentConfig` object, and some additional strategies are supported through router features.\n\n## Choosing a deployment strategy {#choosing-deployment-strategies}\n\nConsider the following when choosing a deployment strategy:\n\n- Long-running connections must be handled gracefully.\n- Database conversions can be complex and must be done and rolled back along with the application.\n- If the application is a hybrid of microservices and traditional components, downtime might be required to complete the transition.\n- You must have the infrastructure to do this.\n- If you have a non-isolated test environment, you can break both new and old versions.\n\nA deployment strategy uses readiness checks to determine if a new pod is ready for use. If a readiness check fails, the `DeploymentConfig` object retries to run the pod until it times out. The default timeout is `10m`, a value set in `TimeoutSeconds` in `dc.spec.strategy.*params`.\n\n**Additional resources**\n\n- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)\n- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)\n\n**Additional resources**\n\n- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)\n- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/deployments/deployment-strategies.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -111,15 +111,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/odc-starting-rolling-deployment.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective">Creating and deploying applications on OpenShift Container Platform using the <strong>Developer</strong> perspective</a></li>
-      <li><a href="/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view">Viewing the applications in your project, verifying their deployment status, and interacting with them in the <strong>Topology</strong> view</a></li>
+      <li><a href="/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective">Creating and deploying applications on OpenShift Container Platform using the <strong>Developer</strong> perspective</a></li>
+      <li><a href="/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view">Viewing the applications in your project, verifying their deployment status, and interacting with them in the <strong>Topology</strong> view</a></li>
       </ul>
       <p class="/modules/odc-editing-deployments.md /modules/deployments-recreate-strategy.md"></p>
       <p class="/modules/odc-starting-recreate-deployment.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective">Creating and deploying applications on OpenShift Container Platform using the <strong>Developer</strong> perspective</a></li>
-      <li><a href="/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view">Viewing the applications in your project, verifying their deployment status, and interacting with them in the <strong>Topology</strong> view</a></li>
+      <li><a href="/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective">Creating and deploying applications on OpenShift Container Platform using the <strong>Developer</strong> perspective</a></li>
+      <li><a href="/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view">Viewing the applications in your project, verifying their deployment status, and interacting with them in the <strong>Topology</strong> view</a></li>
       </ul>
       <p class="/modules/odc-editing-deployments.md /modules/deployments-custom-strategy.md"></p>
       <p class="/modules/deployments-lifecycle-hooks.md"></p>

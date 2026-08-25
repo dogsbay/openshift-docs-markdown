@@ -24,7 +24,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Spec defines the desired state of ReferenceGrant. |
 
 ### .spec {#_spec}
@@ -148,7 +148,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReferenceGrantList`](/rest_api/objects/index#io-k8s-networking-gateway-v1beta1-ReferenceGrantList) schema |
+| 200 - OK | [`ReferenceGrantList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-networking-gateway-v1beta1-ReferenceGrantList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/gateway.networking.k8s.io/v1beta1/namespaces/{{ namespace }}/referencegrants {#_apisgatewaynetworkingk8siov1beta1namespaces_namespace_referencegrants}
@@ -167,7 +167,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -184,7 +184,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReferenceGrantList`](/rest_api/objects/index#io-k8s-networking-gateway-v1beta1-ReferenceGrantList) schema |
+| 200 - OK | [`ReferenceGrantList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-networking-gateway-v1beta1-ReferenceGrantList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -208,15 +208,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |  |
+| `body` | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
-| 201 - Created | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
-| 202 - Accepted | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
+| 200 - OK | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
+| 201 - Created | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
+| 202 - Accepted | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/gateway.networking.k8s.io/v1beta1/namespaces/{{ namespace }}/referencegrants/{{ name }} {#_apisgatewaynetworkingk8siov1beta1namespaces_namespace_referencegrants_name}
@@ -247,8 +247,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -265,7 +265,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
+| 200 - OK | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -289,7 +289,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
+| 200 - OK | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -313,12 +313,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |  |
+| `body` | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
-| 201 - Created | [`ReferenceGrant`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
+| 200 - OK | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
+| 201 - Created | [`ReferenceGrant`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"catalog-content-resolution","text":"Catalog content resolution"}];
 const nav = navData;
-const currentPath = "/extensions/catalogs/catalog-content-resolution";
+const currentPath = "/openshift-docs-markdown/extensions/catalogs/catalog-content-resolution";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["extensions","extensions/catalogs"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Catalog content resolution {#catalog-content-resolution}\n\nWhen you specify the cluster extension you want to install in a custom resource (CR), {{ olmv1_first }} uses catalog selection to resolve what content is installed.\n\nYou can perform the following actions to control the selection of catalog content:\n\n- Specify labels to select the catalog.\n- Use match expressions to perform complex filtering across catalogs.\n- Set catalog priority.\n\nIf you do not specify any catalog selection criteria, {{ olmv1_first }} selects an extension from any available catalog on the cluster that provides the requested package.\n\nDuring resolution, bundles that are not deprecated are preferred over deprecated bundles by default.\n","mdUrl":"/extensions/catalogs/catalog-content-resolution.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Catalog content resolution {#catalog-content-resolution}\n\nWhen you specify the cluster extension you want to install in a custom resource (CR), {{ olmv1_first }} uses catalog selection to resolve what content is installed.\n\nYou can perform the following actions to control the selection of catalog content:\n\n- Specify labels to select the catalog.\n- Use match expressions to perform complex filtering across catalogs.\n- Set catalog priority.\n\nIf you do not specify any catalog selection criteria, {{ olmv1_first }} selects an extension from any available catalog on the cluster that provides the requested package.\n\nDuring resolution, bundles that are not deprecated are preferred over deprecated bundles by default.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/catalogs/catalog-content-resolution.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"zero-trust-manager-plugins","text":"SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager"}];
 const nav = navData;
-const currentPath = "/security/zero_trust_workload_identity_manager/zero-trust-manager-plugins";
+const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-plugins";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/zero_trust_workload_identity_manager"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager {#zero-trust-manager-plugins}\n\nTo integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities.\n\nYou can configure SPIRE Server to use one of the following UpstreamAuthority plugins:\n\n**cert-manager UpstreamAuthority plugin**\n:   Integrates SPIRE with {{ cert_manager_operator }} running in Kubernetes or OpenShift Container Platform clusters. The {{ cert_manager_operator }} instance can use various issuer types to provide signing certificates for SPIRE intermediate CAs.\n\n**Vault UpstreamAuthority plugin**\n:   Integrates SPIRE with the HashiCorp Vault Public Key Infrastructure (PKI) secrets engine. This plugin supports many Vault authentication methods and enables SPIRE to use Vault’s security features for certificate management.\n\nChoose the plugin that matches your certificate management infrastructure. You can configure only one UpstreamAuthority plugin at a time. The `SpireServer` CR rejects configurations that specify both `certManager` and `vault` simultaneously.\n\n**Additional resources**\n\n- [cert-manager Operator for Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift)\n","mdUrl":"/security/zero_trust_workload_identity_manager/zero-trust-manager-plugins.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager {#zero-trust-manager-plugins}\n\nTo integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities.\n\nYou can configure SPIRE Server to use one of the following UpstreamAuthority plugins:\n\n**cert-manager UpstreamAuthority plugin**\n:   Integrates SPIRE with {{ cert_manager_operator }} running in Kubernetes or OpenShift Container Platform clusters. The {{ cert_manager_operator }} instance can use various issuer types to provide signing certificates for SPIRE intermediate CAs.\n\n**Vault UpstreamAuthority plugin**\n:   Integrates SPIRE with the HashiCorp Vault Public Key Infrastructure (PKI) secrets engine. This plugin supports many Vault authentication methods and enables SPIRE to use Vault’s security features for certificate management.\n\nChoose the plugin that matches your certificate management infrastructure. You can configure only one UpstreamAuthority plugin at a time. The `SpireServer` CR rejects configurations that specify both `certManager` and `vault` simultaneously.\n\n**Additional resources**\n\n- [cert-manager Operator for Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-plugins.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

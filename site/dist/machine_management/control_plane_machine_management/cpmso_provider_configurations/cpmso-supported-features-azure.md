@@ -10,7 +10,7 @@ When you save an update to the control plane machine set, the Control Plane Mach
 
 **Additional resources**
 
-- [Configuring the Ingress Controller endpoint publishing scope to Internal](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
+- [Configuring the Ingress Controller endpoint publishing scope to Internal](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
 
 **Additional resources**
 
@@ -18,5 +18,5 @@ When you save an update to the control plane machine set, the Control Plane Mach
 
 ## Additional resources {#additional-resources_cpmso-supported-features-azure}
 
-- [Updating the control plane configuration](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
-- [Control plane configuration options for {{ azure_full }}](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-azure#cpmso-config-options-azure)
+- [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
+- [Control plane configuration options for {{ azure_full }}](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-azure#cpmso-config-options-azure)

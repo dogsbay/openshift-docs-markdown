@@ -24,12 +24,12 @@ You can install a cluster on {{ azure_first }} infrastructure that is provisione
 
 **Additional resources**
 
-- [Installing a cluster quickly on Azure](/installing/installing_azure/ipi/installing-azure-default#installing-azure-default)
-- [Installing a cluster on {{ azure_short }} with customizations](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
-- [Installing a cluster on {{ azure_short }} in a restricted network](/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned#installing-restricted-networks-azure-installer-provisioned)
-- [Installing a cluster on {{ azure_short }} into an existing `VNet`](/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet)
-- [Installing a private cluster on {{ azure_short }}](/installing/installing_azure/ipi/installing-azure-private#installing-azure-private)
-- [Installing a cluster on {{ azure_short }} into a government region](/installing/installing_azure/ipi/installing-azure-government-region#installing-azure-government-region)
+- [Installing a cluster quickly on Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-default#installing-azure-default)
+- [Installing a cluster on {{ azure_short }} with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
+- [Installing a cluster on {{ azure_short }} in a restricted network](/openshift-docs-markdown/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned#installing-restricted-networks-azure-installer-provisioned)
+- [Installing a cluster on {{ azure_short }} into an existing `VNet`](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet)
+- [Installing a private cluster on {{ azure_short }}](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-private#installing-azure-private)
+- [Installing a cluster on {{ azure_short }} into a government region](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-government-region#installing-azure-government-region)
 
 ## Installing a cluster on user-provisioned infrastructure {#choosing-an-method-to-install-ocp-on-azure-user-provisioned}
 
@@ -40,10 +40,10 @@ You can install a cluster on {{ azure_short }} infrastructure that you provision
 
 **Additional resources**
 
-- [Installing a cluster on {{ azure_short }} in a restricted network with user-provisioned infrastructure](/installing/installing_azure/upi/installing-restricted-networks-azure-user-provisioned#installing-restricted-networks-azure-user-provisioned)
-- [Installing a cluster on {{ azure_short }} using ARM templates](/installing/installing_azure/upi/installing-azure-user-infra#installing-azure-user-infra)
+- [Installing a cluster on {{ azure_short }} in a restricted network with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_azure/upi/installing-restricted-networks-azure-user-provisioned#installing-restricted-networks-azure-user-provisioned)
+- [Installing a cluster on {{ azure_short }} using ARM templates](/openshift-docs-markdown/installing/installing_azure/upi/installing-azure-user-infra#installing-azure-user-infra)
 
 ## Additional resources {#preparing-to-install-on-azure-additional-resources}
 
-- [Configuring an {{ azure_short }} account](/installing/installing_azure/installing-azure-account#installing-azure-account)
-- [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
+- [Configuring an {{ azure_short }} account](/openshift-docs-markdown/installing/installing_azure/installing-azure-account#installing-azure-account)
+- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)

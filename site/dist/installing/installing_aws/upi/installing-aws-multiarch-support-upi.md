@@ -16,6 +16,6 @@ You can install an {{ aws_short }} cluster with the support for configuring mult
 
 **Additional resources**
 
-- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)
-- [Scheduling workloads on clusters with multi-architecture compute machines](/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)
-- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
+- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)
+- [Scheduling workloads on clusters with multi-architecture compute machines](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)
+- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)

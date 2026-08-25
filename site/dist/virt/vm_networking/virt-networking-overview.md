@@ -12,7 +12,7 @@ The following figure illustrates the typical network setup of {{ VirtProductName
 
 **Figure 1. {{ VirtProductName }} networking overview**
 
-![{{ VirtProductName }} networking architecture](/_assets/images/318_OpenShift_Virtualization_Networking_0423.png)
+![{{ VirtProductName }} networking architecture](/openshift-docs-markdown/_assets/images/318_OpenShift_Virtualization_Networking_0423.png)
 
 <img src="/_assets/images/darkcircle-1.png" alt="20" width="20"> Pods and VMs run on the same network infrastructure so you can easily connect your containerized and virtualized workloads.
 
@@ -50,23 +50,23 @@ The following figure illustrates the typical network setup of {{ VirtProductName
 
 ## Additional resources {#additional-resources_virt-networking-overview}
 
-- [Connect a virtual machine to the default pod network](/virt/vm_networking/virt-connecting-vm-to-default-pod-network#virt-connecting-vm-to-default-pod-network)
-- [Connect a virtual machine to a custom primary overlay network](/virt/vm_networking/virt-connecting-vm-to-primary-udn#virt-connecting-vm-to-primary-udn)
-- [Connect a VM to a custom secondary overlay network](/virt/vm_networking/virt-connecting-vm-to-ovn-secondary-network#virt-connecting-vm-to-ovn-secondary-network)
-- [Configure external ingress by exposing a VM as a service](/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)
-- [Add a VM to a Service Mesh](/virt/vm_networking/virt-connecting-vm-to-service-mesh#virt-connecting-vm-to-service-mesh)
-- [Connect a VM to the physical network by using an Open vSwitch bridge](/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)
-- [Access a virtual machine by using its internal FQDN](/virt/vm_networking/virt-accessing-vm-internal-fqdn#virt-accessing-vm-internal-fqdn)
-- [Installing the MetalLB Operator](/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)
-- [Connect a virtual machine to the physical network by using a Linux bridge](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
-- [Install the Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
-- [Connect a VM to the physical network by using an SR-IOV device](/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
-- [Install the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
-- [Connect a VM to the physical network by using DPDK drivers with SR-IOV hardware](/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)
-- [Configure a dedicated network for live migration](/virt/vm_networking/virt-dedicated-network-live-migration#virt-dedicated-network-live-migration)
-- [Access a VM by using its external FQDN](/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn#virt-accessing-vm-secondary-network-fqdn)
-- [Manage the link state of a virtual machine interface](/virt/vm_networking/virt-setting-interface-link-state#virt-setting-interface-link-state)
-- [Hot plugging secondary network interfaces](/virt/vm_networking/virt-hot-plugging-network-interfaces#virt-hot-plugging-network-interfaces)
-- [Configure and view VM IP address](/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)
-- [Manage MAC address pools for network interfaces](/virt/vm_networking/virt-using-mac-address-pool-for-vms#virt-using-mac-address-pool-for-vms)
-- [SSH access for virtual machines](/virt/managing_vms/ssh/virt-accessing-vm-ssh#virt-accessing-vm-ssh)
+- [Connect a virtual machine to the default pod network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-default-pod-network#virt-connecting-vm-to-default-pod-network)
+- [Connect a virtual machine to a custom primary overlay network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-primary-udn#virt-connecting-vm-to-primary-udn)
+- [Connect a VM to a custom secondary overlay network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-ovn-secondary-network#virt-connecting-vm-to-ovn-secondary-network)
+- [Configure external ingress by exposing a VM as a service](/openshift-docs-markdown/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)
+- [Add a VM to a Service Mesh](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-service-mesh#virt-connecting-vm-to-service-mesh)
+- [Connect a VM to the physical network by using an Open vSwitch bridge](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)
+- [Access a virtual machine by using its internal FQDN](/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-internal-fqdn#virt-accessing-vm-internal-fqdn)
+- [Installing the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)
+- [Connect a virtual machine to the physical network by using a Linux bridge](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
+- [Install the Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
+- [Connect a VM to the physical network by using an SR-IOV device](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
+- [Install the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
+- [Connect a VM to the physical network by using DPDK drivers with SR-IOV hardware](/openshift-docs-markdown/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)
+- [Configure a dedicated network for live migration](/openshift-docs-markdown/virt/vm_networking/virt-dedicated-network-live-migration#virt-dedicated-network-live-migration)
+- [Access a VM by using its external FQDN](/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn#virt-accessing-vm-secondary-network-fqdn)
+- [Manage the link state of a virtual machine interface](/openshift-docs-markdown/virt/vm_networking/virt-setting-interface-link-state#virt-setting-interface-link-state)
+- [Hot plugging secondary network interfaces](/openshift-docs-markdown/virt/vm_networking/virt-hot-plugging-network-interfaces#virt-hot-plugging-network-interfaces)
+- [Configure and view VM IP address](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)
+- [Manage MAC address pools for network interfaces](/openshift-docs-markdown/virt/vm_networking/virt-using-mac-address-pool-for-vms#virt-using-mac-address-pool-for-vms)
+- [SSH access for virtual machines](/openshift-docs-markdown/virt/managing_vms/ssh/virt-accessing-vm-ssh#virt-accessing-vm-ssh)

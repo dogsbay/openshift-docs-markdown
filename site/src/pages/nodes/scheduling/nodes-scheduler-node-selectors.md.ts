@@ -2,7 +2,7 @@
 // Source: nodes/scheduling/nodes-scheduler-node-selectors.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Placing pods on specific nodes using node selectors\n---\n\n# Placing pods on specific nodes using node selectors {#nodes-scheduler-node-selectors}\n\n**Additional resources**\n\n- [Creating a project with a node selector and toleration](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-projects_nodes-scheduler-taints-tolerations)\n";
+const body = "---\ntitle: Placing pods on specific nodes using node selectors\n---\n\n# Placing pods on specific nodes using node selectors {#nodes-scheduler-node-selectors}\n\n**Additional resources**\n\n- [Creating a project with a node selector and toleration](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-projects_nodes-scheduler-taints-tolerations)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

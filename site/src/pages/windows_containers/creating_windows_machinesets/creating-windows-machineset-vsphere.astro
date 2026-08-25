@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"creating-windows-machineset-vsphere","text":"Creating a Windows machine set on vSphere"},{"depth":2,"slug":"prerequisites_creating-windows-machineset-vsphere","text":"Prerequisites"},{"depth":2,"slug":"additional-resources_creating-windows-machineset-vsphere","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/windows_containers/creating_windows_machinesets/creating-windows-machineset-vsphere";
+const currentPath = "/openshift-docs-markdown/windows_containers/creating_windows_machinesets/creating-windows-machineset-vsphere";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["windows_containers","windows_containers/creating_windows_machinesets"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a Windows machine set on vSphere {#creating-windows-machineset-vsphere}\n\nYou can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ vmw_full }} cluster, where you can run Windows container workloads.\n\nFor example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see \"Overview of machine management\" in the *Additional resources* section.\n\n## Prerequisites {#prerequisites_creating-windows-machineset-vsphere}\n\n- You installed the Windows Machine Config Operator (WMCO) using Operator Lifecycle Manager (OLM).\n- You are using a supported Windows Server as the operating system image.\n- You must prepare your vSphere environment for Windows container workloads by creating the vSphere Windows VM golden image. See \"Creating the vSphere Windows VM golden image\" in this section.\n- You must enable communication with the internal API server for the WMCO. See \"Enabling communication with the internal API server for the WMCO on vSphere\" in this section.\n\n## Additional resources {#additional-resources_creating-windows-machineset-vsphere}\n\n- [Configuring a secret for the Windows Machine Config Operator](/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)\n- [VMware vSphere infrastructure requirements](/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs)\n- [Overview of machine management](/machine_management/index#overview-of-machine-management)\n- [Object Names and IDs specification (Kubernetes documentation)](https://kubernetes.io/docs/concepts/overview/working-with-objects/names)\n- [Password must meet complexity requirements (Microsoft documentation)](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements)\n- [vSphere Virtual Machine Administration (vSphere documentation)](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration.html)\n","mdUrl":"/windows_containers/creating_windows_machinesets/creating-windows-machineset-vsphere.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a Windows machine set on vSphere {#creating-windows-machineset-vsphere}\n\nYou can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ vmw_full }} cluster, where you can run Windows container workloads.\n\nFor example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see \"Overview of machine management\" in the *Additional resources* section.\n\n## Prerequisites {#prerequisites_creating-windows-machineset-vsphere}\n\n- You installed the Windows Machine Config Operator (WMCO) using Operator Lifecycle Manager (OLM).\n- You are using a supported Windows Server as the operating system image.\n- You must prepare your vSphere environment for Windows container workloads by creating the vSphere Windows VM golden image. See \"Creating the vSphere Windows VM golden image\" in this section.\n- You must enable communication with the internal API server for the WMCO. See \"Enabling communication with the internal API server for the WMCO on vSphere\" in this section.\n\n## Additional resources {#additional-resources_creating-windows-machineset-vsphere}\n\n- [Configuring a secret for the Windows Machine Config Operator](/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)\n- [VMware vSphere infrastructure requirements](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs)\n- [Overview of machine management](/openshift-docs-markdown/machine_management/index#overview-of-machine-management)\n- [Object Names and IDs specification (Kubernetes documentation)](https://kubernetes.io/docs/concepts/overview/working-with-objects/names)\n- [Password must meet complexity requirements (Microsoft documentation)](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements)\n- [vSphere Virtual Machine Administration (vSphere documentation)](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/creating_windows_machinesets/creating-windows-machineset-vsphere.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,9 +106,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/machineset-creating.md"></p>
       <h2 id="additional-resources_creating-windows-machineset-vsphere" class="group scroll-mt-20">Additional resources<a href="#additional-resources_creating-windows-machineset-vsphere" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads">Configuring a secret for the Windows Machine Config Operator</a></li>
-      <li><a href="/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs">VMware vSphere infrastructure requirements</a></li>
-      <li><a href="/machine_management/index#overview-of-machine-management">Overview of machine management</a></li>
+      <li><a href="/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads">Configuring a secret for the Windows Machine Config Operator</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs">VMware vSphere infrastructure requirements</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/index#overview-of-machine-management">Overview of machine management</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names">Object Names and IDs specification (Kubernetes documentation)</a></li>
       <li><a href="https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements">Password must meet complexity requirements (Microsoft documentation)</a></li>
       <li><a href="https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration.html">vSphere Virtual Machine Administration (vSphere documentation)</a></li>

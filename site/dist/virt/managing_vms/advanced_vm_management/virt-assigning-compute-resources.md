@@ -20,5 +20,5 @@ Configure CPU overcommitment to prioritize VM density over performance when assi
 
 ## Additional resources {#additional-resources_virt-assigning-compute-resources}
 
-- [Enabling dedicated resources for virtual machines](/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm)
+- [Enabling dedicated resources for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm)
 - [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/)

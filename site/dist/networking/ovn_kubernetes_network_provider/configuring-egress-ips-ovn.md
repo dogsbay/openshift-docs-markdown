@@ -20,5 +20,5 @@ As a cluster administrator, you can configure the OVN-Kubernetes Container Netwo
 
 ## Additional resources {#configuring-egress-ips-additional-resources}
 
-- [LabelSelector meta/v1](/rest_api/objects/index#labelselector-meta-v1)
-- [LabelSelectorRequirement meta/v1](/rest_api/objects/index#labelselectorrequirement-meta-v1)
+- [LabelSelector meta/v1](/openshift-docs-markdown/rest_api/objects/index#labelselector-meta-v1)
+- [LabelSelectorRequirement meta/v1](/openshift-docs-markdown/rest_api/objects/index#labelselectorrequirement-meta-v1)

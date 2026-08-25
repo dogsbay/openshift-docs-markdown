@@ -8,4 +8,4 @@ Learn how to back up and restore your OpenShift Container Platform cluster’s c
 
 **Additional resources**
 
-- [Quorum protection with machine lifecycle hooks](/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)
+- [Quorum protection with machine lifecycle hooks](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)

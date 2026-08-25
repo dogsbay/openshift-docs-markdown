@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"node-apis","text":"Node APIs"},{"depth":2,"slug":"_node_v1","text":"Node [v1]"},{"depth":2,"slug":"_performanceprofile_performanceopenshiftiov2","text":"PerformanceProfile [performance.openshift.io/v2]"},{"depth":2,"slug":"_profile_tunedopenshiftiov1","text":"Profile [tuned.openshift.io/v1]"},{"depth":2,"slug":"_runtimeclass_nodek8siov1","text":"RuntimeClass [node.k8s.io/v1]"},{"depth":2,"slug":"_tuned_tunedopenshiftiov1","text":"Tuned [tuned.openshift.io/v1]"}];
 const nav = navData;
-const currentPath = "/rest_api/node_apis/node-apis-index";
+const currentPath = "/openshift-docs-markdown/rest_api/node_apis/node-apis-index";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["rest_api","rest_api/node_apis"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Node APIs {#node-apis}\n\n## Node \\[v1\\] {#_node_v1}\n\nDescription\n:   Node is a worker node in Kubernetes. Each node will have a unique identifier in the cache (i.e. in etcd).\n\nType\n:   ```\n    `object`\n    ```\n\n## PerformanceProfile \\[performance.openshift.io/v2\\] {#_performanceprofile_performanceopenshiftiov2}\n\nDescription\n:   PerformanceProfile is the Schema for the performanceprofiles API\n\nType\n:   ```\n    `object`\n    ```\n\n## Profile \\[tuned.openshift.io/v1\\] {#_profile_tunedopenshiftiov1}\n\nDescription\n:   Profile is a specification for a Profile resource.\n\nType\n:   ```\n    `object`\n    ```\n\n## RuntimeClass \\[node.k8s.io/v1\\] {#_runtimeclass_nodek8siov1}\n\nDescription\n:   RuntimeClass defines a class of container runtime supported in the cluster. The RuntimeClass is used to determine which container runtime is used to run all containers in a pod. RuntimeClasses are manually defined by a user or cluster provisioner, and referenced in the PodSpec. The Kubelet is responsible for resolving the RuntimeClassName reference before running the pod.  For more details, see https://kubernetes.io/docs/concepts/containers/runtime-class/\n\nType\n:   ```\n    `object`\n    ```\n\n## Tuned \\[tuned.openshift.io/v1\\] {#_tuned_tunedopenshiftiov1}\n\nDescription\n:   Tuned is a collection of rules that allows cluster-wide deployment of node-level sysctls and more flexibility to add custom tuning specified by user needs.  These rules are translated and passed to all containerized Tuned daemons running in the cluster in the format that the daemons understand. The responsibility for applying the node-level tuning then lies with the containerized Tuned daemons. More info: https://github.com/openshift/cluster-node-tuning-operator\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"/rest_api/node_apis/node-apis-index.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Node APIs {#node-apis}\n\n## Node \\[v1\\] {#_node_v1}\n\nDescription\n:   Node is a worker node in Kubernetes. Each node will have a unique identifier in the cache (i.e. in etcd).\n\nType\n:   ```\n    `object`\n    ```\n\n## PerformanceProfile \\[performance.openshift.io/v2\\] {#_performanceprofile_performanceopenshiftiov2}\n\nDescription\n:   PerformanceProfile is the Schema for the performanceprofiles API\n\nType\n:   ```\n    `object`\n    ```\n\n## Profile \\[tuned.openshift.io/v1\\] {#_profile_tunedopenshiftiov1}\n\nDescription\n:   Profile is a specification for a Profile resource.\n\nType\n:   ```\n    `object`\n    ```\n\n## RuntimeClass \\[node.k8s.io/v1\\] {#_runtimeclass_nodek8siov1}\n\nDescription\n:   RuntimeClass defines a class of container runtime supported in the cluster. The RuntimeClass is used to determine which container runtime is used to run all containers in a pod. RuntimeClasses are manually defined by a user or cluster provisioner, and referenced in the PodSpec. The Kubelet is responsible for resolving the RuntimeClassName reference before running the pod.  For more details, see https://kubernetes.io/docs/concepts/containers/runtime-class/\n\nType\n:   ```\n    `object`\n    ```\n\n## Tuned \\[tuned.openshift.io/v1\\] {#_tuned_tunedopenshiftiov1}\n\nDescription\n:   Tuned is a collection of rules that allows cluster-wide deployment of node-level sysctls and more flexibility to add custom tuning specified by user needs.  These rules are translated and passed to all containerized Tuned daemons running in the cluster in the format that the daemons understand. The responsibility for applying the node-level tuning then lies with the containerized Tuned daemons. More info: https://github.com/openshift/cluster-node-tuning-operator\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/node_apis/node-apis-index.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

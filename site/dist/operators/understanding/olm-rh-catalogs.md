@@ -15,10 +15,10 @@ Red Hat provides several Operator catalogs that are included with OpenShift Cont
 
 **Additional resources**
 
-- [Managing custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs)
-- [Packaging format](/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
-- [Mirroring images for a disconnected installation using the oc-mirror plugin](/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs)
+- [Packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
+- [Mirroring images for a disconnected installation using the oc-mirror plugin](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 
 **Additional resources**
 

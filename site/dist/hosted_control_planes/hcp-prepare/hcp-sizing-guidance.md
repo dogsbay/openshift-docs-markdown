@@ -21,13 +21,13 @@ See the following highly available {{ hcp }} requirements, which were tested wit
 
 **Additional resources**
 
-- [Overriding resource utilization measurements](/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)
-- [Distributing hosted cluster workloads](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)
+- [Overriding resource utilization measurements](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)
+- [Distributing hosted cluster workloads](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)
 
 **Additional resources**
 
-- [Configuring the maximum number of pods per node](/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)
+- [Configuring the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)
 
 **Additional resources**
 
-- [Sizing guidance for {{ hcp }}](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)
+- [Sizing guidance for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)

@@ -8,8 +8,8 @@ Y-stream updates move clusters between minor versions. You can update through a 
 
 ## Additional resources {#additional-resources_core-cluster-upgrades-y-stream}
 
-- [Complete an EUS-to-EUS cluster update with {{ cgu_operator }}](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-eus#core-cluster-upgrades-eus)
-- [Prepare {{ rh_rhacm }} policies and {{ cgu_operator }} for cluster updates](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies)
-- [Perform health checks before a cluster update with {{ cgu_operator }}](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)
+- [Complete an EUS-to-EUS cluster update with {{ cgu_operator }}](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-eus#core-cluster-upgrades-eus)
+- [Prepare {{ rh_rhacm }} policies and {{ cgu_operator }} for cluster updates](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies)
+- [Perform health checks before a cluster update with {{ cgu_operator }}](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)
 - [OpenShift Container Platform update documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/)
 - [OpenShift Container Platform update lifecycle and support policy](https://access.redhat.com/support/policy/updates/openshift)

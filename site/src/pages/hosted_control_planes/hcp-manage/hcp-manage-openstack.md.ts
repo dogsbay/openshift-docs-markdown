@@ -2,7 +2,7 @@
 // Source: hosted_control_planes/hcp-manage/hcp-manage-openstack.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Managing {{ hcp }} on {{ rh_openstack }}\n---\n\n# Managing {{ hcp }} on {{ rh_openstack }} {#hcp-manage-openstack}\n\nAfter you deploy {{ hcp }} on {{ rh_openstack_first }} agent machines, you can manage a hosted cluster.\n\n**Additional resources**\n\n- [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sr-iov-operator_installing-sriov-operator)\n";
+const body = "---\ntitle: Managing {{ hcp }} on {{ rh_openstack }}\n---\n\n# Managing {{ hcp }} on {{ rh_openstack }} {#hcp-manage-openstack}\n\nAfter you deploy {{ hcp }} on {{ rh_openstack_first }} agent machines, you can manage a hosted cluster.\n\n**Additional resources**\n\n- [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sr-iov-operator_installing-sriov-operator)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

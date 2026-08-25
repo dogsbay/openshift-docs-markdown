@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | TokenReviewSpec is a description of the token authentication request. |
 | `status` | `object` | TokenReviewStatus is the result of the token authentication request. |
 
@@ -119,15 +119,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |  |
+| `body` | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
-| 201 - Created | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
-| 202 - Accepted | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
+| 200 - OK | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
+| 201 - Created | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
+| 202 - Accepted | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/authentication.k8s.io/v1/tokenreviews {#_apisauthenticationk8siov1tokenreviews}
@@ -153,13 +153,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |  |
+| `body` | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
-| 201 - Created | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
-| 202 - Accepted | [`TokenReview`](/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
+| 200 - OK | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
+| 201 - Created | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
+| 202 - Accepted | [`TokenReview`](/openshift-docs-markdown/rest_api/authorization_apis/tokenreview-authentication-k8s-io-v1#tokenreview-authentication-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. metadata.name must be the Kubernetes node name. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. metadata.name must be the Kubernetes node name. |
 | `spec` | `object` | CSINodeSpec holds information about the specification of all CSI drivers installed on a node |
 
 ### .spec {#_spec}
@@ -131,7 +131,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -148,7 +148,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSINodeList`](/rest_api/objects/index#io-k8s-api-storage-v1-CSINodeList) schema |
+| 200 - OK | [`CSINodeList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-storage-v1-CSINodeList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -172,15 +172,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |  |
+| `body` | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/csinodes {#_apisstoragek8siov1watchcsinodes}
@@ -199,7 +199,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/csinodes/{{ name }} {#_apisstoragek8siov1csinodes_name}
@@ -230,8 +230,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -248,7 +248,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -272,8 +272,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -297,14 +297,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |  |
+| `body` | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSINode`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/csinodes/{{ name }} {#_apisstoragek8siov1watchcsinodes_name}
@@ -329,5 +329,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

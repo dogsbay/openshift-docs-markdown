@@ -15,10 +15,10 @@ To install the OADP Operator in a restricted network environment, you must first
 ## Additional resources {#additional-resources_installing-oadp-mcg}
 
 - \[Velero {{ velero_version }}\](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
-- [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Installing the OADP Operator](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 - [Performance tuning guide for Multicloud Object Gateway](https://access.redhat.com/solutions/6719951)
-- [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)
-- [Running tasks in pods using jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
-- [Configuring the {{ oadp_first }} with multiple backup storage locations](/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-bsl#configuring-oadp-multiple-bsl)
-- [Configuring node agents and node labels](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#oadp-configuring-node-agents_installing-oadp-mcg)
+- [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)
+- [Running tasks in pods using jobs](/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
+- [Configuring the {{ oadp_first }} with multiple backup storage locations](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-bsl#configuring-oadp-multiple-bsl)
+- [Configuring node agents and node labels](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#oadp-configuring-node-agents_installing-oadp-mcg)

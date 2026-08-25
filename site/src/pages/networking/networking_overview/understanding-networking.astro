@@ -19,7 +19,7 @@ import BlockImage from "@ui/image/Image.astro";
 
 const headings = [{"depth":1,"slug":"understanding-networking","text":"Understanding networking"}];
 const nav = navData;
-const currentPath = "/networking/networking_overview/understanding-networking";
+const currentPath = "/openshift-docs-markdown/networking/networking_overview/understanding-networking";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/networking_overview"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding networking {#understanding-networking}\n\nUnderstanding networking is essential for building resilient, secure, and scalable applications in OpenShift Container Platform. From basic pod-to-pod communication to complex traffic routing and security rules, every component of your application relies on the network to function correctly.\n\nThe following diagram shows the flow of external and internal network traffic among networking components for an {{ aws_first }} external client when connecting to a pod in a cluster.\n\n**Figure 1. Diagram showing traffic flow among networking components**\n\n![Diagram showing traffic flow among networking components](/_assets/images/494_OpenShift_pod_networking_0426.png)\n\n**Additional resources**\n\n- [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)\n","mdUrl":"/networking/networking_overview/understanding-networking.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding networking {#understanding-networking}\n\nUnderstanding networking is essential for building resilient, secure, and scalable applications in OpenShift Container Platform. From basic pod-to-pod communication to complex traffic routing and security rules, every component of your application relies on the network to function correctly.\n\nThe following diagram shows the flow of external and internal network traffic among networking components for an {{ aws_first }} external client when connecting to a pod in a cluster.\n\n**Figure 1. Diagram showing traffic flow among networking components**\n\n![Diagram showing traffic flow among networking components](/openshift-docs-markdown/_assets/images/494_OpenShift_pod_networking_0426.png)\n\n**Additional resources**\n\n- [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_overview/understanding-networking.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,13 +96,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Understanding networking is essential for building resilient, secure, and scalable applications in OpenShift Container Platform. From basic pod-to-pod communication to complex traffic routing and security rules, every component of your application relies on the network to function correctly.</p>
       <p>The following diagram shows the flow of external and internal network traffic among networking components for an {"{"}{"{"} aws_first {"}"}{"}"} external client when connecting to a pod in a cluster.</p>
       <p><strong>Figure 1. Diagram showing traffic flow among networking components</strong></p>
-      <BlockImage src="/_assets/images/494_OpenShift_pod_networking_0426.png" alt="Diagram showing traffic flow among networking components" />
+      <BlockImage src="/openshift-docs-markdown/_assets/images/494_OpenShift_pod_networking_0426.png" alt="Diagram showing traffic flow among networking components" />
       <p class="/modules/nw-understanding-networking-core-layers-and-components.md"></p>
       <p class="/modules/nw-understanding-networking-managing-traffic-within.md"></p>
       <p class="/modules/nw-understanding-networking-managing-traffic-entering-leaving.md"></p>
       <p class="/modules/nw-understanding-networking-securing-network-traffic.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/network_security/network_policy/about-network-policy#about-network-policy">About network policy</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy">About network policy</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -20,7 +20,7 @@ Type
 | `conditions` | `array` | List of component conditions observed |
 | `conditions[]` | `object` | Information about the condition of a component. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ### .conditions {#_conditions}
 
@@ -80,7 +80,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ComponentStatusList`](/rest_api/objects/index#io-k8s-api-core-v1-ComponentStatusList) schema |
+| 200 - OK | [`ComponentStatusList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ComponentStatusList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/componentstatuses/{{ name }} {#_apiv1componentstatuses_name}
@@ -105,5 +105,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ComponentStatus`](/rest_api/metadata_apis/componentstatus-v1#componentstatus-v1) schema |
+| 200 - OK | [`ComponentStatus`](/openshift-docs-markdown/rest_api/metadata_apis/componentstatus-v1#componentstatus-v1) schema |
 | 401 - Unauthorized | Empty |

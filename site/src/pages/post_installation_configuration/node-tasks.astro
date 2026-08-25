@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"post-install-node-tasks","text":"Postinstallation node tasks"},{"depth":2,"slug":"post-install-config-adding-fcos-compute","text":"Adding {{ op_system }} compute machines to an OpenShift Container Platform cluster"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/node-tasks";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/node-tasks";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation node tasks {#post-install-node-tasks}\n\nYou can perform postinstallation node tasks to add and manage compute machines, configure node resources and hardware, improve availability, and control workload scheduling.\n\nAfter installing OpenShift Container Platform, you can further expand and customize your cluster to your requirements through certain node tasks.\n\n## Adding {{ op_system }} compute machines to an OpenShift Container Platform cluster {#post-install-config-adding-fcos-compute}\n\nYou can add more {{ op_system_first }} compute machines to your OpenShift Container Platform cluster on bare metal.\n\nBefore you add more compute machines to a cluster that you installed on bare metal infrastructure, you must create {{ op_system }} machines for it to use. You can either use an ISO image or network PXE booting to create the machines.\n\n***Prerequisites***\n\n- You installed a cluster on bare metal.\n- You have installation media and {{ op_system_first }} images that you used to create your cluster. If you do not have these files, you must obtain them by following the instructions in the installation procedure.\n\n**Additional resources**\n\n- [Installing a cluster on bare metal](/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)\n\n**Additional resources**\n\n- [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)](https://access.redhat.com/articles/7212)\n- [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)\n\n**Additional resources**\n\n- [Disk partitioning for OpenShift Container Platform](/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_disk_installing-bare-metal)\n\n**Additional resources**\n\n- [About control plane machine sets](/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)\n\n**Additional resources**\n\n- [Nvidia GPU device plugin for COS-based operating system](https://github.com/GoogleCloudPlatform/Container-engine-accelerators/tree/master/cmd/nvidia_gpu)\n- [Nvidia official GPU device plugin](https://github.com/NVIDIA/k8s-device-plugin)\n- [Solarflare device plugin](https://github.com/vikaschoudhary16/sfc-device-plugin)\n- [KubeVirt device plugins: vfio and kvm](https://github.com/kubevirt/kubernetes-device-plugins)\n- [Kubernetes device plugin for {{ ibm_name }} Crypto Express (CEX) cards](https://github.com/ibm-s390-cloud/k8s-cex-dev-plugin)\n\n**Additional resources**\n\n- [Disabling or enforcing CPU limits using CPU CFS quotas](/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks)\n- [Reserving resources for system processes](/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks)\n- [Understanding how to reserve memory across quality of service tiers](/post_installation_configuration/node-tasks#qos-about-reserve_post-install-node-tasks)\n\n**Additional resources**\n\n- [Allocating resources for nodes](/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)\n\n**Additional resources**\n\n- [Static IP addresses for vSphere nodes](/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_ipi-vsphere-installation-reqs)\n","mdUrl":"/post_installation_configuration/node-tasks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation node tasks {#post-install-node-tasks}\n\nYou can perform postinstallation node tasks to add and manage compute machines, configure node resources and hardware, improve availability, and control workload scheduling.\n\nAfter installing OpenShift Container Platform, you can further expand and customize your cluster to your requirements through certain node tasks.\n\n## Adding {{ op_system }} compute machines to an OpenShift Container Platform cluster {#post-install-config-adding-fcos-compute}\n\nYou can add more {{ op_system_first }} compute machines to your OpenShift Container Platform cluster on bare metal.\n\nBefore you add more compute machines to a cluster that you installed on bare metal infrastructure, you must create {{ op_system }} machines for it to use. You can either use an ISO image or network PXE booting to create the machines.\n\n***Prerequisites***\n\n- You installed a cluster on bare metal.\n- You have installation media and {{ op_system_first }} images that you used to create your cluster. If you do not have these files, you must obtain them by following the instructions in the installation procedure.\n\n**Additional resources**\n\n- [Installing a cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)\n\n**Additional resources**\n\n- [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)](https://access.redhat.com/articles/7212)\n- [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)\n\n**Additional resources**\n\n- [Disk partitioning for OpenShift Container Platform](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_disk_installing-bare-metal)\n\n**Additional resources**\n\n- [About control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)\n\n**Additional resources**\n\n- [Nvidia GPU device plugin for COS-based operating system](https://github.com/GoogleCloudPlatform/Container-engine-accelerators/tree/master/cmd/nvidia_gpu)\n- [Nvidia official GPU device plugin](https://github.com/NVIDIA/k8s-device-plugin)\n- [Solarflare device plugin](https://github.com/vikaschoudhary16/sfc-device-plugin)\n- [KubeVirt device plugins: vfio and kvm](https://github.com/kubevirt/kubernetes-device-plugins)\n- [Kubernetes device plugin for {{ ibm_name }} Crypto Express (CEX) cards](https://github.com/ibm-s390-cloud/k8s-cex-dev-plugin)\n\n**Additional resources**\n\n- [Disabling or enforcing CPU limits using CPU CFS quotas](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks)\n- [Reserving resources for system processes](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks)\n- [Understanding how to reserve memory across quality of service tiers](/openshift-docs-markdown/post_installation_configuration/node-tasks#qos-about-reserve_post-install-node-tasks)\n\n**Additional resources**\n\n- [Allocating resources for nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)\n\n**Additional resources**\n\n- [Static IP addresses for vSphere nodes](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_ipi-vsphere-installation-reqs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/node-tasks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -103,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>You have installation media and {"{"}{"{"} op_system_first {"}"}{"}"} images that you used to create your cluster. If you do not have these files, you must obtain them by following the instructions in the installation procedure.</li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal">Installing a cluster on bare metal</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal">Installing a cluster on bare metal</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/articles/7212">How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)</a></li>
@@ -111,11 +111,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p class="/modules/machine-node-custom-partition.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_disk_installing-bare-metal">Disk partitioning for OpenShift Container Platform</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_disk_installing-bare-metal">Disk partitioning for OpenShift Container Platform</a></li></ul>
       <p class="/modules/post-install-deploying-machine-health-checks.md"></p>
       <p class="/modules/machine-health-checks-about.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_management/control_plane_machine_management/cpmso-about#cpmso-about">About control plane machine sets</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about">About control plane machine sets</a></li></ul>
       <p class="/modules/machine-health-checks-short-circuiting.md"></p>
       <p class="/modules/machine-health-checks-creating.md"></p>
       <p class="/modules/machineset-manually-scaling.md"></p>
@@ -162,13 +162,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-cluster-overcommit-configure-nodes.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks">Disabling or enforcing CPU limits using CPU CFS quotas</a></li>
-      <li><a href="/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks">Reserving resources for system processes</a></li>
-      <li><a href="/post_installation_configuration/node-tasks#qos-about-reserve_post-install-node-tasks">Understanding how to reserve memory across quality of service tiers</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks">Disabling or enforcing CPU limits using CPU CFS quotas</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks">Reserving resources for system processes</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/node-tasks#qos-about-reserve_post-install-node-tasks">Understanding how to reserve memory across quality of service tiers</a></li>
       </ul>
       <p class="/modules/nodes-cluster-overcommit-node-resources.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring">Allocating resources for nodes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring">Allocating resources for nodes</a></li></ul>
       <p class="/modules/nodes-cluster-project-overcommit.md"></p>
       <p class="/modules/nodes-cluster-overcommit-project-disable.md"></p>
       <p class="/modules/post-install-garbage-collection.md"></p>
@@ -187,7 +187,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-vsphere-machine-set-concept-static-ip.md"></p>
       <p class="/modules/nodes-vsphere-machine-set-scaling-static-ip.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_ipi-vsphere-installation-reqs">Static IP addresses for vSphere nodes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_ipi-vsphere-installation-reqs">Static IP addresses for vSphere nodes</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

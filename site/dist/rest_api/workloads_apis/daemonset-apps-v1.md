@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | DaemonSetSpec is the specification of a daemon set. |
 | `status` | `object` | DaemonSetStatus represents the current status of a daemon set. |
 
@@ -40,8 +40,8 @@ Required
 | --- | --- | --- |
 | `minReadySeconds` | `integer` | The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready). |
 | `revisionHistoryLimit` | `integer` | The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10. |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template’s node selector (or on every node if no node selector is specified). The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template’s node selector (or on every node if no node selector is specified). The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template |
 | `updateStrategy` | `object` | DaemonSetUpdateStrategy is a struct used to control the update strategy for a DaemonSet. |
 
 ### .spec.updateStrategy {#_specupdatestrategy}
@@ -71,8 +71,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `maxSurge` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediately created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption. |
-| `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update. |
+| `maxSurge` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediately created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption. |
+| `maxUnavailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update. |
 
 ### .status {#_status}
 
@@ -130,7 +130,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
 | `message` | `string` | A human readable message indicating details about the transition. |
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -185,7 +185,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSetList`](/rest_api/objects/index#io-k8s-api-apps-v1-DaemonSetList) schema |
+| 200 - OK | [`DaemonSetList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-DaemonSetList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/daemonsets {#_apisappsv1watchdaemonsets}
@@ -204,7 +204,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/daemonsets {#_apisappsv1namespaces_namespace_daemonsets}
@@ -229,7 +229,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -246,7 +246,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSetList`](/rest_api/objects/index#io-k8s-api-apps-v1-DaemonSetList) schema |
+| 200 - OK | [`DaemonSetList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-DaemonSetList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -270,15 +270,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |  |
+| `body` | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
-| 201 - Created | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
-| 202 - Accepted | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 200 - OK | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 201 - Created | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 202 - Accepted | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets {#_apisappsv1watchnamespaces_namespace_daemonsets}
@@ -297,7 +297,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }} {#_apisappsv1namespaces_namespace_daemonsets_name}
@@ -328,8 +328,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -346,7 +346,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 200 - OK | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -370,8 +370,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
-| 201 - Created | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 200 - OK | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 201 - Created | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -395,14 +395,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |  |
+| `body` | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
-| 201 - Created | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 200 - OK | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 201 - Created | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets/{{ name }} {#_apisappsv1watchnamespaces_namespace_daemonsets_name}
@@ -427,7 +427,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}/status {#_apisappsv1namespaces_namespace_daemonsets_name_status}
@@ -452,7 +452,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 200 - OK | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -476,8 +476,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
-| 201 - Created | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 200 - OK | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 201 - Created | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -501,12 +501,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |  |
+| `body` | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
-| 201 - Created | [`DaemonSet`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 200 - OK | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
+| 201 - Created | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |

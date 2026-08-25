@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"ols-openshift-lightspeed-overview","text":"{{ ols }} overview"}];
 const nav = navData;
-const currentPath = "/lightspeed/about/ols-openshift-lightspeed-overview";
+const currentPath = "/openshift-docs-markdown/lightspeed/about/ols-openshift-lightspeed-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["lightspeed","lightspeed/about"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ ols }} overview {#ols-openshift-lightspeed-overview}\n\n{{ ols_official }} provides intelligent, natural language processing capabilities designed to make Red Hat cloud-native application platforms easier to use for beginners and more efficient for experienced professionals.\n\n> [!NOTE]\n> Because {{ ols }} releases on a different cadence from OpenShift Container Platform, the {{ ols }} documentation is available as a separate documentation set at [About {{ ols_official }}](https://docs.redhat.com/en/documentation/red_hat_openshift_lightspeed/1.0/html/about/index).\n","mdUrl":"/lightspeed/about/ols-openshift-lightspeed-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ ols }} overview {#ols-openshift-lightspeed-overview}\n\n{{ ols_official }} provides intelligent, natural language processing capabilities designed to make Red Hat cloud-native application platforms easier to use for beginners and more efficient for experienced professionals.\n\n> [!NOTE]\n> Because {{ ols }} releases on a different cadence from OpenShift Container Platform, the {{ ols }} documentation is available as a separate documentation set at [About {{ ols_official }}](https://docs.redhat.com/en/documentation/red_hat_openshift_lightspeed/1.0/html/about/index).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/lightspeed/about/ols-openshift-lightspeed-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

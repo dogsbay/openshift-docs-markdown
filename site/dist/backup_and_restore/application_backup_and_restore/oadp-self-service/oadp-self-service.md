@@ -8,4 +8,4 @@ Use {{ oadp_short }} Self-Service to enable namespace administrators to back up 
 
 **Additional resources**
 
-- [Configuring an htpasswd identity provider](/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider)
+- [Configuring an htpasswd identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider)

@@ -8,4 +8,4 @@ To create and update container images and track version changes in OpenShift Con
 
 ## Additional resources {#additional-resources-remove-tag_image-streams-managing}
 
-- [Removing deprecated image stream tags from the Cluster Samples Operator](/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
+- [Removing deprecated image stream tags from the Cluster Samples Operator](/openshift-docs-markdown/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)

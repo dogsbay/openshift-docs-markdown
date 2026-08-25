@@ -11,14 +11,14 @@ You can update the {{ ztp_first }} infrastructure independently from the hub clu
 
 **Additional resources**
 
-- [Configuring managed cluster policies by using PolicyGenerator resources](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
-- [Comparing {{ rh_rhacm }} PolicyGenerator and PolicyGenTemplate resource patching](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
+- [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
+- [Comparing {{ rh_rhacm }} PolicyGenerator and PolicyGenTemplate resource patching](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
 
 **Additional resources**
 
-- [Enabling the assisted service](/edge_computing/ztp-preparing-the-hub-cluster#enabling-assisted-installer-service-on-bare-metal_ztp-preparing-the-hub-cluster)
+- [Enabling the assisted service](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#enabling-assisted-installer-service-on-bare-metal_ztp-preparing-the-hub-cluster)
 
 **Additional resources**
 
-- [About the {{ cgu_operator_full }} configuration](/edge_computing/cnf-talm-for-cluster-upgrades#cnf-about-topology-aware-lifecycle-manager-config_cnf-topology-aware-lifecycle-manager)
-- [About the auto-created ClusterGroupUpgrade CR for {{ ztp }}](/edge_computing/policygentemplate_for_ztp/ztp-talm-updating-managed-policies#talo-precache-autocreated-cgu-for-ztp_ztp-talm)
+- [About the {{ cgu_operator_full }} configuration](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-about-topology-aware-lifecycle-manager-config_cnf-topology-aware-lifecycle-manager)
+- [About the auto-created ClusterGroupUpgrade CR for {{ ztp }}](/openshift-docs-markdown/edge_computing/policygentemplate_for_ztp/ztp-talm-updating-managed-policies#talo-precache-autocreated-cgu-for-ztp_ztp-talm)

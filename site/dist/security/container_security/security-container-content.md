@@ -8,4 +8,4 @@ To ensure the security of the content inside your containers you need to start w
 
 **Additional resources**
 
-- [Image stream objects](/openshift_images/index#overview-of-images)
+- [Image stream objects](/openshift-docs-markdown/openshift_images/index#overview-of-images)

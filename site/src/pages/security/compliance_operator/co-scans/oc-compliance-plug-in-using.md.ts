@@ -2,7 +2,7 @@
 // Source: security/compliance_operator/co-scans/oc-compliance-plug-in-using.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Using the oc-compliance plugin\n---\n\n# Using the oc-compliance plugin {#using-oc-compliance-plug-in}\n\nAlthough the Compliance Operator automates many of the checks and remediations for the cluster, an administrator can use the `oc-compliance` plugin to perform the full process of bringing a cluster into compliance by interacting with the Compliance Operator API and other components.\n\n## Additional resources {#additional-resources_oc-compliance-plug-in-understanding}\n\n- [Understanding the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)\n";
+const body = "---\ntitle: Using the oc-compliance plugin\n---\n\n# Using the oc-compliance plugin {#using-oc-compliance-plug-in}\n\nAlthough the Compliance Operator automates many of the checks and remediations for the cluster, an administrator can use the `oc-compliance` plugin to perform the full process of bringing a cluster into compliance by interacting with the Compliance Operator API and other components.\n\n## Additional resources {#additional-resources_oc-compliance-plug-in-understanding}\n\n- [Understanding the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

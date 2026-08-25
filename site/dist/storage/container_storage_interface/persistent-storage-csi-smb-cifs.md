@@ -8,6 +8,6 @@ You can provision and manage Common Internet File System (CIFS)/Server Message B
 
  **Additional resources**
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-- [Dynamic provisioning](/storage/container_storage_interface/persistent-storage-csi-smb-cifs#persistent-storage-csi-smb-cifs-provision-dynamic_persistent-storage-csi-smb-cifs)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Dynamic provisioning](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-smb-cifs#persistent-storage-csi-smb-cifs-provision-dynamic_persistent-storage-csi-smb-cifs)

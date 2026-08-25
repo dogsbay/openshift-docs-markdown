@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"machine-config-pin-preload-images-about","text":"Pinning images to nodes"}];
 const nav = navData;
-const currentPath = "/machine_configuration/machine-config-pin-preload-images-about";
+const currentPath = "/openshift-docs-markdown/machine_configuration/machine-config-pin-preload-images-about";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["machine_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pinning images to nodes {#machine-config-pin-preload-images-about}\n\nYou can prevent a slow, unreliable connection to an image registry from interfering with operations that require pulled images by pulling those images in advance and *pinning* those images to a specific machine config pool (MCP) before they are actually needed.\n\nThis problem can affect clusters that have low bandwidth, clusters with unreliable internet connectivity, or clusters in a disconnected environment. For example, a cluster update might require pulling more than one hundred images. Failure to pull those images could cause retries that can interfere with the update process and might cause the update to fail.\n\nBy pinning images, you can ensure that the images are available to your nodes when needed for operations such as updating a cluster or deploying an application. You can provide a more consistent update, which is important when scheduling updates into maintenance windows. When deploying applications, you can pin images to ensure that the images are available, so that you can deploy in a more reliable manner.\n\nYou can pin images to specific nodes by using a `PinnedImageSet` custom resource (CR), as described in *Pinning images*. Pinned images are stored on the nodes in the `/etc/crio/crio.conf.d/50-pinned-images` file on those nodes. The contents of the file appear similar to the following example:\n\n```terminal\n[crio]\n  [crio.image]\n    pinned_images = [\"quay.io/openshift-release-dev/ocp-release@sha256:4198606580b69c8335ad7ae531c3a74e51aee25db5faaf368234e8c8dae5cbea\", \"quay.io/openshift-release-dev/ocp-release@sha256:513cf1028aa1a021fa73d0601427a0fbcf6d212b88aaf9d76d4e4841a061e44e\", \"quay.io/openshift-release-dev/ocp-release@sha256:61eae2d261e54d1b8a0e05f6b5326228b00468364563745eed88460af04f909b\"]\n```\n\nAnother benefit to pinned images is that image garbage collection does not remove the pinned images.\n\nBefore pulling the images, the Machine Config Operator (MCO) verifies that there is enough storage space available on each affected node. If the node has sufficient space, the MCO creates the pinned image file, pulls the images, and reloads CRI-O. If there is not sufficient space, the MCO does not pull the images and presents an error message.\n\n**Additional resources**\n\n- [About checking machine config node status](/machine_configuration/index#checking-mco-node-status_machine-config-overview)\n","mdUrl":"/machine_configuration/machine-config-pin-preload-images-about.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pinning images to nodes {#machine-config-pin-preload-images-about}\n\nYou can prevent a slow, unreliable connection to an image registry from interfering with operations that require pulled images by pulling those images in advance and *pinning* those images to a specific machine config pool (MCP) before they are actually needed.\n\nThis problem can affect clusters that have low bandwidth, clusters with unreliable internet connectivity, or clusters in a disconnected environment. For example, a cluster update might require pulling more than one hundred images. Failure to pull those images could cause retries that can interfere with the update process and might cause the update to fail.\n\nBy pinning images, you can ensure that the images are available to your nodes when needed for operations such as updating a cluster or deploying an application. You can provide a more consistent update, which is important when scheduling updates into maintenance windows. When deploying applications, you can pin images to ensure that the images are available, so that you can deploy in a more reliable manner.\n\nYou can pin images to specific nodes by using a `PinnedImageSet` custom resource (CR), as described in *Pinning images*. Pinned images are stored on the nodes in the `/etc/crio/crio.conf.d/50-pinned-images` file on those nodes. The contents of the file appear similar to the following example:\n\n```terminal\n[crio]\n  [crio.image]\n    pinned_images = [\"quay.io/openshift-release-dev/ocp-release@sha256:4198606580b69c8335ad7ae531c3a74e51aee25db5faaf368234e8c8dae5cbea\", \"quay.io/openshift-release-dev/ocp-release@sha256:513cf1028aa1a021fa73d0601427a0fbcf6d212b88aaf9d76d4e4841a061e44e\", \"quay.io/openshift-release-dev/ocp-release@sha256:61eae2d261e54d1b8a0e05f6b5326228b00468364563745eed88460af04f909b\"]\n```\n\nAnother benefit to pinned images is that image garbage collection does not remove the pinned images.\n\nBefore pulling the images, the Machine Config Operator (MCO) verifies that there is enough storage space available on each affected node. If the node has sufficient space, the MCO creates the pinned image file, pulls the images, and reloads CRI-O. If there is not sufficient space, the MCO does not pull the images and presents an error message.\n\n**Additional resources**\n\n- [About checking machine config node status](/openshift-docs-markdown/machine_configuration/index#checking-mco-node-status_machine-config-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_configuration/machine-config-pin-preload-images-about.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -102,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Before pulling the images, the Machine Config Operator (MCO) verifies that there is enough storage space available on each affected node. If the node has sufficient space, the MCO creates the pinned image file, pulls the images, and reloads CRI-O. If there is not sufficient space, the MCO does not pull the images and presents an error message.</p>
       <p class="/modules/machine-config-pin-preload-images.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_configuration/index#checking-mco-node-status_machine-config-overview">About checking machine config node status</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_configuration/index#checking-mco-node-status_machine-config-overview">About checking machine config node status</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

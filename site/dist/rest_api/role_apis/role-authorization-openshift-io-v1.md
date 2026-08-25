@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `rules` | `array` | rules holds all the PolicyRules for this Role |
 | `rules[]` | `object` | PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. |
 
@@ -54,7 +54,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiGroups` | `array (string)` | apiGroups is the name of the APIGroup that contains the resources.  If this field is empty, then both kubernetes and origin API groups are assumed. That means that if an action is requested against one of the enumerated resources in either the kubernetes or the origin API group, the request will be allowed |
-| `attributeRestrictions` | [`RawExtension`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
+| `attributeRestrictions` | [`RawExtension`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
 | `nonResourceURLs` | `array (string)` | NonResourceURLsSlice is a set of partial urls that a user should have access to.  \*s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. |
 | `resourceNames` | `array (string)` | resourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed. |
 | `resources` | `array (string)` | resources is a list of resources this rule applies to.  ResourceAll represents all resources. |
@@ -94,7 +94,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleList`](/rest_api/objects/index#com-github-openshift-api-authorization-v1-RoleList) schema |
+| 200 - OK | [`RoleList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-authorization-v1-RoleList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/roles {#_apisauthorizationopenshiftiov1namespaces_namespace_roles}
@@ -113,7 +113,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleList`](/rest_api/objects/index#com-github-openshift-api-authorization-v1-RoleList) schema |
+| 200 - OK | [`RoleList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-authorization-v1-RoleList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -137,15 +137,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |  |
+| `body` | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
-| 201 - Created | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
-| 202 - Accepted | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 200 - OK | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 201 - Created | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 202 - Accepted | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/roles/{{ name }} {#_apisauthorizationopenshiftiov1namespaces_namespace_roles_name}
@@ -176,8 +176,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -194,7 +194,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 200 - OK | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -218,8 +218,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
-| 201 - Created | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 200 - OK | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 201 - Created | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -243,12 +243,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |  |
+| `body` | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
-| 201 - Created | [`Role`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 200 - OK | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
+| 201 - Created | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

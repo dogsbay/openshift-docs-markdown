@@ -8,4 +8,4 @@ You can extract the `cluster-compare` plugin from a container image in the Red H
 
 ## Additional resources {#_additional_resources}
 
-- [Extending the OpenShift CLI with plugins](/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins)
+- [Extending the OpenShift CLI with plugins](/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins)

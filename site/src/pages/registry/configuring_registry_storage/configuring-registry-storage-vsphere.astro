@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"configuring-registry-storage-vsphere","text":"Configuring the registry for vSphere"},{"depth":2,"slug":"configuring-registry-storage-vsphere-addtl-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/registry/configuring_registry_storage/configuring-registry-storage-vsphere";
+const currentPath = "/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["registry","registry/configuring_registry_storage"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for vSphere {#configuring-registry-storage-vsphere}\n\nConfigure image registry storage for vSphere clusters after installation. Because vSphere installations do not automatically provision storage, you must change the registry management state from `Removed` to `Managed` and configure persistent storage or use {{ rh_storage_first }} before the registry can store container images.\n\n## Additional resources {#configuring-registry-storage-vsphere-addtl-resources}\n\n- [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)\n- [Recommended configurable storage technology](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Configuring Image Registry to use {{ rh_storage }}](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/managing_and_allocating_storage_resources/index#configuring-image-registry-to-use-openshift-data-foundation_rhodf)\n","mdUrl":"/registry/configuring_registry_storage/configuring-registry-storage-vsphere.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for vSphere {#configuring-registry-storage-vsphere}\n\nConfigure image registry storage for vSphere clusters after installation. Because vSphere installations do not automatically provision storage, you must change the registry management state from `Removed` to `Managed` and configure persistent storage or use {{ rh_storage_first }} before the registry can store container images.\n\n## Additional resources {#configuring-registry-storage-vsphere-addtl-resources}\n\n- [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)\n- [Recommended configurable storage technology](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Configuring Image Registry to use {{ rh_storage }}](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/managing_and_allocating_storage_resources/index#configuring-image-registry-to-use-openshift-data-foundation_rhodf)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,8 +104,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/registry-configuring-registry-storage-rhodf-cephfs.md"></p>
       <h2 id="configuring-registry-storage-vsphere-addtl-resources" class="group scroll-mt-20">Additional resources<a href="#configuring-registry-storage-vsphere-addtl-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere">Configuring the registry for vSphere</a></li>
-      <li><a href="/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Recommended configurable storage technology</a></li>
+      <li><a href="/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere">Configuring the registry for vSphere</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Recommended configurable storage technology</a></li>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/managing_and_allocating_storage_resources/index#configuring-image-registry-to-use-openshift-data-foundation_rhodf">Configuring Image Registry to use {"{"}{"{"} rh_storage {"}"}{"}"}</a></li>
       </ul>
     </article>

@@ -15,9 +15,9 @@ For information on scaling pods based on custom metrics, see "Automatically scal
 
 ## Additional resources {#additional-resources_nodes-pods-autoscaling}
 
-- [Automatically scaling pods based on custom metrics](/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)
-- [Understanding deployments](/applications/deployments/what-deployments-are#what-deployments-are)
-- [Understanding resource requests and limits](/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)
-- [Scaling policies](/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling-policies_nodes-pods-autoscaling)
-- [Understanding deployments and deployment configs](/applications/deployments/what-deployments-are#what-deployments-are)
+- [Automatically scaling pods based on custom metrics](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)
+- [Understanding deployments](/openshift-docs-markdown/applications/deployments/what-deployments-are#what-deployments-are)
+- [Understanding resource requests and limits](/openshift-docs-markdown/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)
+- [Scaling policies](/openshift-docs-markdown/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling-policies_nodes-pods-autoscaling)
+- [Understanding deployments and deployment configs](/openshift-docs-markdown/applications/deployments/what-deployments-are#what-deployments-are)
 - [Horizontal Pod Autoscaling of Quarkus Application Based on Memory Utilization](https://cloud.redhat.com/blog/horizontal-pod-autoscaling-of-quarkus-application-based-on-memory-utilization)

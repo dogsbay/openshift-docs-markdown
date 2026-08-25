@@ -8,10 +8,10 @@ Create your {{ oadp_short }} resources, extra manifests, and custom catalog sour
 
 **Additional resources**
 
-- [Configuring a shared container partition between ostree stateroots when using {{ ztp }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
-- [Installing and configuring the {{ oadp_short }} Operator with {{ ztp }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#ztp-image-based-upgrade-installing-oadp_install-operators)
+- [Configuring a shared container partition between ostree stateroots when using {{ ztp }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
+- [Installing and configuring the {{ oadp_short }} Operator with {{ ztp }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#ztp-image-based-upgrade-installing-oadp_install-operators)
 
 **Additional resources**
 
-- [Configuring a shared container partition between ostree stateroots when using {{ ztp }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
-- [Performing an image-based upgrade for {{ sno }} clusters using {{ ztp }}](/edge_computing/image_based_upgrade/ztp-image-based-upgrade#ztp-image-based-upgrade)
+- [Configuring a shared container partition between ostree stateroots when using {{ ztp }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
+- [Performing an image-based upgrade for {{ sno }} clusters using {{ ztp }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/ztp-image-based-upgrade#ztp-image-based-upgrade)

@@ -8,4 +8,4 @@ You can install a cluster after setting up the environment for an OpenShift Cont
 
 ## Additional resources {#additional-resources_creating_manifest_ignition}
 
-- [Understanding update channels and releases](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
+- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)

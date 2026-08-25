@@ -8,16 +8,16 @@ If you use a firewall, you must configure your allowlist for the firewall to ens
 
 **Additional resources**
 
-- [OpenID Connect requirements for AWS STS](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-auth-flow-aws-oidc_cco-short-term-creds)
+- [OpenID Connect requirements for AWS STS](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-auth-flow-aws-oidc_cco-short-term-creds)
 
 **Additional resources**
 
-- [{{ cli_manager }} overview](/cli_reference/cli_manager/index#cli-manager-overview)
+- [{{ cli_manager }} overview](/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview)
 
 **Additional resources**
 
-- [Minimizing node disruption with MachineConfig changes](/machine_configuration/machine-config-node-disruption#machine-config-node-disruption)
+- [Minimizing node disruption with MachineConfig changes](/openshift-docs-markdown/machine_configuration/machine-config-node-disruption#machine-config-node-disruption)
 
 **Additional resources**
 
-- [Installing Butane](/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)
+- [Installing Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)

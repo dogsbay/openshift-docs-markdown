@@ -20,7 +20,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | BuildSpec has the information to represent a build and also additional information about a build |
 | `status` | `object` | BuildStatus contains the status of a build |
 
@@ -44,7 +44,7 @@ Required
 | `nodeSelector` | `object (string)` | nodeSelector is a selector which must be true for the build pod to fit on a node If nil, it can be overridden by default build nodeselector values for the cluster. If set to an empty map or a map with any values, default build nodeselector values are ignored. |
 | `output` | `object` | BuildOutput is input to a build strategy and describes the container image that the strategy should produce. |
 | `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR. The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container. There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`. 1. Shell script: 	   "postCommit": { 	     "script": "rake test --verbose", 	   } 	The above is a convenient form which is equivalent to: 	   "postCommit": { 	     "command": \["/bin/sh", "-ic"\], 	     "args":    \["rake test --verbose"\] 	   } 2. A command as the image entrypoint: 	   "postCommit": { 	     "commit": \["rake", "test", "--verbose"\] 	   } 	Command overrides the image entrypoint in the exec form, as documented in 	Docker: https://docs.docker.com/engine/reference/builder/#entrypoint. 3. Pass arguments to the default entrypoint: 	       "postCommit": { 			      "args": \["rake", "test", "--verbose"\] 		      } 	    This form is only useful if the image entrypoint can handle arguments. 4. Shell script with arguments: 	   "postCommit": { 	     "script": "rake test $1", 	     "args":   \["--verbose"\] 	   } 	This form is useful if you need to pass arguments that would otherwise be 	hard to quote properly in the shell script. In the script, $0 will be 	"/bin/sh" and $1, $2, etc, are the positional arguments from Args. 5. Command with arguments: 	   "postCommit": { 	     "command": \["rake", "test"\], 	     "args":    \["--verbose"\] 	   } 	This form is equivalent to appending the arguments to the Command slice. It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
-| `resources` | [`ResourceRequirements`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources computes resource requirements to execute the build. |
+| `resources` | [`ResourceRequirements`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources computes resource requirements to execute the build. |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `serviceAccount` | `string` | serviceAccount is the name of the ServiceAccount to use to run the pod created by this build. The pod will be allowed to use secrets referenced by the ServiceAccount |
 | `source` | `object` | BuildSource is the SCM used for the build. |
@@ -66,8 +66,8 @@ Type
 | --- | --- | --- |
 | `imageLabels` | `array` | imageLabels define a list of labels that are applied to the resulting image. If there are multiple labels with the same name then the last one in the list is used. |
 | `imageLabels[]` | `object` | ImageLabel represents a label applied to the resulting image. |
-| `pushSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pushSecret is the name of a Secret that would be used for setting up the authentication for executing the Docker push to authentication enabled Docker Registry (or Docker Hub). |
-| `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to defines an optional location to push the output of this build to. Kind must be one of 'ImageStreamTag' or 'DockerImage'. This value will be used to look up a container image repository to push to. In the case of an ImageStreamTag, the ImageStreamTag will be looked for in the namespace of the build unless Namespace is specified. |
+| `pushSecret` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pushSecret is the name of a Secret that would be used for setting up the authentication for executing the Docker push to authentication enabled Docker Registry (or Docker Hub). |
+| `to` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to defines an optional location to push the output of this build to. Kind must be one of 'ImageStreamTag' or 'DockerImage'. This value will be used to look up a container image repository to push to. In the case of an ImageStreamTag, the ImageStreamTag will be looked for in the namespace of the build unless Namespace is specified. |
 
 ### .spec.output.imageLabels {#_specoutputimagelabels}
 
@@ -238,7 +238,7 @@ Type
 | `images[]` | `object` | ImageSource is used to describe build source that will be extracted from an image or used during a multi stage build. A reference of type ImageStreamTag, ImageStreamImage or DockerImage may be used. A pull secret can be specified to pull the image from an external registry or override the default service account secret if pulling from the internal registry. Image sources can either be used to extract content from an image and place it into the build context along with the repository source, or used directly during a multi-stage container image build to allow content to be copied without overwriting the contents of the repository source (see the 'paths' and 'as' fields). |
 | `secrets` | `array` | secrets represents a list of secrets and their destinations that will be used only for the build. |
 | `secrets[]` | `object` | SecretBuildSource describes a secret and its destination directory that will be used only at the build time. The content of the secret referenced here will be copied into the destination directory instead of mounting. |
-| `sourceSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | sourceSecret is the name of a Secret that would be used for setting up the authentication for cloning private repository. The secret contains valid credentials for remote repository, where the data’s key represent the authentication method to be used and value is the base64 encoded credentials. Supported auth methods are: ssh-privatekey. |
+| `sourceSecret` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | sourceSecret is the name of a Secret that would be used for setting up the authentication for cloning private repository. The secret contains valid credentials for remote repository, where the data’s key represent the authentication method to be used and value is the base64 encoded credentials. Supported auth methods are: ssh-privatekey. |
 | `type` | `string` | type of build input to accept |
 
 ### .spec.source.binary {#_specsourcebinary}
@@ -280,7 +280,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configMap` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | configMap is a reference to an existing configmap that you want to use in your build. |
+| `configMap` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | configMap is a reference to an existing configmap that you want to use in your build. |
 | `destinationDir` | `string` | destinationDir is the directory where the files from the configmap should be available for the build time. For the Source build strategy, these will be injected into a container where the assemble script runs. For the container image build strategy, these will be copied into the build directory, where the Dockerfile is located, so users can ADD or COPY them during container image build. |
 
 ### .spec.source.git {#_specsourcegit}
@@ -330,10 +330,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `as` | `array (string)` | A list of image names that this source will be used in place of during a multi-stage container image build. For instance, a Dockerfile that uses "COPY --from=nginx:latest" will first check for an image source that has "nginx:latest" in this field before attempting to pull directly. If the Dockerfile does not reference an image source it is ignored. This field and paths may both be set, in which case the contents will be used twice. |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to an ImageStreamTag, ImageStreamImage, or DockerImage to copy source from. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to an ImageStreamTag, ImageStreamImage, or DockerImage to copy source from. |
 | `paths` | `array` | paths is a list of source and destination paths to copy from the image. This content will be copied into the build context prior to starting the build. If no paths are set, the build context will not be altered. |
 | `paths[]` | `object` | ImageSourcePath describes a path to be copied from a source image and its destination within the build directory. |
-| `pullSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is a reference to a secret to be used to pull the image from a registry If the image is pulled from the OpenShift registry, this field does not need to be set. |
+| `pullSecret` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is a reference to a secret to be used to pull the image from a registry If the image is pulled from the OpenShift registry, this field does not need to be set. |
 
 ### .spec.source.images\[\].paths {#_specsourceimagespaths}
 
@@ -390,7 +390,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `destinationDir` | `string` | destinationDir is the directory where the files from the secret should be available for the build time. For the Source build strategy, these will be injected into a container where the assemble script runs. Later, when the script finishes, all files injected will be truncated to zero length. For the container image build strategy, these will be copied into the build directory, where the Dockerfile is located, so users can ADD or COPY them during container image build. |
-| `secret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | secret is a reference to an existing secret that you want to use in your build. |
+| `secret` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | secret is a reference to an existing secret that you want to use in your build. |
 
 ### .spec.strategy {#_specstrategy}
 
@@ -426,11 +426,11 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `buildAPIVersion` | `string` | buildAPIVersion is the requested API version for the Build object serialized and passed to the custom builder |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
 | `exposeDockerSocket` | `boolean` | exposeDockerSocket will allow running Docker commands (and build container images) from inside the container. |
 | `forcePull` | `boolean` | forcePull describes if the controller should configure the build pod to always pull the images for the builder or only pull if it is not present locally |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is reference to an DockerImage, ImageStreamTag, or ImageStreamImage from which the container image should be pulled |
-| `pullSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is reference to an DockerImage, ImageStreamTag, or ImageStreamImage from which the container image should be pulled |
+| `pullSecret` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
 | `secrets` | `array` | secrets is a list of additional secrets that will be included in the build pod |
 | `secrets[]` | `object` | SecretSpec specifies a secret to be included in a build pod and its corresponding mount point |
 
@@ -461,7 +461,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `mountPath` | `string` | mountPath is the path at which to mount the secret |
-| `secretSource` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | secretSource is a reference to the secret |
+| `secretSource` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | secretSource is a reference to the secret |
 
 ### .spec.strategy.dockerStrategy {#_specstrategydockerstrategy}
 
@@ -475,14 +475,14 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `buildArgs` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | buildArgs contains build arguments that will be resolved in the Dockerfile.  See https://docs.docker.com/engine/reference/builder/#/arg for more details. NOTE: Only the 'name' and 'value' fields are supported. Any settings on the 'valueFrom' field are ignored. |
+| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | buildArgs contains build arguments that will be resolved in the Dockerfile.  See https://docs.docker.com/engine/reference/builder/#/arg for more details. NOTE: Only the 'name' and 'value' fields are supported. Any settings on the 'valueFrom' field are ignored. |
 | `dockerfilePath` | `string` | dockerfilePath is the path of the Dockerfile that will be used to build the container image, relative to the root of the context (contextDir). Defaults to `Dockerfile` if unset. |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
 | `forcePull` | `boolean` | forcePull describes if the builder should pull the images from registry prior to building. |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to an DockerImage, ImageStreamTag, or ImageStreamImage which overrides the FROM image in the Dockerfile for the build. If the Dockerfile uses multi-stage builds, this will replace the image in the last FROM directive of the file. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to an DockerImage, ImageStreamTag, or ImageStreamImage which overrides the FROM image in the Dockerfile for the build. If the Dockerfile uses multi-stage builds, this will replace the image in the last FROM directive of the file. |
 | `imageOptimizationPolicy` | `string` | imageOptimizationPolicy describes what optimizations the system can use when building images to reduce the final size or time spent building the image. The default policy is 'None' which means the final build image will be equivalent to an image created by the container image build API. The experimental policy 'SkipLayers' will avoid commiting new layers in between each image step, and will fail if the Dockerfile cannot provide compatibility with the 'None' policy. An additional experimental policy 'SkipLayersAndWarn' is the same as 'SkipLayers' but simply warns if compatibility cannot be preserved. |
 | `noCache` | `boolean` | noCache if set to true indicates that the container image build must be executed with the --no-cache=true flag |
-| `pullSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
+| `pullSecret` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
 | `volumes` | `array` | volumes is a list of input volumes that can be mounted into the builds runtime environment. Only a subset of Kubernetes Volume sources are supported by builds. More info: https://kubernetes.io/docs/concepts/storage/volumes |
 | `volumes[]` | `object` | BuildVolume describes a volume that is made available to build pods, such that it can be mounted into buildah’s runtime environment. Only a subset of Kubernetes Volume sources are supported. |
 
@@ -560,9 +560,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configMap` | [`ConfigMapVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapVolumeSource) | configMap represents a ConfigMap that should populate this volume |
-| `csi` | [`CSIVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-CSIVolumeSource) | csi represents ephemeral storage provided by external CSI drivers which support this capability |
-| `secret` | [`SecretVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-SecretVolumeSource) | secret represents a Secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
+| `configMap` | [`ConfigMapVolumeSource`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapVolumeSource) | configMap represents a ConfigMap that should populate this volume |
+| `csi` | [`CSIVolumeSource`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-CSIVolumeSource) | csi represents ephemeral storage provided by external CSI drivers which support this capability |
+| `secret` | [`SecretVolumeSource`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-SecretVolumeSource) | secret represents a Secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
 | `type` | `string` | type is the BuildVolumeSourceType for the volume source. Type must match the populated volume source. Valid types are: Secret, ConfigMap |
 
 ### .spec.strategy.jenkinsPipelineStrategy {#_specstrategyjenkinspipelinestrategy}
@@ -577,7 +577,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a build pipeline. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a build pipeline. |
 | `jenkinsfile` | `string` | jenkinsfile defines the optional raw contents of a Jenkinsfile which defines a Jenkins pipeline build. |
 | `jenkinsfilePath` | `string` | jenkinsfilePath is the optional path of the Jenkinsfile that will be used to configure the pipeline relative to the root of the context (contextDir). If both JenkinsfilePath & Jenkinsfile are both not specified, this defaults to Jenkinsfile in the root of the specified contextDir. |
 
@@ -596,11 +596,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
 | `forcePull` | `boolean` | forcePull describes if the builder should pull the images from registry prior to building. |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is reference to an DockerImage, ImageStreamTag, or ImageStreamImage from which the container image should be pulled |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is reference to an DockerImage, ImageStreamTag, or ImageStreamImage from which the container image should be pulled |
 | `incremental` | `boolean` | incremental flag forces the Source build to do incremental builds if true. |
-| `pullSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
+| `pullSecret` | [`LocalObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
 | `scripts` | `string` | scripts is the location of Source scripts |
 | `volumes` | `array` | volumes is a list of input volumes that can be mounted into the builds runtime environment. Only a subset of Kubernetes Volume sources are supported by builds. More info: https://kubernetes.io/docs/concepts/storage/volumes |
 | `volumes[]` | `object` | BuildVolume describes a volume that is made available to build pods, such that it can be mounted into buildah’s runtime environment. Only a subset of Kubernetes Volume sources are supported. |
@@ -679,9 +679,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configMap` | [`ConfigMapVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapVolumeSource) | configMap represents a ConfigMap that should populate this volume |
-| `csi` | [`CSIVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-CSIVolumeSource) | csi represents ephemeral storage provided by external CSI drivers which support this capability |
-| `secret` | [`SecretVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-SecretVolumeSource) | secret represents a Secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
+| `configMap` | [`ConfigMapVolumeSource`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ConfigMapVolumeSource) | configMap represents a ConfigMap that should populate this volume |
+| `csi` | [`CSIVolumeSource`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-CSIVolumeSource) | csi represents ephemeral storage provided by external CSI drivers which support this capability |
+| `secret` | [`SecretVolumeSource`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-SecretVolumeSource) | secret represents a Secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
 | `type` | `string` | type is the BuildVolumeSourceType for the volume source. Type must match the populated volume source. Valid types are: Secret, ConfigMap |
 
 ### .spec.triggeredBy {#_spectriggeredby}
@@ -1045,7 +1045,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `fromRef` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | fromRef contains detailed information about an image that triggered a build. |
+| `fromRef` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | fromRef contains detailed information about an image that triggered a build. |
 | `imageID` | `string` | imageID is the ID of the image that triggered a new build. |
 
 ### .status {#_status}
@@ -1061,10 +1061,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `cancelled` | `boolean` | cancelled describes if a cancel event was triggered for the build. |
-| `completionTimestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | completionTimestamp is a timestamp representing the server time when this Build was finished, whether that build failed or succeeded.  It reflects the time at which the Pod running the Build terminated. It is represented in RFC3339 form and is in UTC. |
+| `completionTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | completionTimestamp is a timestamp representing the server time when this Build was finished, whether that build failed or succeeded.  It reflects the time at which the Pod running the Build terminated. It is represented in RFC3339 form and is in UTC. |
 | `conditions` | `array` | conditions represents the latest available observations of a build’s current state. |
 | `conditions[]` | `object` | BuildCondition describes the state of a build at a certain point. |
-| `config` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | config is an ObjectReference to the BuildConfig this Build is based on. |
+| `config` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | config is an ObjectReference to the BuildConfig this Build is based on. |
 | `duration` | `integer` | duration contains time.Duration object describing build time. |
 | `logSnippet` | `string` | logSnippet is the last few lines of the build log.  This value is only set for builds that failed. |
 | `message` | `string` | message is a human-readable message indicating details about why the build has this status. |
@@ -1074,7 +1074,7 @@ Type
 | `reason` | `string` | reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI. |
 | `stages` | `array` | stages contains details about each stage that occurs during the build including start time, duration (in milliseconds), and the steps that occured within each stage. |
 | `stages[]` | `object` | StageInfo contains details about a build stage. |
-| `startTimestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTimestamp is a timestamp representing the server time when this Build started running in a Pod. It is represented in RFC3339 form and is in UTC. |
+| `startTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTimestamp is a timestamp representing the server time when this Build started running in a Pod. It is represented in RFC3339 form and is in UTC. |
 
 ### .status.conditions {#_statusconditions}
 
@@ -1102,8 +1102,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time the condition transitioned from one status to another. |
-| `lastUpdateTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time this condition was updated. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time the condition transitioned from one status to another. |
+| `lastUpdateTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time this condition was updated. |
 | `message` | `string` | A human readable message indicating details about the transition. |
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -1161,7 +1161,7 @@ Type
 | --- | --- | --- |
 | `durationMilliseconds` | `integer` | durationMilliseconds identifies how long the stage took to complete in milliseconds. Note: the duration of a stage can exceed the sum of the duration of the steps within the stage as not all actions are accounted for in explicit build steps. |
 | `name` | `string` | name is a unique identifier for each build stage that occurs. |
-| `startTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTime is a timestamp representing the server time when this Stage started. It is represented in RFC3339 form and is in UTC. |
+| `startTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTime is a timestamp representing the server time when this Stage started. It is represented in RFC3339 form and is in UTC. |
 | `steps` | `array` | steps contains details about each step that occurs during a build stage including start time and duration in milliseconds. |
 | `steps[]` | `object` | StepInfo contains details about a build step. |
 
@@ -1189,7 +1189,7 @@ Type
 | --- | --- | --- |
 | `durationMilliseconds` | `integer` | durationMilliseconds identifies how long the step took to complete in milliseconds. |
 | `name` | `string` | name is a unique identifier for each build step. |
-| `startTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTime is a timestamp representing the server time when this Step started. it is represented in RFC3339 form and is in UTC. |
+| `startTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTime is a timestamp representing the server time when this Step started. it is represented in RFC3339 form and is in UTC. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -1244,7 +1244,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BuildList`](/rest_api/objects/index#com-github-openshift-api-build-v1-BuildList) schema |
+| 200 - OK | [`BuildList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-build-v1-BuildList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/watch/builds {#_apisbuildopenshiftiov1watchbuilds}
@@ -1263,7 +1263,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds {#_apisbuildopenshiftiov1namespaces_namespace_builds}
@@ -1288,7 +1288,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1305,7 +1305,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BuildList`](/rest_api/objects/index#com-github-openshift-api-build-v1-BuildList) schema |
+| 200 - OK | [`BuildList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-build-v1-BuildList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1329,15 +1329,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |  |
+| `body` | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
-| 201 - Created | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
-| 202 - Accepted | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 200 - OK | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 202 - Accepted | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds}
@@ -1356,7 +1356,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }} {#_apisbuildopenshiftiov1namespaces_namespace_builds_name}
@@ -1387,8 +1387,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1405,7 +1405,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 200 - OK | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1429,8 +1429,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
-| 201 - Created | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 200 - OK | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1454,14 +1454,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |  |
+| `body` | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
-| 201 - Created | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 200 - OK | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds/{{ name }} {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds_name}
@@ -1486,7 +1486,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/details {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_details}
@@ -1518,14 +1518,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |  |
+| `body` | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
-| 201 - Created | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 200 - OK | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks}

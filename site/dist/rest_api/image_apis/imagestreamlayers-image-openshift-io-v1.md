@@ -28,7 +28,7 @@ Required
 | `images` | `object` | images is a map between an image name and the names of the blobs and config that comprise the image. |
 | `images{}` | `object` | ImageBlobReferences describes the blob references within an image. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ### .blobs {#_blobs}
 
@@ -116,5 +116,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamLayers`](/rest_api/image_apis/imagestreamlayers-image-openshift-io-v1#imagestreamlayers-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStreamLayers`](/openshift-docs-markdown/rest_api/image_apis/imagestreamlayers-image-openshift-io-v1#imagestreamlayers-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

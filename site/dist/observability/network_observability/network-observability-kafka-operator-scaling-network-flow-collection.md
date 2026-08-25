@@ -9,4 +9,4 @@ Scale your network flow collection by using the Kafka Operator to manage high-vo
 ## Additional resources {#additional-resources_network-observability-kafka-operator-scaling-network-flow-collection}
 
 - [Red Hat AMQ Streams documentation](https://access.redhat.com/documentation/en-us/red_hat_amq_streams)
-- [Configuring the FlowCollector resource with Kafka](/observability/network_observability/configuring-operator#network-observability-flowcollector-kafka-config_network_observability)
+- [Configuring the FlowCollector resource with Kafka](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-flowcollector-kafka-config_network_observability)

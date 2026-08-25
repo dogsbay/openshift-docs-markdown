@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"external-dns-operator-release-notes","text":"External DNS Operator release notes"}];
 const nav = navData;
-const currentPath = "/networking/networking_operators/external_dns_operator/external-dns-operator-release-notes";
+const currentPath = "/openshift-docs-markdown/networking/networking_operators/external_dns_operator/external-dns-operator-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/networking_operators","networking/networking_operators/external_dns_operator"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# External DNS Operator release notes {#external-dns-operator-release-notes}\n\nThe External DNS Operator deploys and manages `ExternalDNS` to provide name resolution for services and routes. This enables your external DNS provider to resolve hostnames directly to OpenShift Container Platform resources.\n\n> [!IMPORTANT]\n> The External DNS Operator is only supported on the `x86_64` architecture.\n\nThese release notes track the development of the External DNS Operator in OpenShift Container Platform.\n\n**Additional resources**\n\n- [Creating DNS records in a different {{ aws_short }} Account using a shared VPC](/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws)\n","mdUrl":"/networking/networking_operators/external_dns_operator/external-dns-operator-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# External DNS Operator release notes {#external-dns-operator-release-notes}\n\nThe External DNS Operator deploys and manages `ExternalDNS` to provide name resolution for services and routes. This enables your external DNS provider to resolve hostnames directly to OpenShift Container Platform resources.\n\n> [!IMPORTANT]\n> The External DNS Operator is only supported on the `x86_64` architecture.\n\nThese release notes track the development of the External DNS Operator in OpenShift Container Platform.\n\n**Additional resources**\n\n- [Creating DNS records in a different {{ aws_short }} Account using a shared VPC](/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/external-dns-operator-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,7 +106,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/external-dns-operator-release-notes-1.3.md"></p>
       <p class="/modules/external-dns-operator-release-notes-1.2.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws">Creating DNS records in a different {"{"}{"{"} aws_short {"}"}{"}"} Account using a shared VPC</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws">Creating DNS records in a different {"{"}{"{"} aws_short {"}"}{"}"} Account using a shared VPC</a></li></ul>
       <p class="/modules/external-dns-operator-release-notes-1.0.md"></p>
     </article>
   </MarkdownContentStack>

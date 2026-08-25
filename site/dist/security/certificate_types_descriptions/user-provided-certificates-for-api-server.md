@@ -28,4 +28,4 @@ Update the secret containing the user-managed certificate as needed.
 
 ## Additional resources {#_additional_resources}
 
-- [Adding API server certificates](/security/certificates/api-server#api-server-certificates)
+- [Adding API server certificates](/openshift-docs-markdown/security/certificates/api-server#api-server-certificates)

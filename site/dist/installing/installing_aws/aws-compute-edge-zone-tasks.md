@@ -18,7 +18,7 @@ After you install OpenShift Container Platform on {{ aws_first }}, you can furth
 
 **Additional resources**
 
-- [Installing a cluster on AWS with compute nodes on AWS Local Zones](/installing/installing_aws/ipi/installing-aws-localzone#installing-aws-localzone)
-- [Installing a cluster on AWS with compute nodes on AWS Wavelength Zones](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installing-aws-wavelength-zone)
-- [Understanding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
-- [Installing the AWS Load Balancer Operator](/networking/networking_operators/aws_load_balancer_operator/install-aws-load-balancer-operator#install-aws-load-balancer-operator_install-aws-load-balancer-operator)
+- [Installing a cluster on AWS with compute nodes on AWS Local Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installing-aws-localzone)
+- [Installing a cluster on AWS with compute nodes on AWS Wavelength Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installing-aws-wavelength-zone)
+- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
+- [Installing the AWS Load Balancer Operator](/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/install-aws-load-balancer-operator#install-aws-load-balancer-operator_install-aws-load-balancer-operator)

@@ -10,5 +10,5 @@ The plugin is available as `oc oadp` and supports both cluster administrator and
 
 ## Additional resources {#additional-resources_oadp-cli-plugin}
 
-- [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
+- [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 - \[Velero {{ velero_version }} documentation\](https://{{ velero_domain }}/docs/v{{ velero_version }}/)

@@ -10,17 +10,17 @@ At the pod level, network namespaces can prevent containers from seeing other po
 
 **Additional resources**
 
-- [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)
+- [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)
 
 **Additional resources**
 
-- [Using multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)
+- [Using multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)
 
 **Additional resources**
 
-- [Configuring ingress cluster traffic](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)
+- [Configuring ingress cluster traffic](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)
 
 **Additional resources**
 
-- [Configuring an egress firewall for a project](/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)
-- [Configuring IPsec encryption](/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
+- [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)
+- [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)

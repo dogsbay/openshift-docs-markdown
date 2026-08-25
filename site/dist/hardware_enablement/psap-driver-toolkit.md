@@ -8,4 +8,4 @@ The Driver Toolkit is a base container image for building driver containers that
 
 ## Additional resources {#additional-resources_driver-toolkit-id}
 
-- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#registry-removed_configuring-registry-operator)
+- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#registry-removed_configuring-registry-operator)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"configuring-a-custom-pki","text":"Configuring a custom PKI"}];
 const nav = navData;
-const currentPath = "/networking/configuring_network_settings/configuring-a-custom-pki";
+const currentPath = "/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/configuring_network_settings"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a custom PKI {#configuring-a-custom-pki}\n\nTo ensure secure communication between internal components in your OpenShift Container Platform cluster, you can add your organization’s custom Certificate Authority (CA) certificates to the cluster-wide truststore.\n\nYou can add your custom CA certificates to the cluster-wide truststore in one of two ways:\n\n- During cluster installation, by adding your CA certificate to the `install-config.yaml` file.\n- On a running cluster, by creating a `ConfigMap` object that contains your CA certificate and referencing it in the cluster `Proxy` object.\n\n> [!IMPORTANT]\n> The cluster Proxy object is the mechanism for managing the cluster-wide truststore. This guide focuses only on the task of adding a CA. If you also need to configure an egress proxy, refer to the \"Configuring the cluster-wide proxy\" chapter for detailed instructions.\n","mdUrl":"/networking/configuring_network_settings/configuring-a-custom-pki.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a custom PKI {#configuring-a-custom-pki}\n\nTo ensure secure communication between internal components in your OpenShift Container Platform cluster, you can add your organization’s custom Certificate Authority (CA) certificates to the cluster-wide truststore.\n\nYou can add your custom CA certificates to the cluster-wide truststore in one of two ways:\n\n- During cluster installation, by adding your CA certificate to the `install-config.yaml` file.\n- On a running cluster, by creating a `ConfigMap` object that contains your CA certificate and referencing it in the cluster `Proxy` object.\n\n> [!IMPORTANT]\n> The cluster Proxy object is the mechanism for managing the cluster-wide truststore. This guide focuses only on the task of adding a CA. If you also need to configure an egress proxy, refer to the \"Configuring the cluster-wide proxy\" chapter for detailed instructions.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

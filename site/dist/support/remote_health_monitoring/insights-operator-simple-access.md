@@ -11,4 +11,4 @@ SCA supports multi-architecture clusters by generating architecture-specific sec
 **Additional resources**
 
 - [About simple content access](https://access.redhat.com/documentation/en-us/subscription_central/2021/html-single/getting_started_with_simple_content_access/index#assembly-about-simplecontent)
-- [Using Red Hat subscriptions in builds](/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)
+- [Using Red Hat subscriptions in builds](/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)

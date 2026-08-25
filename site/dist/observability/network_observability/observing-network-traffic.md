@@ -8,35 +8,35 @@ As an administrator, you can observe the network traffic in the OpenShift Contai
 
 **Additional resources**
 
-- [Network Observability metrics](/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
+- [Network Observability metrics](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
 
 **Additional resources**
 
-- [Network Observability metrics](/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
+- [Network Observability metrics](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
 
 **Additional resources**
 
-- [Network Observability metrics](/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
-- [Health dashboards](/observability/network_observability/network-observability-operator-monitoring#network-observability-health-dashboard-overview_network_observability)
+- [Network Observability metrics](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
+- [Health dashboards](/openshift-docs-markdown/observability/network_observability/network-observability-operator-monitoring#network-observability-health-dashboard-overview_network_observability)
 
 **Additional resources**
 
-- [About user-defined networks](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
-- [Creating a UserDefinedNetwork by using the CLI](/networking/multiple_networks/primary_networks/about-user-defined-networks#nw-udn-cr_about-user-defined-networks)
-- [Creating a UserDefinedNetwork by using the web console](/networking/multiple_networks/primary_networks/about-user-defined-networks#nw-udn-cr-ui_about-user-defined-networks)
+- [About user-defined networks](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
+- [Creating a UserDefinedNetwork by using the CLI](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#nw-udn-cr_about-user-defined-networks)
+- [Creating a UserDefinedNetwork by using the web console](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#nw-udn-cr-ui_about-user-defined-networks)
 
 **Additional resources**
 
-- [Enabling feature sets using the CLI](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-cli_nodes-cluster-enabling-features)
-- [Checking OVN-Kubernetes network traffic with OVS sampling using the CLI](/networking/ovn_kubernetes_network_provider/ovn-kubernetes-troubleshooting-sources#nw-ovn-kubernetes-observability_ovn-kubernetes-sources-of-troubleshooting-information)
+- [Enabling feature sets using the CLI](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-cli_nodes-cluster-enabling-features)
+- [Checking OVN-Kubernetes network traffic with OVS sampling using the CLI](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/ovn-kubernetes-troubleshooting-sources#nw-ovn-kubernetes-observability_ovn-kubernetes-sources-of-troubleshooting-information)
 
 **Additional resources**
 
-- [Configuring IPsec encryption](/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
+- [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
 
 **Additional resources**
 
-- [Installing the eBPF Manager Operator](/networking/networking_operators/ebpf_manager/ebpf-manager-operator-install)
+- [Installing the eBPF Manager Operator](/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-install)
 
 **Additional resources**
 
@@ -44,5 +44,5 @@ As an administrator, you can observe the network traffic in the OpenShift Contai
 
 **Additional resources**
 
-- [Configuring Quick Filters](/observability/network_observability/configuring-operator#network-observability-config-quick-filters_network_observability)
-- [Flow Collector sample resource](/observability/network_observability/configuring-operator#network-observability-flowcollector-view_network_observability)
+- [Configuring Quick Filters](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-config-quick-filters_network_observability)
+- [Flow Collector sample resource](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-flowcollector-view_network_observability)

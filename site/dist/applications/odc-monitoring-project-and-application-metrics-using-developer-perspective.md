@@ -8,8 +8,8 @@ The **Observe** view in the **Developer** perspective provides options to monito
 
 ## Prerequisites {#prerequisites_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 
-- You have [created and deployed applications on OpenShift Container Platform](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective).
-- You have [logged in to the web console](/web_console/web-console#web-console) and have switched to [the **Developer** perspective](/web_console/web-console-overview#about-developer-perspective_web-console-overview).
+- You have [created and deployed applications on OpenShift Container Platform](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective).
+- You have [logged in to the web console](/openshift-docs-markdown/web_console/web-console#web-console) and have switched to [the **Developer** perspective](/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview).
 
 ## Additional resources {#additional-resources-odc-monitoring-project-and-application-metrics-using-developer-perspective}
 

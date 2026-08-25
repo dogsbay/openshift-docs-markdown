@@ -10,4 +10,4 @@ With this Istio-CSR integration, Istio can now obtain certificates from the {{ c
 
 **Additional resources**
 
-- [{{ cert_manager_operator }} issuer providers](/security/cert_manager_operator/index#cert-manager-issuer-types_cert-manager-operator-about)
+- [{{ cert_manager_operator }} issuer providers](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-issuer-types_cert-manager-operator-about)

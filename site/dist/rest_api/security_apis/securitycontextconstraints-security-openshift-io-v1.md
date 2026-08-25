@@ -44,7 +44,7 @@ Required
 | `fsGroup` | \`\` | fsGroup is the strategy that will dictate what fs group is used by the SecurityContext. |
 | `groups` | \`\` | The groups that have permission to use this security context constraints |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `priority` | \`\` | priority influences the sort order of SCCs when evaluating which SCCs to try first for a given pod request based on access in the Users and Groups fields.  The higher the int, the higher priority. An unset value is considered a 0 priority. If scores for multiple SCCs are equal they will be sorted from most restrictive to least restrictive. If both priorities and restrictions are equal the SCCs will be sorted by name. |
 | `readOnlyRootFilesystem` | `boolean` | readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the SCC should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to. |
 | `requiredDropCapabilities` | \`\` | requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added. |
@@ -94,7 +94,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -111,7 +111,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecurityContextConstraintsList`](/rest_api/objects/index#io-openshift-security-v1-SecurityContextConstraintsList) schema |
+| 200 - OK | [`SecurityContextConstraintsList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-security-v1-SecurityContextConstraintsList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -135,15 +135,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |  |
+| `body` | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
-| 201 - Created | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
-| 202 - Accepted | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
+| 200 - OK | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
+| 201 - Created | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
+| 202 - Accepted | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/security.openshift.io/v1/watch/securitycontextconstraints {#_apissecurityopenshiftiov1watchsecuritycontextconstraints}
@@ -162,7 +162,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/security.openshift.io/v1/securitycontextconstraints/{{ name }} {#_apissecurityopenshiftiov1securitycontextconstraints_name}
@@ -193,8 +193,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -211,7 +211,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
+| 200 - OK | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -235,7 +235,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
+| 200 - OK | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -259,14 +259,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |  |
+| `body` | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
-| 201 - Created | [`SecurityContextConstraints`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
+| 200 - OK | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
+| 201 - Created | [`SecurityContextConstraints`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/security.openshift.io/v1/watch/securitycontextconstraints/{{ name }} {#_apissecurityopenshiftiov1watchsecuritycontextconstraints_name}
@@ -291,5 +291,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

@@ -9,4 +9,4 @@ You can migrate your CI/CD workflows from Jenkins to [{{ pipelines_title }}](htt
 ## Additional resources {#_additional_resources}
 
 - [Understanding {{ pipelines_shortname }}](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html)
-- [Role-based Access Control](/authentication/using-rbac#using-rbac)
+- [Role-based Access Control](/openshift-docs-markdown/authentication/using-rbac#using-rbac)

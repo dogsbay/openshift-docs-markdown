@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"oadp-introduction","text":"Introduction to {{ oadp_full }}"},{"depth":2,"slug":"oadp-apis_oadp-api","text":"{{ oadp_full }} APIs"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/oadp-intro";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Introduction to {{ oadp_full }} {#oadp-introduction}\n\nUse {{ oadp_first }} to safeguard applications, application-related cluster resources, persistent volumes, and internal images on OpenShift Container Platform. {{ oadp_short }} backs up containerized applications and virtual machines (VMs). This helps you ensure disaster recovery.\n\nHowever, {{ oadp_short }} does not serve as a disaster recovery solution for `etcd` or {{ OCP_short }} Operators.\n\n> [!IMPORTANT]\n> {{ oadp_short }} support is applicable to customer workload namespaces and cluster scope resources.\n>\n> Full cluster `backup` and `restore` are not supported.\n\n## {{ oadp_full }} APIs {#oadp-apis_oadp-api}\n\n{{ oadp_short }} provides APIs that enable multiple approaches to customizing backups and preventing the inclusion of unnecessary or inappropriate resources.\n\n{{ oadp_short }} provides the following APIs. See the *Additional resources* section for more details.\n\n- `Backup`\n- `Restore`\n- `Schedule`\n- `BackupStorageLocation`\n- `VolumeSnapshotLocation`\n\n**Additional resources**\n\n- [Backup](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)\n- [Restore](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)\n- [Schedule](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc)\n- [BackupStorageLocation](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-about-backup-snapshot-locations_installing-oadp-aws)\n- [VolumeSnapshotLocation](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc)\n- [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n","mdUrl":"/backup_and_restore/application_backup_and_restore/oadp-intro.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Introduction to {{ oadp_full }} {#oadp-introduction}\n\nUse {{ oadp_first }} to safeguard applications, application-related cluster resources, persistent volumes, and internal images on OpenShift Container Platform. {{ oadp_short }} backs up containerized applications and virtual machines (VMs). This helps you ensure disaster recovery.\n\nHowever, {{ oadp_short }} does not serve as a disaster recovery solution for `etcd` or {{ OCP_short }} Operators.\n\n> [!IMPORTANT]\n> {{ oadp_short }} support is applicable to customer workload namespaces and cluster scope resources.\n>\n> Full cluster `backup` and `restore` are not supported.\n\n## {{ oadp_full }} APIs {#oadp-apis_oadp-api}\n\n{{ oadp_short }} provides APIs that enable multiple approaches to customizing backups and preventing the inclusion of unnecessary or inappropriate resources.\n\n{{ oadp_short }} provides the following APIs. See the *Additional resources* section for more details.\n\n- `Backup`\n- `Restore`\n- `Schedule`\n- `BackupStorageLocation`\n- `VolumeSnapshotLocation`\n\n**Additional resources**\n\n- [Backup](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)\n- [Restore](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)\n- [Schedule](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc)\n- [BackupStorageLocation](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-about-backup-snapshot-locations_installing-oadp-aws)\n- [VolumeSnapshotLocation](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc)\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -116,12 +116,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications">Backup</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications">Restore</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc">Schedule</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-about-backup-snapshot-locations_installing-oadp-aws">BackupStorageLocation</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc">VolumeSnapshotLocation</a></li>
-      <li><a href="/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd">Backing up etcd</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications">Backup</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications">Restore</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc">Schedule</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-about-backup-snapshot-locations_installing-oadp-aws">BackupStorageLocation</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc">VolumeSnapshotLocation</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd">Backing up etcd</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

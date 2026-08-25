@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `template` | `object` | PodTemplateSpec describes the data a pod should have when created from a template |
 
 ### .template {#_template}
@@ -33,7 +33,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PodSpec is a description of a pod. |
 
 ### .template.spec {#_templatespec}
@@ -76,7 +76,7 @@ Required
 | `nodeName` | `string` | NodeName indicates in which node this pod is scheduled. If empty, this pod is a candidate for scheduling by the scheduler defined in schedulerName. Once this field is set, the kubelet for this node becomes responsible for the lifecycle of this pod. This field should not be used to express a desire for the pod to be scheduled on a specific node. https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename |
 | `nodeSelector` | `object (string)` | NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node’s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/ |
 | `os` | `object` | PodOS defines the OS parameters of a pod. |
-| `overhead` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md |
+| `overhead` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md |
 | `preemptionPolicy` | `string` | PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Possible enum values:  - `"Never"` means that pod never preempts other pods with lower priority.  - `"PreemptLowerPriority"` means that pod can preempt other pods with lower priority. |
 | `priority` | `integer` | The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority. |
 | `priorityClassName` | `string` | If specified, indicates the pod’s priority. "system-node-critical" and "system-cluster-critical" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default. |
@@ -409,10 +409,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `labelSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
+| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
 | `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn’t set. |
 | `mismatchLabelKeys` | `array (string)` | MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn’t set. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
 
@@ -441,10 +441,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `labelSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
+| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
 | `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn’t set. |
 | `mismatchLabelKeys` | `array (string)` | MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn’t set. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
 
@@ -509,10 +509,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `labelSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
+| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
 | `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn’t set. |
 | `mismatchLabelKeys` | `array (string)` | MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn’t set. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
 
@@ -541,10 +541,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `labelSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
+| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over a set of resources, in this case pods. If it’s null, this PodAffinityTerm matches with no Pods. |
 | `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn’t set. |
 | `mismatchLabelKeys` | `array (string)` | MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod’s pod (anti) affinity. Keys that don’t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn’t set. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
 
@@ -728,7 +728,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
-| `divisor` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
+| `divisor` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
 
 ### .template.spec.containers\[\].env\[\].valueFrom.secretKeyRef {#_templatespeccontainersenvvaluefromsecretkeyref}
@@ -876,7 +876,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.containers\[\].lifecycle.postStart.httpGet.httpHeaders {#_templatespeccontainerslifecyclepoststarthttpgethttpheaders}
@@ -941,7 +941,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.containers\[\].lifecycle.preStop {#_templatespeccontainerslifecycleprestop}
 
@@ -993,7 +993,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.containers\[\].lifecycle.preStop.httpGet.httpHeaders {#_templatespeccontainerslifecycleprestophttpgethttpheaders}
@@ -1058,7 +1058,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.containers\[\].livenessProbe {#_templatespeccontainerslivenessprobe}
 
@@ -1134,7 +1134,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.containers\[\].livenessProbe.httpGet.httpHeaders {#_templatespeccontainerslivenessprobehttpgethttpheaders}
@@ -1182,7 +1182,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.containers\[\].ports {#_templatespeccontainersports}
 
@@ -1289,7 +1289,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.containers\[\].readinessProbe.httpGet.httpHeaders {#_templatespeccontainersreadinessprobehttpgethttpheaders}
@@ -1337,7 +1337,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.containers\[\].resizePolicy {#_templatespeccontainersresizepolicy}
 
@@ -1382,8 +1382,8 @@ Type
 | --- | --- | --- |
 | `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
-| `limits` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 
 ### .template.spec.containers\[\].resources.claims {#_templatespeccontainersresourcesclaims}
 
@@ -1647,7 +1647,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.containers\[\].startupProbe.httpGet.httpHeaders {#_templatespeccontainersstartupprobehttpgethttpheaders}
@@ -1695,7 +1695,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.containers\[\].volumeDevices {#_templatespeccontainersvolumedevices}
 
@@ -1985,7 +1985,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
-| `divisor` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
+| `divisor` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
 
 ### .template.spec.ephemeralContainers\[\].env\[\].valueFrom.secretKeyRef {#_templatespecephemeralcontainersenvvaluefromsecretkeyref}
@@ -2133,7 +2133,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.ephemeralContainers\[\].lifecycle.postStart.httpGet.httpHeaders {#_templatespecephemeralcontainerslifecyclepoststarthttpgethttpheaders}
@@ -2198,7 +2198,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.ephemeralContainers\[\].lifecycle.preStop {#_templatespecephemeralcontainerslifecycleprestop}
 
@@ -2250,7 +2250,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.ephemeralContainers\[\].lifecycle.preStop.httpGet.httpHeaders {#_templatespecephemeralcontainerslifecycleprestophttpgethttpheaders}
@@ -2315,7 +2315,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.ephemeralContainers\[\].livenessProbe {#_templatespecephemeralcontainerslivenessprobe}
 
@@ -2391,7 +2391,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.ephemeralContainers\[\].livenessProbe.httpGet.httpHeaders {#_templatespecephemeralcontainerslivenessprobehttpgethttpheaders}
@@ -2439,7 +2439,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.ephemeralContainers\[\].ports {#_templatespecephemeralcontainersports}
 
@@ -2546,7 +2546,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.ephemeralContainers\[\].readinessProbe.httpGet.httpHeaders {#_templatespecephemeralcontainersreadinessprobehttpgethttpheaders}
@@ -2594,7 +2594,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.ephemeralContainers\[\].resizePolicy {#_templatespecephemeralcontainersresizepolicy}
 
@@ -2639,8 +2639,8 @@ Type
 | --- | --- | --- |
 | `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
-| `limits` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 
 ### .template.spec.ephemeralContainers\[\].resources.claims {#_templatespecephemeralcontainersresourcesclaims}
 
@@ -2904,7 +2904,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.ephemeralContainers\[\].startupProbe.httpGet.httpHeaders {#_templatespecephemeralcontainersstartupprobehttpgethttpheaders}
@@ -2952,7 +2952,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.ephemeralContainers\[\].volumeDevices {#_templatespecephemeralcontainersvolumedevices}
 
@@ -3249,7 +3249,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
-| `divisor` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
+| `divisor` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
 
 ### .template.spec.initContainers\[\].env\[\].valueFrom.secretKeyRef {#_templatespecinitcontainersenvvaluefromsecretkeyref}
@@ -3397,7 +3397,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.initContainers\[\].lifecycle.postStart.httpGet.httpHeaders {#_templatespecinitcontainerslifecyclepoststarthttpgethttpheaders}
@@ -3462,7 +3462,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.initContainers\[\].lifecycle.preStop {#_templatespecinitcontainerslifecycleprestop}
 
@@ -3514,7 +3514,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.initContainers\[\].lifecycle.preStop.httpGet.httpHeaders {#_templatespecinitcontainerslifecycleprestophttpgethttpheaders}
@@ -3579,7 +3579,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.initContainers\[\].livenessProbe {#_templatespecinitcontainerslivenessprobe}
 
@@ -3655,7 +3655,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.initContainers\[\].livenessProbe.httpGet.httpHeaders {#_templatespecinitcontainerslivenessprobehttpgethttpheaders}
@@ -3703,7 +3703,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.initContainers\[\].ports {#_templatespecinitcontainersports}
 
@@ -3810,7 +3810,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.initContainers\[\].readinessProbe.httpGet.httpHeaders {#_templatespecinitcontainersreadinessprobehttpgethttpheaders}
@@ -3858,7 +3858,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.initContainers\[\].resizePolicy {#_templatespecinitcontainersresizepolicy}
 
@@ -3903,8 +3903,8 @@ Type
 | --- | --- | --- |
 | `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
-| `limits` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 
 ### .template.spec.initContainers\[\].resources.claims {#_templatespecinitcontainersresourcesclaims}
 
@@ -4168,7 +4168,7 @@ Required
 | `httpHeaders` | `array` | Custom headers to set in the request. HTTP allows repeated headers. |
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .template.spec.initContainers\[\].startupProbe.httpGet.httpHeaders {#_templatespecinitcontainersstartupprobehttpgethttpheaders}
@@ -4216,7 +4216,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
-| `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+| `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 
 ### .template.spec.initContainers\[\].volumeDevices {#_templatespecinitcontainersvolumedevices}
 
@@ -4374,8 +4374,8 @@ Type
 | --- | --- | --- |
 | `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
-| `limits` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 
 ### .template.spec.resources.claims {#_templatespecresourcesclaims}
 
@@ -4619,7 +4619,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `labelSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. |
+| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. |
 | `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn’t set. Keys that don’t exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default). |
 | `maxSkew` | `integer` | MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. \\ |
 | zone1 \\ | zone2 \\ | zone3 \\ |
@@ -4993,7 +4993,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
-| `divisor` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
+| `divisor` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
 
 ### .template.spec.volumes\[\].emptyDir {#_templatespecvolumesemptydir}
@@ -5009,7 +5009,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `medium` | `string` | medium represents what type of storage medium should back this directory. The default is "" which means to use the node’s default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
-| `sizeLimit` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
+| `sizeLimit` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
 
 ### .template.spec.volumes\[\].ephemeral {#_templatespecvolumesephemeral}
 
@@ -5040,7 +5040,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. |
 | `spec` | `object` | PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes |
 
 ### .template.spec.volumes\[\].ephemeral.volumeClaimTemplate.spec {#_templatespecvolumesephemeralvolumeclaimtemplatespec}
@@ -5059,7 +5059,7 @@ Type
 | `dataSource` | `object` | TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. |
 | `dataSourceRef` | `object` | TypedObjectReference contains enough information to let you locate the typed referenced object |
 | `resources` | `object` | VolumeResourceRequirements describes the storage resource requirements for a volume. |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over volumes to consider for binding. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over volumes to consider for binding. |
 | `storageClassName` | `string` | storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1 |
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
 | `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. Possible enum values:  - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
@@ -5118,8 +5118,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `limits` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 
 ### .template.spec.volumes\[\].fc {#_templatespecvolumesfc}
 
@@ -5463,7 +5463,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `labelSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as "match nothing".  If set but empty, interpreted as "match everything". |
+| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as "match nothing".  If set but empty, interpreted as "match everything". |
 | `name` | `string` | Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector. |
 | `optional` | `boolean` | If true, don’t block pod startup if the referenced ClusterTrustBundle(s) aren’t available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles. |
 | `path` | `string` | Relative path from the volume root to write the bundle. |
@@ -5597,7 +5597,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
-| `divisor` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
+| `divisor` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
 
 ### .template.spec.volumes\[\].projected.sources\[\].podCertificate {#_templatespecvolumesprojectedsourcespodcertificate}
@@ -5962,7 +5962,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodTemplateList`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateList) schema |
+| 200 - OK | [`PodTemplateList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/podtemplates {#_apiv1watchpodtemplates}
@@ -5981,7 +5981,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/podtemplates {#_apiv1namespaces_namespace_podtemplates}
@@ -6006,7 +6006,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -6023,7 +6023,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodTemplateList`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateList) schema |
+| 200 - OK | [`PodTemplateList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -6047,15 +6047,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |  |
+| `body` | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
-| 201 - Created | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
-| 202 - Accepted | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 200 - OK | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 201 - Created | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 202 - Accepted | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/podtemplates {#_apiv1watchnamespaces_namespace_podtemplates}
@@ -6074,7 +6074,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/podtemplates/{{ name }} {#_apiv1namespaces_namespace_podtemplates_name}
@@ -6105,8 +6105,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
-| 202 - Accepted | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 200 - OK | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 202 - Accepted | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -6123,7 +6123,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 200 - OK | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -6147,8 +6147,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
-| 201 - Created | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 200 - OK | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 201 - Created | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -6172,14 +6172,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |  |
+| `body` | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
-| 201 - Created | [`PodTemplate`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 200 - OK | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
+| 201 - Created | [`PodTemplate`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/podtemplates/{{ name }} {#_apiv1watchnamespaces_namespace_podtemplates_name}
@@ -6204,5 +6204,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

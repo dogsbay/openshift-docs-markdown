@@ -12,4 +12,4 @@ Gang scheduling is important if you are working with expensive, limited resource
 
 ## Additional resources {#additional-resources_gangscheduling}
 
-- [Creating a Kueue custom resource](/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)
+- [Creating a Kueue custom resource](/openshift-docs-markdown/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)

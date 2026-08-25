@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-containers-sysctls","text":"Using sysctls in containers"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"},{"depth":2,"slug":"additional-resources_nodes-containers-sysctls","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/containers/nodes-containers-sysctls";
+const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/containers"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using sysctls in containers {#nodes-containers-sysctls}\n\nYou can configure namespaced sysctls to manage kernel parameters for specific pods or network interfaces. By enabling safe or unsafe namespaced sysctls, you can fine-tune your environment’s performance and networking behavior at the pod level.\n\nOnly sysctls that are namespaced can be set independently on pods. If a sysctl is not namespaced, it is known as a *node-level* sysctl. You must use another method of setting the sysctl, such as by using the Node Tuning Operator. To set node-level sysctls, see \"Using the Node Tuning Operator\".\n\nNetwork sysctls are a special category of sysctl. Network sysctls include:\n\n- System-wide sysctls, for example `net.ipv4.ip_local_port_range`, that are valid for all networking. You can set these independently for each pod on a node.\n- Interface-specific sysctls, for example `net.ipv4.conf.IFNAME.accept_local`, that only apply to a specific additional network interface for a given pod. You can set these independently for each additional network configuration. You set these by using a configuration in the `tuning-cni` after the network interfaces are created.\n\n> [!IMPORTANT]\n> If the `net.ipv4.ip_local_port_range` safe sysctl parameter value and the default node port service range overlap, the OVN Kubernetes plugin might experience connection failures. For more information about this parameter, see the *System-wide safe sysctls* table in the \"Safe and unsafe sysctls\" section.\n\nOnly those sysctls considered *safe* are enabled by default. A cluster administrator can manually enable *unsafe* sysctls on the node to be available to the user.\n\n**Additional resources**\n\n- [Configuring the node port service range](/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)\n\n## Additional resources {#_additional_resources}\n\n- [Configuring ingress cluster traffic using a NodePort](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)\n\n## Additional resources {#additional-resources_nodes-containers-sysctls}\n\n- [Linux networking documentation](https://docs.kernel.org/networking/ip-sysctl.html)\n- [Configuring system controls by using the tuning CNI](/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni)\n- [Using the Node Tuning Operator](/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator)\n- [Kernel.org documentation](https://www.kernel.org/doc/Documentation/sysctl/)\n","mdUrl":"/nodes/containers/nodes-containers-sysctls.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using sysctls in containers {#nodes-containers-sysctls}\n\nYou can configure namespaced sysctls to manage kernel parameters for specific pods or network interfaces. By enabling safe or unsafe namespaced sysctls, you can fine-tune your environment’s performance and networking behavior at the pod level.\n\nOnly sysctls that are namespaced can be set independently on pods. If a sysctl is not namespaced, it is known as a *node-level* sysctl. You must use another method of setting the sysctl, such as by using the Node Tuning Operator. To set node-level sysctls, see \"Using the Node Tuning Operator\".\n\nNetwork sysctls are a special category of sysctl. Network sysctls include:\n\n- System-wide sysctls, for example `net.ipv4.ip_local_port_range`, that are valid for all networking. You can set these independently for each pod on a node.\n- Interface-specific sysctls, for example `net.ipv4.conf.IFNAME.accept_local`, that only apply to a specific additional network interface for a given pod. You can set these independently for each additional network configuration. You set these by using a configuration in the `tuning-cni` after the network interfaces are created.\n\n> [!IMPORTANT]\n> If the `net.ipv4.ip_local_port_range` safe sysctl parameter value and the default node port service range overlap, the OVN Kubernetes plugin might experience connection failures. For more information about this parameter, see the *System-wide safe sysctls* table in the \"Safe and unsafe sysctls\" section.\n\nOnly those sysctls considered *safe* are enabled by default. A cluster administrator can manually enable *unsafe* sysctls on the node to be available to the user.\n\n**Additional resources**\n\n- [Configuring the node port service range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)\n\n## Additional resources {#_additional_resources}\n\n- [Configuring ingress cluster traffic using a NodePort](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)\n\n## Additional resources {#additional-resources_nodes-containers-sysctls}\n\n- [Linux networking documentation](https://docs.kernel.org/networking/ip-sysctl.html)\n- [Configuring system controls by using the tuning CNI](/openshift-docs-markdown/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni)\n- [Using the Node Tuning Operator](/openshift-docs-markdown/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator)\n- [Kernel.org documentation](https://www.kernel.org/doc/Documentation/sysctl/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -110,19 +110,19 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p>Only those sysctls considered <em>safe</em> are enabled by default. A cluster administrator can manually enable <em>unsafe</em> sysctls on the node to be available to the user.</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range">Configuring the node port service range</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range">Configuring the node port service range</a></li></ul>
       <p class="/modules/nodes-namespaced-nodelevel-sysctls.md"></p>
       <p class="/modules/nodes-safe-sysctls-list.md"></p>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport">Configuring ingress cluster traffic using a NodePort</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport">Configuring ingress cluster traffic using a NodePort</a></li></ul>
       <p class="/modules/nodes-containers-start-pod-safe-sysctls.md"></p>
       <p class="/modules/nodes-containers-sysctls-setting.md"></p>
       <p class="/modules/nodes-containers-sysctls-unsafe.md"></p>
       <h2 id="additional-resources_nodes-containers-sysctls" class="group scroll-mt-20">Additional resources<a href="#additional-resources_nodes-containers-sysctls" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://docs.kernel.org/networking/ip-sysctl.html">Linux networking documentation</a></li>
-      <li><a href="/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni">Configuring system controls by using the tuning CNI</a></li>
-      <li><a href="/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator">Using the Node Tuning Operator</a></li>
+      <li><a href="/openshift-docs-markdown/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni">Configuring system controls by using the tuning CNI</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator">Using the Node Tuning Operator</a></li>
       <li><a href="https://www.kernel.org/doc/Documentation/sysctl/">Kernel.org documentation</a></li>
       </ul>
     </article>

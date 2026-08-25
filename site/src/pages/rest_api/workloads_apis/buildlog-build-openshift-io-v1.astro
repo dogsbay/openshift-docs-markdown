@@ -25,7 +25,7 @@ import TableRow from "@ui/table/TableRow.astro";
 
 const headings = [{"depth":1,"slug":"buildlog-build-openshift-io-v1","text":"BuildLog [build.openshift.io/v1]"},{"depth":2,"slug":"_specification","text":"Specification"},{"depth":2,"slug":"_api_endpoints","text":"API endpoints"},{"depth":3,"slug":"_apisbuildopenshiftiov1namespaces_namespace_builds_name_log","text":"/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log"}];
 const nav = navData;
-const currentPath = "/rest_api/workloads_apis/buildlog-build-openshift-io-v1";
+const currentPath = "/openshift-docs-markdown/rest_api/workloads_apis/buildlog-build-openshift-io-v1";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -44,9 +44,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["rest_api","rest_api/workloads_apis"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# BuildLog \\[build.openshift.io/v1\\] {#buildlog-build-openshift-io-v1}\n\nDescription\n:   BuildLog is the (unused) resource associated with the build log redirector\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## Specification {#_specification}\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n\n## API endpoints {#_api_endpoints}\n\nThe following API endpoints are available:\n\n- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log`\n\n  - `GET`: read log of the specified Build\n\n### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_log}\n\n**Global path parameters**\n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | name of the BuildLog |\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    read log of the specified Build\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`BuildLog`](/rest_api/workloads_apis/buildlog-build-openshift-io-v1#buildlog-build-openshift-io-v1) schema |\n| 401 - Unauthorized | Empty |\n","mdUrl":"/rest_api/workloads_apis/buildlog-build-openshift-io-v1.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# BuildLog \\[build.openshift.io/v1\\] {#buildlog-build-openshift-io-v1}\n\nDescription\n:   BuildLog is the (unused) resource associated with the build log redirector\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## Specification {#_specification}\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n\n## API endpoints {#_api_endpoints}\n\nThe following API endpoints are available:\n\n- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log`\n\n  - `GET`: read log of the specified Build\n\n### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_log}\n\n**Global path parameters**\n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | name of the BuildLog |\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    read log of the specified Build\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`BuildLog`](/openshift-docs-markdown/rest_api/workloads_apis/buildlog-build-openshift-io-v1#buildlog-build-openshift-io-v1) schema |\n| 401 - Unauthorized | Empty |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/workloads_apis/buildlog-build-openshift-io-v1.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -87,10 +87,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -172,7 +172,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableBody>
       <TableRow>
       <TableCell>200 - OK</TableCell>
-      <TableCell><a href="/rest_api/workloads_apis/buildlog-build-openshift-io-v1#buildlog-build-openshift-io-v1"><code>BuildLog</code></a> schema</TableCell>
+      <TableCell><a href="/openshift-docs-markdown/rest_api/workloads_apis/buildlog-build-openshift-io-v1#buildlog-build-openshift-io-v1"><code>BuildLog</code></a> schema</TableCell>
       </TableRow>
       <TableRow>
       <TableCell>401 - Unauthorized</TableCell>

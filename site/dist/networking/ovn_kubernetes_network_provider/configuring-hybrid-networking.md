@@ -8,5 +8,5 @@ In OpenShift Container Platform, you can configure OVN-Kubernetes hybrid network
 
 ## Additional resources {#configuring-hybrid-networking-additional-resources_configuring-hybrid-networking}
 
-- [Installing a cluster on AWS with network customizations](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
-- [Installing a cluster on Azure with customizations](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
+- [Installing a cluster on AWS with network customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
+- [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)

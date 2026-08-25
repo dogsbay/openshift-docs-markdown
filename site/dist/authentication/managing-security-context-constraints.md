@@ -13,8 +13,8 @@ Default SCCs are created during installation and when you install some Operators
 >
 > is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
 >
-> Instead of modifying the default SCCs, create and modify your own SCCs as needed. For detailed steps, see [Creating security context constraints](/authentication/managing-security-context-constraints#security-context-constraints-creating_configuring-internal-oauth).
+> Instead of modifying the default SCCs, create and modify your own SCCs as needed. For detailed steps, see [Creating security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-creating_configuring-internal-oauth).
 
 ## Additional resources {#additional-resources_configuring-internal-oauth}
 
-- [Getting support](/support/getting-support#getting-support)
+- [Getting support](/openshift-docs-markdown/support/getting-support#getting-support)

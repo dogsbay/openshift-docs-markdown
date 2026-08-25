@@ -18,4 +18,4 @@ For those that administer heterogeneous environments with a mix of Linux and Win
 ## Additional resources {#additional-resources_understanding-windows-container-workloads}
 
 - [Pod Security Policies (Kubernetes Documentation)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
-- [Configuring hybrid networking with OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking)
+- [Configuring hybrid networking with OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking)

@@ -47,7 +47,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from points to a ReplicationController which is a deployment. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from points to a ReplicationController which is a deployment. |
 | `includeReplicationMeta` | `boolean` | includeReplicationMeta specifies whether to include the replica count and selector. |
 | `includeStrategy` | `boolean` | includeStrategy specifies whether to include the deployment Strategy. |
 | `includeTemplate` | `boolean` | includeTemplate specifies whether to include the PodTemplateSpec. |
@@ -91,13 +91,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DeploymentConfigRollback`](/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |  |
+| `body` | [`DeploymentConfigRollback`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfigRollback`](/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |
-| 201 - Created | [`DeploymentConfigRollback`](/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |
-| 202 - Accepted | [`DeploymentConfigRollback`](/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfigRollback`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |
+| 201 - Created | [`DeploymentConfigRollback`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |
+| 202 - Accepted | [`DeploymentConfigRollback`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfigrollback-apps-openshift-io-v1#deploymentconfigrollback-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

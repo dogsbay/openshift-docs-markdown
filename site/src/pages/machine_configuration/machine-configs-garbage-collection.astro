@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"machine-configs-garbage-collection","text":"Managing unused rendered machine configs"}];
 const nav = navData;
-const currentPath = "/machine_configuration/machine-configs-garbage-collection";
+const currentPath = "/openshift-docs-markdown/machine_configuration/machine-configs-garbage-collection";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["machine_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing unused rendered machine configs {#machine-configs-garbage-collection}\n\nYou can remove old, unused rendered machine configs by using the `oc adm prune renderedmachineconfigs` command. By removing these objects, you can free up disk space and reduce performance issues.\n\nThe Machine Config Operator (MCO) does not perform any garbage collection activities. This means that all rendered machine configs remain in the cluster. Each time a user or controller applies a new machine config, the MCO creates new rendered configs for each affected machine config pool. Over time, this can lead to a large number of rendered machine configs, which can make working with machine configs confusing. Having too many rendered machine configs can also contribute to disk space issues and performance issues with etcd.\n\nBy using the `oc adm prune renderedmachineconfigs` command with the `--confirm` flag, you can remove all unused rendered machine configs or only those in a specific machine config pool. You can also remove a specific number of unused rendered machine configs, keeping some older machine configs in case you want to check older configurations.\n\nYou can use the `oc adm prune renderedmachineconfigs` command without the `--confirm` flag to see which rendered machine configs would be removed.\n\nUse the `list` subcommand to display all the rendered machine configs in the cluster or a specific machine config pool.\n\n> [!NOTE]\n> The `oc adm prune renderedmachineconfigs` command deletes only rendered machine configs that are not in use. If a rendered machine configs are in use by a machine config pool, the rendered machine config is not deleted. In this case, the command output specifies the reason that the rendered machine config was not deleted.\n","mdUrl":"/machine_configuration/machine-configs-garbage-collection.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing unused rendered machine configs {#machine-configs-garbage-collection}\n\nYou can remove old, unused rendered machine configs by using the `oc adm prune renderedmachineconfigs` command. By removing these objects, you can free up disk space and reduce performance issues.\n\nThe Machine Config Operator (MCO) does not perform any garbage collection activities. This means that all rendered machine configs remain in the cluster. Each time a user or controller applies a new machine config, the MCO creates new rendered configs for each affected machine config pool. Over time, this can lead to a large number of rendered machine configs, which can make working with machine configs confusing. Having too many rendered machine configs can also contribute to disk space issues and performance issues with etcd.\n\nBy using the `oc adm prune renderedmachineconfigs` command with the `--confirm` flag, you can remove all unused rendered machine configs or only those in a specific machine config pool. You can also remove a specific number of unused rendered machine configs, keeping some older machine configs in case you want to check older configurations.\n\nYou can use the `oc adm prune renderedmachineconfigs` command without the `--confirm` flag to see which rendered machine configs would be removed.\n\nUse the `list` subcommand to display all the rendered machine configs in the cluster or a specific machine config pool.\n\n> [!NOTE]\n> The `oc adm prune renderedmachineconfigs` command deletes only rendered machine configs that are not in use. If a rendered machine configs are in use by a machine config pool, the rendered machine config is not deleted. In this case, the command output specifies the reason that the rendered machine config was not deleted.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_configuration/machine-configs-garbage-collection.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

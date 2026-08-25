@@ -14,7 +14,7 @@ The standalone configuration uses dedicated virtual machines or physical machine
 
 **Additional resources**
 
-- [Enabling etcd encryption](/etcd/etcd-encrypt#etcd-encrypt)
+- [Enabling etcd encryption](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)
 
 **Additional resources**
 

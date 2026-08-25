@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"cert-manager-operator-install","text":"Installing the {{ cert_manager_operator }}"},{"depth":2,"slug":"cert-manager-operator-install_additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/security/cert_manager_operator/cert-manager-operator-install";
+const currentPath = "/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/cert_manager_operator"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the {{ cert_manager_operator }} {#cert-manager-operator-install}\n\nThe {{ cert_manager_operator }} is not installed in OpenShift Container Platform by default. You can install the {{ cert_manager_operator }} by using the web console and command-line interface (CLI).\n\nThe {{ cert_manager_operator }} sets the `features.operators.openshift.io/token-auth-aws`, `features.operators.openshift.io/token-auth-azure`, and `features.operators.openshift.io/token-auth-gcp` annotations in the `ClusterServiceVersion` custom resource of the Operator. The OpenShift Container Platform web console requires the credential details when these annotations are set. Currently, the Operator does not use the values collected by the OpenShift web console and you can provide any value when asked for the input. For example, when installing on the managed OpenShift Container Platform cluster, the `identity-provider-arn` is asked and any value can be provided to proceed.\n\n> [!IMPORTANT]\n> The {{ cert_manager_operator }} version 1.15 or later supports the `AllNamespaces`, `SingleNamespace`, and `OwnNamespace` installation modes. Earlier versions, such as 1.14, support only the `SingleNamespace` and `OwnNamespace` installation modes.\n\n**Additional resources**\n\n- [Supported {{ cert_manager_operator }} versions](/security/cert_manager_operator/index#cert-manager-operator-supported-versions_cert-manager-operator-about)\n\n## Additional resources {#cert-manager-operator-install_additional-resources}\n\n- [Adding Operators to a cluster](/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)\n- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n","mdUrl":"/security/cert_manager_operator/cert-manager-operator-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the {{ cert_manager_operator }} {#cert-manager-operator-install}\n\nThe {{ cert_manager_operator }} is not installed in OpenShift Container Platform by default. You can install the {{ cert_manager_operator }} by using the web console and command-line interface (CLI).\n\nThe {{ cert_manager_operator }} sets the `features.operators.openshift.io/token-auth-aws`, `features.operators.openshift.io/token-auth-azure`, and `features.operators.openshift.io/token-auth-gcp` annotations in the `ClusterServiceVersion` custom resource of the Operator. The OpenShift Container Platform web console requires the credential details when these annotations are set. Currently, the Operator does not use the values collected by the OpenShift web console and you can provide any value when asked for the input. For example, when installing on the managed OpenShift Container Platform cluster, the `identity-provider-arn` is asked and any value can be provided to proceed.\n\n> [!IMPORTANT]\n> The {{ cert_manager_operator }} version 1.15 or later supports the `AllNamespaces`, `SingleNamespace`, and `OwnNamespace` installation modes. Earlier versions, such as 1.14, support only the `SingleNamespace` and `OwnNamespace` installation modes.\n\n**Additional resources**\n\n- [Supported {{ cert_manager_operator }} versions](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-supported-versions_cert-manager-operator-about)\n\n## Additional resources {#cert-manager-operator-install_additional-resources}\n\n- [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)\n- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,11 +106,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/cert-manager-install-console.md"></p>
       <p class="/modules/cert-manager-install-cli.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/security/cert_manager_operator/index#cert-manager-operator-supported-versions_cert-manager-operator-about">Supported {"{"}{"{"} cert_manager_operator {"}"}{"}"} versions</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-supported-versions_cert-manager-operator-about">Supported {"{"}{"{"} cert_manager_operator {"}"}{"}"} versions</a></li></ul>
       <h2 id="cert-manager-operator-install_additional-resources" class="group scroll-mt-20">Additional resources<a href="#cert-manager-operator-install_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster">Adding Operators to a cluster</a></li>
-      <li><a href="/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Updating installed Operators</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster">Adding Operators to a cluster</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Updating installed Operators</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

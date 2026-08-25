@@ -19,8 +19,8 @@ When you bring your own root key, you change the `install-config.yaml` file to s
 ## Additional resources {#additional-resources_user-managed-encryption-ibm-cloud}
 
 - [Key Protect documentation](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-services#grant-access)
-- [Additional {{ ibm_cloud_title }} configuration parameters](/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)
-- [Installing a cluster on {{ ibm_cloud_title }} with customizations](/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
-- [Installing a cluster on {{ ibm_cloud_title }} with network customizations](/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
-- [Installing a cluster on {{ ibm_cloud_title }} into an existing VPC](/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)
-- [Installing a private cluster on {{ ibm_cloud_title }}](/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)
+- [Additional {{ ibm_cloud_title }} configuration parameters](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)
+- [Installing a cluster on {{ ibm_cloud_title }} with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
+- [Installing a cluster on {{ ibm_cloud_title }} with network customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
+- [Installing a cluster on {{ ibm_cloud_title }} into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)
+- [Installing a private cluster on {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)

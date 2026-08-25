@@ -18,7 +18,7 @@ The Kubernetes persistent volume framework allows administrators to provision a 
 
 **Additional resources**
 
-- [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
+- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
 - [Microsoft Azure Disk](https://azure.microsoft.com/en-us/services/storage/disks)
 
 **Additional resources**
@@ -28,5 +28,5 @@ The Kubernetes persistent volume framework allows administrators to provision a 
 **Additional resources**
 
 - [Microsoft Azure ultra disks documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
-- [Machine sets that deploy machines on ultra disks using CSI PVCs](/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)
-- [Machine sets that deploy machines on ultra disks as data disks](/machine_management/creating_machinesets/creating-machineset-azure#machineset-azure-ultra-disk_creating-machineset-azure)
+- [Machine sets that deploy machines on ultra disks using CSI PVCs](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)
+- [Machine sets that deploy machines on ultra disks as data disks](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#machineset-azure-ultra-disk_creating-machineset-azure)

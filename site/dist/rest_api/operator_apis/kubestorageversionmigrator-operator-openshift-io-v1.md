@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` |  |
 | `status` | `object` |  |
 
@@ -169,7 +169,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -186,7 +186,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigratorList`](/rest_api/objects/index#io-openshift-operator-v1-KubeStorageVersionMigratorList) schema |
+| 200 - OK | [`KubeStorageVersionMigratorList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-v1-KubeStorageVersionMigratorList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -210,15 +210,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |  |
+| `body` | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
-| 201 - Created | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
-| 202 - Accepted | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 201 - Created | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 202 - Accepted | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operator.openshift.io/v1/kubestorageversionmigrators/{{ name }} {#_apisoperatoropenshiftiov1kubestorageversionmigrators_name}
@@ -249,8 +249,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -267,7 +267,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -291,7 +291,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -315,14 +315,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |  |
+| `body` | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
-| 201 - Created | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 201 - Created | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operator.openshift.io/v1/kubestorageversionmigrators/{{ name }}/status {#_apisoperatoropenshiftiov1kubestorageversionmigrators_name_status}
@@ -347,7 +347,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -371,7 +371,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -395,12 +395,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |  |
+| `body` | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
-| 201 - Created | [`KubeStorageVersionMigrator`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
+| 201 - Created | [`KubeStorageVersionMigrator`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

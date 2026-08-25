@@ -11,6 +11,6 @@ You can use the Red  Hat OpenShift Kubernetes Engine as a way to launch contain
 
 OpenShift Kubernetes Engine is a subscription offering that provides OpenShift Container Platform with a limited set of supported features at a lower list price. OpenShift Kubernetes Engine and OpenShift Container Platform are the same product and, therefore, all software and features are delivered in both. There is only one download, OpenShift Container Platform. OpenShift Kubernetes Engine uses the OpenShift Container Platform documentation and support services and bug errata for this reason.
 
-![Red Hat OpenShift Kubernetes Engine](/_assets/images/oke-about-ocp-stack-image.png)
+![Red Hat OpenShift Kubernetes Engine](/openshift-docs-markdown/_assets/images/oke-about-ocp-stack-image.png)
 
 You download and install OpenShift Kubernetes Engine the same way as OpenShift Container Platform, as they are the same binary distribution, but OpenShift Kubernetes Engine offers a subset of the features that OpenShift Container Platform offers.

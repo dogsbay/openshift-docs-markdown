@@ -2,4 +2,4 @@
 
 ## OpenShift Lightspeed
 
-- [OpenShift Lightspeed overview](/lightspeed/about/ols-openshift-lightspeed-overview.md)
+- [OpenShift Lightspeed overview](https://dogsbay.github.io/openshift-docs-markdown/lightspeed/about/ols-openshift-lightspeed-overview.md)

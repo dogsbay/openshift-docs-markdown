@@ -2,7 +2,7 @@
 // Source: security/file_integrity_operator/file-integrity-operator-installation.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Installing the File Integrity Operator\n---\n\n# Installing the File Integrity Operator {#installing-file-integrity-operator}\n\nInstall the File Integrity Operator on your cluster by using the OpenShift Container Platform web console or the {{ oc_first }}.\n\n> [!IMPORTANT]\n> All cluster nodes must have the same release version in order for this Operator to function properly. As an example, for nodes running {{ op_system }}, all nodes must have the same {{ op_system }} version.\n\n## Additional resources {#additional-resources-installing-the-file-integrity-operator}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n";
+const body = "---\ntitle: Installing the File Integrity Operator\n---\n\n# Installing the File Integrity Operator {#installing-file-integrity-operator}\n\nInstall the File Integrity Operator on your cluster by using the OpenShift Container Platform web console or the {{ oc_first }}.\n\n> [!IMPORTANT]\n> All cluster nodes must have the same release version in order for this Operator to function properly. As an example, for nodes running {{ op_system }}, all nodes must have the same {{ op_system }} version.\n\n## Additional resources {#additional-resources-installing-the-file-integrity-operator}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

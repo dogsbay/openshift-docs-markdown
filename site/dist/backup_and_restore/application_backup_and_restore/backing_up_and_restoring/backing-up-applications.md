@@ -28,12 +28,12 @@ Review the following information regarding backing up applications by using {{ o
 
 **Additional resources**
 
-- [Creating a Backup CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)
-- [Creating backup hooks](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-hooks-doc#oadp-creating-backup-hooks-doc)
-- [Scheduling backups using Schedule CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc)
-- [Installing Operators on clusters for administrators](/operators/admin/olm-adding-operators-to-cluster#olm-installing-operators-from-software-catalog_olm-adding-operators-to-a-cluster)
-- [Backing up persistent volumes with CSI snapshots](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc)
-- [CSI volume snapshots](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)
-- [Backing up applications with File System Backup: Kopia or Restic](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc)
-- [Installing Operators in namespaces for non-administrators](/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)
-- [Restic restore partially failing on OCP 4.15 due to changed PSA policy](/backup_and_restore/application_backup_and_restore/troubleshooting/restic-issues#oadp-restic-restore-failing-psa-policy_restic-issues)
+- [Creating a Backup CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)
+- [Creating backup hooks](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-hooks-doc#oadp-creating-backup-hooks-doc)
+- [Scheduling backups using Schedule CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc)
+- [Installing Operators on clusters for administrators](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-operators-from-software-catalog_olm-adding-operators-to-a-cluster)
+- [Backing up persistent volumes with CSI snapshots](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc)
+- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)
+- [Backing up applications with File System Backup: Kopia or Restic](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc)
+- [Installing Operators in namespaces for non-administrators](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)
+- [Restic restore partially failing on OCP 4.15 due to changed PSA policy](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/restic-issues#oadp-restic-restore-failing-psa-policy_restic-issues)

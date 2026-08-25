@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-using-the-cli-tools","text":"Using the CLI tools"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/getting_started/virt-using-the-cli-tools";
+const currentPath = "/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/getting_started"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the CLI tools {#virt-using-the-cli-tools}\n\nYou can manage {{ VirtProductName }} resources by using the `virtctl` command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified.\n\n> [!NOTE]\n> You can access and change VM disk images by using the `libguestfs` command-line tool. You deploy `libguestfs` by using the `virtctl libguestfs` command.\n\n{% include \"./modules/virt-installing-virtctl-binary.md\" %} {% include \"./modules/virt-virtctl-information-commands.md\" %} {% include \"./modules/virt-vm-information-commands.md\" %} {% include \"./modules/virt-vm-manifest-creation-commands.md\" %} {% include \"./modules/virt-vm-management-commands.md\" %} {% include \"./modules/virt-vm-connection-commands.md\" %} {% include \"./modules/virt-vm-export-commands.md\" %} {% include \"./modules/virt-hot-plug-and-hot-unplug-commands.md\" %} {% include \"./modules/virt-image-upload-commands.md\" %}\n\n## Additional resources {#_additional_resources}\n\n- [Red Hat Ansible Automation Hub](https://console.redhat.com/ansible/automation-hub)\n- [`libguestfs`](https://libguestfs.org)\n","mdUrl":"/virt/getting_started/virt-using-the-cli-tools.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the CLI tools {#virt-using-the-cli-tools}\n\nYou can manage {{ VirtProductName }} resources by using the `virtctl` command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified.\n\n> [!NOTE]\n> You can access and change VM disk images by using the `libguestfs` command-line tool. You deploy `libguestfs` by using the `virtctl libguestfs` command.\n\n{% include \"./modules/virt-installing-virtctl-binary.md\" %} {% include \"./modules/virt-virtctl-information-commands.md\" %} {% include \"./modules/virt-vm-information-commands.md\" %} {% include \"./modules/virt-vm-manifest-creation-commands.md\" %} {% include \"./modules/virt-vm-management-commands.md\" %} {% include \"./modules/virt-vm-connection-commands.md\" %} {% include \"./modules/virt-vm-export-commands.md\" %} {% include \"./modules/virt-hot-plug-and-hot-unplug-commands.md\" %} {% include \"./modules/virt-image-upload-commands.md\" %}\n\n## Additional resources {#_additional_resources}\n\n- [Red Hat Ansible Automation Hub](https://console.redhat.com/ansible/automation-hub)\n- [`libguestfs`](https://libguestfs.org)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

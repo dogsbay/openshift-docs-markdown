@@ -22,7 +22,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is a required field that defines the desired state of the ClusterCatalog. The controller ensures that the catalog is unpacked and served over the catalog content HTTP server. |
 | `status` | `object` | status contains the following information about the state of the ClusterCatalog:   - Whether the catalog contents are being served via the catalog content HTTP server   - Whether the ClusterCatalog is progressing to a new state   - A reference to the source from which the catalog contents were retrieved |
 
@@ -257,7 +257,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -274,7 +274,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalogList`](/rest_api/objects/index#io-operatorframework-olm-v1-ClusterCatalogList) schema |
+| 200 - OK | [`ClusterCatalogList`](/openshift-docs-markdown/rest_api/objects/index#io-operatorframework-olm-v1-ClusterCatalogList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -298,15 +298,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |  |
+| `body` | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
-| 201 - Created | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
-| 202 - Accepted | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 200 - OK | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 201 - Created | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 202 - Accepted | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/olm.operatorframework.io/v1/clustercatalogs/{{ name }} {#_apisolmoperatorframeworkiov1clustercatalogs_name}
@@ -337,8 +337,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -355,7 +355,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 200 - OK | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -379,7 +379,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 200 - OK | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -403,14 +403,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |  |
+| `body` | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
-| 201 - Created | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 200 - OK | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 201 - Created | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/olm.operatorframework.io/v1/clustercatalogs/{{ name }}/status {#_apisolmoperatorframeworkiov1clustercatalogs_name_status}
@@ -435,7 +435,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 200 - OK | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -459,7 +459,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 200 - OK | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -483,12 +483,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |  |
+| `body` | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
-| 201 - Created | [`ClusterCatalog`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 200 - OK | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
+| 201 - Created | [`ClusterCatalog`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |

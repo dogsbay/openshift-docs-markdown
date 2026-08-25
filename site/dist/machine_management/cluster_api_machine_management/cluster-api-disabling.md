@@ -8,9 +8,9 @@ To stop using the Cluster API to automate the management of infrastructure resou
 
 **Additional resources**
 
-- [Unexpected behavior when changing resource configurations](/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-migrate-unexpected-behavior_cluster-api-troubleshooting)
+- [Unexpected behavior when changing resource configurations](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-migrate-unexpected-behavior_cluster-api-troubleshooting)
 
 **Additional resources**
 
-- [Troubleshooting resource migration](/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-resource-migration_cluster-api-troubleshooting)
-- [Machine API to Cluster API resource migration](/machine_management/cluster_api_machine_management/cluster-api-getting-started#mapi-to-capi-migration-overview_cluster-api-getting-started)
+- [Troubleshooting resource migration](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-resource-migration_cluster-api-troubleshooting)
+- [Machine API to Cluster API resource migration](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#mapi-to-capi-migration-overview_cluster-api-getting-started)

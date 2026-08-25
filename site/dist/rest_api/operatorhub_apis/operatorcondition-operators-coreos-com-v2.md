@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OperatorConditionSpec allows an operator to report state to OLM and provides cluster admin with the ability to manually override state reported by the operator. |
 | `status` | `object` | OperatorConditionStatus allows OLM to convey which conditions have been observed. |
 
@@ -203,7 +203,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorConditionList`](/rest_api/objects/index#com-coreos-operators-v2-OperatorConditionList) schema |
+| 200 - OK | [`OperatorConditionList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v2-OperatorConditionList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions}
@@ -222,7 +222,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -239,7 +239,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorConditionList`](/rest_api/objects/index#com-coreos-operators-v2-OperatorConditionList) schema |
+| 200 - OK | [`OperatorConditionList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v2-OperatorConditionList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -263,15 +263,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |  |
+| `body` | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
-| 201 - Created | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
-| 202 - Accepted | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 200 - OK | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 201 - Created | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 202 - Accepted | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }} {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions_name}
@@ -302,8 +302,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -320,7 +320,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 200 - OK | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -344,7 +344,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 200 - OK | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -368,14 +368,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |  |
+| `body` | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
-| 201 - Created | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 200 - OK | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 201 - Created | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}/status {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions_name_status}
@@ -400,7 +400,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 200 - OK | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -424,7 +424,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 200 - OK | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -448,12 +448,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |  |
+| `body` | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
-| 201 - Created | [`OperatorCondition`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 200 - OK | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
+| 201 - Created | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |

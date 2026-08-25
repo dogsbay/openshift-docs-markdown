@@ -12,4 +12,4 @@ You can install a three-node cluster on installer-provisioned infrastructure onl
 
 ## Additional resources {#additional-resources_installing-openstack-three-node}
 
-- [Installing a cluster on {{ rh_openstack }} with customizations](/installing/installing_openstack/installing-openstack-installer-custom#installing-openstack-installer-custom)
+- [Installing a cluster on {{ rh_openstack }} with customizations](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-installer-custom#installing-openstack-installer-custom)

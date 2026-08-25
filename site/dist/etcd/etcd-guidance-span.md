@@ -26,14 +26,14 @@ When you implement a cluster deployment that spans many data centers, implement 
 
 **Additional resources**
 
-- [Ensuring reliable etcd performance and scalability](/etcd/etcd-performance#etcd-leader-election-log-replication_etcd-performance)
+- [Ensuring reliable etcd performance and scalability](/openshift-docs-markdown/etcd/etcd-performance#etcd-leader-election-log-replication_etcd-performance)
 - [Understanding and Validating MTU setting with OpenShift Container Platform 4.x (Red Hat Knowledgebase)](https://access.redhat.com/articles/7010220)
-- [How etcd peer round trip time affects performance](/etcd/etcd-performance#etcd-peer-round-trip_etcd-performance)
-- [Determining the size of the etcd database and understanding its effects](/etcd/etcd-performance#etcd-database-size_etcd-performance)
+- [How etcd peer round trip time affects performance](/openshift-docs-markdown/etcd/etcd-performance#etcd-peer-round-trip_etcd-performance)
+- [Determining the size of the etcd database and understanding its effects](/openshift-docs-markdown/etcd/etcd-performance#etcd-database-size_etcd-performance)
 
 ## Additional resources {#additional-resources-etcd-span_etcd-guidance-span}
 
 - [Red Hat OpenShift Container Platform Lifecycle](https://access.redhat.com/support/policy/updates/openshift)
 - [Red Hat Production Support Scope of Coverage](https://access.redhat.com/support/offerings/production/soc)
-- [Ensuring reliable etcd performance and scalability](/etcd/etcd-performance#etcd-leader-election-log-replication_etcd-performance)
+- [Ensuring reliable etcd performance and scalability](/openshift-docs-markdown/etcd/etcd-performance#etcd-leader-election-log-replication_etcd-performance)
 - [Red Hat OpenShift Container Platform High Availability, and Recommended Practices (Red Hat Knowledgebase)](https://access.redhat.com/articles/3221001)

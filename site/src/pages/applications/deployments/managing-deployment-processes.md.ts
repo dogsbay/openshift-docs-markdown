@@ -2,7 +2,7 @@
 // Source: applications/deployments/managing-deployment-processes.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Managing deployment processes\n---\n\n# Managing deployment processes {#deployment-operations}\n\n## Managing DeploymentConfig objects {#deploymentconfig-operations}\n\n`DeploymentConfig` objects can be managed from the OpenShift Container Platform web console’s **Workloads** page or using the `oc` CLI. The following procedures show CLI usage unless otherwise stated.\n\n**Additional resources**\n\n- For more information about resource limits and requests, see [Understanding managing application memory](/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).\n";
+const body = "---\ntitle: Managing deployment processes\n---\n\n# Managing deployment processes {#deployment-operations}\n\n## Managing DeploymentConfig objects {#deploymentconfig-operations}\n\n`DeploymentConfig` objects can be managed from the OpenShift Container Platform web console’s **Workloads** page or using the `oc` CLI. The following procedures show CLI usage unless otherwise stated.\n\n**Additional resources**\n\n- For more information about resource limits and requests, see [Understanding managing application memory](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

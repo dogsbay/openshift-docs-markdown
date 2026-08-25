@@ -12,7 +12,7 @@ You can use Red Hat Advanced Cluster Management for Kubernetes to help you impor
 
 To successfully transition to OpenShift Container Platform 4, review the following information:
 
-[Differences between OpenShift Container Platform 3 and 4](/migrating_from_ocp_3_to_4/planning-migration-3-4#planning-migration-3-4)
+[Differences between OpenShift Container Platform 3 and 4](/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-migration-3-4#planning-migration-3-4)
 :   - Architecture
     - Installation and upgrade
     - Storage, network, logging, security, and monitoring considerations

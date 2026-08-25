@@ -8,4 +8,4 @@ Some OpenShift Container Platform clusters use short-term security credentials, 
 
 ## Additional resources {#additional-resources_nodes-pods-short-term-auth}
 
-- [Short-term credentials for components](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)
+- [Short-term credentials for components](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)

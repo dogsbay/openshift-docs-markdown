@@ -27,7 +27,7 @@ The s390x architecture is unique in many aspects. Some host practice recommendat
 
 - [OpenShift Container Platform on {{ ibm_z_name }} - Performance Experiences, Hints and Tips](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_eval)
 - [OpenShift Container Platform on {{ ibm_z_name }} Networking Performance](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_net)
-- [Controlling pod placement on nodes using node affinity rules](/nodes/scheduling/nodes-scheduler-node-affinity)
+- [Controlling pod placement on nodes using node affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity)
 
 **Additional resources**
 

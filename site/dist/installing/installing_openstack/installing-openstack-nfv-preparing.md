@@ -8,7 +8,7 @@ Before installing an OpenShift Container Platform cluster that uses single-root 
 
 **Additional resources**
 
-- [About Single Root I/O Virtualization (SR-IOV) hardware networks](/networking/hardware_networks/about-sriov#about-sriov)
+- [About Single Root I/O Virtualization (SR-IOV) hardware networks](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)
 - [Planning an SR-IOV deployment ({{ rh_openstack_first }} documentation)](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_network_functions_virtualization/plan-sriov-deploy_rhosp-nfv)
 - [Configuring CPUs on Compute nodes ({{ rh_openstack_first }} documentation)](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_the_compute_service_for_instance_creation/assembly_configuring-cpus-on-compute-nodes)
 - [Planning an SR-IOV deployment ({{ rhoso_first }} documentation)](https://docs.redhat.com/en/documentation/red_hat_openstack_services_on_openshift/18.0/html/deploying_a_network_functions_virtualization_environment/plan-sriov-deploy_rhoso-nfv)

@@ -8,13 +8,13 @@ You can update a OpenShift Container Platform cluster in a disconnected environm
 
 **Additional resources**
 
-- [Mirroring OpenShift Container Platform images](/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
+- [Mirroring OpenShift Container Platform images](/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
 
 **Additional resources**
 
-- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)
-- [Updating a cluster in a disconnected environment without the OpenShift Update Service](/disconnected/updating/disconnected-update#updating-disconnected-cluster)
+- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)
+- [Updating a cluster in a disconnected environment without the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update#updating-disconnected-cluster)
 
 **Additional resources**
 
-- [Uninstalling the OpenShift Update Service from a cluster](/disconnected/updating/uninstalling-osus#uninstalling-osus)
+- [Uninstalling the OpenShift Update Service from a cluster](/openshift-docs-markdown/disconnected/updating/uninstalling-osus#uninstalling-osus)

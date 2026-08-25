@@ -16,6 +16,6 @@ You can install a {{ gcp_first }} cluster with the support for configuring multi
 
 ## Additional resources {#additional-resources_installing-gcp-multiarch-support}
 
-- [Deploying the cluster](/installing/installing_gcp/installing-gcp-customizations#installation-launching-installer_installing-gcp-customizations)
-- [Scheduling workloads on clusters with multi-architecture compute machines](/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)
-- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
+- [Deploying the cluster](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-launching-installer_installing-gcp-customizations)
+- [Scheduling workloads on clusters with multi-architecture compute machines](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)
+- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)

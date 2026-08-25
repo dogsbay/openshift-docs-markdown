@@ -8,5 +8,5 @@ You can use a CLI configuration file to create different profiles, or contexts, 
 
 ## Additional resources {#additional-resources_managing-cli-profiles}
 
-- [CLI tools overview](/cli_reference/index#cli-tools-overview)
-- [Understanding authentication](/authentication/understanding-authentication#understanding-authentication)
+- [CLI tools overview](/openshift-docs-markdown/cli_reference/index#cli-tools-overview)
+- [Understanding authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication)

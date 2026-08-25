@@ -2,7 +2,7 @@
 // Source: hardware_enablement/psap-driver-toolkit.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Driver Toolkit\n---\n\n# Driver Toolkit {#driver-toolkit}\n\nThe Driver Toolkit is a base container image for building driver containers that enable specialized hardware and software devices on OpenShift Container Platform clusters.\n\n## Additional resources {#additional-resources_driver-toolkit-id}\n\n- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#registry-removed_configuring-registry-operator)\n";
+const body = "---\ntitle: Driver Toolkit\n---\n\n# Driver Toolkit {#driver-toolkit}\n\nThe Driver Toolkit is a base container image for building driver containers that enable specialized hardware and software devices on OpenShift Container Platform clusters.\n\n## Additional resources {#additional-resources_driver-toolkit-id}\n\n- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#registry-removed_configuring-registry-operator)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

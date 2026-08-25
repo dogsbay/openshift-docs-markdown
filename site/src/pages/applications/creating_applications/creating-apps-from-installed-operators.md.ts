@@ -2,7 +2,7 @@
 // Source: applications/creating_applications/creating-apps-from-installed-operators.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Creating applications from installed Operators\n---\n\n# Creating applications from installed Operators {#creating-apps-from-installed-operators}\n\nYou can deploy applications on your OpenShift Container Platform cluster from Operators that a cluster administrator installed. Use the **Installed Operators** page in the web console to create an application from an Operator custom resource (CR) API.\n\n**Additional resources**\n\n- [What are Operators?](/operators/understanding/olm-what-operators-are#olm-what-operators-are)\n";
+const body = "---\ntitle: Creating applications from installed Operators\n---\n\n# Creating applications from installed Operators {#creating-apps-from-installed-operators}\n\nYou can deploy applications on your OpenShift Container Platform cluster from Operators that a cluster administrator installed. Use the **Installed Operators** page in the web console to create an application from an Operator custom resource (CR) API.\n\n**Additional resources**\n\n- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

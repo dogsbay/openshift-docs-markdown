@@ -8,4 +8,4 @@ Review the {{ descheduler_operator }} release notes to track its development and
 
 The {{ descheduler_operator }} allows you to evict pods so that they can be rescheduled on more appropriate nodes.
 
-For more information, see [About the descheduler](/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about).
+For more information, see [About the descheduler](/openshift-docs-markdown/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about).

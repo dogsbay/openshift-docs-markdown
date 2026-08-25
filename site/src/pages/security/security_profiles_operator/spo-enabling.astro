@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"spo-enabling","text":"Enabling the Security Profiles Operator"}];
 const nav = navData;
-const currentPath = "/security/security_profiles_operator/spo-enabling";
+const currentPath = "/openshift-docs-markdown/security/security_profiles_operator/spo-enabling";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/security_profiles_operator"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling the Security Profiles Operator {#spo-enabling}\n\nBefore you can use the Security Profiles Operator, you must ensure the Operator is deployed in the cluster.\n\n> [!IMPORTANT]\n> All cluster nodes must have the same release version in order for this Operator to function properly. As an example, for nodes running {{ op_system }}, all nodes must have the same {{ op_system }} version.\n\n> [!IMPORTANT]\n> The Security Profiles Operator supports only Red Hat Enterprise Linux CoreOS (RHCOS) worker nodes. Red Hat Enterprise Linux (RHEL) nodes are not supported.\n\n> [!IMPORTANT]\n> The Security Profiles Operator supports `x86_64` and `ppc64le` architecture.\n","mdUrl":"/security/security_profiles_operator/spo-enabling.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling the Security Profiles Operator {#spo-enabling}\n\nBefore you can use the Security Profiles Operator, you must ensure the Operator is deployed in the cluster.\n\n> [!IMPORTANT]\n> All cluster nodes must have the same release version in order for this Operator to function properly. As an example, for nodes running {{ op_system }}, all nodes must have the same {{ op_system }} version.\n\n> [!IMPORTANT]\n> The Security Profiles Operator supports only Red Hat Enterprise Linux CoreOS (RHCOS) worker nodes. Red Hat Enterprise Linux (RHEL) nodes are not supported.\n\n> [!IMPORTANT]\n> The Security Profiles Operator supports `x86_64` and `ppc64le` architecture.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/security_profiles_operator/spo-enabling.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

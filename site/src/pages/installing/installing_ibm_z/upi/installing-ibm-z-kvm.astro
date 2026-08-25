@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-ibm-z-kvm","text":"Installing a cluster with {{ op_system_base }} KVM on {{ ibm_z_title }} and {{ ibm_linuxone_title }}"},{"depth":2,"slug":"additional-resources_installing-ibm-z-kvm","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_ibm_z/upi/installing-ibm-z-kvm";
+const currentPath = "/openshift-docs-markdown/installing/installing_ibm_z/upi/installing-ibm-z-kvm";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_ibm_z","installing/installing_ibm_z/upi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster with {{ op_system_base }} KVM on {{ ibm_z_title }} and {{ ibm_linuxone_title }} {#installing-ibm-z-kvm}\n\nYou can install OpenShift Container Platform on {{ ibm_z_name }} or {{ ibm_linuxone_name }} by using {{ op_system_base }} KVM on infrastructure that you provision, giving you full control over networking, storage, and compute resources.\n\n> [!NOTE]\n> While this document refers only to {{ ibm_z_name }}, all information in it also applies to {{ ibm_linuxone_name }}.\n\n**Additional resources**\n\n- [Preparing to install a cluster on {{ ibm_z_title }} using user-provisioned infrastructure](/installing/installing_ibm_z/upi/upi-ibm-z-preparing-to-install#upi-ibm-z-preparing-to-install)\n- [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)\n- [Persistent storage using {{ rh_storage }}](/storage/persistent_storage/persistent-storage-ocs#persistent-storage-ocs)\n- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)\n\n**Additional resources**\n\n- [Installation configuration parameters for {{ ibm_z_name }}](/installing/installing_ibm_z/installation-config-parameters-ibm-z#installation-config-parameters-ibm-z)\n\n**Additional resources**\n\n- [Introducing {{ ibm_name }} Secure Execution for Linux](https://www.ibm.com/docs/en/linux-on-systems?topic=virtualization-secure-execution)\n- [Linux as an {{ ibm_name }} Secure Execution host or guest](https://www.ibm.com/docs/en/linux-on-systems?topic=ibm-z-secure-execution)\n- [Setting up {{ ibm_name }} Secure Execution on {{ ibm_z_title }}](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_virtualization/securing-virtual-machines-in-rhel_configuring-and-managing-virtualization#setting-up-secure-execution-on-ibm-z_securing-virtual-machines-in-rhel)\n\n**Additional resources**\n\n- [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)\n\n**Additional resources**\n\n- [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)\n\n## Additional resources {#additional-resources_installing-ibm-z-kvm}\n\n- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n- [How to generate SOSREPORT within OpenShift Container Platform version 4 nodes without SSH](https://access.redhat.com/solutions/4387261)\n- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n","mdUrl":"/installing/installing_ibm_z/upi/installing-ibm-z-kvm.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster with {{ op_system_base }} KVM on {{ ibm_z_title }} and {{ ibm_linuxone_title }} {#installing-ibm-z-kvm}\n\nYou can install OpenShift Container Platform on {{ ibm_z_name }} or {{ ibm_linuxone_name }} by using {{ op_system_base }} KVM on infrastructure that you provision, giving you full control over networking, storage, and compute resources.\n\n> [!NOTE]\n> While this document refers only to {{ ibm_z_name }}, all information in it also applies to {{ ibm_linuxone_name }}.\n\n**Additional resources**\n\n- [Preparing to install a cluster on {{ ibm_z_title }} using user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_ibm_z/upi/upi-ibm-z-preparing-to-install#upi-ibm-z-preparing-to-install)\n- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)\n- [Persistent storage using {{ rh_storage }}](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs#persistent-storage-ocs)\n- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)\n\n**Additional resources**\n\n- [Installation configuration parameters for {{ ibm_z_name }}](/openshift-docs-markdown/installing/installing_ibm_z/installation-config-parameters-ibm-z#installation-config-parameters-ibm-z)\n\n**Additional resources**\n\n- [Introducing {{ ibm_name }} Secure Execution for Linux](https://www.ibm.com/docs/en/linux-on-systems?topic=virtualization-secure-execution)\n- [Linux as an {{ ibm_name }} Secure Execution host or guest](https://www.ibm.com/docs/en/linux-on-systems?topic=ibm-z-secure-execution)\n- [Setting up {{ ibm_name }} Secure Execution on {{ ibm_z_title }}](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_virtualization/securing-virtual-machines-in-rhel_configuring-and-managing-virtualization#setting-up-secure-execution-on-ibm-z_securing-virtual-machines-in-rhel)\n\n**Additional resources**\n\n- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)\n\n**Additional resources**\n\n- [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)\n\n## Additional resources {#additional-resources_installing-ibm-z-kvm}\n\n- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n- [How to generate SOSREPORT within OpenShift Container Platform version 4 nodes without SSH](https://access.redhat.com/solutions/4387261)\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_z/upi/installing-ibm-z-kvm.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,16 +105,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/prereqs-ibm-z-kvm-upi.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/installing_ibm_z/upi/upi-ibm-z-preparing-to-install#upi-ibm-z-preparing-to-install">Preparing to install a cluster on {"{"}{"{"} ibm_z_title {"}"}{"}"} using user-provisioned infrastructure</a></li>
-      <li><a href="/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a></li>
-      <li><a href="/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
-      <li><a href="/storage/persistent_storage/persistent-storage-ocs#persistent-storage-ocs">Persistent storage using {"{"}{"{"} rh_storage {"}"}{"}"}</a></li>
-      <li><a href="/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">Configuring your firewall</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_z/upi/upi-ibm-z-preparing-to-install#upi-ibm-z-preparing-to-install">Preparing to install a cluster on {"{"}{"{"} ibm_z_title {"}"}{"}"} using user-provisioned infrastructure</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/architecture-installation#architecture-installation">OpenShift Container Platform installation and update</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
+      <li><a href="/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs#persistent-storage-ocs">Persistent storage using {"{"}{"{"} rh_storage {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall">Configuring your firewall</a></li>
       </ul>
       <p class="/modules/installation-load-balancing-user-infra-example.md"></p>
       <p class="/modules/installation-initializing-manual.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_ibm_z/installation-config-parameters-ibm-z#installation-config-parameters-ibm-z">Installation configuration parameters for {"{"}{"{"} ibm_z_name {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_ibm_z/installation-config-parameters-ibm-z#installation-config-parameters-ibm-z">Installation configuration parameters for {"{"}{"{"} ibm_z_name {"}"}{"}"}</a></li></ul>
       <p class="/modules/installation-configure-proxy.md"></p>
       <p class="/modules/installation-three-node-cluster.md"></p>
       <p class="/modules/nw-operator-cr.md"></p>
@@ -130,7 +130,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p class="/modules/ibm-z-configure-nbde-with-static-ip.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing">Creating machine configs with Butane</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing">Creating machine configs with Butane</a></li></ul>
       <p class="/modules/installation-full-ibm-z-kvm-user-infra-machines-iso.md"></p>
       <p class="/modules/installation-user-infra-machines-static-network.md"></p>
       <p><strong>Additional resources</strong></p>
@@ -152,10 +152,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/cluster-telemetry.md"></p>
       <h2 id="additional-resources_installing-ibm-z-kvm" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-ibm-z-kvm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li>
       <li><a href="https://access.redhat.com/solutions/4387261">How to generate SOSREPORT within OpenShift Container Platform version 4 nodes without SSH</a></li>
-      <li><a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

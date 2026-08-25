@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"ossm-about","text":"About OpenShift Service Mesh"}];
 const nav = navData;
-const currentPath = "/service_mesh/v2x/ossm-about";
+const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-about";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About OpenShift Service Mesh {#ossm-about}\n\n> [!NOTE]\n> Because {{ SMProductName }} releases on a different cadence from OpenShift Container Platform and because the {{ SMProductName }} Operator supports deploying multiple versions of the `ServiceMeshControlPlane`, the {{ SMProductShortName }} documentation does not maintain separate documentation sets for minor versions of the product.  The current documentation set applies to the most recent version of {{ SMProductShortName }} unless version-specific limitations are called out in a particular topic or for a particular feature.\n>\n> For additional information about the {{ SMProductName }} life cycle and supported platforms, refer to the [Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift#ossm).\n","mdUrl":"/service_mesh/v2x/ossm-about.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About OpenShift Service Mesh {#ossm-about}\n\n> [!NOTE]\n> Because {{ SMProductName }} releases on a different cadence from OpenShift Container Platform and because the {{ SMProductName }} Operator supports deploying multiple versions of the `ServiceMeshControlPlane`, the {{ SMProductShortName }} documentation does not maintain separate documentation sets for minor versions of the product.  The current documentation set applies to the most recent version of {{ SMProductShortName }} unless version-specific limitations are called out in a particular topic or for a particular feature.\n>\n> For additional information about the {{ SMProductName }} life cycle and supported platforms, refer to the [Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift#ossm).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-about.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -8,5 +8,5 @@ To allow external clients to connect securely to applications under the .apps su
 
 ## Additional resources {#_additional_resources}
 
-- [Replacing the CA Bundle certificate](/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)
-- [Proxy certificate customization](/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)
+- [Replacing the CA Bundle certificate](/openshift-docs-markdown/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)
+- [Proxy certificate customization](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)

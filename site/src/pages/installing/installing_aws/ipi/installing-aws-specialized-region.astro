@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-aws-specialized-region","text":"Installing a cluster on {{ aws_short }} into a specialized region"},{"depth":2,"slug":"additional-resources_installing-aws-specialized-region","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_aws/ipi/installing-aws-specialized-region";
+const currentPath = "/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-specialized-region";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_aws","installing/installing_aws/ipi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on {{ aws_short }} into a specialized region {#installing-aws-specialized-region}\n\nYou can install a cluster on {{ aws_first }} into specialized regions, including secret and top secret regions, government regions, and China regions. To configure the region, modify parameters in the `install-config.yaml` file before you install the cluster.\n\nThe following specialized regions are supported:\n\n***Specialized regions***\n\n<table>\n<thead>\n<tr>\n  <th>Region type</th>\n  <th>Supported regions</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>China</td>\n  <td><ul><li><code>cn-north-1</code> (Beijing)</li><li><code>cn-northwest-1</code> (Ningxia)</li></ul></td>\n</tr>\n<tr>\n  <td>Secret and Top Secret</td>\n  <td><ul><li><code>us-isob-east-1</code> (SC2S)</li><li><code>us-iso-east-1</code> (C2S)</li></ul></td>\n</tr>\n<tr>\n  <td>Government</td>\n  <td><ul><li><code>us-gov-east-1</code></li><li><code>us-gov-west-1</code></li></ul></td>\n</tr>\n</tbody>\n</table>\n\n> [!WARNING]\n> In OpenShift Container Platform 4.22, the installation program uses Cluster API instead of Terraform to provision cluster infrastructure during installations on AWS. Installing a cluster on {{ aws_short }} into a secret or top-secret region by using the Cluster API implementation has not been tested as of the release of OpenShift Container Platform 4.22. This document will be updated when installation into a secret region has been tested.\n>\n> There is a known issue with Network Load Balancers' support for security groups in secret or top secret regions that causes installations in these regions to fail. For more information, see [OCPBUGS-33311](https://issues.redhat.com/browse/OCPBUGS-33311).\n>\n> The maximum supported MTU in the {{ aws_short }} SC2S and C2S regions is not the same as the public regions. For more information about configuring MTU during installation, see the *Cluster Network Operator configuration object* section in *Installing a cluster on {{ aws_short }} with network customizations*\n\n**Additional resources**\n\n- [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)\n\n**Additional resources**\n\n- [Import a disk as an EBS snapshot using VM Import/Export ({{ aws_short }} documentation)](https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-import-snapshot.html)\n- [Create an AMI from a snapshot ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot)\n\n**Additional resources**\n\n- [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)\n\n**Additional resources**\n\n- [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)\n\n**Additional resources**\n\n- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n\n## Additional resources {#additional-resources_installing-aws-specialized-region}\n\n- [Accessing the web console](/web_console/web-console#web-console)\n- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)\n- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Removing cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)\n","mdUrl":"/installing/installing_aws/ipi/installing-aws-specialized-region.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on {{ aws_short }} into a specialized region {#installing-aws-specialized-region}\n\nYou can install a cluster on {{ aws_first }} into specialized regions, including secret and top secret regions, government regions, and China regions. To configure the region, modify parameters in the `install-config.yaml` file before you install the cluster.\n\nThe following specialized regions are supported:\n\n***Specialized regions***\n\n<table>\n<thead>\n<tr>\n  <th>Region type</th>\n  <th>Supported regions</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>China</td>\n  <td><ul><li><code>cn-north-1</code> (Beijing)</li><li><code>cn-northwest-1</code> (Ningxia)</li></ul></td>\n</tr>\n<tr>\n  <td>Secret and Top Secret</td>\n  <td><ul><li><code>us-isob-east-1</code> (SC2S)</li><li><code>us-iso-east-1</code> (C2S)</li></ul></td>\n</tr>\n<tr>\n  <td>Government</td>\n  <td><ul><li><code>us-gov-east-1</code></li><li><code>us-gov-west-1</code></li></ul></td>\n</tr>\n</tbody>\n</table>\n\n> [!WARNING]\n> In OpenShift Container Platform 4.22, the installation program uses Cluster API instead of Terraform to provision cluster infrastructure during installations on AWS. Installing a cluster on {{ aws_short }} into a secret or top-secret region by using the Cluster API implementation has not been tested as of the release of OpenShift Container Platform 4.22. This document will be updated when installation into a secret region has been tested.\n>\n> There is a known issue with Network Load Balancers' support for security groups in secret or top secret regions that causes installations in these regions to fail. For more information, see [OCPBUGS-33311](https://issues.redhat.com/browse/OCPBUGS-33311).\n>\n> The maximum supported MTU in the {{ aws_short }} SC2S and C2S regions is not the same as the public regions. For more information about configuring MTU during installation, see the *Cluster Network Operator configuration object* section in *Installing a cluster on {{ aws_short }} with network customizations*\n\n**Additional resources**\n\n- [Installation configuration parameters for AWS](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)\n\n**Additional resources**\n\n- [Import a disk as an EBS snapshot using VM Import/Export ({{ aws_short }} documentation)](https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-import-snapshot.html)\n- [Create an AMI from a snapshot ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot)\n\n**Additional resources**\n\n- [Installation configuration parameters for AWS](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)\n\n**Additional resources**\n\n- [Installation configuration parameters for AWS](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)\n\n**Additional resources**\n\n- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n\n## Additional resources {#additional-resources_installing-aws-specialized-region}\n\n- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)\n- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)\n- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-specialized-region.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -111,7 +111,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-aws-about-government-region.md"></p>
       <p class="/modules/installation-aws-marketplace-government.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws">Installation configuration parameters for AWS</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws">Installation configuration parameters for AWS</a></li></ul>
       <p class="/modules/private-clusters-default.md"></p>
       <p class="/modules/private-clusters-about-aws.md"></p>
       <p class="/modules/installation-custom-aws-vpc.md"></p>
@@ -123,11 +123,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot">Create an AMI from a snapshot ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws">Installation configuration parameters for AWS</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws">Installation configuration parameters for AWS</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws">Installation configuration parameters for AWS</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws">Installation configuration parameters for AWS</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li></ul>
       <p class="/modules/installation-aws-arm-tested-machine-types.md"></p>
       <p class="/modules/installation-configure-proxy.md"></p>
       <p class="/modules/installation-applying-aws-security-groups.md"></p>
@@ -143,11 +143,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/logging-in-by-using-the-web-console.md"></p>
       <h2 id="additional-resources_installing-aws-specialized-region" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-aws-specialized-region" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/web_console/web-console#web-console">Accessing the web console</a></li>
-      <li><a href="/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
-      <li><a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
-      <li><a href="/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration">Removing cloud provider credentials</a></li>
+      <li><a href="/openshift-docs-markdown/web_console/web-console#web-console">Accessing the web console</a></li>
+      <li><a href="/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration">Removing cloud provider credentials</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

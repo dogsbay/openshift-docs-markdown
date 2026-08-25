@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | LeaseSpec is a specification of a Lease. |
 
 ### .spec {#_spec}
@@ -33,12 +33,12 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `acquireTime` | [`MicroTime`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | acquireTime is a time when the current lease was acquired. |
+| `acquireTime` | [`MicroTime`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | acquireTime is a time when the current lease was acquired. |
 | `holderIdentity` | `string` | holderIdentity contains the identity of the holder of a current lease. If Coordinated Leader Election is used, the holder identity must be equal to the elected LeaseCandidate.metadata.name field. |
 | `leaseDurationSeconds` | `integer` | leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measured against the time of last observed renewTime. |
 | `leaseTransitions` | `integer` | leaseTransitions is the number of transitions of a lease between holders. |
 | `preferredHolder` | `string` | PreferredHolder signals to a lease holder that the lease has a more optimal holder and should be given up. This field can only be set if Strategy is also set. |
-| `renewTime` | [`MicroTime`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | renewTime is a time when the current holder of a lease has last updated the lease. |
+| `renewTime` | [`MicroTime`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | renewTime is a time when the current holder of a lease has last updated the lease. |
 | `strategy` | `string` | Strategy indicates the strategy for picking the leader for coordinated leader election. If the field is not specified, there is no active coordination for this lease. (Alpha) Using this field requires the CoordinatedLeaderElection feature gate to be enabled. |
 
 ## API endpoints {#_api_endpoints}
@@ -85,7 +85,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LeaseList`](/rest_api/objects/index#io-k8s-api-coordination-v1-LeaseList) schema |
+| 200 - OK | [`LeaseList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-coordination-v1-LeaseList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/coordination.k8s.io/v1/watch/leases {#_apiscoordinationk8siov1watchleases}
@@ -104,7 +104,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases {#_apiscoordinationk8siov1namespaces_namespace_leases}
@@ -129,7 +129,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -146,7 +146,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LeaseList`](/rest_api/objects/index#io-k8s-api-coordination-v1-LeaseList) schema |
+| 200 - OK | [`LeaseList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-coordination-v1-LeaseList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -170,15 +170,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |  |
+| `body` | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
-| 201 - Created | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
-| 202 - Accepted | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 200 - OK | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 201 - Created | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 202 - Accepted | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases {#_apiscoordinationk8siov1watchnamespaces_namespace_leases}
@@ -197,7 +197,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases/{{ name }} {#_apiscoordinationk8siov1namespaces_namespace_leases_name}
@@ -228,8 +228,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -246,7 +246,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 200 - OK | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -270,8 +270,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
-| 201 - Created | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 200 - OK | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 201 - Created | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -295,14 +295,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |  |
+| `body` | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
-| 201 - Created | [`Lease`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 200 - OK | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
+| 201 - Created | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases/{{ name }} {#_apiscoordinationk8siov1watchnamespaces_namespace_leases_name}
@@ -327,5 +327,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

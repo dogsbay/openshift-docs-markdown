@@ -8,5 +8,5 @@ To return your OpenShift Container Platform cluster to a known good state, resto
 
 **Additional resources**
 
-- [Recovering a degraded etcd Operator](/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)
-- [Deleting the Local Storage Operator resources](/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local)
+- [Recovering a degraded etcd Operator](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)
+- [Deleting the Local Storage Operator resources](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local)

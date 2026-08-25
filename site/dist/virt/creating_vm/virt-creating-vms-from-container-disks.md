@@ -25,7 +25,7 @@ You create a VM from a container disk by performing the following steps:
 
 ## Additional resources {#additional-resources_virt-creating-vms-from-container-disks}
 
-- [Managing automatic boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)
-- [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
-- [Pruning objects to reclaim resources](/applications/pruning-objects#pruning-deployments_pruning-objects)
-- [Configuring garbage collection for containers and images](/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring)
+- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)
+- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
+- [Pruning objects to reclaim resources](/openshift-docs-markdown/applications/pruning-objects#pruning-deployments_pruning-objects)
+- [Configuring garbage collection for containers and images](/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring)

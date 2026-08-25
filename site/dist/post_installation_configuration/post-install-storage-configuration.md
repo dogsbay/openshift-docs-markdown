@@ -18,7 +18,7 @@ Static provisioning
 
 ## Additional resources {#additional-resources_post-install-storage-configuration}
 
-- [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning)
+- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)
 - [{{ rh_storage_first }} documentation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation)
 - [Red Hat OpenShift Data Foundation Supportability and Interoperability Guide](https://access.redhat.com/articles/4731161)
 - [Red Hat Gluster Storage installation guide](https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.3/html/installation_guide/)

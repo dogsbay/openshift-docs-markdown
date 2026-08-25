@@ -2,7 +2,7 @@
 // Source: vcp/vcp-prerequisites.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Prerequisites for virtualized control planes\n---\n\n# Prerequisites for virtualized control planes {#vcp-prerequisites}\n\nBefore deploying a virtualized control plane cluster, ensure your environment meets the following requirements.\n\n## Additional resources {#additional-resources_vcp-prerequisites}\n\n- [Recommended resources for the agent-based installer](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)\n- [Effects of disk latency on etcd](/etcd/etcd-performance#etcd-disk-latency_etcd-performance)\n";
+const body = "---\ntitle: Prerequisites for virtualized control planes\n---\n\n# Prerequisites for virtualized control planes {#vcp-prerequisites}\n\nBefore deploying a virtualized control plane cluster, ensure your environment meets the following requirements.\n\n## Additional resources {#additional-resources_vcp-prerequisites}\n\n- [Recommended resources for the agent-based installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)\n- [Effects of disk latency on etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-disk-latency_etcd-performance)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

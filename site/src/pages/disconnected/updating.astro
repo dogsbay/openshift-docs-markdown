@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"about-disconnected-updates","text":"About cluster updates in a disconnected environment"}];
 const nav = navData;
-const currentPath = "/disconnected/updating";
+const currentPath = "/openshift-docs-markdown/disconnected/updating";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["disconnected"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About cluster updates in a disconnected environment {#about-disconnected-updates}\n\nYou can update a OpenShift Container Platform cluster in a disconnected environment where the cluster nodes cannot access the internet or where you want to manage update recommendations and release images locally for policy or performance purposes.\n\n**Additional resources**\n\n- [Mirroring OpenShift Container Platform images](/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)\n\n**Additional resources**\n\n- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)\n- [Updating a cluster in a disconnected environment without the OpenShift Update Service](/disconnected/updating/disconnected-update#updating-disconnected-cluster)\n\n**Additional resources**\n\n- [Uninstalling the OpenShift Update Service from a cluster](/disconnected/updating/uninstalling-osus#uninstalling-osus)\n","mdUrl":"/disconnected/updating.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About cluster updates in a disconnected environment {#about-disconnected-updates}\n\nYou can update a OpenShift Container Platform cluster in a disconnected environment where the cluster nodes cannot access the internet or where you want to manage update recommendations and release images locally for policy or performance purposes.\n\n**Additional resources**\n\n- [Mirroring OpenShift Container Platform images](/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)\n\n**Additional resources**\n\n- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)\n- [Updating a cluster in a disconnected environment without the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update#updating-disconnected-cluster)\n\n**Additional resources**\n\n- [Uninstalling the OpenShift Update Service from a cluster](/openshift-docs-markdown/disconnected/updating/uninstalling-osus#uninstalling-osus)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected/updating.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,14 +95,14 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>You can update a OpenShift Container Platform cluster in a disconnected environment where the cluster nodes cannot access the internet or where you want to manage update recommendations and release images locally for policy or performance purposes.</p>
       <p class="/modules/mirror-ocp-images.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository">Mirroring OpenShift Container Platform images</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository">Mirroring OpenShift Container Platform images</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus">Updating a cluster in a disconnected environment using the OpenShift Update Service</a></li>
-      <li><a href="/disconnected/updating/disconnected-update#updating-disconnected-cluster">Updating a cluster in a disconnected environment without the OpenShift Update Service</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus">Updating a cluster in a disconnected environment using the OpenShift Update Service</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/updating/disconnected-update#updating-disconnected-cluster">Updating a cluster in a disconnected environment without the OpenShift Update Service</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/disconnected/updating/uninstalling-osus#uninstalling-osus">Uninstalling the OpenShift Update Service from a cluster</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/disconnected/updating/uninstalling-osus#uninstalling-osus">Uninstalling the OpenShift Update Service from a cluster</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,6 +15,6 @@ For example, creating or restoring a top-level object such as `service.serving.k
 
 **Additional resources**
 
-- [Admission plugins](/architecture/admission-plug-ins#admission-plug-ins)
-- [Webhook admission plugins](/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)
-- [Types of webhook admission plugins](/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)
+- [Admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-plug-ins)
+- [Webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)
+- [Types of webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)

@@ -8,4 +8,4 @@ You should understand the regulatory readiness, or compliance, that is required 
 
 **Additional resources**
 
-- [Installing a cluster in FIPS mode](/installing/overview/installing-fips#installing-fips-mode_installing-fips)
+- [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)

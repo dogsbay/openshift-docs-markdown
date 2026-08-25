@@ -13,5 +13,5 @@ You can modify the CPU and memory resources for these node and system components
 
 ## Additional resources {#nodes-nodes-resources-configuring_additional-resources}
 
-- [Creating a KubeletConfig CR to edit kubelet parameters](/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom)
+- [Creating a KubeletConfig CR to edit kubelet parameters](/openshift-docs-markdown/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom)
 - [Node metrics data (Kubernetes documentation)](https://kubernetes.io/docs/reference/instrumentation/node-metrics/)

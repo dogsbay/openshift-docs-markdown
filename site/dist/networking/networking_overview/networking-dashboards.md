@@ -7,7 +7,7 @@ title: Networking dashboards
 To monitor and analyze network performance within your cluster, view networking metrics in the OpenShift Container Platform web console.
 
 Network Observability Operator
-:   If you have the Network Observability Operator installed, you can view network traffic metrics dashboards by selecting the **Netobserv** dashboard from the **Dashboards** drop-down list. For more information about metrics available in this **Dashboard**, see [Network Observability metrics dashboards](/observability/network_observability/metrics-alerts-dashboards#network-observability-viewing-dashboards_metrics-dashboards-alerts).
+:   If you have the Network Observability Operator installed, you can view network traffic metrics dashboards by selecting the **Netobserv** dashboard from the **Dashboards** drop-down list. For more information about metrics available in this **Dashboard**, see [Network Observability metrics dashboards](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-viewing-dashboards_metrics-dashboards-alerts).
 
 Networking and OVN-Kubernetes dashboard
 :   You can view both general networking metrics and OVN-Kubernetes metrics from the dashboard.

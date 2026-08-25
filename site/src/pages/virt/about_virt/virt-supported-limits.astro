@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-supported-limits","text":"Supported limits"},{"depth":2,"slug":"additional-resources_virt-supported-limits","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/about_virt/virt-supported-limits";
+const currentPath = "/openshift-docs-markdown/virt/about_virt/virt-supported-limits";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/about_virt"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Supported limits {#virt-supported-limits}\n\nRefer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the \"{{ VirtProductName }} - Tuning & Scaling Guide\" in the Red Hat Knowledgebase.\n\n## Additional resources {#additional-resources_virt-supported-limits}\n\n- [{{ VirtProductName }} - Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)\n- [Virtualization limits for Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/rhel-kvm-limits)\n- [Planning your environment according to object maximums](/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)\n- [Managing the maximum number of pods per node](/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods)\n- [{{ rh_rhacm_title }} documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)\n","mdUrl":"/virt/about_virt/virt-supported-limits.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Supported limits {#virt-supported-limits}\n\nRefer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the \"{{ VirtProductName }} - Tuning & Scaling Guide\" in the Red Hat Knowledgebase.\n\n## Additional resources {#additional-resources_virt-supported-limits}\n\n- [{{ VirtProductName }} - Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)\n- [Virtualization limits for Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/rhel-kvm-limits)\n- [Planning your environment according to object maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)\n- [Managing the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods)\n- [{{ rh_rhacm_title }} documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-supported-limits.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,8 +98,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li><a href="https://access.redhat.com/articles/6994974">{"{"}{"{"} VirtProductName {"}"}{"}"} - Tuning &amp; Scaling Guide</a></li>
       <li><a href="https://access.redhat.com/articles/rhel-kvm-limits">Virtualization limits for Red Hat Enterprise Linux with KVM</a></li>
-      <li><a href="/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums">Planning your environment according to object maximums</a></li>
-      <li><a href="/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods">Managing the maximum number of pods per node</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums">Planning your environment according to object maximums</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods">Managing the maximum number of pods per node</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes">{"{"}{"{"} rh_rhacm_title {"}"}{"}"} documentation</a></li>
       </ul>
     </article>

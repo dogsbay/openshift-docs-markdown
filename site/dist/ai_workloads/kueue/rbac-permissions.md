@@ -18,5 +18,5 @@ kueue-batch-user-role
 
 ## Additional resources {#_additional_resources}
 
-- [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
-- [Glossary of common terms for OpenShift Container Platform authentication and authorization](/authentication/index#openshift-auth-common-terms_overview-of-authentication-authorization)
+- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)
+- [Glossary of common terms for OpenShift Container Platform authentication and authorization](/openshift-docs-markdown/authentication/index#openshift-auth-common-terms_overview-of-authentication-authorization)

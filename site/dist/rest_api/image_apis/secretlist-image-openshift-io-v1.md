@@ -20,9 +20,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Secret)`](/rest_api/security_apis/secret-v1#secret-v1) | Items is a list of secret objects. More info: https://kubernetes.io/docs/concepts/configuration/secret |
+| `items` | [`array (Secret)`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) | Items is a list of secret objects. More info: https://kubernetes.io/docs/concepts/configuration/secret |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## API endpoints {#_api_endpoints}
 
@@ -54,5 +54,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecretList`](/rest_api/image_apis/secretlist-image-openshift-io-v1#secretlist-image-openshift-io-v1) schema |
+| 200 - OK | [`SecretList`](/openshift-docs-markdown/rest_api/image_apis/secretlist-image-openshift-io-v1#secretlist-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

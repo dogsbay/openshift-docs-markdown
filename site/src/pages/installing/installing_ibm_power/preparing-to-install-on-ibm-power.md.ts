@@ -2,7 +2,7 @@
 // Source: installing/installing_ibm_power/preparing-to-install-on-ibm-power.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Installation methods\n---\n\n# Installation methods {#preparing-to-install-on-ibm-power}\n\nBefore you install OpenShift Container Platform on {{ ibm_power_name }}, review the available installation methods to select the approach that fits your environment.\n\n## Additional resources {#additional-resources_preparing-to-install-on-ibm-power}\n\n- [Installing a cluster on {{ ibm_power_name }}](/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)\n- [Installing a cluster on {{ ibm_power_name }} in a restricted network](/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power)\n";
+const body = "---\ntitle: Installation methods\n---\n\n# Installation methods {#preparing-to-install-on-ibm-power}\n\nBefore you install OpenShift Container Platform on {{ ibm_power_name }}, review the available installation methods to select the approach that fits your environment.\n\n## Additional resources {#additional-resources_preparing-to-install-on-ibm-power}\n\n- [Installing a cluster on {{ ibm_power_name }}](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)\n- [Installing a cluster on {{ ibm_power_name }} in a restricted network](/openshift-docs-markdown/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

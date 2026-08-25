@@ -16,5 +16,5 @@ To navigate the OpenShift Container Platform 4.22 documentation, you can use one
 
 ## Additional resources {#additional-resources_welcome-index}
 
-- [Learn more about OpenShift Container Platform](/welcome/learn_more_about_openshift#learn_more_about_openshift)
+- [Learn more about OpenShift Container Platform](/openshift-docs-markdown/welcome/learn_more_about_openshift#learn_more_about_openshift)
 - [OpenShift Container Platform Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"about-oadp-data-mover","text":"About the {{ oadp_short }} Data Mover"},{"depth":2,"slug":"additional-resources_about-oadp-data-mover","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/installing"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the {{ oadp_short }} Data Mover {#about-oadp-data-mover}\n\nUse the {{ oadp_first }} built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful applications after cluster failures. This provides disaster recovery capabilities for both containerized and virtual machine workloads.\n\nThe Data Mover uses Kopia as the uploader mechanism to read the snapshot data and write to the unified repository.\n\n{{ oadp_short }} supports CSI snapshots on the following:\n\n- {{ odf_full }}\n- Any other cloud storage provider with the Container Storage Interface (CSI) driver that supports the Kubernetes Volume Snapshot API\n\n## Additional resources {#additional-resources_about-oadp-data-mover}\n\n- [About Kopia](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia)\n","mdUrl":"/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the {{ oadp_short }} Data Mover {#about-oadp-data-mover}\n\nUse the {{ oadp_first }} built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful applications after cluster failures. This provides disaster recovery capabilities for both containerized and virtual machine workloads.\n\nThe Data Mover uses Kopia as the uploader mechanism to read the snapshot data and write to the unified repository.\n\n{{ oadp_short }} supports CSI snapshots on the following:\n\n- {{ odf_full }}\n- Any other cloud storage provider with the Container Storage Interface (CSI) driver that supports the Kubernetes Volume Snapshot API\n\n## Additional resources {#additional-resources_about-oadp-data-mover}\n\n- [About Kopia](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -103,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/oadp-data-mover-crds.md"></p>
       <p class="/modules/oadp-incremental-backup-support.md"></p>
       <h2 id="additional-resources_about-oadp-data-mover" class="group scroll-mt-20">Additional resources<a href="#additional-resources_about-oadp-data-mover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia">About Kopia</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia">About Kopia</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

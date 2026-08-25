@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ServiceCIDRSpec define the CIDRs the user wants to use for allocating ClusterIPs for Services. |
 | `status` | `object` | ServiceCIDRStatus describes the current state of the ServiceCIDR. |
 
@@ -48,7 +48,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | [`array (Condition)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | conditions holds an array of metav1.Condition that describe the state of the ServiceCIDR. Current service state |
+| `conditions` | [`array (Condition)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | conditions holds an array of metav1.Condition that describe the state of the ServiceCIDR. Current service state |
 
 ## API endpoints {#_api_endpoints}
 
@@ -99,7 +99,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -116,7 +116,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDRList`](/rest_api/objects/index#io-k8s-api-networking-v1-ServiceCIDRList) schema |
+| 200 - OK | [`ServiceCIDRList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-networking-v1-ServiceCIDRList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -140,15 +140,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |  |
+| `body` | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
-| 201 - Created | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
-| 202 - Accepted | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 200 - OK | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 201 - Created | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 202 - Accepted | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/networking.k8s.io/v1/watch/servicecidrs {#_apisnetworkingk8siov1watchservicecidrs}
@@ -167,7 +167,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/networking.k8s.io/v1/servicecidrs/{{ name }} {#_apisnetworkingk8siov1servicecidrs_name}
@@ -198,8 +198,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -216,7 +216,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 200 - OK | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -240,8 +240,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
-| 201 - Created | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 200 - OK | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 201 - Created | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -265,14 +265,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |  |
+| `body` | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
-| 201 - Created | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 200 - OK | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 201 - Created | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/networking.k8s.io/v1/watch/servicecidrs/{{ name }} {#_apisnetworkingk8siov1watchservicecidrs_name}
@@ -297,7 +297,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/networking.k8s.io/v1/servicecidrs/{{ name }}/status {#_apisnetworkingk8siov1servicecidrs_name_status}
@@ -322,7 +322,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 200 - OK | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -346,8 +346,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
-| 201 - Created | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 200 - OK | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 201 - Created | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -371,12 +371,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |  |
+| `body` | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
-| 201 - Created | [`ServiceCIDR`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 200 - OK | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
+| 201 - Created | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

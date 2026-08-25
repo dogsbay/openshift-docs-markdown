@@ -13,5 +13,5 @@ You can create virtual machines (VMs) from the command line by editing or creati
 
 ## Additional resources {#additional-resources_virt-creating-vms-cli}
 
-- [SSH access for virtual machines](/virt/managing_vms/ssh/virt-accessing-vm-ssh#virt-accessing-vm-ssh)
-- [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
+- [SSH access for virtual machines](/openshift-docs-markdown/virt/managing_vms/ssh/virt-accessing-vm-ssh#virt-accessing-vm-ssh)
+- [Creating virtual machines from instance types](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

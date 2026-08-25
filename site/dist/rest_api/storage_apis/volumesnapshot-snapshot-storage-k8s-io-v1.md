@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the desired characteristics of a snapshot requested by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshots Required. |
 | `status` | `object` | status represents the current information of a snapshot. Consumers must verify binding between VolumeSnapshot and VolumeSnapshotContent objects is successful (by validating that both VolumeSnapshot and VolumeSnapshotContent point at each other) before using this object. |
 
@@ -132,7 +132,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshotList`](/rest_api/objects/index#io-k8s-storage-snapshot-v1-VolumeSnapshotList) schema |
+| 200 - OK | [`VolumeSnapshotList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-storage-snapshot-v1-VolumeSnapshotList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots}
@@ -151,7 +151,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -168,7 +168,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshotList`](/rest_api/objects/index#io-k8s-storage-snapshot-v1-VolumeSnapshotList) schema |
+| 200 - OK | [`VolumeSnapshotList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-storage-snapshot-v1-VolumeSnapshotList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -192,15 +192,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |  |
+| `body` | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }} {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name}
@@ -231,8 +231,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -249,7 +249,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -273,7 +273,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -297,14 +297,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |  |
+| `body` | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}/status {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name_status}
@@ -329,7 +329,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -353,7 +353,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -377,12 +377,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |  |
+| `body` | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeSnapshot`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

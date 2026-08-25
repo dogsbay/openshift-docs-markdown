@@ -28,7 +28,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the specification of desired Ingress selection for target discovery by Prometheus. |
 | `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled. Most recent observed status of the Probe. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 
@@ -1051,7 +1051,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ProbeList`](/rest_api/objects/index#com-coreos-monitoring-v1-ProbeList) schema |
+| 200 - OK | [`ProbeList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-monitoring-v1-ProbeList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/probes {#_apismonitoringcoreoscomv1namespaces_namespace_probes}
@@ -1070,7 +1070,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1087,7 +1087,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ProbeList`](/rest_api/objects/index#com-coreos-monitoring-v1-ProbeList) schema |
+| 200 - OK | [`ProbeList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-monitoring-v1-ProbeList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1111,15 +1111,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |  |
+| `body` | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
-| 201 - Created | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
-| 202 - Accepted | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 200 - OK | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 201 - Created | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 202 - Accepted | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/probes/{{ name }} {#_apismonitoringcoreoscomv1namespaces_namespace_probes_name}
@@ -1150,8 +1150,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1168,7 +1168,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 200 - OK | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1192,7 +1192,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 200 - OK | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1216,14 +1216,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |  |
+| `body` | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
-| 201 - Created | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 200 - OK | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 201 - Created | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/probes/{{ name }}/status {#_apismonitoringcoreoscomv1namespaces_namespace_probes_name_status}
@@ -1248,7 +1248,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 200 - OK | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1272,7 +1272,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 200 - OK | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1296,12 +1296,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |  |
+| `body` | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
-| 201 - Created | [`Probe`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 200 - OK | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
+| 201 - Created | [`Probe`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |

@@ -10,9 +10,9 @@ Ensure that you balance timeout extensions in a logical manner so that you do no
 
 ## Additional resources {#additional-resources_oadp-timeouts}
 
-- [Restic timeout](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#restic-timeout_oadp-timeouts)
-- [Velero resource timeout](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#velero-timeout_oadp-timeouts)
-- [Data Mover timeout](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#datamover-timeout_oadp-timeouts)
-- [CSI snapshot timeout](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#csisnapshot-timeout_oadp-timeouts)
-- [Item operation timeout - backup](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-backup_oadp-timeouts)
-- [Item operation timeout - restore](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-restore_oadp-timeouts)
+- [Restic timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#restic-timeout_oadp-timeouts)
+- [Velero resource timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#velero-timeout_oadp-timeouts)
+- [Data Mover timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#datamover-timeout_oadp-timeouts)
+- [CSI snapshot timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#csisnapshot-timeout_oadp-timeouts)
+- [Item operation timeout - backup](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-backup_oadp-timeouts)
+- [Item operation timeout - restore](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-restore_oadp-timeouts)

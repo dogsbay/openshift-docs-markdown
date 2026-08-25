@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-creating-vms-from-templates","text":"Creating virtual machines from templates"},{"depth":2,"slug":"virt-about-templates","text":"About VM templates"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-templates","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/creating_vm/virt-creating-vms-from-templates";
+const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating virtual machines from templates {#virt-creating-vms-from-templates}\n\nYou can create virtual machines (VMs) from Red Hat templates by using the OpenShift Container Platform web console.\n\n## About VM templates {#virt-about-templates}\n\nYou can use VM templates to help you easily create VMs.\n\nExpedite creation with boot sources\n:   You can expedite VM creation by using templates that have an available boot source. Templates with a boot source are labeled **Available boot source** if they do not have a custom label.\n\n    Templates without a boot source are labeled **Boot source required**. See \"Managing automatic boot source updates\" for details.\n\nCustomize before starting the VM\n:   You can customize the disk source and VM parameters before you start the VM.\n\n> [!NOTE]\n> If you copy a VM template with all its labels and annotations, your version of the template is marked as deprecated when a new version of the Scheduling, Scale, and Performance (SSP) Operator is deployed. You can remove this designation. See \"Removing a deprecated designation from a customized VM template by using the web console\".\n\n{{ sno_caps }}\n:   Due to differences in storage behavior, some templates are incompatible with {{ sno }}. To ensure compatibility, do not set the `evictionStrategy` field for templates or VMs that use data volumes or storage profiles.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-templates}\n\n- [Managing automatic boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n","mdUrl":"/virt/creating_vm/virt-creating-vms-from-templates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating virtual machines from templates {#virt-creating-vms-from-templates}\n\nYou can create virtual machines (VMs) from Red Hat templates by using the OpenShift Container Platform web console.\n\n## About VM templates {#virt-about-templates}\n\nYou can use VM templates to help you easily create VMs.\n\nExpedite creation with boot sources\n:   You can expedite VM creation by using templates that have an available boot source. Templates with a boot source are labeled **Available boot source** if they do not have a custom label.\n\n    Templates without a boot source are labeled **Boot source required**. See \"Managing automatic boot source updates\" for details.\n\nCustomize before starting the VM\n:   You can customize the disk source and VM parameters before you start the VM.\n\n> [!NOTE]\n> If you copy a VM template with all its labels and annotations, your version of the template is marked as deprecated when a new version of the Scheduling, Scale, and Performance (SSP) Operator is deployed. You can remove this designation. See \"Removing a deprecated designation from a customized VM template by using the web console\".\n\n{{ sno_caps }}\n:   Due to differences in storage behavior, some templates are incompatible with {{ sno }}. To ensure compatibility, do not set the `evictionStrategy` field for templates or VMs that use data volumes or storage profiles.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-templates}\n\n- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -122,7 +122,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-creating-template.md"></p>
       <p class="/modules/virt-dedicated-resources-vm-template.md"></p>
       <h2 id="additional-resources_virt-creating-vms-from-templates" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-creating-vms-from-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates">Managing automatic boot source updates</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates">Managing automatic boot source updates</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

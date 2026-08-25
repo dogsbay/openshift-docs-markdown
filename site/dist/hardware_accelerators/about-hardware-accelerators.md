@@ -13,7 +13,7 @@ Red Hat OpenShift Container Platform provides support for cards and peripheral 
 - Application-specific integrated circuits (ASICs)
 - Data processing units (DPUs)
 
-![Supported hardware accelerators cards and peripherals](/_assets/images/OCP_HW_Accelerators_5.png)
+![Supported hardware accelerators cards and peripherals](/openshift-docs-markdown/_assets/images/OCP_HW_Accelerators_5.png)
 
 Specialized hardware accelerators provide a rich set of benefits for AI/ML development:
 

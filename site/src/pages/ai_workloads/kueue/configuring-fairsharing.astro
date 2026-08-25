@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"configuring-fairsharing","text":"Configuring fair sharing"},{"depth":2,"slug":"additional-resources_configuring-fairsharing","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/ai_workloads/kueue/configuring-fairsharing";
+const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/configuring-fairsharing";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring fair sharing {#configuring-fairsharing}\n\nYou can configure fair sharing as a preemption strategy to distribute borrowable resources equally or by weight between tenants of a cohort.\n\nBorrowable resources are the unused nominal quota of all the cluster queues in a cohort.\n\nYou can configure fair sharing by setting the `preemptionPolicy` value in the `Kueue` custom resource (CR) to `FairSharing`.\n\n## Additional resources {#additional-resources_configuring-fairsharing}\n\n- [Creating a `Kueue` custom resource](/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)\n","mdUrl":"/ai_workloads/kueue/configuring-fairsharing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring fair sharing {#configuring-fairsharing}\n\nYou can configure fair sharing as a preemption strategy to distribute borrowable resources equally or by weight between tenants of a cohort.\n\nBorrowable resources are the unused nominal quota of all the cluster queues in a cohort.\n\nYou can configure fair sharing by setting the `preemptionPolicy` value in the `Kueue` custom resource (CR) to `FairSharing`.\n\n## Additional resources {#additional-resources_configuring-fairsharing}\n\n- [Creating a `Kueue` custom resource](/openshift-docs-markdown/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/configuring-fairsharing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>You can configure fair sharing by setting the <code>preemptionPolicy</code> value in the <code>Kueue</code> custom resource (CR) to <code>FairSharing</code>.</p>
       <p class="/modules/kueue-clusterqueue-share-value.md"></p>
       <h2 id="additional-resources_configuring-fairsharing" class="group scroll-mt-20">Additional resources<a href="#additional-resources_configuring-fairsharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue">Creating a <code>Kueue</code> custom resource</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue">Creating a <code>Kueue</code> custom resource</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | UserDefinedNetworkSpec defines the desired state of UserDefinedNetworkSpec. |
 | `status` | `object` | UserDefinedNetworkStatus contains the observed status of the UserDefinedNetwork. |
 
@@ -224,7 +224,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetworkList`](/rest_api/objects/index#org-ovn-k8s-v1-UserDefinedNetworkList) schema |
+| 200 - OK | [`UserDefinedNetworkList`](/openshift-docs-markdown/rest_api/objects/index#org-ovn-k8s-v1-UserDefinedNetworkList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks}
@@ -243,7 +243,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -260,7 +260,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetworkList`](/rest_api/objects/index#org-ovn-k8s-v1-UserDefinedNetworkList) schema |
+| 200 - OK | [`UserDefinedNetworkList`](/openshift-docs-markdown/rest_api/objects/index#org-ovn-k8s-v1-UserDefinedNetworkList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -284,15 +284,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |  |
+| `body` | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
-| 201 - Created | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
-| 202 - Accepted | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 201 - Created | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 202 - Accepted | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks/{{ name }} {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks_name}
@@ -323,8 +323,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -341,7 +341,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -365,7 +365,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -389,14 +389,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |  |
+| `body` | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
-| 201 - Created | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 201 - Created | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks/{{ name }}/status {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks_name_status}
@@ -421,7 +421,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -445,7 +445,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -469,12 +469,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |  |
+| `body` | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
-| 201 - Created | [`UserDefinedNetwork`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
+| 201 - Created | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |

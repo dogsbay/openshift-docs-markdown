@@ -12,10 +12,10 @@ If you are managing a single cluster or troubleshooting a specific cluster direc
 
 ## Additional resources {#additional-resources_core-cluster-upgrades-overview}
 
-- [Updating an OpenShift Container Platform cluster](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)
-- [Verifying cluster API versions between update versions](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-api)
-- [Using the {{ cgu_operator_full }} for cluster updates](/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates)
-- [Bare metal Core reference design specifications](/scalability_and_performance/telco-core-rds#telco-core-ref-design-specs)
+- [Updating an OpenShift Container Platform cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)
+- [Verifying cluster API versions between update versions](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-api)
+- [Using the {{ cgu_operator_full }} for cluster updates](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates)
+- [Bare metal Core reference design specifications](/openshift-docs-markdown/scalability_and_performance/telco-core-rds#telco-core-ref-design-specs)
 - [How to use the {{ cgu_operator_full }}](https://www.redhat.com/en/blog/how-to-use-the-topology-aware-lifecycle-manager)
 - [The ultimate guide to OpenShift release and update process for cluster administrators](https://www.redhat.com/en/blog/the-ultimate-guide-to-openshift-release-and-upgrade-process-for-cluster-administrators)
 - [OpenShift Container Platform update documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/)

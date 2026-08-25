@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | DeploymentSpec is the specification of the desired behavior of the Deployment. |
 | `status` | `object` | DeploymentStatus is the most recently observed status of the Deployment. |
 
@@ -43,9 +43,9 @@ Required
 | `progressDeadlineSeconds` | `integer` | The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s. |
 | `replicas` | `integer` | Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1. |
 | `revisionHistoryLimit` | `integer` | The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10. |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod template’s labels. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod template’s labels. |
 | `strategy` | `object` | DeploymentStrategy describes how to replace existing pods with new ones. |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Template describes the pods that will be created. The only allowed template.spec.restartPolicy value is "Always". |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Template describes the pods that will be created. The only allowed template.spec.restartPolicy value is "Always". |
 
 ### .spec.strategy {#_specstrategy}
 
@@ -74,8 +74,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `maxSurge` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods. |
-| `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods. |
+| `maxSurge` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods. |
+| `maxUnavailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods. |
 
 ### .status {#_status}
 
@@ -126,8 +126,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
-| `lastUpdateTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time this condition was updated. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
+| `lastUpdateTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time this condition was updated. |
 | `message` | `string` | A human readable message indicating details about the transition. |
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -182,7 +182,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentList`](/rest_api/objects/index#io-k8s-api-apps-v1-DeploymentList) schema |
+| 200 - OK | [`DeploymentList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-DeploymentList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/deployments {#_apisappsv1watchdeployments}
@@ -201,7 +201,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/deployments {#_apisappsv1namespaces_namespace_deployments}
@@ -226,7 +226,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -243,7 +243,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentList`](/rest_api/objects/index#io-k8s-api-apps-v1-DeploymentList) schema |
+| 200 - OK | [`DeploymentList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-DeploymentList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -267,15 +267,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |  |
+| `body` | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
-| 201 - Created | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
-| 202 - Accepted | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 200 - OK | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 201 - Created | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 202 - Accepted | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/deployments {#_apisappsv1watchnamespaces_namespace_deployments}
@@ -294,7 +294,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }} {#_apisappsv1namespaces_namespace_deployments_name}
@@ -325,8 +325,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -343,7 +343,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 200 - OK | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -367,8 +367,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
-| 201 - Created | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 200 - OK | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 201 - Created | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -392,14 +392,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |  |
+| `body` | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
-| 201 - Created | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 200 - OK | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 201 - Created | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/deployments/{{ name }} {#_apisappsv1watchnamespaces_namespace_deployments_name}
@@ -424,7 +424,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/status {#_apisappsv1namespaces_namespace_deployments_name_status}
@@ -449,7 +449,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 200 - OK | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -473,8 +473,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
-| 201 - Created | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 200 - OK | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 201 - Created | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -498,12 +498,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |  |
+| `body` | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
-| 201 - Created | [`Deployment`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 200 - OK | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
+| 201 - Created | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |

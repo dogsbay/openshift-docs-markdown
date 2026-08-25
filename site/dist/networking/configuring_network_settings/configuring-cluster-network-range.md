@@ -19,6 +19,6 @@ The following limitations apply when modifying the cluster network IP address ra
 
 ## Additional resources {#additional-resources_configuring-cluster-network-range}
 
-- [OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
+- [OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 - [Red Hat OpenShift Network Calculator](https://access.redhat.com/labs/ocpnc/)
-- [About the OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
+- [About the OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)

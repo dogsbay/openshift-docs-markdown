@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"cnf-image-based-upgrade-configure-auto-image-cleanup","text":"Configuring the automatic image cleanup of the container storage disk"}];
 const nav = navData;
-const currentPath = "/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup";
+const currentPath = "/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["edge_computing","edge_computing/image_based_upgrade","edge_computing/image_based_upgrade/preparing_for_image_based_upgrade"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the automatic image cleanup of the container storage disk {#cnf-image-based-upgrade-configure-auto-image-cleanup}\n\nConfigure when the {{ lcao }} cleans up unpinned images in the `Prep` stage by setting a minimum threshold for available storage space through annotations. The default container storage disk usage threshold is 50%.\n\nThe {{ lcao }} does not delete images that are pinned in CRI-O or are currently used. The Operator selects the images for deletion by starting with dangling images and then sorting the images from oldest to newest that is determined by the image `Created` timestamp.\n","mdUrl":"/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the automatic image cleanup of the container storage disk {#cnf-image-based-upgrade-configure-auto-image-cleanup}\n\nConfigure when the {{ lcao }} cleans up unpinned images in the `Prep` stage by setting a minimum threshold for available storage space through annotations. The default container storage disk usage threshold is 50%.\n\nThe {{ lcao }} does not delete images that are pinned in CRI-O or are currently used. The Operator selects the images for deletion by starting with dangling images and then sorting the images from oldest to newest that is determined by the image `Created` timestamp.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

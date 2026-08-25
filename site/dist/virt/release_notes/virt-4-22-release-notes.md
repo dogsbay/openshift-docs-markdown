@@ -32,7 +32,7 @@ Configure PSRP, WINRM, or SSH to manage Windows-detected hosts in OpenShift Virt
 Configuring PCI passthrough for the {{ ibm_name }} Spyre Accelerator for VMs on {{ ibm_z_name }} and {{ ibm_linuxone_name }} is generally available
 :   You can attach the {{ ibm_name }} Spyre Accelerator to VMs using PCI passthrough on {{ ibm_name }} z17 and {{ ibm_linuxone_name }} Emperor 5 or later. The {{ ibm_name }} Spyre Accelerator enhances AI inferencing capabilities on {{ ibm_z_name }} and {{ ibm_linuxone_name }} systems.
 
-    For more information, see [Configuring PCI passthrough](/virt/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough).
+    For more information, see [Configuring PCI passthrough](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough).
 
     [CNV-83214](https://redhat.atlassian.net/browse/CNV-83214)
 
@@ -148,7 +148,7 @@ Some features in this release are currently in Technology Preview. These experim
 [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview)
 
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
-:   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+:   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 Golden image support for heterogeneous clusters (Technology Preview)
 :   Golden image support is available for heterogeneous clusters, which enables you to create and use golden images for virtual machines in environments with differing node configurations. This capability is a Technology Preview feature. [CNV-62357](https://issues.redhat.com/browse/CNV-62357)
@@ -166,7 +166,7 @@ Dual stream support for {{ VirtProductName }} clusters (Technology Preview)
 :   You can provision {{ VirtProductName }} clusters that run Red Hat Enterprise Linux CoreOS (RHCOS) version 9.8 and version 10.2 in OpenShift Container Platform 4.22. RHCOS 9.8 is the default operating system. VM live migration between RHCOS 9.x and RHCOS 10.x worker nodes is supported in OpenShift Container Platform 4.22. [CNV-49964](https://redhat.atlassian.net/browse/CNV-49964)
 
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
-:   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+:   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 ## Fixed issues {#virt-4-22-bug-fixes_virt-4-22-release-notes}
 

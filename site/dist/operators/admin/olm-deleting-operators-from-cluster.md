@@ -13,4 +13,4 @@ You can delete Operators that were previously installed with Operator Lifecycle 
 
 **Additional resources**
 
-- [Reinstalling Operators after failed uninstallation](/operators/admin/olm-troubleshooting-operator-issues#olm-reinstall_olm-troubleshooting-operator-issues)
+- [Reinstalling Operators after failed uninstallation](/openshift-docs-markdown/operators/admin/olm-troubleshooting-operator-issues#olm-reinstall_olm-troubleshooting-operator-issues)

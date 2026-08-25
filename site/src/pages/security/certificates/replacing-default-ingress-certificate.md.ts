@@ -2,7 +2,7 @@
 // Source: security/certificates/replacing-default-ingress-certificate.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Replacing the default ingress certificate\n---\n\n# Replacing the default ingress certificate {#replacing-default-ingress}\n\nTo allow external clients to connect securely to applications under the .apps subdomain in OpenShift Container Platform, you can replace the default wildcard ingress certificate with one issued by a trusted public CA.\n\n## Additional resources {#_additional_resources}\n\n- [Replacing the CA Bundle certificate](/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)\n- [Proxy certificate customization](/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)\n";
+const body = "---\ntitle: Replacing the default ingress certificate\n---\n\n# Replacing the default ingress certificate {#replacing-default-ingress}\n\nTo allow external clients to connect securely to applications under the .apps subdomain in OpenShift Container Platform, you can replace the default wildcard ingress certificate with one issued by a trusted public CA.\n\n## Additional resources {#_additional_resources}\n\n- [Replacing the CA Bundle certificate](/openshift-docs-markdown/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)\n- [Proxy certificate customization](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

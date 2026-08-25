@@ -2,7 +2,7 @@
 // Source: ai_workloads/leader_worker_set/lws-release-notes.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: \"{{ lws_operator }} release notes\"\n---\n\n# {{ lws_operator }} release notes {#lws-release-notes}\n\nReview the {{ lws_operator }} release notes to track its development and learn what is new and changed with each release.\n\nYou can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently.\n\nThese release notes track the development of the {{ lws_operator }}.\n\nFor more information, see [About the {{ lws_operator }}](/ai_workloads/leader_worker_set/index#lws-about_lws-about).\n";
+const body = "---\ntitle: \"{{ lws_operator }} release notes\"\n---\n\n# {{ lws_operator }} release notes {#lws-release-notes}\n\nReview the {{ lws_operator }} release notes to track its development and learn what is new and changed with each release.\n\nYou can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently.\n\nThese release notes track the development of the {{ lws_operator }}.\n\nFor more information, see [About the {{ lws_operator }}](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

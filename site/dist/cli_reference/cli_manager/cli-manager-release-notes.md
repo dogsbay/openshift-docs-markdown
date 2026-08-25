@@ -8,4 +8,4 @@ Track the development of the {{ cli_manager }} for OpenShift Container Platform,
 
 **Additional resources**
 
-- [About the {{ cli_manager }}](/cli_reference/cli_manager/index#cli-manager-overview)
+- [About the {{ cli_manager }}](/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview)

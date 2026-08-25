@@ -25,7 +25,7 @@ This process is performed in the following two stages:
 
 **Additional resources**
 
-- [Installing from the software catalog using the web console](/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)
-- [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
+- [Installing from the software catalog using the web console](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)
+- [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 - [Installing Red Hat OpenShift Service on AWS interactive walkthrough](https://www.redhat.com/en/products/interactive-walkthrough/install-rosa)
 - [{{ cluster_manager_first }}](https://docs.openshift.com/dedicated/ocm/ocm-overview.html)

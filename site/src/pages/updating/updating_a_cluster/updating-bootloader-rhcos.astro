@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"updating-bootloader-rhcos","text":"Updating the boot loader on {{ op_system }} nodes using bootupd"}];
 const nav = navData;
-const currentPath = "/updating/updating_a_cluster/updating-bootloader-rhcos";
+const currentPath = "/openshift-docs-markdown/updating/updating_a_cluster/updating-bootloader-rhcos";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["updating","updating/updating_a_cluster"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating the boot loader on {{ op_system }} nodes using bootupd {#updating-bootloader-rhcos}\n\nTo update the boot loader on {{ op_system }} nodes using `bootupd`, you must either run the `bootupctl update` command on {{ op_system }} machines manually or provide a machine config with a `systemd` unit.\n\nUnlike `grubby` or other boot loader tools, `bootupd` does not manage kernel space configuration such as passing kernel arguments. To configure kernel arguments, see [Adding kernel arguments to nodes](/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing).\n\n> [!NOTE]\n> You can use `bootupd` to update the boot loader to protect against the BootHole vulnerability.\n","mdUrl":"/updating/updating_a_cluster/updating-bootloader-rhcos.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating the boot loader on {{ op_system }} nodes using bootupd {#updating-bootloader-rhcos}\n\nTo update the boot loader on {{ op_system }} nodes using `bootupd`, you must either run the `bootupctl update` command on {{ op_system }} machines manually or provide a machine config with a `systemd` unit.\n\nUnlike `grubby` or other boot loader tools, `bootupd` does not manage kernel space configuration such as passing kernel arguments. To configure kernel arguments, see [Adding kernel arguments to nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing).\n\n> [!NOTE]\n> You can use `bootupd` to update the boot loader to protect against the BootHole vulnerability.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/updating_a_cluster/updating-bootloader-rhcos.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h1 id="updating-bootloader-rhcos" class="group scroll-mt-20">Updating the boot loader on {"{"}{"{"} op_system {"}"}{"}"} nodes using bootupd<a href="#updating-bootloader-rhcos" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p class="/_attributes/common-attributes.md"></p>
       <p>To update the boot loader on {"{"}{"{"} op_system {"}"}{"}"} nodes using <code>bootupd</code>, you must either run the <code>bootupctl update</code> command on {"{"}{"{"} op_system {"}"}{"}"} machines manually or provide a machine config with a <code>systemd</code> unit.</p>
-      <p>Unlike <code>grubby</code> or other boot loader tools, <code>bootupd</code> does not manage kernel space configuration such as passing kernel arguments. To configure kernel arguments, see <a href="/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing">Adding kernel arguments to nodes</a>.</p>
+      <p>Unlike <code>grubby</code> or other boot loader tools, <code>bootupd</code> does not manage kernel space configuration such as passing kernel arguments. To configure kernel arguments, see <a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing">Adding kernel arguments to nodes</a>.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>

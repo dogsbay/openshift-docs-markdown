@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"cert-manager-trust-manager","text":"Distributing certificates by using trust-manager operand"}];
 const nav = navData;
-const currentPath = "/security/cert_manager_operator/cert-manager-trust-manager";
+const currentPath = "/openshift-docs-markdown/security/cert_manager_operator/cert-manager-trust-manager";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/cert_manager_operator"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Distributing certificates by using trust-manager operand {#cert-manager-trust-manager}\n\nThe trust-manager operand simplifies the distribution of certificate authority (CA) certificates across OpenShift Container Platform clusters. As an administrator, you can configure the operand according to the cluster requirements and manage trust bundles efficiently.\n\nThe trust-manager operand provides the following benefits:\n\n- Distribution of CA certificates across your cluster as a Day 2 operation.\n- Consolidation of certificates from multiple sources, such as ConfigMaps, Secrets, inline data, and default CAs, into a single trust bundle.\n- Automatic updates to target objects whenever the underlying source certificates change.\n- Creation of trust bundles as secret objects for applications that explicitly require secrets instead of ConfigMap objects.\n- Automatic integration with the default trusted CA bundle of the cluster, requiring no manual configuration.\n","mdUrl":"/security/cert_manager_operator/cert-manager-trust-manager.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Distributing certificates by using trust-manager operand {#cert-manager-trust-manager}\n\nThe trust-manager operand simplifies the distribution of certificate authority (CA) certificates across OpenShift Container Platform clusters. As an administrator, you can configure the operand according to the cluster requirements and manage trust bundles efficiently.\n\nThe trust-manager operand provides the following benefits:\n\n- Distribution of CA certificates across your cluster as a Day 2 operation.\n- Consolidation of certificates from multiple sources, such as ConfigMaps, Secrets, inline data, and default CAs, into a single trust bundle.\n- Automatic updates to target objects whenever the underlying source certificates change.\n- Creation of trust bundles as secret objects for applications that explicitly require secrets instead of ConfigMap objects.\n- Automatic integration with the default trusted CA bundle of the cluster, requiring no manual configuration.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-trust-manager.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

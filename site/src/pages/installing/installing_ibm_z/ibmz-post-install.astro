@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"post-install-configure-additional-devices-ibm-z","text":"Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment"}];
 const nav = navData;
-const currentPath = "/installing/installing_ibm_z/ibmz-post-install";
+const currentPath = "/openshift-docs-markdown/installing/installing_ibm_z/ibmz-post-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_ibm_z"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment {#post-install-configure-additional-devices-ibm-z}\n\nAfter installing OpenShift Container Platform, you can configure additional devices for your cluster in an {{ ibm_z_name }} or {{ ibm_linuxone_name }} environment, which is installed with z/VM.\n\nThe following devices can be configured:\n\n- Fibre Channel Protocol (FCP) host\n- FCP LUN\n- DASD\n- qeth\n\nYou can configure devices by adding udev rules by using the Machine Config Operator (MCO) or you can configure devices manually.\n\n> [!NOTE]\n> The procedures described here apply only to z/VM installations. If you have installed your cluster with {{ op_system_base }} KVM on {{ ibm_z_name }} or {{ ibm_linuxone_name }} infrastructure, no additional configuration is needed inside the KVM guest after the devices were added to the KVM guests. However, both in z/VM and {{ op_system_base }} KVM environments the next steps to configure the Local Storage Operator and Kubernetes NMState Operator need to be applied.\n\n**Additional resources**\n\n- [Machine configuration overview](/machine_configuration/index#machine-config-overview)\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n\n**Additional resources**\n\n- [chzdev - Configure {{ ibm_z_name }} devices ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev)\n- [Persistent device configuration ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html)\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n","mdUrl":"/installing/installing_ibm_z/ibmz-post-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment {#post-install-configure-additional-devices-ibm-z}\n\nAfter installing OpenShift Container Platform, you can configure additional devices for your cluster in an {{ ibm_z_name }} or {{ ibm_linuxone_name }} environment, which is installed with z/VM.\n\nThe following devices can be configured:\n\n- Fibre Channel Protocol (FCP) host\n- FCP LUN\n- DASD\n- qeth\n\nYou can configure devices by adding udev rules by using the Machine Config Operator (MCO) or you can configure devices manually.\n\n> [!NOTE]\n> The procedures described here apply only to z/VM installations. If you have installed your cluster with {{ op_system_base }} KVM on {{ ibm_z_name }} or {{ ibm_linuxone_name }} infrastructure, no additional configuration is needed inside the KVM guest after the devices were added to the KVM guests. However, both in z/VM and {{ op_system_base }} KVM environments the next steps to configure the Local Storage Operator and Kubernetes NMState Operator need to be applied.\n\n**Additional resources**\n\n- [Machine configuration overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n\n**Additional resources**\n\n- [chzdev - Configure {{ ibm_z_name }} devices ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev)\n- [Persistent device configuration ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html)\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_z/ibmz-post-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -111,11 +111,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_configuration/index#machine-config-overview">Machine configuration overview</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_configuration/index#machine-config-overview">Machine configuration overview</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume">Install and configure the Local Storage Operator</a></li>
-      <li><a href="/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config">Observing and updating the node network state and configuration</a></li>
+      <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume">Install and configure the Local Storage Operator</a></li>
+      <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config">Observing and updating the node network state and configuration</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
@@ -125,8 +125,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/ibm-z-enable-multipathing-fcp-luns.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume">Install and configure the Local Storage Operator</a></li>
-      <li><a href="/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config">Observing and updating the node network state and configuration</a></li>
+      <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume">Install and configure the Local Storage Operator</a></li>
+      <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config">Observing and updating the node network state and configuration</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

@@ -8,4 +8,4 @@ Generic ephemeral volumes provide per-pod temporary storage backed by any storag
 
 **Additional resources**
 
-- [Creating generic ephemeral volumes](/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes)
+- [Creating generic ephemeral volumes](/openshift-docs-markdown/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes)

@@ -8,4 +8,4 @@ You can specify a list of IP address ranges for the Ingress Controller. This act
 
 ## Additional resources {#_additional_resources}
 
-- [Introduction to OpenShift updates](/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)
+- [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)

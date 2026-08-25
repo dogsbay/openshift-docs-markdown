@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
 | `roleRef` | `object` | RoleRef contains information that points to the role being used |
 | `subjects` | `array` | Subjects holds references to the objects the role applies to. |
 | `subjects[]` | `object` | Subject contains a reference to the object or user identities a role binding applies to.  This can either hold a direct API object reference, or a value for non-objects such as user and group names. |
@@ -122,7 +122,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleBindingList`](/rest_api/objects/index#io-k8s-api-rbac-v1-RoleBindingList) schema |
+| 200 - OK | [`RoleBindingList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-rbac-v1-RoleBindingList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/watch/rolebindings {#_apisrbacauthorizationk8siov1watchrolebindings}
@@ -141,7 +141,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/rolebindings {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings}
@@ -166,7 +166,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -183,7 +183,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleBindingList`](/rest_api/objects/index#io-k8s-api-rbac-v1-RoleBindingList) schema |
+| 200 - OK | [`RoleBindingList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-rbac-v1-RoleBindingList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -207,15 +207,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |  |
+| `body` | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
-| 201 - Created | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
-| 202 - Accepted | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 201 - Created | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 202 - Accepted | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/rolebindings {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings}
@@ -234,7 +234,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/rolebindings/{{ name }} {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings_name}
@@ -265,8 +265,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -283,7 +283,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -307,8 +307,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
-| 201 - Created | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 201 - Created | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -332,14 +332,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |  |
+| `body` | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
-| 201 - Created | [`RoleBinding`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 200 - OK | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
+| 201 - Created | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/rolebindings/{{ name }} {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings_name}
@@ -364,5 +364,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

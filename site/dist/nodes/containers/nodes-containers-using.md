@@ -54,4 +54,4 @@ You can move between the two container runtimes as needed.
 
 ## Additional resources {#additional-resources_nodes-containers-using}
 
-- [Creating a `ContainerRuntimeConfig` CR to edit CRI-O parameters](/machine_configuration/machine-configs-custom#create-a-containerruntimeconfig_machine-configs-custom)
+- [Creating a `ContainerRuntimeConfig` CR to edit CRI-O parameters](/openshift-docs-markdown/machine_configuration/machine-configs-custom#create-a-containerruntimeconfig_machine-configs-custom)

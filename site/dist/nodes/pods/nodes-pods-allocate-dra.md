@@ -10,4 +10,4 @@ This workflow provides significant improvement in the device allocation workflow
 
 ## Additional resources {#additional-resources_nodes-pods-allocate-dra}
 
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

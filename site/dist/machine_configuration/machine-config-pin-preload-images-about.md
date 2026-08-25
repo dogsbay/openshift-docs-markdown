@@ -24,4 +24,4 @@ Before pulling the images, the Machine Config Operator (MCO) verifies that there
 
 **Additional resources**
 
-- [About checking machine config node status](/machine_configuration/index#checking-mco-node-status_machine-config-overview)
+- [About checking machine config node status](/openshift-docs-markdown/machine_configuration/index#checking-mco-node-status_machine-config-overview)

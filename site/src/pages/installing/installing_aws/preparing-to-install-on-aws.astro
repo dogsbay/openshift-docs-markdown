@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"installing-methods-aws","text":"Installation methods"},{"depth":2,"slug":"installing-methods-aws-ipi-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_aws/preparing-to-install-on-aws";
+const currentPath = "/openshift-docs-markdown/installing/installing_aws/preparing-to-install-on-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_aws"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installation methods {#installing-methods-aws}\n\nYou can install OpenShift Container Platform on {{ aws_full }} using installer-provisioned, user-provisioned infrastructure, or on a single node, depending on the needs of your use case.\n\nThe default installation type uses installer-provisioned infrastructure, where the installation program provisions the underlying infrastructure for the cluster.\n\nYou can also install OpenShift Container Platform on infrastructure that you provision. If you do not use infrastructure that the installation program provisions, you must manage and maintain the cluster resources yourself.\n\nYou can also install OpenShift Container Platform on a single node, which is a specialized installation method that is ideal for edge computing environments.\n\n## Additional resources {#installing-methods-aws-ipi-additional-resources}\n\n- [Installing a cluster quickly on AWS](/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)\n- [Installing a customized cluster on AWS](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Post-installation](/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)\n- [Installing a cluster on AWS in a restricted network](/installing/installing_aws/ipi/installing-restricted-networks-aws-installer-provisioned#installing-restricted-networks-aws-installer-provisioned)\n- [Installing a cluster on an existing Virtual Private Cloud](/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc)\n- [Installing a private cluster on an existing VPC](/installing/installing_aws/ipi/installing-aws-private#installing-aws-private)\n- [Installing a cluster on AWS into a government or secret region](/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region)\n- [Installing a cluster on AWS infrastructure that you provide](/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)\n- [Installing a cluster on AWS in a restricted network with user-provisioned infrastructure](/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws)\n- [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)\n","mdUrl":"/installing/installing_aws/preparing-to-install-on-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installation methods {#installing-methods-aws}\n\nYou can install OpenShift Container Platform on {{ aws_full }} using installer-provisioned, user-provisioned infrastructure, or on a single node, depending on the needs of your use case.\n\nThe default installation type uses installer-provisioned infrastructure, where the installation program provisions the underlying infrastructure for the cluster.\n\nYou can also install OpenShift Container Platform on infrastructure that you provision. If you do not use infrastructure that the installation program provisions, you must manage and maintain the cluster resources yourself.\n\nYou can also install OpenShift Container Platform on a single node, which is a specialized installation method that is ideal for edge computing environments.\n\n## Additional resources {#installing-methods-aws-ipi-additional-resources}\n\n- [Installing a cluster quickly on AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)\n- [Installing a customized cluster on AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Post-installation](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)\n- [Installing a cluster on AWS in a restricted network](/openshift-docs-markdown/installing/installing_aws/ipi/installing-restricted-networks-aws-installer-provisioned#installing-restricted-networks-aws-installer-provisioned)\n- [Installing a cluster on an existing Virtual Private Cloud](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc)\n- [Installing a private cluster on an existing VPC](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-private#installing-aws-private)\n- [Installing a cluster on AWS into a government or secret region](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region)\n- [Installing a cluster on AWS infrastructure that you provide](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)\n- [Installing a cluster on AWS in a restricted network with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws)\n- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/preparing-to-install-on-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,16 +101,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installing-aws-single-node.md"></p>
       <h2 id="installing-methods-aws-ipi-additional-resources" class="group scroll-mt-20">Additional resources<a href="#installing-methods-aws-ipi-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-default#installing-aws-default">Installing a cluster quickly on AWS</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations">Installing a customized cluster on AWS</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#post-install-cluster-tasks">Post-installation</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-restricted-networks-aws-installer-provisioned#installing-restricted-networks-aws-installer-provisioned">Installing a cluster on AWS in a restricted network</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc">Installing a cluster on an existing Virtual Private Cloud</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-private#installing-aws-private">Installing a private cluster on an existing VPC</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region">Installing a cluster on AWS into a government or secret region</a></li>
-      <li><a href="/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra">Installing a cluster on AWS infrastructure that you provide</a></li>
-      <li><a href="/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws">Installing a cluster on AWS in a restricted network with user-provisioned infrastructure</a></li>
-      <li><a href="/architecture/architecture-installation#installation-process_architecture-installation">Installation process</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default">Installing a cluster quickly on AWS</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations">Installing a customized cluster on AWS</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks">Post-installation</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-restricted-networks-aws-installer-provisioned#installing-restricted-networks-aws-installer-provisioned">Installing a cluster on AWS in a restricted network</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc">Installing a cluster on an existing Virtual Private Cloud</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-private#installing-aws-private">Installing a private cluster on an existing VPC</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region">Installing a cluster on AWS into a government or secret region</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra">Installing a cluster on AWS infrastructure that you provide</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws">Installing a cluster on AWS in a restricted network with user-provisioned infrastructure</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation">Installation process</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

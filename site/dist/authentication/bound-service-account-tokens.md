@@ -8,5 +8,5 @@ You can use bound service account tokens, which improve the ability to integrate
 
 ## Additional resources {#additional-resources_bound-service-account-tokens}
 
-- [Rebooting a node gracefully](/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)
-- [Creating service accounts](/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts)
+- [Rebooting a node gracefully](/openshift-docs-markdown/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)
+- [Creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts)

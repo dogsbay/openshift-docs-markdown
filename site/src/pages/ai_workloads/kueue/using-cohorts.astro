@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"using-cohorts","text":"Using cohorts"}];
 const nav = navData;
-const currentPath = "/ai_workloads/kueue/using-cohorts";
+const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/using-cohorts";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using cohorts {#using-cohorts}\n\nYou can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.\n\nBorrowable resources are defined as the unused nominal quota of all the cluster queues in a cohort.\n\nBy using cohorts, you can optimize resource utilization, prevent under-utilization, and enable fair sharing configurations. In addition, you can simplify resource management and allocation between teams, because you can group cluster queues for related workloads or for each team. You can also use cohorts to set resource quotas at a group level to define the limits for resources that a group of cluster queues can consume.\n","mdUrl":"/ai_workloads/kueue/using-cohorts.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using cohorts {#using-cohorts}\n\nYou can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.\n\nBorrowable resources are defined as the unused nominal quota of all the cluster queues in a cohort.\n\nBy using cohorts, you can optimize resource utilization, prevent under-utilization, and enable fair sharing configurations. In addition, you can simplify resource management and allocation between teams, because you can group cluster queues for related workloads or for each team. You can also use cohorts to set resource quotas at a group level to define the limits for resources that a group of cluster queues can consume.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/using-cohorts.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

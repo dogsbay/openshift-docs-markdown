@@ -2,7 +2,7 @@
 // Source: networking/networking_operators/ingress-node-firewall-operator.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Ingress Node Firewall Operator in OpenShift Container Platform\n---\n\n# Ingress Node Firewall Operator in OpenShift Container Platform {#ingress-node-firewall-operator}\n\nThe Ingress Node Firewall Operator provides a stateless, eBPF-based firewall for managing node-level ingress traffic in OpenShift Container Platform.\n\n## Additional resources {#additional-resources_ingress-node-firewall-operator}\n\n- [About the eBPF Manager Operator](/networking/networking_operators/ebpf_manager/ebpf-manager-operator-about#bpfman-operator-about)\n";
+const body = "---\ntitle: Ingress Node Firewall Operator in OpenShift Container Platform\n---\n\n# Ingress Node Firewall Operator in OpenShift Container Platform {#ingress-node-firewall-operator}\n\nThe Ingress Node Firewall Operator provides a stateless, eBPF-based firewall for managing node-level ingress traffic in OpenShift Container Platform.\n\n## Additional resources {#additional-resources_ingress-node-firewall-operator}\n\n- [About the eBPF Manager Operator](/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-about#bpfman-operator-about)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

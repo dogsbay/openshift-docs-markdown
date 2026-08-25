@@ -8,4 +8,4 @@ Use the following information to diagnose and resolve network reconfiguration is
 
 **Additional resources**
 
-- [Gathering data about your cluster](/support/gathering-cluster-data#gathering-cluster-data)
+- [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#gathering-cluster-data)

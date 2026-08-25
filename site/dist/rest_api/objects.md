@@ -22,9 +22,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Alertmanager)`](/rest_api/monitoring_apis/alertmanager-monitoring-coreos-com-v1#alertmanager-monitoring-coreos-com-v1) | List of alertmanagers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Alertmanager)`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanager-monitoring-coreos-com-v1#alertmanager-monitoring-coreos-com-v1) | List of alertmanagers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.monitoring.v1.PodMonitorList schema {#com-coreos-monitoring-v1-PodMonitorList}
 
@@ -44,9 +44,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PodMonitor)`](/rest_api/monitoring_apis/podmonitor-monitoring-coreos-com-v1#podmonitor-monitoring-coreos-com-v1) | List of podmonitors. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (PodMonitor)`](/openshift-docs-markdown/rest_api/monitoring_apis/podmonitor-monitoring-coreos-com-v1#podmonitor-monitoring-coreos-com-v1) | List of podmonitors. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.monitoring.v1.ProbeList schema {#com-coreos-monitoring-v1-ProbeList}
 
@@ -66,9 +66,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Probe)`](/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) | List of probes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Probe)`](/openshift-docs-markdown/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) | List of probes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.monitoring.v1.PrometheusList schema {#com-coreos-monitoring-v1-PrometheusList}
 
@@ -88,9 +88,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Prometheus)`](/rest_api/monitoring_apis/prometheus-monitoring-coreos-com-v1#prometheus-monitoring-coreos-com-v1) | List of prometheuses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Prometheus)`](/openshift-docs-markdown/rest_api/monitoring_apis/prometheus-monitoring-coreos-com-v1#prometheus-monitoring-coreos-com-v1) | List of prometheuses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.monitoring.v1.PrometheusRuleList schema {#com-coreos-monitoring-v1-PrometheusRuleList}
 
@@ -110,9 +110,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PrometheusRule)`](/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1#prometheusrule-monitoring-coreos-com-v1) | List of prometheusrules. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (PrometheusRule)`](/openshift-docs-markdown/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1#prometheusrule-monitoring-coreos-com-v1) | List of prometheusrules. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.monitoring.v1.ServiceMonitorList schema {#com-coreos-monitoring-v1-ServiceMonitorList}
 
@@ -132,9 +132,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ServiceMonitor)`](/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1) | List of servicemonitors. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ServiceMonitor)`](/openshift-docs-markdown/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1) | List of servicemonitors. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.monitoring.v1.ThanosRulerList schema {#com-coreos-monitoring-v1-ThanosRulerList}
 
@@ -154,9 +154,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ThanosRuler)`](/rest_api/monitoring_apis/thanosruler-monitoring-coreos-com-v1#thanosruler-monitoring-coreos-com-v1) | List of thanosrulers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ThanosRuler)`](/openshift-docs-markdown/rest_api/monitoring_apis/thanosruler-monitoring-coreos-com-v1#thanosruler-monitoring-coreos-com-v1) | List of thanosrulers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.monitoring.v1beta1.AlertmanagerConfigList schema {#com-coreos-monitoring-v1beta1-AlertmanagerConfigList}
 
@@ -176,9 +176,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (AlertmanagerConfig)`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) | List of alertmanagerconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (AlertmanagerConfig)`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) | List of alertmanagerconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v1.OLMConfigList schema {#com-coreos-operators-v1-OLMConfigList}
 
@@ -198,9 +198,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OLMConfig)`](/rest_api/operatorhub_apis/olmconfig-operators-coreos-com-v1#olmconfig-operators-coreos-com-v1) | List of olmconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OLMConfig)`](/openshift-docs-markdown/rest_api/operatorhub_apis/olmconfig-operators-coreos-com-v1#olmconfig-operators-coreos-com-v1) | List of olmconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v1.OperatorGroupList schema {#com-coreos-operators-v1-OperatorGroupList}
 
@@ -220,9 +220,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OperatorGroup)`](/rest_api/operatorhub_apis/operatorgroup-operators-coreos-com-v1#operatorgroup-operators-coreos-com-v1) | List of operatorgroups. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OperatorGroup)`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorgroup-operators-coreos-com-v1#operatorgroup-operators-coreos-com-v1) | List of operatorgroups. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v1.OperatorList schema {#com-coreos-operators-v1-OperatorList}
 
@@ -242,9 +242,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Operator)`](/rest_api/operatorhub_apis/operator-operators-coreos-com-v1#operator-operators-coreos-com-v1) | List of operators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Operator)`](/openshift-docs-markdown/rest_api/operatorhub_apis/operator-operators-coreos-com-v1#operator-operators-coreos-com-v1) | List of operators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v1alpha1.CatalogSourceList schema {#com-coreos-operators-v1alpha1-CatalogSourceList}
 
@@ -264,9 +264,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CatalogSource)`](/rest_api/operatorhub_apis/catalogsource-operators-coreos-com-v1alpha1#catalogsource-operators-coreos-com-v1alpha1) | List of catalogsources. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (CatalogSource)`](/openshift-docs-markdown/rest_api/operatorhub_apis/catalogsource-operators-coreos-com-v1alpha1#catalogsource-operators-coreos-com-v1alpha1) | List of catalogsources. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v1alpha1.ClusterServiceVersionList schema {#com-coreos-operators-v1alpha1-ClusterServiceVersionList}
 
@@ -286,9 +286,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterServiceVersion)`](/rest_api/operatorhub_apis/clusterserviceversion-operators-coreos-com-v1alpha1#clusterserviceversion-operators-coreos-com-v1alpha1) | List of clusterserviceversions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterServiceVersion)`](/openshift-docs-markdown/rest_api/operatorhub_apis/clusterserviceversion-operators-coreos-com-v1alpha1#clusterserviceversion-operators-coreos-com-v1alpha1) | List of clusterserviceversions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v1alpha1.InstallPlanList schema {#com-coreos-operators-v1alpha1-InstallPlanList}
 
@@ -308,9 +308,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (InstallPlan)`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) | List of installplans. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (InstallPlan)`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) | List of installplans. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v1alpha1.SubscriptionList schema {#com-coreos-operators-v1alpha1-SubscriptionList}
 
@@ -330,9 +330,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Subscription)`](/rest_api/operatorhub_apis/subscription-operators-coreos-com-v1alpha1#subscription-operators-coreos-com-v1alpha1) | List of subscriptions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Subscription)`](/openshift-docs-markdown/rest_api/operatorhub_apis/subscription-operators-coreos-com-v1alpha1#subscription-operators-coreos-com-v1alpha1) | List of subscriptions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.coreos.operators.v2.OperatorConditionList schema {#com-coreos-operators-v2-OperatorConditionList}
 
@@ -352,9 +352,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OperatorCondition)`](/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) | List of operatorconditions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OperatorCondition)`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) | List of operatorconditions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## com.github.openshift.api.apps.v1.DeploymentConfigList schema {#com-github-openshift-api-apps-v1-DeploymentConfigList}
 
@@ -376,9 +376,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DeploymentConfig)`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) | items is a list of deployment configs |
+| `items` | [`array (DeploymentConfig)`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) | items is a list of deployment configs |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.authorization.v1.ClusterRoleBindingList schema {#com-github-openshift-api-authorization-v1-ClusterRoleBindingList}
 
@@ -400,9 +400,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterRoleBinding)`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) | items is a list of ClusterRoleBindings |
+| `items` | [`array (ClusterRoleBinding)`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) | items is a list of ClusterRoleBindings |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.authorization.v1.ClusterRoleList schema {#com-github-openshift-api-authorization-v1-ClusterRoleList}
 
@@ -424,9 +424,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterRole)`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) | items is a list of ClusterRoles |
+| `items` | [`array (ClusterRole)`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) | items is a list of ClusterRoles |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.authorization.v1.RoleBindingList schema {#com-github-openshift-api-authorization-v1-RoleBindingList}
 
@@ -448,9 +448,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (RoleBinding)`](/rest_api/role_apis/rolebinding-authorization-openshift-io-v1#rolebinding-authorization-openshift-io-v1) | items is a list of RoleBindings |
+| `items` | [`array (RoleBinding)`](/openshift-docs-markdown/rest_api/role_apis/rolebinding-authorization-openshift-io-v1#rolebinding-authorization-openshift-io-v1) | items is a list of RoleBindings |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.authorization.v1.RoleList schema {#com-github-openshift-api-authorization-v1-RoleList}
 
@@ -472,9 +472,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Role)`](/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) | items is a list of Roles |
+| `items` | [`array (Role)`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) | items is a list of Roles |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.build.v1.BuildConfigList schema {#com-github-openshift-api-build-v1-BuildConfigList}
 
@@ -496,9 +496,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (BuildConfig)`](/rest_api/workloads_apis/buildconfig-build-openshift-io-v1#buildconfig-build-openshift-io-v1) | items is a list of build configs |
+| `items` | [`array (BuildConfig)`](/openshift-docs-markdown/rest_api/workloads_apis/buildconfig-build-openshift-io-v1#buildconfig-build-openshift-io-v1) | items is a list of build configs |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.build.v1.BuildList schema {#com-github-openshift-api-build-v1-BuildList}
 
@@ -520,9 +520,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Build)`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) | items is a list of builds |
+| `items` | [`array (Build)`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) | items is a list of builds |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.image.v1.ImageList schema {#com-github-openshift-api-image-v1-ImageList}
 
@@ -544,9 +544,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Image)`](/rest_api/image_apis/image-image-openshift-io-v1#image-image-openshift-io-v1) | items is a list of images |
+| `items` | [`array (Image)`](/openshift-docs-markdown/rest_api/image_apis/image-image-openshift-io-v1#image-image-openshift-io-v1) | items is a list of images |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.image.v1.ImageStreamList schema {#com-github-openshift-api-image-v1-ImageStreamList}
 
@@ -568,9 +568,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImageStream)`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) | items is a list of imageStreams |
+| `items` | [`array (ImageStream)`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) | items is a list of imageStreams |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.image.v1.ImageStreamTagList schema {#com-github-openshift-api-image-v1-ImageStreamTagList}
 
@@ -592,9 +592,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImageStreamTag)`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) | items is the list of image stream tags |
+| `items` | [`array (ImageStreamTag)`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) | items is the list of image stream tags |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.image.v1.ImageTagList schema {#com-github-openshift-api-image-v1-ImageTagList}
 
@@ -616,9 +616,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImageTag)`](/rest_api/image_apis/imagetag-image-openshift-io-v1#imagetag-image-openshift-io-v1) | items is the list of image stream tags |
+| `items` | [`array (ImageTag)`](/openshift-docs-markdown/rest_api/image_apis/imagetag-image-openshift-io-v1#imagetag-image-openshift-io-v1) | items is the list of image stream tags |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.oauth.v1.OAuthAccessTokenList schema {#com-github-openshift-api-oauth-v1-OAuthAccessTokenList}
 
@@ -640,9 +640,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OAuthAccessToken)`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) | items is the list of OAuth access tokens |
+| `items` | [`array (OAuthAccessToken)`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) | items is the list of OAuth access tokens |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.oauth.v1.OAuthAuthorizeTokenList schema {#com-github-openshift-api-oauth-v1-OAuthAuthorizeTokenList}
 
@@ -664,9 +664,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OAuthAuthorizeToken)`](/rest_api/oauth_apis/oauthauthorizetoken-oauth-openshift-io-v1#oauthauthorizetoken-oauth-openshift-io-v1) | items is the list of OAuth authorization tokens |
+| `items` | [`array (OAuthAuthorizeToken)`](/openshift-docs-markdown/rest_api/oauth_apis/oauthauthorizetoken-oauth-openshift-io-v1#oauthauthorizetoken-oauth-openshift-io-v1) | items is the list of OAuth authorization tokens |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.oauth.v1.OAuthClientAuthorizationList schema {#com-github-openshift-api-oauth-v1-OAuthClientAuthorizationList}
 
@@ -688,9 +688,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OAuthClientAuthorization)`](/rest_api/oauth_apis/oauthclientauthorization-oauth-openshift-io-v1#oauthclientauthorization-oauth-openshift-io-v1) | items is the list of OAuth client authorizations |
+| `items` | [`array (OAuthClientAuthorization)`](/openshift-docs-markdown/rest_api/oauth_apis/oauthclientauthorization-oauth-openshift-io-v1#oauthclientauthorization-oauth-openshift-io-v1) | items is the list of OAuth client authorizations |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.oauth.v1.OAuthClientList schema {#com-github-openshift-api-oauth-v1-OAuthClientList}
 
@@ -712,9 +712,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OAuthClient)`](/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1) | items is the list of OAuth clients |
+| `items` | [`array (OAuthClient)`](/openshift-docs-markdown/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1) | items is the list of OAuth clients |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.oauth.v1.UserOAuthAccessTokenList schema {#com-github-openshift-api-oauth-v1-UserOAuthAccessTokenList}
 
@@ -736,9 +736,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (UserOAuthAccessToken)`](/rest_api/oauth_apis/useroauthaccesstoken-oauth-openshift-io-v1#useroauthaccesstoken-oauth-openshift-io-v1) |  |
+| `items` | [`array (UserOAuthAccessToken)`](/openshift-docs-markdown/rest_api/oauth_apis/useroauthaccesstoken-oauth-openshift-io-v1#useroauthaccesstoken-oauth-openshift-io-v1) |  |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.project.v1.ProjectList schema {#com-github-openshift-api-project-v1-ProjectList}
 
@@ -760,9 +760,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Project)`](/rest_api/project_apis/project-project-openshift-io-v1#project-project-openshift-io-v1) | items is the list of projects |
+| `items` | [`array (Project)`](/openshift-docs-markdown/rest_api/project_apis/project-project-openshift-io-v1#project-project-openshift-io-v1) | items is the list of projects |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.quota.v1.AppliedClusterResourceQuotaList schema {#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList}
 
@@ -784,9 +784,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (AppliedClusterResourceQuota)`](/rest_api/schedule_and_quota_apis/appliedclusterresourcequota-quota-openshift-io-v1#appliedclusterresourcequota-quota-openshift-io-v1) | items is a list of AppliedClusterResourceQuota |
+| `items` | [`array (AppliedClusterResourceQuota)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/appliedclusterresourcequota-quota-openshift-io-v1#appliedclusterresourcequota-quota-openshift-io-v1) | items is a list of AppliedClusterResourceQuota |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.route.v1.RouteList schema {#com-github-openshift-api-route-v1-RouteList}
 
@@ -808,9 +808,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Route)`](/rest_api/network_apis/route-route-openshift-io-v1#route-route-openshift-io-v1) | items is a list of routes |
+| `items` | [`array (Route)`](/openshift-docs-markdown/rest_api/network_apis/route-route-openshift-io-v1#route-route-openshift-io-v1) | items is a list of routes |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.security.v1.RangeAllocationList schema {#com-github-openshift-api-security-v1-RangeAllocationList}
 
@@ -832,9 +832,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (RangeAllocation)`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) | List of RangeAllocations. |
+| `items` | [`array (RangeAllocation)`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) | List of RangeAllocations. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.template.v1.BrokerTemplateInstanceList schema {#com-github-openshift-api-template-v1-BrokerTemplateInstanceList}
 
@@ -856,9 +856,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (BrokerTemplateInstance)`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) | items is a list of BrokerTemplateInstances |
+| `items` | [`array (BrokerTemplateInstance)`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) | items is a list of BrokerTemplateInstances |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.template.v1.TemplateInstanceList schema {#com-github-openshift-api-template-v1-TemplateInstanceList}
 
@@ -880,9 +880,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (TemplateInstance)`](/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) | items is a list of Templateinstances |
+| `items` | [`array (TemplateInstance)`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) | items is a list of Templateinstances |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.template.v1.TemplateList schema {#com-github-openshift-api-template-v1-TemplateList}
 
@@ -904,9 +904,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Template)`](/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) | items is a list of templates |
+| `items` | [`array (Template)`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) | items is a list of templates |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.user.v1.GroupList schema {#com-github-openshift-api-user-v1-GroupList}
 
@@ -928,9 +928,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Group)`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) | items is the list of groups |
+| `items` | [`array (Group)`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) | items is the list of groups |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.user.v1.IdentityList schema {#com-github-openshift-api-user-v1-IdentityList}
 
@@ -952,9 +952,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Identity)`](/rest_api/user_and_group_apis/identity-user-openshift-io-v1#identity-user-openshift-io-v1) | items is the list of identities |
+| `items` | [`array (Identity)`](/openshift-docs-markdown/rest_api/user_and_group_apis/identity-user-openshift-io-v1#identity-user-openshift-io-v1) | items is the list of identities |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.openshift.api.user.v1.UserList schema {#com-github-openshift-api-user-v1-UserList}
 
@@ -976,9 +976,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (User)`](/rest_api/user_and_group_apis/user-user-openshift-io-v1#user-user-openshift-io-v1) | items is the list of users |
+| `items` | [`array (User)`](/openshift-docs-markdown/rest_api/user_and_group_apis/user-user-openshift-io-v1#user-user-openshift-io-v1) | items is the list of users |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## com.github.operator-framework.api.pkg.operators.lib.version.OperatorVersion schema {#com-github-operator-framework-api-pkg-operators-lib-version-OperatorVersion}
 
@@ -1065,9 +1065,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PackageManifest)`](/rest_api/operatorhub_apis/packagemanifest-packages-operators-coreos-com-v1#packagemanifest-packages-operators-coreos-com-v1) |  |
+| `items` | [`array (PackageManifest)`](/openshift-docs-markdown/rest_api/operatorhub_apis/packagemanifest-packages-operators-coreos-com-v1#packagemanifest-packages-operators-coreos-com-v1) |  |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) |  |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) |  |
 
 ## io.cncf.cni.k8s.v1.NetworkAttachmentDefinitionList schema {#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList}
 
@@ -1087,9 +1087,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (NetworkAttachmentDefinition)`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) | List of network-attachment-definitions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (NetworkAttachmentDefinition)`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) | List of network-attachment-definitions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.cncf.cni.k8s.v1alpha1.IPAMClaimList schema {#io-cncf-cni-k8s-v1alpha1-IPAMClaimList}
 
@@ -1109,9 +1109,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (IPAMClaim)`](/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) | List of ipamclaims. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (IPAMClaim)`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) | List of ipamclaims. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.cncf.cni.k8s.v1beta1.MultiNetworkPolicyList schema {#io-cncf-cni-k8s-v1beta1-MultiNetworkPolicyList}
 
@@ -1131,9 +1131,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MultiNetworkPolicy)`](/rest_api/network_apis/multinetworkpolicy-k8s-cni-cncf-io-v1beta1#multinetworkpolicy-k8s-cni-cncf-io-v1beta1) | List of multi-networkpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MultiNetworkPolicy)`](/openshift-docs-markdown/rest_api/network_apis/multinetworkpolicy-k8s-cni-cncf-io-v1beta1#multinetworkpolicy-k8s-cni-cncf-io-v1beta1) | List of multi-networkpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.cncf.cni.whereabouts.v1alpha1.IPPoolList schema {#io-cncf-cni-whereabouts-v1alpha1-IPPoolList}
 
@@ -1153,9 +1153,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (IPPool)`](/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) | List of ippools. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (IPPool)`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) | List of ippools. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.cncf.cni.whereabouts.v1alpha1.NodeSlicePoolList schema {#io-cncf-cni-whereabouts-v1alpha1-NodeSlicePoolList}
 
@@ -1175,9 +1175,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (NodeSlicePool)`](/rest_api/network_apis/nodeslicepool-whereabouts-cni-cncf-io-v1alpha1#nodeslicepool-whereabouts-cni-cncf-io-v1alpha1) | List of nodeslicepools. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (NodeSlicePool)`](/openshift-docs-markdown/rest_api/network_apis/nodeslicepool-whereabouts-cni-cncf-io-v1alpha1#nodeslicepool-whereabouts-cni-cncf-io-v1alpha1) | List of nodeslicepools. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.cncf.cni.whereabouts.v1alpha1.OverlappingRangeIPReservationList schema {#io-cncf-cni-whereabouts-v1alpha1-OverlappingRangeIPReservationList}
 
@@ -1197,9 +1197,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OverlappingRangeIPReservation)`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) | List of overlappingrangeipreservations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OverlappingRangeIPReservation)`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) | List of overlappingrangeipreservations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.admissionregistration.v1.MutatingWebhookConfigurationList schema {#io-k8s-api-admissionregistration-v1-MutatingWebhookConfigurationList}
 
@@ -1219,9 +1219,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MutatingWebhookConfiguration)`](/rest_api/extension_apis/mutatingwebhookconfiguration-admissionregistration-k8s-io-v1#mutatingwebhookconfiguration-admissionregistration-k8s-io-v1) | List of MutatingWebhookConfiguration. |
+| `items` | [`array (MutatingWebhookConfiguration)`](/openshift-docs-markdown/rest_api/extension_apis/mutatingwebhookconfiguration-admissionregistration-k8s-io-v1#mutatingwebhookconfiguration-admissionregistration-k8s-io-v1) | List of MutatingWebhookConfiguration. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyBindingList schema {#io-k8s-api-admissionregistration-v1-ValidatingAdmissionPolicyBindingList}
 
@@ -1241,9 +1241,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ValidatingAdmissionPolicyBinding)`](/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) | List of PolicyBinding. |
+| `items` | [`array (ValidatingAdmissionPolicyBinding)`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicybinding-admissionregistration-k8s-io-v1#validatingadmissionpolicybinding-admissionregistration-k8s-io-v1) | List of PolicyBinding. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyList schema {#io-k8s-api-admissionregistration-v1-ValidatingAdmissionPolicyList}
 
@@ -1263,9 +1263,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ValidatingAdmissionPolicy)`](/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) | List of ValidatingAdmissionPolicy. |
+| `items` | [`array (ValidatingAdmissionPolicy)`](/openshift-docs-markdown/rest_api/extension_apis/validatingadmissionpolicy-admissionregistration-k8s-io-v1#validatingadmissionpolicy-admissionregistration-k8s-io-v1) | List of ValidatingAdmissionPolicy. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.admissionregistration.v1.ValidatingWebhookConfigurationList schema {#io-k8s-api-admissionregistration-v1-ValidatingWebhookConfigurationList}
 
@@ -1285,9 +1285,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ValidatingWebhookConfiguration)`](/rest_api/extension_apis/validatingwebhookconfiguration-admissionregistration-k8s-io-v1#validatingwebhookconfiguration-admissionregistration-k8s-io-v1) | List of ValidatingWebhookConfiguration. |
+| `items` | [`array (ValidatingWebhookConfiguration)`](/openshift-docs-markdown/rest_api/extension_apis/validatingwebhookconfiguration-admissionregistration-k8s-io-v1#validatingwebhookconfiguration-admissionregistration-k8s-io-v1) | List of ValidatingWebhookConfiguration. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.apps.v1.ControllerRevisionList schema {#io-k8s-api-apps-v1-ControllerRevisionList}
 
@@ -1307,9 +1307,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ControllerRevision)`](/rest_api/metadata_apis/controllerrevision-apps-v1#controllerrevision-apps-v1) | Items is the list of ControllerRevisions |
+| `items` | [`array (ControllerRevision)`](/openshift-docs-markdown/rest_api/metadata_apis/controllerrevision-apps-v1#controllerrevision-apps-v1) | Items is the list of ControllerRevisions |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.apps.v1.DaemonSetList schema {#io-k8s-api-apps-v1-DaemonSetList}
 
@@ -1329,9 +1329,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DaemonSet)`](/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) | A list of daemon sets. |
+| `items` | [`array (DaemonSet)`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) | A list of daemon sets. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.apps.v1.DeploymentList schema {#io-k8s-api-apps-v1-DeploymentList}
 
@@ -1351,9 +1351,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Deployment)`](/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) | Items is the list of Deployments. |
+| `items` | [`array (Deployment)`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) | Items is the list of Deployments. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. |
 
 ## io.k8s.api.apps.v1.ReplicaSetList schema {#io-k8s-api-apps-v1-ReplicaSetList}
 
@@ -1373,9 +1373,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ReplicaSet)`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) | List of ReplicaSets. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset |
+| `items` | [`array (ReplicaSet)`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) | List of ReplicaSets. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.apps.v1.StatefulSetList schema {#io-k8s-api-apps-v1-StatefulSetList}
 
@@ -1395,9 +1395,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (StatefulSet)`](/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) | Items is the list of stateful sets. |
+| `items` | [`array (StatefulSet)`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) | Items is the list of stateful sets. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerList schema {#io-k8s-api-autoscaling-v2-HorizontalPodAutoscalerList}
 
@@ -1417,9 +1417,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (HorizontalPodAutoscaler)`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) | items is the list of horizontal pod autoscaler objects. |
+| `items` | [`array (HorizontalPodAutoscaler)`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) | items is the list of horizontal pod autoscaler objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | metadata is the standard list metadata. |
 
 ## io.k8s.api.batch.v1.CronJobList schema {#io-k8s-api-batch-v1-CronJobList}
 
@@ -1439,9 +1439,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CronJob)`](/rest_api/workloads_apis/cronjob-batch-v1#cronjob-batch-v1) | items is the list of CronJobs. |
+| `items` | [`array (CronJob)`](/openshift-docs-markdown/rest_api/workloads_apis/cronjob-batch-v1#cronjob-batch-v1) | items is the list of CronJobs. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.batch.v1.JobList schema {#io-k8s-api-batch-v1-JobList}
 
@@ -1461,9 +1461,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Job)`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) | items is the list of Jobs. |
+| `items` | [`array (Job)`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) | items is the list of Jobs. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.certificates.v1.CertificateSigningRequestList schema {#io-k8s-api-certificates-v1-CertificateSigningRequestList}
 
@@ -1483,9 +1483,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CertificateSigningRequest)`](/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) | items is a collection of CertificateSigningRequest objects |
+| `items` | [`array (CertificateSigningRequest)`](/openshift-docs-markdown/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) | items is a collection of CertificateSigningRequest objects |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) |  |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) |  |
 
 ## io.k8s.api.coordination.v1.LeaseList schema {#io-k8s-api-coordination-v1-LeaseList}
 
@@ -1505,9 +1505,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Lease)`](/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) | items is a list of schema objects. |
+| `items` | [`array (Lease)`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) | items is a list of schema objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.core.v1.ComponentStatusList schema {#io-k8s-api-core-v1-ComponentStatusList}
 
@@ -1527,9 +1527,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ComponentStatus)`](/rest_api/metadata_apis/componentstatus-v1#componentstatus-v1) | List of ComponentStatus objects. |
+| `items` | [`array (ComponentStatus)`](/openshift-docs-markdown/rest_api/metadata_apis/componentstatus-v1#componentstatus-v1) | List of ComponentStatus objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.ConfigMapList schema {#io-k8s-api-core-v1-ConfigMapList}
 
@@ -1549,9 +1549,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConfigMap)`](/rest_api/metadata_apis/configmap-v1#configmap-v1) | Items is the list of ConfigMaps. |
+| `items` | [`array (ConfigMap)`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) | Items is the list of ConfigMaps. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.core.v1.ConfigMapVolumeSource schema {#io-k8s-api-core-v1-ConfigMapVolumeSource}
 
@@ -1615,9 +1615,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Endpoints)`](/rest_api/network_apis/endpoints-v1#endpoints-v1) | List of endpoints. |
+| `items` | [`array (Endpoints)`](/openshift-docs-markdown/rest_api/network_apis/endpoints-v1#endpoints-v1) | List of endpoints. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.EnvVar schema {#io-k8s-api-core-v1-EnvVar}
 
@@ -1658,9 +1658,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Event)`](/rest_api/metadata_apis/event-v1#event-v1) | List of events |
+| `items` | [`array (Event)`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) | List of events |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.EventSource schema {#io-k8s-api-core-v1-EventSource}
 
@@ -1697,9 +1697,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (LimitRange)`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) | Items is a list of LimitRange objects. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `items` | [`array (LimitRange)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) | Items is a list of LimitRange objects. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.LocalObjectReference schema {#io-k8s-api-core-v1-LocalObjectReference}
 
@@ -1735,7 +1735,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transitioned from one status to another. |
 | `message` | `string` | Human-readable message indicating details about last transition. |
 | `reason` | `string` | Unique, one-word, CamelCase reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -1759,9 +1759,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Namespace)`](/rest_api/metadata_apis/namespace-v1#namespace-v1) | Items is the list of Namespace objects in the list. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
+| `items` | [`array (Namespace)`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) | Items is the list of Namespace objects in the list. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.NodeList schema {#io-k8s-api-core-v1-NodeList}
 
@@ -1781,9 +1781,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Node)`](/rest_api/node_apis/node-v1#node-v1) | List of nodes |
+| `items` | [`array (Node)`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) | List of nodes |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.NodeSelector schema {#io-k8s-api-core-v1-NodeSelector}
 
@@ -1842,7 +1842,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes |
 | `status` | `object` | PersistentVolumeClaimStatus is the current status of a persistent volume claim. |
 
@@ -1861,7 +1861,7 @@ Type
 | `dataSource` | `object` | TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. |
 | `dataSourceRef` | `object` | TypedObjectReference contains enough information to let you locate the typed referenced object |
 | `resources` | `object` | VolumeResourceRequirements describes the storage resource requirements for a volume. |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over volumes to consider for binding. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over volumes to consider for binding. |
 | `storageClassName` | `string` | storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1 |
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
 | `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. Possible enum values:  - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
@@ -1917,8 +1917,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `limits` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 
 Description **.status**
 
@@ -1933,8 +1933,8 @@ Type
 | --- | --- | --- |
 | `accessModes` | `array (string)` | accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1 |
 | `allocatedResourceStatuses` | `object (string)` | allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: 	\* Un-prefixed keys: 		- storage - the capacity of the volume. 	\* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: 	- ControllerResizeInProgress: 		State set when resize controller starts resizing the volume in control-plane. 	- ControllerResizeFailed: 		State set when resize has failed in resize controller with a terminal error. 	- NodeResizePending: 		State set when resize controller has finished resizing the volume but further resizing of 		volume is needed on the node. 	- NodeResizeInProgress: 		State set when kubelet starts resizing the volume. 	- NodeResizeFailed: 		State set when resizing has failed in kubelet with a terminal error. Transient errors don’t set 		NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: 	- pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeInProgress"      - pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeFailed"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizePending"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeInProgress"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeFailed" When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
-| `allocatedResources` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: 	\* Un-prefixed keys: 		- storage - the capacity of the volume. 	\* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
-| `capacity` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity represents the actual resources of the underlying volume. |
+| `allocatedResources` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: 	\* Un-prefixed keys: 		- storage - the capacity of the volume. 	\* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
+| `capacity` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity represents the actual resources of the underlying volume. |
 | `conditions` | `array` | conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. |
 | `conditions[]` | `object` | PersistentVolumeClaimCondition contains details about state of pvc |
 | `currentVolumeAttributesClassName` | `string` | currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim |
@@ -1965,8 +1965,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastProbeTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastProbeTime is the time we probed the condition. |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition transitioned from one status to another. |
+| `lastProbeTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastProbeTime is the time we probed the condition. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition transitioned from one status to another. |
 | `message` | `string` | message is the human-readable message indicating details about last transition. |
 | `reason` | `string` | reason is a unique, this should be a short, machine understandable string that gives the reason for condition’s last transition. If it reports "Resizing" that means the underlying persistent volume is being resized. |
 | `status` | `string` | Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required |
@@ -2007,9 +2007,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PersistentVolumeClaim)`](/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) | items is a list of persistent volume claims. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims |
+| `items` | [`array (PersistentVolumeClaim)`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) | items is a list of persistent volume claims. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.PersistentVolumeList schema {#io-k8s-api-core-v1-PersistentVolumeList}
 
@@ -2029,9 +2029,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PersistentVolume)`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) | items is a list of persistent volumes. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes |
+| `items` | [`array (PersistentVolume)`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) | items is a list of persistent volumes. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.PersistentVolumeSpec schema {#io-k8s-api-core-v1-PersistentVolumeSpec}
 
@@ -2051,10 +2051,10 @@ Type
 | `awsElasticBlockStore` | `AWSElasticBlockStoreVolumeSource` | awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet’s host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore |
 | `azureDisk` | `AzureDiskVolumeSource` | azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver. |
 | `azureFile` | `AzureFilePersistentVolumeSource` | azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver. |
-| `capacity` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the description of the persistent volume’s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity |
+| `capacity` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the description of the persistent volume’s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity |
 | `cephfs` | `CephFSPersistentVolumeSource` | cephFS represents a Ceph FS mount on the host that shares a pod’s lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported. |
 | `cinder` | `CinderPersistentVolumeSource` | cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md |
-| `claimRef` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | claimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding |
+| `claimRef` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | claimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding |
 | `csi` | `CSIPersistentVolumeSource` | csi represents storage that is handled by an external CSI driver. |
 | `fc` | `FCVolumeSource` | fc represents a Fibre Channel resource that is attached to a kubelet’s host machine and then exposed to the pod. |
 | `flexVolume` | `FlexPersistentVolumeSource` | flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead. |
@@ -2097,9 +2097,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Pod)`](/rest_api/workloads_apis/pod-v1#pod-v1) | List of pods. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Pod)`](/openshift-docs-markdown/rest_api/workloads_apis/pod-v1#pod-v1) | List of pods. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.PodTemplateList schema {#io-k8s-api-core-v1-PodTemplateList}
 
@@ -2119,9 +2119,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PodTemplate)`](/rest_api/template_apis/podtemplate-v1#podtemplate-v1) | List of pod templates |
+| `items` | [`array (PodTemplate)`](/openshift-docs-markdown/rest_api/template_apis/podtemplate-v1#podtemplate-v1) | List of pod templates |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.PodTemplateSpec schema {#io-k8s-api-core-v1-PodTemplateSpec}
 
@@ -2137,7 +2137,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `PodSpec` | Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 
 ## io.k8s.api.core.v1.ReplicationControllerList schema {#io-k8s-api-core-v1-ReplicationControllerList}
@@ -2158,9 +2158,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ReplicationController)`](/rest_api/workloads_apis/replicationcontroller-v1#replicationcontroller-v1) | List of replication controllers. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller |
+| `items` | [`array (ReplicationController)`](/openshift-docs-markdown/rest_api/workloads_apis/replicationcontroller-v1#replicationcontroller-v1) | List of replication controllers. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.ResourceQuotaList schema {#io-k8s-api-core-v1-ResourceQuotaList}
 
@@ -2180,9 +2180,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ResourceQuota)`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) | Items is a list of ResourceQuota objects. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
+| `items` | [`array (ResourceQuota)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) | Items is a list of ResourceQuota objects. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.ResourceQuotaSpec schema {#io-k8s-api-core-v1-ResourceQuotaSpec}
 
@@ -2198,7 +2198,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hard` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
+| `hard` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
 | `scopeSelector` | `ScopeSelector` | scopeSelector is also a collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched. |
 | `scopes` | `array (string)` | A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects. |
 
@@ -2216,8 +2216,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hard` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Hard is the set of enforced hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
-| `used` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Used is the current observed total usage of the resource in the namespace. |
+| `hard` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Hard is the set of enforced hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
+| `used` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Used is the current observed total usage of the resource in the namespace. |
 
 ## io.k8s.api.core.v1.ResourceRequirements schema {#io-k8s-api-core-v1-ResourceRequirements}
 
@@ -2234,8 +2234,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `claims` | `array (ResourceClaim)` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
-| `limits` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 
 ## io.k8s.api.core.v1.Secret schema {#io-k8s-api-core-v1-Secret}
 
@@ -2255,7 +2255,7 @@ Type
 | `data` | `object (string)` | Data contains the secret data. Each key must consist of alphanumeric characters, '-', '\\_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4 |
 | `immutable` | `boolean` | Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `stringData` | `object (string)` | stringData allows specifying non-binary secret data in string form. It is provided as a write-only input field for convenience. All keys and values are merged into the data field on write, overwriting any existing values. The stringData field is never output when reading from the API. |
 | `type` | `string` | Used to facilitate programmatic handling of secret data. More info: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types |
 
@@ -2277,9 +2277,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Secret)`](/rest_api/security_apis/secret-v1#secret-v1) | Items is a list of secret objects. More info: https://kubernetes.io/docs/concepts/configuration/secret |
+| `items` | [`array (Secret)`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) | Items is a list of secret objects. More info: https://kubernetes.io/docs/concepts/configuration/secret |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.SecretVolumeSource schema {#io-k8s-api-core-v1-SecretVolumeSource}
 
@@ -2320,9 +2320,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ServiceAccount)`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) | List of ServiceAccounts. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ |
+| `items` | [`array (ServiceAccount)`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) | List of ServiceAccounts. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.ServiceList schema {#io-k8s-api-core-v1-ServiceList}
 
@@ -2342,9 +2342,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Service)`](/rest_api/network_apis/service-v1#service-v1) | List of services |
+| `items` | [`array (Service)`](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1) | List of services |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.api.core.v1.Toleration schema {#io-k8s-api-core-v1-Toleration}
 
@@ -2422,9 +2422,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (EndpointSlice)`](/rest_api/network_apis/endpointslice-discovery-k8s-io-v1#endpointslice-discovery-k8s-io-v1) | items is the list of endpoint slices |
+| `items` | [`array (EndpointSlice)`](/openshift-docs-markdown/rest_api/network_apis/endpointslice-discovery-k8s-io-v1#endpointslice-discovery-k8s-io-v1) | items is the list of endpoint slices |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. |
 
 ## io.k8s.api.events.v1.EventList schema {#io-k8s-api-events-v1-EventList}
 
@@ -2444,9 +2444,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Event)`](/rest_api/metadata_apis/event-events-k8s-io-v1#event-events-k8s-io-v1) | items is a list of schema objects. |
+| `items` | [`array (Event)`](/openshift-docs-markdown/rest_api/metadata_apis/event-events-k8s-io-v1#event-events-k8s-io-v1) | items is a list of schema objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.flowcontrol.v1.FlowSchemaList schema {#io-k8s-api-flowcontrol-v1-FlowSchemaList}
 
@@ -2466,9 +2466,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (FlowSchema)`](/rest_api/schedule_and_quota_apis/flowschema-flowcontrol-apiserver-k8s-io-v1#flowschema-flowcontrol-apiserver-k8s-io-v1) | `items` is a list of FlowSchemas. |
+| `items` | [`array (FlowSchema)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/flowschema-flowcontrol-apiserver-k8s-io-v1#flowschema-flowcontrol-apiserver-k8s-io-v1) | `items` is a list of FlowSchemas. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | `metadata` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | `metadata` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationList schema {#io-k8s-api-flowcontrol-v1-PriorityLevelConfigurationList}
 
@@ -2488,9 +2488,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PriorityLevelConfiguration)`](/rest_api/schedule_and_quota_apis/prioritylevelconfiguration-flowcontrol-apiserver-k8s-io-v1#prioritylevelconfiguration-flowcontrol-apiserver-k8s-io-v1) | `items` is a list of request-priorities. |
+| `items` | [`array (PriorityLevelConfiguration)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/prioritylevelconfiguration-flowcontrol-apiserver-k8s-io-v1#prioritylevelconfiguration-flowcontrol-apiserver-k8s-io-v1) | `items` is a list of request-priorities. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | `metadata` is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | `metadata` is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.networking.v1.IngressClassList schema {#io-k8s-api-networking-v1-IngressClassList}
 
@@ -2510,9 +2510,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (IngressClass)`](/rest_api/network_apis/ingressclass-networking-k8s-io-v1#ingressclass-networking-k8s-io-v1) | items is the list of IngressClasses. |
+| `items` | [`array (IngressClass)`](/openshift-docs-markdown/rest_api/network_apis/ingressclass-networking-k8s-io-v1#ingressclass-networking-k8s-io-v1) | items is the list of IngressClasses. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. |
 
 ## io.k8s.api.networking.v1.IngressList schema {#io-k8s-api-networking-v1-IngressList}
 
@@ -2532,9 +2532,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Ingress)`](/rest_api/network_apis/ingress-networking-k8s-io-v1#ingress-networking-k8s-io-v1) | items is the list of Ingress. |
+| `items` | [`array (Ingress)`](/openshift-docs-markdown/rest_api/network_apis/ingress-networking-k8s-io-v1#ingress-networking-k8s-io-v1) | items is the list of Ingress. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.networking.v1.IPAddressList schema {#io-k8s-api-networking-v1-IPAddressList}
 
@@ -2554,9 +2554,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (IPAddress)`](/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) | items is the list of IPAddresses. |
+| `items` | [`array (IPAddress)`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) | items is the list of IPAddresses. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.networking.v1.NetworkPolicyList schema {#io-k8s-api-networking-v1-NetworkPolicyList}
 
@@ -2576,9 +2576,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (NetworkPolicy)`](/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1) | items is a list of schema objects. |
+| `items` | [`array (NetworkPolicy)`](/openshift-docs-markdown/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1) | items is a list of schema objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.networking.v1.ServiceCIDRList schema {#io-k8s-api-networking-v1-ServiceCIDRList}
 
@@ -2598,9 +2598,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ServiceCIDR)`](/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) | items is the list of ServiceCIDRs. |
+| `items` | [`array (ServiceCIDR)`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) | items is the list of ServiceCIDRs. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.node.v1.RuntimeClassList schema {#io-k8s-api-node-v1-RuntimeClassList}
 
@@ -2620,9 +2620,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (RuntimeClass)`](/rest_api/node_apis/runtimeclass-node-k8s-io-v1#runtimeclass-node-k8s-io-v1) | items is a list of schema objects. |
+| `items` | [`array (RuntimeClass)`](/openshift-docs-markdown/rest_api/node_apis/runtimeclass-node-k8s-io-v1#runtimeclass-node-k8s-io-v1) | items is a list of schema objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.policy.v1.PodDisruptionBudgetList schema {#io-k8s-api-policy-v1-PodDisruptionBudgetList}
 
@@ -2642,9 +2642,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PodDisruptionBudget)`](/rest_api/policy_apis/poddisruptionbudget-policy-v1#poddisruptionbudget-policy-v1) | Items is a list of PodDisruptionBudgets |
+| `items` | [`array (PodDisruptionBudget)`](/openshift-docs-markdown/rest_api/policy_apis/poddisruptionbudget-policy-v1#poddisruptionbudget-policy-v1) | Items is a list of PodDisruptionBudgets |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.rbac.v1.AggregationRule schema {#io-k8s-api-rbac-v1-AggregationRule}
 
@@ -2680,9 +2680,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterRoleBinding)`](/rest_api/rbac_apis/clusterrolebinding-rbac-authorization-k8s-io-v1#clusterrolebinding-rbac-authorization-k8s-io-v1) | Items is a list of ClusterRoleBindings |
+| `items` | [`array (ClusterRoleBinding)`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrolebinding-rbac-authorization-k8s-io-v1#clusterrolebinding-rbac-authorization-k8s-io-v1) | Items is a list of ClusterRoleBindings |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
 
 ## io.k8s.api.rbac.v1.ClusterRoleList schema {#io-k8s-api-rbac-v1-ClusterRoleList}
 
@@ -2702,9 +2702,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterRole)`](/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) | Items is a list of ClusterRoles |
+| `items` | [`array (ClusterRole)`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) | Items is a list of ClusterRoles |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
 
 ## io.k8s.api.rbac.v1.RoleBindingList schema {#io-k8s-api-rbac-v1-RoleBindingList}
 
@@ -2724,9 +2724,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (RoleBinding)`](/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) | Items is a list of RoleBindings |
+| `items` | [`array (RoleBinding)`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) | Items is a list of RoleBindings |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
 
 ## io.k8s.api.rbac.v1.RoleList schema {#io-k8s-api-rbac-v1-RoleList}
 
@@ -2746,9 +2746,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Role)`](/rest_api/rbac_apis/role-rbac-authorization-k8s-io-v1#role-rbac-authorization-k8s-io-v1) | Items is a list of Roles |
+| `items` | [`array (Role)`](/openshift-docs-markdown/rest_api/rbac_apis/role-rbac-authorization-k8s-io-v1#role-rbac-authorization-k8s-io-v1) | Items is a list of Roles |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata. |
 
 ## io.k8s.api.resource.v1.DeviceClassList schema {#io-k8s-api-resource-v1-DeviceClassList}
 
@@ -2768,9 +2768,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DeviceClass)`](/rest_api/schedule_and_quota_apis/deviceclass-resource-k8s-io-v1#deviceclass-resource-k8s-io-v1) | Items is the list of resource classes. |
+| `items` | [`array (DeviceClass)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/deviceclass-resource-k8s-io-v1#deviceclass-resource-k8s-io-v1) | Items is the list of resource classes. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
 
 ## io.k8s.api.resource.v1.ResourceClaimList schema {#io-k8s-api-resource-v1-ResourceClaimList}
 
@@ -2790,9 +2790,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ResourceClaim)`](/rest_api/schedule_and_quota_apis/resourceclaim-resource-k8s-io-v1#resourceclaim-resource-k8s-io-v1) | Items is the list of resource claims. |
+| `items` | [`array (ResourceClaim)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaim-resource-k8s-io-v1#resourceclaim-resource-k8s-io-v1) | Items is the list of resource claims. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
 
 ## io.k8s.api.resource.v1.ResourceClaimTemplateList schema {#io-k8s-api-resource-v1-ResourceClaimTemplateList}
 
@@ -2812,9 +2812,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ResourceClaimTemplate)`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) | Items is the list of resource claim templates. |
+| `items` | [`array (ResourceClaimTemplate)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) | Items is the list of resource claim templates. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
 
 ## io.k8s.api.resource.v1.ResourceSliceList schema {#io-k8s-api-resource-v1-ResourceSliceList}
 
@@ -2834,9 +2834,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ResourceSlice)`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) | Items is the list of resource ResourceSlices. |
+| `items` | [`array (ResourceSlice)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) | Items is the list of resource ResourceSlices. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata |
 
 ## io.k8s.api.scheduling.v1.PriorityClassList schema {#io-k8s-api-scheduling-v1-PriorityClassList}
 
@@ -2856,9 +2856,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PriorityClass)`](/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) | items is the list of PriorityClasses |
+| `items` | [`array (PriorityClass)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) | items is the list of PriorityClasses |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.storage.v1.CSIDriverList schema {#io-k8s-api-storage-v1-CSIDriverList}
 
@@ -2878,9 +2878,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CSIDriver)`](/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) | items is the list of CSIDriver |
+| `items` | [`array (CSIDriver)`](/openshift-docs-markdown/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) | items is the list of CSIDriver |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.storage.v1.CSINodeList schema {#io-k8s-api-storage-v1-CSINodeList}
 
@@ -2900,9 +2900,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CSINode)`](/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) | items is the list of CSINode |
+| `items` | [`array (CSINode)`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) | items is the list of CSINode |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.storage.v1.CSIStorageCapacityList schema {#io-k8s-api-storage-v1-CSIStorageCapacityList}
 
@@ -2922,9 +2922,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CSIStorageCapacity)`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) | items is the list of CSIStorageCapacity objects. |
+| `items` | [`array (CSIStorageCapacity)`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) | items is the list of CSIStorageCapacity objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.storage.v1.StorageClassList schema {#io-k8s-api-storage-v1-StorageClassList}
 
@@ -2944,9 +2944,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (StorageClass)`](/rest_api/storage_apis/storageclass-storage-k8s-io-v1#storageclass-storage-k8s-io-v1) | items is the list of StorageClasses |
+| `items` | [`array (StorageClass)`](/openshift-docs-markdown/rest_api/storage_apis/storageclass-storage-k8s-io-v1#storageclass-storage-k8s-io-v1) | items is the list of StorageClasses |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.storage.v1.VolumeAttachmentList schema {#io-k8s-api-storage-v1-VolumeAttachmentList}
 
@@ -2966,9 +2966,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (VolumeAttachment)`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) | items is the list of VolumeAttachments |
+| `items` | [`array (VolumeAttachment)`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) | items is the list of VolumeAttachments |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.api.storage.v1.VolumeAttributesClassList schema {#io-k8s-api-storage-v1-VolumeAttributesClassList}
 
@@ -2988,9 +2988,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (VolumeAttributesClass)`](/rest_api/storage_apis/volumeattributesclass-storage-k8s-io-v1#volumeattributesclass-storage-k8s-io-v1) | items is the list of VolumeAttributesClass objects. |
+| `items` | [`array (VolumeAttributesClass)`](/openshift-docs-markdown/rest_api/storage_apis/volumeattributesclass-storage-k8s-io-v1#volumeattributesclass-storage-k8s-io-v1) | items is the list of VolumeAttributesClass objects. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionList schema {#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-CustomResourceDefinitionList}
 
@@ -3010,9 +3010,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CustomResourceDefinition)`](/rest_api/extension_apis/customresourcedefinition-apiextensions-k8s-io-v1#customresourcedefinition-apiextensions-k8s-io-v1) | items list individual CustomResourceDefinition objects |
+| `items` | [`array (CustomResourceDefinition)`](/openshift-docs-markdown/rest_api/extension_apis/customresourcedefinition-apiextensions-k8s-io-v1#customresourcedefinition-apiextensions-k8s-io-v1) | items list individual CustomResourceDefinition objects |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard object’s metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaProps schema {#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps}
 
@@ -3032,10 +3032,10 @@ Type
 | `$schema` | `string` |  |
 | `additionalItems` | \`\` |  |
 | `additionalProperties` | \`\` |  |
-| `allOf` | [`array (undefined)`](/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
-| `anyOf` | [`array (undefined)`](/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
+| `allOf` | [`array (undefined)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
+| `anyOf` | [`array (undefined)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
 | `default` | `JSON` | default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. Defaulting requires spec.preserveUnknownFields to be false. |
-| `definitions` | [`object (undefined)`](/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
+| `definitions` | [`object (undefined)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
 | `dependencies` | `object (undefined)` |  |
 | `description` | `string` |  |
 | `enum` | `array (JSON)` |  |
@@ -3058,12 +3058,12 @@ Type
 |  | `minProperties` | `integer` |
 |  | `minimum` | `number` |
 |  | `multipleOf` | `number` |
-|  | `not` | [\`\`](/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
+|  | `not` | [\`\`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
 |  | `nullable` | `boolean` |
-|  | `oneOf` | [`array (undefined)`](/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
+|  | `oneOf` | [`array (undefined)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
 |  | `pattern` | `string` |
-|  | `patternProperties` | [`object (undefined)`](/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
-|  | `properties` | [`object (undefined)`](/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
+|  | `patternProperties` | [`object (undefined)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
+|  | `properties` | [`object (undefined)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |
 |  | `required` | `array (string)` |
 |  | `title` | `string` |
 |  | `type` | `string` |
@@ -3149,7 +3149,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -3248,7 +3248,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `matchExpressions` | [`array (LabelSelectorRequirement)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement) | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
+| `matchExpressions` | [`array (LabelSelectorRequirement)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement) | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ## io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement schema {#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement}
@@ -3317,9 +3317,9 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations |
-| `creationTimestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC. Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `creationTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC. Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `deletionGracePeriodSeconds` | `integer` | Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only. |
-| `deletionTimestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested. Populated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `deletionTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested. Populated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `finalizers` | `array (string)` | Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list. |
 | `generateName` | `string` | GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server. If this field is specified and the generated name exists, the server will return a 409. Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency |
 | `generation` | `integer` | A sequence number representing a specific generation of the desired state. Populated by the system. Read-only. |
@@ -3351,7 +3351,7 @@ Type
 | `details` | `StatusDetails` | Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `message` | `string` | A human-readable description of the status of this operation. |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `reason` | `string` | A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it. |
 | `status` | `string` | Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 
@@ -3374,7 +3374,7 @@ Type
 | `details` | `StatusDetails` | Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `message` | `string` | A human-readable description of the status of this operation. |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `reason` | `string` | A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it. |
 | `status` | `string` | Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 
@@ -3406,7 +3406,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `object` | [`RawExtension`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | Object is:  \* If Type is Added or Modified: the new state of the object.  \* If Type is Deleted: the state of the object immediately before deletion.  \* If Type is Error: \*Status is recommended; other types may make sense    depending on context. |
+| `object` | [`RawExtension`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | Object is:  \* If Type is Added or Modified: the new state of the object.  \* If Type is Deleted: the state of the object immediately before deletion.  \* If Type is Error: \*Status is recommended; other types may make sense    depending on context. |
 | `type` | `string` |  |
 
 ## io.k8s.apimachinery.pkg.runtime.RawExtension schema {#io-k8s-apimachinery-pkg-runtime-RawExtension}
@@ -3480,9 +3480,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (APIService)`](/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) | Items is the list of APIService |
+| `items` | [`array (APIService)`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) | Items is the list of APIService |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 
 ## io.k8s.metrics.pkg.apis.metrics.v1beta1.NodeMetricsList schema {#io-k8s-metrics-pkg-apis-metrics-v1beta1-NodeMetricsList}
 
@@ -3502,9 +3502,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (NodeMetrics)`](/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1#nodemetrics-metrics-k8s-io-v1beta1) | List of node metrics. |
+| `items` | [`array (NodeMetrics)`](/openshift-docs-markdown/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1#nodemetrics-metrics-k8s-io-v1beta1) | List of node metrics. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.metrics.pkg.apis.metrics.v1beta1.PodMetricsList schema {#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList}
 
@@ -3524,9 +3524,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PodMetrics)`](/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1#podmetrics-metrics-k8s-io-v1beta1) | List of pod metrics. |
+| `items` | [`array (PodMetrics)`](/openshift-docs-markdown/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1#podmetrics-metrics-k8s-io-v1beta1) | List of pod metrics. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.migration.v1alpha1.StorageStateList schema {#io-k8s-migration-v1alpha1-StorageStateList}
 
@@ -3546,9 +3546,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (StorageState)`](/rest_api/storage_apis/storagestate-migration-k8s-io-v1alpha1#storagestate-migration-k8s-io-v1alpha1) | List of storagestates. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (StorageState)`](/openshift-docs-markdown/rest_api/storage_apis/storagestate-migration-k8s-io-v1alpha1#storagestate-migration-k8s-io-v1alpha1) | List of storagestates. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.migration.v1alpha1.StorageVersionMigrationList schema {#io-k8s-migration-v1alpha1-StorageVersionMigrationList}
 
@@ -3568,9 +3568,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (StorageVersionMigration)`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) | List of storageversionmigrations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (StorageVersionMigration)`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) | List of storageversionmigrations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.gateway.v1.BackendTLSPolicyList schema {#io-k8s-networking-gateway-v1-BackendTLSPolicyList}
 
@@ -3590,9 +3590,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (BackendTLSPolicy)`](/rest_api/network_apis/backendtlspolicy-gateway-networking-k8s-io-v1#backendtlspolicy-gateway-networking-k8s-io-v1) | List of backendtlspolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (BackendTLSPolicy)`](/openshift-docs-markdown/rest_api/network_apis/backendtlspolicy-gateway-networking-k8s-io-v1#backendtlspolicy-gateway-networking-k8s-io-v1) | List of backendtlspolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.gateway.v1.GatewayClassList schema {#io-k8s-networking-gateway-v1-GatewayClassList}
 
@@ -3612,9 +3612,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (GatewayClass)`](/rest_api/network_apis/gatewayclass-gateway-networking-k8s-io-v1#gatewayclass-gateway-networking-k8s-io-v1) | List of gatewayclasses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (GatewayClass)`](/openshift-docs-markdown/rest_api/network_apis/gatewayclass-gateway-networking-k8s-io-v1#gatewayclass-gateway-networking-k8s-io-v1) | List of gatewayclasses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.gateway.v1.GatewayList schema {#io-k8s-networking-gateway-v1-GatewayList}
 
@@ -3634,9 +3634,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Gateway)`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) | List of gateways. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Gateway)`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) | List of gateways. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.gateway.v1.GRPCRouteList schema {#io-k8s-networking-gateway-v1-GRPCRouteList}
 
@@ -3656,9 +3656,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (GRPCRoute)`](/rest_api/network_apis/grpcroute-gateway-networking-k8s-io-v1#grpcroute-gateway-networking-k8s-io-v1) | List of grpcroutes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (GRPCRoute)`](/openshift-docs-markdown/rest_api/network_apis/grpcroute-gateway-networking-k8s-io-v1#grpcroute-gateway-networking-k8s-io-v1) | List of grpcroutes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.gateway.v1.HTTPRouteList schema {#io-k8s-networking-gateway-v1-HTTPRouteList}
 
@@ -3678,9 +3678,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (HTTPRoute)`](/rest_api/network_apis/httproute-gateway-networking-k8s-io-v1#httproute-gateway-networking-k8s-io-v1) | List of httproutes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (HTTPRoute)`](/openshift-docs-markdown/rest_api/network_apis/httproute-gateway-networking-k8s-io-v1#httproute-gateway-networking-k8s-io-v1) | List of httproutes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.gateway.v1beta1.ReferenceGrantList schema {#io-k8s-networking-gateway-v1beta1-ReferenceGrantList}
 
@@ -3700,9 +3700,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ReferenceGrant)`](/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) | List of referencegrants. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ReferenceGrant)`](/openshift-docs-markdown/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) | List of referencegrants. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.policy.v1alpha1.AdminNetworkPolicyList schema {#io-k8s-networking-policy-v1alpha1-AdminNetworkPolicyList}
 
@@ -3722,9 +3722,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (AdminNetworkPolicy)`](/rest_api/network_apis/adminnetworkpolicy-policy-networking-k8s-io-v1alpha1#adminnetworkpolicy-policy-networking-k8s-io-v1alpha1) | List of adminnetworkpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (AdminNetworkPolicy)`](/openshift-docs-markdown/rest_api/network_apis/adminnetworkpolicy-policy-networking-k8s-io-v1alpha1#adminnetworkpolicy-policy-networking-k8s-io-v1alpha1) | List of adminnetworkpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.networking.policy.v1alpha1.BaselineAdminNetworkPolicyList schema {#io-k8s-networking-policy-v1alpha1-BaselineAdminNetworkPolicyList}
 
@@ -3744,9 +3744,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (BaselineAdminNetworkPolicy)`](/rest_api/network_apis/baselineadminnetworkpolicy-policy-networking-k8s-io-v1alpha1#baselineadminnetworkpolicy-policy-networking-k8s-io-v1alpha1) | List of baselineadminnetworkpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (BaselineAdminNetworkPolicy)`](/openshift-docs-markdown/rest_api/network_apis/baselineadminnetworkpolicy-policy-networking-k8s-io-v1alpha1#baselineadminnetworkpolicy-policy-networking-k8s-io-v1alpha1) | List of baselineadminnetworkpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.storage.populator.v1beta1.VolumePopulatorList schema {#io-k8s-storage-populator-v1beta1-VolumePopulatorList}
 
@@ -3766,9 +3766,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (VolumePopulator)`](/rest_api/storage_apis/volumepopulator-populator-storage-k8s-io-v1beta1#volumepopulator-populator-storage-k8s-io-v1beta1) | List of volumepopulators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (VolumePopulator)`](/openshift-docs-markdown/rest_api/storage_apis/volumepopulator-populator-storage-k8s-io-v1beta1#volumepopulator-populator-storage-k8s-io-v1beta1) | List of volumepopulators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.storage.snapshot.v1.VolumeSnapshotClassList schema {#io-k8s-storage-snapshot-v1-VolumeSnapshotClassList}
 
@@ -3788,9 +3788,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (VolumeSnapshotClass)`](/rest_api/storage_apis/volumesnapshotclass-snapshot-storage-k8s-io-v1#volumesnapshotclass-snapshot-storage-k8s-io-v1) | List of volumesnapshotclasses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (VolumeSnapshotClass)`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshotclass-snapshot-storage-k8s-io-v1#volumesnapshotclass-snapshot-storage-k8s-io-v1) | List of volumesnapshotclasses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.storage.snapshot.v1.VolumeSnapshotContentList schema {#io-k8s-storage-snapshot-v1-VolumeSnapshotContentList}
 
@@ -3810,9 +3810,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (VolumeSnapshotContent)`](/rest_api/storage_apis/volumesnapshotcontent-snapshot-storage-k8s-io-v1#volumesnapshotcontent-snapshot-storage-k8s-io-v1) | List of volumesnapshotcontents. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (VolumeSnapshotContent)`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshotcontent-snapshot-storage-k8s-io-v1#volumesnapshotcontent-snapshot-storage-k8s-io-v1) | List of volumesnapshotcontents. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.k8s.storage.snapshot.v1.VolumeSnapshotList schema {#io-k8s-storage-snapshot-v1-VolumeSnapshotList}
 
@@ -3832,9 +3832,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (VolumeSnapshot)`](/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) | List of volumesnapshots. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (VolumeSnapshot)`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) | List of volumesnapshots. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.BareMetalHostList schema {#io-metal3-v1alpha1-BareMetalHostList}
 
@@ -3854,9 +3854,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (BareMetalHost)`](/rest_api/provisioning_apis/baremetalhost-metal3-io-v1alpha1#baremetalhost-metal3-io-v1alpha1) | List of baremetalhosts. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (BareMetalHost)`](/openshift-docs-markdown/rest_api/provisioning_apis/baremetalhost-metal3-io-v1alpha1#baremetalhost-metal3-io-v1alpha1) | List of baremetalhosts. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.BMCEventSubscriptionList schema {#io-metal3-v1alpha1-BMCEventSubscriptionList}
 
@@ -3876,9 +3876,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (BMCEventSubscription)`](/rest_api/provisioning_apis/bmceventsubscription-metal3-io-v1alpha1#bmceventsubscription-metal3-io-v1alpha1) | List of bmceventsubscriptions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (BMCEventSubscription)`](/openshift-docs-markdown/rest_api/provisioning_apis/bmceventsubscription-metal3-io-v1alpha1#bmceventsubscription-metal3-io-v1alpha1) | List of bmceventsubscriptions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.DataImageList schema {#io-metal3-v1alpha1-DataImageList}
 
@@ -3898,9 +3898,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DataImage)`](/rest_api/provisioning_apis/dataimage-metal3-io-v1alpha1#dataimage-metal3-io-v1alpha1) | List of dataimages. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (DataImage)`](/openshift-docs-markdown/rest_api/provisioning_apis/dataimage-metal3-io-v1alpha1#dataimage-metal3-io-v1alpha1) | List of dataimages. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.FirmwareSchemaList schema {#io-metal3-v1alpha1-FirmwareSchemaList}
 
@@ -3920,9 +3920,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (FirmwareSchema)`](/rest_api/provisioning_apis/firmwareschema-metal3-io-v1alpha1#firmwareschema-metal3-io-v1alpha1) | List of firmwareschemas. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (FirmwareSchema)`](/openshift-docs-markdown/rest_api/provisioning_apis/firmwareschema-metal3-io-v1alpha1#firmwareschema-metal3-io-v1alpha1) | List of firmwareschemas. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.HardwareDataList schema {#io-metal3-v1alpha1-HardwareDataList}
 
@@ -3942,9 +3942,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (HardwareData)`](/rest_api/provisioning_apis/hardwaredata-metal3-io-v1alpha1#hardwaredata-metal3-io-v1alpha1) | List of hardwaredata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (HardwareData)`](/openshift-docs-markdown/rest_api/provisioning_apis/hardwaredata-metal3-io-v1alpha1#hardwaredata-metal3-io-v1alpha1) | List of hardwaredata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.HostFirmwareComponentsList schema {#io-metal3-v1alpha1-HostFirmwareComponentsList}
 
@@ -3964,9 +3964,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (HostFirmwareComponents)`](/rest_api/provisioning_apis/hostfirmwarecomponents-metal3-io-v1alpha1#hostfirmwarecomponents-metal3-io-v1alpha1) | List of hostfirmwarecomponents. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (HostFirmwareComponents)`](/openshift-docs-markdown/rest_api/provisioning_apis/hostfirmwarecomponents-metal3-io-v1alpha1#hostfirmwarecomponents-metal3-io-v1alpha1) | List of hostfirmwarecomponents. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.HostFirmwareSettingsList schema {#io-metal3-v1alpha1-HostFirmwareSettingsList}
 
@@ -3986,9 +3986,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (HostFirmwareSettings)`](/rest_api/provisioning_apis/hostfirmwaresettings-metal3-io-v1alpha1#hostfirmwaresettings-metal3-io-v1alpha1) | List of hostfirmwaresettings. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (HostFirmwareSettings)`](/openshift-docs-markdown/rest_api/provisioning_apis/hostfirmwaresettings-metal3-io-v1alpha1#hostfirmwaresettings-metal3-io-v1alpha1) | List of hostfirmwaresettings. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.HostUpdatePolicyList schema {#io-metal3-v1alpha1-HostUpdatePolicyList}
 
@@ -4008,9 +4008,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (HostUpdatePolicy)`](/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) | List of hostupdatepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (HostUpdatePolicy)`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) | List of hostupdatepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.PreprovisioningImageList schema {#io-metal3-v1alpha1-PreprovisioningImageList}
 
@@ -4030,9 +4030,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PreprovisioningImage)`](/rest_api/provisioning_apis/preprovisioningimage-metal3-io-v1alpha1#preprovisioningimage-metal3-io-v1alpha1) | List of preprovisioningimages. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (PreprovisioningImage)`](/openshift-docs-markdown/rest_api/provisioning_apis/preprovisioningimage-metal3-io-v1alpha1#preprovisioningimage-metal3-io-v1alpha1) | List of preprovisioningimages. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.metal3.v1alpha1.ProvisioningList schema {#io-metal3-v1alpha1-ProvisioningList}
 
@@ -4052,9 +4052,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Provisioning)`](/rest_api/provisioning_apis/provisioning-metal3-io-v1alpha1#provisioning-metal3-io-v1alpha1) | List of provisionings. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Provisioning)`](/openshift-docs-markdown/rest_api/provisioning_apis/provisioning-metal3-io-v1alpha1#provisioning-metal3-io-v1alpha1) | List of provisionings. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.apiserver.v1.APIRequestCountList schema {#io-openshift-apiserver-v1-APIRequestCountList}
 
@@ -4074,9 +4074,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (APIRequestCount)`](/rest_api/metadata_apis/apirequestcount-apiserver-openshift-io-v1#apirequestcount-apiserver-openshift-io-v1) | List of apirequestcounts. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (APIRequestCount)`](/openshift-docs-markdown/rest_api/metadata_apis/apirequestcount-apiserver-openshift-io-v1#apirequestcount-apiserver-openshift-io-v1) | List of apirequestcounts. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.authorization.v1.RoleBindingRestrictionList schema {#io-openshift-authorization-v1-RoleBindingRestrictionList}
 
@@ -4096,9 +4096,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (RoleBindingRestriction)`](/rest_api/role_apis/rolebindingrestriction-authorization-openshift-io-v1#rolebindingrestriction-authorization-openshift-io-v1) | List of rolebindingrestrictions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (RoleBindingRestriction)`](/openshift-docs-markdown/rest_api/role_apis/rolebindingrestriction-authorization-openshift-io-v1#rolebindingrestriction-authorization-openshift-io-v1) | List of rolebindingrestrictions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.autoscaling.v1.ClusterAutoscalerList schema {#io-openshift-autoscaling-v1-ClusterAutoscalerList}
 
@@ -4118,9 +4118,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterAutoscaler)`](/rest_api/autoscale_apis/clusterautoscaler-autoscaling-openshift-io-v1#clusterautoscaler-autoscaling-openshift-io-v1) | List of clusterautoscalers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterAutoscaler)`](/openshift-docs-markdown/rest_api/autoscale_apis/clusterautoscaler-autoscaling-openshift-io-v1#clusterautoscaler-autoscaling-openshift-io-v1) | List of clusterautoscalers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.autoscaling.v1beta1.MachineAutoscalerList schema {#io-openshift-autoscaling-v1beta1-MachineAutoscalerList}
 
@@ -4140,9 +4140,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineAutoscaler)`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) | List of machineautoscalers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineAutoscaler)`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) | List of machineautoscalers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.cloudcredential.v1.CredentialsRequestList schema {#io-openshift-cloudcredential-v1-CredentialsRequestList}
 
@@ -4162,9 +4162,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CredentialsRequest)`](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) | List of credentialsrequests. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (CredentialsRequest)`](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1) | List of credentialsrequests. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.APIServerList schema {#io-openshift-config-v1-APIServerList}
 
@@ -4184,9 +4184,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (APIServer)`](/rest_api/config_apis/apiserver-config-openshift-io-v1#apiserver-config-openshift-io-v1) | List of apiservers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (APIServer)`](/openshift-docs-markdown/rest_api/config_apis/apiserver-config-openshift-io-v1#apiserver-config-openshift-io-v1) | List of apiservers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.AuthenticationList schema {#io-openshift-config-v1-AuthenticationList}
 
@@ -4206,9 +4206,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Authentication)`](/rest_api/config_apis/authentication-config-openshift-io-v1#authentication-config-openshift-io-v1) | List of authentications. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Authentication)`](/openshift-docs-markdown/rest_api/config_apis/authentication-config-openshift-io-v1#authentication-config-openshift-io-v1) | List of authentications. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.BuildList schema {#io-openshift-config-v1-BuildList}
 
@@ -4228,9 +4228,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Build)`](/rest_api/config_apis/build-config-openshift-io-v1#build-config-openshift-io-v1) | List of builds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Build)`](/openshift-docs-markdown/rest_api/config_apis/build-config-openshift-io-v1#build-config-openshift-io-v1) | List of builds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ClusterImagePolicyList schema {#io-openshift-config-v1-ClusterImagePolicyList}
 
@@ -4250,9 +4250,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterImagePolicy)`](/rest_api/config_apis/clusterimagepolicy-config-openshift-io-v1#clusterimagepolicy-config-openshift-io-v1) | List of clusterimagepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterImagePolicy)`](/openshift-docs-markdown/rest_api/config_apis/clusterimagepolicy-config-openshift-io-v1#clusterimagepolicy-config-openshift-io-v1) | List of clusterimagepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ClusterOperatorList schema {#io-openshift-config-v1-ClusterOperatorList}
 
@@ -4272,9 +4272,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterOperator)`](/rest_api/config_apis/clusteroperator-config-openshift-io-v1#clusteroperator-config-openshift-io-v1) | List of clusteroperators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterOperator)`](/openshift-docs-markdown/rest_api/config_apis/clusteroperator-config-openshift-io-v1#clusteroperator-config-openshift-io-v1) | List of clusteroperators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ClusterVersionList schema {#io-openshift-config-v1-ClusterVersionList}
 
@@ -4294,9 +4294,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterVersion)`](/rest_api/config_apis/clusterversion-config-openshift-io-v1#clusterversion-config-openshift-io-v1) | List of clusterversions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterVersion)`](/openshift-docs-markdown/rest_api/config_apis/clusterversion-config-openshift-io-v1#clusterversion-config-openshift-io-v1) | List of clusterversions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ConsoleList schema {#io-openshift-config-v1-ConsoleList}
 
@@ -4316,9 +4316,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Console)`](/rest_api/config_apis/console-config-openshift-io-v1#console-config-openshift-io-v1) | List of consoles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Console)`](/openshift-docs-markdown/rest_api/config_apis/console-config-openshift-io-v1#console-config-openshift-io-v1) | List of consoles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.DNSList schema {#io-openshift-config-v1-DNSList}
 
@@ -4338,9 +4338,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DNS)`](/rest_api/config_apis/dns-config-openshift-io-v1#dns-config-openshift-io-v1) | List of dnses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (DNS)`](/openshift-docs-markdown/rest_api/config_apis/dns-config-openshift-io-v1#dns-config-openshift-io-v1) | List of dnses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.FeatureGateList schema {#io-openshift-config-v1-FeatureGateList}
 
@@ -4360,9 +4360,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (FeatureGate)`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) | List of featuregates. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (FeatureGate)`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) | List of featuregates. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ImageContentPolicyList schema {#io-openshift-config-v1-ImageContentPolicyList}
 
@@ -4382,9 +4382,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImageContentPolicy)`](/rest_api/config_apis/imagecontentpolicy-config-openshift-io-v1#imagecontentpolicy-config-openshift-io-v1) | List of imagecontentpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ImageContentPolicy)`](/openshift-docs-markdown/rest_api/config_apis/imagecontentpolicy-config-openshift-io-v1#imagecontentpolicy-config-openshift-io-v1) | List of imagecontentpolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ImageDigestMirrorSetList schema {#io-openshift-config-v1-ImageDigestMirrorSetList}
 
@@ -4404,9 +4404,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImageDigestMirrorSet)`](/rest_api/config_apis/imagedigestmirrorset-config-openshift-io-v1#imagedigestmirrorset-config-openshift-io-v1) | List of imagedigestmirrorsets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ImageDigestMirrorSet)`](/openshift-docs-markdown/rest_api/config_apis/imagedigestmirrorset-config-openshift-io-v1#imagedigestmirrorset-config-openshift-io-v1) | List of imagedigestmirrorsets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ImageList schema {#io-openshift-config-v1-ImageList}
 
@@ -4426,9 +4426,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Image)`](/rest_api/config_apis/image-config-openshift-io-v1#image-config-openshift-io-v1) | List of images. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Image)`](/openshift-docs-markdown/rest_api/config_apis/image-config-openshift-io-v1#image-config-openshift-io-v1) | List of images. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ImagePolicyList schema {#io-openshift-config-v1-ImagePolicyList}
 
@@ -4448,9 +4448,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImagePolicy)`](/rest_api/config_apis/imagepolicy-config-openshift-io-v1#imagepolicy-config-openshift-io-v1) | List of imagepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ImagePolicy)`](/openshift-docs-markdown/rest_api/config_apis/imagepolicy-config-openshift-io-v1#imagepolicy-config-openshift-io-v1) | List of imagepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ImageTagMirrorSetList schema {#io-openshift-config-v1-ImageTagMirrorSetList}
 
@@ -4470,9 +4470,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImageTagMirrorSet)`](/rest_api/config_apis/imagetagmirrorset-config-openshift-io-v1#imagetagmirrorset-config-openshift-io-v1) | List of imagetagmirrorsets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ImageTagMirrorSet)`](/openshift-docs-markdown/rest_api/config_apis/imagetagmirrorset-config-openshift-io-v1#imagetagmirrorset-config-openshift-io-v1) | List of imagetagmirrorsets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.InfrastructureList schema {#io-openshift-config-v1-InfrastructureList}
 
@@ -4492,9 +4492,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Infrastructure)`](/rest_api/config_apis/infrastructure-config-openshift-io-v1#infrastructure-config-openshift-io-v1) | List of infrastructures. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Infrastructure)`](/openshift-docs-markdown/rest_api/config_apis/infrastructure-config-openshift-io-v1#infrastructure-config-openshift-io-v1) | List of infrastructures. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.IngressList schema {#io-openshift-config-v1-IngressList}
 
@@ -4514,9 +4514,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Ingress)`](/rest_api/config_apis/ingress-config-openshift-io-v1#ingress-config-openshift-io-v1) | List of ingresses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Ingress)`](/openshift-docs-markdown/rest_api/config_apis/ingress-config-openshift-io-v1#ingress-config-openshift-io-v1) | List of ingresses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.InsightsDataGatherList schema {#io-openshift-config-v1-InsightsDataGatherList}
 
@@ -4536,9 +4536,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (InsightsDataGather)`](/rest_api/config_apis/insightsdatagather-config-openshift-io-v1#insightsdatagather-config-openshift-io-v1) | List of insightsdatagathers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (InsightsDataGather)`](/openshift-docs-markdown/rest_api/config_apis/insightsdatagather-config-openshift-io-v1#insightsdatagather-config-openshift-io-v1) | List of insightsdatagathers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.NetworkList schema {#io-openshift-config-v1-NetworkList}
 
@@ -4558,9 +4558,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Network)`](/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1) | List of networks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Network)`](/openshift-docs-markdown/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1) | List of networks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.NodeList schema {#io-openshift-config-v1-NodeList}
 
@@ -4580,9 +4580,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Node)`](/rest_api/config_apis/node-config-openshift-io-v1#node-config-openshift-io-v1) | List of nodes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Node)`](/openshift-docs-markdown/rest_api/config_apis/node-config-openshift-io-v1#node-config-openshift-io-v1) | List of nodes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.OAuthList schema {#io-openshift-config-v1-OAuthList}
 
@@ -4602,9 +4602,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OAuth)`](/rest_api/config_apis/oauth-config-openshift-io-v1#oauth-config-openshift-io-v1) | List of oauths. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OAuth)`](/openshift-docs-markdown/rest_api/config_apis/oauth-config-openshift-io-v1#oauth-config-openshift-io-v1) | List of oauths. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.OperatorHubList schema {#io-openshift-config-v1-OperatorHubList}
 
@@ -4624,9 +4624,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OperatorHub)`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) | List of operatorhubs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OperatorHub)`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) | List of operatorhubs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ProjectList schema {#io-openshift-config-v1-ProjectList}
 
@@ -4646,9 +4646,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Project)`](/rest_api/config_apis/project-config-openshift-io-v1#project-config-openshift-io-v1) | List of projects. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Project)`](/openshift-docs-markdown/rest_api/config_apis/project-config-openshift-io-v1#project-config-openshift-io-v1) | List of projects. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.ProxyList schema {#io-openshift-config-v1-ProxyList}
 
@@ -4668,9 +4668,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Proxy)`](/rest_api/config_apis/proxy-config-openshift-io-v1#proxy-config-openshift-io-v1) | List of proxies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Proxy)`](/openshift-docs-markdown/rest_api/config_apis/proxy-config-openshift-io-v1#proxy-config-openshift-io-v1) | List of proxies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.config.v1.SchedulerList schema {#io-openshift-config-v1-SchedulerList}
 
@@ -4690,9 +4690,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Scheduler)`](/rest_api/config_apis/scheduler-config-openshift-io-v1#scheduler-config-openshift-io-v1) | List of schedulers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Scheduler)`](/openshift-docs-markdown/rest_api/config_apis/scheduler-config-openshift-io-v1#scheduler-config-openshift-io-v1) | List of schedulers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsoleCLIDownloadList schema {#io-openshift-console-v1-ConsoleCLIDownloadList}
 
@@ -4712,9 +4712,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsoleCLIDownload)`](/rest_api/console_apis/consoleclidownload-console-openshift-io-v1#consoleclidownload-console-openshift-io-v1) | List of consoleclidownloads. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsoleCLIDownload)`](/openshift-docs-markdown/rest_api/console_apis/consoleclidownload-console-openshift-io-v1#consoleclidownload-console-openshift-io-v1) | List of consoleclidownloads. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsoleExternalLogLinkList schema {#io-openshift-console-v1-ConsoleExternalLogLinkList}
 
@@ -4734,9 +4734,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsoleExternalLogLink)`](/rest_api/console_apis/consoleexternalloglink-console-openshift-io-v1#consoleexternalloglink-console-openshift-io-v1) | List of consoleexternalloglinks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsoleExternalLogLink)`](/openshift-docs-markdown/rest_api/console_apis/consoleexternalloglink-console-openshift-io-v1#consoleexternalloglink-console-openshift-io-v1) | List of consoleexternalloglinks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsoleLinkList schema {#io-openshift-console-v1-ConsoleLinkList}
 
@@ -4756,9 +4756,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsoleLink)`](/rest_api/console_apis/consolelink-console-openshift-io-v1#consolelink-console-openshift-io-v1) | List of consolelinks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsoleLink)`](/openshift-docs-markdown/rest_api/console_apis/consolelink-console-openshift-io-v1#consolelink-console-openshift-io-v1) | List of consolelinks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsoleNotificationList schema {#io-openshift-console-v1-ConsoleNotificationList}
 
@@ -4778,9 +4778,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsoleNotification)`](/rest_api/console_apis/consolenotification-console-openshift-io-v1#consolenotification-console-openshift-io-v1) | List of consolenotifications. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsoleNotification)`](/openshift-docs-markdown/rest_api/console_apis/consolenotification-console-openshift-io-v1#consolenotification-console-openshift-io-v1) | List of consolenotifications. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsolePluginList schema {#io-openshift-console-v1-ConsolePluginList}
 
@@ -4800,9 +4800,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsolePlugin)`](/rest_api/console_apis/consoleplugin-console-openshift-io-v1#consoleplugin-console-openshift-io-v1) | List of consoleplugins. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsolePlugin)`](/openshift-docs-markdown/rest_api/console_apis/consoleplugin-console-openshift-io-v1#consoleplugin-console-openshift-io-v1) | List of consoleplugins. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsoleQuickStartList schema {#io-openshift-console-v1-ConsoleQuickStartList}
 
@@ -4822,9 +4822,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsoleQuickStart)`](/rest_api/console_apis/consolequickstart-console-openshift-io-v1#consolequickstart-console-openshift-io-v1) | List of consolequickstarts. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsoleQuickStart)`](/openshift-docs-markdown/rest_api/console_apis/consolequickstart-console-openshift-io-v1#consolequickstart-console-openshift-io-v1) | List of consolequickstarts. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsoleSampleList schema {#io-openshift-console-v1-ConsoleSampleList}
 
@@ -4844,9 +4844,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsoleSample)`](/rest_api/console_apis/consolesample-console-openshift-io-v1#consolesample-console-openshift-io-v1) | List of consolesamples. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsoleSample)`](/openshift-docs-markdown/rest_api/console_apis/consolesample-console-openshift-io-v1#consolesample-console-openshift-io-v1) | List of consolesamples. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.console.v1.ConsoleYAMLSampleList schema {#io-openshift-console-v1-ConsoleYAMLSampleList}
 
@@ -4866,9 +4866,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ConsoleYAMLSample)`](/rest_api/console_apis/consoleyamlsample-console-openshift-io-v1#consoleyamlsample-console-openshift-io-v1) | List of consoleyamlsamples. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ConsoleYAMLSample)`](/openshift-docs-markdown/rest_api/console_apis/consoleyamlsample-console-openshift-io-v1#consoleyamlsample-console-openshift-io-v1) | List of consoleyamlsamples. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.helm.v1beta1.HelmChartRepositoryList schema {#io-openshift-helm-v1beta1-HelmChartRepositoryList}
 
@@ -4888,9 +4888,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (HelmChartRepository)`](/rest_api/config_apis/helmchartrepository-helm-openshift-io-v1beta1#helmchartrepository-helm-openshift-io-v1beta1) | List of helmchartrepositories. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (HelmChartRepository)`](/openshift-docs-markdown/rest_api/config_apis/helmchartrepository-helm-openshift-io-v1beta1#helmchartrepository-helm-openshift-io-v1beta1) | List of helmchartrepositories. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.helm.v1beta1.ProjectHelmChartRepositoryList schema {#io-openshift-helm-v1beta1-ProjectHelmChartRepositoryList}
 
@@ -4910,9 +4910,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ProjectHelmChartRepository)`](/rest_api/config_apis/projecthelmchartrepository-helm-openshift-io-v1beta1#projecthelmchartrepository-helm-openshift-io-v1beta1) | List of projecthelmchartrepositories. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ProjectHelmChartRepository)`](/openshift-docs-markdown/rest_api/config_apis/projecthelmchartrepository-helm-openshift-io-v1beta1#projecthelmchartrepository-helm-openshift-io-v1beta1) | List of projecthelmchartrepositories. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.insights.v1.DataGatherList schema {#io-openshift-insights-v1-DataGatherList}
 
@@ -4932,9 +4932,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DataGather)`](/rest_api/monitoring_apis/datagather-insights-openshift-io-v1#datagather-insights-openshift-io-v1) | List of datagathers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (DataGather)`](/openshift-docs-markdown/rest_api/monitoring_apis/datagather-insights-openshift-io-v1#datagather-insights-openshift-io-v1) | List of datagathers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machine.v1.ControlPlaneMachineSetList schema {#io-openshift-machine-v1-ControlPlaneMachineSetList}
 
@@ -4954,9 +4954,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ControlPlaneMachineSet)`](/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1) | List of controlplanemachinesets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ControlPlaneMachineSet)`](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1) | List of controlplanemachinesets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machine.v1beta1.MachineHealthCheckList schema {#io-openshift-machine-v1beta1-MachineHealthCheckList}
 
@@ -4976,9 +4976,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineHealthCheck)`](/rest_api/machine_apis/machinehealthcheck-machine-openshift-io-v1beta1#machinehealthcheck-machine-openshift-io-v1beta1) | List of machinehealthchecks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineHealthCheck)`](/openshift-docs-markdown/rest_api/machine_apis/machinehealthcheck-machine-openshift-io-v1beta1#machinehealthcheck-machine-openshift-io-v1beta1) | List of machinehealthchecks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machine.v1beta1.MachineList schema {#io-openshift-machine-v1beta1-MachineList}
 
@@ -4998,9 +4998,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Machine)`](/rest_api/machine_apis/machine-machine-openshift-io-v1beta1#machine-machine-openshift-io-v1beta1) | List of machines. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Machine)`](/openshift-docs-markdown/rest_api/machine_apis/machine-machine-openshift-io-v1beta1#machine-machine-openshift-io-v1beta1) | List of machines. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machine.v1beta1.MachineSetList schema {#io-openshift-machine-v1beta1-MachineSetList}
 
@@ -5020,9 +5020,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineSet)`](/rest_api/machine_apis/machineset-machine-openshift-io-v1beta1#machineset-machine-openshift-io-v1beta1) | List of machinesets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineSet)`](/openshift-docs-markdown/rest_api/machine_apis/machineset-machine-openshift-io-v1beta1#machineset-machine-openshift-io-v1beta1) | List of machinesets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.ContainerRuntimeConfigList schema {#io-openshift-machineconfiguration-v1-ContainerRuntimeConfigList}
 
@@ -5042,9 +5042,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ContainerRuntimeConfig)`](/rest_api/machine_apis/containerruntimeconfig-machineconfiguration-openshift-io-v1#containerruntimeconfig-machineconfiguration-openshift-io-v1) | List of containerruntimeconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ContainerRuntimeConfig)`](/openshift-docs-markdown/rest_api/machine_apis/containerruntimeconfig-machineconfiguration-openshift-io-v1#containerruntimeconfig-machineconfiguration-openshift-io-v1) | List of containerruntimeconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.ControllerConfigList schema {#io-openshift-machineconfiguration-v1-ControllerConfigList}
 
@@ -5064,9 +5064,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ControllerConfig)`](/rest_api/machine_apis/controllerconfig-machineconfiguration-openshift-io-v1#controllerconfig-machineconfiguration-openshift-io-v1) | List of controllerconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ControllerConfig)`](/openshift-docs-markdown/rest_api/machine_apis/controllerconfig-machineconfiguration-openshift-io-v1#controllerconfig-machineconfiguration-openshift-io-v1) | List of controllerconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.KubeletConfigList schema {#io-openshift-machineconfiguration-v1-KubeletConfigList}
 
@@ -5086,9 +5086,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (KubeletConfig)`](/rest_api/machine_apis/kubeletconfig-machineconfiguration-openshift-io-v1#kubeletconfig-machineconfiguration-openshift-io-v1) | List of kubeletconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (KubeletConfig)`](/openshift-docs-markdown/rest_api/machine_apis/kubeletconfig-machineconfiguration-openshift-io-v1#kubeletconfig-machineconfiguration-openshift-io-v1) | List of kubeletconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.MachineConfigList schema {#io-openshift-machineconfiguration-v1-MachineConfigList}
 
@@ -5108,9 +5108,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineConfig)`](/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1#machineconfig-machineconfiguration-openshift-io-v1) | List of machineconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineConfig)`](/openshift-docs-markdown/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1#machineconfig-machineconfiguration-openshift-io-v1) | List of machineconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.MachineConfigNodeList schema {#io-openshift-machineconfiguration-v1-MachineConfigNodeList}
 
@@ -5130,9 +5130,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineConfigNode)`](/rest_api/machine_apis/machineconfignode-machineconfiguration-openshift-io-v1#machineconfignode-machineconfiguration-openshift-io-v1) | List of machineconfignodes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineConfigNode)`](/openshift-docs-markdown/rest_api/machine_apis/machineconfignode-machineconfiguration-openshift-io-v1#machineconfignode-machineconfiguration-openshift-io-v1) | List of machineconfignodes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.MachineConfigPoolList schema {#io-openshift-machineconfiguration-v1-MachineConfigPoolList}
 
@@ -5152,9 +5152,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineConfigPool)`](/rest_api/machine_apis/machineconfigpool-machineconfiguration-openshift-io-v1#machineconfigpool-machineconfiguration-openshift-io-v1) | List of machineconfigpools. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineConfigPool)`](/openshift-docs-markdown/rest_api/machine_apis/machineconfigpool-machineconfiguration-openshift-io-v1#machineconfigpool-machineconfiguration-openshift-io-v1) | List of machineconfigpools. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.MachineOSBuildList schema {#io-openshift-machineconfiguration-v1-MachineOSBuildList}
 
@@ -5174,9 +5174,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineOSBuild)`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) | List of machineosbuilds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineOSBuild)`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) | List of machineosbuilds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.MachineOSConfigList schema {#io-openshift-machineconfiguration-v1-MachineOSConfigList}
 
@@ -5196,9 +5196,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineOSConfig)`](/rest_api/machine_apis/machineosconfig-machineconfiguration-openshift-io-v1#machineosconfig-machineconfiguration-openshift-io-v1) | List of machineosconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineOSConfig)`](/openshift-docs-markdown/rest_api/machine_apis/machineosconfig-machineconfiguration-openshift-io-v1#machineosconfig-machineconfiguration-openshift-io-v1) | List of machineosconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.machineconfiguration.v1.PinnedImageSetList schema {#io-openshift-machineconfiguration-v1-PinnedImageSetList}
 
@@ -5218,9 +5218,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PinnedImageSet)`](/rest_api/machine_apis/pinnedimageset-machineconfiguration-openshift-io-v1#pinnedimageset-machineconfiguration-openshift-io-v1) | List of pinnedimagesets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (PinnedImageSet)`](/openshift-docs-markdown/rest_api/machine_apis/pinnedimageset-machineconfiguration-openshift-io-v1#pinnedimageset-machineconfiguration-openshift-io-v1) | List of pinnedimagesets. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.monitoring.v1.AlertingRuleList schema {#io-openshift-monitoring-v1-AlertingRuleList}
 
@@ -5240,9 +5240,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (AlertingRule)`](/rest_api/monitoring_apis/alertingrule-monitoring-openshift-io-v1#alertingrule-monitoring-openshift-io-v1) | List of alertingrules. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (AlertingRule)`](/openshift-docs-markdown/rest_api/monitoring_apis/alertingrule-monitoring-openshift-io-v1#alertingrule-monitoring-openshift-io-v1) | List of alertingrules. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.monitoring.v1.AlertRelabelConfigList schema {#io-openshift-monitoring-v1-AlertRelabelConfigList}
 
@@ -5262,9 +5262,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (AlertRelabelConfig)`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) | List of alertrelabelconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (AlertRelabelConfig)`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) | List of alertrelabelconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.network.cloud.v1.CloudPrivateIPConfigList schema {#io-openshift-network-cloud-v1-CloudPrivateIPConfigList}
 
@@ -5284,9 +5284,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CloudPrivateIPConfig)`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) | List of cloudprivateipconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (CloudPrivateIPConfig)`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) | List of cloudprivateipconfigs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.controlplane.v1alpha1.PodNetworkConnectivityCheckList schema {#io-openshift-operator-controlplane-v1alpha1-PodNetworkConnectivityCheckList}
 
@@ -5306,9 +5306,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PodNetworkConnectivityCheck)`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) | List of podnetworkconnectivitychecks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (PodNetworkConnectivityCheck)`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) | List of podnetworkconnectivitychecks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.imageregistry.v1.ConfigList schema {#io-openshift-operator-imageregistry-v1-ConfigList}
 
@@ -5328,9 +5328,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Config)`](/rest_api/operator_apis/config-imageregistry-operator-openshift-io-v1#config-imageregistry-operator-openshift-io-v1) | List of configs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Config)`](/openshift-docs-markdown/rest_api/operator_apis/config-imageregistry-operator-openshift-io-v1#config-imageregistry-operator-openshift-io-v1) | List of configs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.imageregistry.v1.ImagePrunerList schema {#io-openshift-operator-imageregistry-v1-ImagePrunerList}
 
@@ -5350,9 +5350,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImagePruner)`](/rest_api/operator_apis/imagepruner-imageregistry-operator-openshift-io-v1#imagepruner-imageregistry-operator-openshift-io-v1) | List of imagepruners. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ImagePruner)`](/openshift-docs-markdown/rest_api/operator_apis/imagepruner-imageregistry-operator-openshift-io-v1#imagepruner-imageregistry-operator-openshift-io-v1) | List of imagepruners. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.ingress.v1.DNSRecordList schema {#io-openshift-operator-ingress-v1-DNSRecordList}
 
@@ -5372,9 +5372,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DNSRecord)`](/rest_api/operator_apis/dnsrecord-ingress-operator-openshift-io-v1#dnsrecord-ingress-operator-openshift-io-v1) | List of dnsrecords. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (DNSRecord)`](/openshift-docs-markdown/rest_api/operator_apis/dnsrecord-ingress-operator-openshift-io-v1#dnsrecord-ingress-operator-openshift-io-v1) | List of dnsrecords. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.network.v1.EgressRouterList schema {#io-openshift-operator-network-v1-EgressRouterList}
 
@@ -5394,9 +5394,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (EgressRouter)`](/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) | List of egressrouters. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (EgressRouter)`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) | List of egressrouters. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.network.v1.OperatorPKIList schema {#io-openshift-operator-network-v1-OperatorPKIList}
 
@@ -5416,9 +5416,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OperatorPKI)`](/rest_api/operator_apis/operatorpki-network-operator-openshift-io-v1#operatorpki-network-operator-openshift-io-v1) | List of operatorpkis. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OperatorPKI)`](/openshift-docs-markdown/rest_api/operator_apis/operatorpki-network-operator-openshift-io-v1#operatorpki-network-operator-openshift-io-v1) | List of operatorpkis. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.samples.v1.ConfigList schema {#io-openshift-operator-samples-v1-ConfigList}
 
@@ -5438,9 +5438,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Config)`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) | List of configs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Config)`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) | List of configs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.AuthenticationList schema {#io-openshift-operator-v1-AuthenticationList}
 
@@ -5460,9 +5460,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Authentication)`](/rest_api/operator_apis/authentication-operator-openshift-io-v1#authentication-operator-openshift-io-v1) | List of authentications. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Authentication)`](/openshift-docs-markdown/rest_api/operator_apis/authentication-operator-openshift-io-v1#authentication-operator-openshift-io-v1) | List of authentications. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.CloudCredentialList schema {#io-openshift-operator-v1-CloudCredentialList}
 
@@ -5482,9 +5482,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CloudCredential)`](/rest_api/operator_apis/cloudcredential-operator-openshift-io-v1#cloudcredential-operator-openshift-io-v1) | List of cloudcredentials. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (CloudCredential)`](/openshift-docs-markdown/rest_api/operator_apis/cloudcredential-operator-openshift-io-v1#cloudcredential-operator-openshift-io-v1) | List of cloudcredentials. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.ClusterCSIDriverList schema {#io-openshift-operator-v1-ClusterCSIDriverList}
 
@@ -5504,9 +5504,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterCSIDriver)`](/rest_api/operator_apis/clustercsidriver-operator-openshift-io-v1#clustercsidriver-operator-openshift-io-v1) | List of clustercsidrivers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterCSIDriver)`](/openshift-docs-markdown/rest_api/operator_apis/clustercsidriver-operator-openshift-io-v1#clustercsidriver-operator-openshift-io-v1) | List of clustercsidrivers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.ConfigList schema {#io-openshift-operator-v1-ConfigList}
 
@@ -5526,9 +5526,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Config)`](/rest_api/operator_apis/config-operator-openshift-io-v1#config-operator-openshift-io-v1) | List of configs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Config)`](/openshift-docs-markdown/rest_api/operator_apis/config-operator-openshift-io-v1#config-operator-openshift-io-v1) | List of configs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.ConsoleList schema {#io-openshift-operator-v1-ConsoleList}
 
@@ -5548,9 +5548,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Console)`](/rest_api/operator_apis/console-operator-openshift-io-v1#console-operator-openshift-io-v1) | List of consoles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Console)`](/openshift-docs-markdown/rest_api/operator_apis/console-operator-openshift-io-v1#console-operator-openshift-io-v1) | List of consoles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.CSISnapshotControllerList schema {#io-openshift-operator-v1-CSISnapshotControllerList}
 
@@ -5570,9 +5570,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (CSISnapshotController)`](/rest_api/operator_apis/csisnapshotcontroller-operator-openshift-io-v1#csisnapshotcontroller-operator-openshift-io-v1) | List of csisnapshotcontrollers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (CSISnapshotController)`](/openshift-docs-markdown/rest_api/operator_apis/csisnapshotcontroller-operator-openshift-io-v1#csisnapshotcontroller-operator-openshift-io-v1) | List of csisnapshotcontrollers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.DNSList schema {#io-openshift-operator-v1-DNSList}
 
@@ -5592,9 +5592,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (DNS)`](/rest_api/operator_apis/dns-operator-openshift-io-v1#dns-operator-openshift-io-v1) | List of dnses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (DNS)`](/openshift-docs-markdown/rest_api/operator_apis/dns-operator-openshift-io-v1#dns-operator-openshift-io-v1) | List of dnses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.EtcdList schema {#io-openshift-operator-v1-EtcdList}
 
@@ -5614,9 +5614,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Etcd)`](/rest_api/operator_apis/etcd-operator-openshift-io-v1#etcd-operator-openshift-io-v1) | List of etcds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Etcd)`](/openshift-docs-markdown/rest_api/operator_apis/etcd-operator-openshift-io-v1#etcd-operator-openshift-io-v1) | List of etcds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.IngressControllerList schema {#io-openshift-operator-v1-IngressControllerList}
 
@@ -5636,9 +5636,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (IngressController)`](/rest_api/operator_apis/ingresscontroller-operator-openshift-io-v1#ingresscontroller-operator-openshift-io-v1) | List of ingresscontrollers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (IngressController)`](/openshift-docs-markdown/rest_api/operator_apis/ingresscontroller-operator-openshift-io-v1#ingresscontroller-operator-openshift-io-v1) | List of ingresscontrollers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.InsightsOperatorList schema {#io-openshift-operator-v1-InsightsOperatorList}
 
@@ -5658,9 +5658,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (InsightsOperator)`](/rest_api/operator_apis/insightsoperator-operator-openshift-io-v1#insightsoperator-operator-openshift-io-v1) | List of insightsoperators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (InsightsOperator)`](/openshift-docs-markdown/rest_api/operator_apis/insightsoperator-operator-openshift-io-v1#insightsoperator-operator-openshift-io-v1) | List of insightsoperators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.KubeAPIServerList schema {#io-openshift-operator-v1-KubeAPIServerList}
 
@@ -5680,9 +5680,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (KubeAPIServer)`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) | List of kubeapiservers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (KubeAPIServer)`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) | List of kubeapiservers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.KubeControllerManagerList schema {#io-openshift-operator-v1-KubeControllerManagerList}
 
@@ -5702,9 +5702,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (KubeControllerManager)`](/rest_api/operator_apis/kubecontrollermanager-operator-openshift-io-v1#kubecontrollermanager-operator-openshift-io-v1) | List of kubecontrollermanagers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (KubeControllerManager)`](/openshift-docs-markdown/rest_api/operator_apis/kubecontrollermanager-operator-openshift-io-v1#kubecontrollermanager-operator-openshift-io-v1) | List of kubecontrollermanagers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.KubeSchedulerList schema {#io-openshift-operator-v1-KubeSchedulerList}
 
@@ -5724,9 +5724,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (KubeScheduler)`](/rest_api/operator_apis/kubescheduler-operator-openshift-io-v1#kubescheduler-operator-openshift-io-v1) | List of kubeschedulers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (KubeScheduler)`](/openshift-docs-markdown/rest_api/operator_apis/kubescheduler-operator-openshift-io-v1#kubescheduler-operator-openshift-io-v1) | List of kubeschedulers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.KubeStorageVersionMigratorList schema {#io-openshift-operator-v1-KubeStorageVersionMigratorList}
 
@@ -5746,9 +5746,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (KubeStorageVersionMigrator)`](/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) | List of kubestorageversionmigrators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (KubeStorageVersionMigrator)`](/openshift-docs-markdown/rest_api/operator_apis/kubestorageversionmigrator-operator-openshift-io-v1#kubestorageversionmigrator-operator-openshift-io-v1) | List of kubestorageversionmigrators. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.MachineConfigurationList schema {#io-openshift-operator-v1-MachineConfigurationList}
 
@@ -5768,9 +5768,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (MachineConfiguration)`](/rest_api/operator_apis/machineconfiguration-operator-openshift-io-v1#machineconfiguration-operator-openshift-io-v1) | List of machineconfigurations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (MachineConfiguration)`](/openshift-docs-markdown/rest_api/operator_apis/machineconfiguration-operator-openshift-io-v1#machineconfiguration-operator-openshift-io-v1) | List of machineconfigurations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.NetworkList schema {#io-openshift-operator-v1-NetworkList}
 
@@ -5790,9 +5790,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Network)`](/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1) | List of networks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Network)`](/openshift-docs-markdown/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1) | List of networks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.OLMList schema {#io-openshift-operator-v1-OLMList}
 
@@ -5812,9 +5812,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OLM)`](/rest_api/operatorhub_apis/olm-operator-openshift-io-v1#olm-operator-openshift-io-v1) | List of olms. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OLM)`](/openshift-docs-markdown/rest_api/operatorhub_apis/olm-operator-openshift-io-v1#olm-operator-openshift-io-v1) | List of olms. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.OpenShiftAPIServerList schema {#io-openshift-operator-v1-OpenShiftAPIServerList}
 
@@ -5834,9 +5834,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OpenShiftAPIServer)`](/rest_api/operator_apis/openshiftapiserver-operator-openshift-io-v1#openshiftapiserver-operator-openshift-io-v1) | List of openshiftapiservers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OpenShiftAPIServer)`](/openshift-docs-markdown/rest_api/operator_apis/openshiftapiserver-operator-openshift-io-v1#openshiftapiserver-operator-openshift-io-v1) | List of openshiftapiservers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.OpenShiftControllerManagerList schema {#io-openshift-operator-v1-OpenShiftControllerManagerList}
 
@@ -5856,9 +5856,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (OpenShiftControllerManager)`](/rest_api/operator_apis/openshiftcontrollermanager-operator-openshift-io-v1#openshiftcontrollermanager-operator-openshift-io-v1) | List of openshiftcontrollermanagers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (OpenShiftControllerManager)`](/openshift-docs-markdown/rest_api/operator_apis/openshiftcontrollermanager-operator-openshift-io-v1#openshiftcontrollermanager-operator-openshift-io-v1) | List of openshiftcontrollermanagers. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.ServiceCAList schema {#io-openshift-operator-v1-ServiceCAList}
 
@@ -5878,9 +5878,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ServiceCA)`](/rest_api/operator_apis/serviceca-operator-openshift-io-v1#serviceca-operator-openshift-io-v1) | List of servicecas. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ServiceCA)`](/openshift-docs-markdown/rest_api/operator_apis/serviceca-operator-openshift-io-v1#serviceca-operator-openshift-io-v1) | List of servicecas. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1.StorageList schema {#io-openshift-operator-v1-StorageList}
 
@@ -5900,9 +5900,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Storage)`](/rest_api/operator_apis/storage-operator-openshift-io-v1#storage-operator-openshift-io-v1) | List of storages. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Storage)`](/openshift-docs-markdown/rest_api/operator_apis/storage-operator-openshift-io-v1#storage-operator-openshift-io-v1) | List of storages. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.operator.v1alpha1.ImageContentSourcePolicyList schema {#io-openshift-operator-v1alpha1-ImageContentSourcePolicyList}
 
@@ -5922,9 +5922,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ImageContentSourcePolicy)`](/rest_api/operator_apis/imagecontentsourcepolicy-operator-openshift-io-v1alpha1#imagecontentsourcepolicy-operator-openshift-io-v1alpha1) | List of imagecontentsourcepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ImageContentSourcePolicy)`](/openshift-docs-markdown/rest_api/operator_apis/imagecontentsourcepolicy-operator-openshift-io-v1alpha1#imagecontentsourcepolicy-operator-openshift-io-v1alpha1) | List of imagecontentsourcepolicies. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.performance.v2.PerformanceProfileList schema {#io-openshift-performance-v2-PerformanceProfileList}
 
@@ -5944,9 +5944,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (PerformanceProfile)`](/rest_api/node_apis/performanceprofile-performance-openshift-io-v2#performanceprofile-performance-openshift-io-v2) | List of performanceprofiles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (PerformanceProfile)`](/openshift-docs-markdown/rest_api/node_apis/performanceprofile-performance-openshift-io-v2#performanceprofile-performance-openshift-io-v2) | List of performanceprofiles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.quota.v1.ClusterResourceQuotaList schema {#io-openshift-quota-v1-ClusterResourceQuotaList}
 
@@ -5966,9 +5966,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterResourceQuota)`](/rest_api/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#clusterresourcequota-quota-openshift-io-v1) | List of clusterresourcequotas. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterResourceQuota)`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#clusterresourcequota-quota-openshift-io-v1) | List of clusterresourcequotas. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.security.v1.SecurityContextConstraintsList schema {#io-openshift-security-v1-SecurityContextConstraintsList}
 
@@ -5988,9 +5988,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (SecurityContextConstraints)`](/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) | List of securitycontextconstraints. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (SecurityContextConstraints)`](/openshift-docs-markdown/rest_api/security_apis/securitycontextconstraints-security-openshift-io-v1#securitycontextconstraints-security-openshift-io-v1) | List of securitycontextconstraints. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.tuned.v1.ProfileList schema {#io-openshift-tuned-v1-ProfileList}
 
@@ -6010,9 +6010,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Profile)`](/rest_api/node_apis/profile-tuned-openshift-io-v1#profile-tuned-openshift-io-v1) | List of profiles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Profile)`](/openshift-docs-markdown/rest_api/node_apis/profile-tuned-openshift-io-v1#profile-tuned-openshift-io-v1) | List of profiles. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.openshift.tuned.v1.TunedList schema {#io-openshift-tuned-v1-TunedList}
 
@@ -6032,9 +6032,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Tuned)`](/rest_api/node_apis/tuned-tuned-openshift-io-v1#tuned-tuned-openshift-io-v1) | List of tuneds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Tuned)`](/openshift-docs-markdown/rest_api/node_apis/tuned-tuned-openshift-io-v1#tuned-tuned-openshift-io-v1) | List of tuneds. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.operatorframework.olm.v1.ClusterCatalogList schema {#io-operatorframework-olm-v1-ClusterCatalogList}
 
@@ -6054,9 +6054,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterCatalog)`](/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) | List of clustercatalogs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterCatalog)`](/openshift-docs-markdown/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) | List of clustercatalogs. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.operatorframework.olm.v1.ClusterExtensionList schema {#io-operatorframework-olm-v1-ClusterExtensionList}
 
@@ -6076,9 +6076,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterExtension)`](/rest_api/operatorhub_apis/clusterextension-olm-operatorframework-io-v1#clusterextension-olm-operatorframework-io-v1) | List of clusterextensions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterExtension)`](/openshift-docs-markdown/rest_api/operatorhub_apis/clusterextension-olm-operatorframework-io-v1#clusterextension-olm-operatorframework-io-v1) | List of clusterextensions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.redhat.testextension.v1.TestExtensionAdmissionList schema {#io-redhat-testextension-v1-TestExtensionAdmissionList}
 
@@ -6098,9 +6098,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (TestExtensionAdmission)`](/rest_api/extension_apis/testextensionadmission-testextension-redhat-io-v1#testextensionadmission-testextension-redhat-io-v1) | List of testextensionadmissions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (TestExtensionAdmission)`](/openshift-docs-markdown/rest_api/extension_apis/testextensionadmission-testextension-redhat-io-v1#testextensionadmission-testextension-redhat-io-v1) | List of testextensionadmissions. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.x-k8s.cluster.infrastructure.v1beta1.Metal3RemediationList schema {#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationList}
 
@@ -6120,9 +6120,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Metal3Remediation)`](/rest_api/provisioning_apis/metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1) | List of metal3remediations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Metal3Remediation)`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1) | List of metal3remediations. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.x-k8s.cluster.infrastructure.v1beta1.Metal3RemediationTemplateList schema {#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationTemplateList}
 
@@ -6142,9 +6142,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (Metal3RemediationTemplate)`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) | List of metal3remediationtemplates. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (Metal3RemediationTemplate)`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) | List of metal3remediationtemplates. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## io.x-k8s.cluster.ipam.v1beta1.IPAddressClaimList schema {#io-x-k8s-cluster-ipam-v1beta1-IPAddressClaimList}
 
@@ -6164,9 +6164,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (IPAddressClaim)`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) | List of ipaddressclaims. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (IPAddressClaim)`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) | List of ipaddressclaims. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## org.ovn.k8s.v1.AdminPolicyBasedExternalRouteList schema {#org-ovn-k8s-v1-AdminPolicyBasedExternalRouteList}
 
@@ -6186,9 +6186,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (AdminPolicyBasedExternalRoute)`](/rest_api/network_apis/adminpolicybasedexternalroute-k8s-ovn-org-v1#adminpolicybasedexternalroute-k8s-ovn-org-v1) | List of adminpolicybasedexternalroutes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (AdminPolicyBasedExternalRoute)`](/openshift-docs-markdown/rest_api/network_apis/adminpolicybasedexternalroute-k8s-ovn-org-v1#adminpolicybasedexternalroute-k8s-ovn-org-v1) | List of adminpolicybasedexternalroutes. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## org.ovn.k8s.v1.ClusterUserDefinedNetworkList schema {#org-ovn-k8s-v1-ClusterUserDefinedNetworkList}
 
@@ -6208,9 +6208,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (ClusterUserDefinedNetwork)`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) | List of clusteruserdefinednetworks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (ClusterUserDefinedNetwork)`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) | List of clusteruserdefinednetworks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## org.ovn.k8s.v1.EgressFirewallList schema {#org-ovn-k8s-v1-EgressFirewallList}
 
@@ -6230,9 +6230,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (EgressFirewall)`](/rest_api/network_apis/egressfirewall-k8s-ovn-org-v1#egressfirewall-k8s-ovn-org-v1) | List of egressfirewalls. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (EgressFirewall)`](/openshift-docs-markdown/rest_api/network_apis/egressfirewall-k8s-ovn-org-v1#egressfirewall-k8s-ovn-org-v1) | List of egressfirewalls. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## org.ovn.k8s.v1.EgressIPList schema {#org-ovn-k8s-v1-EgressIPList}
 
@@ -6252,9 +6252,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (EgressIP)`](/rest_api/network_apis/egressip-k8s-ovn-org-v1#egressip-k8s-ovn-org-v1) | List of egressips. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (EgressIP)`](/openshift-docs-markdown/rest_api/network_apis/egressip-k8s-ovn-org-v1#egressip-k8s-ovn-org-v1) | List of egressips. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## org.ovn.k8s.v1.EgressQoSList schema {#org-ovn-k8s-v1-EgressQoSList}
 
@@ -6274,9 +6274,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (EgressQoS)`](/rest_api/network_apis/egressqos-k8s-ovn-org-v1#egressqos-k8s-ovn-org-v1) | List of egressqoses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (EgressQoS)`](/openshift-docs-markdown/rest_api/network_apis/egressqos-k8s-ovn-org-v1#egressqos-k8s-ovn-org-v1) | List of egressqoses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## org.ovn.k8s.v1.EgressServiceList schema {#org-ovn-k8s-v1-EgressServiceList}
 
@@ -6296,9 +6296,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (EgressService)`](/rest_api/network_apis/egressservice-k8s-ovn-org-v1#egressservice-k8s-ovn-org-v1) | List of egressservices. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (EgressService)`](/openshift-docs-markdown/rest_api/network_apis/egressservice-k8s-ovn-org-v1#egressservice-k8s-ovn-org-v1) | List of egressservices. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 ## org.ovn.k8s.v1.UserDefinedNetworkList schema {#org-ovn-k8s-v1-UserDefinedNetworkList}
 
@@ -6318,9 +6318,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `items` | [`array (UserDefinedNetwork)`](/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) | List of userdefinednetworks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
+| `items` | [`array (UserDefinedNetwork)`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) | List of userdefinednetworks. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ListMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ListMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 
 [^1]: 0-9a-f
 

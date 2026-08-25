@@ -14,10 +14,10 @@ The Cluster API is an upstream project that is integrated into OpenShift Contain
 
 **Additional resources**
 
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)
-- [Getting started with the Cluster API](/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started)
-- [Referencing the intended objects when using the CLI](/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-cli-reference-intended-objects_cluster-api-troubleshooting)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)
+- [Getting started with the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started)
+- [Referencing the intended objects when using the CLI](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-cli-reference-intended-objects_cluster-api-troubleshooting)
 
 **Additional resources**
 
-- [{{ cluster_capi_operator }}](/operators/operator-reference#cluster-capi-operator_operator-reference)
+- [{{ cluster_capi_operator }}](/openshift-docs-markdown/operators/operator-reference#cluster-capi-operator_operator-reference)

@@ -8,6 +8,6 @@ You can manage automatic updates for boot sources used to create virtual machine
 
 ## Additional resources {#additional-resources_virt-automatic-bootsource-updates}
 
-- [All Red Hat boot sources](/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)
-- [All custom boot sources](/virt/storage/virt-automatic-bootsource-updates#virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates)
-- [Individual Red Hat or custom boot sources](/virt/storage/virt-automatic-bootsource-updates#virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates)
+- [All Red Hat boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)
+- [All custom boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates)
+- [Individual Red Hat or custom boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates)

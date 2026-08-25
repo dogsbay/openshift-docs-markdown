@@ -8,4 +8,4 @@ You can simplify virtual machine (VM) creation by using instance types, whether 
 
 ## Additional resources {#additional-resources_virt-creating-vms-from-instance-types}
 
-- [Configuring a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
+- [Configuring a downward metrics device](/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)

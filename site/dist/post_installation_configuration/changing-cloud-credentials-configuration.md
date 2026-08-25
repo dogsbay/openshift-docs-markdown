@@ -21,31 +21,31 @@ Some organizations require the rotation of the service keys that authenticate th
 
 **Additional resources**
 
-- [{{ aws_first }} with {{ sts_first }}](/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-aws)
-- [{{ gcp_first }} with {{ gcp_wid_short }}](/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-gcp)
-- [{{ azure_first }} with {{ entra_short }}](/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-azure)
-- [{{ ibm_cloud_title }}](/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)
+- [{{ aws_first }} with {{ sts_first }}](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-aws)
+- [{{ gcp_first }} with {{ gcp_wid_short }}](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-gcp)
+- [{{ azure_first }} with {{ entra_short }}](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-azure)
+- [{{ ibm_cloud_title }}](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)
 
 **Additional resources**
 
-- [The Cloud Credential Operator in mint mode](/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
-- [The Cloud Credential Operator in passthrough mode](/authentication/managing_cloud_provider_credentials/cco-mode-passthrough.html#cco-mode-passthrough)
-- [vSphere CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere)
-- [Cloud Credential Operator (CCO)](/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
+- [The Cloud Credential Operator in mint mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
+- [The Cloud Credential Operator in passthrough mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-passthrough.html#cco-mode-passthrough)
+- [vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere)
+- [Cloud Credential Operator (CCO)](/openshift-docs-markdown/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
 
 **Additional resources**
 
-- [The Cloud Credential Operator in mint mode](/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
-- [Cloud Credential Operator (CCO)](/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
+- [The Cloud Credential Operator in mint mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
+- [Cloud Credential Operator (CCO)](/openshift-docs-markdown/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
 
 **Additional resources**
 
-- [Microsoft Entra Workload ID](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure_cco-short-term-creds)
-- [Configuring an Azure cluster to use short-term credentials](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
-- [AWS Security Token Service](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-aws_cco-short-term-creds)
-- [Configuring an AWS cluster to use short-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
+- [Microsoft Entra Workload ID](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure_cco-short-term-creds)
+- [Configuring an Azure cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
+- [AWS Security Token Service](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-aws_cco-short-term-creds)
+- [Configuring an AWS cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
 
 ## Additional resources {#additional-resources_changing-cloud-credentials-configuration}
 
-- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
-- [Determining the Cloud Credential Operator mode](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#cco-determine-mode_about-cloud-credential-operator)
+- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
+- [Determining the Cloud Credential Operator mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#cco-determine-mode_about-cloud-credential-operator)

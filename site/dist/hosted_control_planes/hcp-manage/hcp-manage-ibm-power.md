@@ -8,5 +8,5 @@ After you deploy {{ hcp }} on {{ ibm_power_title }}, you can manage a hosted clu
 
 **Additional resources**
 
-- [Initial Operator configuration](/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)
-- [Scaling down the data plane to zero](/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)
+- [Initial Operator configuration](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)
+- [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)

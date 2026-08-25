@@ -18,4 +18,4 @@ requests:
 
 **Additional resources**
 
-- [Velero CPU and memory requirements based on collected data](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp)
+- [Velero CPU and memory requirements based on collected data](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp)

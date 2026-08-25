@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"hcp-deploy-virt","text":"Deploying {{ hcp }} on {{ VirtProductName }}"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-deploy/hcp-deploy-virt";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-deploy"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ VirtProductName }} {#hcp-deploy-virt}\n\nWith {{ hcp }} and {{ VirtProductName }}, you can create OpenShift Container Platform clusters with worker nodes that are hosted by KubeVirt virtual machines.\n\n{{ hcp_capital }} on {{ VirtProductName }} provides several benefits:\n\n- Enhances resource usage by packing {{ hcp }} and hosted clusters in the same underlying bare-metal infrastructure\n- Separates {{ hcp }} and hosted clusters to provide strong isolation\n- Reduces cluster provision time by eliminating the bare-metal node bootstrapping process\n- Manages many releases under the same base OpenShift Container Platform cluster\n\nThe {{ hcp }} feature is enabled by default.\n\nYou can use the hosted control plane command-line interface, `hcp`, to create an OpenShift Container Platform hosted cluster. The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see \"Disabling the automatic import of hosted clusters into multicluster engine Operator\".\n\n**Additional resources**\n\n- [Disabling the automatic import of hosted clusters into {{ mce_short }}](/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)\n\n**Additional resources**\n\n- [Installing OpenShift Virtualization using the web console](/virt/install/installing-virt#installing-virt-web)\n- [Postinstallation storage configuration](/post_installation_configuration/post-install-storage-configuration#post-install-storage-configuration)\n- [Install OpenShift on any x86_64 platform with user-provisioned infrastructure](https://console.redhat.com/openshift/install/platform-agnostic/user-provisioned)\n- [Configuring MetalLB](/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-metallb_hcp-deploy-virt)\n- [Advanced configuration ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)\n- [Persistent storage using Logical Volume Manager Storage](/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms)\n\n**Additional resources**\n\n- [Installing the MetalLB Operator](/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install_metallb-operator-install)\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n- [Creating a credential for an on-premises environment ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#creating-a-credential-for-an-on-premises-environment)\n- [Accessing the hosted cluster](/hosted_control_planes/hcp-manage/hcp-manage-virt#hcp-virt-access_hcp-manage-virt)\n\n**Additional resources**\n\n- [Scaling up and down workloads in a hosted cluster](/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config)\n\n**Additional resources**\n\n- [Scaling down the data plane to zero](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.15/html/hosted_control_planes/troubleshooting-hosted-control-planes#scale-down-data-plane_hcp-troubleshooting)\n","mdUrl":"/hosted_control_planes/hcp-deploy/hcp-deploy-virt.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ VirtProductName }} {#hcp-deploy-virt}\n\nWith {{ hcp }} and {{ VirtProductName }}, you can create OpenShift Container Platform clusters with worker nodes that are hosted by KubeVirt virtual machines.\n\n{{ hcp_capital }} on {{ VirtProductName }} provides several benefits:\n\n- Enhances resource usage by packing {{ hcp }} and hosted clusters in the same underlying bare-metal infrastructure\n- Separates {{ hcp }} and hosted clusters to provide strong isolation\n- Reduces cluster provision time by eliminating the bare-metal node bootstrapping process\n- Manages many releases under the same base OpenShift Container Platform cluster\n\nThe {{ hcp }} feature is enabled by default.\n\nYou can use the hosted control plane command-line interface, `hcp`, to create an OpenShift Container Platform hosted cluster. The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see \"Disabling the automatic import of hosted clusters into multicluster engine Operator\".\n\n**Additional resources**\n\n- [Disabling the automatic import of hosted clusters into {{ mce_short }}](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)\n\n**Additional resources**\n\n- [Installing OpenShift Virtualization using the web console](/openshift-docs-markdown/virt/install/installing-virt#installing-virt-web)\n- [Postinstallation storage configuration](/openshift-docs-markdown/post_installation_configuration/post-install-storage-configuration#post-install-storage-configuration)\n- [Install OpenShift on any x86_64 platform with user-provisioned infrastructure](https://console.redhat.com/openshift/install/platform-agnostic/user-provisioned)\n- [Configuring MetalLB](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-metallb_hcp-deploy-virt)\n- [Advanced configuration ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)\n- [Persistent storage using Logical Volume Manager Storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms)\n\n**Additional resources**\n\n- [Installing the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install_metallb-operator-install)\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n- [Creating a credential for an on-premises environment ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#creating-a-credential-for-an-on-premises-environment)\n- [Accessing the hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-virt#hcp-virt-access_hcp-manage-virt)\n\n**Additional resources**\n\n- [Scaling up and down workloads in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config)\n\n**Additional resources**\n\n- [Scaling down the data plane to zero](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.15/html/hosted_control_planes/troubleshooting-hosted-control-planes#scale-down-data-plane_hcp-troubleshooting)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -103,38 +103,38 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>The {"{"}{"{"} hcp {"}"}{"}"} feature is enabled by default.</p>
       <p>You can use the hosted control plane command-line interface, <code>hcp</code>, to create an OpenShift Container Platform hosted cluster. The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see "Disabling the automatic import of hosted clusters into multicluster engine Operator".</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import">Disabling the automatic import of hosted clusters into {"{"}{"{"} mce_short {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import">Disabling the automatic import of hosted clusters into {"{"}{"{"} mce_short {"}"}{"}"}</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/virt/install/installing-virt#installing-virt-web">Installing OpenShift Virtualization using the web console</a></li>
-      <li><a href="/post_installation_configuration/post-install-storage-configuration#post-install-storage-configuration">Postinstallation storage configuration</a></li>
+      <li><a href="/openshift-docs-markdown/virt/install/installing-virt#installing-virt-web">Installing OpenShift Virtualization using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/post-install-storage-configuration#post-install-storage-configuration">Postinstallation storage configuration</a></li>
       <li><a href="https://console.redhat.com/openshift/install/platform-agnostic/user-provisioned">Install OpenShift on any x86_64 platform with user-provisioned infrastructure</a></li>
-      <li><a href="/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-metallb_hcp-deploy-virt">Configuring MetalLB</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-metallb_hcp-deploy-virt">Configuring MetalLB</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine">Advanced configuration ({"{"}{"{"} rh_rhacm_title {"}"}{"}"} documentation)</a></li>
-      <li><a href="/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
-      <li><a href="/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms">Persistent storage using Logical Volume Manager Storage</a></li>
+      <li><a href="/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
+      <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms">Persistent storage using Logical Volume Manager Storage</a></li>
       </ul>
       <p class="/modules/hcp-virt-live-migration.md"></p>
       <p class="/modules/hcp-metallb.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install_metallb-operator-install">Installing the MetalLB Operator</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install_metallb-operator-install">Installing the MetalLB Operator</a></li></ul>
       <p class="/modules/hcp-virt-create-hc-cli.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
-      <li><a href="/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates">Configuring a custom API server certificate in a hosted cluster</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates">Configuring a custom API server certificate in a hosted cluster</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
-      <li><a href="/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates">Configuring a custom API server certificate in a hosted cluster</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates">Configuring a custom API server certificate in a hosted cluster</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
-      <li><a href="/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates">Configuring a custom API server certificate in a hosted cluster</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates">Configuring a custom API server certificate in a hosted cluster</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#creating-a-credential-for-an-on-premises-environment">Creating a credential for an on-premises environment ({"{"}{"{"} rh_rhacm_title {"}"}{"}"} documentation)</a></li>
-      <li><a href="/hosted_control_planes/hcp-manage/hcp-manage-virt#hcp-virt-access_hcp-manage-virt">Accessing the hosted cluster</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-virt#hcp-virt-access_hcp-manage-virt">Accessing the hosted cluster</a></li>
       </ul>
       <p class="/modules/hcp-cluster-capabilities-ref.md"></p>
       <p class="/modules/hcp-cluster-capabilities-proc.md"></p>
@@ -151,7 +151,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/hcp-virt-sched-vms.md"></p>
       <p class="/modules/hcp-virt-scale-nodepool.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config">Scaling up and down workloads in a hosted cluster</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config">Scaling up and down workloads in a hosted cluster</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.15/html/hosted_control_planes/troubleshooting-hosted-control-planes#scale-down-data-plane_hcp-troubleshooting">Scaling down the data plane to zero</a></li></ul>
     </article>

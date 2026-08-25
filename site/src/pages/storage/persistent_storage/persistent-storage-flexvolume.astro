@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"persistent-storage-using-flexvolume","text":"Persistent storage using FlexVolume"}];
 const nav = navData;
-const currentPath = "/storage/persistent_storage/persistent-storage-flexvolume";
+const currentPath = "/openshift-docs-markdown/storage/persistent_storage/persistent-storage-flexvolume";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["storage","storage/persistent_storage"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using FlexVolume {#persistent-storage-using-flexvolume}\n\nTo use storage from a back-end that does not have a built-in plugin, you can extend OpenShift Container Platform through FlexVolume drivers and provide persistent storage to applications.\n\nFlexVolume is an out-of-tree plugin that uses an executable model to interface with drivers.\n\n> [!IMPORTANT]\n> FlexVolume is a deprecated feature. Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.\n>\n> Out-of-tree Container Storage Interface (CSI) driver is the recommended way to write volume drivers in OpenShift Container Platform. Maintainers of FlexVolume drivers should implement a CSI driver and move users of FlexVolume to CSI. Users of FlexVolume should move their workloads to CSI driver.\n>\n> For the most recent list of major functionality that has been deprecated or removed within OpenShift Container Platform, refer to the *Deprecated and removed features* section of the OpenShift Container Platform release notes.\n\nPods interact with FlexVolume drivers through the `flexvolume` in-tree plugin.\n\n**Additional resources**\n\n- [Expanding persistent volumes](/storage/expanding-persistent-volumes#expanding-persistent-volumes)\n","mdUrl":"/storage/persistent_storage/persistent-storage-flexvolume.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using FlexVolume {#persistent-storage-using-flexvolume}\n\nTo use storage from a back-end that does not have a built-in plugin, you can extend OpenShift Container Platform through FlexVolume drivers and provide persistent storage to applications.\n\nFlexVolume is an out-of-tree plugin that uses an executable model to interface with drivers.\n\n> [!IMPORTANT]\n> FlexVolume is a deprecated feature. Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.\n>\n> Out-of-tree Container Storage Interface (CSI) driver is the recommended way to write volume drivers in OpenShift Container Platform. Maintainers of FlexVolume drivers should implement a CSI driver and move users of FlexVolume to CSI. Users of FlexVolume should move their workloads to CSI driver.\n>\n> For the most recent list of major functionality that has been deprecated or removed within OpenShift Container Platform, refer to the *Deprecated and removed features* section of the OpenShift Container Platform release notes.\n\nPods interact with FlexVolume drivers through the `flexvolume` in-tree plugin.\n\n**Additional resources**\n\n- [Expanding persistent volumes](/openshift-docs-markdown/storage/expanding-persistent-volumes#expanding-persistent-volumes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-flexvolume.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,7 +107,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p>Pods interact with FlexVolume drivers through the <code>flexvolume</code> in-tree plugin.</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/storage/expanding-persistent-volumes#expanding-persistent-volumes">Expanding persistent volumes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/storage/expanding-persistent-volumes#expanding-persistent-volumes">Expanding persistent volumes</a></li></ul>
       <p class="/modules/persistent-storage-flexvolume-driver-example.md"></p>
       <p class="/modules/persistent-storage-flexvolume-installing.md"></p>
       <p class="/modules/persistent-storage-flexvolume-consuming.md"></p>

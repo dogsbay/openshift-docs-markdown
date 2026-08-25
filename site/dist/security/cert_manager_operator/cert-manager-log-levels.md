@@ -11,4 +11,4 @@ To troubleshoot issues with the cert-manager components and the {{ cert_manager_
 
 ## Additional resources {#cert-manager-log-levels_additional-resources}
 
-- [Customizing cert-manager Operator API fields](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-customizing-api-fields)
+- [Customizing cert-manager Operator API fields](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-customizing-api-fields)

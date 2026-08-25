@@ -19,5 +19,5 @@ To work with disconnected registries in the {{ hcp }}, you must first create the
 
 **Additional resources**
 
-- [Mirror registry for Red Hat OpenShift introduction](/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)
-- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
+- [Mirror registry for Red Hat OpenShift introduction](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)
+- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)

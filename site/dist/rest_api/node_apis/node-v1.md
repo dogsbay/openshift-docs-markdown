@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NodeSpec describes the attributes that a node is created with. |
 | `status` | `object` | NodeStatus is information about the current status of a node. |
 
@@ -108,7 +108,7 @@ Required
 | --- | --- | --- |
 | `effect` | `string` | Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute. Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `"NoSchedule"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `"PreferNoSchedule"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler. |
 | `key` | `string` | Required. The taint key to be applied to a node. |
-| `timeAdded` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | TimeAdded represents the time at which the taint was added. |
+| `timeAdded` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | TimeAdded represents the time at which the taint was added. |
 | `value` | `string` | The taint value corresponding to the taint key. |
 
 ### .status {#_status}
@@ -125,8 +125,8 @@ Type
 | --- | --- | --- |
 | `addresses` | `array` | List of addresses reachable to the node. Queried from cloud provider, if available. More info: https://kubernetes.io/docs/reference/node/node-status/#addresses Note: This field is declared as mergeable, but the merge key is not sufficiently unique, which can cause data corruption when it is merged. Callers should instead use a full-replacement patch. See https://pr.k8s.io/79391 for an example. Consumers should assume that addresses can change during the lifetime of a Node. However, there are some exceptions where this may not be possible, such as Pods that inherit a Node’s address in its own status or consumers of the downward API (status.hostIP). |
 | `addresses[]` | `object` | NodeAddress contains information for the node’s address. |
-| `allocatable` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity. |
-| `capacity` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/reference/node/node-status/#capacity |
+| `allocatable` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity. |
+| `capacity` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/reference/node/node-status/#capacity |
 | `conditions` | `array` | Conditions is an array of current observed node conditions. More info: https://kubernetes.io/docs/reference/node/node-status/#condition |
 | `conditions[]` | `object` | NodeCondition contains condition information for a node. |
 | `config` | `object` | NodeConfigStatus describes the status of the config assigned by Node.Spec.ConfigSource. |
@@ -198,8 +198,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastHeartbeatTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time we got an update on a given condition. |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
+| `lastHeartbeatTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time we got an update on a given condition. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
 | `message` | `string` | Human readable message indicating details about last transition. |
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -571,7 +571,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -588,7 +588,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NodeList`](/rest_api/objects/index#io-k8s-api-core-v1-NodeList) schema |
+| 200 - OK | [`NodeList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-NodeList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -612,15 +612,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |  |
+| `body` | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
-| 201 - Created | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
-| 202 - Accepted | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
+| 200 - OK | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
+| 201 - Created | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
+| 202 - Accepted | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/nodes {#_apiv1watchnodes}
@@ -639,7 +639,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/nodes/{{ name }} {#_apiv1nodes_name}
@@ -670,8 +670,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -688,7 +688,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
+| 200 - OK | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -712,8 +712,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
-| 201 - Created | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
+| 200 - OK | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
+| 201 - Created | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -737,14 +737,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |  |
+| `body` | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
-| 201 - Created | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
+| 200 - OK | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
+| 201 - Created | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/nodes/{{ name }} {#_apiv1watchnodes_name}
@@ -769,7 +769,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/nodes/{{ name }}/status {#_apiv1nodes_name_status}
@@ -794,7 +794,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
+| 200 - OK | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -818,8 +818,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
-| 201 - Created | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
+| 200 - OK | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
+| 201 - Created | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -843,12 +843,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |  |
+| `body` | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
-| 201 - Created | [`Node`](/rest_api/node_apis/node-v1#node-v1) schema |
+| 200 - OK | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
+| 201 - Created | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |

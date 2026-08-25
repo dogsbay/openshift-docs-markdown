@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"persistent-storage-using-iscsi","text":"Persistent storage using iSCSI"}];
 const nav = navData;
-const currentPath = "/storage/persistent_storage/persistent-storage-iscsi";
+const currentPath = "/openshift-docs-markdown/storage/persistent_storage/persistent-storage-iscsi";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["storage","storage/persistent_storage"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using iSCSI {#persistent-storage-using-iscsi}\n\nYou can provision your OpenShift Container Platform cluster with persistent storage by creating persistent volumes that pods can use to store and access data.\n\nSome familiarity with Kubernetes and iSCSI is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure.\n\n> [!IMPORTANT]\n> High-availability of storage in the infrastructure is left to the underlying storage provider.\n\n> [!IMPORTANT]\n> When you use iSCSI on Amazon Web Services, you must update the default security policy to include TCP traffic between nodes on the iSCSI ports. By default, they are ports `860` and `3260`.\n\n> [!IMPORTANT]\n> Users must ensure that the iSCSI initiator is already configured on all OpenShift Container Platform nodes by installing the `iscsi-initiator-utils` package and configuring their initiator name in `/etc/iscsi/initiatorname.iscsi`. The `iscsi-initiator-utils` package is already installed on deployments that use {{ op_system_first }}. For more information, see \"Managing Storage Devices\".\n\n**Additional resources**\n\n- [Getting started with iSCSI](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/managing_storage_devices/index#getting-started-with-iscsi_managing-storage-devices)\n- [Configuring an iSCSI initiator](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/managing_storage_devices/index#configuring-an-iscsi-initiator_managing-storage-devices)\n","mdUrl":"/storage/persistent_storage/persistent-storage-iscsi.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using iSCSI {#persistent-storage-using-iscsi}\n\nYou can provision your OpenShift Container Platform cluster with persistent storage by creating persistent volumes that pods can use to store and access data.\n\nSome familiarity with Kubernetes and iSCSI is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure.\n\n> [!IMPORTANT]\n> High-availability of storage in the infrastructure is left to the underlying storage provider.\n\n> [!IMPORTANT]\n> When you use iSCSI on Amazon Web Services, you must update the default security policy to include TCP traffic between nodes on the iSCSI ports. By default, they are ports `860` and `3260`.\n\n> [!IMPORTANT]\n> Users must ensure that the iSCSI initiator is already configured on all OpenShift Container Platform nodes by installing the `iscsi-initiator-utils` package and configuring their initiator name in `/etc/iscsi/initiatorname.iscsi`. The `iscsi-initiator-utils` package is already installed on deployments that use {{ op_system_first }}. For more information, see \"Managing Storage Devices\".\n\n**Additional resources**\n\n- [Getting started with iSCSI](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/managing_storage_devices/index#getting-started-with-iscsi_managing-storage-devices)\n- [Configuring an iSCSI initiator](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/managing_storage_devices/index#configuring-an-iscsi-initiator_managing-storage-devices)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-iscsi.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

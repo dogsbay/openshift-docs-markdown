@@ -8,13 +8,13 @@ The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driv
 
  **Additional resources**
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-- [Creating a storage class for GCP Filestore storage](/storage/container_storage_interface/persistent-storage-csi-google-cloud-file#persistent-storage-csi-google-cloud-file-create-sc_persistent-storage-csi-google-cloud-file)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Creating a storage class for GCP Filestore storage](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-google-cloud-file#persistent-storage-csi-google-cloud-file-create-sc_persistent-storage-csi-google-cloud-file)
 
 <a name="installing-the-gcp-filestore-csi-driver-operator"></a>**Additional resources**
 
-- [Creating {{ gcp_short }} resources with the Cloud Credential Operator utility](/installing/installing_gcp/installing-gcp-customizations#cco-ccoctl-creating-at-once_installing-gcp-customizations)
+- [Creating {{ gcp_short }} resources with the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#cco-ccoctl-creating-at-once_installing-gcp-customizations)
 
 <a name="installing-the-gcp-filestore-csi-driver-operator"></a>**Additional resources**
 
@@ -23,5 +23,5 @@ The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driv
 
 ## Additional resources {#additional-resources_persistent-storage-csi-google-cloud-file}
 
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-- [CCO-based workflow for OLM-managed Operators with {{ gcp_short }} Workload Identity](/operators/operator_sdk/token_auth/osdk-cco-gcp)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [CCO-based workflow for OLM-managed Operators with {{ gcp_short }} Workload Identity](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-gcp)

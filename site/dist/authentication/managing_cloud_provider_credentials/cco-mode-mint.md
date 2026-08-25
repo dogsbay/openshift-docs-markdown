@@ -10,4 +10,4 @@ Mint mode is the default CCO credentials mode for OpenShift Container Platform o
 
 ## Additional resources {#additional-resources_cco-mode-mint}
 
-- [Removing cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)
+- [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

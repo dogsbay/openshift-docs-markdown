@@ -8,4 +8,4 @@ You can use the descheduler to evict pods so that the pods can be rescheduled on
 
 ## Additional resources {#additional-resources_virt-enabling-descheduler-evictions}
 
-- [Descheduler overview](/nodes/scheduling/descheduler/index#nodes-descheduler-about)
+- [Descheduler overview](/openshift-docs-markdown/nodes/scheduling/descheduler/index#nodes-descheduler-about)

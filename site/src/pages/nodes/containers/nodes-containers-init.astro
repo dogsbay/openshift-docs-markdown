@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-containers-init","text":"Using Init Containers to perform tasks before a pod is deployed"},{"depth":2,"slug":"additional-resources_nodes-containers-init","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/containers/nodes-containers-init";
+const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-init";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/containers"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using Init Containers to perform tasks before a pod is deployed {#nodes-containers-init}\n\nYou can use *init containers*, which are specialized containers that run before application containers and can contain utilities or setup scripts not present in an app image.\n\n## Additional resources {#additional-resources_nodes-containers-init}\n\n- [Init Containers (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)\n","mdUrl":"/nodes/containers/nodes-containers-init.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using Init Containers to perform tasks before a pod is deployed {#nodes-containers-init}\n\nYou can use *init containers*, which are specialized containers that run before application containers and can contain utilities or setup scripts not present in an app image.\n\n## Additional resources {#additional-resources_nodes-containers-init}\n\n- [Init Containers (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-init.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

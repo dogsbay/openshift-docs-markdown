@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"registry-overview","text":"{{ product_registry }} overview"}];
 const nav = navData;
-const currentPath = "/registry";
+const currentPath = "/openshift-docs-markdown/registry";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = null;
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ product_registry }} overview {#registry-overview}\n\nOpenShift Container Platform can build images from your source code, deploy them, and manage their lifecycle. OpenShift Container Platform provides an internal, integrated container image registry that can be deployed in your OpenShift Container Platform environment to locally manage images. The overview section includes {{ product_registry }} reference information and links for registries commonly used with OpenShift Container Platform.\n\n**Additional resources**\n\n- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#configuring-registry-operator)\n\n**Additional resources**\n\n- [Quay.io](https://quay.io)\n- [{{ quay }} product documentation](https://access.redhat.com/documentation/en-us/red_hat_quay/)\n\n**Additional resources**\n\n- [Registry service accounts](https://access.redhat.com/terms-based-registry/)\n","mdUrl":"/registry.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ product_registry }} overview {#registry-overview}\n\nOpenShift Container Platform can build images from your source code, deploy them, and manage their lifecycle. OpenShift Container Platform provides an internal, integrated container image registry that can be deployed in your OpenShift Container Platform environment to locally manage images. The overview section includes {{ product_registry }} reference information and links for registries commonly used with OpenShift Container Platform.\n\n**Additional resources**\n\n- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)\n\n**Additional resources**\n\n- [Quay.io](https://quay.io)\n- [{{ quay }} product documentation](https://access.redhat.com/documentation/en-us/red_hat_quay/)\n\n**Additional resources**\n\n- [Registry service accounts](https://access.redhat.com/terms-based-registry/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/registry-common-terms.md"></p>
       <p class="/modules/registry-integrated-openshift-registry.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/registry/configuring-registry-operator#configuring-registry-operator">Image Registry Operator in OpenShift Container Platform</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator">Image Registry Operator in OpenShift Container Platform</a></li></ul>
       <p class="/modules/registry-third-party-registries.md"></p>
       <p class="/modules/registry-quay-overview.md"></p>
       <p><strong>Additional resources</strong></p>

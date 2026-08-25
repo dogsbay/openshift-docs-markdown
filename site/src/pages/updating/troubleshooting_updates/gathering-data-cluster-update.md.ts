@@ -2,7 +2,7 @@
 // Source: updating/troubleshooting_updates/gathering-data-cluster-update.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Gathering data about your cluster update\n---\n\n# Gathering data about your cluster update {#gathering-data-cluster-update}\n\n{% include \"./_attributes/common-attributes.md\" %} Collect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed cluster updates.\n\n<a name=\"additional-resources_gathering-cluster-data\"></a>**Additional resources**\n\n- [Gathering data about your cluster for Red Hat Support](/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)\n";
+const body = "---\ntitle: Gathering data about your cluster update\n---\n\n# Gathering data about your cluster update {#gathering-data-cluster-update}\n\n{% include \"./_attributes/common-attributes.md\" %} Collect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed cluster updates.\n\n<a name=\"additional-resources_gathering-cluster-data\"></a>**Additional resources**\n\n- [Gathering data about your cluster for Red Hat Support](/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -2,12 +2,12 @@
 
 ## Architecture
 
-- [Architecture overview](/architecture.md)
-- [Product architecture](/architecture/architecture.md)
-- [Installation and update](/architecture/architecture-installation.md)
-- [Red Hat OpenShift Cluster Manager](/architecture/ocm-overview-ocp.md)
-- [About the multicluster engine for Kubernetes Operator](/architecture/mce-overview-ocp.md)
-- [Control plane architecture](/architecture/control-plane.md)
-- [Understanding OpenShift development](/architecture/understanding-development.md)
-- [Red Hat Enterprise Linux CoreOS](/architecture/architecture-rhcos.md)
-- [Admission plugins](/architecture/admission-plug-ins.md)
+- [Architecture overview](https://dogsbay.github.io/openshift-docs-markdown/architecture.md)
+- [Product architecture](https://dogsbay.github.io/openshift-docs-markdown/architecture/architecture.md)
+- [Installation and update](https://dogsbay.github.io/openshift-docs-markdown/architecture/architecture-installation.md)
+- [Red Hat OpenShift Cluster Manager](https://dogsbay.github.io/openshift-docs-markdown/architecture/ocm-overview-ocp.md)
+- [About the multicluster engine for Kubernetes Operator](https://dogsbay.github.io/openshift-docs-markdown/architecture/mce-overview-ocp.md)
+- [Control plane architecture](https://dogsbay.github.io/openshift-docs-markdown/architecture/control-plane.md)
+- [Understanding OpenShift development](https://dogsbay.github.io/openshift-docs-markdown/architecture/understanding-development.md)
+- [Red Hat Enterprise Linux CoreOS](https://dogsbay.github.io/openshift-docs-markdown/architecture/architecture-rhcos.md)
+- [Admission plugins](https://dogsbay.github.io/openshift-docs-markdown/architecture/admission-plug-ins.md)

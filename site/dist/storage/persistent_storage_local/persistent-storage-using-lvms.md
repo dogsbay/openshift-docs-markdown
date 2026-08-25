@@ -8,25 +8,25 @@ title: Persistent storage using logical volume manager storage
 
 **Additional resources**
 
-- [About disconnected installation mirroring](/disconnected/index#installing-mirroring-disconnected-about)
-- [Mirroring the OpenShift Container Platform image repository](/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
-- [Creating the image set configuration](/disconnected/about-installing-oc-mirror-v2#oc-mirror-building-image-set-config-v2_about-installing-oc-mirror-v2)
-- [Mirroring an image set to a mirror registry](/disconnected/about-installing-oc-mirror-v2#using-oc-mirror_about-installing-oc-mirror-v2)
-- [Configuring image registry repository mirroring](/openshift_images/image-configuration#images-configuration-registry-mirror_image-configuration)
-- [Why use imagestreams](/openshift_images/image-streams-manage#images-imagestream-use_image-configuration)
-- [About the OpenShift Update Service](/updating/understanding_updates/intro-to-updates#update-service-overview_understanding-openshift-updates)
+- [About disconnected installation mirroring](/openshift-docs-markdown/disconnected/index#installing-mirroring-disconnected-about)
+- [Mirroring the OpenShift Container Platform image repository](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
+- [Creating the image set configuration](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-building-image-set-config-v2_about-installing-oc-mirror-v2)
+- [Mirroring an image set to a mirror registry](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#using-oc-mirror_about-installing-oc-mirror-v2)
+- [Configuring image registry repository mirroring](/openshift-docs-markdown/openshift_images/image-configuration#images-configuration-registry-mirror_image-configuration)
+- [Why use imagestreams](/openshift-docs-markdown/openshift_images/image-streams-manage#images-imagestream-use_image-configuration)
+- [About the OpenShift Update Service](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#update-service-overview_understanding-openshift-updates)
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
 **Additional resources**
 
 - [Overview of chunk size](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/configuring_and_managing_logical_volumes/index#overview-of-chunk-size_creating-and-managing-thin-provisioned-volumes)
-- [Limitations to configure the size of the devices used in {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#limitations-to-configure-size-of-devices_logical-volume-manager-storage)
-- [Reusing a volume group from the previous {{ lvms }} installation](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-reusing-vg-from-prev-installation_logical-volume-manager-storage)
-- [About adding devices to a volume group](/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
-- [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
+- [Limitations to configure the size of the devices used in {{ lvms }}](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#limitations-to-configure-size-of-devices_logical-volume-manager-storage)
+- [Reusing a volume group from the previous {{ lvms }} installation](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-reusing-vg-from-prev-installation_logical-volume-manager-storage)
+- [About adding devices to a volume group](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
+- [Adding worker nodes to {{ sno }} clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
 
 **Additional resources**
 
@@ -34,10 +34,10 @@ title: Persistent storage using logical volume manager storage
 - [Creating a software RAID on an installed system](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_storage_devices/managing-raid_managing-storage-devices#creating-a-software-raid-on-an-installed-system_managing-raid)
 - [Replacing a failed disk in RAID](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_storage_devices/managing-raid_managing-storage-devices#replacing-a-failed-disk-in-raid_managing-raid)
 - [Repairing RAID disks](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_storage_devices/managing-raid_managing-storage-devices#repairing-raid-disks_managing-raid)
-- [Configuring a RAID-enabled data volume](/installing/install_config/installing-customizing#installation-special-config-raid_installing-customizing)
-- [About disk encryption](/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
-- [Configuring disk encryption and mirroring](/installing/install_config/installing-customizing#installation-special-config-storage-procedure_installing-customizing)
-- [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
+- [Configuring a RAID-enabled data volume](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-raid_installing-customizing)
+- [About disk encryption](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
+- [Configuring disk encryption and mirroring](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-storage-procedure_installing-customizing)
+- [Devices not supported by {{ lvms }}](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
 
 **Additional resources**
 
@@ -45,47 +45,47 @@ title: Persistent storage using logical volume manager storage
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
-- [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
+- [Adding worker nodes to {{ sno }} clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
+- [Devices not supported by {{ lvms }}](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
-- [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
-- [About adding devices to a volume group](/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [Devices not supported by {{ lvms }}](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
+- [About adding devices to a volume group](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
-- [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
-- [About adding devices to a volume group](/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [Devices not supported by {{ lvms }}](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
+- [About adding devices to a volume group](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
-- [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
-- [About adding devices to a volume group](/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [Devices not supported by {{ lvms }}](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
+- [About adding devices to a volume group](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-adding-devices-to-a-vg_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [Ways to scale up the storage of clusters](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-about-scaling-storage-of-cluster_logical-volume-manager-storage)
-- [Enabling volume expansion support](/storage/expanding-persistent-volumes#add-volume-expansion_expanding-persistent-volumes)
+- [Ways to scale up the storage of clusters](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-about-scaling-storage-of-cluster_logical-volume-manager-storage)
+- [Enabling volume expansion support](/openshift-docs-markdown/storage/expanding-persistent-volumes#add-volume-expansion_expanding-persistent-volumes)
 
 **Additional resources**
 
-- [OADP features](/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features_oadp-features-plugins)
+- [OADP features](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features_oadp-features-plugins)
 
 **Additional resources**
 
@@ -94,20 +94,20 @@ title: Persistent storage using logical volume manager storage
 
 **Additional resources**
 
-- [About the must-gather tool](/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
+- [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 
 **Additional resources**
 
-- [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
-- [Ways to create an `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-creating-lvmcluster-cr_logical-volume-manager-storage)
+- [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
+- [Ways to create an `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-creating-lvmcluster-cr_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [Performing a forced clean-up](/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
+- [Performing a forced clean-up](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
 
 **Additional resources**
 
-- [Performing a forced clean-up](/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
+- [Performing a forced clean-up](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
 
 ## Additional resources {#additional-resources_logical-volume-manager-storage}
 

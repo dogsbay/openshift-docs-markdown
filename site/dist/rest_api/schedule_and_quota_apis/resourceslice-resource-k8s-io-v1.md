@@ -31,7 +31,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata |
 | `spec` | `object` | ResourceSliceSpec contains the information published by the driver in one ResourceSlice. |
 
 ### .spec {#_spec}
@@ -55,7 +55,7 @@ Required
 | `devices[]` | `object` | Device represents one individual hardware instance that can be selected based on its attributes. Besides the name, exactly one field must be set. |
 | `driver` | `string` | Driver identifies the DRA driver providing the capacity information. A field selector can be used to list only ResourceSlice objects with a certain driver name. Must be a DNS subdomain and should end with a DNS domain owned by the vendor of the driver. It should use only lower case characters. This field is immutable. |
 | `nodeName` | `string` | NodeName identifies the node which provides the resources in this pool. A field selector can be used to list only ResourceSlice objects belonging to a certain node. This field can be used to limit access from nodes to ResourceSlices with the same node name. It also indicates to autoscalers that adding new nodes of the same type as some old node might also make new resources available. Exactly one of NodeName, NodeSelector, AllNodes, and PerDeviceNodeSelection must be set. This field is immutable. |
-| `nodeSelector` | [`NodeSelector`](/rest_api/objects/index#io-k8s-api-core-v1-NodeSelector) | NodeSelector defines which nodes have access to the resources in the pool, when that pool is not limited to a single node. Must use exactly one term. Exactly one of NodeName, NodeSelector, AllNodes, and PerDeviceNodeSelection must be set. |
+| `nodeSelector` | [`NodeSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-NodeSelector) | NodeSelector defines which nodes have access to the resources in the pool, when that pool is not limited to a single node. Must use exactly one term. Exactly one of NodeName, NodeSelector, AllNodes, and PerDeviceNodeSelection must be set. |
 | `perDeviceNodeSelection` | `boolean` | PerDeviceNodeSelection defines whether the access from nodes to resources in the pool is set on the ResourceSlice level or on each device. If it is set to true, every device defined the ResourceSlice must specify this individually. Exactly one of NodeName, NodeSelector, AllNodes, and PerDeviceNodeSelection must be set. |
 | `pool` | `object` | ResourcePool describes the pool that ResourceSlices belong to. |
 | `sharedCounters` | `array` | SharedCounters defines a list of counter sets, each of which has a name and a list of counters available. The names of the counter sets must be unique in the ResourcePool. Only one of Devices and SharedCounters can be set in a ResourceSlice. The maximum number of counter sets is 8. |
@@ -103,7 +103,7 @@ Required
 | `consumesCounters[]` | `object` | DeviceCounterConsumption defines a set of counters that a device will consume from a CounterSet. |
 | `name` | `string` | Name is unique identifier among all devices managed by the driver in the pool. It must be a DNS label. |
 | `nodeName` | `string` | NodeName identifies the node where the device is available. Must only be set if Spec.PerDeviceNodeSelection is set to true. At most one of NodeName, NodeSelector and AllNodes can be set. |
-| `nodeSelector` | [`NodeSelector`](/rest_api/objects/index#io-k8s-api-core-v1-NodeSelector) | NodeSelector defines the nodes where the device is available. Must use exactly one term. Must only be set if Spec.PerDeviceNodeSelection is set to true. At most one of NodeName, NodeSelector and AllNodes can be set. |
+| `nodeSelector` | [`NodeSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-NodeSelector) | NodeSelector defines the nodes where the device is available. Must use exactly one term. Must only be set if Spec.PerDeviceNodeSelection is set to true. At most one of NodeName, NodeSelector and AllNodes can be set. |
 | `taints` | `array` | If specified, these are the driver-defined taints. The maximum number of taints is 16. If taints are set for any device in a ResourceSlice, then the maximum number of allowed devices per ResourceSlice is 64 instead of 128. This is an alpha field and requires enabling the DRADeviceTaints feature gate. |
 | `taints[]` | `object` | The device this taint is attached to has the "effect" on any claim which does not tolerate the taint and, through the claim, to pods using the claim. |
 
@@ -164,7 +164,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `requestPolicy` | `object` | CapacityRequestPolicy defines how requests consume device capacity. Must not set more than one ValidRequestValues. |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain capacity that device has. This field reflects the fixed total capacity and does not change. The consumed amount is tracked separately by scheduler and does not affect this value. |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain capacity that device has. This field reflects the fixed total capacity and does not change. The consumed amount is tracked separately by scheduler and does not affect this value. |
 
 ### .spec.devices\[\].capacity{}.requestPolicy {#_specdevicescapacityrequestpolicy}
 
@@ -180,9 +180,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `default` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Default specifies how much of this capacity is consumed by a request that does not contain an entry for it in DeviceRequest’s Capacity. |
+| `default` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Default specifies how much of this capacity is consumed by a request that does not contain an entry for it in DeviceRequest’s Capacity. |
 | `validRange` | `object` | CapacityRequestPolicyRange defines a valid range for consumable capacity values.   - If the requested amount is less than Min, it is rounded up to the Min value.   - If Step is set and the requested amount is between Min and Max but not aligned with Step,     it will be rounded up to the next value equal to Min + (n \* Step).   - If Step is not set, the requested amount is used as-is if it falls within the range Min to Max (if set).   - If the requested or rounded amount exceeds Max (if set), the request does not satisfy the policy,     and the device cannot be allocated. |
-| `validValues` | [`array (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | ValidValues defines a set of acceptable quantity values in consuming requests. Must not contain more than 10 entries. Must be sorted in ascending order. If this field is set, Default must be defined and it must be included in ValidValues list. If the requested amount does not match any valid value but smaller than some valid values, the scheduler calculates the smallest valid value that is greater than or equal to the request. That is: min(ceil(requestedValue) ∈ validValues), where requestedValue ≤ max(validValues). If the requested amount exceeds all valid values, the request violates the policy, and this device cannot be allocated. |
+| `validValues` | [`array (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | ValidValues defines a set of acceptable quantity values in consuming requests. Must not contain more than 10 entries. Must be sorted in ascending order. If this field is set, Default must be defined and it must be included in ValidValues list. If the requested amount does not match any valid value but smaller than some valid values, the scheduler calculates the smallest valid value that is greater than or equal to the request. That is: min(ceil(requestedValue) ∈ validValues), where requestedValue ≤ max(validValues). If the requested amount exceeds all valid values, the request violates the policy, and this device cannot be allocated. |
 
 ### .spec.devices\[\].capacity{}.requestPolicy.validRange {#_specdevicescapacityrequestpolicyvalidrange}
 
@@ -204,9 +204,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `max` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Max defines the upper limit for capacity that can be requested. Max must be less than or equal to the capacity value. Min and requestPolicy.default must be less than or equal to the maximum. |
-| `min` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Min specifies the minimum capacity allowed for a consumption request. Min must be greater than or equal to zero, and less than or equal to the capacity value. requestPolicy.default must be more than or equal to the minimum. |
-| `step` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Step defines the step size between valid capacity amounts within the range. Max (if set) and requestPolicy.default must be a multiple of Step. Min + Step must be less than or equal to the capacity value. |
+| `max` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Max defines the upper limit for capacity that can be requested. Max must be less than or equal to the capacity value. Min and requestPolicy.default must be less than or equal to the maximum. |
+| `min` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Min specifies the minimum capacity allowed for a consumption request. Min must be greater than or equal to zero, and less than or equal to the capacity value. requestPolicy.default must be more than or equal to the minimum. |
+| `step` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Step defines the step size between valid capacity amounts within the range. Max (if set) and requestPolicy.default must be a multiple of Step. Min + Step must be less than or equal to the capacity value. |
 
 ### .spec.devices\[\].consumesCounters {#_specdevicesconsumescounters}
 
@@ -269,7 +269,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain device counter is available. |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain device counter is available. |
 
 ### .spec.devices\[\].taints {#_specdevicestaints}
 
@@ -303,7 +303,7 @@ Required
 | --- | --- | --- |
 | `effect` | `string` | The effect of the taint on claims that do not tolerate the taint and through such claims on the pods using them. Valid effects are None, NoSchedule and NoExecute. PreferNoSchedule as used for nodes is not valid here. More effects may get added in the future. Consumers must treat unknown effects like None. Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the device taint.  - `"NoSchedule"` Do not allow new pods to schedule which use a tainted device unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running.  - `"None"` No effect, the taint is purely informational. |
 | `key` | `string` | The taint key to be applied to a device. Must be a label name. |
-| `timeAdded` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | TimeAdded represents the time at which the taint was added. Added automatically during create or update if not set. |
+| `timeAdded` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | TimeAdded represents the time at which the taint was added. Added automatically during create or update if not set. |
 | `value` | `string` | The taint value corresponding to the taint key. Must be a label value. |
 
 ### .spec.pool {#_specpool}
@@ -392,7 +392,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain device counter is available. |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain device counter is available. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -438,7 +438,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -455,7 +455,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceSliceList`](/rest_api/objects/index#io-k8s-api-resource-v1-ResourceSliceList) schema |
+| 200 - OK | [`ResourceSliceList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-resource-v1-ResourceSliceList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -479,15 +479,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |  |
+| `body` | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
-| 201 - Created | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
-| 202 - Accepted | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 201 - Created | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 202 - Accepted | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/watch/resourceslices {#_apisresourcek8siov1watchresourceslices}
@@ -506,7 +506,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/resourceslices/{{ name }} {#_apisresourcek8siov1resourceslices_name}
@@ -537,8 +537,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
-| 202 - Accepted | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 202 - Accepted | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -555,7 +555,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -579,8 +579,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
-| 201 - Created | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 201 - Created | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -604,14 +604,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |  |
+| `body` | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
-| 201 - Created | [`ResourceSlice`](/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
+| 201 - Created | [`ResourceSlice`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/watch/resourceslices/{{ name }} {#_apisresourcek8siov1watchresourceslices_name}
@@ -636,5 +636,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

@@ -8,6 +8,6 @@ You can install an OpenShift Container Platform cluster on {{ azure_first }} by 
 
 **Additional resources**
 
-- [Accessing the web console](/web_console/web-console#web-console)
-- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
+- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

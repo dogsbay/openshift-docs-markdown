@@ -20,7 +20,7 @@ OpenShift Builds provides you the following options to configure and run a build
   For more information, see [builds for Red Hat OpenShift](https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift).
 - Builds using `BuildConfig` objects is a declarative build process to create cloud-native apps. You can define the build process in a YAML file that you use to create a `BuildConfig` object. This definition includes attributes such as build triggers, input parameters, and source code. When deployed, the `BuildConfig` object builds a runnable image and pushes the image to a container image registry. With the `BuildConfig` object, you can create a Docker, Source-to-image (S2I), or custom build.
 
-  For more information, see [Understanding image builds](/cicd/builds/understanding-image-builds#understanding-image-builds).
+  For more information, see [Understanding image builds](/openshift-docs-markdown/cicd/builds/understanding-image-builds#understanding-image-builds).
 
 ## {{ pipelines_shortname }} {#openshift-pipelines}
 
@@ -38,4 +38,4 @@ For more information, see [Red Hat OpenShift GitOps](https://docs.redhat.com/en/
 
 Jenkins automates the process of building, testing, and deploying applications and projects. OpenShift Developer Tools provides a Jenkins image that integrates directly with OpenShift Container Platform. Jenkins can be deployed on OpenShift by using the Samples Operator templates or certified Helm chart.
 
-For more information, see [Configuring Jenkins images](/cicd/jenkins/images-other-jenkins#images-other-jenkins).
+For more information, see [Configuring Jenkins images](/openshift-docs-markdown/cicd/jenkins/images-other-jenkins#images-other-jenkins).

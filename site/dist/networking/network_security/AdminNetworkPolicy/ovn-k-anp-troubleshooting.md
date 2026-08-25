@@ -8,5 +8,5 @@ To troubleshoot `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` resources 
 
 ## Additional resources {#_additional_resources}
 
-- [Tracing Openflow with ovnkube-trace](/networking/ovn_kubernetes_network_provider/ovn-kubernetes-tracing-using-ovntrace#ovn-kubernetes-tracing-using-ovntrace)
-- [Troubleshooting OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/ovn-kubernetes-troubleshooting-sources#ovn-kubernetes-troubleshooting-sources)
+- [Tracing Openflow with ovnkube-trace](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/ovn-kubernetes-tracing-using-ovntrace#ovn-kubernetes-tracing-using-ovntrace)
+- [Troubleshooting OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/ovn-kubernetes-troubleshooting-sources#ovn-kubernetes-troubleshooting-sources)

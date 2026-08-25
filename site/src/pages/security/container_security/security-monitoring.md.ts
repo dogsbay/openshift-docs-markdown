@@ -2,7 +2,7 @@
 // Source: security/container_security/security-monitoring.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Monitoring cluster events and logs\n---\n\n# Monitoring cluster events and logs {#security-monitoring}\n\nMonitoring and auditing an OpenShift Container Platform cluster is an important part of safeguarding the cluster and its users against inappropriate usage. There are two main sources of cluster-level information that are useful for this purpose: events and logging.\n\n**Additional resources**\n\n- [List of system events](/nodes/clusters/nodes-containers-events#nodes-containers-events)\n- [Viewing audit logs](/security/audit-log-view#audit-log-view)\n";
+const body = "---\ntitle: Monitoring cluster events and logs\n---\n\n# Monitoring cluster events and logs {#security-monitoring}\n\nMonitoring and auditing an OpenShift Container Platform cluster is an important part of safeguarding the cluster and its users against inappropriate usage. There are two main sources of cluster-level information that are useful for this purpose: events and logging.\n\n**Additional resources**\n\n- [List of system events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events)\n- [Viewing audit logs](/openshift-docs-markdown/security/audit-log-view#audit-log-view)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

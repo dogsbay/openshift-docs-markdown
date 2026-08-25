@@ -11,4 +11,4 @@ To enable IPv4 and IPv6 on your cluster network in OpenShift Container Platform,
 
 **Additional resources**
 
-- [OVN-Kubernetes purpose](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes)
+- [OVN-Kubernetes purpose](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes)

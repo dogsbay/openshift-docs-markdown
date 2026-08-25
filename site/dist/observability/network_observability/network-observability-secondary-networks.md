@@ -12,4 +12,4 @@ You can configure the Network Observability Operator to collect and enrich netwo
 
 **Additional resources**
 
-- [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#cnf-creating-an-additional-sriov-network-with-vrf-plug-in_configuring-sriov-device)
+- [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#cnf-creating-an-additional-sriov-network-with-vrf-plug-in_configuring-sriov-device)

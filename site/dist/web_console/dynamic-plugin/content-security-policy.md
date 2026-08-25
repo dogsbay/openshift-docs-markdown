@@ -12,4 +12,4 @@ Specify Content Security Policy (CSP) directives for your dynamic plugin using t
 ## Additional resources {#content-security-policy_additional-resources}
 
 - [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
-- [Enabling feature sets using the web console](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-console_nodes-cluster-enabling)
+- [Enabling feature sets using the web console](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-console_nodes-cluster-enabling)

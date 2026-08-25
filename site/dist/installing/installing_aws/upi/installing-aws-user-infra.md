@@ -29,12 +29,12 @@ One way to create this infrastructure is to use the `CloudFormation` templates. 
 
 **Additional resources**
 
-- [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Configuring an AWS account](/installing/installing_aws/installing-aws-account#installing-aws-account)
-- [Preparing user-provisioned infrastructure](/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs)
-- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
-- [Manually creating long-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
+- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Configuring an AWS account](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account)
+- [Preparing user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/upi/upi-aws-installation-reqs#upi-aws-installation-reqs)
+- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [Manually creating long-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
 - [Managing access keys for IAM Users (AWS documentation)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
 - [Install the AWS CLI using the bundled installer (AWS documentation)](https://docs.aws.amazon.com/cli/latest/userguide/install-bundle.html)
 
@@ -59,7 +59,7 @@ One way to create this infrastructure is to use the `CloudFormation` templates. 
 **Additional resources**
 
 - [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
-- [{{ op_system }} Amazon Machine Images (AMIs) for the AWS infrastructure](/installing/installing_aws/upi/installing-aws-user-infra#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra)
+- [{{ op_system }} Amazon Machine Images (AMIs) for the AWS infrastructure](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra)
 
 **Additional resources**
 
@@ -71,22 +71,22 @@ One way to create this infrastructure is to use the `CloudFormation` templates. 
 
 **Additional resources**
 
-- [Monitoring installation progress](/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
-- [Gathering bootstrap node diagnostic data](/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
+- [Monitoring installation progress](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
+- [Gathering bootstrap node diagnostic data](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
 - [AWS EC2 console](https://console.aws.amazon.com/ec2)
 
 **Additional resources**
 
-- [Configuring the registry for AWS user-provisioned infrastructure](/registry/configuring_registry_storage/configuring-registry-storage-aws-user-infrastructure#configuring-registry-storage-aws-user-infrastructure)
+- [Configuring the registry for AWS user-provisioned infrastructure](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-aws-user-infrastructure#configuring-registry-storage-aws-user-infrastructure)
 
 **Additional resources**
 
-- [Accessing the web console](/web_console/web-console#web-console)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
 ## Additional resources {#installing-aws-user-infra-additional-resources}
 
 - [Working with stacks ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
-- [Customizing your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Removing cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)
+- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+- [Customizing your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

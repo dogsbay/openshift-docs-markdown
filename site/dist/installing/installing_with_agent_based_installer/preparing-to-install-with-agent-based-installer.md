@@ -24,26 +24,26 @@ The configuration is in the same format as for the installer-provisioned infrast
 
 **Additional resources**
 
-- [Understanding virtualized control planes](/vcp/vcp-overview#vcp-overview)
+- [Understanding virtualized control planes](/openshift-docs-markdown/vcp/vcp-overview#vcp-overview)
 
 **Additional resources**
 
-- [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)
+- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
 - [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)
-- [Requirements for a cluster using the platform "none" option](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installation-requirements-platform-none_preparing-to-install-with-agent-based-installer)
-- [Increase the network MTU](/installing/installing_bare_metal/ipi/ipi-install-prerequisites#network-requirements-increase-mtu_ipi-install-prerequisites)
-- [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
-- [About a local arbiter node](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)
+- [Requirements for a cluster using the platform "none" option](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installation-requirements-platform-none_preparing-to-install-with-agent-based-installer)
+- [Increase the network MTU](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-prerequisites#network-requirements-increase-mtu_ipi-install-prerequisites)
+- [Adding worker nodes to {{ sno }} clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
+- [About a local arbiter node](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)
 
 **Additional resources**
 
 - [OpenShift Security Guide Book](https://access.redhat.com/articles/5059881)
-- [Support for FIPS cryptography](/installing/overview/installing-fips#installing-fips)
+- [Support for FIPS cryptography](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips)
 
 **Additional resources**
 
-- [Port requirements for the rendezvous host](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer)
-- [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)
+- [Port requirements for the rendezvous host](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer)
+- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
 - [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)
 
 **Additional resources**
@@ -52,5 +52,5 @@ The configuration is in the same format as for the installer-provisioned infrast
 
 ## Additional resources {#additional-resources_preparing-to-install-with-agent-based-installer}
 
-- [Installing a cluster](/installing/installing_with_agent_based_installer/installing-with-agent-basic#installing-with-agent-basic)
-- [Installing a cluster with customizations](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)
+- [Installing a cluster](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-basic#installing-with-agent-basic)
+- [Installing a cluster with customizations](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)

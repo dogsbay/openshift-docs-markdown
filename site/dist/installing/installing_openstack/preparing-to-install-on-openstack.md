@@ -26,10 +26,10 @@ Installing a cluster on user-provisioned infrastructure
 
 ## Additional resources {#additional-resources_preparing-to-install-on-openstack}
 
-- [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation)
-- [selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
-- [Installing a cluster on {{ rh_openstack_first }} with customizations](/installing/installing_openstack/installing-openstack-installer-custom#installing-openstack-installer-custom)
-- [Postinstallation cluster tasks](/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)
-- [Installing a cluster on {{ rh_openstack_first }} in a restricted network](/installing/installing_openstack/installing-openstack-installer-restricted#installing-openstack-installer-restricted)
-- [Installing a cluster on {{ rh_openstack_first }} on your own infrastructure](/installing/installing_openstack/installing-openstack-user#installing-openstack-user)
+- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)
+- [Installing a cluster on {{ rh_openstack_first }} with customizations](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-installer-custom#installing-openstack-installer-custom)
+- [Postinstallation cluster tasks](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)
+- [Installing a cluster on {{ rh_openstack_first }} in a restricted network](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-installer-restricted#installing-openstack-installer-restricted)
+- [Installing a cluster on {{ rh_openstack_first }} on your own infrastructure](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-user#installing-openstack-user)

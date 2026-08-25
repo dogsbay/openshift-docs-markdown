@@ -11,5 +11,5 @@ You can connect a virtual machine to the default internal pod network by configu
 
 ## Additional resources {#additional-resources_virt-connecting-vm-to-default-pod-network}
 
-- [Changing the MTU for the cluster network](/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
-- [Optimizing the MTU for your network](/scalability_and_performance/optimization/optimizing-networking#optimizing-mtu_optimizing-networking)
+- [Changing the MTU for the cluster network](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
+- [Optimizing the MTU for your network](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-networking#optimizing-mtu_optimizing-networking)

@@ -8,4 +8,4 @@ Service serving certificates provide automatic TLS encryption for service-to-ser
 
 **Additional resources**
 
-- [Creating a re-encrypt route with a custom certificate](/networking/ingress_load_balancing/routes/securing-routes#nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_secured-routes)
+- [Creating a re-encrypt route with a custom certificate](/openshift-docs-markdown/networking/ingress_load_balancing/routes/securing-routes#nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_secured-routes)

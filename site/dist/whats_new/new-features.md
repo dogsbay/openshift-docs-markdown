@@ -10,7 +10,7 @@ See the [**Releases**](https://github.com/openshift/okd/releases) page in the **
 
 ## Operators {#ocp-operators}
 
-[Operators](/operators/understanding/olm-what-operators-are#olm-what-operators-are) are pieces of software that ease the operational complexity of running another piece of software. They act like an extension of the software vendor’s engineering team, watching over a Kubernetes environment (such as OpenShift Container Platform) and using its current state to make decisions in real time. Advanced Operators are designed to handle upgrades seamlessly, react to failures automatically, and not take shortcuts, like skipping a software backup process to save time.
+[Operators](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are) are pieces of software that ease the operational complexity of running another piece of software. They act like an extension of the software vendor’s engineering team, watching over a Kubernetes environment (such as OpenShift Container Platform) and using its current state to make decisions in real time. Advanced Operators are designed to handle upgrades seamlessly, react to failures automatically, and not take shortcuts, like skipping a software backup process to save time.
 
 ### Operator Lifecycle Manager (OLM) {#ocp-operator-lifecycle-manager}
 
@@ -22,7 +22,7 @@ The OLM aids cluster administrators in installing, upgrading, and granting acces
 - Handles rolling updates of all Operators to new versions
 - Supports role-based access control (RBAC) for certain teams to use certain Operators
 
-See [Understanding the Operator Lifecycle Manager (OLM)](/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm) for more information.
+See [Understanding the Operator Lifecycle Manager (OLM)](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm) for more information.
 
 ## Installation and upgrade {#ocp-installation-and-upgrade}
 
@@ -32,7 +32,7 @@ You can also install with a user-provided infrastructure on AWS, bare metal, or 
 
 Upgrading from 3.x to 4 is currently not available. You must perform a new installation of OpenShift v4.
 
-Easy, over-the-air upgrades for asynchronous z-stream releases of OpenShift v4 is available. Cluster administrators can upgrade using the **Cluster Settings** tab in the web console. See [Updating a cluster](/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console) for more information.
+Easy, over-the-air upgrades for asynchronous z-stream releases of OpenShift v4 is available. Cluster administrators can upgrade using the **Cluster Settings** tab in the web console. See [Updating a cluster](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console) for more information.
 
 ### Software catalog {#ocp-operator-hub}
 
@@ -52,7 +52,7 @@ The software catalog is available to administrators and helps with easy discover
 | Red Hat partner Operators | - | \* \[x\] |
 | Community Operators | - | \* \[x\] |
 
-See [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog) for more information.
+See [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog) for more information.
 
 ## Storage {#ocp-storage}
 
@@ -62,13 +62,13 @@ Storage support in OpenShift v4 is the same as OpenShift v3 with the exception o
 
 ### Cluster maximums {#ocp-scale-cluster-limits}
 
-Updated guidance around [Cluster maximums](/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums) for OpenShift v4 is now available.
+Updated guidance around [Cluster maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums) for OpenShift v4 is now available.
 
 Use the [OpenShift Container Platform Limit Calculator](https://access.redhat.com/labs/ocplimitscalculator/) to estimate cluster limits for your environment.
 
 ### Node Tuning Operator {#ocp-node-tuning-operator}
 
-The [Node Tuning Operator](/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator) is now part of a standard OpenShift Container Platform installation in OpenShift v4.
+The [Node Tuning Operator](/openshift-docs-markdown/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator) is now part of a standard OpenShift Container Platform installation in OpenShift v4.
 
 The Node Tuning Operator helps you manage node-level tuning by orchestrating the tuned daemon. The majority of high-performance applications require some level of kernel tuning. The Node Tuning Operator provides a unified management interface to users of node-level sysctls and more flexibility to add custom tuning, which is currently a Technology Preview feature, specified by user needs. The Operator manages the containerized tuned daemon for OpenShift Container Platform as a Kubernetes DaemonSet. It ensures the custom tuning specification is passed to all containerized tuned daemons running in the cluster in the format that the daemons understand. The daemons run on all nodes in the cluster, one per node.
 

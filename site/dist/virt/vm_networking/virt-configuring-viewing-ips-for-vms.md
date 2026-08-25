@@ -8,4 +8,4 @@ You can configure an IP address when you create a virtual machine (VM). The IP a
 
 ## Additional resources {#additional-resources_virt-configuring-viewing-ips-for-vms}
 
-- [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
+- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)

@@ -41,4 +41,4 @@ Adding nodes to your cluster
 
 ## Additional resources {#additional-resources_adding-node-iso}
 
-- [Root device hints](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#root-device-hints_ipi-install-installation-workflow)
+- [Root device hints](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#root-device-hints_ipi-install-installation-workflow)

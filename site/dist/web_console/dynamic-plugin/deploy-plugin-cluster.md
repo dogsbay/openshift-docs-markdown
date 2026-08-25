@@ -10,10 +10,10 @@ cluster.
 
 **Additional resources**
 
-- [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#service-ca-certificates)
-- [Securing service traffic using service serving certificate secrets](/security/certificates/service-serving-certificate#service-serving-certificate)
-- [Dynamic plugin API](/web_console/dynamic-plugin/dynamic-plugins-reference#dynamic-plugin-api_dynamic-plugins-reference)
+- [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#service-ca-certificates)
+- [Securing service traffic using service serving certificate secrets](/openshift-docs-markdown/security/certificates/service-serving-certificate#service-serving-certificate)
+- [Dynamic plugin API](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-reference#dynamic-plugin-api_dynamic-plugins-reference)
 
 ## Additional resources {#dynamic-plugins_additional-resources}
 
-- [Understanding Helm](/applications/working_with_helm_charts/understanding-helm#understaning-helm)
+- [Understanding Helm](/openshift-docs-markdown/applications/working_with_helm_charts/understanding-helm#understaning-helm)

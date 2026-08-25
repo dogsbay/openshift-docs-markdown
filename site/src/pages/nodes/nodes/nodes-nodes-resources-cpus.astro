@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-nodes-resources-cpus","text":"Allocating specific CPUs for nodes in a cluster"}];
 const nav = navData;
-const currentPath = "/nodes/nodes/nodes-nodes-resources-cpus";
+const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-cpus";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Allocating specific CPUs for nodes in a cluster {#nodes-nodes-resources-cpus}\n\nWhen using the static CPU Manager policy, you can explicitly define a list of CPUs that are reserved for critical system processes on specific nodes. Reserving CPUs for critical system processes can help ensure cluster stability.\n\nFor example, on a system with 24 CPUs, you could reserve CPUs numbered 0 - 3 for the control plane allowing the compute nodes to use CPUs 4 - 23.\n\n**Additional resources**\n\n- [Setting up CPU Manager](/scalability_and_performance/using-cpu-manager#setting_up_cpu_manager_using-cpu-manager-and-topology-manager)\n- [Allocating resources for nodes in an OpenShift Container Platform cluster](/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-about_nodes-nodes-resources-configuring)\n","mdUrl":"/nodes/nodes/nodes-nodes-resources-cpus.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Allocating specific CPUs for nodes in a cluster {#nodes-nodes-resources-cpus}\n\nWhen using the static CPU Manager policy, you can explicitly define a list of CPUs that are reserved for critical system processes on specific nodes. Reserving CPUs for critical system processes can help ensure cluster stability.\n\nFor example, on a system with 24 CPUs, you could reserve CPUs numbered 0 - 3 for the control plane allowing the compute nodes to use CPUs 4 - 23.\n\n**Additional resources**\n\n- [Setting up CPU Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#setting_up_cpu_manager_using-cpu-manager-and-topology-manager)\n- [Allocating resources for nodes in an OpenShift Container Platform cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-about_nodes-nodes-resources-configuring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-cpus.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,8 +97,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-nodes-resources-cpus-reserve.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/scalability_and_performance/using-cpu-manager#setting_up_cpu_manager_using-cpu-manager-and-topology-manager">Setting up CPU Manager</a></li>
-      <li><a href="/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-about_nodes-nodes-resources-configuring">Allocating resources for nodes in an OpenShift Container Platform cluster</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#setting_up_cpu_manager_using-cpu-manager-and-topology-manager">Setting up CPU Manager</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-about_nodes-nodes-resources-configuring">Allocating resources for nodes in an OpenShift Container Platform cluster</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

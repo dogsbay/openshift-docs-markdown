@@ -10,5 +10,5 @@ You can install a three-node cluster using either installer-provisioned or user-
 
 ## Additional resources {#_additional_resources}
 
-- [Installing a cluster on vSphere with customizations](/installing/installing_vsphere/ipi/installing-vsphere-installer-provisioned-customizations#installing-vsphere-installer-provisioned-customizations)
-- [Installing a cluster on vSphere with user-provisioned infrastructure](/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)
+- [Installing a cluster on vSphere with customizations](/openshift-docs-markdown/installing/installing_vsphere/ipi/installing-vsphere-installer-provisioned-customizations#installing-vsphere-installer-provisioned-customizations)
+- [Installing a cluster on vSphere with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)

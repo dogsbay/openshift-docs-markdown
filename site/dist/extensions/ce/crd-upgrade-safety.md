@@ -10,4 +10,4 @@ The CRD update must pass the validation checks before the change is allowed to p
 
 **Additional resources**
 
-- [Updating a cluster extension](/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)
+- [Updating a cluster extension](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)

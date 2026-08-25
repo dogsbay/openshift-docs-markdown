@@ -8,4 +8,4 @@ Before you deploy an OpenShift Container Platform cluster, you provide a customi
 
 **Additional resources**
 
-- [OVN-Kubernetes IPv6 and dual-stack limitations](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-limitations_about-ovn-kubernetes)
+- [OVN-Kubernetes IPv6 and dual-stack limitations](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-limitations_about-ovn-kubernetes)

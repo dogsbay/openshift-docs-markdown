@@ -11,9 +11,9 @@ As a cluster administrator, you can select an IP address block that is external 
 
 ## Additional resources {#_additional_resources}
 
-- [Configuring IP failover](/networking/configuring_network_settings/configuring-ipfailover#configuring-ipfailover)
-- [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb)
+- [Configuring IP failover](/openshift-docs-markdown/networking/configuring_network_settings/configuring-ipfailover#configuring-ipfailover)
+- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)
 
 ## Next steps {#configuring-externalip-next-steps}
 
-- [Configuring ingress cluster traffic for a service external IP](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip#configuring-ingress-cluster-traffic-service-external-ip)
+- [Configuring ingress cluster traffic for a service external IP](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip#configuring-ingress-cluster-traffic-service-external-ip)

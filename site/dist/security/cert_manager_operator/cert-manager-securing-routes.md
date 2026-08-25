@@ -8,6 +8,6 @@ In the OpenShift Container Platform, the route API is extended to provide a conf
 
 ## Additional resources {#additional-resources_cert-manager-securing-routes}
 
-- [Creating a route with externally managed certificate](/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-ingress-route-secret-load-external-cert_secured-routes)
-- [Configuring an ACME issuer](/security/cert_manager_operator/cert-manager-operator-issuer-acme#cert-manager-operator-issuer-acme)
-- [Externally managed certificates](/networking/ingress_load_balancing/routes/securing-routes#nw-ingress-route-secret-load-external-cert_secured-routes)
+- [Creating a route with externally managed certificate](/openshift-docs-markdown/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-ingress-route-secret-load-external-cert_secured-routes)
+- [Configuring an ACME issuer](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-issuer-acme#cert-manager-operator-issuer-acme)
+- [Externally managed certificates](/openshift-docs-markdown/networking/ingress_load_balancing/routes/securing-routes#nw-ingress-route-secret-load-external-cert_secured-routes)

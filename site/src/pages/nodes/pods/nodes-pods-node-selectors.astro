@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-pods-node-selectors","text":"Placing pods on specific nodes using node selectors"}];
 const nav = navData;
-const currentPath = "/nodes/pods/nodes-pods-node-selectors";
+const currentPath = "/openshift-docs-markdown/nodes/pods/nodes-pods-node-selectors";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/pods"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Placing pods on specific nodes using node selectors {#nodes-pods-node-selectors}\n\nFor a pod to be eligible to run on a specific node, you can include a *node selector* in the pod spec that has the indicated key-value pairs as the label on that node.\n\nA *node selector* specifies a map of key-value pairs. The rules are defined using custom labels on nodes and selectors specified in pods.\n\nIf you are using node affinity and node selectors in the same pod configuration, see the important considerations below.\n","mdUrl":"/nodes/pods/nodes-pods-node-selectors.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Placing pods on specific nodes using node selectors {#nodes-pods-node-selectors}\n\nFor a pod to be eligible to run on a specific node, you can include a *node selector* in the pod spec that has the indicated key-value pairs as the label on that node.\n\nA *node selector* specifies a map of key-value pairs. The rules are defined using custom labels on nodes and selectors specified in pods.\n\nIf you are using node affinity and node selectors in the same pod configuration, see the important considerations below.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-node-selectors.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

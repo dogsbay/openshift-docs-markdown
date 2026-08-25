@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"advanced-ref-config-customization","text":"Performing advanced reference configuration customization"}];
 const nav = navData;
-const currentPath = "/scalability_and_performance/cluster-compare/advanced-ref-config-customization";
+const currentPath = "/openshift-docs-markdown/scalability_and_performance/cluster-compare/advanced-ref-config-customization";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["scalability_and_performance","scalability_and_performance/cluster-compare"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing advanced reference configuration customization {#advanced-ref-config-customization}\n\nFor scenarios where you want to allow temporary deviations from the reference design, you can apply more advanced customizations.\n\n> [!WARNING]\n> These customizations override the default matching process that the `cluster-compare` plugin uses during a comparison. Use caution when applying these advanced customizations as it can lead to unintended consequences, such as excluding consequential information from a cluster comparison.\n\nSome advanced tasks to dynamically customize your reference configuration include the following:\n\n- **Manual matching**: Configure a user configuration file to manually match a custom resource from the cluster to a template in the reference configuration.\n- **Patching the reference**: Patch a reference to configure a reference configuration by using a patch option with the `cluster-compare` command.\n","mdUrl":"/scalability_and_performance/cluster-compare/advanced-ref-config-customization.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing advanced reference configuration customization {#advanced-ref-config-customization}\n\nFor scenarios where you want to allow temporary deviations from the reference design, you can apply more advanced customizations.\n\n> [!WARNING]\n> These customizations override the default matching process that the `cluster-compare` plugin uses during a comparison. Use caution when applying these advanced customizations as it can lead to unintended consequences, such as excluding consequential information from a cluster comparison.\n\nSome advanced tasks to dynamically customize your reference configuration include the following:\n\n- **Manual matching**: Configure a user configuration file to manually match a custom resource from the cluster to a template in the reference configuration.\n- **Patching the reference**: Patch a reference to configure a reference configuration by using a patch option with the `cluster-compare` command.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/cluster-compare/advanced-ref-config-customization.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

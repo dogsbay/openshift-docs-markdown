@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata |
 | `spec` | `object` | ResourceClaimTemplateSpec contains the metadata and fields for a ResourceClaim. |
 
 ### .spec {#_spec}
@@ -41,7 +41,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | ObjectMeta may contain labels and annotations that will be copied into the ResourceClaim when creating it. No other fields are allowed and will be rejected during validation. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | ObjectMeta may contain labels and annotations that will be copied into the ResourceClaim when creating it. No other fields are allowed and will be rejected during validation. |
 | `spec` | `object` | ResourceClaimSpec defines what is being requested in a ResourceClaim and how to configure it. |
 
 ### .spec.spec {#_specspec}
@@ -119,7 +119,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `driver` | `string` | Driver is used to determine which kubelet plugin needs to be passed these configuration parameters. An admission policy provided by the driver developer could use this to decide whether it needs to validate them. Must be a DNS subdomain and should end with a DNS domain owned by the vendor of the driver. It should use only lower case characters. |
-| `parameters` | [`RawExtension`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | Parameters can contain arbitrary data. It is the responsibility of the driver developer to handle validation and versioning. Typically this includes self-identification and a version ("kind" + "apiVersion" for Kubernetes types), with conversion between different versions. The length of the raw data must be smaller or equal to 10 Ki. |
+| `parameters` | [`RawExtension`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | Parameters can contain arbitrary data. It is the responsibility of the driver developer to handle validation and versioning. Typically this includes self-identification and a version ("kind" + "apiVersion" for Kubernetes types), with conversion between different versions. The length of the raw data must be smaller or equal to 10 Ki. |
 
 ### .spec.spec.devices.constraints {#_specspecdevicesconstraints}
 
@@ -214,7 +214,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device. This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity\['test-driver.cdi.k8s.io'\].counters.compareTo(quantity('2')) >= 0. When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation. For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy. If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices\[\*\].consumedCapacity field. |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device. This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity\['test-driver.cdi.k8s.io'\].counters.compareTo(quantity('2')) >= 0. When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation. For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy. If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices\[\*\].consumedCapacity field. |
 
 ### .spec.spec.devices.requests\[\].exactly.selectors {#_specspecdevicesrequestsexactlyselectors}
 
@@ -345,7 +345,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `requests` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device. This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity\['test-driver.cdi.k8s.io'\].counters.compareTo(quantity('2')) >= 0. When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation. For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy. If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices\[\*\].consumedCapacity field. |
+| `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device. This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity\['test-driver.cdi.k8s.io'\].counters.compareTo(quantity('2')) >= 0. When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation. For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy. If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices\[\*\].consumedCapacity field. |
 
 ### .spec.spec.devices.requests\[\].firstAvailable\[\].selectors {#_specspecdevicesrequestsfirstavailableselectors}
 
@@ -468,7 +468,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceClaimTemplateList`](/rest_api/objects/index#io-k8s-api-resource-v1-ResourceClaimTemplateList) schema |
+| 200 - OK | [`ResourceClaimTemplateList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-resource-v1-ResourceClaimTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/watch/resourceclaimtemplates {#_apisresourcek8siov1watchresourceclaimtemplates}
@@ -487,7 +487,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/namespaces/{{ namespace }}/resourceclaimtemplates {#_apisresourcek8siov1namespaces_namespace_resourceclaimtemplates}
@@ -512,7 +512,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -529,7 +529,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceClaimTemplateList`](/rest_api/objects/index#io-k8s-api-resource-v1-ResourceClaimTemplateList) schema |
+| 200 - OK | [`ResourceClaimTemplateList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-resource-v1-ResourceClaimTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -553,15 +553,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |  |
+| `body` | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
-| 201 - Created | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
-| 202 - Accepted | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 201 - Created | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 202 - Accepted | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/watch/namespaces/{{ namespace }}/resourceclaimtemplates {#_apisresourcek8siov1watchnamespaces_namespace_resourceclaimtemplates}
@@ -580,7 +580,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/namespaces/{{ namespace }}/resourceclaimtemplates/{{ name }} {#_apisresourcek8siov1namespaces_namespace_resourceclaimtemplates_name}
@@ -611,8 +611,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
-| 202 - Accepted | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 202 - Accepted | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -629,7 +629,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -653,8 +653,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
-| 201 - Created | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 201 - Created | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -678,14 +678,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |  |
+| `body` | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
-| 201 - Created | [`ResourceClaimTemplate`](/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 200 - OK | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
+| 201 - Created | [`ResourceClaimTemplate`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourceclaimtemplate-resource-k8s-io-v1#resourceclaimtemplate-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/resource.k8s.io/v1/watch/namespaces/{{ namespace }}/resourceclaimtemplates/{{ name }} {#_apisresourcek8siov1watchnamespaces_namespace_resourceclaimtemplates_name}
@@ -710,5 +710,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

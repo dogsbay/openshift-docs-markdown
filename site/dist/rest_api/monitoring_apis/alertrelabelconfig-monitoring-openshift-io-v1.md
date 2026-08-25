@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the desired state of this AlertRelabelConfig object. |
 | `status` | `object` | status describes the current state of this AlertRelabelConfig object. |
 
@@ -169,7 +169,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfigList`](/rest_api/objects/index#io-openshift-monitoring-v1-AlertRelabelConfigList) schema |
+| 200 - OK | [`AlertRelabelConfigList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-monitoring-v1-AlertRelabelConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs}
@@ -188,7 +188,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -205,7 +205,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfigList`](/rest_api/objects/index#io-openshift-monitoring-v1-AlertRelabelConfigList) schema |
+| 200 - OK | [`AlertRelabelConfigList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-monitoring-v1-AlertRelabelConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -229,15 +229,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |  |
+| `body` | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
-| 201 - Created | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
-| 202 - Accepted | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 200 - OK | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 201 - Created | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 202 - Accepted | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }} {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name}
@@ -268,8 +268,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -286,7 +286,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 200 - OK | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -310,7 +310,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 200 - OK | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -334,14 +334,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |  |
+| `body` | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
-| 201 - Created | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 200 - OK | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 201 - Created | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}/status {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name_status}
@@ -366,7 +366,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 200 - OK | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -390,7 +390,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 200 - OK | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -414,12 +414,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |  |
+| `body` | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
-| 201 - Created | [`AlertRelabelConfig`](/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 200 - OK | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
+| 201 - Created | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

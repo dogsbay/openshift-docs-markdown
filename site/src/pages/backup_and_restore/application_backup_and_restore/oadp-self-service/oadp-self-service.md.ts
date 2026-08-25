@@ -2,7 +2,7 @@
 // Source: backup_and_restore/application_backup_and_restore/oadp-self-service/oadp-self-service.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: \"{{ oadp_short }} Self-Service\"\n---\n\n# {{ oadp_short }} Self-Service {#oadp-self-service}\n\nUse {{ oadp_short }} Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This helps you delegate backup operations while maintaining administrative control.\n\n**Additional resources**\n\n- [Configuring an htpasswd identity provider](/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider)\n";
+const body = "---\ntitle: \"{{ oadp_short }} Self-Service\"\n---\n\n# {{ oadp_short }} Self-Service {#oadp-self-service}\n\nUse {{ oadp_short }} Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This helps you delegate backup operations while maintaining administrative control.\n\n**Additional resources**\n\n- [Configuring an htpasswd identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

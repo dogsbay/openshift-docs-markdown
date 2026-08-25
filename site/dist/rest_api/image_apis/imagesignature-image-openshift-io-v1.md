@@ -26,12 +26,12 @@ Required
 | `conditions` | `array` | conditions represent the latest available observations of a signature’s current state. |
 | `conditions[]` | `object` | SignatureCondition describes an image signature condition of particular kind at particular probe time. |
 | `content` | `string` | Required: An opaque binary string which is an image’s signature. |
-| `created` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | If specified, it is the time of signature’s creation. |
+| `created` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | If specified, it is the time of signature’s creation. |
 | `imageIdentity` | `string` | A human readable string representing image’s identity. It could be a product name and version, or an image pull spec (e.g. "registry.access.redhat.com/rhel7/rhel:7.2"). |
 | `issuedBy` | `object` | SignatureIssuer holds information about an issuer of signing certificate or key. |
 | `issuedTo` | `object` | SignatureSubject holds information about a person or entity who created the signature. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
@@ -61,8 +61,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastProbeTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition was checked. |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
+| `lastProbeTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition was checked. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
 | `message` | `string` | Human readable message indicating details about last transition. |
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -136,15 +136,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ImageSignature`](/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |  |
+| `body` | [`ImageSignature`](/openshift-docs-markdown/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageSignature`](/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageSignature`](/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
-| 202 - Accepted | [`ImageSignature`](/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageSignature`](/openshift-docs-markdown/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageSignature`](/openshift-docs-markdown/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
+| 202 - Accepted | [`ImageSignature`](/openshift-docs-markdown/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/imagesignatures/{{ name }} {#_apisimageopenshiftiov1imagesignatures_name}
@@ -175,6 +175,6 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |

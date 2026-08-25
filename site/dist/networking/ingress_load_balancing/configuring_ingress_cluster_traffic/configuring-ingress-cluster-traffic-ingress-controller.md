@@ -18,8 +18,8 @@ Before you begin any of the procedures that are listed in the Configuring ingres
 
 ### Additional resources {#additional-resources_ingress-sharding}
 
-- [Baseline Ingress Controller (router) performance](/scalability_and_performance/optimization/routing-optimization#baseline-router-performance_routing-optimization)
-- [Configuring the Ingress Controller](/networking/networking_operators/ingress-operator#configuring-ingress-controller)
-- [Installing a cluster on bare metal](/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
-- [Installing a cluster on vSphere](/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)
-- [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)
+- [Baseline Ingress Controller (router) performance](/openshift-docs-markdown/scalability_and_performance/optimization/routing-optimization#baseline-router-performance_routing-optimization)
+- [Configuring the Ingress Controller](/openshift-docs-markdown/networking/networking_operators/ingress-operator#configuring-ingress-controller)
+- [Installing a cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
+- [Installing a cluster on vSphere](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)
+- [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)

@@ -20,7 +20,7 @@ After installing OpenShift Container Platform in a disconnected environment, con
 
 ## Additional resources {#additional-resources_post-install-image-config}
 
-- [Using image pull secrets](/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)
-- [Overview of images](/openshift_images/index#overview-of-images)
-- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#configuring-registry-operator)
-- [Configuring image registry settings](/openshift_images/image-configuration#image-configuration)
+- [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)
+- [Overview of images](/openshift-docs-markdown/openshift_images/index#overview-of-images)
+- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)
+- [Configuring image registry settings](/openshift-docs-markdown/openshift_images/image-configuration#image-configuration)

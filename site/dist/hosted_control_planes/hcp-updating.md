@@ -10,15 +10,15 @@ For a cluster to remain fully operational during an update process, you must mee
 
 **Additional resources**
 
-- [Updating a cluster using the web console](/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
-- [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli)
-- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
-- [Updating a control plane in a hosted cluster](/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)
-- [Updating node pools in a hosted cluster](/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)
+- [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
+- [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli)
+- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+- [Updating a control plane in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)
+- [Updating node pools in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)
 
 **Additional resources**
 
-- [Hosted cluster and node pool version skew policy](/hosted_control_planes/hcp-updating#hcp-np-version-skew_hcp-updating)
+- [Hosted cluster and node pool version skew policy](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-np-version-skew_hcp-updating)
 - [{{ mce_short }} 2.17](https://access.redhat.com/articles/7142379)
 - [{{ mce_short }} 2.11](https://access.redhat.com/articles/7136929)
 - [{{ mce_short }} 2.10](https://access.redhat.com/articles/7133096)

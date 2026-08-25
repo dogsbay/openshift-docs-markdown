@@ -12,12 +12,12 @@ The {{ js_operator }} models a distributed batch workload as a group of Kubernet
 
  **Additional resources**
 
-- [About the {{ js_operator }}](/ai_workloads/jobset_operator/index#js-about_js-about)
+- [About the {{ js_operator }}](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about)
 - [Run A JobSet (Kubernetes documentation)](https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/)
-- [Installing the {{ cert_manager_operator }} by using the web console](/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
+- [Installing the {{ cert_manager_operator }} by using the web console](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
 
  **Additional resources**
 
-- [Configuring a cluster queue](/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)
-- [Configuring a resource flavor](/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)
-- [Configuring a local queue](/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)
+- [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)
+- [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)
+- [Configuring a local queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)

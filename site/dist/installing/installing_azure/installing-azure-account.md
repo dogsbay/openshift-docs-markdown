@@ -11,7 +11,7 @@ Before you can install OpenShift Container Platform on {{ azure_first }}, you mu
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 - [Azure subscription and service limits, quotas, and constraints ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)
 
 **Additional resources**
@@ -33,10 +33,10 @@ Before you can install OpenShift Container Platform on {{ azure_first }}, you mu
 
 **Additional resources**
 
-- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
+- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
 ## Additional resources {#additional-resources_installing-azure-account}
 
 - [Resolve errors for reserved resource names ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)
-- [Install a customized cluster on Azure](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
-- [Quickly install a cluster on Azure with default options](/installing/installing_azure/ipi/installing-azure-default#installing-azure-default)
+- [Install a customized cluster on Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
+- [Quickly install a cluster on Azure with default options](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-default#installing-azure-default)

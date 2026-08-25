@@ -2,7 +2,7 @@
 // Source: ai_workloads/jobset_operator/jobset-release-notes.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: \"{{ js_operator }} release notes\"\n---\n\n# {{ js_operator }} release notes {#js-release-notes}\n\nTrack the development, features, and fixes for the {{ js_operator }}, which manages coordinated, large-scale computing workloads on OpenShift Container Platform.\n\nFor more information, see [About the {{ js_operator }}](/ai_workloads/jobset_operator/index#js-about).\n";
+const body = "---\ntitle: \"{{ js_operator }} release notes\"\n---\n\n# {{ js_operator }} release notes {#js-release-notes}\n\nTrack the development, features, and fixes for the {{ js_operator }}, which manages coordinated, large-scale computing workloads on OpenShift Container Platform.\n\nFor more information, see [About the {{ js_operator }}](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

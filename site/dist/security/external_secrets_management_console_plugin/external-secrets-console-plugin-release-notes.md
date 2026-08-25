@@ -8,4 +8,4 @@ The {{ external_secrets_console_plugin }} provides a unified OpenShift Console i
 
 These release notes track the development of {{ external_secrets_console_plugin }}.
 
-For more information, see [{{ external_secrets_operator_short }} overview](/security/external_secrets_management_console_plugin/index#external-secrets-console-plugin-overview).
+For more information, see [{{ external_secrets_operator_short }} overview](/openshift-docs-markdown/security/external_secrets_management_console_plugin/index#external-secrets-console-plugin-overview).

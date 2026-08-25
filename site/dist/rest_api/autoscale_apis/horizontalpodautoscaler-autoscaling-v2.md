@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler. |
 | `status` | `object` | HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler. |
 
@@ -80,7 +80,7 @@ Type
 | `policies[]` | `object` | HPAScalingPolicy is a single policy which must hold true for a specified past interval. |
 | `selectPolicy` | `string` | selectPolicy is used to specify which policy should be used. If not set, the default value Max is used. |
 | `stabilizationWindowSeconds` | `integer` | stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long). |
-| `tolerance` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%). For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi. This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
+| `tolerance` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%). For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi. This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
 
 ### .spec.behavior.scaleDown.policies {#_specbehaviorscaledownpolicies}
 
@@ -133,7 +133,7 @@ Type
 | `policies[]` | `object` | HPAScalingPolicy is a single policy which must hold true for a specified past interval. |
 | `selectPolicy` | `string` | selectPolicy is used to specify which policy should be used. If not set, the default value Max is used. |
 | `stabilizationWindowSeconds` | `integer` | stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long). |
-| `tolerance` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%). For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi. This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
+| `tolerance` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%). For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi. This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
 
 ### .spec.behavior.scaleUp.policies {#_specbehaviorscaleuppolicies}
 
@@ -235,9 +235,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
 ### .spec.metrics\[\].external {#_specmetricsexternal}
 
@@ -274,7 +274,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the given metric |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
 ### .spec.metrics\[\].external.target {#_specmetricsexternaltarget}
 
@@ -292,9 +292,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
 ### .spec.metrics\[\].object {#_specmetricsobject}
 
@@ -353,7 +353,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the given metric |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
 ### .spec.metrics\[\].object.target {#_specmetricsobjecttarget}
 
@@ -371,9 +371,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
 ### .spec.metrics\[\].pods {#_specmetricspods}
 
@@ -410,7 +410,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the given metric |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
 ### .spec.metrics\[\].pods.target {#_specmetricspodstarget}
 
@@ -428,9 +428,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
 ### .spec.metrics\[\].resource {#_specmetricsresource}
 
@@ -467,9 +467,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the target value of the average of the metric across all relevant pods (as a quantity) |
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
 ### .spec.scaleTargetRef {#_specscaletargetref}
 
@@ -512,7 +512,7 @@ Required
 | `currentMetrics[]` | `object` | MetricStatus describes the last-read state of a single metric. |
 | `currentReplicas` | `integer` | currentReplicas is current number of replicas of pods managed by this autoscaler, as last seen by the autoscaler. |
 | `desiredReplicas` | `integer` | desiredReplicas is the desired number of replicas of pods managed by this autoscaler, as last calculated by the autoscaler. |
-| `lastScaleTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed. |
+| `lastScaleTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed. |
 | `observedGeneration` | `integer` | observedGeneration is the most recent generation observed by this autoscaler. |
 
 ### .status.conditions {#_statusconditions}
@@ -541,7 +541,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the last time the condition transitioned from one status to another |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the last time the condition transitioned from one status to another |
 | `message` | `string` | message is a human-readable explanation containing details about the transition |
 | `reason` | `string` | reason is the reason for the condition’s last transition. |
 | `status` | `string` | status is the status of the condition (True, False, Unknown) |
@@ -613,8 +613,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
 ### .status.currentMetrics\[\].external {#_statuscurrentmetricsexternal}
 
@@ -648,8 +648,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
 ### .status.currentMetrics\[\].external.metric {#_statuscurrentmetricsexternalmetric}
 
@@ -667,7 +667,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the given metric |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
 ### .status.currentMetrics\[\].object {#_statuscurrentmetricsobject}
 
@@ -703,8 +703,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
 ### .status.currentMetrics\[\].object.describedObject {#_statuscurrentmetricsobjectdescribedobject}
 
@@ -742,7 +742,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the given metric |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
 ### .status.currentMetrics\[\].pods {#_statuscurrentmetricspods}
 
@@ -776,8 +776,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
 ### .status.currentMetrics\[\].pods.metric {#_statuscurrentmetricspodsmetric}
 
@@ -795,7 +795,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the given metric |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
 ### .status.currentMetrics\[\].resource {#_statuscurrentmetricsresource}
 
@@ -829,8 +829,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `averageUtilization` | `integer` | currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. |
-| `averageValue` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
-| `value` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
+| `averageValue` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
+| `value` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
 ## API endpoints {#_api_endpoints}
 
@@ -881,7 +881,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscalerList`](/rest_api/objects/index#io-k8s-api-autoscaling-v2-HorizontalPodAutoscalerList) schema |
+| 200 - OK | [`HorizontalPodAutoscalerList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-autoscaling-v2-HorizontalPodAutoscalerList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling/v2/watch/horizontalpodautoscalers {#_apisautoscalingv2watchhorizontalpodautoscalers}
@@ -900,7 +900,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers}
@@ -925,7 +925,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -942,7 +942,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscalerList`](/rest_api/objects/index#io-k8s-api-autoscaling-v2-HorizontalPodAutoscalerList) schema |
+| 200 - OK | [`HorizontalPodAutoscalerList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-autoscaling-v2-HorizontalPodAutoscalerList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -966,15 +966,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |  |
+| `body` | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
-| 201 - Created | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
-| 202 - Accepted | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 200 - OK | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 201 - Created | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 202 - Accepted | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling/v2/watch/namespaces/{{ namespace }}/horizontalpodautoscalers {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers}
@@ -993,7 +993,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }} {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name}
@@ -1024,8 +1024,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1042,7 +1042,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 200 - OK | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1066,8 +1066,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
-| 201 - Created | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 200 - OK | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 201 - Created | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1091,14 +1091,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |  |
+| `body` | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
-| 201 - Created | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 200 - OK | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 201 - Created | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling/v2/watch/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }} {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers_name}
@@ -1123,7 +1123,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }}/status {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name_status}
@@ -1148,7 +1148,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 200 - OK | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1172,8 +1172,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
-| 201 - Created | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 200 - OK | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 201 - Created | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1197,12 +1197,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |  |
+| `body` | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
-| 201 - Created | [`HorizontalPodAutoscaler`](/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 200 - OK | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
+| 201 - Created | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |

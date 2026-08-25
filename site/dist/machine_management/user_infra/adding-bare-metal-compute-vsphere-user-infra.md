@@ -26,4 +26,4 @@ This procedure supports clusters installed using installer-provisioned infrastru
 
 **Additional resources**
 
-- [Disabling and enabling storage on vSphere](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-procedure_persistent-storage-csi-vsphere)
+- [Disabling and enabling storage on vSphere](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-procedure_persistent-storage-csi-vsphere)

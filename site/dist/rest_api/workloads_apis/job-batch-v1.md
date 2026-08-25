@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | JobSpec describes how the job execution will look like. |
 | `status` | `object` | JobStatus represents the current state of a Job. |
 
@@ -48,10 +48,10 @@ Required
 | `parallelism` | `integer` | Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ |
 | `podFailurePolicy` | `object` | PodFailurePolicy describes how failed pods influence the backoffLimit. |
 | `podReplacementPolicy` | `string` | podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods   when they are terminating (has a metadata.deletionTimestamp) or failed. - Failed means to wait until a previously created Pod is fully terminated (has phase   Failed or Succeeded) before creating a replacement Pod. When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. Possible enum values:  - `"Failed"` means to wait until a previously created Pod is fully terminated (has phase Failed or Succeeded) before creating a replacement Pod.  - `"TerminatingOrFailed"` means that we recreate pods when they are terminating (has a metadata.deletionTimestamp) or failed. |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
 | `successPolicy` | `object` | SuccessPolicy describes when a Job can be declared as succeeded based on the success of some indexes. |
 | `suspend` | `boolean` | suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false. |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Describes the pod that will be created when executing a job. The only allowed template.spec.restartPolicy values are "Never" or "OnFailure". More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Describes the pod that will be created when executing a job. The only allowed template.spec.restartPolicy values are "Never" or "OnFailure". More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ |
 | `ttlSecondsAfterFinished` | `integer` | ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won’t be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. |
 
 ### .spec.podFailurePolicy {#_specpodfailurepolicy}
@@ -207,13 +207,13 @@ Type
 | --- | --- | --- |
 | `active` | `integer` | The number of pending and running pods which are not terminating (without a deletionTimestamp). The value is zero for finished jobs. |
 | `completedIndexes` | `string` | completedIndexes holds the completed indexes when .spec.completionMode = "Indexed" in a text format. The indexes are represented as decimal integers separated by commas. The numbers are listed in increasing order. Three or more consecutive numbers are compressed and represented by the first and last element of the series, separated by a hyphen. For example, if the completed indexes are 1, 3, 4, 5 and 7, they are represented as "1,3-5,7". |
-| `completionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. The completion time is set when the job finishes successfully, and only then. The value cannot be updated or removed. The value indicates the same or later point in time as the startTime field. |
+| `completionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. The completion time is set when the job finishes successfully, and only then. The value cannot be updated or removed. The value indicates the same or later point in time as the startTime field. |
 | `conditions` | `array` | The latest available observations of an object’s current state. When a Job fails, one of the conditions will have type "Failed" and status true. When a Job is suspended, one of the conditions will have type "Suspended" and status true; when the Job is resumed, the status of this condition will become false. When a Job is completed, one of the conditions will have type "Complete" and status true. A job is considered finished when it is in a terminal condition, either "Complete" or "Failed". A Job cannot have both the "Complete" and "Failed" conditions. Additionally, it cannot be in the "Complete" and "FailureTarget" conditions. The "Complete", "Failed" and "FailureTarget" conditions cannot be disabled. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ |
 | `conditions[]` | `object` | JobCondition describes current state of a job. |
 | `failed` | `integer` | The number of pods which reached phase Failed. The value increases monotonically. |
 | `failedIndexes` | `string` | FailedIndexes holds the failed indexes when spec.backoffLimitPerIndex is set. The indexes are represented in the text format analogous as for the `completedIndexes` field, ie. they are kept as decimal integers separated by commas. The numbers are listed in increasing order. Three or more consecutive numbers are compressed and represented by the first and last element of the series, separated by a hyphen. For example, if the failed indexes are 1, 3, 4, 5 and 7, they are represented as "1,3-5,7". The set of failed indexes cannot overlap with the set of completed indexes. |
 | `ready` | `integer` | The number of active pods which have a Ready condition and are not terminating (without a deletionTimestamp). |
-| `startTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Represents time when the job controller started processing a job. When a Job is created in the suspended state, this field is not set until the first time it is resumed. This field is reset every time a Job is resumed from suspension. It is represented in RFC3339 form and is in UTC. Once set, the field can only be removed when the job is suspended. The field cannot be modified while the job is unsuspended or finished. |
+| `startTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Represents time when the job controller started processing a job. When a Job is created in the suspended state, this field is not set until the first time it is resumed. This field is reset every time a Job is resumed from suspension. It is represented in RFC3339 form and is in UTC. Once set, the field can only be removed when the job is suspended. The field cannot be modified while the job is unsuspended or finished. |
 | `succeeded` | `integer` | The number of pods which reached phase Succeeded. The value increases monotonically for a given spec. However, it may decrease in reaction to scale down of elastic indexed jobs. |
 | `terminating` | `integer` | The number of pods which are terminating (in phase Pending or Running and have a deletionTimestamp). This field is beta-level. The job controller populates the field when the feature gate JobPodReplacementPolicy is enabled (enabled by default). |
 | `uncountedTerminatedPods` | `object` | UncountedTerminatedPods holds UIDs of Pods that have terminated but haven’t been accounted in Job status counters. |
@@ -248,8 +248,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastProbeTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition was checked. |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
+| `lastProbeTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition was checked. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
 | `message` | `string` | Human readable message indicating details about last transition. |
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -319,7 +319,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`JobList`](/rest_api/objects/index#io-k8s-api-batch-v1-JobList) schema |
+| 200 - OK | [`JobList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-batch-v1-JobList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/batch/v1/watch/jobs {#_apisbatchv1watchjobs}
@@ -338,7 +338,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/batch/v1/namespaces/{{ namespace }}/jobs {#_apisbatchv1namespaces_namespace_jobs}
@@ -363,7 +363,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -380,7 +380,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`JobList`](/rest_api/objects/index#io-k8s-api-batch-v1-JobList) schema |
+| 200 - OK | [`JobList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-batch-v1-JobList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -404,15 +404,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |  |
+| `body` | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
-| 201 - Created | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
-| 202 - Accepted | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 200 - OK | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 201 - Created | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 202 - Accepted | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/batch/v1/watch/namespaces/{{ namespace }}/jobs {#_apisbatchv1watchnamespaces_namespace_jobs}
@@ -431,7 +431,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/batch/v1/namespaces/{{ namespace }}/jobs/{{ name }} {#_apisbatchv1namespaces_namespace_jobs_name}
@@ -462,8 +462,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -480,7 +480,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 200 - OK | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -504,8 +504,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
-| 201 - Created | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 200 - OK | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 201 - Created | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -529,14 +529,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |  |
+| `body` | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
-| 201 - Created | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 200 - OK | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 201 - Created | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/batch/v1/watch/namespaces/{{ namespace }}/jobs/{{ name }} {#_apisbatchv1watchnamespaces_namespace_jobs_name}
@@ -561,7 +561,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/batch/v1/namespaces/{{ namespace }}/jobs/{{ name }}/status {#_apisbatchv1namespaces_namespace_jobs_name_status}
@@ -586,7 +586,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 200 - OK | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -610,8 +610,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
-| 201 - Created | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 200 - OK | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 201 - Created | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -635,12 +635,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |  |
+| `body` | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
-| 201 - Created | [`Job`](/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 200 - OK | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
+| 201 - Created | [`Job`](/openshift-docs-markdown/rest_api/workloads_apis/job-batch-v1#job-batch-v1) schema |
 | 401 - Unauthorized | Empty |

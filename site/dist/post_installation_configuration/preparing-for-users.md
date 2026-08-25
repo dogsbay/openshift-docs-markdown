@@ -29,14 +29,14 @@ As an administrator, you can configure OAuth to specify an identity provider aft
 
 **Additional resources**
 
-- [Mirroring Operator catalogs for use with disconnected clusters](/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
+- [Mirroring Operator catalogs for use with disconnected clusters](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
 
 **Additional resources**
 
-- [Accessing images for Operators from private registries](/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)
-- [Image template for custom catalog sources](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)
-- [Image pull policy](/openshift_images/managing_images/image-pull-policy#image-pull-policy)
+- [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)
+- [Image template for custom catalog sources](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)
+- [Image pull policy](/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy#image-pull-policy)
 
 **Additional resources**
 
-- [About OperatorGroups](/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups)
+- [About OperatorGroups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups)

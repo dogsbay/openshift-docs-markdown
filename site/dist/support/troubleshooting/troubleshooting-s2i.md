@@ -8,4 +8,4 @@ A cluster administrator can observe the S2I stages to determine where in the S2I
 
 ## Additional resources {#_additional_resources}
 
-- [Source-to-Image (S2I) build](/cicd/builds/build-strategies#build-strategy-s2i_build-strategies)
+- [Source-to-Image (S2I) build](/openshift-docs-markdown/cicd/builds/build-strategies#build-strategy-s2i_build-strategies)

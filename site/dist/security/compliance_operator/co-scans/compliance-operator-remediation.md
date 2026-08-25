@@ -17,6 +17,6 @@ You can review compliance scan results and apply remediations to resolve failing
 
 ## Additional resources {#additional-resources_compliance-remediation}
 
-- [Modifying nodes](/nodes/nodes/nodes-nodes-managing#nodes-nodes-managing-about_nodes-nodes-managing)
+- [Modifying nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-managing-about_nodes-nodes-managing)
 - [Ignition specification](https://coreos.github.io/ignition/specs/)
 - [Installing the system in FIPS mode](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/assembly_installing-the-system-in-fips-mode_security-hardening)

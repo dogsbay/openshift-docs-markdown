@@ -13,7 +13,7 @@ You can use the GitHub integration to connect to either GitHub or GitHub Enterpr
 
 **Additional resources**
 
-- [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
+- [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
 **Additional resources**
 

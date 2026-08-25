@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"installing-aws-localzone","text":"Installing a cluster with compute nodes on AWS Local Zones"},{"depth":2,"slug":"additional-resources_installing-aws-localzone","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_aws/ipi/installing-aws-localzone";
+const currentPath = "/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_aws","installing/installing_aws/ipi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster with compute nodes on AWS Local Zones {#installing-aws-localzone}\n\nYou can quickly install an OpenShift Container Platform cluster on Amazon Web Services (AWS) Local Zones by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Local Zone subnets.\n\nAWS Local Zones is an infrastructure that place Cloud Resources close to metropolitan regions. For more information, see the [AWS Local Zones Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones).\n\n**Additional resources**\n\n- [MTU value selection](/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)\n- [Changing the MTU for the cluster network](/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)\n- [Understanding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)\n- [Storage classes](/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage)\n- [Ingress Controller sharding](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller)\n- [How Local Zones work ({{ aws_short }} documentation)](https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html)\n\n**Additional resources**\n\n- [AWS Local Zones features ({{ aws_short }} documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/features/)\n\n**Additional resources**\n\n- [AWS resources supported in Local Zones ({{ aws_short }} documentation)](https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html#considerations)\n\n**Additional resources**\n\n- [Creating the installation configuration file](/installing/installing_aws/ipi/installing-aws-localzone#installation-generate-aws-user-infra-install-config_installing-aws-localzone)\n- [Cluster limitations in AWS Local Zones](/installing/installing_aws/ipi/installing-aws-localzone#cluster-limitations-aws-zone_installing-aws-localzone)\n- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)\n\n**Additional resources**\n\n- [{{ aws_short }} CloudFormation console ({{ aws_short }} documentation)](https://console.aws.amazon.com/cloudformation/)\n\n**Additional resources**\n\n- [{{ aws_short }} CloudFormation console](https://console.aws.amazon.com/cloudformation)\n- [Configuration and credential file settings in the {{ aws_short }} CLI ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)\n- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)\n\n**Additional resources**\n\n- [Accessing the web console](/web_console/web-console#web-console)\n\n## Additional resources {#additional-resources_installing-aws-localzone}\n\n- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)\n- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n","mdUrl":"/installing/installing_aws/ipi/installing-aws-localzone.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster with compute nodes on AWS Local Zones {#installing-aws-localzone}\n\nYou can quickly install an OpenShift Container Platform cluster on Amazon Web Services (AWS) Local Zones by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Local Zone subnets.\n\nAWS Local Zones is an infrastructure that place Cloud Resources close to metropolitan regions. For more information, see the [AWS Local Zones Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones).\n\n**Additional resources**\n\n- [MTU value selection](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)\n- [Changing the MTU for the cluster network](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)\n- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)\n- [Storage classes](/openshift-docs-markdown/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage)\n- [Ingress Controller sharding](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller)\n- [How Local Zones work ({{ aws_short }} documentation)](https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html)\n\n**Additional resources**\n\n- [AWS Local Zones features ({{ aws_short }} documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/features/)\n\n**Additional resources**\n\n- [AWS resources supported in Local Zones ({{ aws_short }} documentation)](https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html#considerations)\n\n**Additional resources**\n\n- [Creating the installation configuration file](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-generate-aws-user-infra-install-config_installing-aws-localzone)\n- [Cluster limitations in AWS Local Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#cluster-limitations-aws-zone_installing-aws-localzone)\n- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)\n\n**Additional resources**\n\n- [{{ aws_short }} CloudFormation console ({{ aws_short }} documentation)](https://console.aws.amazon.com/cloudformation/)\n\n**Additional resources**\n\n- [{{ aws_short }} CloudFormation console](https://console.aws.amazon.com/cloudformation)\n- [Configuration and credential file settings in the {{ aws_short }} CLI ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)\n- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)\n\n**Additional resources**\n\n- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)\n\n## Additional resources {#additional-resources_installing-aws-localzone}\n\n- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,11 +99,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/edge-machine-pools-aws-local-zones.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu">MTU value selection</a></li>
-      <li><a href="/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn">Changing the MTU for the cluster network</a></li>
-      <li><a href="/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations">Understanding taints and tolerations</a></li>
-      <li><a href="/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage">Storage classes</a></li>
-      <li><a href="/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller">Ingress Controller sharding</a></li>
+      <li><a href="/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu">MTU value selection</a></li>
+      <li><a href="/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn">Changing the MTU for the cluster network</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations">Understanding taints and tolerations</a></li>
+      <li><a href="/openshift-docs-markdown/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage">Storage classes</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller">Ingress Controller sharding</a></li>
       <li><a href="https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html">How Local Zones work ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
       </ul>
       <p class="/modules/installation-aws-marketplace-subscribe.md"></p>
@@ -119,9 +119,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/install-creating-install-config-aws-edge-zones.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-localzone#installation-generate-aws-user-infra-install-config_installing-aws-localzone">Creating the installation configuration file</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-localzone#cluster-limitations-aws-zone_installing-aws-localzone">Cluster limitations in AWS Local Zones</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone">Deploying the cluster</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-generate-aws-user-infra-install-config_installing-aws-localzone">Creating the installation configuration file</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#cluster-limitations-aws-zone_installing-aws-localzone">Cluster limitations in AWS Local Zones</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone">Deploying the cluster</a></li>
       </ul>
       <p class="/modules/installation-creating-aws-vpc-localzone.md"></p>
       <p class="/modules/installation-cloudformation-vpc-localzone.md"></p>
@@ -133,18 +133,18 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li><a href="https://console.aws.amazon.com/cloudformation">{"{"}{"{"} aws_short {"}"}{"}"} CloudFormation console</a></li>
       <li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html">Configuration and credential file settings in the {"{"}{"{"} aws_short {"}"}{"}"} CLI ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone">Deploying the cluster</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone">Deploying the cluster</a></li>
       </ul>
       <p class="/modules/installing-with-edge-node-public.md"></p>
       <p class="/modules/installation-launching-installer.md"></p>
       <p class="/modules/cli-logging-in-kubeadmin.md"></p>
       <p class="/modules/logging-in-by-using-the-web-console.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/web_console/web-console#web-console">Accessing the web console</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/web_console/web-console#web-console">Accessing the web console</a></li></ul>
       <h2 id="additional-resources_installing-aws-localzone" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-aws-localzone" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a></li>
-      <li><a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
+      <li><a href="/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

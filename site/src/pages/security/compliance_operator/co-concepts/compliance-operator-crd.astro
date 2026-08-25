@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"custom-resource-definitions","text":"Understanding the Custom Resource Definitions"}];
 const nav = navData;
-const currentPath = "/security/compliance_operator/co-concepts/compliance-operator-crd";
+const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-crd";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/compliance_operator","security/compliance_operator/co-concepts"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding the Custom Resource Definitions {#custom-resource-definitions}\n\nYou can use the Custom Resource Definitions (CRDs) provided by the Compliance Operator to run compliance scans and get remediation for the issues found.\n\nThe Compliance Operator in the OpenShift Container Platform provides you with several Custom Resource Definitions (CRDs) to run the compliance scans. The Compliance Operator converts security policies into CRDs, which you can use.\n\nThe CRD workflow uses these objects:\n\n- `ProfileBundle`, `Profile`, and `TailoredProfile` to define scan requirements\n- `ScanSetting` to configure the scan type, occurrence, and location\n- `ScanSettingBinding` to process requirements with those settings\n- `ComplianceSuite` to monitor deployed scans\n- Scan results and remediation after the suite reaches the `DONE` phase\n","mdUrl":"/security/compliance_operator/co-concepts/compliance-operator-crd.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding the Custom Resource Definitions {#custom-resource-definitions}\n\nYou can use the Custom Resource Definitions (CRDs) provided by the Compliance Operator to run compliance scans and get remediation for the issues found.\n\nThe Compliance Operator in the OpenShift Container Platform provides you with several Custom Resource Definitions (CRDs) to run the compliance scans. The Compliance Operator converts security policies into CRDs, which you can use.\n\nThe CRD workflow uses these objects:\n\n- `ProfileBundle`, `Profile`, and `TailoredProfile` to define scan requirements\n- `ScanSetting` to configure the scan type, occurrence, and location\n- `ScanSettingBinding` to process requirements with those settings\n- `ComplianceSuite` to monitor deployed scans\n- Scan results and remediation after the suite reaches the `DONE` phase\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-crd.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

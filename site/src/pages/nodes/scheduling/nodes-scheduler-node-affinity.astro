@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-scheduler-node-affinity","text":"Controlling pod placement on nodes using node affinity rules"},{"depth":2,"slug":"nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/scheduling/nodes-scheduler-node-affinity";
+const currentPath = "/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/scheduling"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Controlling pod placement on nodes using node affinity rules {#nodes-scheduler-node-affinity}\n\nYou can use a node affinity to control which nodes your pod can be scheduled on based on node labels. Node affinity helps you ensure your applications run on nodes with specific capabilities or configurations.\n\nIn OpenShift Container Platform node affinity is a set of rules used by the scheduler to determine where a pod can be placed. The rules are defined using custom labels on the nodes and label selectors specified in pods.\n\n## Additional resources {#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity}\n\n- [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)\n","mdUrl":"/nodes/scheduling/nodes-scheduler-node-affinity.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Controlling pod placement on nodes using node affinity rules {#nodes-scheduler-node-affinity}\n\nYou can use a node affinity to control which nodes your pod can be scheduled on based on node labels. Node affinity helps you ensure your applications run on nodes with specific capabilities or configurations.\n\nIn OpenShift Container Platform node affinity is a set of rules used by the scheduler to determine where a pod can be placed. The rules are defined using custom labels on the nodes and label selectors specified in pods.\n\n## Additional resources {#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity}\n\n- [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-scheduler-node-affinity-example.md"></p>
       <p class="/modules/olm-overriding-operator-pod-affinity.md"></p>
       <h2 id="nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity" class="group scroll-mt-20">Additional resources<a href="#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working">Understanding how to update labels on nodes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working">Understanding how to update labels on nodes</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

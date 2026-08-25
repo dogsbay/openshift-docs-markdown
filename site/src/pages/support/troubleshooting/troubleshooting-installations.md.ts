@@ -2,7 +2,7 @@
 // Source: support/troubleshooting/troubleshooting-installations.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Troubleshooting installations\n---\n\n# Troubleshooting installations {#troubleshooting-installations}\n\nUse the following sections to troubleshoot OpenShift Container Platform installation issues.\n\n## Additional resources {#_additional_resources}\n\n- [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)\n";
+const body = "---\ntitle: Troubleshooting installations\n---\n\n# Troubleshooting installations {#troubleshooting-installations}\n\nUse the following sections to troubleshoot OpenShift Container Platform installation issues.\n\n## Additional resources {#_additional_resources}\n\n- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

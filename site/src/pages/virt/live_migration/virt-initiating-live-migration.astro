@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-initiating-live-migration","text":"Initiating and canceling live migration"},{"depth":2,"slug":"additional-resources_virt-initiating-live-migration","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/live_migration/virt-initiating-live-migration";
+const currentPath = "/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/live_migration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Initiating and canceling live migration {#virt-initiating-live-migration}\n\nTo move a running virtual machine (VM) to a different node without interrupting the workload, you can initiate a live migration. You can also cancel an ongoing migration to keep the VM on its original node.\n\nYou can initiate the live migration of a virtual machine (VM) to another node by using the OpenShift Container Platform web console or the command line.\n\nYou can cancel a live migration by using the web console or the command line. The VM remains on its original node.\n\n> [!TIP]\n> You can also initiate and cancel live migration by using the `virtctl migrate <vm_name>` and `virtctl migrate-cancel <vm_name>` commands.\n\n## Additional resources {#additional-resources_virt-initiating-live-migration}\n\n- [About live migration permissions](/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)\n- [Initiating live migration by using the web console](/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration)\n- [Initiating live migration by using the CLI](/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration)\n- [Canceling live migration by using the web console](/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration)\n- [Canceling live migration by using the CLI](/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration)\n","mdUrl":"/virt/live_migration/virt-initiating-live-migration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Initiating and canceling live migration {#virt-initiating-live-migration}\n\nTo move a running virtual machine (VM) to a different node without interrupting the workload, you can initiate a live migration. You can also cancel an ongoing migration to keep the VM on its original node.\n\nYou can initiate the live migration of a virtual machine (VM) to another node by using the OpenShift Container Platform web console or the command line.\n\nYou can cancel a live migration by using the web console or the command line. The VM remains on its original node.\n\n> [!TIP]\n> You can also initiate and cancel live migration by using the `virtctl migrate <vm_name>` and `virtctl migrate-cancel <vm_name>` commands.\n\n## Additional resources {#additional-resources_virt-initiating-live-migration}\n\n- [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)\n- [Initiating live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration)\n- [Initiating live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration)\n- [Canceling live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration)\n- [Canceling live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -110,11 +110,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-canceling-vm-migration-cli.md"></p>
       <h2 id="additional-resources_virt-initiating-live-migration" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-initiating-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration">About live migration permissions</a></li>
-      <li><a href="/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration">Initiating live migration by using the web console</a></li>
-      <li><a href="/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration">Initiating live migration by using the CLI</a></li>
-      <li><a href="/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration">Canceling live migration by using the web console</a></li>
-      <li><a href="/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration">Canceling live migration by using the CLI</a></li>
+      <li><a href="/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration">About live migration permissions</a></li>
+      <li><a href="/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration">Initiating live migration by using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration">Initiating live migration by using the CLI</a></li>
+      <li><a href="/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration">Canceling live migration by using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration">Canceling live migration by using the CLI</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

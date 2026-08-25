@@ -10,7 +10,7 @@ To edit a VM to configure disk sharing by using virtual disks or LUN, see "Confi
 
 ## Additional resources {#additional-resources_virt-edit-vms}
 
-- [Configuring shared volumes for virtual machines](/virt/managing_vms/virtual_disks/virt-configuring-shared-volumes-for-vms#virt-configuring-shared-volumes-for-vms)
-- [Understanding config maps](/nodes/pods/nodes-pods-configmaps#nodes-pods-configmap-overview_builds-configmaps)
-- [Providing sensitive data to pods](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about)
-- [Understanding and creating service accounts](/authentication/understanding-and-creating-service-accounts#service-accounts-overview)
+- [Configuring shared volumes for virtual machines](/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-configuring-shared-volumes-for-vms#virt-configuring-shared-volumes-for-vms)
+- [Understanding config maps](/openshift-docs-markdown/nodes/pods/nodes-pods-configmaps#nodes-pods-configmap-overview_builds-configmaps)
+- [Providing sensitive data to pods](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about)
+- [Understanding and creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-overview)

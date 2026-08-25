@@ -8,4 +8,4 @@ To install OpenShift Container Platform on {{ ibm_power_vc_name }}, use the inst
 
 ## Additional resources {#additional-resources_installation-methods-ibm-powervc}
 
-- [Installing a cluster on {{ ibm_power_vc_name }} with customizations](/installing/installing_ibm_powervc/installing-ibm-powervc-installer-custom#installing-ibm-powervc-installer-custom)
+- [Installing a cluster on {{ ibm_power_vc_name }} with customizations](/openshift-docs-markdown/installing/installing_ibm_powervc/installing-ibm-powervc-installer-custom#installing-ibm-powervc-installer-custom)

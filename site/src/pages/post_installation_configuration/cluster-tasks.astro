@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"post-install-cluster-tasks","text":"Postinstallation cluster tasks"},{"depth":2,"slug":"available_cluster_customizations","text":"Available cluster customizations"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/cluster-tasks";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/cluster-tasks";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation cluster tasks {#post-install-cluster-tasks}\n\nAfter installing OpenShift Container Platform, you can configure, scale, and maintain your cluster to meet operational requirements, including managing nodes and infrastructure workloads, enabling features, applying autoscaling, and maintaining etcd.\n\nAfter installing OpenShift Container Platform, you can further expand and customize your cluster to your requirements.\n\n## Available cluster customizations {#available_cluster_customizations}\n\nYou complete most of the cluster configuration and customization after you deploy your OpenShift Container Platform cluster. Several *configuration resources* are available.\n\n> [!NOTE]\n> If you install your cluster on {{ ibm_z_name }}, not all features and functions are available.\n\nYou modify the configuration resources to configure the major features of the cluster, such as the image registry, networking configuration, image build behavior, and the identity provider.\n\nFor current documentation of the settings that you control by using these resources, use the `oc explain` command, for example `oc explain builds --api-version=config.openshift.io/v1`\n\n**Additional resources**\n\n- [Adding worker nodes to an on-premise cluster](/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso)\n\n**Additional resources**\n\n- [Adding worker nodes using the web console](/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-web-console_managing-bare-metal-hosts)\n- [Adding worker nodes using YAML in the web console](/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-yaml_managing-bare-metal-hosts)\n- [Manually adding a worker node to an installer-provisioned infrastructure cluster](/installing/installing_bare_metal/bare-metal-expanding-the-cluster#preparing-the-bare-metal-node_bare-metal-expanding)\n\n**Additional resources**\n\n- [Adding RHCOS worker nodes to a user-provisioned infrastructure cluster](/post_installation_configuration/node-tasks#post-install-config-adding-fcos-compute)\n\n**Additional resources**\n\n- [Adding worker nodes using {{ cluster_manager }}](/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-sno-clusters_add-workers)\n- [Adding worker nodes using the Assisted Installer REST API](/nodes/nodes/nodes-sno-worker-nodes#adding-worker-nodes-using-the-assisted-installer-api)\n- [Manually adding worker nodes to a {{ sno }} cluster](/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers)\n\n**Additional resources**\n\n- [Creating your cluster with the console](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview#on-prem-creating-your-cluster-with-the-console)\n\n**Additional resources**\n\n- [Control plane machine sets](/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)\n- [Getting started with control plane machine sets](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-getting-started)\n\n**Additional resources**\n\n- [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n- [Use a machine set to create an infrastructure node](/post_installation_configuration/cluster-tasks#machineset-creating_post-install-cluster-tasks)\n- [Assign a label to infrastructure nodes](/post_installation_configuration/cluster-tasks#creating-an-infra-node_post-install-cluster-tasks)\n- [Use a machine config pool for infrastructure nodes](/post_installation_configuration/cluster-tasks#creating-infra-machines_post-install-cluster-tasks)\n- [Creating machine sets for different clouds](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets-clouds)\n- [Schedule infrastructure workloads using node selectors](/post_installation_configuration/cluster-tasks#moving-resources-to-infrastructure-machinesets_post-install-cluster-tasks)\n\n**Additional resources**\n\n- [Project node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#project-node-selectors_nodes-scheduler-node-selectors)\n\n**Additional resources**\n\n- [Node configuration management with machine config pools](/architecture/control-plane#architecture-machine-config-pools_control-plane)\n\n**Additional resources**\n\n- [Controlling pod placement using the scheduler](/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)\n\n**Additional resources**\n\n- [Applying autoscaling to an OpenShift Container Platform cluster](/machine_management/applying-autoscaling#applying-autoscaling)\n\n**Additional resources**\n\n- [Node scaling for etcd](/etcd/etcd-performance#etcd-node-scaling_etcd-performance)\n\n**Additional resources**\n\n- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)\n- [Installing a user-provisioned cluster on bare metal](/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)\n- [Replacing a bare-metal control plane node](/installing/overview/index#replacing-a-bare-metal-control-plane-node_bare-metal-expanding)\n\n**Additional resources**\n\n- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)\n- [Unhealthy Pod Eviction Policy in the Kubernetes documentation](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)\n","mdUrl":"/post_installation_configuration/cluster-tasks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation cluster tasks {#post-install-cluster-tasks}\n\nAfter installing OpenShift Container Platform, you can configure, scale, and maintain your cluster to meet operational requirements, including managing nodes and infrastructure workloads, enabling features, applying autoscaling, and maintaining etcd.\n\nAfter installing OpenShift Container Platform, you can further expand and customize your cluster to your requirements.\n\n## Available cluster customizations {#available_cluster_customizations}\n\nYou complete most of the cluster configuration and customization after you deploy your OpenShift Container Platform cluster. Several *configuration resources* are available.\n\n> [!NOTE]\n> If you install your cluster on {{ ibm_z_name }}, not all features and functions are available.\n\nYou modify the configuration resources to configure the major features of the cluster, such as the image registry, networking configuration, image build behavior, and the identity provider.\n\nFor current documentation of the settings that you control by using these resources, use the `oc explain` command, for example `oc explain builds --api-version=config.openshift.io/v1`\n\n**Additional resources**\n\n- [Adding worker nodes to an on-premise cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso)\n\n**Additional resources**\n\n- [Adding worker nodes using the web console](/openshift-docs-markdown/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-web-console_managing-bare-metal-hosts)\n- [Adding worker nodes using YAML in the web console](/openshift-docs-markdown/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-yaml_managing-bare-metal-hosts)\n- [Manually adding a worker node to an installer-provisioned infrastructure cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#preparing-the-bare-metal-node_bare-metal-expanding)\n\n**Additional resources**\n\n- [Adding RHCOS worker nodes to a user-provisioned infrastructure cluster](/openshift-docs-markdown/post_installation_configuration/node-tasks#post-install-config-adding-fcos-compute)\n\n**Additional resources**\n\n- [Adding worker nodes using {{ cluster_manager }}](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-sno-clusters_add-workers)\n- [Adding worker nodes using the Assisted Installer REST API](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#adding-worker-nodes-using-the-assisted-installer-api)\n- [Manually adding worker nodes to a {{ sno }} cluster](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers)\n\n**Additional resources**\n\n- [Creating your cluster with the console](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview#on-prem-creating-your-cluster-with-the-console)\n\n**Additional resources**\n\n- [Control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)\n- [Getting started with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-getting-started)\n\n**Additional resources**\n\n- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n- [Use a machine set to create an infrastructure node](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#machineset-creating_post-install-cluster-tasks)\n- [Assign a label to infrastructure nodes](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#creating-an-infra-node_post-install-cluster-tasks)\n- [Use a machine config pool for infrastructure nodes](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#creating-infra-machines_post-install-cluster-tasks)\n- [Creating machine sets for different clouds](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets-clouds)\n- [Schedule infrastructure workloads using node selectors](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#moving-resources-to-infrastructure-machinesets_post-install-cluster-tasks)\n\n**Additional resources**\n\n- [Project node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#project-node-selectors_nodes-scheduler-node-selectors)\n\n**Additional resources**\n\n- [Node configuration management with machine config pools](/openshift-docs-markdown/architecture/control-plane#architecture-machine-config-pools_control-plane)\n\n**Additional resources**\n\n- [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)\n\n**Additional resources**\n\n- [Applying autoscaling to an OpenShift Container Platform cluster](/openshift-docs-markdown/machine_management/applying-autoscaling#applying-autoscaling)\n\n**Additional resources**\n\n- [Node scaling for etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-node-scaling_etcd-performance)\n\n**Additional resources**\n\n- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)\n- [Installing a user-provisioned cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)\n- [Replacing a bare-metal control plane node](/openshift-docs-markdown/installing/overview/index#replacing-a-bare-metal-control-plane-node_bare-metal-expanding)\n\n**Additional resources**\n\n- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)\n- [Unhealthy Pod Eviction Policy in the Kubernetes documentation](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/cluster-tasks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -114,20 +114,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/post-install-adding-worker-nodes.md"></p>
       <p class="/modules/post-install-adding-nodes-on-prem.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso">Adding worker nodes to an on-premise cluster</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso">Adding worker nodes to an on-premise cluster</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-web-console_managing-bare-metal-hosts">Adding worker nodes using the web console</a></li>
-      <li><a href="/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-yaml_managing-bare-metal-hosts">Adding worker nodes using YAML in the web console</a></li>
-      <li><a href="/installing/installing_bare_metal/bare-metal-expanding-the-cluster#preparing-the-bare-metal-node_bare-metal-expanding">Manually adding a worker node to an installer-provisioned infrastructure cluster</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-web-console_managing-bare-metal-hosts">Adding worker nodes using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-yaml_managing-bare-metal-hosts">Adding worker nodes using YAML in the web console</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#preparing-the-bare-metal-node_bare-metal-expanding">Manually adding a worker node to an installer-provisioned infrastructure cluster</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/post_installation_configuration/node-tasks#post-install-config-adding-fcos-compute">Adding RHCOS worker nodes to a user-provisioned infrastructure cluster</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/post_installation_configuration/node-tasks#post-install-config-adding-fcos-compute">Adding RHCOS worker nodes to a user-provisioned infrastructure cluster</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-sno-clusters_add-workers">Adding worker nodes using {"{"}{"{"} cluster_manager {"}"}{"}"}</a></li>
-      <li><a href="/nodes/nodes/nodes-sno-worker-nodes#adding-worker-nodes-using-the-assisted-installer-api">Adding worker nodes using the Assisted Installer REST API</a></li>
-      <li><a href="/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers">Manually adding worker nodes to a {"{"}{"{"} sno {"}"}{"}"} cluster</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-sno-clusters_add-workers">Adding worker nodes using {"{"}{"{"} cluster_manager {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#adding-worker-nodes-using-the-assisted-installer-api">Adding worker nodes using the Assisted Installer REST API</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers">Manually adding worker nodes to a {"{"}{"{"} sno {"}"}{"}"} cluster</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview#on-prem-creating-your-cluster-with-the-console">Creating your cluster with the console</a></li></ul>
@@ -142,27 +142,27 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/post-install-cpms-setup.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/machine_management/control_plane_machine_management/cpmso-about#cpmso-about">Control plane machine sets</a></li>
-      <li><a href="/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-getting-started">Getting started with control plane machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about">Control plane machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-getting-started">Getting started with control plane machine sets</a></li>
       </ul>
       <p class="/modules/post-install-creating-infrastructure-machinesets-production.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets">Creating infrastructure machine sets</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#machineset-creating_post-install-cluster-tasks">Use a machine set to create an infrastructure node</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#creating-an-infra-node_post-install-cluster-tasks">Assign a label to infrastructure nodes</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#creating-infra-machines_post-install-cluster-tasks">Use a machine config pool for infrastructure nodes</a></li>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets-clouds">Creating machine sets for different clouds</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#moving-resources-to-infrastructure-machinesets_post-install-cluster-tasks">Schedule infrastructure workloads using node selectors</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets">Creating infrastructure machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#machineset-creating_post-install-cluster-tasks">Use a machine set to create an infrastructure node</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#creating-an-infra-node_post-install-cluster-tasks">Assign a label to infrastructure nodes</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#creating-infra-machines_post-install-cluster-tasks">Use a machine config pool for infrastructure nodes</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets-clouds">Creating machine sets for different clouds</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#moving-resources-to-infrastructure-machinesets_post-install-cluster-tasks">Schedule infrastructure workloads using node selectors</a></li>
       </ul>
       <p class="/modules/creating-an-infra-node.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/nodes/scheduling/nodes-scheduler-node-selectors#project-node-selectors_nodes-scheduler-node-selectors">Project node selectors</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#project-node-selectors_nodes-scheduler-node-selectors">Project node selectors</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/architecture/control-plane#architecture-machine-config-pools_control-plane">Node configuration management with machine config pools</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/architecture/control-plane#architecture-machine-config-pools_control-plane">Node configuration management with machine config pools</a></li></ul>
       <p class="/modules/binding-infra-node-workloads-using-taints-tolerations.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about">Controlling pod placement using the scheduler</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about">Controlling pod placement using the scheduler</a></li></ul>
       <p class="/modules/infrastructure-moving-router.md"></p>
       <p class="/modules/infrastructure-moving-registry.md"></p>
       <p class="/modules/infrastructure-moving-monitoring.md"></p>
@@ -170,13 +170,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/deploying-resource.md /modules/cluster-autoscaler-cr.md"></p>
       <p class="/modules/post-install-applying-autoscaling.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_management/applying-autoscaling#applying-autoscaling">Applying autoscaling to an OpenShift Container Platform cluster</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_management/applying-autoscaling#applying-autoscaling">Applying autoscaling to an OpenShift Container Platform cluster</a></li></ul>
       <p class="/modules/nodes-cluster-enabling-features-about.md"></p>
       <p class="/modules/nodes-cluster-enabling-features-console.md"></p>
       <p class="/modules/nodes-cluster-enabling-features-cli.md"></p>
       <p class="/modules/post-install-etcd-tasks.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/etcd/etcd-performance#etcd-node-scaling_etcd-performance">Node scaling for etcd</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/etcd/etcd-performance#etcd-node-scaling_etcd-performance">Node scaling for etcd</a></li></ul>
       <p class="/modules/etcd-encryption-types.md"></p>
       <p class="/modules/enabling-etcd-encryption.md"></p>
       <p class="/modules/disabling-etcd-encryption.md"></p>
@@ -187,9 +187,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/dr-restoring-cluster-state.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
-      <li><a href="/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal">Installing a user-provisioned cluster on bare metal</a></li>
-      <li><a href="/installing/overview/index#replacing-a-bare-metal-control-plane-node_bare-metal-expanding">Replacing a bare-metal control plane node</a></li>
+      <li><a href="/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal">Installing a user-provisioned cluster on bare metal</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/index#replacing-a-bare-metal-control-plane-node_bare-metal-expanding">Replacing a bare-metal control plane node</a></li>
       </ul>
       <p class="/modules/post-install-pod-disruption-budgets.md"></p>
       <p class="/modules/nodes-pods-pod-disruption-about.md"></p>
@@ -197,7 +197,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/pod-disruption-eviction-policy.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features">Enabling features using feature gates</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features">Enabling features using feature gates</a></li>
       <li><a href="https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy">Unhealthy Pod Eviction Policy in the Kubernetes documentation</a></li>
       </ul>
     </article>

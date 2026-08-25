@@ -51,5 +51,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BuildLog`](/rest_api/workloads_apis/buildlog-build-openshift-io-v1#buildlog-build-openshift-io-v1) schema |
+| 200 - OK | [`BuildLog`](/openshift-docs-markdown/rest_api/workloads_apis/buildlog-build-openshift-io-v1#buildlog-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

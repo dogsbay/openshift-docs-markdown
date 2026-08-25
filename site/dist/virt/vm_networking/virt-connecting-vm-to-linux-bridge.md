@@ -17,5 +17,5 @@ To create a Linux bridge network and attach a VM to the network, perform the fol
 
 ## Additional resources {#additional-resources_virt-connecting-vm-to-linux-bridge}
 
-- [Configuring IP addresses for virtual machines](/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)
+- [Configuring IP addresses for virtual machines](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)
 - [Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?](https://access.redhat.com/solutions/67546)

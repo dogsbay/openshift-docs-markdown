@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NetworkAttachmentDefinition spec defines the desired state of a network attachment |
 
 ### .spec {#_spec}
@@ -70,7 +70,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NetworkAttachmentDefinitionList`](/rest_api/objects/index#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
+| 200 - OK | [`NetworkAttachmentDefinitionList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions}
@@ -89,7 +89,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -106,7 +106,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NetworkAttachmentDefinitionList`](/rest_api/objects/index#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
+| 200 - OK | [`NetworkAttachmentDefinitionList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -130,15 +130,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |  |
+| `body` | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
-| 201 - Created | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
-| 202 - Accepted | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 200 - OK | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 201 - Created | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 202 - Accepted | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions/{{ name }} {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions_name}
@@ -169,8 +169,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -187,7 +187,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 200 - OK | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -211,7 +211,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 200 - OK | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -235,12 +235,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |  |
+| `body` | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
-| 201 - Created | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 200 - OK | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 201 - Created | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
 | 401 - Unauthorized | Empty |

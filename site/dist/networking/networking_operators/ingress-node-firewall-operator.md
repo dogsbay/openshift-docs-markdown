@@ -8,4 +8,4 @@ The Ingress Node Firewall Operator provides a stateless, eBPF-based firewall for
 
 ## Additional resources {#additional-resources_ingress-node-firewall-operator}
 
-- [About the eBPF Manager Operator](/networking/networking_operators/ebpf_manager/ebpf-manager-operator-about#bpfman-operator-about)
+- [About the eBPF Manager Operator](/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-about#bpfman-operator-about)

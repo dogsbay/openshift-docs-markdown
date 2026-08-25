@@ -8,4 +8,4 @@ You can change the CPU or memory resource requests and limits assigned to a cont
 
 ## Additional resources {#_additional_resources}
 
-- [Understanding resource requests and limits](/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)
+- [Understanding resource requests and limits](/openshift-docs-markdown/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)

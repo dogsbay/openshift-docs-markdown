@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Content-Signal: search=yes, ai-input=yes, ai-train=no
+Sitemap: https://dogsbay.github.io/openshift-docs-markdown/sitemap-index.xml
+Llms-Txt: https://dogsbay.github.io/openshift-docs-markdown/llms.txt

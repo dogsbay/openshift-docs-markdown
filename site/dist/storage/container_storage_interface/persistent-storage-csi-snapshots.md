@@ -8,8 +8,8 @@ Container Storage Interface (CSI) snapshots capture point-in-time copies for dat
 
 ## Additional resources {#additional-resources_persistent-storage-csi-snapshots}
 
-- [Persistent volumes](/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)
+- [Persistent volumes](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)
 - [Kubernetes CSI Developer Documentation](https://kubernetes-csi.github.io/docs/drivers.html)
-- [Dynamically creating a volume snapshot](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-create_persistent-storage-csi-snapshots)
-- [Statically creating a volume snapshot](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-create-static_persistent-storage-csi-snapshots)
+- [Dynamically creating a volume snapshot](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-create_persistent-storage-csi-snapshots)
+- [Statically creating a volume snapshot](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-create-static_persistent-storage-csi-snapshots)
 - [Best practices for using VMware snapshots in the vSphere environment](https://kb.vmware.com/s/article/1025279)

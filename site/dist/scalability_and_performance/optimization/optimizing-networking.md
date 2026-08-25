@@ -20,14 +20,14 @@ For environments where maximum throughput and CPU efficiency are critical, you c
 
 ## Additional resources {#additional-resources_optimizing-networking}
 
-- [OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
+- [OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 
 **Additional resources**
 
-- [Changing cluster network MTU](/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
+- [Changing cluster network MTU](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
 
 ## Additional resources {#optimizing-networking-additional-resources}
 
-- [Specifying advanced network configuration](/installing/installing_aws/ipi/installing-aws-customizations#modifying-nwoperator-config-startup_installing-aws-customizations)
-- [Cluster Network Operator configuration](/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
-- [Improving cluster stability in high latency environments using worker latency profiles](/scalability_and_performance/scaling-worker-latency-profiles#scaling-worker-latency-profiles)
+- [Specifying advanced network configuration](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#modifying-nwoperator-config-startup_installing-aws-customizations)
+- [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
+- [Improving cluster stability in high latency environments using worker latency profiles](/openshift-docs-markdown/scalability_and_performance/scaling-worker-latency-profiles#scaling-worker-latency-profiles)

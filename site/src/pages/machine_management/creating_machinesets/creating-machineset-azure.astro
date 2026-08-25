@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"creating-machineset-azure","text":"Creating a compute machine set on {{ azure_short }}"}];
 const nav = navData;
-const currentPath = "/machine_management/creating_machinesets/creating-machineset-azure";
+const currentPath = "/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["machine_management","machine_management/creating_machinesets"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a compute machine set on {{ azure_short }} {#creating-machineset-azure}\n\nYou can create a different compute machine set to serve a specific purpose in your OpenShift Container Platform cluster on {{ azure_first }}. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines.\n\n**Additional resources**\n\n- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n\n**Additional resources**\n\n- [Cluster autoscaler resource definition](/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)\n\n**Additional resources**\n\n- [Ultra disks ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)\n- [Machine sets that deploy machines on ultra disks using CSI PVCs](/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)\n- [Machine sets that deploy machines on ultra disks using in-tree PVCs](/storage/persistent_storage/persistent-storage-azure#machineset-azure-ultra-disk_persistent-storage-azure)\n\n**Additional resources**\n\n- [Enabling Accelerated Networking during installation](/installing/installing_azure/ipi/installing-azure-customizations#machineset-azure-enabling-accelerated-networking-new-install_installing-azure-customizations)\n\n**Additional resources**\n\n- [Manually scaling a compute machine set](/machine_management/manually-scaling-machineset#manually-scaling-machineset)\n","mdUrl":"/machine_management/creating_machinesets/creating-machineset-azure.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a compute machine set on {{ azure_short }} {#creating-machineset-azure}\n\nYou can create a different compute machine set to serve a specific purpose in your OpenShift Container Platform cluster on {{ azure_first }}. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines.\n\n**Additional resources**\n\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n\n**Additional resources**\n\n- [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)\n\n**Additional resources**\n\n- [Ultra disks ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)\n- [Machine sets that deploy machines on ultra disks using CSI PVCs](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)\n- [Machine sets that deploy machines on ultra disks using in-tree PVCs](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure#machineset-azure-ultra-disk_persistent-storage-azure)\n\n**Additional resources**\n\n- [Enabling Accelerated Networking during installation](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#machineset-azure-enabling-accelerated-networking-new-install_installing-azure-customizations)\n\n**Additional resources**\n\n- [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#manually-scaling-machineset)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,10 +96,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/snippets/machine-user-provisioned-limitations.md"></p>
       <p class="/modules/machineset-yaml-azure.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual">Manually updating the boot image</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual">Manually updating the boot image</a></li></ul>
       <p class="/modules/machineset-label-gpu-autoscaler.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling">Cluster autoscaler resource definition</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling">Cluster autoscaler resource definition</a></li></ul>
       <p class="/modules/machineset-azure-boot-diagnostics.md"></p>
       <p class="/modules/machineset-non-guaranteed-instance.md"></p>
       <p class="/modules/machineset-creating-non-guaranteed-instances.md"></p>
@@ -109,8 +109,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks">Ultra disks ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure">Machine sets that deploy machines on ultra disks using CSI PVCs</a></li>
-      <li><a href="/storage/persistent_storage/persistent-storage-azure#machineset-azure-ultra-disk_persistent-storage-azure">Machine sets that deploy machines on ultra disks using in-tree PVCs</a></li>
+      <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure">Machine sets that deploy machines on ultra disks using CSI PVCs</a></li>
+      <li><a href="/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure#machineset-azure-ultra-disk_persistent-storage-azure">Machine sets that deploy machines on ultra disks using in-tree PVCs</a></li>
       </ul>
       <p class="/modules/machineset-troubleshooting-azure-ultra-disk.md"></p>
       <p class="/modules/machineset-customer-managed-encryption-azure.md"></p>
@@ -119,11 +119,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/machineset-azure-accelerated-networking.md"></p>
       <p class="/modules/machineset-azure-enabling-accelerated-networking-existing.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_azure/ipi/installing-azure-customizations#machineset-azure-enabling-accelerated-networking-new-install_installing-azure-customizations">Enabling Accelerated Networking during installation</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#machineset-azure-enabling-accelerated-networking-new-install_installing-azure-customizations">Enabling Accelerated Networking during installation</a></li></ul>
       <p class="/modules/nvidia-gpu-azure-adding-a-gpu-node.md"></p>
       <p class="/modules/nvidia-gpu-aws-deploying-the-node-feature-discovery-operator.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_management/manually-scaling-machineset#manually-scaling-machineset">Manually scaling a compute machine set</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_management/manually-scaling-machineset#manually-scaling-machineset">Manually scaling a compute machine set</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

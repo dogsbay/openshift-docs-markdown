@@ -8,5 +8,5 @@ After you install a cluster on {{ ibm_cloud_name }} in a disconnected environmen
 
 ## Additional resources {#additional-resources_installing-ibm-cloud-restricted-postinstallation}
 
-- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

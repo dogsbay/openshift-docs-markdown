@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"tagging-images","text":"Tagging images"}];
 const nav = navData;
-const currentPath = "/openshift_images/managing_images/tagging-images";
+const currentPath = "/openshift-docs-markdown/openshift_images/managing_images/tagging-images";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["openshift_images","openshift_images/managing_images"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tagging images {#tagging-images}\n\nImage tags identify specific versions of container images in image streams. You can use image tags to organize images and control which versions your builds and deployments use.\n","mdUrl":"/openshift_images/managing_images/tagging-images.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tagging images {#tagging-images}\n\nImage tags identify specific versions of container images in image streams. You can use image tags to organize images and control which versions your builds and deployments use.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/managing_images/tagging-images.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

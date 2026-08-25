@@ -18,4 +18,4 @@ The route-based deployment strategies do not scale the number of pods in the ser
 
 ## Additional resources {#additional-resources_route-based-deployment-strategies}
 
-- [Route-specific annotations](/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-route-specific-annotations)
+- [Route-specific annotations](/openshift-docs-markdown/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-route-specific-annotations)

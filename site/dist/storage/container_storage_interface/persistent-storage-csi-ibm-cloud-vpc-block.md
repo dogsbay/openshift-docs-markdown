@@ -8,11 +8,11 @@ You can provision and manage {{ ibm_cloud_name }} Virtual Private Cloud (VPC) Bl
 
 **Additional resources**
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-- [Managing the default storage class](/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
 
 **Additional resources**
 
-- [User-managed encryption for {{ ibm_cloud_title }}](/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud#user-managed-encryption-ibm-cloud)
-- [Preparing to install on {{ ibm_cloud_title }}](/installing/installing_ibm_cloud/preparing-to-install-on-ibm-cloud#prerequisites_preparing-to-install-on-ibm-cloud)
+- [User-managed encryption for {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud#user-managed-encryption-ibm-cloud)
+- [Preparing to install on {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/preparing-to-install-on-ibm-cloud#prerequisites_preparing-to-install-on-ibm-cloud)

@@ -16,11 +16,11 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 
 **Additional resources**
 
-- [MTU value selection](/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)
-- [Changing the MTU for the cluster network](/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)
-- [Understanding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
-- [Storage classes](/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage)
-- [Ingress Controller sharding](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller)
+- [MTU value selection](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)
+- [Changing the MTU for the cluster network](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)
+- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
+- [Storage classes](/openshift-docs-markdown/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage)
+- [Ingress Controller sharding](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller)
 - [How {{ aws_short }} Wavelength works ({{ aws_short }} documentation)](https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html)
 
 **Additional resources**
@@ -29,9 +29,9 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 
 **Additional resources**
 
-- [Creating the installation configuration file](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-generate-aws-user-infra-install-config_installing-aws-wavelength-zone)
-- [Cluster limitations in AWS Wavelength Zones](/installing/installing_aws/ipi/installing-aws-wavelength-zone#cluster-limitations-aws-zone_installing-aws-wavelength-zone)
-- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)
+- [Creating the installation configuration file](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-generate-aws-user-infra-install-config_installing-aws-wavelength-zone)
+- [Cluster limitations in AWS Wavelength Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#cluster-limitations-aws-zone_installing-aws-wavelength-zone)
+- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)
 
 **Additional resources**
 
@@ -41,13 +41,13 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 
 - [{{ aws_short }} CloudFormation console](https://console.aws.amazon.com/cloudformation)
 - [Configuration and credential file settings in the {{ aws_short }} CLI ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)
+- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)
 
 **Additional resources**
 
-- [Accessing the web console](/web_console/web-console#web-console)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
 ## Additional resources {#additional-resources_installing-aws-wavelength-zone}
 
-- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).
-- If necessary, you can [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).
+- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).
+- If necessary, you can [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).

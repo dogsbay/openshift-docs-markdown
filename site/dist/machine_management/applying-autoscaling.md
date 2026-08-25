@@ -11,4 +11,4 @@ Apply autoscaling to an OpenShift Container Platform cluster to automatically ad
 
 ## Additional resources {#_additional_resources}
 
-- [Including pod priority in pod scheduling decisions in OpenShift Container Platform](/nodes/pods/nodes-pods-priority#nodes-pods-priority)
+- [Including pod priority in pod scheduling decisions in OpenShift Container Platform](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#nodes-pods-priority)

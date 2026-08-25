@@ -8,5 +8,5 @@ title: Disconnected environment support in {{ olmv1 }}
 
 **Additional resources**
 
-- [Mirroring images for a disconnected installation using the oc-mirror plugin v1](/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)
-- [Mirroring images for a disconnected installation using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
+- [Mirroring images for a disconnected installation using the oc-mirror plugin v1](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)
+- [Mirroring images for a disconnected installation using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)

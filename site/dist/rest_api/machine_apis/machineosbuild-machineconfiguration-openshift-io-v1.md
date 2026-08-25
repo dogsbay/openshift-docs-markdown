@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the configuration of the machine os build. It is immutable once set. |
 | `status` | `object` | status describes the last observed state of this machine os build. |
 
@@ -246,7 +246,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -263,7 +263,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuildList`](/rest_api/objects/index#io-openshift-machineconfiguration-v1-MachineOSBuildList) schema |
+| 200 - OK | [`MachineOSBuildList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-machineconfiguration-v1-MachineOSBuildList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -287,15 +287,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |  |
+| `body` | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
-| 201 - Created | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
-| 202 - Accepted | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 200 - OK | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 201 - Created | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 202 - Accepted | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/machineconfiguration.openshift.io/v1/machineosbuilds/{{ name }} {#_apismachineconfigurationopenshiftiov1machineosbuilds_name}
@@ -326,8 +326,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -344,7 +344,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 200 - OK | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -368,7 +368,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 200 - OK | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -392,14 +392,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |  |
+| `body` | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
-| 201 - Created | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 200 - OK | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 201 - Created | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/machineconfiguration.openshift.io/v1/machineosbuilds/{{ name }}/status {#_apismachineconfigurationopenshiftiov1machineosbuilds_name_status}
@@ -424,7 +424,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 200 - OK | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -448,7 +448,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 200 - OK | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -472,12 +472,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |  |
+| `body` | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
-| 201 - Created | [`MachineOSBuild`](/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 200 - OK | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
+| 201 - Created | [`MachineOSBuild`](/openshift-docs-markdown/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

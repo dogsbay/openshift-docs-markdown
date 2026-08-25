@@ -12,4 +12,4 @@ Run `oc adm -h` to list all administrator commands or run `oc <command> --help` 
 
 ## Additional resources {#additional-resources_cli-administrator-commands}
 
-- [OpenShift CLI developer command reference](/cli_reference/openshift_cli/developer-cli-commands#cli-developer-commands)
+- [OpenShift CLI developer command reference](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#cli-developer-commands)

@@ -8,4 +8,4 @@ By backing up and restoring etcd on a hosted cluster, you can fix failures, such
 
 **Additional resources**
 
-- [Configuring Amazon Web Services](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#migration-configuring-aws-s3_installing-oadp-aws)
+- [Configuring Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#migration-configuring-aws-s3_installing-oadp-aws)

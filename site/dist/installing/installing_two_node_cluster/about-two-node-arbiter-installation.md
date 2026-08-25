@@ -17,7 +17,7 @@ After installation, you can add additional worker nodes to a cluster with two co
 
 **Additional resources**
 
-- [Network connectivity requirements](/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic)
-- [Configuring a local arbiter node with installer-provisioned infrastructure](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow)
-- [About a local arbiter node](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)
-- [Configuring a local arbiter node with user-provisioned infrastructure](/installing/installing_bare_metal/upi/installing-bare-metal#upi-install-config-local-arbiter-node_installing-bare-metal)
+- [Network connectivity requirements](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic)
+- [Configuring a local arbiter node with installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow)
+- [About a local arbiter node](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)
+- [Configuring a local arbiter node with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#upi-install-config-local-arbiter-node_installing-bare-metal)

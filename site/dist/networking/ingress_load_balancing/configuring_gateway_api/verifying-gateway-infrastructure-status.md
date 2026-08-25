@@ -14,4 +14,4 @@ To verify that your gateway infrastructure is functioning correctly, complete th
 
 ## Additional resources {#verifying-gateway-infrastructure-status-additional-resources}
 
-- [Installing a cluster on {{ gcp_short }} with customizations](/installing/installing_gcp/installing-gcp-customizations#installation-gcp-provisioning-dns-records_installing-gcp-customizations)
+- [Installing a cluster on {{ gcp_short }} with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-provisioning-dns-records_installing-gcp-customizations)

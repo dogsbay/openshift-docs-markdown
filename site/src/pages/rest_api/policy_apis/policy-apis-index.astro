@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"policy-apis","text":"Policy APIs"},{"depth":2,"slug":"_eviction_policyv1","text":"Eviction [policy/v1]"},{"depth":2,"slug":"_poddisruptionbudget_policyv1","text":"PodDisruptionBudget [policy/v1]"}];
 const nav = navData;
-const currentPath = "/rest_api/policy_apis/policy-apis-index";
+const currentPath = "/openshift-docs-markdown/rest_api/policy_apis/policy-apis-index";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["rest_api","rest_api/policy_apis"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Policy APIs {#policy-apis}\n\n## Eviction \\[policy/v1\\] {#_eviction_policyv1}\n\nDescription\n:   Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to .../pods/<pod name>/evictions.\n\nType\n:   ```\n    `object`\n    ```\n\n## PodDisruptionBudget \\[policy/v1\\] {#_poddisruptionbudget_policyv1}\n\nDescription\n:   PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"/rest_api/policy_apis/policy-apis-index.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Policy APIs {#policy-apis}\n\n## Eviction \\[policy/v1\\] {#_eviction_policyv1}\n\nDescription\n:   Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to .../pods/<pod name>/evictions.\n\nType\n:   ```\n    `object`\n    ```\n\n## PodDisruptionBudget \\[policy/v1\\] {#_poddisruptionbudget_policyv1}\n\nDescription\n:   PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/policy_apis/policy-apis-index.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

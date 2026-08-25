@@ -8,4 +8,4 @@ You can configure live migration settings to ensure that the migration processes
 
 ## Additional resources {#additional-resources_virt-configuring-live-migration}
 
-- [Configuring a dedicated network for live migration](/virt/vm_networking/virt-dedicated-network-live-migration#virt-configuring-secondary-network-vm-live-migration_virt-dedicated-network-live-migration)
+- [Configuring a dedicated network for live migration](/openshift-docs-markdown/virt/vm_networking/virt-dedicated-network-live-migration#virt-configuring-secondary-network-vm-live-migration_virt-dedicated-network-live-migration)

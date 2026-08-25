@@ -21,7 +21,7 @@ To configure an OVN-Kubernetes layer 2 secondary network and attach a VM to that
 
 ## Additional resources {#additional-resources_virt-connecting-vm-to-ovn-secondary-network}
 
-- [Creating secondary networks on OVN-Kubernetes](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-ovnk#configuration-ovnk-additional-networks_configuring-additional-network-ovnk)
-- [About the Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
-- [Multi-network policy API](/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)
-- [Creating primary networks by using a network attachment definition](/networking/multiple_networks/primary_networks/about-primary-nwt-nad#about-primary-nwt-nad)
+- [Creating secondary networks on OVN-Kubernetes](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-ovnk#configuration-ovnk-additional-networks_configuring-additional-network-ovnk)
+- [About the Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
+- [Multi-network policy API](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)
+- [Creating primary networks by using a network attachment definition](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-primary-nwt-nad#about-primary-nwt-nad)

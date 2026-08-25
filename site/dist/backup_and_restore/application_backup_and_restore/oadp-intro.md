@@ -27,9 +27,9 @@ However, {{ oadp_short }} does not serve as a disaster recovery solution for `et
 
 **Additional resources**
 
-- [Backup](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
-- [Restore](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)
-- [Schedule](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc)
-- [BackupStorageLocation](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-about-backup-snapshot-locations_installing-oadp-aws)
-- [VolumeSnapshotLocation](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc)
-- [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
+- [Backup](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
+- [Restore](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)
+- [Schedule](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-scheduling-backups-doc#oadp-scheduling-backups-doc)
+- [BackupStorageLocation](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-about-backup-snapshot-locations_installing-oadp-aws)
+- [VolumeSnapshotLocation](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc#oadp-backing-up-pvs-csi-doc)
+- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)

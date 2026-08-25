@@ -32,9 +32,9 @@ OVN-Kubernetes runs a daemon on each node. There are daemon sets for the databas
 **Additional resources**
 
 - [Open Virtual Network website](https://www.ovn.org/en/)
-- [Configuring an egress firewall for a project](/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)
-- [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)
-- [Logging network policy events](/networking/network_security/logging-network-security#logging-network-security)
-- [Enabling multicast for a project](/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)
-- [Configuring IPsec encryption](/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
-- \[Network [operator.openshift.io/v1\]](/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)
+- [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)
+- [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)
+- [Logging network policy events](/openshift-docs-markdown/networking/network_security/logging-network-security#logging-network-security)
+- [Enabling multicast for a project](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)
+- [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
+- \[Network [operator.openshift.io/v1\]](/openshift-docs-markdown/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)

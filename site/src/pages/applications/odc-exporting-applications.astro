@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"odc-exporting-applications","text":"Exporting applications"},{"depth":2,"slug":"prerequisites_odc-exporting-applications","text":"Prerequisites"},{"depth":2,"slug":"odc-exporting-applications-procedure","text":"Procedure"}];
 const nav = navData;
-const currentPath = "/applications/odc-exporting-applications";
+const currentPath = "/openshift-docs-markdown/applications/odc-exporting-applications";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["applications"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Exporting applications {#odc-exporting-applications}\n\nAs a developer, you can export your application in the ZIP file format. Based on your needs, import the exported application to another project in the same cluster or a different cluster by using the **Import YAML** option in the **+Add** view. Exporting your application helps you to reuse your application resources and saves your time.\n\n## Prerequisites {#prerequisites_odc-exporting-applications}\n\n- You have installed the gitops-primer Operator from the software catalog.\n\n  > [!NOTE]\n  > The **Export application** option is disabled in the **Topology** view even after installing the gitops-primer Operator.\n- You have created an application in the **Topology** view to enable **Export application**.\n\n## Procedure {#odc-exporting-applications-procedure}\n\n1. In the developer perspective, perform one of the following steps:\n\n   1. Navigate to the **+Add** view and click **Export application** in the **Application portability** tile.\n   2. Navigate to the **Topology** view and click **Export application**.\n2. Click **OK** in the **Export Application** dialog box. A notification opens to confirm that the export of resources from your project has started.\n3. Optional steps that you might need to perform in the following scenarios:\n\n   - If you have started exporting an incorrect application, click  **Export application** -> **Cancel Export**.\n   - If your export is already in progress and you want to start a fresh export, click  **Export application** -> **Restart Export**.\n   - If you want to view logs associated with exporting an application, click  **Export application** and the **View Logs** link. ![export-application-dialog-box](/_assets/images/export-application-dialog-box.png)\n4. After a successful export, click **Download** in the dialog box to download application resources in ZIP format onto your machine.\n","mdUrl":"/applications/odc-exporting-applications.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Exporting applications {#odc-exporting-applications}\n\nAs a developer, you can export your application in the ZIP file format. Based on your needs, import the exported application to another project in the same cluster or a different cluster by using the **Import YAML** option in the **+Add** view. Exporting your application helps you to reuse your application resources and saves your time.\n\n## Prerequisites {#prerequisites_odc-exporting-applications}\n\n- You have installed the gitops-primer Operator from the software catalog.\n\n  > [!NOTE]\n  > The **Export application** option is disabled in the **Topology** view even after installing the gitops-primer Operator.\n- You have created an application in the **Topology** view to enable **Export application**.\n\n## Procedure {#odc-exporting-applications-procedure}\n\n1. In the developer perspective, perform one of the following steps:\n\n   1. Navigate to the **+Add** view and click **Export application** in the **Application portability** tile.\n   2. Navigate to the **Topology** view and click **Export application**.\n2. Click **OK** in the **Export Application** dialog box. A notification opens to confirm that the export of resources from your project has started.\n3. Optional steps that you might need to perform in the following scenarios:\n\n   - If you have started exporting an incorrect application, click  **Export application** -> **Cancel Export**.\n   - If your export is already in progress and you want to start a fresh export, click  **Export application** -> **Restart Export**.\n   - If you want to view logs associated with exporting an application, click  **Export application** and the **View Logs** link. ![export-application-dialog-box](/openshift-docs-markdown/_assets/images/export-application-dialog-box.png)\n4. After a successful export, click **Download** in the dialog box to download application resources in ZIP format onto your machine.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/odc-exporting-applications.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -124,7 +124,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li>If you have started exporting an incorrect application, click  <strong>Export application</strong> -&gt; <strong>Cancel Export</strong>.</li>
       <li>If your export is already in progress and you want to start a fresh export, click  <strong>Export application</strong> -&gt; <strong>Restart Export</strong>.</li>
-      <li>If you want to view logs associated with exporting an application, click  <strong>Export application</strong> and the <strong>View Logs</strong> link. <img src="/_assets/images/export-application-dialog-box.png" alt="export-application-dialog-box" loading="lazy" /></li>
+      <li>If you want to view logs associated with exporting an application, click  <strong>Export application</strong> and the <strong>View Logs</strong> link. <img src="/openshift-docs-markdown/_assets/images/export-application-dialog-box.png" alt="export-application-dialog-box" loading="lazy" /></li>
       </ul>
       </li>
       <li>After a successful export, click <strong>Download</strong> in the dialog box to download application resources in ZIP format onto your machine.</li>

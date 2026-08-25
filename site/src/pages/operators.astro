@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"operators-overview","text":"Operators overview"}];
 const nav = navData;
-const currentPath = "/operators";
+const currentPath = "/openshift-docs-markdown/operators";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = null;
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Operators overview {#operators-overview}\n\nOperators are the foundational control plane extensions of OpenShift Container Platform. Operators are the preferred method to package, deploy, and manage services on the control plane, and to support your applications.\n\nOperators integrate with Kubernetes APIs and CLI tools such as `kubectl` and the {{ oc_first }}. They provide the means of monitoring applications, performing health checks, managing over-the-air (OTA) updates, and ensuring that applications remain in your specified state.\n\nOperators are designed specifically for Kubernetes-native applications to implement and automate common Day 1 operations, such as installation and configuration. Operators can also automate Day 2 operations, such as autoscaling up or down and creating backups. All of these activities are directed by a piece of software running on your cluster.\n\nWhile both follow similar Operator concepts and goals, Operators in OpenShift Container Platform are managed by two different systems, depending on their purpose:\n\nCluster Operators\n:   Managed by the Cluster Version Operator (CVO) and installed by default to perform cluster functions.\n\nOptional add-on Operators\n:   Managed by Operator Lifecycle Manager (OLM) and can be made accessible for users to run in their applications. Also known as *OLM-based Operators*.\n\n**Additional resources**\n\n- [Manage custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs)\n- [Machine deletion lifecycle hook examples for Operator developers](/machine_management/deleting-machine#machine-lifecycle-hook-deletion-uses_deleting-machine)\n- [Install and subscribe an Operator to your namespace](/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)\n- [Allow non-cluster administrators to install Operators](/operators/admin/olm-creating-policy#olm-creating-policy)\n- [Install an Operator from the software catalog](/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n- [Cluster Operators reference](/operators/operator-reference#operator-reference)\n- [Create an application from an installed Operator through the web console](/operators/user/olm-creating-apps-from-installed-operators#olm-creating-apps-from-installed-operators)\n- [View Operator status](/operators/admin/olm-status#olm-status)\n- [Manage Operator conditions](/operators/admin/olm-managing-operatorconditions#olm-managing-operatorconditions)\n- [Upgrade installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Delete installed Operators](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n- [Configure proxy support](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [What are Operators?](/operators/understanding/olm-what-operators-are#olm-what-operators-are)\n","mdUrl":"/operators.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Operators overview {#operators-overview}\n\nOperators are the foundational control plane extensions of OpenShift Container Platform. Operators are the preferred method to package, deploy, and manage services on the control plane, and to support your applications.\n\nOperators integrate with Kubernetes APIs and CLI tools such as `kubectl` and the {{ oc_first }}. They provide the means of monitoring applications, performing health checks, managing over-the-air (OTA) updates, and ensuring that applications remain in your specified state.\n\nOperators are designed specifically for Kubernetes-native applications to implement and automate common Day 1 operations, such as installation and configuration. Operators can also automate Day 2 operations, such as autoscaling up or down and creating backups. All of these activities are directed by a piece of software running on your cluster.\n\nWhile both follow similar Operator concepts and goals, Operators in OpenShift Container Platform are managed by two different systems, depending on their purpose:\n\nCluster Operators\n:   Managed by the Cluster Version Operator (CVO) and installed by default to perform cluster functions.\n\nOptional add-on Operators\n:   Managed by Operator Lifecycle Manager (OLM) and can be made accessible for users to run in their applications. Also known as *OLM-based Operators*.\n\n**Additional resources**\n\n- [Manage custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs)\n- [Machine deletion lifecycle hook examples for Operator developers](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-uses_deleting-machine)\n- [Install and subscribe an Operator to your namespace](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)\n- [Allow non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)\n- [Install an Operator from the software catalog](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- [Cluster Operators reference](/openshift-docs-markdown/operators/operator-reference#operator-reference)\n- [Create an application from an installed Operator through the web console](/openshift-docs-markdown/operators/user/olm-creating-apps-from-installed-operators#olm-creating-apps-from-installed-operators)\n- [View Operator status](/openshift-docs-markdown/operators/admin/olm-status#olm-status)\n- [Manage Operator conditions](/openshift-docs-markdown/operators/admin/olm-managing-operatorconditions#olm-managing-operatorconditions)\n- [Upgrade installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Delete installed Operators](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n- [Configure proxy support](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,20 +105,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/operators-overview-tasks.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs">Manage custom catalogs</a></li>
-      <li><a href="/machine_management/deleting-machine#machine-lifecycle-hook-deletion-uses_deleting-machine">Machine deletion lifecycle hook examples for Operator developers</a></li>
-      <li><a href="/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace">Install and subscribe an Operator to your namespace</a></li>
-      <li><a href="/operators/admin/olm-creating-policy#olm-creating-policy">Allow non-cluster administrators to install Operators</a></li>
-      <li><a href="/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace">Install an Operator from the software catalog</a></li>
-      <li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
-      <li><a href="/operators/operator-reference#operator-reference">Cluster Operators reference</a></li>
-      <li><a href="/operators/user/olm-creating-apps-from-installed-operators#olm-creating-apps-from-installed-operators">Create an application from an installed Operator through the web console</a></li>
-      <li><a href="/operators/admin/olm-status#olm-status">View Operator status</a></li>
-      <li><a href="/operators/admin/olm-managing-operatorconditions#olm-managing-operatorconditions">Manage Operator conditions</a></li>
-      <li><a href="/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Upgrade installed Operators</a></li>
-      <li><a href="/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster">Delete installed Operators</a></li>
-      <li><a href="/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support">Configure proxy support</a></li>
-      <li><a href="/operators/understanding/olm-what-operators-are#olm-what-operators-are">What are Operators?</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs">Manage custom catalogs</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-uses_deleting-machine">Machine deletion lifecycle hook examples for Operator developers</a></li>
+      <li><a href="/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace">Install and subscribe an Operator to your namespace</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy">Allow non-cluster administrators to install Operators</a></li>
+      <li><a href="/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace">Install an Operator from the software catalog</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
+      <li><a href="/openshift-docs-markdown/operators/operator-reference#operator-reference">Cluster Operators reference</a></li>
+      <li><a href="/openshift-docs-markdown/operators/user/olm-creating-apps-from-installed-operators#olm-creating-apps-from-installed-operators">Create an application from an installed Operator through the web console</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-status#olm-status">View Operator status</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-operatorconditions#olm-managing-operatorconditions">Manage Operator conditions</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Upgrade installed Operators</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster">Delete installed Operators</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support">Configure proxy support</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are">What are Operators?</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

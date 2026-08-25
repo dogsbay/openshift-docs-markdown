@@ -16,5 +16,5 @@ If your cluster fails to recover, follow the steps in "Restoring to an earlier c
 
 **Additional resources**
 
-- [Shutting down the cluster gracefully](/backup_and_restore/graceful-cluster-shutdown#graceful-shutdown-cluster)
-- [Restoring to an earlier cluster state](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
+- [Shutting down the cluster gracefully](/openshift-docs-markdown/backup_and_restore/graceful-cluster-shutdown#graceful-shutdown-cluster)
+- [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)

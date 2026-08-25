@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"cert-manager-operator-about","text":"{{ cert_manager_operator }} overview"},{"depth":2,"slug":"cert-manager-operator-about_additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/security/cert_manager_operator";
+const currentPath = "/openshift-docs-markdown/security/cert_manager_operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ cert_manager_operator }} overview {#cert-manager-operator-about}\n\nThe {{ cert_manager_operator }} is a cluster-wide service that provides application certificate lifecycle management. The {{ cert_manager_operator }} allows you to integrate with external certificate authorities and provides certificate provisioning, renewal, and retirement.\n\n## Additional resources {#cert-manager-operator-about_additional-resources}\n\n- [Cryptographic module validation program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)\n- [cert-manager project documentation](https://cert-manager.io/docs/)\n- [OpenShift Container Platform update and support policy](https://access.redhat.com/support/policy/updates/openshift_operators)\n- [Understanding compliance](/security/container_security/security-compliance#security-compliance)\n- [Installing a cluster in FIPS mode](/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n- [Do you need extra security for your cluster?](/installing/overview/installing-preparing#installing-preparing-security_installing-preparing)\n- [Vault](https://cert-manager.io/docs/configuration/vault/)\n- [Venafi](https://cert-manager.io/docs/configuration/venafi/)\n- [Nokia NetGuard Certificate Manager](https://www.nokia.com/networks/security-portfolio/netguard/certificate-manager/)\n- [Google Cloud Certificate Authority Service](https://cloud.google.com/security/products/certificate-authority-service)\n- [OpenShift Container Platform third-party support policy](https://access.redhat.com/third-party-software-support)\n","mdUrl":"/security/cert_manager_operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ cert_manager_operator }} overview {#cert-manager-operator-about}\n\nThe {{ cert_manager_operator }} is a cluster-wide service that provides application certificate lifecycle management. The {{ cert_manager_operator }} allows you to integrate with external certificate authorities and provides certificate provisioning, renewal, and retirement.\n\n## Additional resources {#cert-manager-operator-about_additional-resources}\n\n- [Cryptographic module validation program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)\n- [cert-manager project documentation](https://cert-manager.io/docs/)\n- [OpenShift Container Platform update and support policy](https://access.redhat.com/support/policy/updates/openshift_operators)\n- [Understanding compliance](/openshift-docs-markdown/security/container_security/security-compliance#security-compliance)\n- [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n- [Do you need extra security for your cluster?](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing-security_installing-preparing)\n- [Vault](https://cert-manager.io/docs/configuration/vault/)\n- [Venafi](https://cert-manager.io/docs/configuration/venafi/)\n- [Nokia NetGuard Certificate Manager](https://www.nokia.com/networks/security-portfolio/netguard/certificate-manager/)\n- [Google Cloud Certificate Authority Service](https://cloud.google.com/security/products/certificate-authority-service)\n- [OpenShift Container Platform third-party support policy](https://access.redhat.com/third-party-software-support)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -103,9 +103,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules">Cryptographic module validation program</a></li>
       <li><a href="https://cert-manager.io/docs/">cert-manager project documentation</a></li>
       <li><a href="https://access.redhat.com/support/policy/updates/openshift_operators">OpenShift Container Platform update and support policy</a></li>
-      <li><a href="/security/container_security/security-compliance#security-compliance">Understanding compliance</a></li>
-      <li><a href="/installing/overview/installing-fips#installing-fips-mode_installing-fips">Installing a cluster in FIPS mode</a></li>
-      <li><a href="/installing/overview/installing-preparing#installing-preparing-security_installing-preparing">Do you need extra security for your cluster?</a></li>
+      <li><a href="/openshift-docs-markdown/security/container_security/security-compliance#security-compliance">Understanding compliance</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips">Installing a cluster in FIPS mode</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing-security_installing-preparing">Do you need extra security for your cluster?</a></li>
       <li><a href="https://cert-manager.io/docs/configuration/vault/">Vault</a></li>
       <li><a href="https://cert-manager.io/docs/configuration/venafi/">Venafi</a></li>
       <li><a href="https://www.nokia.com/networks/security-portfolio/netguard/certificate-manager/">Nokia NetGuard Certificate Manager</a></li>

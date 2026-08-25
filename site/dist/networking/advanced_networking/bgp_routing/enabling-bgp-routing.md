@@ -10,4 +10,4 @@ As a cluster administrator, you can enable OVN-Kubernetes BGP routing support fo
 
 ## Additional resources {#additional-resources_enabling-bgp-routing}
 
-- [Improve east-west performance by routing pods on the underlay with BGP](/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)
+- [Improve east-west performance by routing pods on the underlay with BGP](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)

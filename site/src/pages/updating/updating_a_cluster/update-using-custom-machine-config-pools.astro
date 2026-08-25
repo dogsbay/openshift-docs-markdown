@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"update-using-custom-machine-config-pools","text":"Performing a canary rollout update"}];
 const nav = navData;
-const currentPath = "/updating/updating_a_cluster/update-using-custom-machine-config-pools";
+const currentPath = "/openshift-docs-markdown/updating/updating_a_cluster/update-using-custom-machine-config-pools";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["updating","updating/updating_a_cluster"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing a canary rollout update {#update-using-custom-machine-config-pools}\n\nFor a more controlled rollout of worker node updates, you can use a *canary update*. A canary update is an update strategy where worker node updates are performed in discrete, sequential stages instead of updating all worker nodes at the same time.\n\nThis strategy can be useful in the following scenarios:\n\n- You want a more controlled rollout of worker node updates to ensure that mission-critical applications stay available during the entire update, even if the update process causes your applications to fail.\n- You want to update a small subset of worker nodes, evaluate cluster and workload health over a period of time, and then update the remaining nodes.\n- You want to fit worker node updates, which often require a host reboot, into smaller defined maintenance windows when it is not possible to take a large maintenance window to update the entire cluster at one time.\n\nIn these scenarios, you can create multiple custom machine config pools (MCPs) to prevent certain worker nodes from updating when you update the cluster. After the rest of the cluster is updated, you can update those worker nodes in batches at appropriate times.\n\n**Additional resources**\n\n- [Updating a cluster using the web console](/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)\n- [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli)\n","mdUrl":"/updating/updating_a_cluster/update-using-custom-machine-config-pools.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing a canary rollout update {#update-using-custom-machine-config-pools}\n\nFor a more controlled rollout of worker node updates, you can use a *canary update*. A canary update is an update strategy where worker node updates are performed in discrete, sequential stages instead of updating all worker nodes at the same time.\n\nThis strategy can be useful in the following scenarios:\n\n- You want a more controlled rollout of worker node updates to ensure that mission-critical applications stay available during the entire update, even if the update process causes your applications to fail.\n- You want to update a small subset of worker nodes, evaluate cluster and workload health over a period of time, and then update the remaining nodes.\n- You want to fit worker node updates, which often require a host reboot, into smaller defined maintenance windows when it is not possible to take a large maintenance window to update the entire cluster at one time.\n\nIn these scenarios, you can create multiple custom machine config pools (MCPs) to prevent certain worker nodes from updating when you update the cluster. After the rest of the cluster is updated, you can update those worker nodes in batches at appropriate times.\n\n**Additional resources**\n\n- [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)\n- [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/updating_a_cluster/update-using-custom-machine-config-pools.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -109,8 +109,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/update-canary-performing.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console">Updating a cluster using the web console</a></li>
-      <li><a href="/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli">Updating a cluster using the CLI</a></li>
+      <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console">Updating a cluster using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli">Updating a cluster using the CLI</a></li>
       </ul>
       <p class="/modules/update-using-custom-machine-config-pools-mcp-remove.md"></p>
     </article>

@@ -8,4 +8,4 @@ You uninstall the OpenShift API for Data Protection (OADP) by deleting the OADP 
 
 ## Additional resources {#additional-resources_uninstalling-oadp}
 
-- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-cluster)
+- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-cluster)

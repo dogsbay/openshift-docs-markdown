@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"ossm-extensions","text":"Extensions"}];
 const nav = navData;
-const currentPath = "/service_mesh/v2x/ossm-extensions";
+const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-extensions";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Extensions {#ossm-extensions}\n\nYou can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.\n\n> [!NOTE]\n> WebAssembly extensions are not supported on {{ ibm_z_name }} and {{ ibm_power_name }}.\n","mdUrl":"/service_mesh/v2x/ossm-extensions.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Extensions {#ossm-extensions}\n\nYou can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.\n\n> [!NOTE]\n> WebAssembly extensions are not supported on {{ ibm_z_name }} and {{ ibm_power_name }}.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-extensions.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"configuring-node-port-service-range","text":"Configuring the node port service range"},{"depth":2,"slug":"configuring-node-port-service-range-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/networking/configuring_network_settings/configuring-node-port-service-range";
+const currentPath = "/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/configuring_network_settings"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the node port service range {#configuring-node-port-service-range}\n\nTo meet your cluster node port requirements in OpenShift Container Platform, you can configure the node port service range during installation or expand it after installation. You can expand the default range of `30000-32768` on either side while preserving this default range within your new configuration.\n\n> [!IMPORTANT]\n> Red Hat has not performed testing outside the default port range of `30000-32768`. For ranges outside the default port range, ensure that you test to verify the expanding node port range does not impact your cluster. In particular, ensure that there is:\n>\n> - No overlap with any ports already in use by host processes\n> - No overlap with any ports already in use by pods that are configured with host networking\n>\n> If you expanded the range and a port allocation issue occurs, create a new cluster and set the required range for it.\n>\n> If you expand the node port range and {{ oc_first }} stops working because of a port conflict with the OpenShift Container Platform API server, you must create a new cluster.\n\n## Additional resources {#configuring-node-port-service-range-additional-resources}\n\n- [Configuring ingress cluster traffic using a NodePort](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)\n- [Network: config.openshift.io v1](/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1)\n- [Service: core v1](/rest_api/network_apis/service-v1#service-v1)\n- [Safe and unsafe sysctls](/nodes/containers/nodes-containers-sysctls#safe_and_unsafe_sysctls_nodes-containers-sysctls)\n","mdUrl":"/networking/configuring_network_settings/configuring-node-port-service-range.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the node port service range {#configuring-node-port-service-range}\n\nTo meet your cluster node port requirements in OpenShift Container Platform, you can configure the node port service range during installation or expand it after installation. You can expand the default range of `30000-32768` on either side while preserving this default range within your new configuration.\n\n> [!IMPORTANT]\n> Red Hat has not performed testing outside the default port range of `30000-32768`. For ranges outside the default port range, ensure that you test to verify the expanding node port range does not impact your cluster. In particular, ensure that there is:\n>\n> - No overlap with any ports already in use by host processes\n> - No overlap with any ports already in use by pods that are configured with host networking\n>\n> If you expanded the range and a port allocation issue occurs, create a new cluster and set the required range for it.\n>\n> If you expand the node port range and {{ oc_first }} stops working because of a port conflict with the OpenShift Container Platform API server, you must create a new cluster.\n\n## Additional resources {#configuring-node-port-service-range-additional-resources}\n\n- [Configuring ingress cluster traffic using a NodePort](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)\n- [Network: config.openshift.io v1](/openshift-docs-markdown/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1)\n- [Service: core v1](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1)\n- [Safe and unsafe sysctls](/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls#safe_and_unsafe_sysctls_nodes-containers-sysctls)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -111,10 +111,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nw-nodeport-service-range-edit.md"></p>
       <h2 id="configuring-node-port-service-range-additional-resources" class="group scroll-mt-20">Additional resources<a href="#configuring-node-port-service-range-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport">Configuring ingress cluster traffic using a NodePort</a></li>
-      <li><a href="/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1">Network: config.openshift.io v1</a></li>
-      <li><a href="/rest_api/network_apis/service-v1#service-v1">Service: core v1</a></li>
-      <li><a href="/nodes/containers/nodes-containers-sysctls#safe_and_unsafe_sysctls_nodes-containers-sysctls">Safe and unsafe sysctls</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport">Configuring ingress cluster traffic using a NodePort</a></li>
+      <li><a href="/openshift-docs-markdown/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1">Network: config.openshift.io v1</a></li>
+      <li><a href="/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1">Service: core v1</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls#safe_and_unsafe_sysctls_nodes-containers-sysctls">Safe and unsafe sysctls</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

@@ -17,10 +17,10 @@ The scheduler attempts to optimize the compute resource use across all nodes in 
 
 ## Additional resources {#nodes-cluster-overcommit-addtl-resources}
 
-- [Moving the Cluster Resource Override Operator pods](/machine_management/creating-infrastructure-machinesets#nodes-cluster-resource-override-move-infra_creating-infrastructure-machinesets)
-- [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)
-- [Setting deployment resources](/applications/deployments/managing-deployment-processes#deployments-triggers_deployment-operations)
-- [Disabling or enforcing CPU limits using CPU CFS quotas](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit)
-- [Reserving resources for system processes](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-resources_nodes-cluster-overcommit)
-- [Understanding how to reserve memory across quality of service tiers](/nodes/clusters/nodes-cluster-overcommit#qos-about-reserve_nodes-cluster-overcommit)
-- [Allocating resources for nodes](/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)
+- [Moving the Cluster Resource Override Operator pods](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#nodes-cluster-resource-override-move-infra_creating-infrastructure-machinesets)
+- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)
+- [Setting deployment resources](/openshift-docs-markdown/applications/deployments/managing-deployment-processes#deployments-triggers_deployment-operations)
+- [Disabling or enforcing CPU limits using CPU CFS quotas](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit)
+- [Reserving resources for system processes](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-resources_nodes-cluster-overcommit)
+- [Understanding how to reserve memory across quality of service tiers](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#qos-about-reserve_nodes-cluster-overcommit)
+- [Allocating resources for nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)

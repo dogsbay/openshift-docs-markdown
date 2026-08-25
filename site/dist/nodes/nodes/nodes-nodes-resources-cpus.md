@@ -10,5 +10,5 @@ For example, on a system with 24 CPUs, you could reserve CPUs numbered 0 - 3 for
 
 **Additional resources**
 
-- [Setting up CPU Manager](/scalability_and_performance/using-cpu-manager#setting_up_cpu_manager_using-cpu-manager-and-topology-manager)
-- [Allocating resources for nodes in an OpenShift Container Platform cluster](/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-about_nodes-nodes-resources-configuring)
+- [Setting up CPU Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#setting_up_cpu_manager_using-cpu-manager-and-topology-manager)
+- [Allocating resources for nodes in an OpenShift Container Platform cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-about_nodes-nodes-resources-configuring)

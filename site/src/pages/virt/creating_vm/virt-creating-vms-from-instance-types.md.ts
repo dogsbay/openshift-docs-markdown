@@ -2,7 +2,7 @@
 // Source: virt/creating_vm/virt-creating-vms-from-instance-types.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Creating virtual machines from instance types\n---\n\n# Creating virtual machines from instance types {#virt-creating-vms-from-instance-types}\n\nYou can simplify virtual machine (VM) creation by using instance types, whether you use the OpenShift Container Platform web console or the CLI to create VMs.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-instance-types}\n\n- [Configuring a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)\n";
+const body = "---\ntitle: Creating virtual machines from instance types\n---\n\n# Creating virtual machines from instance types {#virt-creating-vms-from-instance-types}\n\nYou can simplify virtual machine (VM) creation by using instance types, whether you use the OpenShift Container Platform web console or the CLI to create VMs.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-instance-types}\n\n- [Configuring a downward metrics device](/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

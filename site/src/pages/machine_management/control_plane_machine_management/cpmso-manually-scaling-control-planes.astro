@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"cpmso-manually-scaling-control-planes","text":"Manually scaling control plane machines"}];
 const nav = navData;
-const currentPath = "/machine_management/control_plane_machine_management/cpmso-manually-scaling-control-planes";
+const currentPath = "/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-manually-scaling-control-planes";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["machine_management","machine_management/control_plane_machine_management"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually scaling control plane machines {#cpmso-manually-scaling-control-planes}\n\nManually scale to 4 or 5 control plane nodes on bare-metal infrastructure to recover from a degraded state, perform deep-level debugging, or ensure control plane stability in complex scenarios.\n\n> [!IMPORTANT]\n> Red Hat supports a cluster that has 4 or 5 control plane nodes only on bare-metal infrastructure.\n","mdUrl":"/machine_management/control_plane_machine_management/cpmso-manually-scaling-control-planes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually scaling control plane machines {#cpmso-manually-scaling-control-planes}\n\nManually scale to 4 or 5 control plane nodes on bare-metal infrastructure to recover from a degraded state, perform deep-level debugging, or ensure control plane stability in complex scenarios.\n\n> [!IMPORTANT]\n> Red Hat supports a cluster that has 4 or 5 control plane nodes only on bare-metal infrastructure.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-manually-scaling-control-planes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

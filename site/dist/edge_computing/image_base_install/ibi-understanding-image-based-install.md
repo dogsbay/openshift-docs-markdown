@@ -19,7 +19,7 @@ An image-based approach to installing and deploying {{ sno }} clusters at the fa
 
 **Figure 1. Overview of an image-based installation and deployment for managed {{ sno }} clusters**
 
-![Overview of an image-based installation and deployment](/_assets/images/../images/711_OpenShift_IBI_Installation_high-level_0624.png)
+![Overview of an image-based installation and deployment](/openshift-docs-markdown/_assets/images/../images/711_OpenShift_IBI_Installation_high-level_0624.png)
 
 Imaged-based installation
 :   Preinstall multiple hosts with {{ sno }} at a central site, such as a service depot or a factory. Then, validate the base configuration for these hosts and leverage the image-based approach to perform reproducible factory installs at scale by using a single live installation ISO.
@@ -37,14 +37,14 @@ Using the IBI Operator
 
 **Additional resources**
 
-- [Deploying a {{ sno }} cluster using the `openshift-install` program](/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#create-standalone-config-iso_ibi-edge-image-based-install)
+- [Deploying a {{ sno }} cluster using the `openshift-install` program](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#create-standalone-config-iso_ibi-edge-image-based-install)
 
 **Additional resources**
 
-- [Configuring a shared container partition between ostree stateroots](/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)
+- [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)
 
 **Additional resources**
 
 - [Multicluster architecture](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/about/welcome-to-red-hat-advanced-cluster-management-for-kubernetes#multicluster-architecture)
-- [Understanding the image-based upgrade for {{ sno }} clusters](/edge_computing/image_based_upgrade/cnf-understanding-image-based-upgrade#cnf-understanding-image-based-upgrade)
+- [Understanding the image-based upgrade for {{ sno }} clusters](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-understanding-image-based-upgrade#cnf-understanding-image-based-upgrade)
 - [SiteConfig operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html-single/multicluster_engine_operator_with_red_hat_advanced_cluster_management/index#siteconfig-intro)

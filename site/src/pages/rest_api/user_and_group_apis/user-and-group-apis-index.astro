@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"user-and-group-apis","text":"User and group APIs"},{"depth":2,"slug":"_group_useropenshiftiov1","text":"Group [user.openshift.io/v1]"},{"depth":2,"slug":"_identity_useropenshiftiov1","text":"Identity [user.openshift.io/v1]"},{"depth":2,"slug":"_useridentitymapping_useropenshiftiov1","text":"UserIdentityMapping [user.openshift.io/v1]"},{"depth":2,"slug":"_user_useropenshiftiov1","text":"User [user.openshift.io/v1]"}];
 const nav = navData;
-const currentPath = "/rest_api/user_and_group_apis/user-and-group-apis-index";
+const currentPath = "/openshift-docs-markdown/rest_api/user_and_group_apis/user-and-group-apis-index";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["rest_api","rest_api/user_and_group_apis"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User and group APIs {#user-and-group-apis}\n\n## Group \\[user.openshift.io/v1\\] {#_group_useropenshiftiov1}\n\nDescription\n:   Group represents a referenceable set of Users\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## Identity \\[user.openshift.io/v1\\] {#_identity_useropenshiftiov1}\n\nDescription\n:   Identity records a successful authentication of a user with an identity provider. The information about the source of authentication is stored on the identity, and the identity is then associated with a single user object. Multiple identities can reference a single user. Information retrieved from the authentication provider is stored in the extra field using a schema determined by the provider.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## UserIdentityMapping \\[user.openshift.io/v1\\] {#_useridentitymapping_useropenshiftiov1}\n\nDescription\n:   UserIdentityMapping maps a user to an identity\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## User \\[user.openshift.io/v1\\] {#_user_useropenshiftiov1}\n\nDescription\n:   Upon log in, every user of the system receives a User and Identity resource. Administrators may directly manipulate the attributes of the users for their own tracking, or set groups via the API. The user name is unique and is chosen based on the value provided by the identity provider - if a user already exists with the incoming name, the user name may have a number appended to it depending on the configuration of the system.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"/rest_api/user_and_group_apis/user-and-group-apis-index.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User and group APIs {#user-and-group-apis}\n\n## Group \\[user.openshift.io/v1\\] {#_group_useropenshiftiov1}\n\nDescription\n:   Group represents a referenceable set of Users\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## Identity \\[user.openshift.io/v1\\] {#_identity_useropenshiftiov1}\n\nDescription\n:   Identity records a successful authentication of a user with an identity provider. The information about the source of authentication is stored on the identity, and the identity is then associated with a single user object. Multiple identities can reference a single user. Information retrieved from the authentication provider is stored in the extra field using a schema determined by the provider.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## UserIdentityMapping \\[user.openshift.io/v1\\] {#_useridentitymapping_useropenshiftiov1}\n\nDescription\n:   UserIdentityMapping maps a user to an identity\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## User \\[user.openshift.io/v1\\] {#_user_useropenshiftiov1}\n\nDescription\n:   Upon log in, every user of the system receives a User and Identity resource. Administrators may directly manipulate the attributes of the users for their own tracking, or set groups via the API. The user name is unique and is chosen based on the value provided by the identity provider - if a user already exists with the incoming name, the user name may have a number appended to it depending on the configuration of the system.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/user_and_group_apis/user-and-group-apis-index.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

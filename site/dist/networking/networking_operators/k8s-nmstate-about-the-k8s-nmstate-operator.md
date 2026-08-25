@@ -21,7 +21,7 @@ For more information on these tasks, see the *Additional resources* section.
 > [!NOTE]
 > The Kubernetes NMState Operator updates the network configuration of a secondary NIC. The Operator cannot update the network configuration of the primary NIC, or update the `br-ex` bridge on most on-premise networks.
 >
-> On a bare-metal platform, using the Kubernetes NMState Operator to update the `br-ex` bridge network configuration is only supported if you set the `br-ex` bridge as the interface in a machine config manifest file. To update the `br-ex` bridge as a postinstallation task, you must set the `br-ex` bridge as the interface in the NMState configuration of the `NodeNetworkConfigurationPolicy` custom resource (CR) for your cluster. For more information, see [Creating a manifest object that includes a customized br-ex bridge](/installing/installing_bare_metal/bare-metal-postinstallation-configuration#creating-manifest-file-customized-br-ex-bridge_bare-metal-postinstallation-configuration) in *Postinstallation configuration*.
+> On a bare-metal platform, using the Kubernetes NMState Operator to update the `br-ex` bridge network configuration is only supported if you set the `br-ex` bridge as the interface in a machine config manifest file. To update the `br-ex` bridge as a postinstallation task, you must set the `br-ex` bridge as the interface in the NMState configuration of the `NodeNetworkConfigurationPolicy` custom resource (CR) for your cluster. For more information, see [Creating a manifest object that includes a customized br-ex bridge](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-postinstallation-configuration#creating-manifest-file-customized-br-ex-bridge_bare-metal-postinstallation-configuration) in *Postinstallation configuration*.
 
 OpenShift Container Platform uses [`nmstate`](https://nmstate.github.io/) to report on and configure the state of the node network. This makes it possible to modify the network policy configuration, such as by creating a Linux bridge on all nodes, by applying a single configuration manifest to the cluster.
 
@@ -45,7 +45,7 @@ You can install the Kubernetes NMState Operator by using the web console or the 
 
 ## Additional resources {#additional-resources_k8s-nmstate-view-stats_k8s-nmstate-about-the-k8s-nmstate-operator}
 
-- [Creating an interface on nodes](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-creating-interface-on-nodes_k8s-nmstate-updating-node-network-config)
-- [Observing and updating the node network state and configuration](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)
-- [Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)
-- [Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)](/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)
+- [Creating an interface on nodes](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-creating-interface-on-nodes_k8s-nmstate-updating-node-network-config)
+- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)
+- [Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)
+- [Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)

@@ -12,16 +12,16 @@ Cluster administrators can periodically prune older versions of objects from the
 
 **Additional resources**
 
-- [Performing advanced builds -> Pruning builds](/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)
+- [Performing advanced builds -> Pruning builds](/openshift-docs-markdown/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)
 
 **Additional resources**
 
-- [Accessing the registry](/registry/accessing-the-registry#accessing-the-registry)
-- [Exposing the registry](/registry/securing-exposing-registry#securing-exposing-registry)
-- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#configuring-registry-operator)
+- [Accessing the registry](/openshift-docs-markdown/registry/accessing-the-registry#accessing-the-registry)
+- [Exposing the registry](/openshift-docs-markdown/registry/securing-exposing-registry#securing-exposing-registry)
+- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)
 
 **Additional resources**
 
-- [Running tasks in pods using jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
-- [Resource quotas across multiple projects](/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects)
-- [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
+- [Running tasks in pods using jobs](/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
+- [Resource quotas across multiple projects](/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects)
+- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)

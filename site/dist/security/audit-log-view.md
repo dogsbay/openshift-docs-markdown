@@ -8,6 +8,6 @@ OpenShift Container Platform auditing provides a security-relevant chronological
 
 ## Additional resources {#viewing-audit-logs-additional-resources}
 
-- [Must-gather tool](/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
+- [Must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 - [API audit log event structure](https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72)
-- [Configuring the audit log policy](/security/audit-log-policy-config#audit-log-policy-config)
+- [Configuring the audit log policy](/openshift-docs-markdown/security/audit-log-policy-config#audit-log-policy-config)

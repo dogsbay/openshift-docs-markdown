@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-connecting-vm-to-primary-udn","text":"Connecting a virtual machine to a primary user-defined network"},{"depth":2,"slug":"additional-resources_virt-connecting-vm-to-primary-udn","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/vm_networking/virt-connecting-vm-to-primary-udn";
+const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-primary-udn";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Connecting a virtual machine to a primary user-defined network {#virt-connecting-vm-to-primary-udn}\n\nYou can connect a virtual machine (VM) to a user-defined network (UDN) on the VM’s primary interface. The primary UDN replaces the default pod network in your specified namespace. You can define the primary UDN per project, where each project can use its specific subnet and topology.\n\n{{ VirtProductName }} supports the namespace-scoped `UserDefinedNetwork` and the cluster-scoped `ClusterUserDefinedNetwork` custom resource definitions (CRD).\n\n> [!NOTE]\n> You must add the `k8s.ovn.org/primary-user-defined-network` label when you create a namespace that is to be used with user-defined networks.\n\nCluster administrators can configure a primary `UserDefinedNetwork` CRD to create a tenant network that isolates the tenant namespace from other namespaces without requiring network policies. Additionally, cluster administrators can use the `ClusterUserDefinedNetwork` CRD to create a shared OVN network across multiple namespaces.\n\nWith the layer 2 topology, OVN-Kubernetes creates an overlay network between nodes. You can use this overlay network to connect VMs on different nodes without having to configure any additional physical networking infrastructure.\n\nThe layer 2 topology enables seamless migration of VMs without the need for Network Address Translation (NAT) because persistent IP addresses are preserved across cluster nodes during live migration.\n\n> [!NOTE]\n> You can use the Ethernet Virtual Private Network’s (EVPN) Border Gateway Protocol (BGP) control plane to extend layer 2 connectivity between VMs running on different OpenShift Container Platform clusters. BGP EVPN support for primary cluster-scoped UDNs enables deeper integration with data center networks for your virtualized workloads. For more information, see \"About BGP EVPN for primary cluster user-defined networks\" in the Additional resources section.\n\nYou must consider the following limitations before implementing a primary UDN:\n\n- You cannot use the `virtctl ssh` command to configure SSH access to a VM.\n- You cannot use the `oc port-forward` command to forward ports to a VM.\n- You cannot use headless services to access a VM.\n\n## Additional resources {#additional-resources_virt-connecting-vm-to-primary-udn}\n\n- [About user-defined networks](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)\n- [About BGP EVPN for primary cluster user-defined networks](/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)\n","mdUrl":"/virt/vm_networking/virt-connecting-vm-to-primary-udn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Connecting a virtual machine to a primary user-defined network {#virt-connecting-vm-to-primary-udn}\n\nYou can connect a virtual machine (VM) to a user-defined network (UDN) on the VM’s primary interface. The primary UDN replaces the default pod network in your specified namespace. You can define the primary UDN per project, where each project can use its specific subnet and topology.\n\n{{ VirtProductName }} supports the namespace-scoped `UserDefinedNetwork` and the cluster-scoped `ClusterUserDefinedNetwork` custom resource definitions (CRD).\n\n> [!NOTE]\n> You must add the `k8s.ovn.org/primary-user-defined-network` label when you create a namespace that is to be used with user-defined networks.\n\nCluster administrators can configure a primary `UserDefinedNetwork` CRD to create a tenant network that isolates the tenant namespace from other namespaces without requiring network policies. Additionally, cluster administrators can use the `ClusterUserDefinedNetwork` CRD to create a shared OVN network across multiple namespaces.\n\nWith the layer 2 topology, OVN-Kubernetes creates an overlay network between nodes. You can use this overlay network to connect VMs on different nodes without having to configure any additional physical networking infrastructure.\n\nThe layer 2 topology enables seamless migration of VMs without the need for Network Address Translation (NAT) because persistent IP addresses are preserved across cluster nodes during live migration.\n\n> [!NOTE]\n> You can use the Ethernet Virtual Private Network’s (EVPN) Border Gateway Protocol (BGP) control plane to extend layer 2 connectivity between VMs running on different OpenShift Container Platform clusters. BGP EVPN support for primary cluster-scoped UDNs enables deeper integration with data center networks for your virtualized workloads. For more information, see \"About BGP EVPN for primary cluster user-defined networks\" in the Additional resources section.\n\nYou must consider the following limitations before implementing a primary UDN:\n\n- You cannot use the `virtctl ssh` command to configure SSH access to a VM.\n- You cannot use the `oc port-forward` command to forward ports to a VM.\n- You cannot use headless services to access a VM.\n\n## Additional resources {#additional-resources_virt-connecting-vm-to-primary-udn}\n\n- [About user-defined networks](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)\n- [About BGP EVPN for primary cluster user-defined networks](/openshift-docs-markdown/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-primary-udn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -131,8 +131,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-attaching-vm-to-primary-udn.md"></p>
       <h2 id="additional-resources_virt-connecting-vm-to-primary-udn" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-connecting-vm-to-primary-udn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks">About user-defined networks</a></li>
-      <li><a href="/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks">About BGP EVPN for primary cluster user-defined networks</a></li>
+      <li><a href="/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks">About user-defined networks</a></li>
+      <li><a href="/openshift-docs-markdown/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks">About BGP EVPN for primary cluster user-defined networks</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

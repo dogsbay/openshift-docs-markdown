@@ -23,8 +23,8 @@ The following sections describe features that you might want to configure on you
 
 ## Additional resources {#additional-resources_installing-customizing}
 
-- [The addition of kernel modules to nodes](/installing/install_config/installing-customizing#installation-special-config-kmod_installing-customizing)
-- [Encrypting and mirroring disks during installation](/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
+- [The addition of kernel modules to nodes](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-kmod_installing-customizing)
+- [Encrypting and mirroring disks during installation](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
 
 **Additional resources**
 
@@ -42,5 +42,5 @@ The following sections describe features that you might want to configure on you
 
 **Additional resources**
 
-- [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
-- [Support for FIPS cryptography](/installing/overview/installing-fips#installing-fips)
+- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
+- [Support for FIPS cryptography](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-accessing-vm-internal-fqdn","text":"Accessing a virtual machine  by using its internal FQDN"},{"depth":2,"slug":"additional-resources_virt-accessing-vm-internal-fqdn","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/vm_networking/virt-accessing-vm-internal-fqdn";
+const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-internal-fqdn";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing a virtual machine  by using its internal FQDN {#virt-accessing-vm-internal-fqdn}\n\nYou can access a virtual machine on a stable, fully qualified domain name (FQDN) by using headless services. A headless service creates DNS records for each pod instead of a virtual IP, enabling FQDN access without exposing specific ports.\n\n> [!IMPORTANT]\n> If you created a VM by using the OpenShift Container Platform web console, you can find its internal FQDN listed in the **Network** tile on the **Overview** tab of the **VirtualMachine details** page.\n\n## Additional resources {#additional-resources_virt-accessing-vm-internal-fqdn}\n\n- [Exposing a VM by using a service](/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)\n","mdUrl":"/virt/vm_networking/virt-accessing-vm-internal-fqdn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing a virtual machine  by using its internal FQDN {#virt-accessing-vm-internal-fqdn}\n\nYou can access a virtual machine on a stable, fully qualified domain name (FQDN) by using headless services. A headless service creates DNS records for each pod instead of a virtual IP, enabling FQDN access without exposing specific ports.\n\n> [!IMPORTANT]\n> If you created a VM by using the OpenShift Container Platform web console, you can find its internal FQDN listed in the **Network** tile on the **Overview** tab of the **VirtualMachine details** page.\n\n## Additional resources {#additional-resources_virt-accessing-vm-internal-fqdn}\n\n- [Exposing a VM by using a service](/openshift-docs-markdown/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-internal-fqdn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,7 +106,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-discovering-vm-internal-fqdn.md"></p>
       <p class="/modules/virt-connecting-vm-internal-fqdn.md"></p>
       <h2 id="additional-resources_virt-accessing-vm-internal-fqdn" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-accessing-vm-internal-fqdn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service">Exposing a VM by using a service</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service">Exposing a VM by using a service</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

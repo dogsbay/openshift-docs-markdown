@@ -8,6 +8,6 @@ To trust custom certificate authorities for egress connections in OpenShift Cont
 
 ## Additional resources {#_additional_resources}
 
-- [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress_replacing-default-ingress)
-- [Enabling the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#nw-proxy-configure-object_config-cluster-wide-proxy)
-- [Proxy certificate customization](/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)
+- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress_replacing-default-ingress)
+- [Enabling the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#nw-proxy-configure-object_config-cluster-wide-proxy)
+- [Proxy certificate customization](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)

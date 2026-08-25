@@ -8,6 +8,6 @@ Understand Machine Config Operator (MCO) certificates used to secure node connec
 
 **Additional resources**
 
-- [About the Machine Config Operator](/machine_configuration/index#about-machine-config-operator_machine-config-overview)
-- [About the OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
+- [About the Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#about-machine-config-operator_machine-config-overview)
+- [About the OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 - [Regenerating CA certificates for the Machine Config Server](https://access.redhat.com/articles/regenerating_cluster_certificates#regenerating-ca-certificates-for-the-machine-config-server-5)

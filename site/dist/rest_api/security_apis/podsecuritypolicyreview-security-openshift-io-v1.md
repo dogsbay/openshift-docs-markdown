@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PodSecurityPolicyReviewSpec defines specification for PodSecurityPolicyReview |
 | `status` | `object` | PodSecurityPolicyReviewStatus represents the status of PodSecurityPolicyReview. |
 
@@ -43,7 +43,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceAccountNames` | `array (string)` | serviceAccountNames is an optional set of ServiceAccounts to run the check with. If serviceAccountNames is empty, the template.spec.serviceAccountName is used, unless it’s empty, in which case "default" is used instead. If serviceAccountNames is specified, template.spec.serviceAccountName is ignored. |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the PodTemplateSpec to check. The template.spec.serviceAccountName field is used if serviceAccountNames is empty, unless the template.spec.serviceAccountName is empty, in which case "default" is used. If serviceAccountNames is specified, template.spec.serviceAccountName is ignored. |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the PodTemplateSpec to check. The template.spec.serviceAccountName field is used if serviceAccountNames is empty, unless the template.spec.serviceAccountName is empty, in which case "default" is used. If serviceAccountNames is specified, template.spec.serviceAccountName is ignored. |
 
 ### .status {#_status}
 
@@ -85,10 +85,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `allowedBy` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | allowedBy is a reference to the rule that allows the PodTemplateSpec. A rule can be a SecurityContextConstraint or a PodSecurityPolicy A `nil`, indicates that it was denied. |
+| `allowedBy` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | allowedBy is a reference to the rule that allows the PodTemplateSpec. A rule can be a SecurityContextConstraint or a PodSecurityPolicy A `nil`, indicates that it was denied. |
 | `name` | `string` | name contains the allowed and the denied ServiceAccount name |
 | `reason` | `string` | A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the PodTemplateSpec after the defaulting is applied. |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the PodTemplateSpec after the defaulting is applied. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -121,13 +121,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PodSecurityPolicyReview`](/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |  |
+| `body` | [`PodSecurityPolicyReview`](/openshift-docs-markdown/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodSecurityPolicyReview`](/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |
-| 201 - Created | [`PodSecurityPolicyReview`](/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |
-| 202 - Accepted | [`PodSecurityPolicyReview`](/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |
+| 200 - OK | [`PodSecurityPolicyReview`](/openshift-docs-markdown/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |
+| 201 - Created | [`PodSecurityPolicyReview`](/openshift-docs-markdown/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |
+| 202 - Accepted | [`PodSecurityPolicyReview`](/openshift-docs-markdown/rest_api/security_apis/podsecuritypolicyreview-security-openshift-io-v1#podsecuritypolicyreview-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

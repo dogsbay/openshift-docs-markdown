@@ -8,7 +8,7 @@ To run your application containers in OpenShift Container Platform, you must use
 
 ## Additional resources {#_additional_resources}
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Understanding ephemeral storage](/storage/understanding-ephemeral-storage#understanding-ephemeral-storage)
-- [Example pod configurations](/nodes/pods/nodes-pods-using#nodes-pods-using-example_nodes-pods-using-ssy)
-- [Huge pages](/post_installation_configuration/node-tasks#post-install-huge-pages_post-install-node-tasks)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Understanding ephemeral storage](/openshift-docs-markdown/storage/understanding-ephemeral-storage#understanding-ephemeral-storage)
+- [Example pod configurations](/openshift-docs-markdown/nodes/pods/nodes-pods-using#nodes-pods-using-example_nodes-pods-using-ssy)
+- [Huge pages](/openshift-docs-markdown/post_installation_configuration/node-tasks#post-install-huge-pages_post-install-node-tasks)

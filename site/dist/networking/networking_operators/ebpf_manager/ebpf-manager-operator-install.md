@@ -8,5 +8,5 @@ To manage eBPF programs across your cluster nodes, you can install the eBPF Mana
 
 **Additional resources**
 
-- [Deploying a containerized eBPF program](/networking/networking_operators/ebpf_manager/ebpf-manager-operator-deploy#bpfman-operator-deploy)
-- [Configuring Ingress Node Firewall Operator to use the eBPF Manager Operator](/networking/networking_operators/ingress-node-firewall-operator#bpfman-infw-configure_ingress-node-firewall-operator)
+- [Deploying a containerized eBPF program](/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-deploy#bpfman-operator-deploy)
+- [Configuring Ingress Node Firewall Operator to use the eBPF Manager Operator](/openshift-docs-markdown/networking/networking_operators/ingress-node-firewall-operator#bpfman-infw-configure_ingress-node-firewall-operator)

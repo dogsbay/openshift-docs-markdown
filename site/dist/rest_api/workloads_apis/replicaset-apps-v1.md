@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ReplicaSetSpec is the specification of a ReplicaSet. |
 | `status` | `object` | ReplicaSetStatus represents the current status of a ReplicaSet. |
 
@@ -39,8 +39,8 @@ Required
 | --- | --- | --- |
 | `minReadySeconds` | `integer` | Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) |
 | `replicas` | `integer` | Replicas is the number of desired pods. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset |
-| `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Selector is a label query over pods that should match the replica count. Label keys and values that must match in order to be controlled by this replica set. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#pod-template |
+| `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Selector is a label query over pods that should match the replica count. Label keys and values that must match in order to be controlled by this replica set. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#pod-template |
 
 ### .status {#_status}
 
@@ -92,7 +92,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time the condition transitioned from one status to another. |
 | `message` | `string` | A human readable message indicating details about the transition. |
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
@@ -147,7 +147,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSetList`](/rest_api/objects/index#io-k8s-api-apps-v1-ReplicaSetList) schema |
+| 200 - OK | [`ReplicaSetList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-ReplicaSetList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/replicasets {#_apisappsv1watchreplicasets}
@@ -166,7 +166,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/replicasets {#_apisappsv1namespaces_namespace_replicasets}
@@ -191,7 +191,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -208,7 +208,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSetList`](/rest_api/objects/index#io-k8s-api-apps-v1-ReplicaSetList) schema |
+| 200 - OK | [`ReplicaSetList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-apps-v1-ReplicaSetList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -232,15 +232,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |  |
+| `body` | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
-| 201 - Created | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
-| 202 - Accepted | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 200 - OK | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 201 - Created | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 202 - Accepted | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets {#_apisappsv1watchnamespaces_namespace_replicasets}
@@ -259,7 +259,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }} {#_apisappsv1namespaces_namespace_replicasets_name}
@@ -290,8 +290,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -308,7 +308,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 200 - OK | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -332,8 +332,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
-| 201 - Created | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 200 - OK | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 201 - Created | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -357,14 +357,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |  |
+| `body` | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
-| 201 - Created | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 200 - OK | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 201 - Created | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets/{{ name }} {#_apisappsv1watchnamespaces_namespace_replicasets_name}
@@ -389,7 +389,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/status {#_apisappsv1namespaces_namespace_replicasets_name_status}
@@ -414,7 +414,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 200 - OK | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -438,8 +438,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
-| 201 - Created | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 200 - OK | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 201 - Created | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -463,12 +463,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |  |
+| `body` | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
-| 201 - Created | [`ReplicaSet`](/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 200 - OK | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
+| 201 - Created | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |

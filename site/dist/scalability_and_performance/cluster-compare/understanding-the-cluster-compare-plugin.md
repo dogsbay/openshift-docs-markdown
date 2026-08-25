@@ -10,4 +10,4 @@ Use the `cluster-compare` plugin in development, production, and support scenari
 
 ## Additional resources {#_additional_resources}
 
-- [Telco RAN DU reference design specification for OpenShift Container Platform](/scalability_and_performance/telco-ran-du-rds#telco-ran-du-ref-design-specs)
+- [Telco RAN DU reference design specification for OpenShift Container Platform](/openshift-docs-markdown/scalability_and_performance/telco-ran-du-rds#telco-ran-du-ref-design-specs)

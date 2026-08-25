@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"overview-of-nodes","text":"Overview of nodes"}];
 const nav = navData;
-const currentPath = "/nodes";
+const currentPath = "/openshift-docs-markdown/nodes";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = null;
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of nodes {#overview-of-nodes}\n\nIn an OpenShift Container Platform cluster, nodes, pods, and application containers are foundational components that you use to create and manage workloads.\n\n**Additional resources**\n\n- [Automatically scaling pods with the horizontal pod autoscaler](/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling)\n- [Custom Metrics Autoscaler Operator overview](/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)\n- [Automatically adjust pod resource levels with the vertical pod autoscaler](/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vpa)\n","mdUrl":"/nodes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of nodes {#overview-of-nodes}\n\nIn an OpenShift Container Platform cluster, nodes, pods, and application containers are foundational components that you use to create and manage workloads.\n\n**Additional resources**\n\n- [Automatically scaling pods with the horizontal pod autoscaler](/openshift-docs-markdown/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling)\n- [Custom Metrics Autoscaler Operator overview](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)\n- [Automatically adjust pod resource levels with the vertical pod autoscaler](/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vpa)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -102,9 +102,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-overview-about-autoscaling-pods.md /modules/nodes-overview-containers-tasks-reference.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling">Automatically scaling pods with the horizontal pod autoscaler</a></li>
-      <li><a href="/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom">Custom Metrics Autoscaler Operator overview</a></li>
-      <li><a href="/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vpa">Automatically adjust pod resource levels with the vertical pod autoscaler</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling">Automatically scaling pods with the horizontal pod autoscaler</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom">Custom Metrics Autoscaler Operator overview</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vpa">Automatically adjust pod resource levels with the vertical pod autoscaler</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

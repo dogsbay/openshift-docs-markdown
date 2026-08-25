@@ -2,7 +2,7 @@
 // Source: networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer-allowed-source-ranges.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring ingress cluster traffic using load balancer allowed source ranges\n---\n\n# Configuring ingress cluster traffic using load balancer allowed source ranges {#configuring-ingress-cluster-traffic-lb-allowed-source-ranges}\n\nYou can specify a list of IP address ranges for the Ingress Controller. This action restricts access to the load balancer service when you specify the `LoadBalancerService` value for the `endpointPublishingStrategy` parameter.\n\n## Additional resources {#_additional_resources}\n\n- [Introduction to OpenShift updates](/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)\n";
+const body = "---\ntitle: Configuring ingress cluster traffic using load balancer allowed source ranges\n---\n\n# Configuring ingress cluster traffic using load balancer allowed source ranges {#configuring-ingress-cluster-traffic-lb-allowed-source-ranges}\n\nYou can specify a list of IP address ranges for the Ingress Controller. This action restricts access to the load balancer service when you specify the `LoadBalancerService` value for the `endpointPublishingStrategy` parameter.\n\n## Additional resources {#_additional_resources}\n\n- [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

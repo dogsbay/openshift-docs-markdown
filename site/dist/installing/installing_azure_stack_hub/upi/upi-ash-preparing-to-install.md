@@ -14,4 +14,4 @@ Prepare to install an OpenShift Container Platform cluster on Azure Stack Hub by
 
 ## Additional resources {#additional-resources_upi-ash-preparing-to-install}
 
-- [Configuring an Azure Stack Hub account](/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)
+- [Configuring an Azure Stack Hub account](/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)

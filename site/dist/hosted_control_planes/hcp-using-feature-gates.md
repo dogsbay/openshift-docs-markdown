@@ -8,4 +8,4 @@ You can use feature gates in a hosted cluster to enable features that are not pa
 
 **Additional resources**
 
-- \[FeatureGate [config.openshift.io/v1](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1)\]
+- \[FeatureGate [config.openshift.io/v1](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1)\]

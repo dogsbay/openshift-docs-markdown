@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-cluster-overcommit","text":"Configuring your cluster to place pods on overcommitted nodes"},{"depth":2,"slug":"nodes-cluster-overcommit-addtl-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/clusters/nodes-cluster-overcommit";
+const currentPath = "/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/clusters"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring your cluster to place pods on overcommitted nodes {#nodes-cluster-overcommit}\n\nOpenShift Container Platform administrators can control the level of overcommit and manage container density on developer containers by using the ClusterResourceOverride Operator.\n\n> [!NOTE]\n> In OpenShift Container Platform, you must enable cluster-level overcommit. Node overcommitment is enabled by default.\n\nIn an *overcommitted* state, the sum of the container compute resource requestsand limits exceeds the resources available on the system. For example, you might want to use overcommitment in development environments where a trade-off of guaranteed performance for capacity is acceptable.\n\nContainers can specify compute resource requests and limits. Requests are used for scheduling your container and provide a minimum service guarantee. Limits constrain the amount of compute resource that can be consumed on your node.\n\nThe scheduler attempts to optimize the compute resource use across all nodes in your cluster. It places pods onto specific nodes, taking the pods' compute resource requests and nodes' available capacity into consideration.\n\n## Additional resources {#nodes-cluster-overcommit-addtl-resources}\n\n- [Moving the Cluster Resource Override Operator pods](/machine_management/creating-infrastructure-machinesets#nodes-cluster-resource-override-move-infra_creating-infrastructure-machinesets)\n- [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n- [Setting deployment resources](/applications/deployments/managing-deployment-processes#deployments-triggers_deployment-operations)\n- [Disabling or enforcing CPU limits using CPU CFS quotas](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit)\n- [Reserving resources for system processes](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-resources_nodes-cluster-overcommit)\n- [Understanding how to reserve memory across quality of service tiers](/nodes/clusters/nodes-cluster-overcommit#qos-about-reserve_nodes-cluster-overcommit)\n- [Allocating resources for nodes](/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)\n","mdUrl":"/nodes/clusters/nodes-cluster-overcommit.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring your cluster to place pods on overcommitted nodes {#nodes-cluster-overcommit}\n\nOpenShift Container Platform administrators can control the level of overcommit and manage container density on developer containers by using the ClusterResourceOverride Operator.\n\n> [!NOTE]\n> In OpenShift Container Platform, you must enable cluster-level overcommit. Node overcommitment is enabled by default.\n\nIn an *overcommitted* state, the sum of the container compute resource requestsand limits exceeds the resources available on the system. For example, you might want to use overcommitment in development environments where a trade-off of guaranteed performance for capacity is acceptable.\n\nContainers can specify compute resource requests and limits. Requests are used for scheduling your container and provide a minimum service guarantee. Limits constrain the amount of compute resource that can be consumed on your node.\n\nThe scheduler attempts to optimize the compute resource use across all nodes in your cluster. It places pods onto specific nodes, taking the pods' compute resource requests and nodes' available capacity into consideration.\n\n## Additional resources {#nodes-cluster-overcommit-addtl-resources}\n\n- [Moving the Cluster Resource Override Operator pods](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#nodes-cluster-resource-override-move-infra_creating-infrastructure-machinesets)\n- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n- [Setting deployment resources](/openshift-docs-markdown/applications/deployments/managing-deployment-processes#deployments-triggers_deployment-operations)\n- [Disabling or enforcing CPU limits using CPU CFS quotas](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit)\n- [Reserving resources for system processes](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-resources_nodes-cluster-overcommit)\n- [Understanding how to reserve memory across quality of service tiers](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#qos-about-reserve_nodes-cluster-overcommit)\n- [Allocating resources for nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -123,13 +123,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nodes-cluster-overcommit-project-disable.md"></p>
       <h2 id="nodes-cluster-overcommit-addtl-resources" class="group scroll-mt-20">Additional resources<a href="#nodes-cluster-overcommit-addtl-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#nodes-cluster-resource-override-move-infra_creating-infrastructure-machinesets">Moving the Cluster Resource Override Operator pods</a></li>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets">Creating infrastructure machine sets</a></li>
-      <li><a href="/applications/deployments/managing-deployment-processes#deployments-triggers_deployment-operations">Setting deployment resources</a></li>
-      <li><a href="/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit">Disabling or enforcing CPU limits using CPU CFS quotas</a></li>
-      <li><a href="/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-resources_nodes-cluster-overcommit">Reserving resources for system processes</a></li>
-      <li><a href="/nodes/clusters/nodes-cluster-overcommit#qos-about-reserve_nodes-cluster-overcommit">Understanding how to reserve memory across quality of service tiers</a></li>
-      <li><a href="/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring">Allocating resources for nodes</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#nodes-cluster-resource-override-move-infra_creating-infrastructure-machinesets">Moving the Cluster Resource Override Operator pods</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets">Creating infrastructure machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/applications/deployments/managing-deployment-processes#deployments-triggers_deployment-operations">Setting deployment resources</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit">Disabling or enforcing CPU limits using CPU CFS quotas</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-node-resources_nodes-cluster-overcommit">Reserving resources for system processes</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#qos-about-reserve_nodes-cluster-overcommit">Understanding how to reserve memory across quality of service tiers</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring">Allocating resources for nodes</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

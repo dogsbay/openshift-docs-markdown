@@ -2,5 +2,5 @@
 
 ## What's new?
 
-- [New features and enhancements](/whats_new/new-features.md)
-- [Deprecated features](/whats_new/deprecated-features.md)
+- [New features and enhancements](https://dogsbay.github.io/openshift-docs-markdown/whats_new/new-features.md)
+- [Deprecated features](https://dogsbay.github.io/openshift-docs-markdown/whats_new/deprecated-features.md)

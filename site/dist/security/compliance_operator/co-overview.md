@@ -12,5 +12,5 @@ The Compliance Operator makes recommendations based on generally available infor
 
 ## Additional resources {#additional-resources_co-overview}
 
-- [Compliance Operator release notes](/security/compliance_operator/compliance-operator-release-notes#compliance-operator-release-notes)
+- [Compliance Operator release notes](/openshift-docs-markdown/security/compliance_operator/compliance-operator-release-notes#compliance-operator-release-notes)
 - [Product Compliance](https://access.redhat.com/compliance)

@@ -2,4 +2,4 @@
 
 ## AI applications
 
-- [MCP server overview](/ai_applications/mcp_server/mcp-server-overview.md)
+- [MCP server overview](https://dogsbay.github.io/openshift-docs-markdown/ai_applications/mcp_server/mcp-server-overview.md)

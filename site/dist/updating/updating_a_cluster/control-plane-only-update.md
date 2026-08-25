@@ -21,16 +21,16 @@ There are several caveats to consider when attempting a Control Plane Only updat
 
 <a name="additional-resources_updating-control-plane-only-update-console"></a>**Additional resources**
 
-- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
-- [Updating a cluster by using the web console](/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
+- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+- [Updating a cluster by using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
 
 <a name="additional-resources_updating-control-plane-only-update-cli"></a>**Additional resources**
 
-- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 
 <a name="additional-resources_updating-control-plane-only-layered-products"></a>**Additional resources**
 
-- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
-- [Performing a Control Plane Only update using the web console](/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-console_control-plane-only-update)
-- [Performing a Control Plane Only update using the CLI](/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-cli_control-plane-only-update)
-- [Preventing workload updates during a Control Plane Only update](/virt/updating/upgrading-virt#virt-preventing-workload-updates-during-control-plane-only-update_upgrading-virt)
+- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+- [Performing a Control Plane Only update using the web console](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-console_control-plane-only-update)
+- [Performing a Control Plane Only update using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-cli_control-plane-only-update)
+- [Preventing workload updates during a Control Plane Only update](/openshift-docs-markdown/virt/updating/upgrading-virt#virt-preventing-workload-updates-during-control-plane-only-update_upgrading-virt)

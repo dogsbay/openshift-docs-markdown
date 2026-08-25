@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"dynamic-plugins-reference_{{ context }}","text":"Dynamic plugin reference"}];
 const nav = navData;
-const currentPath = "/web_console/dynamic-plugin/dynamic-plugins-reference";
+const currentPath = "/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-reference";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["web_console","web_console/dynamic-plugin"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Dynamic plugin reference {#dynamic-plugins-reference_{{ context }}}\n\nYou can add extensions that allow you to customize your plugin. Those extensions are then loaded to the console at runtime.\n\n**Additional resources**\n\n- [Understanding service serving certificates](/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate)\n","mdUrl":"/web_console/dynamic-plugin/dynamic-plugins-reference.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Dynamic plugin reference {#dynamic-plugins-reference_{{ context }}}\n\nYou can add extensions that allow you to customize your plugin. Those extensions are then loaded to the console at runtime.\n\n**Additional resources**\n\n- [Understanding service serving certificates](/openshift-docs-markdown/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-reference.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/dynamic-plugin-api.md"></p>
       <p class="/modules/troubleshooting-dynamic-plugin.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate">Understanding service serving certificates</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate">Understanding service serving certificates</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

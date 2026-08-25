@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"multitenant-network-policy","text":"Configuring multitenant isolation with network policy"},{"depth":2,"slug":"multitenant-network-policy-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/networking/network_security/network_policy/multitenant-network-policy";
+const currentPath = "/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/network_security","networking/network_security/network_policy"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring multitenant isolation with network policy {#multitenant-network-policy}\n\nYou can configure network policies to isolate network traffic between projects in a multitenant cluster. This isolation helps prevent unauthorized communication between workloads in different namespaces.\n\nAs a cluster administrator, you can configure your network policies to provide multitenant network isolation.\n\n> [!NOTE]\n> Configuring network policies as described in this section provides network isolation similar to the multitenant mode of OpenShift SDN in previous versions of OpenShift Container Platform.\n\n## Additional resources {#multitenant-network-policy-additional-resources}\n\n- [Defining a default network policy for a project](/networking/network_security/network_policy/default-network-policy#default-network-policy)\n","mdUrl":"/networking/network_security/network_policy/multitenant-network-policy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring multitenant isolation with network policy {#multitenant-network-policy}\n\nYou can configure network policies to isolate network traffic between projects in a multitenant cluster. This isolation helps prevent unauthorized communication between workloads in different namespaces.\n\nAs a cluster administrator, you can configure your network policies to provide multitenant network isolation.\n\n> [!NOTE]\n> Configuring network policies as described in this section provides network isolation similar to the multitenant mode of OpenShift SDN in previous versions of OpenShift Container Platform.\n\n## Additional resources {#multitenant-network-policy-additional-resources}\n\n- [Defining a default network policy for a project](/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,7 +105,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p class="/modules/nw-networkpolicy-multitenant-isolation.md"></p>
       <h2 id="multitenant-network-policy-additional-resources" class="group scroll-mt-20">Additional resources<a href="#multitenant-network-policy-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/networking/network_security/network_policy/default-network-policy#default-network-policy">Defining a default network policy for a project</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy">Defining a default network policy for a project</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

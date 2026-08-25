@@ -11,4 +11,4 @@ You can clone virtual machines (VMs) or create new VMs from snapshots.
 
 ## Additional resources {#additional-resources_virt-cloning-vms}
 
-- [Creating VMs by cloning PVCs](/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#virt-creating-vms-by-cloning-pvcs)
+- [Creating VMs by cloning PVCs](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#virt-creating-vms-by-cloning-pvcs)

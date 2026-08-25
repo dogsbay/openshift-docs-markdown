@@ -8,4 +8,4 @@ You can add extensions that allow you to customize your plugin. Those extensions
 
 **Additional resources**
 
-- [Understanding service serving certificates](/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate)
+- [Understanding service serving certificates](/openshift-docs-markdown/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate)

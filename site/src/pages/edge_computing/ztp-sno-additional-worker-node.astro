@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"ztp-sno-additional-worker-node","text":"Expanding single-node OpenShift clusters with GitOps ZTP"}];
 const nav = navData;
-const currentPath = "/edge_computing/ztp-sno-additional-worker-node";
+const currentPath = "/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["edge_computing"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Expanding single-node OpenShift clusters with GitOps ZTP {#ztp-sno-additional-worker-node}\n\nYou can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing {{ sno }} cluster.\n\n> [!NOTE]\n> You can only expand a {{ sno }} cluster with one additional worker node. It is not recommended to expand a {{ sno }} cluster with more than one worker node.\n\nIf you require workload partitioning on the worker node, you must deploy and remediate the managed cluster policies on the hub cluster before installing the node. This way, the workload partitioning `MachineConfig` objects are rendered and associated with the `worker` machine config pool before the {{ ztp }} workflow applies the `MachineConfig` ignition file to the worker node.\n\nIt is recommended that you first remediate the policies, and then install the worker node. If you create the workload partitioning manifests after installing the worker node, you must drain the node manually and delete all the pods managed by daemon sets. When the managing daemon sets create the new pods, the new pods undergo the workload partitioning process.\n\n**Additional resources**\n\n- [Reference configuration for deploying vDUs on {{ sno }}](/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)\n- [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)\n- [Removing managed cluster nodes by using the command line interface](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html/clusters/cluster_mce_overview#auto-remove-host-steps-cli)\n\n{% include \"./modules/ztp-worker-node-node-selector-compatibility.md\" %}\n","mdUrl":"/edge_computing/ztp-sno-additional-worker-node.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Expanding single-node OpenShift clusters with GitOps ZTP {#ztp-sno-additional-worker-node}\n\nYou can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing {{ sno }} cluster.\n\n> [!NOTE]\n> You can only expand a {{ sno }} cluster with one additional worker node. It is not recommended to expand a {{ sno }} cluster with more than one worker node.\n\nIf you require workload partitioning on the worker node, you must deploy and remediate the managed cluster policies on the hub cluster before installing the node. This way, the workload partitioning `MachineConfig` objects are rendered and associated with the `worker` machine config pool before the {{ ztp }} workflow applies the `MachineConfig` ignition file to the worker node.\n\nIt is recommended that you first remediate the policies, and then install the worker node. If you create the workload partitioning manifests after installing the worker node, you must drain the node manually and delete all the pods managed by daemon sets. When the managing daemon sets create the new pods, the new pods undergo the workload partitioning process.\n\n**Additional resources**\n\n- [Reference configuration for deploying vDUs on {{ sno }}](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)\n- [Adding worker nodes to {{ sno }} clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)\n- [Removing managed cluster nodes by using the command line interface](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html/clusters/cluster_mce_overview#auto-remove-host-steps-cli)\n\n{% include \"./modules/ztp-worker-node-node-selector-compatibility.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,8 +106,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/snippets/technology-preview.md">It is recommended that you first remediate the policies, and then install the worker node. If you create the workload partitioning manifests after installing the worker node, you must drain the node manually and delete all the pods managed by daemon sets. When the managing daemon sets create the new pods, the new pods undergo the workload partitioning process.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Reference configuration for deploying vDUs on {"{"}{"{"} sno {"}"}{"}"}</a></li>
-      <li><a href="/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes">Adding worker nodes to {"{"}{"{"} sno {"}"}{"}"} clusters</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Reference configuration for deploying vDUs on {"{"}{"{"} sno {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes">Adding worker nodes to {"{"}{"{"} sno {"}"}{"}"} clusters</a></li>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html/clusters/cluster_mce_overview#auto-remove-host-steps-cli">Removing managed cluster nodes by using the command line interface</a></li>
       </ul>
       <p class="/modules/ztp-worker-node-daemon-selector-compatibility.md"></p>

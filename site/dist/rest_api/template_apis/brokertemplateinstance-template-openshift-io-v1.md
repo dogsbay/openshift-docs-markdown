@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | BrokerTemplateInstanceSpec describes the state of a BrokerTemplateInstance. |
 
 ### .spec {#_spec}
@@ -43,8 +43,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `bindingIDs` | `array (string)` | bindingIDs is a list of 'binding_id’s provided during successive bind calls to the template service broker. |
-| `secret` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | secret is a reference to a Secret object residing in a namespace, containing the necessary template parameters. |
-| `templateInstance` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | templateInstance is a reference to a TemplateInstance object residing in a namespace. |
+| `secret` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | secret is a reference to a Secret object residing in a namespace, containing the necessary template parameters. |
+| `templateInstance` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | templateInstance is a reference to a TemplateInstance object residing in a namespace. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -90,7 +90,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -107,7 +107,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BrokerTemplateInstanceList`](/rest_api/objects/index#com-github-openshift-api-template-v1-BrokerTemplateInstanceList) schema |
+| 200 - OK | [`BrokerTemplateInstanceList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-template-v1-BrokerTemplateInstanceList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -131,15 +131,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |  |
+| `body` | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
-| 202 - Accepted | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 202 - Accepted | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/brokertemplateinstances {#_apistemplateopenshiftiov1watchbrokertemplateinstances}
@@ -158,7 +158,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/brokertemplateinstances/{{ name }} {#_apistemplateopenshiftiov1brokertemplateinstances_name}
@@ -189,8 +189,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -207,7 +207,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -231,8 +231,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -256,14 +256,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |  |
+| `body` | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
-| 201 - Created | [`BrokerTemplateInstance`](/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 200 - OK | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
+| 201 - Created | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/template.openshift.io/v1/watch/brokertemplateinstances/{{ name }} {#_apistemplateopenshiftiov1watchbrokertemplateinstances_name}
@@ -288,5 +288,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

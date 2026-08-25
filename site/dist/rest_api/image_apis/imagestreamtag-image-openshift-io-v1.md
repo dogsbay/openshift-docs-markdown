@@ -31,7 +31,7 @@ Required
 | `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `lookupPolicy` | `object` | ImageLookupPolicy describes how an image stream can be used to override the image references used by pods, builds, and other resources in a namespace. |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `tag` | `object` | TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track. |
 
 ### .conditions {#_conditions}
@@ -62,7 +62,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `generation` | `integer` | generation is the spec tag generation that this status corresponds to |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition transitioned from one status to another. |
 | `message` | `string` | message is a human readable description of the details about last transition, complementing reason. |
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -90,12 +90,12 @@ Type
 | `dockerImageManifestMediaType` | `string` | dockerImageManifestMediaType specifies the mediaType of manifest. This is a part of manifest schema v2. |
 | `dockerImageManifests` | `array` | dockerImageManifests holds information about sub-manifests when the image represents a manifest list. When this field is present, no DockerImageLayers should be specified. |
 | `dockerImageManifests[]` | `object` | ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object. |
-| `dockerImageMetadata` | [`RawExtension`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | dockerImageMetadata contains metadata about this image |
+| `dockerImageMetadata` | [`RawExtension`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | dockerImageMetadata contains metadata about this image |
 | `dockerImageMetadataVersion` | `string` | dockerImageMetadataVersion conveys the version of the object, which if empty defaults to "1.0" |
 | `dockerImageReference` | `string` | dockerImageReference is the string that can be used to pull this image. |
 | `dockerImageSignatures` | `array (string)` | dockerImageSignatures provides the signatures as opaque blobs. This is a part of manifest schema v1. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
 | `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 
@@ -198,12 +198,12 @@ Required
 | `conditions` | `array` | conditions represent the latest available observations of a signature’s current state. |
 | `conditions[]` | `object` | SignatureCondition describes an image signature condition of particular kind at particular probe time. |
 | `content` | `string` | Required: An opaque binary string which is an image’s signature. |
-| `created` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | If specified, it is the time of signature’s creation. |
+| `created` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | If specified, it is the time of signature’s creation. |
 | `imageIdentity` | `string` | A human readable string representing image’s identity. It could be a product name and version, or an image pull spec (e.g. "registry.access.redhat.com/rhel7/rhel:7.2"). |
 | `issuedBy` | `object` | SignatureIssuer holds information about an issuer of signing certificate or key. |
 | `issuedTo` | `object` | SignatureSubject holds information about a person or entity who created the signature. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
@@ -233,8 +233,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastProbeTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition was checked. |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
+| `lastProbeTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition was checked. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | Last time the condition transit from one status to another. |
 | `message` | `string` | Human readable message indicating details about last transition. |
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -307,7 +307,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | Optional; if specified, annotations that are applied to images retrieved via ImageStreamTags. |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.  ImageStreamTag references can only reference a tag within this same ImageStream. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.  ImageStreamTag references can only reference a tag within this same ImageStream. |
 | `generation` | `integer` | generation is a counter that tracks mutations to the spec tag (user intent). When a tag reference is changed the generation is set to match the current stream generation (which is incremented every time spec is changed). Other processes in the system like the image importer observe that the generation of spec tag is newer than the generation recorded in the status and use that as a trigger to import the newest remote tag. To trigger a new import, clients may set this value to zero which will reset the generation to the latest stream generation. Legacy clients will send this value as nil which will be merged with the current tag generation. |
 | `importPolicy` | `object` | TagImportPolicy controls how images related to this tag will be imported. |
 | `name` | `string` | name of the tag |
@@ -381,7 +381,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamTagList`](/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamTagList) schema |
+| 200 - OK | [`ImageStreamTagList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamTagList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags {#_apisimageopenshiftiov1namespaces_namespace_imagestreamtags}
@@ -400,7 +400,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamTagList`](/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamTagList) schema |
+| 200 - OK | [`ImageStreamTagList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamTagList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -424,15 +424,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |  |
+| `body` | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
-| 202 - Accepted | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 202 - Accepted | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags/{{ name }} {#_apisimageopenshiftiov1namespaces_namespace_imagestreamtags_name}
@@ -463,8 +463,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -481,7 +481,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -505,8 +505,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -530,12 +530,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |  |
+| `body` | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStreamTag`](/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

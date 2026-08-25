@@ -27,10 +27,10 @@ To install the OADP Operator in a restricted network environment, you must first
 
 ## Additional resources {#additional-resources_installing-oadp-kubevirt}
 
-- [Application backup and restore operations](/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview)
-- [Backing up applications with File System Backup: Kopia or Restic](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc)
-- [{{ oadp_short }} plugins](/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-plugins_oadp-features-plugins)
-- [`Backup` custom resource (CR)](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
-- [`Restore` CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Application backup and restore operations](/openshift-docs-markdown/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview)
+- [Backing up applications with File System Backup: Kopia or Restic](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc)
+- [{{ oadp_short }} plugins](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-plugins_oadp-features-plugins)
+- [`Backup` custom resource (CR)](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
+- [`Restore` CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 - \[Velero {{ velero_version }}\](https://velero.io/docs/v{{ velero_version }})

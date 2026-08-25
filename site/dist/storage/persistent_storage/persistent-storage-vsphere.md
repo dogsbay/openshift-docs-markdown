@@ -25,4 +25,4 @@ You can provision VMware vSphere volumes dynamically or statically. However, dyn
 **Additional resources**
 
 - [VMware vSphere](https://www.vmware.com/au/products/vsphere.html)
-- [Installing a cluster on vSphere](/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)
+- [Installing a cluster on vSphere](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)

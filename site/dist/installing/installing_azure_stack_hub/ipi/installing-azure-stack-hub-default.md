@@ -11,19 +11,19 @@ You can install a cluster on Microsoft Azure Stack Hub with installer-provisione
 
 **Additional resources**
 
-- [Installation configuration parameters for Azure Stack Hub](/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
+- [Installation configuration parameters for Azure Stack Hub](/openshift-docs-markdown/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
 
 **Additional resources**
 
-- [Updating cloud provider resources with manually maintained credentials](/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)
+- [Updating cloud provider resources with manually maintained credentials](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)
 
 **Additional resources**
 
-- [Accessing the web console](/web_console/web-console#web-console)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
 ## Additional resources {#additional-resources_installing-azure-stack-hub-default}
 
-- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
-- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Remove cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)
+- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Remove cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

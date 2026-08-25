@@ -2,7 +2,7 @@
 // Source: extensions/arch/operator-controller.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Operator Controller\n---\n\n# Operator Controller {#operator-controller}\n\nOperator Controller is the central component of {{ olmv1_first }} and consumes the other {{ olmv1 }} component, catalogd. It extends Kubernetes with an API through which users can install Operators and extensions.\n\n**Additional resources**\n\n- [Operator Lifecycle Manager (OLM) -> Multitenancy and Operator colocation](/operators/understanding/olm/olm-colocation#olm-colocation)\n- [Supported extensions](/extensions/ce/olmv1-supported-extensions#olmv1-supported-extensions)\n";
+const body = "---\ntitle: Operator Controller\n---\n\n# Operator Controller {#operator-controller}\n\nOperator Controller is the central component of {{ olmv1_first }} and consumes the other {{ olmv1 }} component, catalogd. It extends Kubernetes with an API through which users can install Operators and extensions.\n\n**Additional resources**\n\n- [Operator Lifecycle Manager (OLM) -> Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)\n- [Supported extensions](/openshift-docs-markdown/extensions/ce/olmv1-supported-extensions#olmv1-supported-extensions)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

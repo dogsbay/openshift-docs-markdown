@@ -10,7 +10,7 @@ Network-Bound Disk Encryption (NBDE) must be enabled when a cluster node is inst
 
 To deploy one or more Tang servers, you can choose from the following options depending on your scenario:
 
-1. [Deploying a Tang server using the NBDE Tang Server Operator](/security/nbde_tang_server_operator/nbde-tang-server-operator-configuring-managing#deploying-nbde-tang-server_configuring-and-managing-nbde-tang-server-operator)
+1. [Deploying a Tang server using the NBDE Tang Server Operator](/openshift-docs-markdown/security/nbde_tang_server_operator/nbde-tang-server-operator-configuring-managing#deploying-nbde-tang-server_configuring-and-managing-nbde-tang-server-operator)
 2. [Deploying a Tang server with SELinux in enforcing mode on RHEL systems](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening#deploying-a-tang-server-with-selinux-in-enforcing-mode_configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption)
 3. [Configuring a Tang server in the RHEL web console](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening#configuring-automated-unlocking-using-a-tang-key-in-the-web-console_configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption)
 4. [Deploying Tang as a container](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening#proc_deploying-tang-as-a-container_configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption)
@@ -20,4 +20,4 @@ To deploy one or more Tang servers, you can choose from the following options de
 
 - [Configuring automated unlocking of encrypted volumes using policy-based decryption](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening)
 - [Official Tang server container](https://catalog.redhat.com/software/containers/detail/5fbc405674aa0cc23b445f8f?container-tabs=overview&gti-tabs=registry-tokens)
-- [Encrypting and mirroring disks during installation](/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
+- [Encrypting and mirroring disks during installation](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)

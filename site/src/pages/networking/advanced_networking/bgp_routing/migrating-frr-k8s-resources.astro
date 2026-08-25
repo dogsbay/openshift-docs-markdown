@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"migrating-frr-k8s-resources","text":"Migrating FRR-K8s resources"}];
 const nav = navData;
-const currentPath = "/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources";
+const currentPath = "/openshift-docs-markdown/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/advanced_networking","networking/advanced_networking/bgp_routing"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Migrating FRR-K8s resources {#migrating-frr-k8s-resources}\n\nMigrating FRR-K8s custom resources is required when upgrading from OpenShift Container Platform 4.17 or earlier with the MetalLB Operator deployed. Existing FRRConfiguration resources in the `metallb-system` namespace must be moved to the `openshift-frr-k8s` namespace to align with the updated architecture. Learn how to migrate these resources using the CLI and how to verify that the migration completed successfully.\n\nAll user-created FRR-K8s custom resources (CRs) in the `metallb-system` namespace under OpenShift Container Platform 4.17 and earlier releases must be migrated to the `openshift-frr-k8s` namespace. As a cluster administrator, you can migrate your FRR-K8s custom resources to the `openshift-frr-k8s` namespace using the CLI.\n","mdUrl":"/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Migrating FRR-K8s resources {#migrating-frr-k8s-resources}\n\nMigrating FRR-K8s custom resources is required when upgrading from OpenShift Container Platform 4.17 or earlier with the MetalLB Operator deployed. Existing FRRConfiguration resources in the `metallb-system` namespace must be moved to the `openshift-frr-k8s` namespace to align with the updated architecture. Learn how to migrate these resources using the CLI and how to verify that the migration completed successfully.\n\nAll user-created FRR-K8s custom resources (CRs) in the `metallb-system` namespace under OpenShift Container Platform 4.17 and earlier releases must be migrated to the `openshift-frr-k8s` namespace. As a cluster administrator, you can migrate your FRR-K8s custom resources to the `openshift-frr-k8s` namespace using the CLI.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

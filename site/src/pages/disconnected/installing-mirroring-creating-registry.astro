@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-mirroring-creating-registry","text":"Creating a mirror registry with mirror registry for Red Hat OpenShift"},{"depth":2,"slug":"additional-resources_installing-mirroring-creating-registry","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/disconnected/installing-mirroring-creating-registry";
+const currentPath = "/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["disconnected"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a mirror registry with mirror registry for Red Hat OpenShift {#installing-mirroring-creating-registry}\n\nThe *mirror registry for Red Hat OpenShift* is a small and streamlined container registry that you can use as a target for mirroring the required container images of OpenShift Container Platform for disconnected installations.\n\nIf you already have a container image registry, such as {{ quay }}, you can skip this section and go straight to \"Mirroring the OpenShift Container Platform image repository\".\n\nFor more information, see \"{{ quay }}\".\n\n> [!IMPORTANT]\n> The *mirror registry for Red Hat OpenShift* is not intended to be a substitute for a production deployment of {{ quay }}.\n\n**Additional resources**\n\n- [OpenShift console Downloads](https://console.redhat.com/openshift/downloads#tool-mirror-registry)\n- [Self-managed Red Hat OpenShift sizing and subscription guide](https://www.redhat.com/en/resources/self-managed-openshift-sizing-subscription-guide)\n\n## Additional resources {#additional-resources_installing-mirroring-creating-registry}\n\n- [{{ quay }} garbage collection](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/garbage-collection#doc-wrapper)\n- [Securing {{ quay }}](https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index)\n- [Configuring the system to trust the certificate authority](https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index#configuring-system-trust-ca)\n- [Mirroring the OpenShift Container Platform image repository](/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)\n- [Mirroring Operator catalogs for use with disconnected clusters](/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)\n","mdUrl":"/disconnected/installing-mirroring-creating-registry.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a mirror registry with mirror registry for Red Hat OpenShift {#installing-mirroring-creating-registry}\n\nThe *mirror registry for Red Hat OpenShift* is a small and streamlined container registry that you can use as a target for mirroring the required container images of OpenShift Container Platform for disconnected installations.\n\nIf you already have a container image registry, such as {{ quay }}, you can skip this section and go straight to \"Mirroring the OpenShift Container Platform image repository\".\n\nFor more information, see \"{{ quay }}\".\n\n> [!IMPORTANT]\n> The *mirror registry for Red Hat OpenShift* is not intended to be a substitute for a production deployment of {{ quay }}.\n\n**Additional resources**\n\n- [OpenShift console Downloads](https://console.redhat.com/openshift/downloads#tool-mirror-registry)\n- [Self-managed Red Hat OpenShift sizing and subscription guide](https://www.redhat.com/en/resources/self-managed-openshift-sizing-subscription-guide)\n\n## Additional resources {#additional-resources_installing-mirroring-creating-registry}\n\n- [{{ quay }} garbage collection](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/garbage-collection#doc-wrapper)\n- [Securing {{ quay }}](https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index)\n- [Configuring the system to trust the certificate authority](https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index#configuring-system-trust-ca)\n- [Mirroring the OpenShift Container Platform image repository](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)\n- [Mirroring Operator catalogs for use with disconnected clusters](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -129,8 +129,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/garbage-collection#doc-wrapper">{"{"}{"{"} quay {"}"}{"}"} garbage collection</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index">Securing {"{"}{"{"} quay {"}"}{"}"}</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index#configuring-system-trust-ca">Configuring the system to trust the certificate authority</a></li>
-      <li><a href="/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images">Mirroring the OpenShift Container Platform image repository</a></li>
-      <li><a href="/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images">Mirroring Operator catalogs for use with disconnected clusters</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images">Mirroring the OpenShift Container Platform image repository</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images">Mirroring Operator catalogs for use with disconnected clusters</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-post-install-storage-config","text":"Postinstallation storage configuration"},{"depth":2,"slug":"configuring-local-storage-hpp","text":"Configuring local storage by using the HPP"},{"depth":2,"slug":"additional-resources_{{ context }}","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/post_installation_configuration/virt-post-install-storage-config";
+const currentPath = "/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-storage-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/post_installation_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation storage configuration {#virt-post-install-storage-config}\n\n{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %} After you install {{ VirtProductName }}, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. {%- endif %} If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install {{ VirtProductName }}. Storage profiles provide recommended storage settings based on the associated storage class.\n\nOptional: You can configure local storage by using the hostpath provisioner (HPP).\n\nSee the \"Storage configuration overview\" documentation for more options, including configuring the CDI, data volumes, and automatic boot source updates.\n\n## Configuring local storage by using the HPP {#configuring-local-storage-hpp}\n\nWhen you install the {{ VirtProductName }} Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.\n\nThe HPP is a local storage provisioner designed for {{ VirtProductName }}. To use the HPP, you must create an HPP custom resource (CR).\n\n> [!IMPORTANT]\n> HPP storage pools must not be in the same partition as the operating system. Otherwise, the storage pools might fill the operating system partition. If the operating system partition is full, this might negatively impact performance, or the node can become unstable or unusable.\n\n{% leveloffset +2 %}{% include \"./modules/virt-creating-storage-class-csi-driver.md\" %}\n\n## Additional resources {#additional-resources_{{ context }}}\n\n- [Defining a storage class](/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)\n- [Configuring storage profiles](/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)\n- [Storage configuration overview](/virt/storage/virt-storage-config-overview#virt-storage-config-overview)\n","mdUrl":"/virt/post_installation_configuration/virt-post-install-storage-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation storage configuration {#virt-post-install-storage-config}\n\n{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %} After you install {{ VirtProductName }}, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. {%- endif %} If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install {{ VirtProductName }}. Storage profiles provide recommended storage settings based on the associated storage class.\n\nOptional: You can configure local storage by using the hostpath provisioner (HPP).\n\nSee the \"Storage configuration overview\" documentation for more options, including configuring the CDI, data volumes, and automatic boot source updates.\n\n## Configuring local storage by using the HPP {#configuring-local-storage-hpp}\n\nWhen you install the {{ VirtProductName }} Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.\n\nThe HPP is a local storage provisioner designed for {{ VirtProductName }}. To use the HPP, you must create an HPP custom resource (CR).\n\n> [!IMPORTANT]\n> HPP storage pools must not be in the same partition as the operating system. Otherwise, the storage pools might fill the operating system partition. If the operating system partition is full, this might negatively impact performance, or the node can become unstable or unusable.\n\n{% leveloffset +2 %}{% include \"./modules/virt-creating-storage-class-csi-driver.md\" %}\n\n## Additional resources {#additional-resources_{{ context }}}\n\n- [Defining a storage class](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)\n- [Configuring storage profiles](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)\n- [Storage configuration overview](/openshift-docs-markdown/virt/storage/virt-storage-config-overview#virt-storage-config-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-storage-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -112,9 +112,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="additional-resources_{{ context }}" class="group scroll-mt-20">Additional resources<a href="#additional-resources_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p></p>
       <ul>
-      <li><a href="/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning">Defining a storage class</a></li>
-      <li><a href="/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile">Configuring storage profiles</a></li>
-      <li><a href="/virt/storage/virt-storage-config-overview#virt-storage-config-overview">Storage configuration overview</a></li>
+      <li><a href="/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning">Defining a storage class</a></li>
+      <li><a href="/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile">Configuring storage profiles</a></li>
+      <li><a href="/openshift-docs-markdown/virt/storage/virt-storage-config-overview#virt-storage-config-overview">Storage configuration overview</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

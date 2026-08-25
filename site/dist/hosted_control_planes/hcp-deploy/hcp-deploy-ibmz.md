@@ -23,13 +23,13 @@ When you create a hosted cluster with the Agent platform, HyperShift Operator in
 
 - [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 - [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
-- [Installing the {{ hcp }} command-line interface](/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)
+- [Installing the {{ hcp }} command-line interface](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)
 
 **Additional resources**
 
-- [Manually importing a hosted cluster](/hosted_control_planes/hcp-import#hcp-import)
-- [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
-- [Creating a hosted cluster on bare metal by using the console](/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc-console_hcp-deploy-bm)
+- [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import)
+- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
+- [Creating a hosted cluster on bare metal by using the console](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc-console_hcp-deploy-bm)
 
 **Additional resources**
 

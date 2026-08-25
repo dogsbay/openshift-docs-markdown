@@ -10,8 +10,8 @@ As a developer, you can define network policies that restrict traffic to pods in
 
 ## Additional resources {#about-network-policy-additional-resources}
 
-- [Creating a network policy](/networking/network_security/network_policy/creating-network-policy#creating-network-policy)
-- [Defining a default network policy for projects](/networking/network_security/network_policy/default-network-policy#default-network-policy)
-- [Projects and namespaces](/authentication/using-rbac#rbac-projects-namespaces_using-rbac)
-- [Configuring multitenant isolation with network policy](/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy)
-- [NetworkPolicy API](/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1)
+- [Creating a network policy](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#creating-network-policy)
+- [Defining a default network policy for projects](/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy)
+- [Projects and namespaces](/openshift-docs-markdown/authentication/using-rbac#rbac-projects-namespaces_using-rbac)
+- [Configuring multitenant isolation with network policy](/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy)
+- [NetworkPolicy API](/openshift-docs-markdown/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1)

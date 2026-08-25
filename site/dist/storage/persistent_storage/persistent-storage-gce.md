@@ -25,4 +25,4 @@ Persistent volumes are not bound to a single project or namespace; they can be s
 **Additional resources**
 
 - [GCE Persistent Disk](https://cloud.google.com/compute/docs/disks/)
-- [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
+- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)

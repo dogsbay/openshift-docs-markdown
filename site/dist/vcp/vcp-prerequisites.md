@@ -8,5 +8,5 @@ Before deploying a virtualized control plane cluster, ensure your environment me
 
 ## Additional resources {#additional-resources_vcp-prerequisites}
 
-- [Recommended resources for the agent-based installer](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)
-- [Effects of disk latency on etcd](/etcd/etcd-performance#etcd-disk-latency_etcd-performance)
+- [Recommended resources for the agent-based installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)
+- [Effects of disk latency on etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-disk-latency_etcd-performance)

@@ -10,4 +10,4 @@ In OpenShift Container Platform node affinity is a set of rules used by the sche
 
 ## Additional resources {#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity}
 
-- [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)
+- [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)

@@ -21,10 +21,10 @@ There are several ways that you can add worker nodes to a single-node cluster. Y
 
 <a name="additional-resources_add-workers"></a>**Additional resources**
 
-- [Minimum resource requirements for cluster installation](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-minimum-resource-requirements_installing-restricted-networks-bare-metal)
-- [Recommended practices for scaling the cluster](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_cluster-scaling)
-- [Creating a bootable ISO image on a USB drive](/installing/installing_sno/install-sno-installing-sno#installing-with-usb-media_install-sno-installing-sno-with-the-assisted-installer)
-- [Booting from an ISO image served over HTTP using the Redfish API](/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)
-- [Deleting nodes from a cluster](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-deleting_nodes-nodes-working)
-- [User-provisioned DNS requirements](/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installation-dns-user-infra_installing-bare-metal-network-customizations)
-- [Approving the certificate signing requests for your machines](/nodes/nodes/nodes-sno-worker-nodes#installation-approve-csrs_add-workers)
+- [Minimum resource requirements for cluster installation](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-minimum-resource-requirements_installing-restricted-networks-bare-metal)
+- [Recommended practices for scaling the cluster](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_cluster-scaling)
+- [Creating a bootable ISO image on a USB drive](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#installing-with-usb-media_install-sno-installing-sno-with-the-assisted-installer)
+- [Booting from an ISO image served over HTTP using the Redfish API](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)
+- [Deleting nodes from a cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-deleting_nodes-nodes-working)
+- [User-provisioned DNS requirements](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installation-dns-user-infra_installing-bare-metal-network-customizations)
+- [Approving the certificate signing requests for your machines](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#installation-approve-csrs_add-workers)

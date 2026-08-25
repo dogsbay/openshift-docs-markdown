@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"security-network","text":"Securing networks"}];
 const nav = navData;
-const currentPath = "/security/container_security/security-network";
+const currentPath = "/openshift-docs-markdown/security/container_security/security-network";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/container_security"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Securing networks {#security-network}\n\nYou can manage network security at several levels, such as by using network namespaces and network policies.\n\nAt the pod level, network namespaces can prevent containers from seeing other pods or the host system by restricting network access. Network policies give you control over allowing and rejecting connections. You can manage ingress and egress traffic to and from your containerized applications.\n\n**Additional resources**\n\n- [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)\n\n**Additional resources**\n\n- [Using multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)\n\n**Additional resources**\n\n- [Configuring ingress cluster traffic](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)\n\n**Additional resources**\n\n- [Configuring an egress firewall for a project](/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)\n- [Configuring IPsec encryption](/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)\n","mdUrl":"/security/container_security/security-network.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Securing networks {#security-network}\n\nYou can manage network security at several levels, such as by using network namespaces and network policies.\n\nAt the pod level, network namespaces can prevent containers from seeing other pods or the host system by restricting network access. Network policies give you control over allowing and rejecting connections. You can manage ingress and egress traffic to and from your containerized applications.\n\n**Additional resources**\n\n- [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)\n\n**Additional resources**\n\n- [Using multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)\n\n**Additional resources**\n\n- [Configuring ingress cluster traffic](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)\n\n**Additional resources**\n\n- [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)\n- [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/container_security/security-network.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,16 +97,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/security-network-namespaces.md"></p>
       <p class="/modules/security-network-policies.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/network_security/network_policy/about-network-policy#about-network-policy">About network policy</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy">About network policy</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks">Using multiple networks</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks">Using multiple networks</a></li></ul>
       <p class="/modules/security-network-ingress.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller">Configuring ingress cluster traffic</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller">Configuring ingress cluster traffic</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn">Configuring an egress firewall for a project</a></li>
-      <li><a href="/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn">Configuring IPsec encryption</a></li>
+      <li><a href="/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn">Configuring an egress firewall for a project</a></li>
+      <li><a href="/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn">Configuring IPsec encryption</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

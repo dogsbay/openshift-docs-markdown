@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) |  |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) |  |
 | `spec` | `object` | PackageManifestSpec defines the desired state of PackageManifest |
 | `status` | `object` | PackageManifestStatus represents the current status of the PackageManifest |
 
@@ -111,13 +111,13 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` |  |
-| `apiservicedefinitions` | [`APIServiceDefinitions`](/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-v1alpha1-APIServiceDefinitions) |  |
-| `customresourcedefinitions` | [`CustomResourceDefinitions`](/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-v1alpha1-CustomResourceDefinitions) |  |
+| `apiservicedefinitions` | [`APIServiceDefinitions`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-v1alpha1-APIServiceDefinitions) |  |
+| `customresourcedefinitions` | [`CustomResourceDefinitions`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-v1alpha1-CustomResourceDefinitions) |  |
 | `description` | `string` | LongDescription is the CSV’s description |
 | `displayName` | `string` | DisplayName is the CSV’s display name |
 | `icon` | `array` | Icon is the CSV’s base64 encoded icon |
 | `icon[]` | `object` | Icon defines a base64 encoded icon and media type |
-| `installModes` | [`array (InstallMode)`](/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-v1alpha1-InstallMode) | InstallModes specify supported installation types |
+| `installModes` | [`array (InstallMode)`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-v1alpha1-InstallMode) | InstallModes specify supported installation types |
 | `keywords` | `array (string)` |  |
 | `links` | `array` |  |
 | `links[]` | `object` | AppLink defines a link to an application |
@@ -125,10 +125,10 @@ Type
 | `maintainers[]` | `object` | Maintainer defines a project maintainer |
 | `maturity` | `string` |  |
 | `minKubeVersion` | `string` | Minimum Kubernetes version for operator installation |
-| `nativeApis` | [`array (GroupVersionKind)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-GroupVersionKind) |  |
+| `nativeApis` | [`array (GroupVersionKind)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-GroupVersionKind) |  |
 | `provider` | `object` | AppLink defines a link to an application |
 | `relatedImages` | `array (string)` | List of related images |
-| `version` | [`OperatorVersion`](/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-lib-version-OperatorVersion) | Version is the CSV’s semantic version |
+| `version` | [`OperatorVersion`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-lib-version-OperatorVersion) | Version is the CSV’s semantic version |
 
 ### .status.channels\[\].currentCSVDesc.icon {#_statuschannelscurrentcsvdescicon}
 
@@ -346,7 +346,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PackageManifestList`](/rest_api/objects/index#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
+| 200 - OK | [`PackageManifestList`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
 
 ### /apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests}
 
@@ -364,7 +364,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PackageManifestList`](/rest_api/objects/index#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
+| 200 - OK | [`PackageManifestList`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
 
 ### /apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }} {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name}
 
@@ -388,7 +388,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PackageManifest`](/rest_api/operatorhub_apis/packagemanifest-packages-operators-coreos-com-v1#packagemanifest-packages-operators-coreos-com-v1) schema |
+| 200 - OK | [`PackageManifest`](/openshift-docs-markdown/rest_api/operatorhub_apis/packagemanifest-packages-operators-coreos-com-v1#packagemanifest-packages-operators-coreos-com-v1) schema |
 
 ### /apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}/icon {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name_icon}
 

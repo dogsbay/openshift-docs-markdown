@@ -185,5 +185,5 @@ spec:
 
 **Additional resources**
 
-- [Understanding and creating service accounts](/authentication/understanding-and-creating-service-accounts#understanding-service-accounts)
-- [Providing sensitive data to pods](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets).
+- [Understanding and creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#understanding-service-accounts)
+- [Providing sensitive data to pods](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets).

@@ -17,7 +17,7 @@ Your cluster must meet the following requirements before you can run the latency
 
 **Additional resources**
 
-- [Scheduling a workload onto a worker with real-time capabilities](/scalability_and_performance/cnf-provisioning-low-latency-workloads#cnf-scheduling-workload-onto-worker-with-real-time-capabilities_cnf-provisioning-low-latency)
+- [Scheduling a workload onto a worker with real-time capabilities](/openshift-docs-markdown/scalability_and_performance/cnf-provisioning-low-latency-workloads#cnf-scheduling-workload-onto-worker-with-real-time-capabilities_cnf-provisioning-low-latency)
 
 **Additional resources**
 

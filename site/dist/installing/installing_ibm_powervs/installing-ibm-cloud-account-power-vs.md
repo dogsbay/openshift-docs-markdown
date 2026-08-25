@@ -23,4 +23,4 @@ To install OpenShift Container Platform on {{ ibm_power_server_name }}, you must
 
 ## Additional resources {#additional-resources_installing-ibm-cloud-account-power-vs}
 
-- [Creating an {{ ibm_power_server_name }} workspace](/installing/installing_ibm_powervs/creating-ibm-power-vs-workspace#creating-ibm-power-vs-workspace)
+- [Creating an {{ ibm_power_server_name }} workspace](/openshift-docs-markdown/installing/installing_ibm_powervs/creating-ibm-power-vs-workspace#creating-ibm-power-vs-workspace)

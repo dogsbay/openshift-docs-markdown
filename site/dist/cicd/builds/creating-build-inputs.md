@@ -8,8 +8,8 @@ Use the following sections for an overview of build inputs, instructions on how 
 
 **Additional resources**
 
-- [Configuring project-scoped image pull secrets for mirrored registries](/openshift_images/image-configuration#images-configuration-registry-mirror-project-secret_image-configuration)
+- [Configuring project-scoped image pull secrets for mirrored registries](/openshift-docs-markdown/openshift_images/image-configuration#images-configuration-registry-mirror-project-secret_image-configuration)
 
 **Additional resources**
 
-- [Input secrets and config maps](/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)
+- [Input secrets and config maps](/openshift-docs-markdown/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)

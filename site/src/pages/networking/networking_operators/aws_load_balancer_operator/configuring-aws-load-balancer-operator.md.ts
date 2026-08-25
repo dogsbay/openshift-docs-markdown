@@ -2,7 +2,7 @@
 // Source: networking/networking_operators/aws_load_balancer_operator/configuring-aws-load-balancer-operator.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring the AWS Load Balancer Operator\n---\n\n# Configuring the AWS Load Balancer Operator {#configuring-aws-load-balancer-operator}\n\nTo automate the provisioning of AWS Load Balancers for your applications, configure the AWS Load Balancer Operator. This setup ensures that the Operator correctly manages ingress resources and external access to your cluster.\n\n**Additional resources**\n\n- [Certificate injection using Operators](/networking/configuring_network_settings/configuring-a-custom-pki#certificate-injection-using-operators_configuring-a-custom-pki)\n";
+const body = "---\ntitle: Configuring the AWS Load Balancer Operator\n---\n\n# Configuring the AWS Load Balancer Operator {#configuring-aws-load-balancer-operator}\n\nTo automate the provisioning of AWS Load Balancers for your applications, configure the AWS Load Balancer Operator. This setup ensures that the Operator correctly manages ingress resources and external access to your cluster.\n\n**Additional resources**\n\n- [Certificate injection using Operators](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#certificate-injection-using-operators_configuring-a-custom-pki)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

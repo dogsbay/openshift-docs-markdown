@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-pods-daemonsets","text":"Running background tasks on nodes automatically with daemon sets"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/jobs/nodes-pods-daemonsets";
+const currentPath = "/openshift-docs-markdown/nodes/jobs/nodes-pods-daemonsets";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/jobs"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Running background tasks on nodes automatically with daemon sets {#nodes-pods-daemonsets}\n\nDaemon sets ensure that pods run on all or specific nodes in a cluster, enabling cluster-wide services such as logging agents, monitoring tools, and shared storage that must be present on every node.\n\nAs an administrator, you can create and use daemon sets to run replicas of a pod on specific or all nodes in an OpenShift Container Platform cluster.\n\nA daemon set ensures that all (or some) nodes run a copy of a pod. As nodes are added to the cluster, pods are added to the cluster. As nodes are removed from the cluster, those pods are removed through garbage collection. Deleting a daemon set cleans up the pods it created.\n\nYou can use daemon sets to create shared storage, run a logging pod on every node in your cluster, or deploy a monitoring agent on every node.\n\nFor security reasons, the cluster administrators and the project administrators can create daemon sets.\n\n> [!IMPORTANT]\n> Daemon set scheduling is incompatible with the project’s default node selector. If you fail to disable it, the daemon set gets restricted by merging with the default node selector. This results in frequent pod recreates on the nodes that got unselected by the merged node selector, which in turn puts unwanted load on the cluster.\n\n## Additional resources {#_additional_resources}\n\n- [Kubernetes documentation about daemon sets](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)\n","mdUrl":"/nodes/jobs/nodes-pods-daemonsets.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Running background tasks on nodes automatically with daemon sets {#nodes-pods-daemonsets}\n\nDaemon sets ensure that pods run on all or specific nodes in a cluster, enabling cluster-wide services such as logging agents, monitoring tools, and shared storage that must be present on every node.\n\nAs an administrator, you can create and use daemon sets to run replicas of a pod on specific or all nodes in an OpenShift Container Platform cluster.\n\nA daemon set ensures that all (or some) nodes run a copy of a pod. As nodes are added to the cluster, pods are added to the cluster. As nodes are removed from the cluster, those pods are removed through garbage collection. Deleting a daemon set cleans up the pods it created.\n\nYou can use daemon sets to create shared storage, run a logging pod on every node in your cluster, or deploy a monitoring agent on every node.\n\nFor security reasons, the cluster administrators and the project administrators can create daemon sets.\n\n> [!IMPORTANT]\n> Daemon set scheduling is incompatible with the project’s default node selector. If you fail to disable it, the daemon set gets restricted by merging with the default node selector. This results in frequent pod recreates on the nodes that got unselected by the merged node selector, which in turn puts unwanted load on the cluster.\n\n## Additional resources {#_additional_resources}\n\n- [Kubernetes documentation about daemon sets](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/jobs/nodes-pods-daemonsets.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

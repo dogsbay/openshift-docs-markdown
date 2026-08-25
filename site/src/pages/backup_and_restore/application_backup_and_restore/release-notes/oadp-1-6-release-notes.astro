@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"oadp-1-6-release-notes","text":"{{ oadp_short }} 1.6 release notes"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/release-notes/oadp-1-6-release-notes";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/release-notes/oadp-1-6-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/release-notes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ oadp_short }} 1.6 release notes {#oadp-1-6-release-notes}\n\nReview new features, resolved issues, known issues, Technology Preview features, removed features, and other additions in {{ oadp_first }} 1.6.\n\n> [!NOTE]\n> For additional information about {{ oadp_short }}, see *{{ oadp_first }} FAQ*.\n\n## Additional resources {#_additional_resources}\n\n- [{{ oadp_first }} FAQ](https://access.redhat.com/articles/5456281)\n","mdUrl":"/backup_and_restore/application_backup_and_restore/release-notes/oadp-1-6-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ oadp_short }} 1.6 release notes {#oadp-1-6-release-notes}\n\nReview new features, resolved issues, known issues, Technology Preview features, removed features, and other additions in {{ oadp_first }} 1.6.\n\n> [!NOTE]\n> For additional information about {{ oadp_short }}, see *{{ oadp_first }} FAQ*.\n\n## Additional resources {#_additional_resources}\n\n- [{{ oadp_first }} FAQ](https://access.redhat.com/articles/5456281)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/release-notes/oadp-1-6-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

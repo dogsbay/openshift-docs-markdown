@@ -11,5 +11,5 @@ In {{ hcp }} for OpenShift Container Platform, cluster management is separate fr
 
 **Additional resources**
 
-- [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
-- [Network isolation for hosted clusters](/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)
+- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
+- [Network isolation for hosted clusters](/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)

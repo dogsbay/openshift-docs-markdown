@@ -22,7 +22,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"oadp-about-kopia","text":"About Kopia"},{"depth":2,"slug":"oadp-kopia-integration","text":"OADP integration with Kopia"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -41,9 +41,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/backing_up_and_restoring"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Kopia {#oadp-about-kopia}\n\nKopia is an open-source backup and restore tool, which creates encrypted snapshots of your data and saves them to remote or cloud storage.\n\nKopia supports network and local storage locations, and many cloud or remote storage locations, including:\n\n- Amazon S3 and any cloud storage that is compatible with S3\n- Azure Blob Storage\n- {{ gcp_full }} Storage platform\n\nKopia uses content-addressable storage for snapshots:\n\n- Snapshots are always incremental; data that is already included in previous snapshots is not re-uploaded to the repository. A file is only uploaded to the repository again if it is modified.\n- Stored data is deduplicated; if multiple copies of the same file exist, only one of them is stored.\n- If files are moved or renamed, Kopia can recognize that they have the same content and does not upload them again.\n\n## OADP integration with Kopia {#oadp-kopia-integration}\n\nOADP 1.3 supports Kopia as the backup mechanism for pod volume backup in addition to Restic. You must choose one or the other at installation by setting the `uploaderType` field in the `DataProtectionApplication` custom resource (CR). The possible values are `restic` or `kopia`. If you do not specify an  `uploaderType`, OADP 1.3 defaults to using Kopia as the backup mechanism. The data is written to and read from a unified repository.\n\n> [!IMPORTANT]\n> Using the Kopia client to modify the Kopia backup repositories is not supported and can affect the integrity of Kopia backups. {{ oadp_short }} does not support directly connecting to the Kopia repository and can offer support only on a best-effort basis.\n\nThe following example shows a `DataProtectionApplication` CR configured for using Kopia:\n\n```yaml\napiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: dpa-sample\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n# ...\n```\n","mdUrl":"/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Kopia {#oadp-about-kopia}\n\nKopia is an open-source backup and restore tool, which creates encrypted snapshots of your data and saves them to remote or cloud storage.\n\nKopia supports network and local storage locations, and many cloud or remote storage locations, including:\n\n- Amazon S3 and any cloud storage that is compatible with S3\n- Azure Blob Storage\n- {{ gcp_full }} Storage platform\n\nKopia uses content-addressable storage for snapshots:\n\n- Snapshots are always incremental; data that is already included in previous snapshots is not re-uploaded to the repository. A file is only uploaded to the repository again if it is modified.\n- Stored data is deduplicated; if multiple copies of the same file exist, only one of them is stored.\n- If files are moved or renamed, Kopia can recognize that they have the same content and does not upload them again.\n\n## OADP integration with Kopia {#oadp-kopia-integration}\n\nOADP 1.3 supports Kopia as the backup mechanism for pod volume backup in addition to Restic. You must choose one or the other at installation by setting the `uploaderType` field in the `DataProtectionApplication` custom resource (CR). The possible values are `restic` or `kopia`. If you do not specify an  `uploaderType`, OADP 1.3 defaults to using Kopia as the backup mechanism. The data is written to and read from a unified repository.\n\n> [!IMPORTANT]\n> Using the Kopia client to modify the Kopia backup repositories is not supported and can affect the integrity of Kopia backups. {{ oadp_short }} does not support directly connecting to the Kopia repository and can offer support only on a best-effort basis.\n\nThe following example shows a `DataProtectionApplication` CR configured for using Kopia:\n\n```yaml\napiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: dpa-sample\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n# ...\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -84,10 +84,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

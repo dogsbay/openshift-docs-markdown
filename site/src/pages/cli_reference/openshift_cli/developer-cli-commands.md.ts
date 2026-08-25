@@ -2,7 +2,7 @@
 // Source: cli_reference/openshift_cli/developer-cli-commands.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: OpenShift CLI developer command reference\n---\n\n# OpenShift CLI developer command reference {#cli-developer-commands}\n\nTo learn more about the {{ oc_first }} developer commands, review their descriptions and example commands.\n\nFor administrator commands, see the \"OpenShift CLI administrator command reference\".\n\nRun `oc help` to list all commands or run `oc <command> --help` to get additional details for a specific command.\n\n## Additional resources {#additional-resources_cli-developer-commands}\n\n- [OpenShift CLI administrator command reference](/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)\n";
+const body = "---\ntitle: OpenShift CLI developer command reference\n---\n\n# OpenShift CLI developer command reference {#cli-developer-commands}\n\nTo learn more about the {{ oc_first }} developer commands, review their descriptions and example commands.\n\nFor administrator commands, see the \"OpenShift CLI administrator command reference\".\n\nRun `oc help` to list all commands or run `oc <command> --help` to get additional details for a specific command.\n\n## Additional resources {#additional-resources_cli-developer-commands}\n\n- [OpenShift CLI administrator command reference](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

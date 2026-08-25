@@ -8,4 +8,4 @@ Learn about the Node Tuning Operator and how you can use it to manage node-level
 
 **Additional resources**
 
-- [Coordinating reboots for configuration changes](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-coordinating-reboots-for-config-changes_ztp-configuring-managed-clusters-policygenerator)
+- [Coordinating reboots for configuration changes](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-coordinating-reboots-for-config-changes_ztp-configuring-managed-clusters-policygenerator)

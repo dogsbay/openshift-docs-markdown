@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Spec defines the desired state of Gateway. |
 | `status` | `object` | Status defines the current state of Gateway. |
 
@@ -687,7 +687,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`GatewayList`](/rest_api/objects/index#io-k8s-networking-gateway-v1-GatewayList) schema |
+| 200 - OK | [`GatewayList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-networking-gateway-v1-GatewayList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/gateway.networking.k8s.io/v1/namespaces/{{ namespace }}/gateways {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways}
@@ -706,7 +706,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -723,7 +723,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`GatewayList`](/rest_api/objects/index#io-k8s-networking-gateway-v1-GatewayList) schema |
+| 200 - OK | [`GatewayList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-networking-gateway-v1-GatewayList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -747,15 +747,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |  |
+| `body` | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
-| 201 - Created | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
-| 202 - Accepted | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 200 - OK | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 201 - Created | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 202 - Accepted | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/gateway.networking.k8s.io/v1/namespaces/{{ namespace }}/gateways/{{ name }} {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways_name}
@@ -786,8 +786,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -804,7 +804,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 200 - OK | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -828,7 +828,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 200 - OK | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -852,14 +852,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |  |
+| `body` | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
-| 201 - Created | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 200 - OK | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 201 - Created | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/gateway.networking.k8s.io/v1/namespaces/{{ namespace }}/gateways/{{ name }}/status {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways_name_status}
@@ -884,7 +884,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 200 - OK | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -908,7 +908,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 200 - OK | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -932,12 +932,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |  |
+| `body` | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
-| 201 - Created | [`Gateway`](/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 200 - OK | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
+| 201 - Created | [`Gateway`](/openshift-docs-markdown/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

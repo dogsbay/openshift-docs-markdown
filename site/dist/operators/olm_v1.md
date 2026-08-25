@@ -10,4 +10,4 @@ This updated framework evolves many of the concepts that have been part of previ
 
 **Additional resources**
 
-- [Extensions ({{ olmv1 }})](/extensions/index#extensions-overview)
+- [Extensions ({{ olmv1 }})](/openshift-docs-markdown/extensions/index#extensions-overview)

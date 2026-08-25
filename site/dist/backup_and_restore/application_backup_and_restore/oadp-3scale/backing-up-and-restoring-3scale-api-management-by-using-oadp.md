@@ -20,5 +20,5 @@ You can configure {{ oadp_short }} to perform the following operations with 3sca
 
 **Additional resources**
 
-- [Backing up 3scale API Management](/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-3scale-api-management-by-using-oadp#backing-up-3scale-api-management-by-using-oadp)
-- [Restoring 3scale API Management](/backup_and_restore/application_backup_and_restore/oadp-3scale/restoring-3scale-api-management-by-using-oadp#restoring-3scale-api-management-by-using-oadp)
+- [Backing up 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-3scale-api-management-by-using-oadp#backing-up-3scale-api-management-by-using-oadp)
+- [Restoring 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/restoring-3scale-api-management-by-using-oadp#restoring-3scale-api-management-by-using-oadp)

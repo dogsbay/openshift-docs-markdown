@@ -12,6 +12,6 @@ To diagnose and resolve MetalLB configuration issues, refer to this list of comm
 
 ## Additional resources {#_additional_resources}
 
-- [Managing symmetric routing with MetalLB](/networking/ingress_load_balancing/metallb/metallb-configure-return-traffic#metallb-configure-return-traffic)
+- [Managing symmetric routing with MetalLB](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-return-traffic#metallb-configure-return-traffic)
 - [Querying metrics for all projects with the monitoring dashboard](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/4.21/html/accessing_metrics/accessing-metrics-as-an-administrator#querying-metrics-for-all-projects-with-mon-dashboard_accessing-metrics-as-an-administrator)
-- [Gathering data about your cluster](/support/gathering-cluster-data#gathering-cluster-data)
+- [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#gathering-cluster-data)

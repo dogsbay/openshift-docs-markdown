@@ -23,4 +23,4 @@ To use Topology Manager you must configure CPU Manager with the `static` policy.
 
 **Additional resources**
 
-- [Topology Manager policies](/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager)
+- [Topology Manager policies](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager)

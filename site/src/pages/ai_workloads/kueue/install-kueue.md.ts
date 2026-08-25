@@ -2,7 +2,7 @@
 // Source: ai_workloads/kueue/install-kueue.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Installing {{ kueue_name }}\n---\n\n# Installing {{ kueue_name }} {#install-kueue}\n\nYou can install {{ kueue_name }} by using the {{ kueue_op }} in OperatorHub.\n\n**Additional resources**\n\n- [Installing the {{ cert_manager_operator }}](/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n";
+const body = "---\ntitle: Installing {{ kueue_name }}\n---\n\n# Installing {{ kueue_name }} {#install-kueue}\n\nYou can install {{ kueue_name }} by using the {{ kueue_op }} in OperatorHub.\n\n**Additional resources**\n\n- [Installing the {{ cert_manager_operator }}](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

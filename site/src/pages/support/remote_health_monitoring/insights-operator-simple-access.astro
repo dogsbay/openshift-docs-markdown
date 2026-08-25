@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"insights-operator-simple-access","text":"Simple Content Access entitlements with Insights Operator"}];
 const nav = navData;
-const currentPath = "/support/remote_health_monitoring/insights-operator-simple-access";
+const currentPath = "/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["support","support/remote_health_monitoring"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Simple Content Access entitlements with Insights Operator {#insights-operator-simple-access}\n\n{{ insights_operator }} automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM) certificates allow the cluster to authenticate with the Red Hat Content Delivery Network (CDN) to access subscription-governed content.\n\nSCA supports multi-architecture clusters by generating architecture-specific secrets, such as `amd64` or `arm64`, in the `openshift-config-managed` namespace to ensure compatibility across all worker node types.\n\n**Additional resources**\n\n- [About simple content access](https://access.redhat.com/documentation/en-us/subscription_central/2021/html-single/getting_started_with_simple_content_access/index#assembly-about-simplecontent)\n- [Using Red Hat subscriptions in builds](/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)\n","mdUrl":"/support/remote_health_monitoring/insights-operator-simple-access.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Simple Content Access entitlements with Insights Operator {#insights-operator-simple-access}\n\n{{ insights_operator }} automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM) certificates allow the cluster to authenticate with the Red Hat Content Delivery Network (CDN) to access subscription-governed content.\n\nSCA supports multi-architecture clusters by generating architecture-specific secrets, such as `amd64` or `arm64`, in the `openshift-config-managed` namespace to ensure compatibility across all worker node types.\n\n**Additional resources**\n\n- [About simple content access](https://access.redhat.com/documentation/en-us/subscription_central/2021/html-single/getting_started_with_simple_content_access/index#assembly-about-simplecontent)\n- [Using Red Hat subscriptions in builds](/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/documentation/en-us/subscription_central/2021/html-single/getting_started_with_simple_content_access/index#assembly-about-simplecontent">About simple content access</a></li>
-      <li><a href="/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds">Using Red Hat subscriptions in builds</a></li>
+      <li><a href="/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds">Using Red Hat subscriptions in builds</a></li>
       </ul>
       <p class="/modules/insights-operator-sca-architecture-based-entitlement-secrets.md"></p>
       <p class="/modules/insights-operator-sca-verify-entitlement-secrets.md"></p>

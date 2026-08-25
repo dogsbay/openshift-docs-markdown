@@ -12,9 +12,9 @@ title: File-based catalogs
 
 **Additional resources**
 
-- [Updating or filtering a file-based catalog image](/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
+- [Updating or filtering a file-based catalog image](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
 
 **Additional resources**
 
-- [Creating a file-based catalog image](/operators/admin/olm-managing-custom-catalogs#olm-creating-fb-catalog-image_olm-managing-custom-catalogs)
-- [opm CLI reference](/cli_reference/opm/cli-opm-ref#cli-opm-ref)
+- [Creating a file-based catalog image](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-creating-fb-catalog-image_olm-managing-custom-catalogs)
+- [opm CLI reference](/openshift-docs-markdown/cli_reference/opm/cli-opm-ref#cli-opm-ref)

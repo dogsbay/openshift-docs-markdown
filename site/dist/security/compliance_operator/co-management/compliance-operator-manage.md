@@ -8,4 +8,4 @@ You can manage the Compliance Operator security content lifecycle to keep compli
 
 ## Additional resources {#additional-resources_managing-compliance}
 
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

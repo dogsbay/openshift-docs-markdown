@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"ai-workloads-about","text":"Overview of AI workloads on OpenShift Container Platform"}];
 const nav = navData;
-const currentPath = "/ai_workloads";
+const currentPath = "/openshift-docs-markdown/ai_workloads";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = null;
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of AI workloads on OpenShift Container Platform {#ai-workloads-about}\n\nOpenShift Container Platform provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data science workflows.\n\n**Additional resources**\n\n- [Introduction to {{ kueue_name }}](/ai_workloads/kueue/about-kueue#about-kueue)\n- [{{ lws_operator }} overview](/ai_workloads/leader_worker_set/index#lws-about)\n- [{{ js_operator }} overview](/ai_workloads/jobset_operator/index#js-about)\n","mdUrl":"/ai_workloads.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of AI workloads on OpenShift Container Platform {#ai-workloads-about}\n\nOpenShift Container Platform provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data science workflows.\n\n**Additional resources**\n\n- [Introduction to {{ kueue_name }}](/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue)\n- [{{ lws_operator }} overview](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about)\n- [{{ js_operator }} overview](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,9 +96,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/ai-operators.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/ai_workloads/kueue/about-kueue#about-kueue">Introduction to {"{"}{"{"} kueue_name {"}"}{"}"}</a></li>
-      <li><a href="/ai_workloads/leader_worker_set/index#lws-about">{"{"}{"{"} lws_operator {"}"}{"}"} overview</a></li>
-      <li><a href="/ai_workloads/jobset_operator/index#js-about">{"{"}{"{"} js_operator {"}"}{"}"} overview</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue">Introduction to {"{"}{"{"} kueue_name {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about">{"{"}{"{"} lws_operator {"}"}{"}"} overview</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about">{"{"}{"{"} js_operator {"}"}{"}"} overview</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

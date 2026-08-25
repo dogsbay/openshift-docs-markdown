@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"custom-builds-buildah","text":"Custom image builds with Buildah"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"}];
 const nav = navData;
-const currentPath = "/cicd/builds/custom-builds-buildah";
+const currentPath = "/openshift-docs-markdown/cicd/builds/custom-builds-buildah";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Custom image builds with Buildah {#custom-builds-buildah}\n\nWith OpenShift Container Platform 4.22, a docker socket will not be present on the host nodes. This means the *mount docker socket* option of a custom build is not guaranteed to provide an accessible docker socket for use within a custom build image.\n\nIf you require this capability in order to build and push images, add the Buildah tool your custom build image and use it to build and push the image within your custom build logic. The following is an example of how to run custom builds with Buildah.\n\n> [!NOTE]\n> Using the custom build strategy requires permissions that normal users do not have by default because it allows the user to execute arbitrary code inside a privileged container running on the cluster. This level of access can be used to compromise the cluster and therefore should be granted only to users who are trusted with administrative privileges on the cluster.\n\n## Prerequisites {#_prerequisites}\n\n- Review how to [grant custom build permissions](/cicd/builds/securing-builds-by-strategy#securing-builds-by-strategy).\n\n{% include \"./modules/builds-create-custom-build-artifacts.md\" %}\n","mdUrl":"/cicd/builds/custom-builds-buildah.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Custom image builds with Buildah {#custom-builds-buildah}\n\nWith OpenShift Container Platform 4.22, a docker socket will not be present on the host nodes. This means the *mount docker socket* option of a custom build is not guaranteed to provide an accessible docker socket for use within a custom build image.\n\nIf you require this capability in order to build and push images, add the Buildah tool your custom build image and use it to build and push the image within your custom build logic. The following is an example of how to run custom builds with Buildah.\n\n> [!NOTE]\n> Using the custom build strategy requires permissions that normal users do not have by default because it allows the user to execute arbitrary code inside a privileged container running on the cluster. This level of access can be used to compromise the cluster and therefore should be granted only to users who are trusted with administrative privileges on the cluster.\n\n## Prerequisites {#_prerequisites}\n\n- Review how to [grant custom build permissions](/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy#securing-builds-by-strategy).\n\n{% include \"./modules/builds-create-custom-build-artifacts.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/custom-builds-buildah.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,7 +104,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       <h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li>Review how to <a href="/cicd/builds/securing-builds-by-strategy#securing-builds-by-strategy">grant custom build permissions</a>.</li></ul>
+      <ul><li>Review how to <a href="/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy#securing-builds-by-strategy">grant custom build permissions</a>.</li></ul>
       <p class="/modules/builds-use-custom-builder-image.md /modules/builds-build-custom-builder-image.md">{"{"}% include "./modules/builds-create-custom-build-artifacts.md" %{"}"} </p>
     </article>
   </MarkdownContentStack>

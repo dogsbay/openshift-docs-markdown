@@ -10,4 +10,4 @@ You can configure VM health checks by defining readiness and liveness probes in 
 
 ## Additional resources {#additional-resources_monitoring-vm-health}
 
-- [Monitoring application health by using health checks](/applications/application-health#application-health)
+- [Monitoring application health by using health checks](/openshift-docs-markdown/applications/application-health#application-health)

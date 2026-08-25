@@ -25,9 +25,9 @@ Required
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `groupNames` | `array (string)` | groupNames holds all the groups directly bound to the role. This field should only be specified when supporting legacy clients and servers. See Subjects for further details. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `roleRef` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | roleRef can only reference the current namespace and the global namespace. If the ClusterRoleRef cannot be resolved, the Authorizer must return an error. Since Policy is a singleton, this is sufficient knowledge to locate a role. |
-| `subjects` | [`array (ObjectReference)`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | subjects hold object references to authorize with this rule. This field is ignored if UserNames or GroupNames are specified to support legacy clients and servers. Thus newer clients that do not need to support backwards compatibility should send only fully qualified Subjects and should omit the UserNames and GroupNames fields. Clients that need to support backwards compatibility can use this field to build the UserNames and GroupNames. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `roleRef` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | roleRef can only reference the current namespace and the global namespace. If the ClusterRoleRef cannot be resolved, the Authorizer must return an error. Since Policy is a singleton, this is sufficient knowledge to locate a role. |
+| `subjects` | [`array (ObjectReference)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | subjects hold object references to authorize with this rule. This field is ignored if UserNames or GroupNames are specified to support legacy clients and servers. Thus newer clients that do not need to support backwards compatibility should send only fully qualified Subjects and should omit the UserNames and GroupNames fields. Clients that need to support backwards compatibility can use this field to build the UserNames and GroupNames. |
 | `userNames` | `array (string)` | userNames holds all the usernames directly bound to the role. This field should only be specified when supporting legacy clients and servers. See Subjects for further details. |
 
 ## API endpoints {#_api_endpoints}
@@ -61,7 +61,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRoleBindingList`](/rest_api/objects/index#com-github-openshift-api-authorization-v1-ClusterRoleBindingList) schema |
+| 200 - OK | [`ClusterRoleBindingList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-authorization-v1-ClusterRoleBindingList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -85,15 +85,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |  |
+| `body` | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
-| 201 - Created | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
-| 202 - Accepted | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 201 - Created | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 202 - Accepted | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/authorization.openshift.io/v1/clusterrolebindings/{{ name }} {#_apisauthorizationopenshiftiov1clusterrolebindings_name}
@@ -124,8 +124,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -142,7 +142,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -166,8 +166,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
-| 201 - Created | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 201 - Created | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -191,12 +191,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |  |
+| `body` | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
-| 201 - Created | [`ClusterRoleBinding`](/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
+| 201 - Created | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

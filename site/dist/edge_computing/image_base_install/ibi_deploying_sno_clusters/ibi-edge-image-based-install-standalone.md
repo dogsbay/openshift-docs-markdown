@@ -8,5 +8,5 @@ You can manually generate a configuration ISO by using the `openshift-install` p
 
 **Additional resources**
 
-- [Using image pull secrets](/openshift_images/managing_images/using-image-pull-secrets)
-- [Reference specifications for the `image-based-installation-config.yaml` manifest](/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)
+- [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets)
+- [Reference specifications for the `image-based-installation-config.yaml` manifest](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)

@@ -2,7 +2,7 @@
 // Source: networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-gcp.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Creating DNS records on Google Cloud Platform\n---\n\n# Creating DNS records on Google Cloud Platform {#creating-dns-records-on-gcp}\n\nTo create DNS records on {{ gcp_first }}, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services.\n\n> [!IMPORTANT]\n> Using the External DNS Operator on a cluster with {{ gcp_short }} Workload Identity enabled is not supported. For more information about the {{ gcp_short }} Workload Identity, see [{{ gcp_short }} Workload Identity](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp_cco-short-term-creds).\n";
+const body = "---\ntitle: Creating DNS records on Google Cloud Platform\n---\n\n# Creating DNS records on Google Cloud Platform {#creating-dns-records-on-gcp}\n\nTo create DNS records on {{ gcp_first }}, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services.\n\n> [!IMPORTANT]\n> Using the External DNS Operator on a cluster with {{ gcp_short }} Workload Identity enabled is not supported. For more information about the {{ gcp_short }} Workload Identity, see [{{ gcp_short }} Workload Identity](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp_cco-short-term-creds).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

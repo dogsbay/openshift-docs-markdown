@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"integrating-jobset","text":"Integrating the {{ js_operator }}"}];
 const nav = navData;
-const currentPath = "/ai_workloads/kueue/integrating-jobset";
+const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/integrating-jobset";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Integrating the {{ js_operator }} {#integrating-jobset}\n\nYou can integrate {{ js_operator }} with {{ kueue_name }} so you can leverage the scheduling and resource management functionality provided by {{ kueue_name }} when running the {{ js_operator }}.\n\nYou can use the {{ js_operator }} to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training.\n\nThe {{ js_operator }} models a distributed batch workload as a group of Kubernetes Jobs. This allows you to easily specify different pod templates for different distinct groups of pods, for example, a leader, workers, parameter servers, and so on.\n\n **Additional resources**\n\n- [About the {{ js_operator }}](/ai_workloads/jobset_operator/index#js-about_js-about)\n- [Run A JobSet (Kubernetes documentation)](https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/)\n- [Installing the {{ cert_manager_operator }} by using the web console](/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n\n **Additional resources**\n\n- [Configuring a cluster queue](/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)\n- [Configuring a resource flavor](/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)\n- [Configuring a local queue](/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)\n","mdUrl":"/ai_workloads/kueue/integrating-jobset.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Integrating the {{ js_operator }} {#integrating-jobset}\n\nYou can integrate {{ js_operator }} with {{ kueue_name }} so you can leverage the scheduling and resource management functionality provided by {{ kueue_name }} when running the {{ js_operator }}.\n\nYou can use the {{ js_operator }} to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training.\n\nThe {{ js_operator }} models a distributed batch workload as a group of Kubernetes Jobs. This allows you to easily specify different pod templates for different distinct groups of pods, for example, a leader, workers, parameter servers, and so on.\n\n **Additional resources**\n\n- [About the {{ js_operator }}](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about)\n- [Run A JobSet (Kubernetes documentation)](https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/)\n- [Installing the {{ cert_manager_operator }} by using the web console](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n\n **Additional resources**\n\n- [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)\n- [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)\n- [Configuring a local queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/integrating-jobset.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,15 +97,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>The {"{"}{"{"} js_operator {"}"}{"}"} models a distributed batch workload as a group of Kubernetes Jobs. This allows you to easily specify different pod templates for different distinct groups of pods, for example, a leader, workers, parameter servers, and so on.</p>
       <p class="/modules/kueue-installing-jobset.md"> <strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/ai_workloads/jobset_operator/index#js-about_js-about">About the {"{"}{"{"} js_operator {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about">About the {"{"}{"{"} js_operator {"}"}{"}"}</a></li>
       <li><a href="https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/">Run A JobSet (Kubernetes documentation)</a></li>
-      <li><a href="/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift">Installing the {"{"}{"{"} cert_manager_operator {"}"}{"}"} by using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift">Installing the {"{"}{"{"} cert_manager_operator {"}"}{"}"} by using the web console</a></li>
       </ul>
       <p class="/modules/kueue-running-jobset.md"> <strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas">Configuring a cluster queue</a></li>
-      <li><a href="/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas">Configuring a resource flavor</a></li>
-      <li><a href="/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas">Configuring a local queue</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas">Configuring a cluster queue</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas">Configuring a resource flavor</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas">Configuring a local queue</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

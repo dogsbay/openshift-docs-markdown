@@ -23,8 +23,8 @@ You can complete the following tasks on either the OpenShift Container Platform 
 
 **Additional resources**
 
-- [Customizing the available cluster roles using the web console](/applications/projects/working-with-projects#odc-customizing-available-cluster-roles-using-the-web-console_projects)
+- [Customizing the available cluster roles using the web console](/openshift-docs-markdown/applications/projects/working-with-projects#odc-customizing-available-cluster-roles-using-the-web-console_projects)
 
 ## Additional resources {#additional-resources_projects}
 
-- [Default projects](/authentication/using-rbac#rbac-default-projects_using-rbac)
+- [Default projects](/openshift-docs-markdown/authentication/using-rbac#rbac-default-projects_using-rbac)

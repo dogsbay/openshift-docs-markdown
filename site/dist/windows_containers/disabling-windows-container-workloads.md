@@ -8,5 +8,5 @@ You can disable the capability to run Windows container workloads by uninstallin
 
 ## Additional resources {#_additional_resources}
 
-- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
-- [Removing Windows nodes](/windows_containers/removing-windows-nodes#removing-windows-nodes)
+- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
+- [Removing Windows nodes](/openshift-docs-markdown/windows_containers/removing-windows-nodes#removing-windows-nodes)

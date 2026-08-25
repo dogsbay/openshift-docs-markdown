@@ -17,10 +17,10 @@ To ensure OpenShift Container Platform can successfully install and run the clus
 
 **Additional resources**
 
-- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)
+- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)
 
 **Additional resources**
 
-- [Quickly install a cluster](/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)
-- [Install a cluster with cloud customizations on installer-provisioned infrastructure](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
-- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)
+- [Quickly install a cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)
+- [Install a cluster with cloud customizations on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
+- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)

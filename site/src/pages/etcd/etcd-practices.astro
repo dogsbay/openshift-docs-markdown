@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"etcd-practices","text":"Recommended etcd practices"}];
 const nav = navData;
-const currentPath = "/etcd/etcd-practices";
+const currentPath = "/openshift-docs-markdown/etcd/etcd-practices";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["etcd"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recommended etcd practices {#etcd-practices}\n\nFollow storage, latency, and hardware validation guidance for etcd to reduce leader elections, API timeouts, and control plane instability on OpenShift Container Platform.\n\n**Additional resources**\n\n- [Setting tuning parameters for etcd](/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)\n\n**Additional resources**\n\n- [How to use `fio` to check etcd disk performance in OpenShift Container Platform](https://access.redhat.com/solutions/4885641)\n- [etcd performance troubleshooting guide for OpenShift Container Platform](https://access.redhat.com/articles/6271341)\n","mdUrl":"/etcd/etcd-practices.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recommended etcd practices {#etcd-practices}\n\nFollow storage, latency, and hardware validation guidance for etcd to reduce leader elections, API timeouts, and control plane instability on OpenShift Container Platform.\n\n**Additional resources**\n\n- [Setting tuning parameters for etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)\n\n**Additional resources**\n\n- [How to use `fio` to check etcd disk performance in OpenShift Container Platform](https://access.redhat.com/solutions/4885641)\n- [etcd performance troubleshooting guide for OpenShift Container Platform](https://access.redhat.com/articles/6271341)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/etcd/etcd-practices.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/recommended-etcd-practices.md"></p>
       <p class="/modules/recommended-cluster-latency-etcd.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance">Setting tuning parameters for etcd</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance">Setting tuning parameters for etcd</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/solutions/4885641">How to use <code>fio</code> to check etcd disk performance in OpenShift Container Platform</a></li>

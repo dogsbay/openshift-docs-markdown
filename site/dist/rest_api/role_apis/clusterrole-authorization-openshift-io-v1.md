@@ -21,10 +21,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `aggregationRule` | [`AggregationRule`](/rest_api/objects/index#io-k8s-api-rbac-v1-AggregationRule) | aggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller. |
+| `aggregationRule` | [`AggregationRule`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-rbac-v1-AggregationRule) | aggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller. |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `rules` | `array` | rules holds all the PolicyRules for this ClusterRole |
 | `rules[]` | `object` | PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. |
 
@@ -55,7 +55,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiGroups` | `array (string)` | apiGroups is the name of the APIGroup that contains the resources.  If this field is empty, then both kubernetes and origin API groups are assumed. That means that if an action is requested against one of the enumerated resources in either the kubernetes or the origin API group, the request will be allowed |
-| `attributeRestrictions` | [`RawExtension`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
+| `attributeRestrictions` | [`RawExtension`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
 | `nonResourceURLs` | `array (string)` | NonResourceURLsSlice is a set of partial urls that a user should have access to.  \*s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. |
 | `resourceNames` | `array (string)` | resourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed. |
 | `resources` | `array (string)` | resources is a list of resources this rule applies to.  ResourceAll represents all resources. |
@@ -92,7 +92,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRoleList`](/rest_api/objects/index#com-github-openshift-api-authorization-v1-ClusterRoleList) schema |
+| 200 - OK | [`ClusterRoleList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-authorization-v1-ClusterRoleList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -116,15 +116,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |  |
+| `body` | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
-| 201 - Created | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
-| 202 - Accepted | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 201 - Created | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 202 - Accepted | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/authorization.openshift.io/v1/clusterroles/{{ name }} {#_apisauthorizationopenshiftiov1clusterroles_name}
@@ -155,8 +155,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -173,7 +173,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -197,8 +197,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
-| 201 - Created | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 201 - Created | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -222,12 +222,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |  |
+| `body` | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
-| 201 - Created | [`ClusterRole`](/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 200 - OK | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
+| 201 - Created | [`ClusterRole`](/openshift-docs-markdown/rest_api/role_apis/clusterrole-authorization-openshift-io-v1#clusterrole-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

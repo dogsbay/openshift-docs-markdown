@@ -20,4 +20,4 @@ To achieve high availability and more efficient resource utilization, you can us
 
 ## Additional resources {#_additional_resources}
 
-- [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)
+- [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)

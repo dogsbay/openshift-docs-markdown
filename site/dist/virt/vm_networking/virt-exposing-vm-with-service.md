@@ -8,7 +8,7 @@ You can expose a virtual machine (VM) within or outside the cluster by exposing 
 
 ## Additional resources {#additional-resources_virt-exposing-vm-with-service}
 
-- [Configuring ingress cluster traffic by using a `NodePort`](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
-- [Configuring ingress cluster traffic by using a load balancer](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)
-- [Installing the MetalLB Operator](/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)
-- [Configuring services to use MetalLB](/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services)
+- [Configuring ingress cluster traffic by using a `NodePort`](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
+- [Configuring ingress cluster traffic by using a load balancer](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)
+- [Installing the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)
+- [Configuring services to use MetalLB](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services)

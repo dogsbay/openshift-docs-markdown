@@ -14,5 +14,5 @@ MetalLB provides the flexibility to assign address pools to specific BGP peers, 
 
 ## Additional resources {#additional-resources_about-advertiseipaddress}
 
-- [Configuring a community alias](/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias)
-- [Enable IP forwarding on specific interfaces](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config)
+- [Configuring a community alias](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias)
+- [Enable IP forwarding on specific interfaces](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config)

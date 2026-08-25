@@ -2,7 +2,7 @@
 // Source: cicd/builds/triggering-builds-build-hooks.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Triggering and modifying builds\n---\n\n# Triggering and modifying builds {#triggering-builds-build-hooks}\n\nThe following sections outline how to trigger builds and modify builds using build hooks.\n\n**Additional resources**\n\n- [Cluster role bindings for unauthenticated groups](/authentication/using-rbac#unauthenticated-users-cluster-role-bindings-concept_using-rbac)\n- [Webhook admission plugins](/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)\n";
+const body = "---\ntitle: Triggering and modifying builds\n---\n\n# Triggering and modifying builds {#triggering-builds-build-hooks}\n\nThe following sections outline how to trigger builds and modify builds using build hooks.\n\n**Additional resources**\n\n- [Cluster role bindings for unauthenticated groups](/openshift-docs-markdown/authentication/using-rbac#unauthenticated-users-cluster-role-bindings-concept_using-rbac)\n- [Webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

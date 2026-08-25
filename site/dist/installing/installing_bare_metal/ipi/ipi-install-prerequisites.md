@@ -19,15 +19,15 @@ Before starting an installer-provisioned installation of OpenShift Container Pla
 
 **Additional resources**
 
-- [Preparing your cluster for {{ VirtProductName }}](/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)
-- [About Single Root I/O Virtualization (SR-IOV) hardware networks](/networking/hardware_networks/about-sriov#about-sriov)
-- [Connecting a virtual machine to an SR-IOV network](/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
+- [Preparing your cluster for {{ VirtProductName }}](/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)
+- [About Single Root I/O Virtualization (SR-IOV) hardware networks](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)
+- [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
 
 **Additional resources**
 
 - [Red Hat third-party support policy](https://access.redhat.com/third-party-software-support)
 - [UCSHCL](https://ucshcltool.cloudapps.cisco.com/public/)
-- [Unable to discover new bare-metal hosts by using the BMC](/installing/installing_bare_metal/ipi/ipi-install-troubleshooting#unable-to-discover-new-bare-metal-hosts-using-the-bmc_ipi-install-troubleshooting)
+- [Unable to discover new bare-metal hosts by using the BMC](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-troubleshooting#unable-to-discover-new-bare-metal-hosts-using-the-bmc_ipi-install-troubleshooting)
 
 **Additional resources**
 
@@ -36,4 +36,4 @@ Before starting an installer-provisioned installation of OpenShift Container Pla
 
 **Additional resources**
 
-- [Using DNS forwarding](/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)
+- [Using DNS forwarding](/openshift-docs-markdown/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)

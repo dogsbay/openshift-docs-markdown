@@ -58,11 +58,11 @@ where:
 
 ## Prerequisites {#prerequisites_cluster-wide-proxy}
 
-Review the [sites that your cluster requires access to](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) and determine whether any of them must bypass the proxy. By default, all cluster system egress traffic is proxied, including calls to the cloud provider API for the cloud that hosts your cluster. The system-wide proxy affects system components only, not user workloads. If necessary, add sites to the `spec.noProxy` parameter of the `Proxy` object to bypass the proxy.
+Review the [sites that your cluster requires access to](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) and determine whether any of them must bypass the proxy. By default, all cluster system egress traffic is proxied, including calls to the cloud provider API for the cloud that hosts your cluster. The system-wide proxy affects system components only, not user workloads. If necessary, add sites to the `spec.noProxy` parameter of the `Proxy` object to bypass the proxy.
 
 ## Additional resources {#_additional_resources}
 
-- [Configuring the cluster network range](/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
-- [Understanding the CA Bundle certificate](/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)
-- [Proxy certificates](/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)
+- [Configuring the cluster network range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
+- [Understanding the CA Bundle certificate](/openshift-docs-markdown/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)
+- [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)
 - [How is the cluster-wide proxy setting applied to OpenShift Container Platform nodes?](https://access.redhat.com/solutions/7065528)

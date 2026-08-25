@@ -25,9 +25,9 @@ Required
 | `containers` | `array` | Metrics for all containers are collected within the same time window. |
 | `containers[]` | `object` | ContainerMetrics sets resource usage metrics of a container. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `timestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval \[Timestamp-Window, Timestamp\]. |
-| `window` | [`Duration`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `timestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval \[Timestamp-Window, Timestamp\]. |
+| `window` | [`Duration`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |
 
 ### .containers {#_containers}
 
@@ -56,7 +56,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Container name corresponding to the one from pod.spec.containers. |
-| `usage` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | The memory usage is the memory working set. |
+| `usage` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | The memory usage is the memory working set. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -88,7 +88,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodMetricsList`](/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
+| 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
 
 ### /apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods {#_apismetricsk8siov1beta1namespaces_namespace_pods}
 
@@ -106,7 +106,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodMetricsList`](/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
+| 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
 
 ### /apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }} {#_apismetricsk8siov1beta1namespaces_namespace_pods_name}
 
@@ -130,4 +130,4 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodMetrics`](/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1#podmetrics-metrics-k8s-io-v1beta1) schema |
+| 200 - OK | [`PodMetrics`](/openshift-docs-markdown/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1#podmetrics-metrics-k8s-io-v1beta1) schema |

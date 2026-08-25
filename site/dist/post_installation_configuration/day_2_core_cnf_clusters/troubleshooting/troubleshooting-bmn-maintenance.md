@@ -8,8 +8,8 @@ You can connect to a node for general troubleshooting. However, in some cases, y
 
 **Additional resources**
 
-- [Working with nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working_nodes-nodes-working)
+- [Working with nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working_nodes-nodes-working)
 
 **Additional resources**
 
-- [OpenShift Container Platform storage overview](/storage/index#storage-overview_storage-overview)
+- [OpenShift Container Platform storage overview](/openshift-docs-markdown/storage/index#storage-overview_storage-overview)

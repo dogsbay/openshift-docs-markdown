@@ -8,4 +8,4 @@ Configure an LDAP identity provider so users can log in to OpenShift Container P
 
 **Additional resources**
 
-- [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
+- [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)

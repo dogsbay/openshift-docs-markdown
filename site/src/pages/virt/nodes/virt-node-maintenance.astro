@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-node-maintenance","text":"Node maintenance mode"},{"depth":2,"slug":"additional-resources_virt-node-maintenance","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/nodes/virt-node-maintenance";
+const currentPath = "/openshift-docs-markdown/virt/nodes/virt-node-maintenance";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/nodes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Node maintenance mode {#virt-node-maintenance}\n\nPlacing a node into maintenance mode marks the node as unschedulable, and removes all the VMs and pods from it. Nodes can be placed into maintenance mode by using the `oc adm` utility or `NodeMaintenance` custom resources (CRs).\n\n> [!IMPORTANT]\n> Virtual machines (VMs) must have a persistent volume claim (PVC) with a shared `ReadWriteMany` (RWX) access mode to be live migrated.\n\n## Additional resources {#additional-resources_virt-node-maintenance}\n\n- [About live migration](/virt/live_migration/virt-about-live-migration#virt-about-live-migration)\n- [About node remediation, fencing, and maintenance](https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/26.2/html-single/remediation_fencing_and_maintenance/index#about-remediation-fencing-maintenance)\n","mdUrl":"/virt/nodes/virt-node-maintenance.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Node maintenance mode {#virt-node-maintenance}\n\nPlacing a node into maintenance mode marks the node as unschedulable, and removes all the VMs and pods from it. Nodes can be placed into maintenance mode by using the `oc adm` utility or `NodeMaintenance` custom resources (CRs).\n\n> [!IMPORTANT]\n> Virtual machines (VMs) must have a persistent volume claim (PVC) with a shared `ReadWriteMany` (RWX) access mode to be live migrated.\n\n## Additional resources {#additional-resources_virt-node-maintenance}\n\n- [About live migration](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration)\n- [About node remediation, fencing, and maintenance](https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/26.2/html-single/remediation_fencing_and_maintenance/index#about-remediation-fencing-maintenance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/nodes/virt-node-maintenance.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,7 +106,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-about-node-maintenance-operator.md"></p>
       <h2 id="additional-resources_virt-node-maintenance" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-node-maintenance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/live_migration/virt-about-live-migration#virt-about-live-migration">About live migration</a></li>
+      <li><a href="/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration">About live migration</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/26.2/html-single/remediation_fencing_and_maintenance/index#about-remediation-fencing-maintenance">About node remediation, fencing, and maintenance</a></li>
       </ul>
     </article>

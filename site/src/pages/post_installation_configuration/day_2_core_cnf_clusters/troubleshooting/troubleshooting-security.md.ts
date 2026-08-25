@@ -2,7 +2,7 @@
 // Source: post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-security.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Security\n---\n\n# Security {#troubleshooting-security}\n\nImplementing a robust cluster security profile is important for building resilient environments.\n\n**Additional resources**\n\n- [Supported identity providers](/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider)\n";
+const body = "---\ntitle: Security\n---\n\n# Security {#troubleshooting-security}\n\nImplementing a robust cluster security profile is important for building resilient environments.\n\n**Additional resources**\n\n- [Supported identity providers](/openshift-docs-markdown/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

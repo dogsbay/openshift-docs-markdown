@@ -34,12 +34,12 @@ You can install the Windows Machine Config Operator using either the web console
 
 ## Additional resources {#additional-resources_enabling-windows-container-workloads}
 
-- [Windows Machine Config Operator prerequisites](/windows_containers/wmco_rn/windows-containers-release-notes-prereqs#windows-containers-release-notes-prereqs)
-- [Configuring hybrid networking](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
-- [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
-- [About disconnected installation mirroring](/disconnected/index#installing-mirroring-disconnected-about)
-- [Using Windows containers with a mirror registry](/windows_containers/enabling-windows-container-workloads#wmco-disconnected-cluster_enabling-windows-container-workloads)
-- [Rebooting a OpenShift Container Platform node gracefully](/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)
-- [Backing up etcd data](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
-- [Generating a key pair for cluster node SSH access](/installing/installing_azure/ipi/installing-azure-default#ssh-agent-using_installing-azure-default)
-- [Adding Operators to a cluster](/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
+- [Windows Machine Config Operator prerequisites](/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes-prereqs#windows-containers-release-notes-prereqs)
+- [Configuring hybrid networking](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
+- [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
+- [About disconnected installation mirroring](/openshift-docs-markdown/disconnected/index#installing-mirroring-disconnected-about)
+- [Using Windows containers with a mirror registry](/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#wmco-disconnected-cluster_enabling-windows-container-workloads)
+- [Rebooting a OpenShift Container Platform node gracefully](/openshift-docs-markdown/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)
+- [Backing up etcd data](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
+- [Generating a key pair for cluster node SSH access](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-default#ssh-agent-using_installing-azure-default)
+- [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)

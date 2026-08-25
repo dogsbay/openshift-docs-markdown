@@ -14,9 +14,9 @@ Ensure you have reviewed the following documentation before preparing for a sing
 **Additional resources**
 
 - [Certified Hypervisors and Guest Operating Systems (Red Hat Knowledgebase article)](https://access.redhat.com/articles/973163)
-- [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)
+- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
 
 ## Additional resources {#additional-resources_install-sno-preparing}
 
-- [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
+- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)

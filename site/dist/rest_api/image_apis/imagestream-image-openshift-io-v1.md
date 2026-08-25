@@ -20,7 +20,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ImageStreamSpec represents options for ImageStreams. |
 | `status` | `object` | ImageStreamStatus contains information about the state of this image stream. |
 
@@ -84,7 +84,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | Optional; if specified, annotations that are applied to images retrieved via ImageStreamTags. |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.  ImageStreamTag references can only reference a tag within this same ImageStream. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.  ImageStreamTag references can only reference a tag within this same ImageStream. |
 | `generation` | `integer` | generation is a counter that tracks mutations to the spec tag (user intent). When a tag reference is changed the generation is set to match the current stream generation (which is incremented every time spec is changed). Other processes in the system like the image importer observe that the generation of spec tag is newer than the generation recorded in the status and use that as a trigger to import the newest remote tag. To trigger a new import, clients may set this value to zero which will reset the generation to the latest stream generation. Legacy clients will send this value as nil which will be merged with the current tag generation. |
 | `importPolicy` | `object` | TagImportPolicy controls how images related to this tag will be imported. |
 | `name` | `string` | name of the tag |
@@ -201,7 +201,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `generation` | `integer` | generation is the spec tag generation that this status corresponds to |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition transitioned from one status to another. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the time the condition transitioned from one status to another. |
 | `message` | `string` | message is a human readable description of the details about last transition, complementing reason. |
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -235,7 +235,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `created` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | created holds the time the TagEvent was created |
+| `created` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | created holds the time the TagEvent was created |
 | `dockerImageReference` | `string` | dockerImageReference is the string that can be used to pull this image |
 | `generation` | `integer` | generation is the spec tag generation that resulted in this tag being updated |
 | `image` | `string` | image is the image |
@@ -289,7 +289,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamList`](/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamList) schema |
+| 200 - OK | [`ImageStreamList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/watch/imagestreams {#_apisimageopenshiftiov1watchimagestreams}
@@ -308,7 +308,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams {#_apisimageopenshiftiov1namespaces_namespace_imagestreams}
@@ -333,7 +333,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -350,7 +350,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStreamList`](/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamList) schema |
+| 200 - OK | [`ImageStreamList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -374,15 +374,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |  |
+| `body` | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
-| 202 - Accepted | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 202 - Accepted | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams}
@@ -401,7 +401,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }} {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name}
@@ -432,8 +432,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -450,7 +450,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -474,8 +474,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -499,14 +499,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |  |
+| `body` | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams/{{ name }} {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams_name}
@@ -531,7 +531,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/status {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_status}
@@ -556,7 +556,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -580,8 +580,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -605,12 +605,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |  |
+| `body` | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
-| 201 - Created | [`ImageStream`](/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 200 - OK | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
+| 201 - Created | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

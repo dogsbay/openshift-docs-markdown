@@ -8,6 +8,6 @@ OpenShift Container Platform administrators and users can use user-defined netwo
 
 ## Additional resources {#additional-resources_understanding-multiple-networks}
 
-- [About user-defined networks (UDNs)](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
-- [Creating primary networks using a NetworkAttachmentDefinition](/networking/multiple_networks/primary_networks/about-primary-nwt-nad#understanding-multiple-networks)
-- [Enabling multicast for a project](/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)
+- [About user-defined networks (UDNs)](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
+- [Creating primary networks using a NetworkAttachmentDefinition](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-primary-nwt-nad#understanding-multiple-networks)
+- [Enabling multicast for a project](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)

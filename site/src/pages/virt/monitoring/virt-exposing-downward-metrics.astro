@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-exposing-downward-metrics","text":"Exposing downward metrics for virtual machines"},{"depth":2,"slug":"additional-resources_virt-exposing-downward-metrics-for-vms","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/monitoring/virt-exposing-downward-metrics";
+const currentPath = "/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/monitoring"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Exposing downward metrics for virtual machines {#virt-exposing-downward-metrics}\n\nAs an administrator, you can expose a set of host and virtual machine (VM) metrics to a guest VM by enabling the `downwardMetrics` feature gate and configuring a downward metrics device. You can view these metrics by using the command line or the `vm-dump-metrics` tool.\n\n> [!NOTE]\n> On Red Hat Enterprise Linux (RHEL) 9, use the command line to view downward metrics.\n>\n> The `vm-dump-metrics` tool is not supported on the Red Hat Enterprise Linux (RHEL) 9 platform.\n\n## Additional resources {#additional-resources_virt-exposing-downward-metrics-for-vms}\n\n- [Viewing downward metrics by using the command line](/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics)\n","mdUrl":"/virt/monitoring/virt-exposing-downward-metrics.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Exposing downward metrics for virtual machines {#virt-exposing-downward-metrics}\n\nAs an administrator, you can expose a set of host and virtual machine (VM) metrics to a guest VM by enabling the `downwardMetrics` feature gate and configuring a downward metrics device. You can view these metrics by using the command line or the `vm-dump-metrics` tool.\n\n> [!NOTE]\n> On Red Hat Enterprise Linux (RHEL) 9, use the command line to view downward metrics.\n>\n> The `vm-dump-metrics` tool is not supported on the Red Hat Enterprise Linux (RHEL) 9 platform.\n\n## Additional resources {#additional-resources_virt-exposing-downward-metrics-for-vms}\n\n- [Viewing downward metrics by using the command line](/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -109,7 +109,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-viewing-downward-metrics-cli.md"></p>
       <p class="/modules/virt-viewing-downward-metrics-tool.md"></p>
       <h2 id="additional-resources_virt-exposing-downward-metrics-for-vms" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-exposing-downward-metrics-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics">Viewing downward metrics by using the command line</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics">Viewing downward metrics by using the command line</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

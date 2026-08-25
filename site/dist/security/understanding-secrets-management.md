@@ -10,6 +10,6 @@ OpenShift Container Platform uses a flexible Operator and plugin design to decou
 
 **Additional resources**
 
-- [Secrets Store Container Storage Interface Driver Operator](/storage/container_storage_interface/persistent-storage-csi-secrets-store#persistent-storage-csi-secrets-store)
-- [{{ external_secrets_operator }}](/security/external_secrets_operator/index#external-secrets-operator-about)
-- [{{ cert_manager_operator }}](/security/cert_manager_operator/index#cert-manager-operator-about)
+- [Secrets Store Container Storage Interface Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-secrets-store#persistent-storage-csi-secrets-store)
+- [{{ external_secrets_operator }}](/openshift-docs-markdown/security/external_secrets_operator/index#external-secrets-operator-about)
+- [{{ cert_manager_operator }}](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-about)

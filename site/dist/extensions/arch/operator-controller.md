@@ -8,5 +8,5 @@ Operator Controller is the central component of {{ olmv1_first }} and consumes t
 
 **Additional resources**
 
-- [Operator Lifecycle Manager (OLM) -> Multitenancy and Operator colocation](/operators/understanding/olm/olm-colocation#olm-colocation)
-- [Supported extensions](/extensions/ce/olmv1-supported-extensions#olmv1-supported-extensions)
+- [Operator Lifecycle Manager (OLM) -> Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
+- [Supported extensions](/openshift-docs-markdown/extensions/ce/olmv1-supported-extensions#olmv1-supported-extensions)

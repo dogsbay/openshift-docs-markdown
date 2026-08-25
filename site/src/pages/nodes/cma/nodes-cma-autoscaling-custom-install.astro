@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-cma-autoscaling-custom-install","text":"Installing the custom metrics autoscaler"}];
 const nav = navData;
-const currentPath = "/nodes/cma/nodes-cma-autoscaling-custom-install";
+const currentPath = "/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/cma"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the custom metrics autoscaler {#nodes-cma-autoscaling-custom-install}\n\nYou can use the OpenShift Container Platform web console to install the Custom Metrics Autoscaler Operator.\n\nThe installation creates the following five CRDs:\n\n- `ClusterTriggerAuthentication`\n- `KedaController`\n- `ScaledJob`\n- `ScaledObject`\n- `TriggerAuthentication`\n\nThe installation process also creates the `KedaController` custom resource (CR). You can modify the default `KedaController` CR, if needed. For more information, see \"Editing the Keda Controller CR\".\n\n> [!NOTE]\n> If you are installing a Custom Metrics Autoscaler Operator version lower than 2.17.2, you must manually create the Keda Controller CR. You can use the procedure described in \"Editing the Keda Controller CR\" to create the CR.\n","mdUrl":"/nodes/cma/nodes-cma-autoscaling-custom-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the custom metrics autoscaler {#nodes-cma-autoscaling-custom-install}\n\nYou can use the OpenShift Container Platform web console to install the Custom Metrics Autoscaler Operator.\n\nThe installation creates the following five CRDs:\n\n- `ClusterTriggerAuthentication`\n- `KedaController`\n- `ScaledJob`\n- `ScaledObject`\n- `TriggerAuthentication`\n\nThe installation process also creates the `KedaController` custom resource (CR). You can modify the default `KedaController` CR, if needed. For more information, see \"Editing the Keda Controller CR\".\n\n> [!NOTE]\n> If you are installing a Custom Metrics Autoscaler Operator version lower than 2.17.2, you must manually create the Keda Controller CR. You can use the procedure described in \"Editing the Keda Controller CR\" to create the CR.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -8,5 +8,5 @@ Automatic route creation, also known as Istio OpenShift Routing (IOR), is a depr
 
 ## Additional resources {#additional-resources_route-migration}
 
-- [Creating an HTTP-based Route](/networking/ingress_load_balancing/routes/creating-basic-routes#nw-creating-a-route_route-configuration)
-- [Understanding automatic routes](/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)
+- [Creating an HTTP-based Route](/openshift-docs-markdown/networking/ingress_load_balancing/routes/creating-basic-routes#nw-creating-a-route_route-configuration)
+- [Understanding automatic routes](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)

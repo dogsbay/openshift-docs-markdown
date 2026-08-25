@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `users` | `array (string)` | users is the list of users in this group. |
 
 ## API endpoints {#_api_endpoints}
@@ -70,7 +70,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -87,7 +87,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`GroupList`](/rest_api/objects/index#com-github-openshift-api-user-v1-GroupList) schema |
+| 200 - OK | [`GroupList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-user-v1-GroupList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -111,15 +111,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |  |
+| `body` | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
-| 201 - Created | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
-| 202 - Accepted | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 200 - OK | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 201 - Created | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 202 - Accepted | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/user.openshift.io/v1/watch/groups {#_apisuseropenshiftiov1watchgroups}
@@ -138,7 +138,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/user.openshift.io/v1/groups/{{ name }} {#_apisuseropenshiftiov1groups_name}
@@ -169,8 +169,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -187,7 +187,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 200 - OK | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -211,8 +211,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
-| 201 - Created | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 200 - OK | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 201 - Created | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -236,14 +236,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |  |
+| `body` | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
-| 201 - Created | [`Group`](/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 200 - OK | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
+| 201 - Created | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/user.openshift.io/v1/watch/groups/{{ name }} {#_apisuseropenshiftiov1watchgroups_name}
@@ -268,5 +268,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

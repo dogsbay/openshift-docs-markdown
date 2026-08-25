@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"ossm-route-migration","text":"Route migration"},{"depth":2,"slug":"additional-resources_route-migration","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/service_mesh/v2x/ossm-route-migration";
+const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-route-migration";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Route migration {#ossm-route-migration}\n\nAutomatic route creation, also known as Istio OpenShift Routing (IOR), is a deprecated feature that is disabled by default for any `ServiceMeshControlPlane` resource that was created using {{ SMProductName }} 2.5 and later. Migrating from IOR to explicitly-managed routes provides a more flexible way to manage and configure ingress gateways. When route resources are explicitly created they can be managed alongside the other gateway and application resources as part of a GitOps management model.\n\n## Additional resources {#additional-resources_route-migration}\n\n- [Creating an HTTP-based Route](/networking/ingress_load_balancing/routes/creating-basic-routes#nw-creating-a-route_route-configuration)\n- [Understanding automatic routes](/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)\n","mdUrl":"/service_mesh/v2x/ossm-route-migration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Route migration {#ossm-route-migration}\n\nAutomatic route creation, also known as Istio OpenShift Routing (IOR), is a deprecated feature that is disabled by default for any `ServiceMeshControlPlane` resource that was created using {{ SMProductName }} 2.5 and later. Migrating from IOR to explicitly-managed routes provides a more flexible way to manage and configure ingress gateways. When route resources are explicitly created they can be managed alongside the other gateway and application resources as part of a GitOps management model.\n\n## Additional resources {#additional-resources_route-migration}\n\n- [Creating an HTTP-based Route](/openshift-docs-markdown/networking/ingress_load_balancing/routes/creating-basic-routes#nw-creating-a-route_route-configuration)\n- [Understanding automatic routes](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-route-migration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,8 +96,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/ossm-migrating-from-ior-to-explicitly-managed-routes.md"></p>
       <h2 id="additional-resources_route-migration" class="group scroll-mt-20">Additional resources<a href="#additional-resources_route-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/ingress_load_balancing/routes/creating-basic-routes#nw-creating-a-route_route-configuration">Creating an HTTP-based Route</a></li>
-      <li><a href="/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management">Understanding automatic routes</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/routes/creating-basic-routes#nw-creating-a-route_route-configuration">Creating an HTTP-based Route</a></li>
+      <li><a href="/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management">Understanding automatic routes</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

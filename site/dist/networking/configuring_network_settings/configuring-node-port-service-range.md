@@ -18,7 +18,7 @@ To meet your cluster node port requirements in OpenShift Container Platform, you
 
 ## Additional resources {#configuring-node-port-service-range-additional-resources}
 
-- [Configuring ingress cluster traffic using a NodePort](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
-- [Network: config.openshift.io v1](/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1)
-- [Service: core v1](/rest_api/network_apis/service-v1#service-v1)
-- [Safe and unsafe sysctls](/nodes/containers/nodes-containers-sysctls#safe_and_unsafe_sysctls_nodes-containers-sysctls)
+- [Configuring ingress cluster traffic using a NodePort](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
+- [Network: config.openshift.io v1](/openshift-docs-markdown/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1)
+- [Service: core v1](/openshift-docs-markdown/rest_api/network_apis/service-v1#service-v1)
+- [Safe and unsafe sysctls](/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls#safe_and_unsafe_sysctls_nodes-containers-sysctls)

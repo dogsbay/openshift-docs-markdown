@@ -16,9 +16,9 @@ Users can then submit their workloads to the local queue.
 
 <a name="clusterqueues-next-steps_configuring-quotas"></a>**Next steps**
 
-The cluster queue is not ready for use until a [`ResourceFlavor` object](/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas) has also been configured.
+The cluster queue is not ready for use until a [`ResourceFlavor` object](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas) has also been configured.
 
 ## Additional resources {#clusterqueues-additional-resources_configuring-quotas}
 
-- [RBAC permissions](/ai_workloads/kueue/rbac-permissions#rbac-permissions)
+- [RBAC permissions](/openshift-docs-markdown/ai_workloads/kueue/rbac-permissions#rbac-permissions)
 - [Kubernetes documentation about cluster queues](https://kueue.sigs.k8s.io/docs/concepts/cluster_queue/)

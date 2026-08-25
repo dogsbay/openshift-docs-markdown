@@ -26,7 +26,7 @@ Monitoring stack components are deployed by default in every OpenShift Container
 
 For more information, see [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 
-and [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring).
+and [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring).
 
 ## Logging {#cluster-logging-index_observability-overview}
 
@@ -48,7 +48,7 @@ For more information, see [{{ OTELName }}](https://docs.redhat.com/en/documentat
 
 Observe the network traffic for OpenShift Container Platform clusters and create network flows with the Network Observability Operator. View and analyze the stored network flows information in the OpenShift Container Platform console for further insight and troubleshooting.
 
-For more information, see [Network Observability overview](/observability/network_observability/network-observability-overview#network-observability-overview).
+For more information, see [Network Observability overview](/openshift-docs-markdown/observability/network_observability/network-observability-overview#network-observability-overview).
 
 ## Power monitoring {#power-monitoring-overview-index_observability-overview}
 

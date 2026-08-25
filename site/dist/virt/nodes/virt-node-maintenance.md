@@ -11,5 +11,5 @@ Placing a node into maintenance mode marks the node as unschedulable, and remove
 
 ## Additional resources {#additional-resources_virt-node-maintenance}
 
-- [About live migration](/virt/live_migration/virt-about-live-migration#virt-about-live-migration)
+- [About live migration](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration)
 - [About node remediation, fencing, and maintenance](https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/26.2/html-single/remediation_fencing_and_maintenance/index#about-remediation-fencing-maintenance)

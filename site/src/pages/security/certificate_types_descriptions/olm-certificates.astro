@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"cert-types-olm-certificates","text":"OLM certificates"},{"depth":2,"slug":"_management","text":"Management"},{"depth":2,"slug":"additional-resources_cert-types-olm-certificates","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/security/certificate_types_descriptions/olm-certificates";
+const currentPath = "/openshift-docs-markdown/security/certificate_types_descriptions/olm-certificates";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/certificate_types_descriptions"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OLM certificates {#cert-types-olm-certificates}\n\nUnderstand how Operator Lifecycle Manager (OLM) manages certificates for OLM components and creates and rotates certificates when installing Operators that include webhooks or API services. In proxy environments, you must manage Operator certificates yourself because OLM does not update them.\n\n## Management {#_management}\n\nAll certificates for Operator Lifecycle Manager (OLM) components, such as `olm-operator`, `catalog-operator`, `packageserver`, and `marketplace-operator`, are managed by the system.\n\nWhen installing Operators that include webhooks or API services in their `ClusterServiceVersion` (CSV) object, OLM creates and rotates the certificates for these resources. Certificates for resources in the `openshift-operator-lifecycle-manager` namespace are managed by OLM.\n\nOLM does not update the certificates of Operators that it manages in proxy environments. These certificates must be managed by the user using the subscription config.\n\n## Additional resources {#additional-resources_cert-types-olm-certificates}\n\n- [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [Proxy certificates](/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)\n- [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)\n- [Updating the CA bundle](/security/certificates/updating-ca-bundle#updating-ca-bundle)\n","mdUrl":"/security/certificate_types_descriptions/olm-certificates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OLM certificates {#cert-types-olm-certificates}\n\nUnderstand how Operator Lifecycle Manager (OLM) manages certificates for OLM components and creates and rotates certificates when installing Operators that include webhooks or API services. In proxy environments, you must manage Operator certificates yourself because OLM does not update them.\n\n## Management {#_management}\n\nAll certificates for Operator Lifecycle Manager (OLM) components, such as `olm-operator`, `catalog-operator`, `packageserver`, and `marketplace-operator`, are managed by the system.\n\nWhen installing Operators that include webhooks or API services in their `ClusterServiceVersion` (CSV) object, OLM creates and rotates the certificates for these resources. Certificates for resources in the `openshift-operator-lifecycle-manager` namespace are managed by OLM.\n\nOLM does not update the certificates of Operators that it manages in proxy environments. These certificates must be managed by the user using the subscription config.\n\n## Additional resources {#additional-resources_cert-types-olm-certificates}\n\n- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)\n- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)\n- [Updating the CA bundle](/openshift-docs-markdown/security/certificates/updating-ca-bundle#updating-ca-bundle)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/certificate_types_descriptions/olm-certificates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,10 +99,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>OLM does not update the certificates of Operators that it manages in proxy environments. These certificates must be managed by the user using the subscription config.</p>
       <h2 id="additional-resources_cert-types-olm-certificates" class="group scroll-mt-20">Additional resources<a href="#additional-resources_cert-types-olm-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support">Configuring proxy support in Operator Lifecycle Manager</a></li>
-      <li><a href="/security/certificate_types_descriptions/proxy-certificates#proxy-certificates">Proxy certificates</a></li>
-      <li><a href="/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress">Replacing the default ingress certificate</a></li>
-      <li><a href="/security/certificates/updating-ca-bundle#updating-ca-bundle">Updating the CA bundle</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support">Configuring proxy support in Operator Lifecycle Manager</a></li>
+      <li><a href="/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates">Proxy certificates</a></li>
+      <li><a href="/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress">Replacing the default ingress certificate</a></li>
+      <li><a href="/openshift-docs-markdown/security/certificates/updating-ca-bundle#updating-ca-bundle">Updating the CA bundle</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

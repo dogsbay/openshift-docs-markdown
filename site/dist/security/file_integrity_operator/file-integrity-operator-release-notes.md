@@ -10,5 +10,5 @@ These release notes track the development of the File Integrity Operator in the 
 
 ## Additional resources {#file-integrity-operator-release-notes_additional-resources}
 
-- [Understanding the File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator)
-- [Updating the File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-updating#olm-preparing-upgrade_file-integrity-operator-updating)
+- [Understanding the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator)
+- [Updating the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-updating#olm-preparing-upgrade_file-integrity-operator-updating)

@@ -15,6 +15,6 @@ title: Activating kernel samepage merging (KSM)
 
 ## Additional resources {#additional-resources_virt-activating-ksm}
 
-- [Specifying nodes for virtual machines](/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)
-- [Placing pods on specific nodes using node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
+- [Specifying nodes for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)
+- [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
 - [Managing kernel samepage merging](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_virtualization/index#proc_managing-ksm_optimizing-virtual-machine-cpu-performance)

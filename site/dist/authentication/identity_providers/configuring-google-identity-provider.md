@@ -8,7 +8,7 @@ Configure a Google identity provider so users can authenticate to OpenShift Cont
 
 **Additional resources**
 
-- [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
+- [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
 ## Additional resources {#additional-resources-google-identity-provider_configuring-google-identity-provider}
 

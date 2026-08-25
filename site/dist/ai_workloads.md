@@ -8,6 +8,6 @@ OpenShift Container Platform provides a secure, scalable foundation for running 
 
 **Additional resources**
 
-- [Introduction to {{ kueue_name }}](/ai_workloads/kueue/about-kueue#about-kueue)
-- [{{ lws_operator }} overview](/ai_workloads/leader_worker_set/index#lws-about)
-- [{{ js_operator }} overview](/ai_workloads/jobset_operator/index#js-about)
+- [Introduction to {{ kueue_name }}](/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue)
+- [{{ lws_operator }} overview](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about)
+- [{{ js_operator }} overview](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about)

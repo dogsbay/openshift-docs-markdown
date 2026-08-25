@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"configuring-github-identity-provider","text":"Configuring a GitHub or GitHub Enterprise identity provider"}];
 const nav = navData;
-const currentPath = "/authentication/identity_providers/configuring-github-identity-provider";
+const currentPath = "/openshift-docs-markdown/authentication/identity_providers/configuring-github-identity-provider";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["authentication","authentication/identity_providers"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a GitHub or GitHub Enterprise identity provider {#configuring-github-identity-provider}\n\nConfigure the `github` identity provider so users can log in to OpenShift Container Platform with GitHub or GitHub Enterprise accounts through OAuth. Use this integration when you want cluster users to authenticate with existing GitHub credentials instead of managing separate cluster passwords.\n\nYou can use the GitHub integration to connect to either GitHub or GitHub Enterprise. For GitHub Enterprise integrations, you must provide the `hostname` of your instance and can optionally provide a `ca` certificate bundle to use in requests to the server.\n\n> [!NOTE]\n> The following steps apply to both GitHub and GitHub Enterprise unless noted.\n\n**Additional resources**\n\n- [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)\n\n**Additional resources**\n\n- [GitHub authentication (GitHub documentation)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/authorizing-oauth-apps)\n","mdUrl":"/authentication/identity_providers/configuring-github-identity-provider.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a GitHub or GitHub Enterprise identity provider {#configuring-github-identity-provider}\n\nConfigure the `github` identity provider so users can log in to OpenShift Container Platform with GitHub or GitHub Enterprise accounts through OAuth. Use this integration when you want cluster users to authenticate with existing GitHub credentials instead of managing separate cluster passwords.\n\nYou can use the GitHub integration to connect to either GitHub or GitHub Enterprise. For GitHub Enterprise integrations, you must provide the `hostname` of your instance and can optionally provide a `ca` certificate bundle to use in requests to the server.\n\n> [!NOTE]\n> The following steps apply to both GitHub and GitHub Enterprise unless noted.\n\n**Additional resources**\n\n- [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)\n\n**Additional resources**\n\n- [GitHub authentication (GitHub documentation)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/authorizing-oauth-apps)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/identity_providers/configuring-github-identity-provider.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -110,7 +110,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/identity-provider-config-map.md"></p>
       <p class="/modules/identity-provider-github-CR.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider">Identity provider parameters</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider">Identity provider parameters</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/authorizing-oauth-apps">GitHub authentication (GitHub documentation)</a></li></ul>
     </article>

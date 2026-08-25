@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"rdma-remote-direct-memory-access","text":"NVIDIA GPUDirect Remote Direct Memory Access (RDMA)"}];
 const nav = navData;
-const currentPath = "/hardware_accelerators/rdma-remote-direct-memory-access";
+const currentPath = "/openshift-docs-markdown/hardware_accelerators/rdma-remote-direct-memory-access";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hardware_accelerators"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# NVIDIA GPUDirect Remote Direct Memory Access (RDMA) {#rdma-remote-direct-memory-access}\n\nNVIDIA GPUDirect Remote Direct Memory Access (RDMA) allows for an application in one computer to directly access the memory of another computer without needing access through the operating system. This provides the ability to bypass kernel intervention in the process, freeing up resources and greatly reducing the CPU overhead normally needed to process network communications. This is useful for distributing GPU-accelerated workloads across clusters. And because RDMA is so suited toward high bandwidth and low latency applications, this makes it ideal for big data and machine learning applications.\n\nThere are currently three configuration methods for NVIDIA GPUDirect RDMA:\n\nShared device\n:   This method allows for an NVIDIA GPUDirect RDMA device to be shared among multiple pods on the OpenShift Container Platform worker node where the device is exposed.\n\nHost device\n:   This method provides direct physical Ethernet access on the worker node by creating an additional host network on a pod. A plugin allows the network device to be moved from the host network namespace to the network namespace on the pod.\n\nSR-IOV legacy device\n:   The Single Root IO Virtualization (SR-IOV) method can share a single network device, such as an Ethernet adapter, with multiple pods. SR-IOV segments the device, recognized on the host node as a physical function (PF), into multiple virtual functions (VFs).  The VF is used like any other network device.\n\nEach of these methods can be used across either the NVIDIA GPUDirect RDMA over Converged Ethernet (RoCE) or Infiniband infrastructures, providing an aggregate total of six methods of configuration.\n\n- Install the [Node Feature Discovery Operator](/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator).\n- Install the [SR-IOV Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n- Install the [NVIDIA Network Operator](https://docs.nvidia.com/networking/display/kubernetes2501/getting-started-openshift.html#network-operator-installation-using-openshift-oc-cli) (NVIDIA documentation).\n- Install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/openshift/24.9.2/install-gpu-ocp.html) (NVIDIA documentation).\n","mdUrl":"/hardware_accelerators/rdma-remote-direct-memory-access.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# NVIDIA GPUDirect Remote Direct Memory Access (RDMA) {#rdma-remote-direct-memory-access}\n\nNVIDIA GPUDirect Remote Direct Memory Access (RDMA) allows for an application in one computer to directly access the memory of another computer without needing access through the operating system. This provides the ability to bypass kernel intervention in the process, freeing up resources and greatly reducing the CPU overhead normally needed to process network communications. This is useful for distributing GPU-accelerated workloads across clusters. And because RDMA is so suited toward high bandwidth and low latency applications, this makes it ideal for big data and machine learning applications.\n\nThere are currently three configuration methods for NVIDIA GPUDirect RDMA:\n\nShared device\n:   This method allows for an NVIDIA GPUDirect RDMA device to be shared among multiple pods on the OpenShift Container Platform worker node where the device is exposed.\n\nHost device\n:   This method provides direct physical Ethernet access on the worker node by creating an additional host network on a pod. A plugin allows the network device to be moved from the host network namespace to the network namespace on the pod.\n\nSR-IOV legacy device\n:   The Single Root IO Virtualization (SR-IOV) method can share a single network device, such as an Ethernet adapter, with multiple pods. SR-IOV segments the device, recognized on the host node as a physical function (PF), into multiple virtual functions (VFs).  The VF is used like any other network device.\n\nEach of these methods can be used across either the NVIDIA GPUDirect RDMA over Converged Ethernet (RoCE) or Infiniband infrastructures, providing an aggregate total of six methods of configuration.\n\n- Install the [Node Feature Discovery Operator](/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator).\n- Install the [SR-IOV Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n- Install the [NVIDIA Network Operator](https://docs.nvidia.com/networking/display/kubernetes2501/getting-started-openshift.html#network-operator-installation-using-openshift-oc-cli) (NVIDIA documentation).\n- Install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/openshift/24.9.2/install-gpu-ocp.html) (NVIDIA documentation).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/rdma-remote-direct-memory-access.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,8 +105,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Each of these methods can be used across either the NVIDIA GPUDirect RDMA over Converged Ethernet (RoCE) or Infiniband infrastructures, providing an aggregate total of six methods of configuration.</p>
       <p class="/modules/rdma-prerequisites.md"></p>
       <ul>
-      <li>Install the <a href="/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator">Node Feature Discovery Operator</a>.</li>
-      <li>Install the <a href="/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator">SR-IOV Operator</a>.</li>
+      <li>Install the <a href="/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator">Node Feature Discovery Operator</a>.</li>
+      <li>Install the <a href="/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator">SR-IOV Operator</a>.</li>
       <li>Install the <a href="https://docs.nvidia.com/networking/display/kubernetes2501/getting-started-openshift.html#network-operator-installation-using-openshift-oc-cli">NVIDIA Network Operator</a> (NVIDIA documentation).</li>
       <li>Install the <a href="https://docs.nvidia.com/datacenter/cloud-native/openshift/24.9.2/install-gpu-ocp.html">NVIDIA GPU Operator</a> (NVIDIA documentation).</li>
       </ul>

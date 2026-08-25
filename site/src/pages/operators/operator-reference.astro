@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"operator-reference","text":"Cluster Operators reference"},{"depth":3,"slug":"additional-resources_cluster-op-ref-cco","text":"Additional resources"},{"depth":3,"slug":"additional-resources_cluster-op-ref-cpmso","text":"Additional resources"},{"depth":3,"slug":"cluster-operators-ref-nto-addtl-resources","text":"Additional resources"},{"depth":2,"slug":"cluster-operators-ref-olm","text":"{{ olmv0_first }} Operators"},{"depth":3,"slug":"_cluster_operators","text":"Cluster Operators"},{"depth":3,"slug":"cluster-operators-ref-olm-addtl-resources","text":"Additional resources"},{"depth":3,"slug":"cluster-operators-ref-olmv1-addtl-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/operators/operator-reference";
+const currentPath = "/openshift-docs-markdown/operators/operator-reference";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["operators"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster Operators reference {#operator-reference}\n\nThis reference guide indexes the *cluster Operators* shipped by Red Hat that serve as the architectural foundation for OpenShift Container Platform. Cluster Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see [Operators in OpenShift Container Platform](/architecture/control-plane#operators-overview_control-plane).\n\nCluster administrators can view cluster Operators in the OpenShift Container Platform web console from the **Administration** -> **Cluster Settings** page.\n\n> [!NOTE]\n> Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and the software catalog. OLM and the software catalog are part of the [Operator Framework](https://operatorframework.io/) used in OpenShift Container Platform for installing and running optional [add-on Operators](/architecture/control-plane#olm-operators_control-plane).\n\nSome of the following cluster Operators can be disabled prior to installation. For more information see [cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities).\n\n**Additional resources**\n\n- [Bare-metal capability](/installing/overview/cluster-capabilities#cluster-bare-metal-operator_cluster-capabilities)\n\n### Additional resources {#additional-resources_cluster-op-ref-cco}\n\n- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)\n- [`CredentialsRequest` custom resource](/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1)\n\n**Additional resources**\n\n- [CSI snapshot controller capability](/installing/overview/cluster-capabilities#cluster-csi-snapshot-controller-operator_cluster-capabilities)\n\n**Additional resources**\n\n- [OpenShift samples capability](/installing/overview/cluster-capabilities#cluster-samples-operator_cluster-capabilities)\n\n**Additional resources**\n\n- [Storage capability](/installing/overview/cluster-capabilities#cluster-storage-operator_cluster-capabilities)\n\n**Additional resources**\n\n- [Understanding cluster version condition types](/updating/understanding_updates/intro-to-updates#understanding-clusterversion-conditiontypes_understanding-openshift-updates)\n\n**Additional resources**\n\n- [Web console capability](/installing/overview/cluster-capabilities#console-operator_cluster-capabilities)\n\n### Additional resources {#additional-resources_cluster-op-ref-cpmso}\n\n- [About control plane machine sets](/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)\n- [`ControlPlaneMachineSet` custom resource](/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)\n\n**Additional resources**\n\n- [Insights capability](/installing/overview/cluster-capabilities#insights-operator_cluster-capabilities)\n- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n**Additional resources**\n\n- [Marketplace capability](/installing/overview/cluster-capabilities#marketplace-operator_cluster-capabilities)\n\n### Additional resources {#cluster-operators-ref-nto-addtl-resources}\n\n- [About low latency](/scalability_and_performance/cnf-understanding-low-latency#cnf-understanding-low-latency_cnf-understanding-low-latency)\n\n## {{ olmv0_first }} Operators {#cluster-operators-ref-olm}\n\n> [!NOTE]\n> The following sections pertain to {{ olmv0_first }} that has been included with OpenShift Container Platform 4 since its initial release. For {{ olmv1 }}, see [{{ olmv1_first }} Operators](/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference).\n\n### Cluster Operators {#_cluster_operators}\n\nIn OpenShift Container Platform, OLM functionality is provided across a set of cluster Operators:\n\n`operator-lifecycle-manager`\n:   Provides the OLM Operator. Also informs cluster administrators if there are any installed Operators blocking cluster upgrade, based on their `olm.maxOpenShiftVersion` properties. For more information, see \"Controlling Operator compatibility with OpenShift Container Platform versions\".\n\n`operator-lifecycle-manager-catalog`\n:   Provides the Catalog Operator.\n\n`operator-lifecycle-manager-packageserver`\n:   Represents an API extension server responsible for collecting metadata from all catalogs on the cluster and serves the user-facing `PackageManifest` API.\n\n### Additional resources {#cluster-operators-ref-olm-addtl-resources}\n\n- [Understanding Operator Lifecycle Manager (OLM)](/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)\n\n### Additional resources {#cluster-operators-ref-olmv1-addtl-resources}\n\n- [Extensions overview](/extensions/index#extensions-overview)\n- [Compatibility with OpenShift Container Platform versions](/extensions/ce/update-paths#olmv1-ocp-compat_update-paths)\n\n**Additional resources**\n\n- [Using the vSphere Problem Detector Operator](/installing/installing_vsphere/using-vsphere-problem-detector-operator#using-vsphere-problem-detector-operator)\n","mdUrl":"/operators/operator-reference.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster Operators reference {#operator-reference}\n\nThis reference guide indexes the *cluster Operators* shipped by Red Hat that serve as the architectural foundation for OpenShift Container Platform. Cluster Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see [Operators in OpenShift Container Platform](/openshift-docs-markdown/architecture/control-plane#operators-overview_control-plane).\n\nCluster administrators can view cluster Operators in the OpenShift Container Platform web console from the **Administration** -> **Cluster Settings** page.\n\n> [!NOTE]\n> Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and the software catalog. OLM and the software catalog are part of the [Operator Framework](https://operatorframework.io/) used in OpenShift Container Platform for installing and running optional [add-on Operators](/openshift-docs-markdown/architecture/control-plane#olm-operators_control-plane).\n\nSome of the following cluster Operators can be disabled prior to installation. For more information see [cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities).\n\n**Additional resources**\n\n- [Bare-metal capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-bare-metal-operator_cluster-capabilities)\n\n### Additional resources {#additional-resources_cluster-op-ref-cco}\n\n- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)\n- [`CredentialsRequest` custom resource](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1)\n\n**Additional resources**\n\n- [CSI snapshot controller capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-csi-snapshot-controller-operator_cluster-capabilities)\n\n**Additional resources**\n\n- [OpenShift samples capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-samples-operator_cluster-capabilities)\n\n**Additional resources**\n\n- [Storage capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-storage-operator_cluster-capabilities)\n\n**Additional resources**\n\n- [Understanding cluster version condition types](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-clusterversion-conditiontypes_understanding-openshift-updates)\n\n**Additional resources**\n\n- [Web console capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#console-operator_cluster-capabilities)\n\n### Additional resources {#additional-resources_cluster-op-ref-cpmso}\n\n- [About control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)\n- [`ControlPlaneMachineSet` custom resource](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)\n\n**Additional resources**\n\n- [Insights capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#insights-operator_cluster-capabilities)\n- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n**Additional resources**\n\n- [Marketplace capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#marketplace-operator_cluster-capabilities)\n\n### Additional resources {#cluster-operators-ref-nto-addtl-resources}\n\n- [About low latency](/openshift-docs-markdown/scalability_and_performance/cnf-understanding-low-latency#cnf-understanding-low-latency_cnf-understanding-low-latency)\n\n## {{ olmv0_first }} Operators {#cluster-operators-ref-olm}\n\n> [!NOTE]\n> The following sections pertain to {{ olmv0_first }} that has been included with OpenShift Container Platform 4 since its initial release. For {{ olmv1 }}, see [{{ olmv1_first }} Operators](/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference).\n\n### Cluster Operators {#_cluster_operators}\n\nIn OpenShift Container Platform, OLM functionality is provided across a set of cluster Operators:\n\n`operator-lifecycle-manager`\n:   Provides the OLM Operator. Also informs cluster administrators if there are any installed Operators blocking cluster upgrade, based on their `olm.maxOpenShiftVersion` properties. For more information, see \"Controlling Operator compatibility with OpenShift Container Platform versions\".\n\n`operator-lifecycle-manager-catalog`\n:   Provides the Catalog Operator.\n\n`operator-lifecycle-manager-packageserver`\n:   Represents an API extension server responsible for collecting metadata from all catalogs on the cluster and serves the user-facing `PackageManifest` API.\n\n### Additional resources {#cluster-operators-ref-olm-addtl-resources}\n\n- [Understanding Operator Lifecycle Manager (OLM)](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)\n\n### Additional resources {#cluster-operators-ref-olmv1-addtl-resources}\n\n- [Extensions overview](/openshift-docs-markdown/extensions/index#extensions-overview)\n- [Compatibility with OpenShift Container Platform versions](/openshift-docs-markdown/extensions/ce/update-paths#olmv1-ocp-compat_update-paths)\n\n**Additional resources**\n\n- [Using the vSphere Problem Detector Operator](/openshift-docs-markdown/installing/installing_vsphere/using-vsphere-problem-detector-operator#using-vsphere-problem-detector-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/operator-reference.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,22 +95,22 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
     <article class="docs-prose">
       <h1 id="operator-reference" class="group scroll-mt-20">Cluster Operators reference<a href="#operator-reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p class="/_attributes/common-attributes.md"></p>
-      <p>This reference guide indexes the <em>cluster Operators</em> shipped by Red Hat that serve as the architectural foundation for OpenShift Container Platform. Cluster Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see <a href="/architecture/control-plane#operators-overview_control-plane">Operators in OpenShift Container Platform</a>.</p>
+      <p>This reference guide indexes the <em>cluster Operators</em> shipped by Red Hat that serve as the architectural foundation for OpenShift Container Platform. Cluster Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see <a href="/openshift-docs-markdown/architecture/control-plane#operators-overview_control-plane">Operators in OpenShift Container Platform</a>.</p>
       <p>Cluster administrators can view cluster Operators in the OpenShift Container Platform web console from the <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong> page.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and the software catalog. OLM and the software catalog are part of the <a href="https://operatorframework.io/">Operator Framework</a> used in OpenShift Container Platform for installing and running optional <a href="/architecture/control-plane#olm-operators_control-plane">add-on Operators</a>.</p>
+          <p>Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and the software catalog. OLM and the software catalog are part of the <a href="https://operatorframework.io/">Operator Framework</a> used in OpenShift Container Platform for installing and running optional <a href="/openshift-docs-markdown/architecture/control-plane#olm-operators_control-plane">add-on Operators</a>.</p>
         </AlertDescription>
       </Alert>
-      <p>Some of the following cluster Operators can be disabled prior to installation. For more information see <a href="/installing/overview/cluster-capabilities#cluster-capabilities">cluster capabilities</a>.</p>
+      <p>Some of the following cluster Operators can be disabled prior to installation. For more information see <a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities">cluster capabilities</a>.</p>
       <p class="/modules/cluster-bare-metal-operator.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/cluster-capabilities#cluster-bare-metal-operator_cluster-capabilities">Bare-metal capability</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-bare-metal-operator_cluster-capabilities">Bare-metal capability</a></li></ul>
       <h3 id="additional-resources_cluster-op-ref-cco" class="group scroll-mt-20">Additional resources<a href="#additional-resources_cluster-op-ref-cco" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
       <ul>
-      <li><a href="/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator">About the Cloud Credential Operator</a></li>
-      <li><a href="/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1"><code>CredentialsRequest</code> custom resource</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator">About the Cloud Credential Operator</a></li>
+      <li><a href="/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1"><code>CredentialsRequest</code> custom resource</a></li>
       </ul>
       <p class="/modules/cluster-autoscaler-operator.md"></p>
       <p class="/modules/cluster-cloud-controller-manager-operator.md"></p>
@@ -118,31 +118,31 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/cluster-config-operator.md"></p>
       <p class="/modules/cluster-csi-snapshot-controller-operator.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/cluster-capabilities#cluster-csi-snapshot-controller-operator_cluster-capabilities">CSI snapshot controller capability</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-csi-snapshot-controller-operator_cluster-capabilities">CSI snapshot controller capability</a></li></ul>
       <p class="/modules/cluster-machine-approver-operator.md"></p>
       <p class="/modules/cluster-monitoring-operator.md"></p>
       <p class="/modules/cluster-network-operator.md"></p>
       <p class="/modules/cluster-samples-operator.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/cluster-capabilities#cluster-samples-operator_cluster-capabilities">OpenShift samples capability</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-samples-operator_cluster-capabilities">OpenShift samples capability</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/cluster-capabilities#cluster-storage-operator_cluster-capabilities">Storage capability</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-storage-operator_cluster-capabilities">Storage capability</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/updating/understanding_updates/intro-to-updates#understanding-clusterversion-conditiontypes_understanding-openshift-updates">Understanding cluster version condition types</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-clusterversion-conditiontypes_understanding-openshift-updates">Understanding cluster version condition types</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/cluster-capabilities#console-operator_cluster-capabilities">Web console capability</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#console-operator_cluster-capabilities">Web console capability</a></li></ul>
       <h3 id="additional-resources_cluster-op-ref-cpmso" class="group scroll-mt-20">Additional resources<a href="#additional-resources_cluster-op-ref-cpmso" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
       <ul>
-      <li><a href="/machine_management/control_plane_machine_management/cpmso-about#cpmso-about">About control plane machine sets</a></li>
-      <li><a href="/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1"><code>ControlPlaneMachineSet</code> custom resource</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about">About control plane machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1"><code>ControlPlaneMachineSet</code> custom resource</a></li>
       </ul>
       <p class="/modules/etcd-operator.md"></p>
       <p class="/modules/ingress-operator.md"></p>
       <p class="/modules/insights-operator.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/overview/cluster-capabilities#insights-operator_cluster-capabilities">Insights capability</a></li>
-      <li><a href="/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#insights-operator_cluster-capabilities">Insights capability</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li>
       </ul>
       <p class="/modules/kube-controller-manager-operator.md"></p>
       <p class="/modules/cluster-kube-scheduler-operator.md"></p>
@@ -151,15 +151,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/machine-config-operator.md"></p>
       <p class="/modules/operator-marketplace.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/cluster-capabilities#marketplace-operator_cluster-capabilities">Marketplace capability</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#marketplace-operator_cluster-capabilities">Marketplace capability</a></li></ul>
       <h3 id="cluster-operators-ref-nto-addtl-resources" class="group scroll-mt-20">Additional resources<a href="#cluster-operators-ref-nto-addtl-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
-      <ul><li><a href="/scalability_and_performance/cnf-understanding-low-latency#cnf-understanding-low-latency_cnf-understanding-low-latency">About low latency</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/scalability_and_performance/cnf-understanding-low-latency#cnf-understanding-low-latency_cnf-understanding-low-latency">About low latency</a></li></ul>
       <p class="/modules/cluster-openshift-controller-manager-operators.md"></p>
       <h2 id="cluster-operators-ref-olm" class="group scroll-mt-20">{"{"}{"{"} olmv0_first {"}"}{"}"} Operators<a href="#cluster-operators-ref-olm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>The following sections pertain to {"{"}{"{"} olmv0_first {"}"}{"}"} that has been included with OpenShift Container Platform 4 since its initial release. For {"{"}{"{"} olmv1 {"}"}{"}"}, see <a href="/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference">{"{"}{"{"} olmv1_first {"}"}{"}"} Operators</a>.</p>
+          <p>The following sections pertain to {"{"}{"{"} olmv0_first {"}"}{"}"} that has been included with OpenShift Container Platform 4 since its initial release. For {"{"}{"{"} olmv1 {"}"}{"}"}, see <a href="/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference">{"{"}{"{"} olmv1_first {"}"}{"}"} Operators</a>.</p>
         </AlertDescription>
       </Alert>
       <p class="/modules/olm-overview.md"></p>
@@ -178,15 +178,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <dd class="ml-6 text-muted-foreground"><p>Represents an API extension server responsible for collecting metadata from all catalogs on the cluster and serves the user-facing <code>PackageManifest</code> API.</p></dd>
       </dl>
       <h3 id="cluster-operators-ref-olm-addtl-resources" class="group scroll-mt-20">Additional resources<a href="#cluster-operators-ref-olm-addtl-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
-      <ul><li><a href="/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm">Understanding Operator Lifecycle Manager (OLM)</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm">Understanding Operator Lifecycle Manager (OLM)</a></li></ul>
       <h3 id="cluster-operators-ref-olmv1-addtl-resources" class="group scroll-mt-20">Additional resources<a href="#cluster-operators-ref-olmv1-addtl-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
       <ul>
-      <li><a href="/extensions/index#extensions-overview">Extensions overview</a></li>
-      <li><a href="/extensions/ce/update-paths#olmv1-ocp-compat_update-paths">Compatibility with OpenShift Container Platform versions</a></li>
+      <li><a href="/openshift-docs-markdown/extensions/index#extensions-overview">Extensions overview</a></li>
+      <li><a href="/openshift-docs-markdown/extensions/ce/update-paths#olmv1-ocp-compat_update-paths">Compatibility with OpenShift Container Platform versions</a></li>
       </ul>
       <p class="/modules/vsphere-problem-detector-operator.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_vsphere/using-vsphere-problem-detector-operator#using-vsphere-problem-detector-operator">Using the vSphere Problem Detector Operator</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_vsphere/using-vsphere-problem-detector-operator#using-vsphere-problem-detector-operator">Using the vSphere Problem Detector Operator</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

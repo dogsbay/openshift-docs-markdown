@@ -28,7 +28,7 @@ For the complete documentation for multicluster engine, see "Cluster lifecycle w
 ## Additional resources {#additional-resources_mce-overview-ocp}
 
 - [Red Hat Advanced Cluster Management for Kubernetes](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)
-- [{{ hcp_capital }} overview](/hosted_control_planes/index#hcp-overview)
-- [Using {{ ztp_first }} to provision clusters at the network far edge](/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-challenges-of-far-edge-deployments_ztp-deploying-far-edge-clusters-at-scale)
+- [{{ hcp_capital }} overview](/openshift-docs-markdown/hosted_control_planes/index#hcp-overview)
+- [Using {{ ztp_first }} to provision clusters at the network far edge](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-challenges-of-far-edge-deployments_ztp-deploying-far-edge-clusters-at-scale)
 - [Installing and upgrading multicluster engine Operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#mce-install-intro)
 - [Cluster lifecycle with multicluster engine Operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview)

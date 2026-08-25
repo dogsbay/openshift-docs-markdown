@@ -20,10 +20,10 @@ You can install a cluster on {{ ibm_cloud_name }} infrastructure that is provisi
 
 ## Additional resources {#additional-resources_preparing-to-install-on-ibm-cloud}
 
-- [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
-- [Configuring an {{ ibm_cloud_name }} account](/installing/installing_ibm_cloud/installing-ibm-cloud-account#installing-ibm-cloud-account)
-- [Postinstallation cluster tasks](/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)
-- [Installing a cluster on {{ ibm_cloud_name }} with customizations](/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
-- [Installing a cluster on {{ ibm_cloud_name }} into an existing VPC](/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)
-- [Installing a private cluster on {{ ibm_cloud_title }}](/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)
-- [Installing a cluster on {{ ibm_cloud_title }} in a disconnected environment](/installing/installing_ibm_cloud/installing-ibm-cloud-restricted#installing-ibm-cloud-restricted)
+- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)
+- [Configuring an {{ ibm_cloud_name }} account](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-account#installing-ibm-cloud-account)
+- [Postinstallation cluster tasks](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)
+- [Installing a cluster on {{ ibm_cloud_name }} with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
+- [Installing a cluster on {{ ibm_cloud_name }} into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)
+- [Installing a private cluster on {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)
+- [Installing a cluster on {{ ibm_cloud_title }} in a disconnected environment](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-restricted#installing-ibm-cloud-restricted)

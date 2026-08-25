@@ -16,12 +16,12 @@ The following are the high-level steps to preinstall a {{ sno }} cluster using a
 
 **Additional resources**
 
-- [Installation process](/installing/overview/index#installation-process_ocp-installation-overview)
+- [Installation process](/openshift-docs-markdown/installing/overview/index#installation-process_ocp-installation-overview)
 
 **Additional resources**
 
-- [Reference specifications for the `image-based-installation-config.yaml` manifest](/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)
+- [Reference specifications for the `image-based-installation-config.yaml` manifest](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)
 
 **Additional resources**
 
-- [Configuring a shared container partition between ostree stateroots](/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)
+- [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)

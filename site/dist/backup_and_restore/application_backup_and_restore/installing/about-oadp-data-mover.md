@@ -15,4 +15,4 @@ The Data Mover uses Kopia as the uploader mechanism to read the snapshot data an
 
 ## Additional resources {#additional-resources_about-oadp-data-mover}
 
-- [About Kopia](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia)
+- [About Kopia](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia)

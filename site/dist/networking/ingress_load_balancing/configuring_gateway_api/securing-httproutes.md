@@ -8,5 +8,5 @@ To protect sensitive data and meet security compliance requirements, you must se
 
 ## Additional resources {#additional-resources_securing-httproutes}
 
-- [Routing HTTP requests to services](/networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services#routing-http-requests-to-services)
-- [Securing routes](/networking/ingress_load_balancing/routes/securing-routes#securing-routes)
+- [Routing HTTP requests to services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services#routing-http-requests-to-services)
+- [Securing routes](/openshift-docs-markdown/networking/ingress_load_balancing/routes/securing-routes#securing-routes)

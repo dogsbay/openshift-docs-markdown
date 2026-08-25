@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-pods-priority","text":"Including pod priority in pod scheduling decisions"}];
 const nav = navData;
-const currentPath = "/nodes/pods/nodes-pods-priority";
+const currentPath = "/openshift-docs-markdown/nodes/pods/nodes-pods-priority";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/pods"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Including pod priority in pod scheduling decisions {#nodes-pods-priority}\n\nPod priority ranks pods by importance to influence scheduling order, sort out-of-resource evictions, and enable preemption, where higher-priority pods can evict lower-priority pods when resources are constrained.\n\nTo use priority and preemption, you create priority classes that define the relative weight of your pods. Then, reference a priority class in the pod specification to apply that weight for scheduling.\n","mdUrl":"/nodes/pods/nodes-pods-priority.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Including pod priority in pod scheduling decisions {#nodes-pods-priority}\n\nPod priority ranks pods by importance to influence scheduling order, sort out-of-resource evictions, and enable preemption, where higher-priority pods can evict lower-priority pods when resources are constrained.\n\nTo use priority and preemption, you create priority classes that define the relative weight of your pods. Then, reference a priority class in the pod specification to apply that weight for scheduling.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-priority.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

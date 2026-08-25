@@ -24,7 +24,7 @@ Because FIPS must be enabled before the operating system that your cluster uses 
 - [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)
 - [Compliance Activities and Government Standards](https://access.redhat.com/articles/2918071#fips-140-2-and-fips-140-3-2)
 - [Installing the system in FIPS mode](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/assembly_installing-the-system-in-fips-mode_security-hardening)
-- [Extracting the OpenShift Container Platform installation program](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#retrieving-the-openshift-installer_ipi-install-installation-workflow)
+- [Extracting the OpenShift Container Platform installation program](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#retrieving-the-openshift-installer_ipi-install-installation-workflow)
 
 **Additional resources**
 
@@ -32,9 +32,9 @@ Because FIPS must be enabled before the operating system that your cluster uses 
 
 **Additional resources**
 
-- [Encrypt the etcd data](/etcd/etcd-encrypt#etcd-encrypt)
-- [Customizing nodes](/installing/install_config/installing-customizing#installing-customizing)
+- [Encrypt the etcd data](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)
+- [Customizing nodes](/openshift-docs-markdown/installing/install_config/installing-customizing#installing-customizing)
 
 **Additional resources**
 
-- [Encrypting etcd data](/etcd/etcd-encrypt#etcd-encrypt)
+- [Encrypting etcd data](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)

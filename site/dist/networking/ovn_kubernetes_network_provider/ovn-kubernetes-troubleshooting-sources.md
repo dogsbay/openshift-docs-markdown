@@ -10,10 +10,10 @@ OVN-Kubernetes has many sources of built-in health checks and logs. Follow the i
 
 **Additional resources**
 
-- [Monitoring application health by using health checks](/applications/application-health#application-health)
+- [Monitoring application health by using health checks](/openshift-docs-markdown/applications/application-health#application-health)
 
 ## Additional resources {#additional-resources_ovn-kubernetes-sources-of-troubleshooting-information}
 
-- [Gathering data about your cluster for Red Hat Support](/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)
-- [Implementation of connection health checks](/networking/advanced_networking/verifying-connectivity-endpoint#nw-pod-network-connectivity-implementation_verifying-connectivity-endpoint)
-- [Verifying network connectivity for an endpoint](/networking/advanced_networking/verifying-connectivity-endpoint#nw-pod-network-connectivity-verify_verifying-connectivity-endpoint)
+- [Gathering data about your cluster for Red Hat Support](/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)
+- [Implementation of connection health checks](/openshift-docs-markdown/networking/advanced_networking/verifying-connectivity-endpoint#nw-pod-network-connectivity-implementation_verifying-connectivity-endpoint)
+- [Verifying network connectivity for an endpoint](/openshift-docs-markdown/networking/advanced_networking/verifying-connectivity-endpoint#nw-pod-network-connectivity-verify_verifying-connectivity-endpoint)

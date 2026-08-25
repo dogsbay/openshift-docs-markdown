@@ -8,14 +8,14 @@ To back up etcd data for {{ hcp }}, you can use the default volume snapshot appr
 
 **Additional resources**
 
-- [Configuring {{ oadp_short }}](/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-prep-oadp-auto_hcp-disaster-recovery-oadp-auto)
-- [Automating the backup and restore process by using DPA](/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-oadp-dpa_hcp-disaster-recovery-oadp-auto)
-- [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
+- [Configuring {{ oadp_short }}](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-prep-oadp-auto_hcp-disaster-recovery-oadp-auto)
+- [Automating the backup and restore process by using DPA](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-oadp-dpa_hcp-disaster-recovery-oadp-auto)
+- [About installing {{ oadp_short }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 
 **Additional resources**
 
-- [Configuring the etcd snapshot method](/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)
+- [Configuring the etcd snapshot method](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)
 
 **Additional resources**
 
-- [Configuring the etcd snapshot method](/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)
+- [Configuring the etcd snapshot method](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)

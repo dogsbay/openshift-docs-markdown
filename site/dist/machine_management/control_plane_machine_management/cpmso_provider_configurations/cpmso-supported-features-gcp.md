@@ -17,5 +17,5 @@ When you save an update to the control plane machine set, the Control Plane Mach
 
 ## Additional resources {#additional-resources_cpmso-supported-features-gcp}
 
-- [Updating the control plane configuration](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
-- [Control plane configuration options for {{ gcp_full }}](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-gcp#cpmso-config-options-gcp)
+- [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
+- [Control plane configuration options for {{ gcp_full }}](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-gcp#cpmso-config-options-gcp)

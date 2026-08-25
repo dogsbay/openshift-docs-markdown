@@ -21,7 +21,7 @@ Before you can use the Compliance Operator, you must ensure it is deployed in th
 ## Additional resources {#additional-resources_compliance-operator-installation}
 
 - [Compliance Operator reports incorrect results on Managed Services](https://access.redhat.com/solutions/6983418)
-- [Persistent storage overview](/storage/understanding-persistent-storage#persistent-storage-overview_understanding-persistent-storage)
-- [Managing the default storage class](/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
-- [Creating a custom SCC for the Compliance Operator](/security/compliance_operator/co-scans/compliance-operator-advanced#compliance-custom-scc_compliance-advanced)
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Persistent storage overview](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-storage-overview_understanding-persistent-storage)
+- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
+- [Creating a custom SCC for the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-advanced#compliance-custom-scc_compliance-advanced)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

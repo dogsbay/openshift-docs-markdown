@@ -15,36 +15,36 @@ Network interface controller (NIC) hardware with built-in PTP capabilities somet
 
 **Additional resources**
 
-- [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
-- [Configuring linuxptp services as a boundary clock without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#ptp-configuring-linuxptp-services-as-boundary-clock-gnrd_configuring-ptp)
-- [Configuring GNR-D T-BC holdover on a GNR-D platform](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-gnrd-t-bc-holdover_configuring-ptp)
+- [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
+- [Configuring linuxptp services as a boundary clock without holdover on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#ptp-configuring-linuxptp-services-as-boundary-clock-gnrd_configuring-ptp)
+- [Configuring GNR-D T-BC holdover on a GNR-D platform](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-gnrd-t-bc-holdover_configuring-ptp)
 
 **Additional resources**
 
-- [Configuring the PTP fast event notifications publisher](/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
-- [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
-- [Configuring linuxptp services as a boundary clock without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#ptp-configuring-linuxptp-services-as-boundary-clock-gnrd_configuring-ptp)
-- [Configuring GNR-D T-BC holdover on a GNR-D platform](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-gnrd-t-bc-holdover_configuring-ptp)
+- [Configuring the PTP fast event notifications publisher](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
+- [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
+- [Configuring linuxptp services as a boundary clock without holdover on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#ptp-configuring-linuxptp-services-as-boundary-clock-gnrd_configuring-ptp)
+- [Configuring GNR-D T-BC holdover on a GNR-D platform](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-gnrd-t-bc-holdover_configuring-ptp)
 
 **Additional resources**
 
-- [Grandmaster clock class sync state reference](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-grandmaster-clock-class-reference_configuring-ptp)
+- [Grandmaster clock class sync state reference](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-grandmaster-clock-class-reference_configuring-ptp)
 
 **Additional resources**
 
-- [Machine Configuration documentation](/machine_configuration/index#machine-config-index)
+- [Machine Configuration documentation](/openshift-docs-markdown/machine_configuration/index#machine-config-index)
 
 **Additional resources**
 
-- [Configuring FIFO priority scheduling for PTP hardware](/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
-- [Configuring the PTP fast event notifications publisher](/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
+- [Configuring FIFO priority scheduling for PTP hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
+- [Configuring the PTP fast event notifications publisher](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
 
 **Additional resources**
 
-- [Configuring FIFO priority scheduling for PTP hardware](/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
-- [Configuring the PTP fast event notifications publisher](/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
+- [Configuring FIFO priority scheduling for PTP hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
+- [Configuring the PTP fast event notifications publisher](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
 
 **Additional resources**
 
-- [Configuring linuxptp services as ordinary clock](/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
-- [Using dual-port NICs to improve redundancy for PTP ordinary clocks](/networking/advanced_networking/ptp/about-ptp#ptp-dual-ports-oc_about-ptp)
+- [Configuring linuxptp services as ordinary clock](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
+- [Using dual-port NICs to improve redundancy for PTP ordinary clocks](/openshift-docs-markdown/networking/advanced_networking/ptp/about-ptp#ptp-dual-ports-oc_about-ptp)

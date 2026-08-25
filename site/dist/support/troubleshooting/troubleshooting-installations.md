@@ -8,4 +8,4 @@ Use the following sections to troubleshoot OpenShift Container Platform installa
 
 ## Additional resources {#_additional_resources}
 
-- [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
+- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)

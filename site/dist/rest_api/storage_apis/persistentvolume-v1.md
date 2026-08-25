@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PersistentVolumeSpec is the specification of a persistent volume. |
 | `status` | `object` | PersistentVolumeStatus is the current status of a persistent volume. |
 
@@ -38,7 +38,7 @@ Type
 | `awsElasticBlockStore` | `object` | Represents a Persistent Disk resource in AWS. An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling. |
 | `azureDisk` | `object` | AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. |
 | `azureFile` | `object` | AzureFile represents an Azure File Service mount on the host and bind mount to the pod. |
-| `capacity` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the description of the persistent volume’s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity |
+| `capacity` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the description of the persistent volume’s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity |
 | `cephfs` | `object` | Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling. |
 | `cinder` | `object` | Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling. |
 | `claimRef` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
@@ -870,7 +870,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastPhaseTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastPhaseTransitionTime is the time the phase transitioned from one to another and automatically resets to current time everytime a volume phase transitions. |
+| `lastPhaseTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastPhaseTransitionTime is the time the phase transitioned from one to another and automatically resets to current time everytime a volume phase transitions. |
 | `message` | `string` | message is a human-readable message indicating details about why the volume is in this state. |
 | `phase` | `string` | phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase Possible enum values:  - `"Available"` used for PersistentVolumes that are not yet bound Available volumes are held by the binder and matched to PersistentVolumeClaims  - `"Bound"` used for PersistentVolumes that are bound  - `"Failed"` used for PersistentVolumes that failed to be correctly recycled or deleted after being released from a claim  - `"Pending"` used for PersistentVolumes that are not available  - `"Released"` used for PersistentVolumes where the bound PersistentVolumeClaim was deleted released volumes must be recycled before becoming available again this phase is used by the persistent volume claim binder to signal to another process to reclaim the resource |
 | `reason` | `string` | reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI. |
@@ -924,7 +924,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -941,7 +941,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolumeList`](/rest_api/objects/index#io-k8s-api-core-v1-PersistentVolumeList) schema |
+| 200 - OK | [`PersistentVolumeList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PersistentVolumeList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -965,15 +965,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |  |
+| `body` | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
-| 201 - Created | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
-| 202 - Accepted | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 201 - Created | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 202 - Accepted | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/persistentvolumes {#_apiv1watchpersistentvolumes}
@@ -992,7 +992,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/persistentvolumes/{{ name }} {#_apiv1persistentvolumes_name}
@@ -1023,8 +1023,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
-| 202 - Accepted | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 202 - Accepted | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1041,7 +1041,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1065,8 +1065,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
-| 201 - Created | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 201 - Created | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1090,14 +1090,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |  |
+| `body` | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
-| 201 - Created | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 201 - Created | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/persistentvolumes/{{ name }} {#_apiv1watchpersistentvolumes_name}
@@ -1122,7 +1122,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/persistentvolumes/{{ name }}/status {#_apiv1persistentvolumes_name_status}
@@ -1147,7 +1147,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1171,8 +1171,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
-| 201 - Created | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 201 - Created | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1196,12 +1196,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |  |
+| `body` | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
-| 201 - Created | [`PersistentVolume`](/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 200 - OK | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
+| 201 - Created | [`PersistentVolume`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |

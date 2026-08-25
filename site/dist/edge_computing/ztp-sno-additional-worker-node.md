@@ -15,8 +15,8 @@ It is recommended that you first remediate the policies, and then install the wo
 
 **Additional resources**
 
-- [Reference configuration for deploying vDUs on {{ sno }}](/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)
-- [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
+- [Reference configuration for deploying vDUs on {{ sno }}](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)
+- [Adding worker nodes to {{ sno }} clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
 - [Removing managed cluster nodes by using the command line interface](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html/clusters/cluster_mce_overview#auto-remove-host-steps-cli)
 
 {% include "./modules/ztp-worker-node-node-selector-compatibility.md" %}

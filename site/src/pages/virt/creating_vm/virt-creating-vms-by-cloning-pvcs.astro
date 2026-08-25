@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-creating-vms-by-cloning-pvcs","text":"Creating VMs by cloning PVCs"},{"depth":2,"slug":"additional-resources_virt-creating-vms-by-cloning-pvcs","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/creating_vm/virt-creating-vms-by-cloning-pvcs";
+const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by cloning PVCs {#virt-creating-vms-by-cloning-pvcs}\n\nYou can create virtual machines (VMs) by cloning existing persistent volume claims (PVCs) with custom images.\n\nYou must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\nYou clone a PVC by creating a data volume that references a source PVC.\n\n## Additional resources {#additional-resources_virt-creating-vms-by-cloning-pvcs}\n\n- [Setting a default cloning strategy using a storage profile](/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile)\n- [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Volume cloning](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/latest/html/managing_and_allocating_storage_resources/volume-cloning_rhodf#volume-cloning_rhodf)\n- [CSI volume snapshots](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)\n","mdUrl":"/virt/creating_vm/virt-creating-vms-by-cloning-pvcs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by cloning PVCs {#virt-creating-vms-by-cloning-pvcs}\n\nYou can create virtual machines (VMs) by cloning existing persistent volume claims (PVCs) with custom images.\n\nYou must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\nYou clone a PVC by creating a data volume that references a source PVC.\n\n## Additional resources {#additional-resources_virt-creating-vms-by-cloning-pvcs}\n\n- [Setting a default cloning strategy using a storage profile](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile)\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Volume cloning](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/latest/html/managing_and_allocating_storage_resources/volume-cloning_rhodf#volume-cloning_rhodf)\n- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -103,10 +103,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-creating-vm-cloned-pvc-data-volume-template.md"></p>
       <h2 id="additional-resources_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile">Setting a default cloning strategy using a storage profile</a></li>
-      <li><a href="/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent">Installing the QEMU guest agent</a></li>
+      <li><a href="/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile">Setting a default cloning strategy using a storage profile</a></li>
+      <li><a href="/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent">Installing the QEMU guest agent</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/latest/html/managing_and_allocating_storage_resources/volume-cloning_rhodf#volume-cloning_rhodf">Volume cloning</a></li>
-      <li><a href="/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots">CSI volume snapshots</a></li>
+      <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots">CSI volume snapshots</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

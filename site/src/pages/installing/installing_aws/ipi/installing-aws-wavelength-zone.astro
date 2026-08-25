@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"installing-aws-wavelength-zone","text":"Installing a cluster with compute nodes on AWS Wavelength Zones"},{"depth":2,"slug":"additional-resources_installing-aws-wavelength-zone","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_aws/ipi/installing-aws-wavelength-zone";
+const currentPath = "/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_aws","installing/installing_aws/ipi"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster with compute nodes on AWS Wavelength Zones {#installing-aws-wavelength-zone}\n\nYou can quickly install an OpenShift Container Platform cluster on Amazon Web Services (AWS) Wavelength Zones by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Wavelength Zone subnets.\n\nAWS Wavelength Zones is an infrastructure that AWS configured for mobile edge computing (MEC) applications.\n\nA Wavelength Zone embeds AWS compute and storage services within the 5G network of a communication service provider (CSP). By placing application servers in a Wavelength Zone, the application traffic from your 5G devices can stay in the 5G network. The application traffic of the device reaches the target server directly, making latency a non-issue.\n\n**Additional resources**\n\n- [Wavelength Zones({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-wavelength-zones)\n\n**Additional resources**\n\n- [MTU value selection](/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)\n- [Changing the MTU for the cluster network](/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)\n- [Understanding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)\n- [Storage classes](/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage)\n- [Ingress Controller sharding](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller)\n- [How {{ aws_short }} Wavelength works ({{ aws_short }} documentation)](https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html)\n\n**Additional resources**\n\n- [AWS Wavelength features({{ aws_short }} documentation)](https://aws.amazon.com/wavelength/features/)\n\n**Additional resources**\n\n- [Creating the installation configuration file](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-generate-aws-user-infra-install-config_installing-aws-wavelength-zone)\n- [Cluster limitations in AWS Wavelength Zones](/installing/installing_aws/ipi/installing-aws-wavelength-zone#cluster-limitations-aws-zone_installing-aws-wavelength-zone)\n- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)\n\n**Additional resources**\n\n- [Amazon S3 ({{ aws_short }} documentation)](https://aws.amazon.com/s3/)\n\n**Additional resources**\n\n- [{{ aws_short }} CloudFormation console](https://console.aws.amazon.com/cloudformation)\n- [Configuration and credential file settings in the {{ aws_short }} CLI ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)\n- [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)\n\n**Additional resources**\n\n- [Accessing the web console](/web_console/web-console#web-console)\n\n## Additional resources {#additional-resources_installing-aws-wavelength-zone}\n\n- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).\n- If necessary, you can [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).\n","mdUrl":"/installing/installing_aws/ipi/installing-aws-wavelength-zone.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster with compute nodes on AWS Wavelength Zones {#installing-aws-wavelength-zone}\n\nYou can quickly install an OpenShift Container Platform cluster on Amazon Web Services (AWS) Wavelength Zones by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Wavelength Zone subnets.\n\nAWS Wavelength Zones is an infrastructure that AWS configured for mobile edge computing (MEC) applications.\n\nA Wavelength Zone embeds AWS compute and storage services within the 5G network of a communication service provider (CSP). By placing application servers in a Wavelength Zone, the application traffic from your 5G devices can stay in the 5G network. The application traffic of the device reaches the target server directly, making latency a non-issue.\n\n**Additional resources**\n\n- [Wavelength Zones({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-wavelength-zones)\n\n**Additional resources**\n\n- [MTU value selection](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)\n- [Changing the MTU for the cluster network](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)\n- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)\n- [Storage classes](/openshift-docs-markdown/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage)\n- [Ingress Controller sharding](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller)\n- [How {{ aws_short }} Wavelength works ({{ aws_short }} documentation)](https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html)\n\n**Additional resources**\n\n- [AWS Wavelength features({{ aws_short }} documentation)](https://aws.amazon.com/wavelength/features/)\n\n**Additional resources**\n\n- [Creating the installation configuration file](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-generate-aws-user-infra-install-config_installing-aws-wavelength-zone)\n- [Cluster limitations in AWS Wavelength Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#cluster-limitations-aws-zone_installing-aws-wavelength-zone)\n- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)\n\n**Additional resources**\n\n- [Amazon S3 ({{ aws_short }} documentation)](https://aws.amazon.com/s3/)\n\n**Additional resources**\n\n- [{{ aws_short }} CloudFormation console](https://console.aws.amazon.com/cloudformation)\n- [Configuration and credential file settings in the {{ aws_short }} CLI ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)\n- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone)\n\n**Additional resources**\n\n- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)\n\n## Additional resources {#additional-resources_installing-aws-wavelength-zone}\n\n- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).\n- If necessary, you can [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,11 +101,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/edge-machine-pools-aws-local-zones.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu">MTU value selection</a></li>
-      <li><a href="/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn">Changing the MTU for the cluster network</a></li>
-      <li><a href="/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations">Understanding taints and tolerations</a></li>
-      <li><a href="/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage">Storage classes</a></li>
-      <li><a href="/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller">Ingress Controller sharding</a></li>
+      <li><a href="/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu">MTU value selection</a></li>
+      <li><a href="/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn">Changing the MTU for the cluster network</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations">Understanding taints and tolerations</a></li>
+      <li><a href="/openshift-docs-markdown/storage/understanding-persistent-storage#pvc-storage-class_understanding-persistent-storage">Storage classes</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding_configuring-ingress-cluster-traffic-ingress-controller">Ingress Controller sharding</a></li>
       <li><a href="https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html">How {"{"}{"{"} aws_short {"}"}{"}"} Wavelength works ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
       </ul>
       <p class="/modules/installation-aws-marketplace-subscribe.md"></p>
@@ -119,9 +119,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/install-creating-install-config-aws-edge-zones.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-generate-aws-user-infra-install-config_installing-aws-wavelength-zone">Creating the installation configuration file</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-wavelength-zone#cluster-limitations-aws-zone_installing-aws-wavelength-zone">Cluster limitations in AWS Wavelength Zones</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone">Deploying the cluster</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-generate-aws-user-infra-install-config_installing-aws-wavelength-zone">Creating the installation configuration file</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#cluster-limitations-aws-zone_installing-aws-wavelength-zone">Cluster limitations in AWS Wavelength Zones</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone">Deploying the cluster</a></li>
       </ul>
       <p class="/modules/installation-creating-aws-vpc-localzone.md"></p>
       <p class="/modules/installation-cloudformation-vpc-localzone.md"></p>
@@ -135,17 +135,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li><a href="https://console.aws.amazon.com/cloudformation">{"{"}{"{"} aws_short {"}"}{"}"} CloudFormation console</a></li>
       <li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html">Configuration and credential file settings in the {"{"}{"{"} aws_short {"}"}{"}"} CLI ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone">Deploying the cluster</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-launching-installer_installing-aws-wavelength-zone">Deploying the cluster</a></li>
       </ul>
       <p class="/modules/installation-launching-installer.md"></p>
       <p class="/modules/cli-logging-in-kubeadmin.md"></p>
       <p class="/modules/logging-in-by-using-the-web-console.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/web_console/web-console#web-console">Accessing the web console</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/web_console/web-console#web-console">Accessing the web console</a></li></ul>
       <h2 id="additional-resources_installing-aws-wavelength-zone" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-aws-wavelength-zone" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a>.</li>
-      <li>If necessary, you can <a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a>.</li>
+      <li><a href="/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation">Validating an installation</a>.</li>
+      <li>If necessary, you can <a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a>.</li>
       </ul>
     </article>
   </MarkdownContentStack>

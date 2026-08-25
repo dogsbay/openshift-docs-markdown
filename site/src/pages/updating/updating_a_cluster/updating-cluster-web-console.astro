@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"updating-cluster-web-console","text":"Updating a cluster using the web console"}];
 const nav = navData;
-const currentPath = "/updating/updating_a_cluster/updating-cluster-web-console";
+const currentPath = "/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["updating","updating/updating_a_cluster"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating a cluster using the web console {#updating-cluster-web-console}\n\nYou can perform minor version and patch updates on an OpenShift Container Platform cluster by using the web console.\n\n> [!NOTE]\n> Use the web console or `oc adm upgrade channel _<channel>_` to change the update channel. You can follow the steps in [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli) to complete the update after you change to a 4.22 channel.\n\n**Additional resources**\n\n- [Understanding update channels and releases](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)\n\n**Additional resources**\n\n- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n\n**Additional resources**\n\n- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Update recommendations and Conditional Updates](/updating/understanding_updates/understanding-update-channels-release#conditional-updates-overview_understanding-update-channels-releases)\n\n**Additional resources**\n\n- [Performing a canary rollout update](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools)\n\n**Additional resources**\n\n- [About the Machine Config Operator](/machine_configuration/index#about-machine-config-operator_machine-config-index)\n","mdUrl":"/updating/updating_a_cluster/updating-cluster-web-console.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating a cluster using the web console {#updating-cluster-web-console}\n\nYou can perform minor version and patch updates on an OpenShift Container Platform cluster by using the web console.\n\n> [!NOTE]\n> Use the web console or `oc adm upgrade channel _<channel>_` to change the update channel. You can follow the steps in [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli) to complete the update after you change to a 4.22 channel.\n\n**Additional resources**\n\n- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)\n\n**Additional resources**\n\n- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n\n**Additional resources**\n\n- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Update recommendations and Conditional Updates](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#conditional-updates-overview_understanding-update-channels-releases)\n\n**Additional resources**\n\n- [Performing a canary rollout update](/openshift-docs-markdown/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools)\n\n**Additional resources**\n\n- [About the Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#about-machine-config-operator_machine-config-index)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,25 +99,25 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Use the web console or <code>oc adm upgrade channel _&lt;channel&gt;_</code> to change the update channel. You can follow the steps in <a href="/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli">Updating a cluster using the CLI</a> to complete the update after you change to a 4.22 channel.</p>
+          <p>Use the web console or <code>oc adm upgrade channel _&lt;channel&gt;_</code> to change the update channel. You can follow the steps in <a href="/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli">Updating a cluster using the CLI</a> to complete the update after you change to a 4.22 channel.</p>
         </AlertDescription>
       </Alert>
       <p class="/modules/before-updating-ocp.md"></p>
       <p class="/modules/update-changing-update-server-web.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases">Understanding update channels and releases</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases">Understanding update channels and releases</a></li></ul>
       <p class="/modules/update-upgrading-web.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Updating installed Operators</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Updating installed Operators</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Updating installed Operators</a></li>
-      <li><a href="/updating/understanding_updates/understanding-update-channels-release#conditional-updates-overview_understanding-update-channels-releases">Update recommendations and Conditional Updates</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Updating installed Operators</a></li>
+      <li><a href="/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#conditional-updates-overview_understanding-update-channels-releases">Update recommendations and Conditional Updates</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools">Performing a canary rollout update</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools">Performing a canary rollout update</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_configuration/index#about-machine-config-operator_machine-config-index">About the Machine Config Operator</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_configuration/index#about-machine-config-operator_machine-config-index">About the Machine Config Operator</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

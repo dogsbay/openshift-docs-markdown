@@ -8,4 +8,4 @@ As an administrator, you can create a network policy for the `netobserv` namespa
 
 **Additional resources**
 
-- [Creating a network policy using the CLI](/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy)
+- [Creating a network policy using the CLI](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy)

@@ -8,4 +8,4 @@ Container Storage Interface (CSI) volume cloning duplicates existing persistent 
 
 **Additional resources**
 
-- [Understanding persistent volumes](/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)
+- [Understanding persistent volumes](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)

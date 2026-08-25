@@ -8,32 +8,32 @@ You can configure OpenShift Container Platform clusters with nodes located at yo
 
 This topic is intended to provide guidance on best practices for using remote worker nodes and does not contain specific configuration details.
 
-There are multiple use cases across different industries, such as retail, manufacturing, and government, for using a deployment pattern with remote worker nodes. For example, you can separate and isolate your projects and workloads by combining the remote worker nodes into [Kubernetes zones](/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-strategies-zones_nodes-edge-remote-workers).
+There are multiple use cases across different industries, such as retail, manufacturing, and government, for using a deployment pattern with remote worker nodes. For example, you can separate and isolate your projects and workloads by combining the remote worker nodes into [Kubernetes zones](/openshift-docs-markdown/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-strategies-zones_nodes-edge-remote-workers).
 
 However, having remote worker nodes can introduce higher latency, intermittent loss of network connectivity, and other issues. Among the challenges in a cluster with remote worker node are:
 
-- **Network separation**: The OpenShift Container Platform control plane and the remote worker nodes must be able communicate with each other. Because of the distance between the control plane and the remote worker nodes, network issues could prevent this communication. See [Network separation with remote worker nodes](/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-network_nodes-edge-remote-workers) for information on how OpenShift Container Platform responds to network separation and for methods to diminish the impact to your cluster.
-- **Power outage**: Because the control plane and remote worker nodes are in separate locations, a power outage at the remote location or at any point between the two can negatively impact your cluster. See [Power loss on remote worker nodes](/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-power_nodes-edge-remote-workers) for information on how OpenShift Container Platform responds to a node losing power and for methods to diminish the impact to your cluster.
+- **Network separation**: The OpenShift Container Platform control plane and the remote worker nodes must be able communicate with each other. Because of the distance between the control plane and the remote worker nodes, network issues could prevent this communication. See [Network separation with remote worker nodes](/openshift-docs-markdown/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-network_nodes-edge-remote-workers) for information on how OpenShift Container Platform responds to network separation and for methods to diminish the impact to your cluster.
+- **Power outage**: Because the control plane and remote worker nodes are in separate locations, a power outage at the remote location or at any point between the two can negatively impact your cluster. See [Power loss on remote worker nodes](/openshift-docs-markdown/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-power_nodes-edge-remote-workers) for information on how OpenShift Container Platform responds to a node losing power and for methods to diminish the impact to your cluster.
 - **Latency spikes or temporary reduction in throughput**: As with any network, any changes in network conditions between your cluster and the remote worker nodes can negatively impact your cluster. OpenShift Container Platform offers multiple *worker latency profiles* that let you control the reaction of the cluster to latency issues.
 
 Note the following limitations when planning a cluster with remote worker nodes:
 
 - OpenShift Container Platform does not support remote worker nodes that use a different cloud provider than the on-premise cluster uses.
 - Moving workloads from one Kubernetes zone to a different Kubernetes zone can be problematic due to system and environment issues, such as a specific type of memory not being available in a different zone.
-- Proxies and firewalls can present additional limitations that are beyond the scope of this document. See the relevant OpenShift Container Platform documentation for how to address such limitations, such as [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall).
+- Proxies and firewalls can present additional limitations that are beyond the scope of this document. See the relevant OpenShift Container Platform documentation for how to address such limitations, such as [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall).
 - You are responsible for configuring and maintaining L2/L3-level network connectivity between the control plane and the network-edge nodes.
 
 ## Additional resources {#additional-resources_nodes-edge-remote-workers}
 
-- [Establishing communications between subnets](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-establishing-communication-between-subnets_ipi-install-installation-workflow)
-- [Configuring host network interfaces for subnets](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-configuring-host-network-interfaces-for-subnets_ipi-install-installation-workflow)
-- [Configuring network components to run on the control plane](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configure-network-components-to-run-on-the-control-plane_ipi-install-installation-workflow)
-- [About remote worker node strategies](/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-strategies_nodes-edge-remote-workers)
-- [Improving cluster stability in high latency environments using worker latency profiles](/nodes/clusters/nodes-cluster-worker-latency-profiles#nodes-cluster-worker-latency-profiles)
-- [DaemonSets](/nodes/jobs/nodes-pods-daemonsets#nodes-pods-daemonsets)
-- [Controlling pod placement using node taints](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
-- [Creating a KubeletConfig CRD](/post_installation_configuration/node-tasks#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_post-install-node-tasks)
-- [ReplicaSets](/applications/deployments/what-deployments-are#deployments-repliasets_what-deployments-are)
-- [Deployments](/applications/deployments/what-deployments-are#deployments-kube-deployments_what-deployments-are)
-- [Replication controllers](/applications/deployments/what-deployments-are#deployments-replicationcontrollers_what-deployments-are)
-- [Kubernetes Controller Manager Operator](/operators/operator-reference#kube-controller-manager-operator_operator-reference)
+- [Establishing communications between subnets](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-establishing-communication-between-subnets_ipi-install-installation-workflow)
+- [Configuring host network interfaces for subnets](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-configuring-host-network-interfaces-for-subnets_ipi-install-installation-workflow)
+- [Configuring network components to run on the control plane](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configure-network-components-to-run-on-the-control-plane_ipi-install-installation-workflow)
+- [About remote worker node strategies](/openshift-docs-markdown/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers-strategies_nodes-edge-remote-workers)
+- [Improving cluster stability in high latency environments using worker latency profiles](/openshift-docs-markdown/nodes/clusters/nodes-cluster-worker-latency-profiles#nodes-cluster-worker-latency-profiles)
+- [DaemonSets](/openshift-docs-markdown/nodes/jobs/nodes-pods-daemonsets#nodes-pods-daemonsets)
+- [Controlling pod placement using node taints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
+- [Creating a KubeletConfig CRD](/openshift-docs-markdown/post_installation_configuration/node-tasks#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_post-install-node-tasks)
+- [ReplicaSets](/openshift-docs-markdown/applications/deployments/what-deployments-are#deployments-repliasets_what-deployments-are)
+- [Deployments](/openshift-docs-markdown/applications/deployments/what-deployments-are#deployments-kube-deployments_what-deployments-are)
+- [Replication controllers](/openshift-docs-markdown/applications/deployments/what-deployments-are#deployments-replicationcontrollers_what-deployments-are)
+- [Kubernetes Controller Manager Operator](/openshift-docs-markdown/operators/operator-reference#kube-controller-manager-operator_operator-reference)

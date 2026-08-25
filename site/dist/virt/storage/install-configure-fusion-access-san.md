@@ -8,5 +8,5 @@ You configure SAN-based storage for virtual machines by using {{ IBMFusionFirst 
 
 ## Additional resources {#additional-resources_install-configure-fusion-access-san}
 
-- [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
-- [Creating virtual machines from templates](/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)
+- [Creating virtual machines from instance types](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
+- [Creating virtual machines from templates](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-ossm","text":"Installing the Operators"},{"depth":2,"slug":"_next_steps","text":"Next steps"}];
 const nav = navData;
-const currentPath = "/service_mesh/v2x/installing-ossm";
+const currentPath = "/openshift-docs-markdown/service_mesh/v2x/installing-ossm";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the Operators {#installing-ossm}\n\nTo install {{ SMProductName }}, first install the {{ SMProductName }} Operator and any optional Operators on OpenShift Container Platform. Then create a `ServiceMeshControlPlane` resource to deploy the control plane.\n\n> [!NOTE]\n> This basic installation is configured based on the default OpenShift settings and is not designed for production use.  Use this default installation to verify your installation, and then configure your service mesh for your specific environment.\n\n**Prerequisites**\n\n- Read the [Preparing to install {{ SMProductName }}](/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation) process.\n- An account with the `cluster-admin` role. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.\n\nThe following steps show how to install a basic instance of {{ SMProductName }} on OpenShift Container Platform.\n\n> [!IMPORTANT]\n> Starting with {{ SMProductName }} 2.5, {{ JaegerName }} and {{ es_op }} are deprecated and will be removed in a future release. Red Hat will provide bug fixes and support for these features during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to {{ JaegerName }}, you can use {{ TempoName }} instead.\n\n## Next steps {#_next_steps}\n\n- The {{ SMProductName }} Operator does not create the {{ SMProductShortName }} custom resource definitions (CRDs) until you deploy a {{ SMProductShortName }} control plane. You can use the `ServiceMeshControlPlane` resource to install and configure the {{ SMProductShortName }} components. For more information, see [Creating the ServiceMeshControlPlane](/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp).\n","mdUrl":"/service_mesh/v2x/installing-ossm.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the Operators {#installing-ossm}\n\nTo install {{ SMProductName }}, first install the {{ SMProductName }} Operator and any optional Operators on OpenShift Container Platform. Then create a `ServiceMeshControlPlane` resource to deploy the control plane.\n\n> [!NOTE]\n> This basic installation is configured based on the default OpenShift settings and is not designed for production use.  Use this default installation to verify your installation, and then configure your service mesh for your specific environment.\n\n**Prerequisites**\n\n- Read the [Preparing to install {{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation) process.\n- An account with the `cluster-admin` role. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.\n\nThe following steps show how to install a basic instance of {{ SMProductName }} on OpenShift Container Platform.\n\n> [!IMPORTANT]\n> Starting with {{ SMProductName }} 2.5, {{ JaegerName }} and {{ es_op }} are deprecated and will be removed in a future release. Red Hat will provide bug fixes and support for these features during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to {{ JaegerName }}, you can use {{ TempoName }} instead.\n\n## Next steps {#_next_steps}\n\n- The {{ SMProductName }} Operator does not create the {{ SMProductShortName }} custom resource definitions (CRDs) until you deploy a {{ SMProductShortName }} control plane. You can use the `ServiceMeshControlPlane` resource to install and configure the {{ SMProductShortName }} components. For more information, see [Creating the ServiceMeshControlPlane](/openshift-docs-markdown/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/installing-ossm.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,7 +104,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p><strong>Prerequisites</strong></p>
       <ul>
-      <li>Read the <a href="/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation">Preparing to install {"{"}{"{"} SMProductName {"}"}{"}"}</a> process.</li>
+      <li>Read the <a href="/openshift-docs-markdown/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation">Preparing to install {"{"}{"{"} SMProductName {"}"}{"}"}</a> process.</li>
       <li>An account with the <code>cluster-admin</code> role. If you use {"{"}{"{"} product_dedicated {"}"}{"}"}, you must have an account with the <code>dedicated-admin</code> role.</li>
       </ul>
       <p>The following steps show how to install a basic instance of {"{"}{"{"} SMProductName {"}"}{"}"} on OpenShift Container Platform.</p>
@@ -119,7 +119,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/ossm-config-operator-infrastructure-node.md"></p>
       <p class="/modules/ossm-confirm-operator-infrastructure-node.md"></p>
       <h2 id="_next_steps" class="group scroll-mt-20">Next steps<a href="#_next_steps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li>The {"{"}{"{"} SMProductName {"}"}{"}"} Operator does not create the {"{"}{"{"} SMProductShortName {"}"}{"}"} custom resource definitions (CRDs) until you deploy a {"{"}{"{"} SMProductShortName {"}"}{"}"} control plane. You can use the <code>ServiceMeshControlPlane</code> resource to install and configure the {"{"}{"{"} SMProductShortName {"}"}{"}"} components. For more information, see <a href="/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp">Creating the ServiceMeshControlPlane</a>.</li></ul>
+      <ul><li>The {"{"}{"{"} SMProductName {"}"}{"}"} Operator does not create the {"{"}{"{"} SMProductShortName {"}"}{"}"} custom resource definitions (CRDs) until you deploy a {"{"}{"{"} SMProductShortName {"}"}{"}"} control plane. You can use the <code>ServiceMeshControlPlane</code> resource to install and configure the {"{"}{"{"} SMProductShortName {"}"}{"}"} components. For more information, see <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp">Creating the ServiceMeshControlPlane</a>.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

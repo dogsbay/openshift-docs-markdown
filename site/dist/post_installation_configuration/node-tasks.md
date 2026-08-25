@@ -21,7 +21,7 @@ Before you add more compute machines to a cluster that you installed on bare met
 
 **Additional resources**
 
-- [Installing a cluster on bare metal](/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
+- [Installing a cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
 
 **Additional resources**
 
@@ -30,11 +30,11 @@ Before you add more compute machines to a cluster that you installed on bare met
 
 **Additional resources**
 
-- [Disk partitioning for OpenShift Container Platform](/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_disk_installing-bare-metal)
+- [Disk partitioning for OpenShift Container Platform](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_disk_installing-bare-metal)
 
 **Additional resources**
 
-- [About control plane machine sets](/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)
+- [About control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)
 
 **Additional resources**
 
@@ -46,14 +46,14 @@ Before you add more compute machines to a cluster that you installed on bare met
 
 **Additional resources**
 
-- [Disabling or enforcing CPU limits using CPU CFS quotas](/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks)
-- [Reserving resources for system processes](/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks)
-- [Understanding how to reserve memory across quality of service tiers](/post_installation_configuration/node-tasks#qos-about-reserve_post-install-node-tasks)
+- [Disabling or enforcing CPU limits using CPU CFS quotas](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks)
+- [Reserving resources for system processes](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks)
+- [Understanding how to reserve memory across quality of service tiers](/openshift-docs-markdown/post_installation_configuration/node-tasks#qos-about-reserve_post-install-node-tasks)
 
 **Additional resources**
 
-- [Allocating resources for nodes](/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)
+- [Allocating resources for nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)
 
 **Additional resources**
 
-- [Static IP addresses for vSphere nodes](/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_ipi-vsphere-installation-reqs)
+- [Static IP addresses for vSphere nodes](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_ipi-vsphere-installation-reqs)

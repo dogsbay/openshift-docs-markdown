@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"getting-support","text":"Getting support"},{"depth":2,"slug":"getting-support-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/support/getting-support";
+const currentPath = "/openshift-docs-markdown/support/getting-support";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["support"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Getting support {#getting-support}\n\nTo resolve issues with your OpenShift Container Platform cluster, you can search the Red Hat Knowledgebase, submit a support case, and use remote health monitoring tools.\n\n## Additional resources {#getting-support-additional-resources}\n\n- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)\n","mdUrl":"/support/getting-support.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Getting support {#getting-support}\n\nTo resolve issues with your OpenShift Container Platform cluster, you can search the Red Hat Knowledgebase, submit a support case, and use remote health monitoring tools.\n\n## Additional resources {#getting-support-additional-resources}\n\n- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/getting-support.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,7 +99,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/support-submitting-a-case.md"></p>
       <p class="/modules/about-self-service-tsr.md"></p>
       <h2 id="getting-support-additional-resources" class="group scroll-mt-20">Additional resources<a href="#getting-support-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster">Using {"{"}{"{"} red_hat_lightspeed {"}"}{"}"} to identify issues with your cluster</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster">Using {"{"}{"{"} red_hat_lightspeed {"}"}{"}"} to identify issues with your cluster</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

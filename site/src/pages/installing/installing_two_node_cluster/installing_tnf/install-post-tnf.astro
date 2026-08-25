@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"installing-post-tnf","text":"Post-installation troubleshooting and recovery"}];
 const nav = navData;
-const currentPath = "/installing/installing_two_node_cluster/installing_tnf/install-post-tnf";
+const currentPath = "/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/install-post-tnf";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_two_node_cluster","installing/installing_two_node_cluster/installing_tnf"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Post-installation troubleshooting and recovery {#installing-post-tnf}\n\nYou can troubleshoot and restore  a two-node OpenShift Container Platform cluster with fencing (TNF) after a disruption event. Manually recover services when automated recovery is unavailable, replace degraded control plane nodes, and use the `fencing_validator` script to verify cluster health.\n\n**Additional resources**\n\n- [Restoring etcd from a backup](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd-restoring_backing-up-etcd)\n- [Verifying etcd health in a two-node OpenShift cluster with fencing](/installing/installing_two_node_cluster/installing_tnf/install-post-tnf#installation-verifying-etcd-health_install-post-tnf)\n- [Gathering an sosreport for OpenShift Container Platform](/support/gathering-cluster-data#about-sosreport_gathering-cluster-data)\n","mdUrl":"/installing/installing_two_node_cluster/installing_tnf/install-post-tnf.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Post-installation troubleshooting and recovery {#installing-post-tnf}\n\nYou can troubleshoot and restore  a two-node OpenShift Container Platform cluster with fencing (TNF) after a disruption event. Manually recover services when automated recovery is unavailable, replace degraded control plane nodes, and use the `fencing_validator` script to verify cluster health.\n\n**Additional resources**\n\n- [Restoring etcd from a backup](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd-restoring_backing-up-etcd)\n- [Verifying etcd health in a two-node OpenShift cluster with fencing](/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/install-post-tnf#installation-verifying-etcd-health_install-post-tnf)\n- [Gathering an sosreport for OpenShift Container Platform](/openshift-docs-markdown/support/gathering-cluster-data#about-sosreport_gathering-cluster-data)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/install-post-tnf.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,9 +96,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-manual-recovering-when-auto-recovery-is-unavail.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd-restoring_backing-up-etcd">Restoring etcd from a backup</a></li>
-      <li><a href="/installing/installing_two_node_cluster/installing_tnf/install-post-tnf#installation-verifying-etcd-health_install-post-tnf">Verifying etcd health in a two-node OpenShift cluster with fencing</a></li>
-      <li><a href="/support/gathering-cluster-data#about-sosreport_gathering-cluster-data">Gathering an sosreport for OpenShift Container Platform</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd-restoring_backing-up-etcd">Restoring etcd from a backup</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/install-post-tnf#installation-verifying-etcd-health_install-post-tnf">Verifying etcd health in a two-node OpenShift cluster with fencing</a></li>
+      <li><a href="/openshift-docs-markdown/support/gathering-cluster-data#about-sosreport_gathering-cluster-data">Gathering an sosreport for OpenShift Container Platform</a></li>
       </ul>
       <p class="/modules/installation-verifying-etcd-health.md"></p>
       <p class="/modules/fencing-validator-script-overview.md"></p>

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"lws-about","text":"{{ lws_operator }} overview"},{"depth":2,"slug":"lws-about_additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/ai_workloads/leader_worker_set";
+const currentPath = "/openshift-docs-markdown/ai_workloads/leader_worker_set";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["ai_workloads"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ lws_operator }} overview {#lws-about}\n\nUse the {{ lws_operator }} to manage multi-node AI/ML inference deployments efficiently. The {{ lws_operator }} treats groups of pods as one unit to simplify scaling, recovery, and updates for large workloads.\n\nUsing large language models (LLMs) for AI/ML inference often requires significant compute resources, and workloads typically must be sharded across multiple nodes. This can make deployments complex, creating challenges around scaling, recovery from failures, and efficient pod placement.\n\nThe {{ lws_operator }} simplifies these multi-node deployments by treating a group of pods as a single, coordinated unit. It manages the lifecycle of each pod in the group, scales the entire group together, and performs updates and failure recovery at the group level to ensure consistency.\n\n## Additional resources {#lws-about_additional-resources}\n\n- [LeaderWorkerSet documentation (Kubernetes)](https://lws.sigs.k8s.io/docs/overview/)\n","mdUrl":"/ai_workloads/leader_worker_set.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ lws_operator }} overview {#lws-about}\n\nUse the {{ lws_operator }} to manage multi-node AI/ML inference deployments efficiently. The {{ lws_operator }} treats groups of pods as one unit to simplify scaling, recovery, and updates for large workloads.\n\nUsing large language models (LLMs) for AI/ML inference often requires significant compute resources, and workloads typically must be sharded across multiple nodes. This can make deployments complex, creating challenges around scaling, recovery from failures, and efficient pod placement.\n\nThe {{ lws_operator }} simplifies these multi-node deployments by treating a group of pods as a single, coordinated unit. It manages the lifecycle of each pod in the group, scales the entire group together, and performs updates and failure recovery at the group level to ensure consistency.\n\n## Additional resources {#lws-about_additional-resources}\n\n- [LeaderWorkerSet documentation (Kubernetes)](https://lws.sigs.k8s.io/docs/overview/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

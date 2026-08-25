@@ -14,4 +14,4 @@ Some referenced tickets are not linked. This means that the ticket is not access
 
 ## Additional resources {#additional-resources_network-observability-operator-release-notes}
 
-- [Grant permissions for custom namespace and secret access](/observability/network_observability/configuring-operator#network-observability-grant-permissions-custom-namespace-and-secret-access_network_observability)
+- [Grant permissions for custom namespace and secret access](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-grant-permissions-custom-namespace-and-secret-access_network_observability)

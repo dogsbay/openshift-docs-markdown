@@ -35,6 +35,6 @@ The goal of this guide is to understand the incredible security benefits of usin
 
 **Additional resources**
 
-- [Configuring periodic importing of imagestreamtags](/openshift_images/image-streams-manage#images-imagestreams-import_image-streams-managing)
-- [OpenShift Container Platform architecture](/architecture/architecture#architecture)
+- [Configuring periodic importing of imagestreamtags](/openshift-docs-markdown/openshift_images/image-streams-manage#images-imagestreams-import_image-streams-managing)
+- [OpenShift Container Platform architecture](/openshift-docs-markdown/architecture/architecture#architecture)
 - [OpenShift Security Guide](https://www.redhat.com/en/resources/openshift-security-guide-ebook)

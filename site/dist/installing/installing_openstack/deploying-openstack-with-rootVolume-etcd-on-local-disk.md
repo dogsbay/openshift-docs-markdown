@@ -8,5 +8,5 @@ After installation, you can resolve and prevent performance issues of your {{ rh
 
 ## Additional resources {#additional-resources_deploying-openstack-on-local-disk}
 
-- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
-- [Overview of backup and restore options](/backup_and_restore/index#backup-restore-operations-overview)
+- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
+- [Overview of backup and restore options](/openshift-docs-markdown/backup_and_restore/index#backup-restore-operations-overview)

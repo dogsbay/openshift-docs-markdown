@@ -2,7 +2,7 @@
 // Source: cli_reference/cli_manager/cli-manager-release-notes.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: \"{{ cli_manager }} release notes\"\n---\n\n# {{ cli_manager }} release notes {#cli-manager-release-notes}\n\nTrack the development of the {{ cli_manager }} for OpenShift Container Platform, which enables you to install CLI plugins in both connected and disconnected environments.\n\n**Additional resources**\n\n- [About the {{ cli_manager }}](/cli_reference/cli_manager/index#cli-manager-overview)\n";
+const body = "---\ntitle: \"{{ cli_manager }} release notes\"\n---\n\n# {{ cli_manager }} release notes {#cli-manager-release-notes}\n\nTrack the development of the {{ cli_manager }} for OpenShift Container Platform, which enables you to install CLI plugins in both connected and disconnected environments.\n\n**Additional resources**\n\n- [About the {{ cli_manager }}](/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

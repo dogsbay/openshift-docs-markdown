@@ -12,18 +12,18 @@ and a set of individual Operators.
 
 **Additional resources**
 
-- [Understanding configuration drift detection](/machine_configuration/index#machine-config-drift-detection_machine-config-overview)
+- [Understanding configuration drift detection](/openshift-docs-markdown/machine_configuration/index#machine-config-drift-detection_machine-config-overview)
 
 **Additional resources**
 
-- [Cluster Operators reference](/operators/operator-reference#operator-reference)
+- [Cluster Operators reference](/openshift-docs-markdown/operators/operator-reference#operator-reference)
 
 **Additional resources**
 
-- [Operator Lifecycle Manager (OLM) concepts and resources](/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)
-- [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
+- [Operator Lifecycle Manager (OLM) concepts and resources](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)
+- [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 
  **Additional resources**
 
-- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
-- [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)
+- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
+- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)

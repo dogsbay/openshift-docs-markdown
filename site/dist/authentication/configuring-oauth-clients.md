@@ -8,4 +8,4 @@ OpenShift Container Platform includes default OAuth clients for platform authent
 
 ## Additional resources {#_additional_resources}
 
-- \[OAuthClient [oauth.openshift.io/v1](/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1)\]
+- \[OAuthClient [oauth.openshift.io/v1](/openshift-docs-markdown/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1)\]

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"windows-container-overview","text":"{{ productwinc }} overview"}];
 const nav = navData;
-const currentPath = "/windows_containers";
+const currentPath = "/openshift-docs-markdown/windows_containers";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = null;
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ productwinc }} overview {#windows-container-overview}\n\nYou can use {{ productwinc }} to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.\n","mdUrl":"/windows_containers.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ productwinc }} overview {#windows-container-overview}\n\nYou can use {{ productwinc }} to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

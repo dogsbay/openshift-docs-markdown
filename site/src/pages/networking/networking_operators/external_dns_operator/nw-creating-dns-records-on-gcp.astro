@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"creating-dns-records-on-gcp","text":"Creating DNS records on Google Cloud Platform"}];
 const nav = navData;
-const currentPath = "/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-gcp";
+const currentPath = "/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-gcp";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/networking_operators","networking/networking_operators/external_dns_operator"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on Google Cloud Platform {#creating-dns-records-on-gcp}\n\nTo create DNS records on {{ gcp_first }}, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services.\n\n> [!IMPORTANT]\n> Using the External DNS Operator on a cluster with {{ gcp_short }} Workload Identity enabled is not supported. For more information about the {{ gcp_short }} Workload Identity, see [{{ gcp_short }} Workload Identity](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp_cco-short-term-creds).\n","mdUrl":"/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-gcp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on Google Cloud Platform {#creating-dns-records-on-gcp}\n\nTo create DNS records on {{ gcp_first }}, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services.\n\n> [!IMPORTANT]\n> Using the External DNS Operator on a cluster with {{ gcp_short }} Workload Identity enabled is not supported. For more information about the {{ gcp_short }} Workload Identity, see [{{ gcp_short }} Workload Identity](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp_cco-short-term-creds).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-gcp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,7 +99,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>Using the External DNS Operator on a cluster with {"{"}{"{"} gcp_short {"}"}{"}"} Workload Identity enabled is not supported. For more information about the {"{"}{"{"} gcp_short {"}"}{"}"} Workload Identity, see <a href="/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp_cco-short-term-creds">{"{"}{"{"} gcp_short {"}"}{"}"} Workload Identity</a>.</p>
+          <p>Using the External DNS Operator on a cluster with {"{"}{"{"} gcp_short {"}"}{"}"} Workload Identity enabled is not supported. For more information about the {"{"}{"{"} gcp_short {"}"}{"}"} Workload Identity, see <a href="/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp_cco-short-term-creds">{"{"}{"{"} gcp_short {"}"}{"}"} Workload Identity</a>.</p>
         </AlertDescription>
       </Alert>
       <p class="/modules/nw-control-dns-records-public-managed-zone-gcp.md"></p>

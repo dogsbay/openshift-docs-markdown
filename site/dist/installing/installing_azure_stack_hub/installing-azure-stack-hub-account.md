@@ -11,7 +11,7 @@ Before you can install OpenShift Container Platform, you must configure a Micros
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 **Additional resources**
 
@@ -19,10 +19,10 @@ Before you can install OpenShift Container Platform, you must configure a Micros
 
 **Additional resources**
 
-- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
+- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
 ## Additional resources {#additional-resources_installing-azure-stack-hub-account}
 
 - [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)
-- [Installing a cluster on Azure Stack Hub with customizations](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)
-- [Installing a cluster on Azure Stack Hub using ARM templates](/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra)
+- [Installing a cluster on Azure Stack Hub with customizations](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)
+- [Installing a cluster on Azure Stack Hub using ARM templates](/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra)

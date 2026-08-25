@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"olm-restricted-networks","text":"Using Operator Lifecycle Manager in disconnected environments"},{"depth":2,"slug":"additional-resources_olm-restricted-networks","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/operators/admin/olm-restricted-networks";
+const currentPath = "/openshift-docs-markdown/operators/admin/olm-restricted-networks";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["operators","operators/admin"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using Operator Lifecycle Manager in disconnected environments {#olm-restricted-networks}\n\nOn disconnected OpenShift Container Platform clusters, Operator Lifecycle Manager (OLM) cannot access the Red Hat-provided catalog sources hosted on remote registries by default. As a cluster administrator, you can use a workstation with full internet access to prepare local mirrors of the remote sources, and push the content to a mirror registry.\n\nThe mirror registry can be located on a bastion host, which requires connectivity to both your workstation and the disconnected cluster, or a completely disconnected, or *airgapped*, host, which requires removable media to physically move the mirrored content to the disconnected environment.\n\nThis guide describes the following process that is required to enable OLM in disconnected environments:\n\n- Disable the default remote OperatorHub sources for OLM.\n- Use a workstation with full internet access to create and push local mirrors of the OperatorHub content to a mirror registry.\n- Configure OLM to install and manage Operators from local sources on the mirror registry instead of the default remote sources.\n\nAfter enabling OLM in a disconnected environment, you can continue to use your unrestricted workstation to keep your local OperatorHub sources updated as newer versions of Operators are released.\n\n## Additional resources {#additional-resources_olm-restricted-networks}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n","mdUrl":"/operators/admin/olm-restricted-networks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using Operator Lifecycle Manager in disconnected environments {#olm-restricted-networks}\n\nOn disconnected OpenShift Container Platform clusters, Operator Lifecycle Manager (OLM) cannot access the Red Hat-provided catalog sources hosted on remote registries by default. As a cluster administrator, you can use a workstation with full internet access to prepare local mirrors of the remote sources, and push the content to a mirror registry.\n\nThe mirror registry can be located on a bastion host, which requires connectivity to both your workstation and the disconnected cluster, or a completely disconnected, or *airgapped*, host, which requires removable media to physically move the mirrored content to the disconnected environment.\n\nThis guide describes the following process that is required to enable OLM in disconnected environments:\n\n- Disable the default remote OperatorHub sources for OLM.\n- Use a workstation with full internet access to create and push local mirrors of the OperatorHub content to a mirror registry.\n- Configure OLM to install and manage Operators from local sources on the mirror registry instead of the default remote sources.\n\nAfter enabling OLM in a disconnected environment, you can continue to use your unrestricted workstation to keep your local OperatorHub sources updated as newer versions of Operators are released.\n\n## Additional resources {#additional-resources_olm-restricted-networks}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/admin/olm-restricted-networks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -102,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p>After enabling OLM in a disconnected environment, you can continue to use your unrestricted workstation to keep your local OperatorHub sources updated as newer versions of Operators are released.</p>
       <h2 id="additional-resources_olm-restricted-networks" class="group scroll-mt-20">Additional resources<a href="#additional-resources_olm-restricted-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

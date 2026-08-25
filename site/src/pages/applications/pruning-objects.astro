@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"pruning-objects","text":"Pruning objects to reclaim resources"}];
 const nav = navData;
-const currentPath = "/applications/pruning-objects";
+const currentPath = "/openshift-docs-markdown/applications/pruning-objects";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["applications"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pruning objects to reclaim resources {#pruning-objects}\n\nReclaim cluster storage and optimize API server performance by pruning stale resources. You can run manual CLI commands or configure automated cron jobs to clean up obsolete deployment, build, image, and group records.\n\nOver time, API objects created in OpenShift Container Platform can accumulate in the cluster’s etcd data store through normal user operations, such as when building and deploying applications.\n\nCluster administrators can periodically prune older versions of objects from the cluster that are no longer required. For example, by pruning images you can delete older images and layers that are no longer in use, but are still taking up disk space.\n\n**Additional resources**\n\n- [Performing advanced builds -> Pruning builds](/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)\n\n**Additional resources**\n\n- [Accessing the registry](/registry/accessing-the-registry#accessing-the-registry)\n- [Exposing the registry](/registry/securing-exposing-registry#securing-exposing-registry)\n- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#configuring-registry-operator)\n\n**Additional resources**\n\n- [Running tasks in pods using jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)\n- [Resource quotas across multiple projects](/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects)\n- [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)\n","mdUrl":"/applications/pruning-objects.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pruning objects to reclaim resources {#pruning-objects}\n\nReclaim cluster storage and optimize API server performance by pruning stale resources. You can run manual CLI commands or configure automated cron jobs to clean up obsolete deployment, build, image, and group records.\n\nOver time, API objects created in OpenShift Container Platform can accumulate in the cluster’s etcd data store through normal user operations, such as when building and deploying applications.\n\nCluster administrators can periodically prune older versions of objects from the cluster that are no longer required. For example, by pruning images you can delete older images and layers that are no longer in use, but are still taking up disk space.\n\n**Additional resources**\n\n- [Performing advanced builds -> Pruning builds](/openshift-docs-markdown/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)\n\n**Additional resources**\n\n- [Accessing the registry](/openshift-docs-markdown/registry/accessing-the-registry#accessing-the-registry)\n- [Exposing the registry](/openshift-docs-markdown/registry/securing-exposing-registry#securing-exposing-registry)\n- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)\n\n**Additional resources**\n\n- [Running tasks in pods using jobs](/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)\n- [Resource quotas across multiple projects](/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects)\n- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/pruning-objects.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/pruning-deployments.md"></p>
       <p class="/modules/pruning-builds.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations">Performing advanced builds -&gt; Pruning builds</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations">Performing advanced builds -&gt; Pruning builds</a></li></ul>
       <p class="/modules/pruning-images-manual.md"></p>
       <p class="/modules/pruning-images-considerations.md"></p>
       <p class="/modules/pruning-images-limitations.md"></p>
@@ -111,16 +111,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/pruning-images-troubleshooting.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/registry/accessing-the-registry#accessing-the-registry">Accessing the registry</a></li>
-      <li><a href="/registry/securing-exposing-registry#securing-exposing-registry">Exposing the registry</a></li>
-      <li><a href="/registry/configuring-registry-operator#configuring-registry-operator">Image Registry Operator in OpenShift Container Platform</a></li>
+      <li><a href="/openshift-docs-markdown/registry/accessing-the-registry#accessing-the-registry">Accessing the registry</a></li>
+      <li><a href="/openshift-docs-markdown/registry/securing-exposing-registry#securing-exposing-registry">Exposing the registry</a></li>
+      <li><a href="/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator">Image Registry Operator in OpenShift Container Platform</a></li>
       </ul>
       <p class="/modules/pruning-cronjobs.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs">Running tasks in pods using jobs</a></li>
-      <li><a href="/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects">Resource quotas across multiple projects</a></li>
-      <li><a href="/authentication/using-rbac#using-rbac">Using RBAC to define and apply permissions</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs">Running tasks in pods using jobs</a></li>
+      <li><a href="/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects">Resource quotas across multiple projects</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/using-rbac#using-rbac">Using RBAC to define and apply permissions</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

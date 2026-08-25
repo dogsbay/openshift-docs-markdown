@@ -8,4 +8,4 @@ To uninstall the SR-IOV Network Operator, you must delete any running SR-IOV wor
 
 ## Additional resources {#additional-resources_uninstalling-sr-iov-operator}
 
-- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
+- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)

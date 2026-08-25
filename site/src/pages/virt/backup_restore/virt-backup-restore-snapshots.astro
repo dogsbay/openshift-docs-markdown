@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-backup-restore-snapshots","text":"Backup and restore by using VM snapshots"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/backup_restore/virt-backup-restore-snapshots";
+const currentPath = "/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/backup_restore"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backup and restore by using VM snapshots {#virt-backup-restore-snapshots}\n\nYou can back up and restore virtual machines (VMs) by using snapshots.\n\nSnapshots are supported by the following storage providers:\n\n- {{ rh_storage_first }}\n- Any other cloud storage provider with the Container Storage Interface (CSI) driver that supports the Kubernetes Volume Snapshot API\n\nTo create snapshots of a VM in the `Running` state with the highest integrity, install the QEMU guest agent if it is not included with your operating system. The QEMU guest agent is included with the default Red Hat templates.\n\n> [!IMPORTANT]\n> Online snapshots are supported for virtual machines that have hot plugged virtual disks. However, hot plugged disks that are not in the virtual machine specification are not included in the snapshot.\n>\n> Ensure that the QEMU guest agent is installed and running on the virtual machine before you take an online snapshot.\n>\n> The QEMU guest agent stops responding to file system operations to ensure that the snapshot captures a consistent state.\n\nThe QEMU guest agent takes a consistent snapshot by attempting to quiesce the VM file system. This ensures that in-flight I/O is written to the disk before the snapshot is taken. If the guest agent is not present, quiescing is not possible and a best-effort snapshot is taken.\n\nThe conditions under which a snapshot is taken are reflected in the snapshot indications that are displayed in the web console or CLI. If these conditions do not meet your requirements, try creating the snapshot again or use an offline snapshot\n\n## Additional resources {#_additional_resources}\n\n- [CSI Volume Snapshots](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)\n","mdUrl":"/virt/backup_restore/virt-backup-restore-snapshots.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backup and restore by using VM snapshots {#virt-backup-restore-snapshots}\n\nYou can back up and restore virtual machines (VMs) by using snapshots.\n\nSnapshots are supported by the following storage providers:\n\n- {{ rh_storage_first }}\n- Any other cloud storage provider with the Container Storage Interface (CSI) driver that supports the Kubernetes Volume Snapshot API\n\nTo create snapshots of a VM in the `Running` state with the highest integrity, install the QEMU guest agent if it is not included with your operating system. The QEMU guest agent is included with the default Red Hat templates.\n\n> [!IMPORTANT]\n> Online snapshots are supported for virtual machines that have hot plugged virtual disks. However, hot plugged disks that are not in the virtual machine specification are not included in the snapshot.\n>\n> Ensure that the QEMU guest agent is installed and running on the virtual machine before you take an online snapshot.\n>\n> The QEMU guest agent stops responding to file system operations to ensure that the snapshot captures a consistent state.\n\nThe QEMU guest agent takes a consistent snapshot by attempting to quiesce the VM file system. This ensures that in-flight I/O is written to the disk before the snapshot is taken. If the guest agent is not present, quiescing is not possible and a best-effort snapshot is taken.\n\nThe conditions under which a snapshot is taken are reflected in the snapshot indications that are displayed in the web console or CLI. If these conditions do not meet your requirements, try creating the snapshot again or use an offline snapshot\n\n## Additional resources {#_additional_resources}\n\n- [CSI Volume Snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -122,7 +122,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-deleting-vm-snapshot-web.md"></p>
       <p class="/modules/virt-deleting-vm-snapshot-cli.md"></p>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots">CSI Volume Snapshots</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots">CSI Volume Snapshots</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

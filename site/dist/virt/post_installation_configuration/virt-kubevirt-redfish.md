@@ -10,6 +10,6 @@ Use KubeVirt Redfish when you need programmatic control over VMs using Redfish, 
 
 ## Additional resources {#additional-resources_virt-kubevirt-redfish}
 
-- [BMC addressing for installer-provisioned infrastructure](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
-- [Deploying far edge sites with ZTP](/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)
+- [BMC addressing for installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
+- [Deploying far edge sites with ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)
 - [Redfish standard (DMTF)](https://www.dmtf.org/standards/redfish)

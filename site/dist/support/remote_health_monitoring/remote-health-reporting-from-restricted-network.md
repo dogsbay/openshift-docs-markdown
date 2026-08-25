@@ -16,8 +16,8 @@ Additionally, you can select to obfuscate the {{ insights_operator }} data befor
 **Additional resources**
 
 - [{{ hybrid_console }}](https://console.redhat.com)
-- [Enabling {{ insights_operator }} data obfuscation](/support/remote_health_monitoring/remote-health-reporting-from-restricted-network#insights-operator-enable-obfuscation_remote-health-reporting-from-restricted-network)
+- [Enabling {{ insights_operator }} data obfuscation](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting-from-restricted-network#insights-operator-enable-obfuscation_remote-health-reporting-from-restricted-network)
 
 **Additional resources**
 
-- [Showing data collected by the {{ insights_operator }}](/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#insights-operator-showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)
+- [Showing data collected by the {{ insights_operator }}](/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#insights-operator-showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)

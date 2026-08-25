@@ -2,7 +2,7 @@
 // Source: web_console/dynamic-plugin/dynamic-plugins-reference.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Dynamic plugin reference\n---\n\n# Dynamic plugin reference {#dynamic-plugins-reference_{{ context }}}\n\nYou can add extensions that allow you to customize your plugin. Those extensions are then loaded to the console at runtime.\n\n**Additional resources**\n\n- [Understanding service serving certificates](/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate)\n";
+const body = "---\ntitle: Dynamic plugin reference\n---\n\n# Dynamic plugin reference {#dynamic-plugins-reference_{{ context }}}\n\nYou can add extensions that allow you to customize your plugin. Those extensions are then loaded to the console at runtime.\n\n**Additional resources**\n\n- [Understanding service serving certificates](/openshift-docs-markdown/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

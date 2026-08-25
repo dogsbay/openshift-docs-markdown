@@ -52,5 +52,5 @@ After the PCI devices have been added to the cluster, you can assign them to vir
 
 - [Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios)
 - [Managing file permissions](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_managing-file-permissions_configuring-basic-system-settings)
-- [Machine Config Overview](/machine_configuration/index#machine-config-overview)
+- [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
 - [{{ ibm_name }} Spyre Accelerator User’s Guide](https://www.ibm.com/docs/en/systems-hardware/linuxone/9175-ML1?topic=library-spyre-accelerator-users-guide)

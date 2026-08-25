@@ -10,8 +10,8 @@ You can configure the Cloud Credential Operator (CCO) to operate in several diff
 
 ## Additional resources {#additional-resources_about-cloud-credential-operator_about-cloud-credential-operator}
 
-- [Cluster Operators reference page for the Cloud Credential Operator](/operators/operator-reference#cloud-credential-operator_operator-reference)
-- [About the Cloud Credential Operator in mint mode](/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
-- [About the Cloud Credential Operator in passthrough mode](/authentication/managing_cloud_provider_credentials/cco-mode-passthrough#cco-mode-passthrough)
-- [About the Cloud Credential Operator in manual mode with long-term credentials for components](/authentication/managing_cloud_provider_credentials/cco-mode-manual#cco-mode-manual)
-- [About the Cloud Credential Operator in manual mode with short-term credentials for components](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)
+- [Cluster Operators reference page for the Cloud Credential Operator](/openshift-docs-markdown/operators/operator-reference#cloud-credential-operator_operator-reference)
+- [About the Cloud Credential Operator in mint mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
+- [About the Cloud Credential Operator in passthrough mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-passthrough#cco-mode-passthrough)
+- [About the Cloud Credential Operator in manual mode with long-term credentials for components](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-manual#cco-mode-manual)
+- [About the Cloud Credential Operator in manual mode with short-term credentials for components](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)

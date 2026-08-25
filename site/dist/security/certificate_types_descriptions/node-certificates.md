@@ -14,4 +14,4 @@ These certificates are managed by the system and not the user and are automatica
 
 ## Additional resources {#_additional_resources}
 
-- [Working with nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working)
+- [Working with nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working)

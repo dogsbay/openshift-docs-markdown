@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"dev-app-cli","text":"Tutorial: Deploying an application by using the CLI"},{"depth":2,"slug":"prerequisites_dev-app-cli","text":"Prerequisites"}];
 const nav = navData;
-const currentPath = "/tutorials/dev-app-cli";
+const currentPath = "/openshift-docs-markdown/tutorials/dev-app-cli";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["tutorials"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tutorial: Deploying an application by using the CLI {#dev-app-cli}\n\nTo learn how to stand up an application on OpenShift Container Platform by using the {{ oc_first }}, follow the provided tutorial. In this tutorial, you will deploy the services that are required for an application that displays a map of national parks across the world.\n\nTo complete this tutorial, you will perform the following steps:\n\n1. [Create a project for the application](/tutorials/dev-app-cli#getting-started-cli-creating-new-project_dev-app-cli).\n\n   This step allows your application to be isolated from other cluster user’s workloads.\n2. [Grant view permissions](/tutorials/dev-app-cli#getting-started-cli-granting-permissions_dev-app-cli).\n\n   This step grants `view` permissions to interact with the OpenShift API to help discover services and other resources running within the project.\n3. [Deploy the front-end application](/tutorials/dev-app-cli#getting-started-cli-deploying-first-image_dev-app-cli).\n\n   This step deploys the `parksmap` front-end application, exposes it externally, and scales it up to two instances.\n4. [Deploy the back-end application](/tutorials/dev-app-cli#getting-started-cli-deploying-python-app_dev-app-cli).\n\n   This step deploys the `nationalparks` back-end application and exposes it externally.\n5. [Deploy the database application](/tutorials/dev-app-cli#getting-started-cli-connecting-database_dev-app-cli).\n\n   This step deploys the `mongodb-nationalparks` MongoDB database, loads data into the database, and sets up the necessary credentials to access the database.\n\nAfter you complete these steps, you can [view the national parks application in a web browser](/tutorials/dev-app-cli#getting-started-cli-view_dev-app-cli).\n\n## Prerequisites {#prerequisites_dev-app-cli}\n\nBefore you start this tutorial, ensure that you have the following required prerequisites:\n\n- You have installed the [{{ oc_first }}](/cli_reference/openshift_cli/getting-started-cli#installing-openshift-cli).\n- You have access to a test OpenShift Container Platform cluster.\n\n  If your organization does not have a cluster to test on, you can request access to the [Developer Sandbox](https://developers.redhat.com/developer-sandbox) to get a trial of OpenShift Container Platform.\n- You have the appropriate permissions, such as the `cluster-admin` [cluster role](/authentication/using-rbac#viewing-cluster-roles_using-rbac), to create a project and applications within it.\n\n  If you do not have the required permissions, contact your cluster administrator. You need the `self-provisioner` role to create a project and the `admin` role on the project to modify resources in that project.\n\n  If you are using Developer Sandbox, a project is created for you with the required permissions.\n- You have [logged in to your cluster by using the {{ oc_first }}](/cli_reference/openshift_cli/getting-started-cli#cli-logging-in_cli-developer-commands).\n\n**Additional resources**\n\n- [oc new-project](/cli_reference/openshift_cli/developer-cli-commands#oc-new-project)\n\n**Additional resources**\n\n- [RBAC overview](/authentication/using-rbac#authorization-overview_using-rbac)\n- [oc adm policy add-role-to-user](/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-policy-add-role-to-user)\n\n**Additional resources**\n\n- [oc new-app](/cli_reference/openshift_cli/developer-cli-commands#oc-new-app)\n\n**Additional resources**\n\n- [oc create route edge](/cli_reference/openshift_cli/developer-cli-commands#oc-create-route-edge)\n- [oc get](/cli_reference/openshift_cli/developer-cli-commands#oc-get)\n\n**Additional resources**\n\n- [oc describe](/cli_reference/openshift_cli/developer-cli-commands#oc-describe)\n- [oc get](/cli_reference/openshift_cli/developer-cli-commands#oc-get)\n- [Viewing pods](/cli_reference/openshift_cli/getting-started-cli#viewing-pods)\n- [Viewing pod logs](/cli_reference/openshift_cli/getting-started-cli#viewing-pod-logs)\n\n**Additional resources**\n\n- [oc scale](/cli_reference/openshift_cli/developer-cli-commands#oc-scale)\n\n**Additional resources**\n\n- [oc label](/cli_reference/openshift_cli/developer-cli-commands#oc-label)\n\n**Additional resources**\n\n- [Understanding secrets](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)\n- [oc create secret generic](/cli_reference/openshift_cli/developer-cli-commands#oc-create-secret-generic)\n- [oc set env](/cli_reference/openshift_cli/developer-cli-commands#oc-set-env)\n- [oc rollout status](/cli_reference/openshift_cli/developer-cli-commands#oc-rollout-status)\n\n**Additional resources**\n\n- [oc exec](/cli_reference/openshift_cli/developer-cli-commands#oc-exec)\n","mdUrl":"/tutorials/dev-app-cli.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tutorial: Deploying an application by using the CLI {#dev-app-cli}\n\nTo learn how to stand up an application on OpenShift Container Platform by using the {{ oc_first }}, follow the provided tutorial. In this tutorial, you will deploy the services that are required for an application that displays a map of national parks across the world.\n\nTo complete this tutorial, you will perform the following steps:\n\n1. [Create a project for the application](/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-creating-new-project_dev-app-cli).\n\n   This step allows your application to be isolated from other cluster user’s workloads.\n2. [Grant view permissions](/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-granting-permissions_dev-app-cli).\n\n   This step grants `view` permissions to interact with the OpenShift API to help discover services and other resources running within the project.\n3. [Deploy the front-end application](/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-deploying-first-image_dev-app-cli).\n\n   This step deploys the `parksmap` front-end application, exposes it externally, and scales it up to two instances.\n4. [Deploy the back-end application](/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-deploying-python-app_dev-app-cli).\n\n   This step deploys the `nationalparks` back-end application and exposes it externally.\n5. [Deploy the database application](/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-connecting-database_dev-app-cli).\n\n   This step deploys the `mongodb-nationalparks` MongoDB database, loads data into the database, and sets up the necessary credentials to access the database.\n\nAfter you complete these steps, you can [view the national parks application in a web browser](/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-view_dev-app-cli).\n\n## Prerequisites {#prerequisites_dev-app-cli}\n\nBefore you start this tutorial, ensure that you have the following required prerequisites:\n\n- You have installed the [{{ oc_first }}](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#installing-openshift-cli).\n- You have access to a test OpenShift Container Platform cluster.\n\n  If your organization does not have a cluster to test on, you can request access to the [Developer Sandbox](https://developers.redhat.com/developer-sandbox) to get a trial of OpenShift Container Platform.\n- You have the appropriate permissions, such as the `cluster-admin` [cluster role](/openshift-docs-markdown/authentication/using-rbac#viewing-cluster-roles_using-rbac), to create a project and applications within it.\n\n  If you do not have the required permissions, contact your cluster administrator. You need the `self-provisioner` role to create a project and the `admin` role on the project to modify resources in that project.\n\n  If you are using Developer Sandbox, a project is created for you with the required permissions.\n- You have [logged in to your cluster by using the {{ oc_first }}](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-logging-in_cli-developer-commands).\n\n**Additional resources**\n\n- [oc new-project](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-new-project)\n\n**Additional resources**\n\n- [RBAC overview](/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac)\n- [oc adm policy add-role-to-user](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-policy-add-role-to-user)\n\n**Additional resources**\n\n- [oc new-app](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-new-app)\n\n**Additional resources**\n\n- [oc create route edge](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-create-route-edge)\n- [oc get](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get)\n\n**Additional resources**\n\n- [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)\n- [oc get](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get)\n- [Viewing pods](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#viewing-pods)\n- [Viewing pod logs](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#viewing-pod-logs)\n\n**Additional resources**\n\n- [oc scale](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-scale)\n\n**Additional resources**\n\n- [oc label](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-label)\n\n**Additional resources**\n\n- [Understanding secrets](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)\n- [oc create secret generic](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-create-secret-generic)\n- [oc set env](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-set-env)\n- [oc rollout status](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-rollout-status)\n\n**Additional resources**\n\n- [oc exec](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-exec)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/tutorials/dev-app-cli.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,78 +96,78 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>To complete this tutorial, you will perform the following steps:</p>
       <ol>
       <li>
-      <a href="/tutorials/dev-app-cli#getting-started-cli-creating-new-project_dev-app-cli">Create a project for the application</a>.
+      <a href="/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-creating-new-project_dev-app-cli">Create a project for the application</a>.
       <p>This step allows your application to be isolated from other cluster user’s workloads.</p>
       </li>
       <li>
-      <a href="/tutorials/dev-app-cli#getting-started-cli-granting-permissions_dev-app-cli">Grant view permissions</a>.
+      <a href="/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-granting-permissions_dev-app-cli">Grant view permissions</a>.
       <p>This step grants <code>view</code> permissions to interact with the OpenShift API to help discover services and other resources running within the project.</p>
       </li>
       <li>
-      <a href="/tutorials/dev-app-cli#getting-started-cli-deploying-first-image_dev-app-cli">Deploy the front-end application</a>.
+      <a href="/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-deploying-first-image_dev-app-cli">Deploy the front-end application</a>.
       <p>This step deploys the <code>parksmap</code> front-end application, exposes it externally, and scales it up to two instances.</p>
       </li>
       <li>
-      <a href="/tutorials/dev-app-cli#getting-started-cli-deploying-python-app_dev-app-cli">Deploy the back-end application</a>.
+      <a href="/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-deploying-python-app_dev-app-cli">Deploy the back-end application</a>.
       <p>This step deploys the <code>nationalparks</code> back-end application and exposes it externally.</p>
       </li>
       <li>
-      <a href="/tutorials/dev-app-cli#getting-started-cli-connecting-database_dev-app-cli">Deploy the database application</a>.
+      <a href="/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-connecting-database_dev-app-cli">Deploy the database application</a>.
       <p>This step deploys the <code>mongodb-nationalparks</code> MongoDB database, loads data into the database, and sets up the necessary credentials to access the database.</p>
       </li>
       </ol>
-      <p>After you complete these steps, you can <a href="/tutorials/dev-app-cli#getting-started-cli-view_dev-app-cli">view the national parks application in a web browser</a>.</p>
+      <p>After you complete these steps, you can <a href="/openshift-docs-markdown/tutorials/dev-app-cli#getting-started-cli-view_dev-app-cli">view the national parks application in a web browser</a>.</p>
       <h2 id="prerequisites_dev-app-cli" class="group scroll-mt-20">Prerequisites<a href="#prerequisites_dev-app-cli" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>Before you start this tutorial, ensure that you have the following required prerequisites:</p>
       <ul>
-      <li>You have installed the <a href="/cli_reference/openshift_cli/getting-started-cli#installing-openshift-cli">{"{"}{"{"} oc_first {"}"}{"}"}</a>.</li>
+      <li>You have installed the <a href="/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#installing-openshift-cli">{"{"}{"{"} oc_first {"}"}{"}"}</a>.</li>
       <li>
       You have access to a test OpenShift Container Platform cluster.
       <p>If your organization does not have a cluster to test on, you can request access to the <a href="https://developers.redhat.com/developer-sandbox">Developer Sandbox</a> to get a trial of OpenShift Container Platform.</p>
       </li>
       <li>
-      You have the appropriate permissions, such as the <code>cluster-admin</code> <a href="/authentication/using-rbac#viewing-cluster-roles_using-rbac">cluster role</a>, to create a project and applications within it.
+      You have the appropriate permissions, such as the <code>cluster-admin</code> <a href="/openshift-docs-markdown/authentication/using-rbac#viewing-cluster-roles_using-rbac">cluster role</a>, to create a project and applications within it.
       <p>If you do not have the required permissions, contact your cluster administrator. You need the <code>self-provisioner</code> role to create a project and the <code>admin</code> role on the project to modify resources in that project.</p>
       <p>If you are using Developer Sandbox, a project is created for you with the required permissions.</p>
       </li>
-      <li>You have <a href="/cli_reference/openshift_cli/getting-started-cli#cli-logging-in_cli-developer-commands">logged in to your cluster by using the {"{"}{"{"} oc_first {"}"}{"}"}</a>.</li>
+      <li>You have <a href="/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-logging-in_cli-developer-commands">logged in to your cluster by using the {"{"}{"{"} oc_first {"}"}{"}"}</a>.</li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-new-project">oc new-project</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-new-project">oc new-project</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/authentication/using-rbac#authorization-overview_using-rbac">RBAC overview</a></li>
-      <li><a href="/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-policy-add-role-to-user">oc adm policy add-role-to-user</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac">RBAC overview</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-policy-add-role-to-user">oc adm policy add-role-to-user</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-new-app">oc new-app</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-new-app">oc new-app</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-create-route-edge">oc create route edge</a></li>
-      <li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-get">oc get</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-create-route-edge">oc create route edge</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get">oc get</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-describe">oc describe</a></li>
-      <li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-get">oc get</a></li>
-      <li><a href="/cli_reference/openshift_cli/getting-started-cli#viewing-pods">Viewing pods</a></li>
-      <li><a href="/cli_reference/openshift_cli/getting-started-cli#viewing-pod-logs">Viewing pod logs</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe">oc describe</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get">oc get</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#viewing-pods">Viewing pods</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#viewing-pod-logs">Viewing pod logs</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-scale">oc scale</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-scale">oc scale</a></li></ul>
       <p class="/modules/getting-started-cli-creating-route-backend.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-label">oc label</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-label">oc label</a></li></ul>
       <p class="/modules/getting-started-cli-creating-secret.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets">Understanding secrets</a></li>
-      <li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-create-secret-generic">oc create secret generic</a></li>
-      <li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-set-env">oc set env</a></li>
-      <li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-rollout-status">oc rollout status</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets">Understanding secrets</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-create-secret-generic">oc create secret generic</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-set-env">oc set env</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-rollout-status">oc rollout status</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/cli_reference/openshift_cli/developer-cli-commands#oc-exec">oc exec</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-exec">oc exec</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

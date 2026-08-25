@@ -10,8 +10,8 @@ The following diagram shows the flow of external and internal network traffic am
 
 **Figure 1. Diagram showing traffic flow among networking components**
 
-![Diagram showing traffic flow among networking components](/_assets/images/494_OpenShift_pod_networking_0426.png)
+![Diagram showing traffic flow among networking components](/openshift-docs-markdown/_assets/images/494_OpenShift_pod_networking_0426.png)
 
 **Additional resources**
 
-- [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)
+- [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)

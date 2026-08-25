@@ -8,4 +8,4 @@ As a cluster administrator, you can add, modify, and delete Bidirectional Forwar
 
 ## Additional resources {#additional-resources_metallb-configure-bfd-profiles}
 
-- [Configuring MetalLB BGP peers](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)
+- [Configuring MetalLB BGP peers](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)

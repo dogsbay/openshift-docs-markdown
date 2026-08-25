@@ -15,4 +15,4 @@ The Ingress Operator uses certificates for:
 
 ## Additional resources {#additional-resources_cert-types-ingress-certificates}
 
-- [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
+- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)

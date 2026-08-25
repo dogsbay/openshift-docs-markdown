@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"managing-images-overview","text":"Managing images overview"}];
 const nav = navData;
-const currentPath = "/openshift_images/managing_images/managing-images-overview";
+const currentPath = "/openshift-docs-markdown/openshift_images/managing_images/managing-images-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["openshift_images","openshift_images/managing_images"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing images overview {#managing-images-overview}\n\nImage streams in OpenShift Container Platform provide a layer of abstraction over container images, enabling automation for your CI/CD pipelines. You can configure builds and deployments to watch image streams and automatically trigger new builds or deployments when images are updated.\n\nThe main advantage of using image streams is the automation they enable for your continuous integration and continuous delivery (CI/CD) pipelines. For example:\n\n- Image streams allow OpenShift Container Platform resources such as Builds and Deployments to \"watch\" them.\n- When a new image is added to the stream, or when an existing tag is modified to point to a new image, the watching resources receive notifications.\n- When notifications are received, the watching resources can automatically react by performing a new build or a new deployment.\n","mdUrl":"/openshift_images/managing_images/managing-images-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing images overview {#managing-images-overview}\n\nImage streams in OpenShift Container Platform provide a layer of abstraction over container images, enabling automation for your CI/CD pipelines. You can configure builds and deployments to watch image streams and automatically trigger new builds or deployments when images are updated.\n\nThe main advantage of using image streams is the automation they enable for your continuous integration and continuous delivery (CI/CD) pipelines. For example:\n\n- Image streams allow OpenShift Container Platform resources such as Builds and Deployments to \"watch\" them.\n- When a new image is added to the stream, or when an existing tag is modified to point to a new image, the watching resources receive notifications.\n- When notifications are received, the watching resources can automatically react by performing a new build or a new deployment.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/managing_images/managing-images-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

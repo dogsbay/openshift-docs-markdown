@@ -8,5 +8,5 @@ Prepare your hosting cluster environment before deploying a virtualized control 
 
 ## Additional resources {#additional-resources_vcp-preparing-environment}
 
-- [Recommended resources for topologies](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)
-- [Connecting a virtual machine to a secondary localnet user-defined network](/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)
+- [Recommended resources for topologies](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)
+- [Connecting a virtual machine to a secondary localnet user-defined network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)

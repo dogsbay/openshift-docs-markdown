@@ -34,5 +34,5 @@ If the SCC is allowed for the pod, the kubelet runs the pod with the specified s
 
 ## Additional resources {#additional-resources_configuring-seccomp-profiles}
 
-- [Managing security context constraints](/authentication/managing-security-context-constraints)
-- [Machine Config Overview](/machine_configuration/index#machine-config-overview)
+- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints)
+- [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)

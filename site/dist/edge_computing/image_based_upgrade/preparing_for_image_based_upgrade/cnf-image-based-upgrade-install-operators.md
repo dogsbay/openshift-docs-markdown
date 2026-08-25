@@ -10,7 +10,7 @@ To install the {{ oadp_short }} Operator with the non-GitOps method, see "Instal
 
 **Additional resources**
 
-- [Installing the {{ oadp_short }} Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
-- [About backup and snapshot locations and their secrets](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#oadp-about-backup-snapshot-locations_installing-oadp-ocs)
-- [Creating a Backup CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)
-- [Creating a Restore CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#oadp-creating-restore-cr_restoring-applications)
+- [Installing the {{ oadp_short }} Operator](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
+- [About backup and snapshot locations and their secrets](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#oadp-about-backup-snapshot-locations_installing-oadp-ocs)
+- [Creating a Backup CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)
+- [Creating a Restore CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#oadp-creating-restore-cr_restoring-applications)

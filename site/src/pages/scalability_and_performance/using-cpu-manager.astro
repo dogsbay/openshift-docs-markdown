@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"using-cpu-manager","text":"Using CPU Manager and Topology Manager"}];
 const nav = navData;
-const currentPath = "/scalability_and_performance/using-cpu-manager";
+const currentPath = "/openshift-docs-markdown/scalability_and_performance/using-cpu-manager";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["scalability_and_performance"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using CPU Manager and Topology Manager {#using-cpu-manager}\n\nCPU Manager manages groups of CPUs and constrains workloads to specific CPUs.\n\nCPU Manager is useful for workloads that have some of these attributes:\n\n- Require as much CPU time as possible.\n- Are sensitive to processor cache misses.\n- Are low-latency network applications.\n- Coordinate with other processes and benefit from sharing a single processor cache.\n\nTopology Manager collects hints from the CPU Manager, Device Manager, and other Hint Providers to align pod resources, such as CPU, SR-IOV VFs, and other device resources, for all Quality of Service (QoS) classes on the same non-uniform memory access (NUMA) node.\n\nTopology Manager uses topology information from the collected hints to decide if a pod can be accepted or rejected on a node, based on the configured Topology Manager policy and pod resources requested.\n\nTopology Manager is useful for workloads that use hardware accelerators to support latency-critical execution and high throughput parallel computation.\n\nTo use Topology Manager you must configure CPU Manager with the `static` policy.\n\n**Additional resources**\n\n- [Topology Manager policies](/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager)\n","mdUrl":"/scalability_and_performance/using-cpu-manager.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using CPU Manager and Topology Manager {#using-cpu-manager}\n\nCPU Manager manages groups of CPUs and constrains workloads to specific CPUs.\n\nCPU Manager is useful for workloads that have some of these attributes:\n\n- Require as much CPU time as possible.\n- Are sensitive to processor cache misses.\n- Are low-latency network applications.\n- Coordinate with other processes and benefit from sharing a single processor cache.\n\nTopology Manager collects hints from the CPU Manager, Device Manager, and other Hint Providers to align pod resources, such as CPU, SR-IOV VFs, and other device resources, for all Quality of Service (QoS) classes on the same non-uniform memory access (NUMA) node.\n\nTopology Manager uses topology information from the collected hints to decide if a pod can be accepted or rejected on a node, based on the configured Topology Manager policy and pod resources requested.\n\nTopology Manager is useful for workloads that use hardware accelerators to support latency-critical execution and high throughput parallel computation.\n\nTo use Topology Manager you must configure CPU Manager with the `static` policy.\n\n**Additional resources**\n\n- [Topology Manager policies](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/using-cpu-manager.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -109,7 +109,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/setting-up-topology-manager.md"></p>
       <p class="/modules/pod-interactions-with-topology-manager.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager">Topology Manager policies</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager">Topology Manager policies</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

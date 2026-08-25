@@ -15,14 +15,14 @@ Configure application pods to ensure workload availability during OpenShift Cont
 
 **Additional resources**
 
-- [Specifying the number of pods that must be up with pod disruption budgets](/post_installation_configuration/cluster-tasks#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks)
-- [Configuring an OpenShift Container Platform cluster for pods](/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-configuring_nodes-pods-configuring)
-- [Pod preemption and other scheduler settings](/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority)
+- [Specifying the number of pods that must be up with pod disruption budgets](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks)
+- [Configuring an OpenShift Container Platform cluster for pods](/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-configuring_nodes-pods-configuring)
+- [Pod preemption and other scheduler settings](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#priority-preemption-other_nodes-pods-priority)
 
 **Additional resources**
 
-- [Configuring a pod affinity rule](/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-configuring_nodes-scheduler-pod-affinity)
+- [Configuring a pod affinity rule](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-configuring_nodes-scheduler-pod-affinity)
 
 **Additional resources**
 
-- [Understanding health checks](/applications/application-health#application-health-about_application-health)
+- [Understanding health checks](/openshift-docs-markdown/applications/application-health#application-health-about_application-health)

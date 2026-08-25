@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the specification of the desired behavior of the Kubernetes API Server |
 | `status` | `object` | status is the most recently observed status of the Kubernetes API Server |
 
@@ -239,7 +239,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -256,7 +256,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServerList`](/rest_api/objects/index#io-openshift-operator-v1-KubeAPIServerList) schema |
+| 200 - OK | [`KubeAPIServerList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-v1-KubeAPIServerList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -280,15 +280,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |  |
+| `body` | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
-| 201 - Created | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
-| 202 - Accepted | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 201 - Created | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 202 - Accepted | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operator.openshift.io/v1/kubeapiservers/{{ name }} {#_apisoperatoropenshiftiov1kubeapiservers_name}
@@ -319,8 +319,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -337,7 +337,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -361,7 +361,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -385,14 +385,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |  |
+| `body` | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
-| 201 - Created | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 201 - Created | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operator.openshift.io/v1/kubeapiservers/{{ name }}/status {#_apisoperatoropenshiftiov1kubeapiservers_name_status}
@@ -417,7 +417,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -441,7 +441,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -465,12 +465,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |  |
+| `body` | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
-| 201 - Created | [`KubeAPIServer`](/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 200 - OK | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
+| 201 - Created | [`KubeAPIServer`](/openshift-docs-markdown/rest_api/operator_apis/kubeapiserver-operator-openshift-io-v1#kubeapiserver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

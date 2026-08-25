@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"configuring-request-header-identity-provider","text":"Configuring a request header identity provider"},{"depth":2,"slug":"example-apache-auth-config-using-request-header","text":"Example Apache authentication configuration using request header"}];
 const nav = navData;
-const currentPath = "/authentication/identity_providers/configuring-request-header-identity-provider";
+const currentPath = "/openshift-docs-markdown/authentication/identity_providers/configuring-request-header-identity-provider";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["authentication","authentication/identity_providers"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a request header identity provider {#configuring-request-header-identity-provider}\n\nConfigure the `request-header` identity provider to identify users from request header values, such as `X-Remote-User`. It is typically used in combination with an authenticating proxy, which sets the request header value.\n\n**Additional resources**\n\n- See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.\n\n## Example Apache authentication configuration using request header {#example-apache-auth-config-using-request-header}\n\nThis example configures an Apache authentication proxy for the OpenShift Container Platform using the request header identity provider.\n","mdUrl":"/authentication/identity_providers/configuring-request-header-identity-provider.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a request header identity provider {#configuring-request-header-identity-provider}\n\nConfigure the `request-header` identity provider to identify users from request header values, such as `X-Remote-User`. It is typically used in combination with an authenticating proxy, which sets the request header value.\n\n**Additional resources**\n\n- See [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.\n\n## Example Apache authentication configuration using request header {#example-apache-auth-config-using-request-header}\n\nThis example configures an Apache authentication proxy for the OpenShift Container Platform using the request header identity provider.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/identity_providers/configuring-request-header-identity-provider.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +98,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/identity-provider-config-map.md"></p>
       <p class="/modules/identity-provider-request-header-CR.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li>See <a href="/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider">Identity provider parameters</a> for information on parameters, such as <code>mappingMethod</code>, that are common to all identity providers.</li></ul>
+      <ul><li>See <a href="/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider">Identity provider parameters</a> for information on parameters, such as <code>mappingMethod</code>, that are common to all identity providers.</li></ul>
       <h2 id="example-apache-auth-config-using-request-header" class="group scroll-mt-20">Example Apache authentication configuration using request header<a href="#example-apache-auth-config-using-request-header" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>This example configures an Apache authentication proxy for the OpenShift Container Platform using the request header identity provider.</p>
       <p class="/modules/identity-provider-apache-custom-proxy-configuration.md"></p>

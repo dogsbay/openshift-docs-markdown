@@ -8,4 +8,4 @@ Complete the following steps to perform a z-stream cluster update.
 
 **Additional resources**
 
-- [Selecting the target release](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-selecting-the-target-release_update-api)
+- [Selecting the target release](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-selecting-the-target-release_update-api)

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"vsphere-post-installation-encryption","text":"Enabling encryption on a vSphere cluster"},{"depth":2,"slug":"additional-resources_enabling-encryption-installation","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_vsphere/vsphere-post-installation-encryption";
+const currentPath = "/openshift-docs-markdown/installing/installing_vsphere/vsphere-post-installation-encryption";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_vsphere"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling encryption on a vSphere cluster {#vsphere-post-installation-encryption}\n\nYou can encrypt your virtual machines after installing OpenShift Container Platform 4.22 on vSphere by draining and shutting down your nodes one at a time. While each virtual machine is shutdown, you can enable encryption in the vCenter web interface.\n\n## Additional resources {#additional-resources_enabling-encryption-installation}\n\n- [Evacuating pods on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n- [vSphere persistent disks encryption](/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)\n- [Requirements for encrypting virtual machines](/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)\n","mdUrl":"/installing/installing_vsphere/vsphere-post-installation-encryption.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling encryption on a vSphere cluster {#vsphere-post-installation-encryption}\n\nYou can encrypt your virtual machines after installing OpenShift Container Platform 4.22 on vSphere by draining and shutting down your nodes one at a time. While each virtual machine is shutdown, you can enable encryption in the vCenter web interface.\n\n## Additional resources {#additional-resources_enabling-encryption-installation}\n\n- [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n- [vSphere persistent disks encryption](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)\n- [Requirements for encrypting virtual machines](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_vsphere/vsphere-post-installation-encryption.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,9 +96,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/vsphere-encrypting-vms.md"></p>
       <h2 id="additional-resources_enabling-encryption-installation" class="group scroll-mt-20">Additional resources<a href="#additional-resources_enabling-encryption-installation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working">Evacuating pods on nodes</a></li>
-      <li><a href="/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption">vSphere persistent disks encryption</a></li>
-      <li><a href="/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs">Requirements for encrypting virtual machines</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working">Evacuating pods on nodes</a></li>
+      <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption">vSphere persistent disks encryption</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs">Requirements for encrypting virtual machines</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

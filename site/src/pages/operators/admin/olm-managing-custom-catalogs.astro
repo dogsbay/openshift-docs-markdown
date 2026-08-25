@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"olm-managing-custom-catalogs","text":"Managing custom catalogs"},{"depth":2,"slug":"olm-managing-custom-catalogs-bundle-format-prereqs","text":"Prerequisites"},{"depth":2,"slug":"olm-managing-custom-catalogs-fb","text":"File-based catalogs"}];
 const nav = navData;
-const currentPath = "/operators/admin/olm-managing-custom-catalogs";
+const currentPath = "/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["operators","operators/admin"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing custom catalogs {#olm-managing-custom-catalogs}\n\n{% include \"./_attributes/common-attributes.md\" %} Cluster administrators\n\nand Operator catalog maintainers can create and manage custom catalogs packaged using the bundle format on Operator Lifecycle Manager (OLM) in OpenShift Container Platform.\n\n> [!IMPORTANT]\n> Kubernetes periodically deprecates certain APIs that are removed in subsequent releases. As a result, Operators are unable to use removed APIs starting with the version of OpenShift Container Platform that uses the Kubernetes version that removed the API.\n\n**Additional resources**\n\n- [Bundle format](/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)\n- [Red Hat-provided Operator catalogs](/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)\n\n## Prerequisites {#olm-managing-custom-catalogs-bundle-format-prereqs}\n\n- You have installed the `opm` CLI.\n\n**Additional resources**\n\n- [`opm` CLI installation](/cli_reference/opm/cli-opm-install#cli-opm-install)\n\n## File-based catalogs {#olm-managing-custom-catalogs-fb}\n\n*File-based catalogs* are the latest iteration of the catalog format in Operator Lifecycle Manager (OLM). It is a plain text-based (JSON or YAML) and declarative config evolution of the earlier SQLite database format, and it is fully backwards compatible.\n\n> [!IMPORTANT]\n> As of OpenShift Container Platform 4.11, the default Red Hat-provided Operator catalog releases in the file-based catalog format. The default Red Hat-provided Operator catalogs for OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.\n>\n> The `opm` subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.\n>\n> Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format. For more information about working with file-based catalogs, see \"Operator Framework packaging format\" and \"Mirroring images for a disconnected installation using the oc-mirror plugin\".\n\n**Additional resources**\n\n- [Docker v2-2](https://docs.docker.com/registry/spec/manifest-v2-2/)\n- [`opm` CLI reference](/cli_reference/opm/cli-opm-ref#cli-opm-ref)\n- [Operator Framework packaging format](/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin](/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n\n**Additional resources**\n\n- [Packaging format -> Schemas -> olm.deprecations schema](/operators/understanding/olm-packaging-format#olm-deprecations-schema_olm-packaging-format)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin -> Keeping your mirror registry content updated](/disconnected/installing-mirroring-disconnected#updating-mirror-registry-content)\n- [Adding a catalog source to a cluster](/disconnected/using-olm#olm-creating-catalog-from-index_olm-restricted-networks)\n\n**Additional resources**\n\n- [Understanding and managing pod security admission](/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)\n\n**Additional resources**\n\n- [Adding a catalog source to a cluster](/operators/admin/olm-managing-custom-catalogs#olm-creating-catalog-from-index_olm-managing-custom-catalogs)\n\n**Additional resources**\n\n- [Operator Lifecycle Manager concepts and resources -> Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)\n- [Accessing images for Operators from private registries](/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)\n- [Image pull policy](/openshift_images/managing_images/image-pull-policy#image-pull-policy)\n\n**Additional resources**\n\n- [What is a secret?](/cicd/builds/creating-build-inputs#builds-secrets-overview_creating-build-inputs)\n- [Updating the global cluster pull secret](/openshift_images/managing_images/using-image-pull-secrets#images-update-global-pull-secret_using-image-pull-secrets)\n- [Allowing pods to reference images from other secured registries](/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-from-secure-registries_using-image-pull-secrets)\n","mdUrl":"/operators/admin/olm-managing-custom-catalogs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing custom catalogs {#olm-managing-custom-catalogs}\n\n{% include \"./_attributes/common-attributes.md\" %} Cluster administrators\n\nand Operator catalog maintainers can create and manage custom catalogs packaged using the bundle format on Operator Lifecycle Manager (OLM) in OpenShift Container Platform.\n\n> [!IMPORTANT]\n> Kubernetes periodically deprecates certain APIs that are removed in subsequent releases. As a result, Operators are unable to use removed APIs starting with the version of OpenShift Container Platform that uses the Kubernetes version that removed the API.\n\n**Additional resources**\n\n- [Bundle format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)\n- [Red Hat-provided Operator catalogs](/openshift-docs-markdown/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)\n\n## Prerequisites {#olm-managing-custom-catalogs-bundle-format-prereqs}\n\n- You have installed the `opm` CLI.\n\n**Additional resources**\n\n- [`opm` CLI installation](/openshift-docs-markdown/cli_reference/opm/cli-opm-install#cli-opm-install)\n\n## File-based catalogs {#olm-managing-custom-catalogs-fb}\n\n*File-based catalogs* are the latest iteration of the catalog format in Operator Lifecycle Manager (OLM). It is a plain text-based (JSON or YAML) and declarative config evolution of the earlier SQLite database format, and it is fully backwards compatible.\n\n> [!IMPORTANT]\n> As of OpenShift Container Platform 4.11, the default Red Hat-provided Operator catalog releases in the file-based catalog format. The default Red Hat-provided Operator catalogs for OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.\n>\n> The `opm` subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.\n>\n> Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format. For more information about working with file-based catalogs, see \"Operator Framework packaging format\" and \"Mirroring images for a disconnected installation using the oc-mirror plugin\".\n\n**Additional resources**\n\n- [Docker v2-2](https://docs.docker.com/registry/spec/manifest-v2-2/)\n- [`opm` CLI reference](/openshift-docs-markdown/cli_reference/opm/cli-opm-ref#cli-opm-ref)\n- [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n\n**Additional resources**\n\n- [Packaging format -> Schemas -> olm.deprecations schema](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-deprecations-schema_olm-packaging-format)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin -> Keeping your mirror registry content updated](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#updating-mirror-registry-content)\n- [Adding a catalog source to a cluster](/openshift-docs-markdown/disconnected/using-olm#olm-creating-catalog-from-index_olm-restricted-networks)\n\n**Additional resources**\n\n- [Understanding and managing pod security admission](/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)\n\n**Additional resources**\n\n- [Adding a catalog source to a cluster](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-creating-catalog-from-index_olm-managing-custom-catalogs)\n\n**Additional resources**\n\n- [Operator Lifecycle Manager concepts and resources -> Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)\n- [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)\n- [Image pull policy](/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy#image-pull-policy)\n\n**Additional resources**\n\n- [What is a secret?](/openshift-docs-markdown/cicd/builds/creating-build-inputs#builds-secrets-overview_creating-build-inputs)\n- [Updating the global cluster pull secret](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-update-global-pull-secret_using-image-pull-secrets)\n- [Allowing pods to reference images from other secured registries](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-from-secure-registries_using-image-pull-secrets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,13 +104,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format">Bundle format</a></li>
-      <li><a href="/operators/understanding/olm-rh-catalogs#olm-rh-catalogs">Red Hat-provided Operator catalogs</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format">Bundle format</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm-rh-catalogs#olm-rh-catalogs">Red Hat-provided Operator catalogs</a></li>
       </ul>
       <h2 id="olm-managing-custom-catalogs-bundle-format-prereqs" class="group scroll-mt-20">Prerequisites<a href="#olm-managing-custom-catalogs-bundle-format-prereqs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li>You have installed the <code>opm</code> CLI.</li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/cli_reference/opm/cli-opm-install#cli-opm-install"><code>opm</code> CLI installation</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/opm/cli-opm-install#cli-opm-install"><code>opm</code> CLI installation</a></li></ul>
       <h2 id="olm-managing-custom-catalogs-fb" class="group scroll-mt-20">File-based catalogs<a href="#olm-managing-custom-catalogs-fb" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p><em>File-based catalogs</em> are the latest iteration of the catalog format in Operator Lifecycle Manager (OLM). It is a plain text-based (JSON or YAML) and declarative config evolution of the earlier SQLite database format, and it is fully backwards compatible.</p>
       <Alert variant="info" class="my-4">
@@ -125,37 +125,37 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.docker.com/registry/spec/manifest-v2-2/">Docker v2-2</a></li>
-      <li><a href="/cli_reference/opm/cli-opm-ref#cli-opm-ref"><code>opm</code> CLI reference</a></li>
-      <li><a href="/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format">Operator Framework packaging format</a></li>
-      <li><a href="/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected">Mirroring images for a disconnected installation using the oc-mirror plugin</a></li>
+      <li><a href="/openshift-docs-markdown/cli_reference/opm/cli-opm-ref#cli-opm-ref"><code>opm</code> CLI reference</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format">Operator Framework packaging format</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected">Mirroring images for a disconnected installation using the oc-mirror plugin</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/understanding/olm-packaging-format#olm-deprecations-schema_olm-packaging-format">Packaging format -&gt; Schemas -&gt; olm.deprecations schema</a></li>
-      <li><a href="/disconnected/installing-mirroring-disconnected#updating-mirror-registry-content">Mirroring images for a disconnected installation using the oc-mirror plugin -&gt; Keeping your mirror registry content updated</a></li>
-      <li><a href="/disconnected/using-olm#olm-creating-catalog-from-index_olm-restricted-networks">Adding a catalog source to a cluster</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-deprecations-schema_olm-packaging-format">Packaging format -&gt; Schemas -&gt; olm.deprecations schema</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#updating-mirror-registry-content">Mirroring images for a disconnected installation using the oc-mirror plugin -&gt; Keeping your mirror registry content updated</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-creating-catalog-from-index_olm-restricted-networks">Adding a catalog source to a cluster</a></li>
       </ul>
       <p class="/modules/olm-creating-index-image.md"></p>
       <p class="/modules/olm-updating-index-image.md"></p>
       <p class="/modules/olm-pruning-index-image.md"></p>
       <p class="/modules/olm-catalog-source-and-psa.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission">Understanding and managing pod security admission</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission">Understanding and managing pod security admission</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/operators/admin/olm-managing-custom-catalogs#olm-creating-catalog-from-index_olm-managing-custom-catalogs">Adding a catalog source to a cluster</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-creating-catalog-from-index_olm-managing-custom-catalogs">Adding a catalog source to a cluster</a></li></ul>
       <p class="/modules/olm-sqlite-catalog-configuring-elevated-permissions.md"></p>
       <p class="/modules/olm-creating-catalog-from-index.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm">Operator Lifecycle Manager concepts and resources -&gt; Catalog source</a></li>
-      <li><a href="/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs">Accessing images for Operators from private registries</a></li>
-      <li><a href="/openshift_images/managing_images/image-pull-policy#image-pull-policy">Image pull policy</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm">Operator Lifecycle Manager concepts and resources -&gt; Catalog source</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs">Accessing images for Operators from private registries</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy#image-pull-policy">Image pull policy</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/cicd/builds/creating-build-inputs#builds-secrets-overview_creating-build-inputs">What is a secret?</a></li>
-      <li><a href="/openshift_images/managing_images/using-image-pull-secrets#images-update-global-pull-secret_using-image-pull-secrets">Updating the global cluster pull secret</a></li>
-      <li><a href="/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-from-secure-registries_using-image-pull-secrets">Allowing pods to reference images from other secured registries</a></li>
+      <li><a href="/openshift-docs-markdown/cicd/builds/creating-build-inputs#builds-secrets-overview_creating-build-inputs">What is a secret?</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-update-global-pull-secret_using-image-pull-secrets">Updating the global cluster pull secret</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-from-secure-registries_using-image-pull-secrets">Allowing pods to reference images from other secured registries</a></li>
       </ul>
       <p class="/modules/olm-removing-catalogs.md"></p>
     </article>

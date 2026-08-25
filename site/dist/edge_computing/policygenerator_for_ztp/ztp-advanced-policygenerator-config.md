@@ -8,34 +8,34 @@ You can use `{{ policy_gen_cr }}` CRs to deploy custom functionality in your man
 
 **Additional resources**
 
-- [Customizing extra installation manifests in the {{ ztp }} pipeline](/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)
+- [Customizing extra installation manifests in the {{ ztp }} pipeline](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)
 
 **Additional resources**
 
-- [Upgrading {{ ztp }}](/edge_computing/ztp-updating-gitops#ztp-updating-gitops)
+- [Upgrading {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-updating-gitops#ztp-updating-gitops)
 
 **Additional resources**
 
-- [Configuring node power consumption and realtime processing with workload hints](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#configuring-workload-hints_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Configuring node power consumption and realtime processing with workload hints](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#configuring-workload-hints_cnf-tuning-low-latency-nodes-with-perf-profile)
 
 **Additional resources**
 
-- [Configuring power saving for nodes that run colocated high and low priority workloads](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-configuring-power-saving-for-nodes_cnf-tuning-low-latency-nodes-with-perf-profile)
-- [Configuring host firmware for low latency and high performance](/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu)
-- [Preparing the {{ ztp }} site configuration repository](/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)
+- [Configuring power saving for nodes that run colocated high and low priority workloads](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-configuring-power-saving-for-nodes_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Configuring host firmware for low latency and high performance](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu)
+- [Preparing the {{ ztp }} site configuration repository](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)
 
 **Additional resources**
 
-- [Using PolicyGenerator CRs to override source CRs content](/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-using-pgt-to-update-source-crs_ztp-advanced-policygenerator-config)
+- [Using PolicyGenerator CRs to override source CRs content](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-using-pgt-to-update-source-crs_ztp-advanced-policygenerator-config)
 
 **Additional resources**
 
-- [{{ product_registry }} overview](/registry/index#registry-overview)
+- [{{ product_registry }} overview](/openshift-docs-markdown/registry/index#registry-overview)
 
 **Additional resources**
 
-- [OpenShift Container Platform registry overview](/registry/index#registry-overview)
+- [OpenShift Container Platform registry overview](/openshift-docs-markdown/registry/index#registry-overview)
 
 **Additional resources**
 
-- [Accessing the registry](/registry/accessing-the-registry#accessing-the-registry)
+- [Accessing the registry](/openshift-docs-markdown/registry/accessing-the-registry#accessing-the-registry)

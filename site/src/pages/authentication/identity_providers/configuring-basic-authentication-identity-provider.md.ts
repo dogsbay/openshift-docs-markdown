@@ -2,7 +2,7 @@
 // Source: authentication/identity_providers/configuring-basic-authentication-identity-provider.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring a basic authentication identity provider\n---\n\n# Configuring a basic authentication identity provider {#configuring-basic-authentication-identity-provider}\n\nConfigure the `basic-authentication` identity provider. Users can log in to OpenShift Container Platform with credentials validated against a remote authentication service, without maintaining a separate user store in the cluster.\n\n**Additional resources**\n\n- [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)\n";
+const body = "---\ntitle: Configuring a basic authentication identity provider\n---\n\n# Configuring a basic authentication identity provider {#configuring-basic-authentication-identity-provider}\n\nConfigure the `basic-authentication` identity provider. Users can log in to OpenShift Container Platform with credentials validated against a remote authentication service, without maintaining a separate user store in the cluster.\n\n**Additional resources**\n\n- [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the source and target of the connectivity check |
 | `status` | `object` | status contains the observed status of the connectivity check |
 
@@ -311,7 +311,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheckList`](/rest_api/objects/index#io-openshift-operator-controlplane-v1alpha1-PodNetworkConnectivityCheckList) schema |
+| 200 - OK | [`PodNetworkConnectivityCheckList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-controlplane-v1alpha1-PodNetworkConnectivityCheckList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks}
@@ -330,7 +330,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -347,7 +347,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheckList`](/rest_api/objects/index#io-openshift-operator-controlplane-v1alpha1-PodNetworkConnectivityCheckList) schema |
+| 200 - OK | [`PodNetworkConnectivityCheckList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-controlplane-v1alpha1-PodNetworkConnectivityCheckList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -371,15 +371,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |  |
+| `body` | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
-| 201 - Created | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
-| 202 - Accepted | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 200 - OK | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 201 - Created | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 202 - Accepted | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }} {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name}
@@ -410,8 +410,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -428,7 +428,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 200 - OK | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -452,7 +452,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 200 - OK | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -476,14 +476,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |  |
+| `body` | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
-| 201 - Created | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 200 - OK | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 201 - Created | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}/status {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name_status}
@@ -508,7 +508,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 200 - OK | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -532,7 +532,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 200 - OK | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -556,12 +556,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |  |
+| `body` | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
-| 201 - Created | [`PodNetworkConnectivityCheck`](/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 200 - OK | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
+| 201 - Created | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |

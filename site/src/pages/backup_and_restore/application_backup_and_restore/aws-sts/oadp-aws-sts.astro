@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"oadp-aws-sts","text":"Backing up applications on AWS STS using OADP"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/aws-sts/oadp-aws-sts";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/aws-sts/oadp-aws-sts";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/aws-sts"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up applications on AWS STS using OADP {#oadp-aws-sts}\n\nInstall the {{ oadp_first }} with {{ aws_first }} by installing the OADP Operator. The Operator installs {{ velero_link }}.\n\nYou configure {{ aws_short }} for Velero, create a default `Secret`, and then install the Data Protection Application. For more details, see *Installing the OADP Operator*.\n\nTo install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog. See *Using Operator Lifecycle Manager in disconnected environments*.\n\nYou can install {{ oadp_short }} on an AWS {{ sts_first }} (AWS STS) cluster manually. Amazon {{ aws_short }} provides {{ aws_short }} STS as a web service that enables you to request temporary, limited-privilege credentials for users. You use STS to provide trusted users with temporary access to resources via API calls, your {{ aws_short }} console, or the {{ aws_short }} command-line interface (CLI).\n\nBefore installing {{ oadp_first }}, you must set up role and policy credentials for {{ oadp_short }} so that it can use the {{ aws_full }} API.\n\nThis process is performed in the following two stages:\n\n1. Prepare {{ aws_short }} credentials.\n2. Install the OADP Operator and give it an IAM role.\n\n**Additional resources**\n\n- [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n- [Installing from the software catalog using the web console](/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)\n- [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)\n","mdUrl":"/backup_and_restore/application_backup_and_restore/aws-sts/oadp-aws-sts.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up applications on AWS STS using OADP {#oadp-aws-sts}\n\nInstall the {{ oadp_first }} with {{ aws_first }} by installing the OADP Operator. The Operator installs {{ velero_link }}.\n\nYou configure {{ aws_short }} for Velero, create a default `Secret`, and then install the Data Protection Application. For more details, see *Installing the OADP Operator*.\n\nTo install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog. See *Using Operator Lifecycle Manager in disconnected environments*.\n\nYou can install {{ oadp_short }} on an AWS {{ sts_first }} (AWS STS) cluster manually. Amazon {{ aws_short }} provides {{ aws_short }} STS as a web service that enables you to request temporary, limited-privilege credentials for users. You use STS to provide trusted users with temporary access to resources via API calls, your {{ aws_short }} console, or the {{ aws_short }} command-line interface (CLI).\n\nBefore installing {{ oadp_first }}, you must set up role and policy credentials for {{ oadp_short }} so that it can use the {{ aws_full }} API.\n\nThis process is performed in the following two stages:\n\n1. Prepare {{ aws_short }} credentials.\n2. Install the OADP Operator and give it an IAM role.\n\n**Additional resources**\n\n- [Installing the OADP Operator](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- [Installing from the software catalog using the web console](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)\n- [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/aws-sts/oadp-aws-sts.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,10 +105,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installing-oadp-aws-sts.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc">Installing the OADP Operator</a></li>
-      <li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
-      <li><a href="/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace">Installing from the software catalog using the web console</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications">Backing up applications</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc">Installing the OADP Operator</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
+      <li><a href="/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace">Installing from the software catalog using the web console</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications">Backing up applications</a></li>
       </ul>
       <p class="/modules/cleanup-a-backup-oadp-aws-sts.md"></p>
     </article>

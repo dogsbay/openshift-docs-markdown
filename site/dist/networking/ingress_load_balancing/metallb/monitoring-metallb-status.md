@@ -8,4 +8,4 @@ As an OpenShift Container Platform system administrator, you can monitor the ope
 
 ## Additional resources {#_additional_resources}
 
-- [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb)
+- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)

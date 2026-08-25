@@ -44,5 +44,5 @@ When you use `ExternalIP`, you can set up IP failover to have the same VIP range
 
 **Additional resources**
 
-- [Configuration for ExternalIP](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuration-externalip_configuring-externalip)
+- [Configuration for ExternalIP](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuration-externalip_configuring-externalip)
 - [Kubernetes documentation on ExternalIP](https://kubernetes.io/docs/concepts/services-networking/service/#external-ips)

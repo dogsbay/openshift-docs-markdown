@@ -8,5 +8,5 @@ As a cluster administrator, you can customize the OpenShift Container Platform w
 
 ## Additional resources {#additional-resources_virt-customize-web-console}
 
-- [Dynamic plugins overview](/web_console/dynamic-plugin/overview-dynamic-plugin#overview-dynamic-plugin)
-- [Getting started with dynamic plugins](/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugins-get-started)
+- [Dynamic plugins overview](/openshift-docs-markdown/web_console/dynamic-plugin/overview-dynamic-plugin#overview-dynamic-plugin)
+- [Getting started with dynamic plugins](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugins-get-started)

@@ -11,7 +11,7 @@ To prepare for an image-based installation for {{ sno }} clusters, you must comp
 
 **Additional resources**
 
-- [Software prerequisites for an image-based installation and deployment](/edge_computing/image_base_install/ibi-understanding-image-based-install#ztp-image-based-upgrade-prereqs_ibi-understanding-image-based-install)
+- [Software prerequisites for an image-based installation and deployment](/openshift-docs-markdown/edge_computing/image_base_install/ibi-understanding-image-based-install#ztp-image-based-upgrade-prereqs_ibi-understanding-image-based-install)
 
 ## Installing the {{ lcao }} {#_installing_the_lcao}
 

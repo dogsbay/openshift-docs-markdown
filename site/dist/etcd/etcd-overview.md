@@ -19,4 +19,4 @@ By using etcd, you can benefit in several ways:
 
 **Additional resources**
 
-- [Recommended etcd practices](/etcd/etcd-practices#etcd-practices)
+- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#etcd-practices)

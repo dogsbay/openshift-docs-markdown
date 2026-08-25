@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"configuring-network-observability-operators","text":"Configuring the Network Observability Operator"}];
 const nav = navData;
-const currentPath = "/observability/network_observability/configuring-operator";
+const currentPath = "/openshift-docs-markdown/observability/network_observability/configuring-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the Network Observability Operator {#configuring-network-observability-operators}\n\nConfigure the Network Observability Operator by updating the cluster-wide `FlowCollector` API resource (cluster) to manage component configurations and flow collection settings.\n\nThe `FlowCollector` is explicitly created during installation. Since this resource operates cluster-wide, only a single `FlowCollector` is allowed, and it must be named `cluster`. For more information, see the \"FlowCollector API reference\".\n\n**Additional resources**\n\n- [FlowCollector API reference](/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)\n- [Working with conversation tracking](/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic)\n\n**Additional resources**\n\n- [Network flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)\n\n**Additional resources**\n\n- [Filtering eBPF flow data using multiple rules](/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)\n\n**Additional resources**\n\n- [Observing the network traffic from the traffic flows view](/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic)\n- [Network observability without Loki](/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)\n- [Network Flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)\n","mdUrl":"/observability/network_observability/configuring-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the Network Observability Operator {#configuring-network-observability-operators}\n\nConfigure the Network Observability Operator by updating the cluster-wide `FlowCollector` API resource (cluster) to manage component configurations and flow collection settings.\n\nThe `FlowCollector` is explicitly created during installation. Since this resource operates cluster-wide, only a single `FlowCollector` is allowed, and it must be named `cluster`. For more information, see the \"FlowCollector API reference\".\n\n**Additional resources**\n\n- [FlowCollector API reference](/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)\n- [Working with conversation tracking](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic)\n\n**Additional resources**\n\n- [Network flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)\n\n**Additional resources**\n\n- [Filtering eBPF flow data using multiple rules](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)\n\n**Additional resources**\n\n- [Observing the network traffic from the traffic flows view](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic)\n- [Network observability without Loki](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)\n- [Network Flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/configuring-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,8 +98,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/network-observability-flowcollector-example.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability">FlowCollector API reference</a></li>
-      <li><a href="/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic">Working with conversation tracking</a></li>
+      <li><a href="/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability">FlowCollector API reference</a></li>
+      <li><a href="/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic">Working with conversation tracking</a></li>
       </ul>
       <p class="/modules/network-observability-create-cluster-role-bindings-custom-namespace.md"></p>
       <p class="/modules/network-observability-grant-access-kafka-secrets.md"></p>
@@ -107,18 +107,18 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/network-observability-flowcollector-kafka-config.md"></p>
       <p class="/modules/network-observability-enriched-flows.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference">Network flows format reference</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference">Network flows format reference</a></li></ul>
       <p class="/modules/network-observability-filter-network-flows-at-ingestion.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic">Filtering eBPF flow data using multiple rules</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic">Filtering eBPF flow data using multiple rules</a></li></ul>
       <p class="/modules/network-observability-resource-recommendations.md"></p>
       <p class="/modules/network-observability-resources-table.md"></p>
       <p class="/modules/network-observability-total-resource-usage.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic">Observing the network traffic from the traffic flows view</a></li>
-      <li><a href="/observability/network_observability/installing-operators#network-observability-without-loki_network_observability">Network observability without Loki</a></li>
-      <li><a href="/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference">Network Flows format reference</a></li>
+      <li><a href="/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic">Observing the network traffic from the traffic flows view</a></li>
+      <li><a href="/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-without-loki_network_observability">Network observability without Loki</a></li>
+      <li><a href="/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference">Network Flows format reference</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

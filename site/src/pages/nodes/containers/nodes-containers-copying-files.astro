@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-containers-copying-files","text":"Copying files to or from OpenShift Container Platform containers"}];
 const nav = navData;
-const currentPath = "/nodes/containers/nodes-containers-copying-files";
+const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-copying-files";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/containers"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Copying files to or from OpenShift Container Platform containers {#nodes-containers-copying-files}\n\nYou can use the `oc rsync` command, or remote sync, to copy local files to or from a remote directory in a OpenShift Container Platform container.\n\nThe `oc rsync` command leverages the local Rsync tool on the client machine and the remote container for tasks such as copying database archives to and from your pods for backup and restore purposes, or copying source code changes into a running pod for development debugging.\n\n> [!NOTE]\n> If the Rsync tool is not found locally or in the remote container, a **tar** archive is created locally and sent to the container where the **tar** utility is used to extract the files. If **tar** is not available in the remote container, the copy fails.\n","mdUrl":"/nodes/containers/nodes-containers-copying-files.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Copying files to or from OpenShift Container Platform containers {#nodes-containers-copying-files}\n\nYou can use the `oc rsync` command, or remote sync, to copy local files to or from a remote directory in a OpenShift Container Platform container.\n\nThe `oc rsync` command leverages the local Rsync tool on the client machine and the remote container for tasks such as copying database archives to and from your pods for backup and restore purposes, or copying source code changes into a running pod for development debugging.\n\n> [!NOTE]\n> If the Rsync tool is not found locally or in the remote container, a **tar** archive is created locally and sent to the container where the **tar** utility is used to extract the files. If **tar** is not available in the remote container, the copy fails.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-copying-files.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

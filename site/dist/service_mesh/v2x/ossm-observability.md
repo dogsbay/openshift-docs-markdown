@@ -4,7 +4,7 @@ title: Metrics, logs, and traces
 
 # Metrics, logs, and traces {#ossm-observability}
 
-Once you have added your application to the mesh, you can observe the data flow through your application. If you do not have your own application installed, you can see how observability works in {{ SMProductName }} by installing the [Bookinfo sample application](/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-tutorial-bookinfo-overview_ossm-create-mesh).
+Once you have added your application to the mesh, you can observe the data flow through your application. If you do not have your own application installed, you can see how observability works in {{ SMProductName }} by installing the [Bookinfo sample application](/openshift-docs-markdown/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-tutorial-bookinfo-overview_ossm-create-mesh).
 
 ## Additional resources {#additional-resources_user-workload-monitoring}
 

@@ -2,7 +2,7 @@
 // Source: authentication/bound-service-account-tokens.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Using bound service account tokens\n---\n\n# Using bound service account tokens {#bound-service-account-tokens}\n\nYou can use bound service account tokens, which improve the ability to integrate with cloud provider identity access management (IAM) services such as OpenShift Container Platform on {{ aws_short }} IAM or {{ gcp_full }} IAM.\n\n## Additional resources {#additional-resources_bound-service-account-tokens}\n\n- [Rebooting a node gracefully](/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)\n- [Creating service accounts](/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts)\n";
+const body = "---\ntitle: Using bound service account tokens\n---\n\n# Using bound service account tokens {#bound-service-account-tokens}\n\nYou can use bound service account tokens, which improve the ability to integrate with cloud provider identity access management (IAM) services such as OpenShift Container Platform on {{ aws_short }} IAM or {{ gcp_full }} IAM.\n\n## Additional resources {#additional-resources_bound-service-account-tokens}\n\n- [Rebooting a node gracefully](/openshift-docs-markdown/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)\n- [Creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

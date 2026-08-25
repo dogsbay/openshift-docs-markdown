@@ -29,11 +29,11 @@ The default OpenShift Container Platform pod scheduler is responsible for determ
 
 ## Additional resources {#additional-resources_nodes-scheduler-about}
 
-- [Scheduler profiles](/nodes/scheduling/nodes-scheduler-profiles#nodes-scheduler-profiles)
-- [Pod affinity and anti-affinity rules](/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)
-- [Node affinity](/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity-about_nodes-scheduler-node-affinity)
-- [Node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
-- [Taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)
-- [Node overcommitment](/nodes/scheduling/nodes-scheduler-overcommit#nodes-scheduler-overcommit)
-- [Controlling pod placement on nodes using node affinity rules](/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)
-- [Placing pods relative to other pods using affinity and anti-affinity rules](/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)
+- [Scheduler profiles](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-profiles#nodes-scheduler-profiles)
+- [Pod affinity and anti-affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)
+- [Node affinity](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity-about_nodes-scheduler-node-affinity)
+- [Node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
+- [Taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)
+- [Node overcommitment](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-overcommit#nodes-scheduler-overcommit)
+- [Controlling pod placement on nodes using node affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)
+- [Placing pods relative to other pods using affinity and anti-affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)

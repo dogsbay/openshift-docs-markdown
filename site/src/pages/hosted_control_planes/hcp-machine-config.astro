@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"hcp-machine-config","text":"Handling machine configuration for {{ hcp }}"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-machine-config";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-machine-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Handling machine configuration for {{ hcp }} {#hcp-machine-config}\n\nIn a standalone OpenShift Container Platform cluster, a machine config pool manages a set of nodes. You can handle a machine configuration by using the `MachineConfigPool` custom resource (CR).\n\n> [!TIP]\n> You can reference any `machineconfiguration.openshift.io` resources in the `nodepool.spec.config` field of the `NodePool` CR.\n\nIn {{ hcp }}, the `MachineConfigPool` CR does not exist. A node pool contains a set of compute nodes. You can handle a machine configuration by using node pools.\n\nYou can manage your workloads in your hosted cluster by using the cluster autoscaler.\n\n> [!NOTE]\n> In OpenShift Container Platform 4.18 or later, the default container runtime for worker nodes is changed from runC to crun.\n\n**Additional resources**\n\n- [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)\n- [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)\n\n**Additional resources**\n\n- [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)\n- [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)\n- [Scaling a node pool ({{ VirtProductName }})](/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt)\n","mdUrl":"/hosted_control_planes/hcp-machine-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Handling machine configuration for {{ hcp }} {#hcp-machine-config}\n\nIn a standalone OpenShift Container Platform cluster, a machine config pool manages a set of nodes. You can handle a machine configuration by using the `MachineConfigPool` custom resource (CR).\n\n> [!TIP]\n> You can reference any `machineconfiguration.openshift.io` resources in the `nodepool.spec.config` field of the `NodePool` CR.\n\nIn {{ hcp }}, the `MachineConfigPool` CR does not exist. A node pool contains a set of compute nodes. You can handle a machine configuration by using node pools.\n\nYou can manage your workloads in your hosted cluster by using the cluster autoscaler.\n\n> [!NOTE]\n> In OpenShift Container Platform 4.18 or later, the default container runtime for worker nodes is changed from runC to crun.\n\n**Additional resources**\n\n- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)\n- [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)\n\n**Additional resources**\n\n- [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)\n- [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)\n- [Scaling a node pool ({{ VirtProductName }})](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-machine-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -117,14 +117,14 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/hcp-configure-ntp.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing">Creating machine configs with Butane</a></li>
+      <li><a href="/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing">Creating machine configs with Butane</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli">Creating a host inventory by using the command line interface</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm">Scaling the NodePool object for a hosted cluster (bare-metal platforms)</a></li>
-      <li><a href="/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm">Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)</a></li>
-      <li><a href="/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt">Scaling a node pool ({"{"}{"{"} VirtProductName {"}"}{"}"})</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm">Scaling the NodePool object for a hosted cluster (bare-metal platforms)</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm">Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt">Scaling a node pool ({"{"}{"{"} VirtProductName {"}"}{"}"})</a></li>
       </ul>
       <p class="/modules/priority-expander-autoscaler-hcp.md"></p>
       <p class="/modules/balance-ignored-labels-autoscaler-hcp.md"></p>

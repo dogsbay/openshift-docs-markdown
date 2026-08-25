@@ -25,32 +25,32 @@ OpenShift Container Platform provides the following CNI plugins for creating sec
 
 - **bridge**: To configure a bridge-based secondary network to allow pods on the same host to communicate with each other and the host, use the following procedure:
 
-  - [Configure a bridge-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-bridge-object_configuring-additional-network-cni)
+  - [Configure a bridge-based secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-bridge-object_configuring-additional-network-cni)
 - **bond-cni**: To provide a method for aggregating multiple network interfaces into a single logical *bonded* interface, use the following procedure:
 
-  - [Configure a Bond CNI secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-bond-cni-object_configuring-additional-network-cni)
+  - [Configure a Bond CNI secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-bond-cni-object_configuring-additional-network-cni)
 - **host-device**: To allow pods access to a physical Ethernet network device on the host system, use the following procedure:
 
-  - [Configure a host-device secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-host-device-object_configuring-additional-network-cni)
+  - [Configure a host-device secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-host-device-object_configuring-additional-network-cni)
 - **ipvlan**: Allow pods on a host to communicate with other hosts and pods on those hosts, similar to a macvlan-based secondary network. Unlike a macvlan-based secondary network, each pod shares the same MAC address as the parent physical network interface. Use the following procedure:
 
-  - [Configure an ipvlan-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-ipvlan-object_configuring-additional-network-cni)
+  - [Configure an ipvlan-based secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-ipvlan-object_configuring-additional-network-cni)
 - **VLAN**: To allow VLAN-based network isolation and connectivity for pods, use the following procedure:
 
-  - [Configure a VLAN-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-vlan-object_configuring-additional-network-cni)
+  - [Configure a VLAN-based secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-vlan-object_configuring-additional-network-cni)
 - **macvlan**: To allow pods on a host to communicate with other hosts and pods on those hosts by using a physical network interface. Each pod that is attached to a macvlan-based secondary network is provided a unique MAC address:
 
-  - [Configure a macvlan-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-macvlan-object_configuring-additional-network-cni)
+  - [Configure a macvlan-based secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-macvlan-object_configuring-additional-network-cni)
 - **TAP**: A TAP device enables user space programs to send and receive network packets. To create a TAP device inside the container namespace, use the following procedure:
 
-  - [Configure a TAP-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-tap-object_configuring-additional-network-cni)
+  - [Configure a TAP-based secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-tap-object_configuring-additional-network-cni)
 - **SR-IOV**: To allow pods to attach to a virtual function (VF) interface on SR-IOV capable hardware on the host system.
 
-  - [Configure an SR-IOV based secondary network](/networking/hardware_networks/about-sriov#about-sriov)
+  - [Configure an SR-IOV based secondary network](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)
 - **route-override**: To allow pods to override and set routes, use the following procedure:
 
-  - [Configure a `route-override` based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-route-override-cni_configuring-additional-network-cni)
+  - [Configure a `route-override` based secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-route-override-cni_configuring-additional-network-cni)
 
 ## Additional resources {#additional-resources_use-cases-secondary-network}
 
-- [Enabling multicast for a project](/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)
+- [Enabling multicast for a project](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)

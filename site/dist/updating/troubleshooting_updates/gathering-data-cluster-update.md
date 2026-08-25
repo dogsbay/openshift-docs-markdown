@@ -8,4 +8,4 @@ title: Gathering data about your cluster update
 
 <a name="additional-resources_gathering-cluster-data"></a>**Additional resources**
 
-- [Gathering data about your cluster for Red Hat Support](/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)
+- [Gathering data about your cluster for Red Hat Support](/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)

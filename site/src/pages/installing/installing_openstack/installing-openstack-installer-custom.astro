@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"installing-openstack-installer-custom","text":"Installing a cluster on OpenStack with customizations"},{"depth":2,"slug":"additional-resources_installing-openstack-installer-custom","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_openstack/installing-openstack-installer-custom";
+const currentPath = "/openshift-docs-markdown/installing/installing_openstack/installing-openstack-installer-custom";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_openstack"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on OpenStack with customizations {#installing-openstack-installer-custom}\n\nIn OpenShift Container Platform version 4.22, you can install a customized cluster on {{ rh_openstack_first }}. To customize the installation, modify parameters in the `install-config.yaml` before you install the cluster.\n\nEnsure that you meet the following prerequisites:\n\n- You reviewed details about the OpenShift Container Platform installation and update processes.\n- You read the documentation on selecting a cluster installation method and preparing it for users.\n- You verified that OpenShift Container Platform 4.22 is compatible with your {{ rh_openstack }} version by using the supported platforms for OpenShift Container Platform clusters section. You can also compare platform support across different versions by viewing the OpenShift Container Platform on {{ rh_openstack }} support matrix.\n- You have a storage service installed in {{ rh_openstack }}, such as block storage (Cinder) or object storage (Swift). Object storage is the recommended storage technology for OpenShift Container Platform registry cluster deployment. For more information, see \"Optimizing storage\".\n- You understand performance and scalability practices for cluster scaling, control plane sizing, and etcd. For more information, see \"Recommended practices for scaling the cluster\".\n- You have the metadata service enabled in {{ rh_openstack }}.\n\nYou can complete the following configurations after you install a cluster on {{ rh_openstack }} with customizations:\n\n- Customize your cluster.\n- Enable remote health reporting.\n- Configure ingress cluster traffic by using a node port.\n- If you did not configure {{ rh_openstack }} to accept application traffic over floating IP addresses, configure {{ rh_openstack }} access with floating IP addresses.\n\n**Additional resources**\n\n- [Installation and update](/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)\n- [Supported platforms for OpenShift Container Platform clusters](/architecture/architecture-installation#supported-platforms-for-openshift-clusters_architecture-installation)\n- [OpenShift Container Platform on {{ rh_openstack }} support matrix (Red Hat Knowledgebase)](https://access.redhat.com/articles/4679401)\n- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Recommended practices for scaling the cluster](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-host-practices)\n\n**Additional resources**\n\n- [Installation configuration parameters for {{ rh_openstack }}](/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)\n\n**Additional resources**\n\n- [Understanding multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)\n\n**Additional resources**\n\n- [Creating a mirror registry with mirror registry for Red Hat OpenShift](/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)\n\n**Additional resources**\n\n- [Accessing the web console](/web_console/web-console#web-console)\n\n**Additional resources**\n\n- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n## Additional resources {#additional-resources_installing-openstack-installer-custom}\n\n- [Postinstallation cluster tasks](/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Configuring ingress cluster traffic by using a NodePort](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#nw-using-nodeport_configuring-ingress-cluster-traffic-nodeport)\n- [Configuring network settings after installing {{ rh_openstack }}](/installing/installing_openstack/installing-openstack-network-config#installation-osp-configuring-api-floating-ip_installing-openstack-network-config)\n","mdUrl":"/installing/installing_openstack/installing-openstack-installer-custom.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on OpenStack with customizations {#installing-openstack-installer-custom}\n\nIn OpenShift Container Platform version 4.22, you can install a customized cluster on {{ rh_openstack_first }}. To customize the installation, modify parameters in the `install-config.yaml` before you install the cluster.\n\nEnsure that you meet the following prerequisites:\n\n- You reviewed details about the OpenShift Container Platform installation and update processes.\n- You read the documentation on selecting a cluster installation method and preparing it for users.\n- You verified that OpenShift Container Platform 4.22 is compatible with your {{ rh_openstack }} version by using the supported platforms for OpenShift Container Platform clusters section. You can also compare platform support across different versions by viewing the OpenShift Container Platform on {{ rh_openstack }} support matrix.\n- You have a storage service installed in {{ rh_openstack }}, such as block storage (Cinder) or object storage (Swift). Object storage is the recommended storage technology for OpenShift Container Platform registry cluster deployment. For more information, see \"Optimizing storage\".\n- You understand performance and scalability practices for cluster scaling, control plane sizing, and etcd. For more information, see \"Recommended practices for scaling the cluster\".\n- You have the metadata service enabled in {{ rh_openstack }}.\n\nYou can complete the following configurations after you install a cluster on {{ rh_openstack }} with customizations:\n\n- Customize your cluster.\n- Enable remote health reporting.\n- Configure ingress cluster traffic by using a node port.\n- If you did not configure {{ rh_openstack }} to accept application traffic over floating IP addresses, configure {{ rh_openstack }} access with floating IP addresses.\n\n**Additional resources**\n\n- [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)\n- [Supported platforms for OpenShift Container Platform clusters](/openshift-docs-markdown/architecture/architecture-installation#supported-platforms-for-openshift-clusters_architecture-installation)\n- [OpenShift Container Platform on {{ rh_openstack }} support matrix (Red Hat Knowledgebase)](https://access.redhat.com/articles/4679401)\n- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Recommended practices for scaling the cluster](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-host-practices)\n\n**Additional resources**\n\n- [Installation configuration parameters for {{ rh_openstack }}](/openshift-docs-markdown/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)\n\n**Additional resources**\n\n- [Understanding multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)\n\n**Additional resources**\n\n- [Creating a mirror registry with mirror registry for Red Hat OpenShift](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)\n\n**Additional resources**\n\n- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)\n\n**Additional resources**\n\n- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n## Additional resources {#additional-resources_installing-openstack-installer-custom}\n\n- [Postinstallation cluster tasks](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Configuring ingress cluster traffic by using a NodePort](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#nw-using-nodeport_configuring-ingress-cluster-traffic-nodeport)\n- [Configuring network settings after installing {{ rh_openstack }}](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-network-config#installation-osp-configuring-api-floating-ip_installing-openstack-network-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_openstack/installing-openstack-installer-custom.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -111,12 +111,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/architecture/architecture-installation#architecture-installation">Installation and update</a></li>
-      <li><a href="/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
-      <li><a href="/architecture/architecture-installation#supported-platforms-for-openshift-clusters_architecture-installation">Supported platforms for OpenShift Container Platform clusters</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/architecture-installation#architecture-installation">Installation and update</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/architecture-installation#supported-platforms-for-openshift-clusters_architecture-installation">Supported platforms for OpenShift Container Platform clusters</a></li>
       <li><a href="https://access.redhat.com/articles/4679401">OpenShift Container Platform on {"{"}{"{"} rh_openstack {"}"}{"}"} support matrix (Red Hat Knowledgebase)</a></li>
-      <li><a href="/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li>
-      <li><a href="/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-host-practices">Recommended practices for scaling the cluster</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-host-practices">Recommended practices for scaling the cluster</a></li>
       </ul>
       <p class="/modules/installation-osp-control-compute-machines.md"></p>
       <p class="/modules/installation-osp-compute-machines.md"></p>
@@ -132,19 +132,19 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-obtaining-installer.md"></p>
       <p class="/modules/installation-initializing.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack">Installation configuration parameters for {"{"}{"{"} rh_openstack {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack">Installation configuration parameters for {"{"}{"{"} rh_openstack {"}"}{"}"}</a></li></ul>
       <p class="/modules/installation-osp-custom-subnet.md"></p>
       <p class="/modules/installation-osp-deploying-bare-metal-machines.md"></p>
       <p class="/modules/installation-osp-provider-networks.md"></p>
       <p class="/modules/installation-osp-provider-network-preparation.md"></p>
       <p class="/modules/installation-osp-deploying-provider-networks-installer.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks">Understanding multiple networks</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks">Understanding multiple networks</a></li></ul>
       <p class="/modules/install-osp-dualstack.md"></p>
       <p class="/modules/install-osp-deploy-dualstack.md"></p>
       <p class="/modules/installation-configuring-shiftstack-single-ipv6.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry">Creating a mirror registry with mirror registry for Red Hat OpenShift</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry">Creating a mirror registry with mirror registry for Red Hat OpenShift</a></li></ul>
       <p class="/modules/ssh-agent-using.md"></p>
       <p class="/modules/installation-osp-accessing-api.md"></p>
       <p class="/modules/installation-osp-accessing-api-floating.md"></p>
@@ -153,15 +153,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-osp-verifying-cluster-status.md"></p>
       <p class="/modules/cli-logging-in-kubeadmin.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/web_console/web-console#web-console">Accessing the web console</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/web_console/web-console#web-console">Accessing the web console</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li></ul>
       <h2 id="additional-resources_installing-openstack-installer-custom" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-openstack-installer-custom" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/post_installation_configuration/cluster-tasks#available_cluster_customizations">Postinstallation cluster tasks</a></li>
-      <li><a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
-      <li><a href="/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#nw-using-nodeport_configuring-ingress-cluster-traffic-nodeport">Configuring ingress cluster traffic by using a NodePort</a></li>
-      <li><a href="/installing/installing_openstack/installing-openstack-network-config#installation-osp-configuring-api-floating-ip_installing-openstack-network-config">Configuring network settings after installing {"{"}{"{"} rh_openstack {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Postinstallation cluster tasks</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#nw-using-nodeport_configuring-ingress-cluster-traffic-nodeport">Configuring ingress cluster traffic by using a NodePort</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_openstack/installing-openstack-network-config#installation-osp-configuring-api-floating-ip_installing-openstack-network-config">Configuring network settings after installing {"{"}{"{"} rh_openstack {"}"}{"}"}</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

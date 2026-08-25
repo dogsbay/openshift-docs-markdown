@@ -23,13 +23,13 @@ After you define multiple regions and zones for your OpenShift Container Platfor
 
 **Additional resources**
 
-- [Parameters for the cluster-wide infrastructure CRD](/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#references-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
+- [Parameters for the cluster-wide infrastructure CRD](/openshift-docs-markdown/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#references-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
 
 **Additional resources**
 
-- [Installing a cluster on vSphere with network customizations](/installing/installing_vsphere/upi/installing-vsphere-network-customizations#installing-vsphere-network-customizations)
-- [Creating a compute machine set](/machine_management/creating_machinesets/creating-machineset-vsphere#machineset-creating_creating-machineset-vsphere)
+- [Installing a cluster on vSphere with network customizations](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere-network-customizations#installing-vsphere-network-customizations)
+- [Creating a compute machine set](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-vsphere#machineset-creating_creating-machineset-vsphere)
 
 **Additional resources**
 
-- [Specifying multiple regions and zones for your cluster on vSphere](/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#specifying-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
+- [Specifying multiple regions and zones for your cluster on vSphere](/openshift-docs-markdown/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#specifying-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)

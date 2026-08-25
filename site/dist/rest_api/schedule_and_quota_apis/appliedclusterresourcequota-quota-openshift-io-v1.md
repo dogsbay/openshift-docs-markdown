@@ -24,7 +24,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ClusterResourceQuotaSpec defines the desired quota restrictions |
 | `status` | `object` | ClusterResourceQuotaStatus defines the actual enforced quota and its current usage |
 
@@ -44,7 +44,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `quota` | [`ResourceQuotaSpec`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaSpec) | quota defines the desired quota |
+| `quota` | [`ResourceQuotaSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaSpec) | quota defines the desired quota |
 | `selector` | `object` | ClusterResourceQuotaSelector is used to select projects.  At least one of LabelSelector or AnnotationSelector must present.  If only one is present, it is the only selection criteria.  If both are specified, the project must match both restrictions. |
 
 ### .spec.selector {#_specselector}
@@ -60,7 +60,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | AnnotationSelector is used to select projects by annotation. |
-| `labels` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | LabelSelector is used to select projects by label. |
+| `labels` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | LabelSelector is used to select projects by label. |
 
 ### .status {#_status}
 
@@ -79,7 +79,7 @@ Required
 | --- | --- | --- |
 | `namespaces` | `array` | namespaces slices the usage by project.  This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects.  This can be used to pull the deltas for a given project. |
 | `namespaces[]` | `object` | ResourceQuotaStatusByNamespace gives status for a particular project |
-| `total` | [`ResourceQuotaStatus`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaStatus) | total defines the actual enforced quota and its current usage across all projects |
+| `total` | [`ResourceQuotaStatus`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaStatus) | total defines the actual enforced quota and its current usage across all projects |
 
 ### .status.namespaces {#_statusnamespaces}
 
@@ -108,7 +108,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `namespace` | `string` | namespace the project this status applies to |
-| `status` | [`ResourceQuotaStatus`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaStatus) | status indicates how many resources have been consumed by this project |
+| `status` | [`ResourceQuotaStatus`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaStatus) | status indicates how many resources have been consumed by this project |
 
 ## API endpoints {#_api_endpoints}
 
@@ -140,7 +140,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AppliedClusterResourceQuotaList`](/rest_api/objects/index#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
+| 200 - OK | [`AppliedClusterResourceQuotaList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas}
@@ -159,7 +159,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AppliedClusterResourceQuotaList`](/rest_api/objects/index#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
+| 200 - OK | [`AppliedClusterResourceQuotaList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas/{{ name }} {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas_name}
@@ -184,5 +184,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AppliedClusterResourceQuota`](/rest_api/schedule_and_quota_apis/appliedclusterresourcequota-quota-openshift-io-v1#appliedclusterresourcequota-quota-openshift-io-v1) schema |
+| 200 - OK | [`AppliedClusterResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/appliedclusterresourcequota-quota-openshift-io-v1#appliedclusterresourcequota-quota-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

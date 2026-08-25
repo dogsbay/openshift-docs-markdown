@@ -27,7 +27,7 @@ import TableRow from "@ui/table/TableRow.astro";
 
 const headings = [{"depth":1,"slug":"virt-reserving-pvc-space-fs-overhead","text":"Reserving PVC space for file system overhead"}];
 const nav = navData;
-const currentPath = "/virt/storage/virt-reserving-pvc-space-fs-overhead";
+const currentPath = "/openshift-docs-markdown/virt/storage/virt-reserving-pvc-space-fs-overhead";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -46,9 +46,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Reserving PVC space for file system overhead {#virt-reserving-pvc-space-fs-overhead}\n\nWhen you create a `DataVolume` custom resource (CR) for a virtual machine (VM) by setting the `spec.storage.volumeMode`  attribute to `Filesystem`, {{ VirtProductName }} automatically accounts for file system overhead.\n\nIf you specify the storage type by using the `spec.pvc` attribute in the `DataVolume` CR, {{ VirtProductName }} does not add any file system overhead and the requested size is passed directly to Kubernetes.\n\nThe default file system overhead value is 6%. For example, if you request a 10 GiB disk and the `spec.storage.volumeMode` attribute is set to `FileSystem`, Kubernetes provisions a PVC of approximately 10.6 GiB so that the VM has the full 10 GiB of space available.\n\n**Example file system overhead for data volumes**\n\n| Requested virtual disk size | Calculated overhead (6%) | Total PVC space provisioned |\n| --- | --- | --- |\n| 10 GiB | 0.6 GiB | 10.6 GiB |\n| 100 GiB | 6 GiB | 106 GiB |\n\n> [!NOTE]\n> You can change the default file system overhead value by editing the `HyperConverged` CR.\n","mdUrl":"/virt/storage/virt-reserving-pvc-space-fs-overhead.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Reserving PVC space for file system overhead {#virt-reserving-pvc-space-fs-overhead}\n\nWhen you create a `DataVolume` custom resource (CR) for a virtual machine (VM) by setting the `spec.storage.volumeMode`  attribute to `Filesystem`, {{ VirtProductName }} automatically accounts for file system overhead.\n\nIf you specify the storage type by using the `spec.pvc` attribute in the `DataVolume` CR, {{ VirtProductName }} does not add any file system overhead and the requested size is passed directly to Kubernetes.\n\nThe default file system overhead value is 6%. For example, if you request a 10 GiB disk and the `spec.storage.volumeMode` attribute is set to `FileSystem`, Kubernetes provisions a PVC of approximately 10.6 GiB so that the VM has the full 10 GiB of space available.\n\n**Example file system overhead for data volumes**\n\n| Requested virtual disk size | Calculated overhead (6%) | Total PVC space provisioned |\n| --- | --- | --- |\n| 10 GiB | 0.6 GiB | 10.6 GiB |\n| 100 GiB | 6 GiB | 106 GiB |\n\n> [!NOTE]\n> You can change the default file system overhead value by editing the `HyperConverged` CR.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-reserving-pvc-space-fs-overhead.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -89,10 +89,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

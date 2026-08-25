@@ -16,7 +16,7 @@ Unless explicitly stated, the material in this document refers to both Edge and 
 **Additional resources**
 
 - [Accessing metrics as an administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator)
-- [Persistent storage using local volumes](/storage/persistent_storage_local/persistent-storage-local#local-storage-install_persistent-storage-local)
+- [Persistent storage using local volumes](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-install_persistent-storage-local)
 
 **Additional resources**
 
@@ -24,6 +24,6 @@ Unless explicitly stated, the material in this document refers to both Edge and 
 
 **Additional resources**
 
-- \[ServiceMonitor[monitoring.coreos.com/v1](/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1)\]
+- \[ServiceMonitor[monitoring.coreos.com/v1](/openshift-docs-markdown/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1)\]
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
 - [Managing alerting rules for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-a-developer#managing-alerting-rules-for-user-defined-projects-uwm_managing-alerts-as-a-developer)

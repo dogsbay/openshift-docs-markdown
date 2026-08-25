@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ResourceQuotaSpec defines the desired hard limits to enforce for Quota. |
 | `status` | `object` | ResourceQuotaStatus defines the enforced hard limits and observed use. |
 
@@ -34,7 +34,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hard` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
+| `hard` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
 | `scopeSelector` | `object` | A scope selector represents the AND of the selectors represented by the scoped-resource selector requirements. |
 | `scopes` | `array (string)` | A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects. |
 
@@ -95,8 +95,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hard` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Hard is the set of enforced hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
-| `used` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Used is the current observed total usage of the resource in the namespace. |
+| `hard` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Hard is the set of enforced hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
+| `used` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Used is the current observed total usage of the resource in the namespace. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -147,7 +147,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuotaList`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaList) schema |
+| 200 - OK | [`ResourceQuotaList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/resourcequotas {#_apiv1watchresourcequotas}
@@ -166,7 +166,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/resourcequotas {#_apiv1namespaces_namespace_resourcequotas}
@@ -191,7 +191,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -208,7 +208,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuotaList`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaList) schema |
+| 200 - OK | [`ResourceQuotaList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -232,15 +232,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |  |
+| `body` | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
-| 201 - Created | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
-| 202 - Accepted | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 201 - Created | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 202 - Accepted | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/resourcequotas {#_apiv1watchnamespaces_namespace_resourcequotas}
@@ -259,7 +259,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/resourcequotas/{{ name }} {#_apiv1namespaces_namespace_resourcequotas_name}
@@ -290,8 +290,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
-| 202 - Accepted | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 202 - Accepted | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -308,7 +308,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -332,8 +332,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
-| 201 - Created | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 201 - Created | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -357,14 +357,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |  |
+| `body` | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
-| 201 - Created | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 201 - Created | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/resourcequotas/{{ name }} {#_apiv1watchnamespaces_namespace_resourcequotas_name}
@@ -389,7 +389,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/resourcequotas/{{ name }}/status {#_apiv1namespaces_namespace_resourcequotas_name_status}
@@ -414,7 +414,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -438,8 +438,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
-| 201 - Created | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 201 - Created | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -463,12 +463,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |  |
+| `body` | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
-| 201 - Created | [`ResourceQuota`](/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 200 - OK | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
+| 201 - Created | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |

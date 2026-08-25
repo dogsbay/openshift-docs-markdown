@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"setting-up-trusted-ca","text":"Setting up additional trusted certificate authorities for builds"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/cicd/builds/setting-up-trusted-ca";
+const currentPath = "/openshift-docs-markdown/cicd/builds/setting-up-trusted-ca";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Setting up additional trusted certificate authorities for builds {#setting-up-trusted-ca}\n\nUse the following sections to set up additional certificate authorities (CA) to be trusted by builds when pulling images from an image registry.\n\nThe procedure requires a cluster administrator to create a `ConfigMap` and add additional CAs as keys in the `ConfigMap`.\n\n- The `ConfigMap` must be created in the `openshift-config` namespace.\n- `domain` is the key in the `ConfigMap` and `value` is the PEM-encoded certificate.\n\n  - Each CA must be associated with a domain. The domain format is `hostname[..port]`.\n- The `ConfigMap` name must be set in the `image.config.openshift.io/cluster` cluster scoped configuration resource’s `spec.additionalTrustedCA` field.\n\n## Additional resources {#_additional_resources}\n\n- [Create a `ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap)\n- [Secrets and `ConfigMaps`](https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/)\n- [Configuring a custom PKI](/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)\n","mdUrl":"/cicd/builds/setting-up-trusted-ca.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Setting up additional trusted certificate authorities for builds {#setting-up-trusted-ca}\n\nUse the following sections to set up additional certificate authorities (CA) to be trusted by builds when pulling images from an image registry.\n\nThe procedure requires a cluster administrator to create a `ConfigMap` and add additional CAs as keys in the `ConfigMap`.\n\n- The `ConfigMap` must be created in the `openshift-config` namespace.\n- `domain` is the key in the `ConfigMap` and `value` is the PEM-encoded certificate.\n\n  - Each CA must be associated with a domain. The domain format is `hostname[..port]`.\n- The `ConfigMap` name must be set in the `image.config.openshift.io/cluster` cluster scoped configuration resource’s `spec.additionalTrustedCA` field.\n\n## Additional resources {#_additional_resources}\n\n- [Create a `ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap)\n- [Secrets and `ConfigMaps`](https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/)\n- [Configuring a custom PKI](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/setting-up-trusted-ca.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,7 +106,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap">Create a <code>ConfigMap</code></a></li>
       <li><a href="https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/">Secrets and <code>ConfigMaps</code></a></li>
-      <li><a href="/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki">Configuring a custom PKI</a></li>
+      <li><a href="/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki">Configuring a custom PKI</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

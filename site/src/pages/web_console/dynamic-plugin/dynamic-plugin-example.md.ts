@@ -2,7 +2,7 @@
 // Source: web_console/dynamic-plugin/dynamic-plugin-example.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Dynamic plugin example\n---\n\n# Dynamic plugin example {#dynamic-plugin-example_{{ context }}}\n\nBefore working through the example, verify that the plugin is working by following the steps in [Dynamic plugin development](/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started)\n";
+const body = "---\ntitle: Dynamic plugin example\n---\n\n# Dynamic plugin example {#dynamic-plugin-example_{{ context }}}\n\nBefore working through the example, verify that the plugin is working by following the steps in [Dynamic plugin development](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

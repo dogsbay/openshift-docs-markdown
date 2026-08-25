@@ -11,12 +11,12 @@ For OpenShift Container Platform platforms that do not support automatic boot im
 
 ## Additional resources {#additional-resources_mco-update-boot-images-manual}
 
-- [Boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images)
-- [Updating the boot image skew enforcement version](/machine_configuration/mco-update-boot-skew-mgmt#mco-update-boot-skew-mgmt)
-- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
-- [Obtaining the installation program](/installing/installing_aws/ipi/ipi-aws-preparing-to-install#installation-obtaining-installer_ipi-aws-preparing-to-install)
-- [Adding compute machines to bare metal](/machine_management/user_infra/adding-bare-metal-compute-user-infra#adding-bare-metal-compute-user-infra)
-- [Configuring an AWS account](/installing/installing_aws/installing-aws-account#installing-aws-account)
-- [Creating additional worker machines in {{ gcp_short }}](/installing/installing_gcp/installing-restricted-networks-gcp#installation-creating-gcp-worker_installing-restricted-networks-gcp)
-- [Requirements for encrypting virtual machines](/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)
-- [Adding compute machines to clusters with user-provisioned infrastructure manually](/machine_management/user_infra/adding-compute-user-infra-general#adding-compute-user-infra-general)
+- [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
+- [Updating the boot image skew enforcement version](/openshift-docs-markdown/machine_configuration/mco-update-boot-skew-mgmt#mco-update-boot-skew-mgmt)
+- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
+- [Obtaining the installation program](/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install#installation-obtaining-installer_ipi-aws-preparing-to-install)
+- [Adding compute machines to bare metal](/openshift-docs-markdown/machine_management/user_infra/adding-bare-metal-compute-user-infra#adding-bare-metal-compute-user-infra)
+- [Configuring an AWS account](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account)
+- [Creating additional worker machines in {{ gcp_short }}](/openshift-docs-markdown/installing/installing_gcp/installing-restricted-networks-gcp#installation-creating-gcp-worker_installing-restricted-networks-gcp)
+- [Requirements for encrypting virtual machines](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)
+- [Adding compute machines to clusters with user-provisioned infrastructure manually](/openshift-docs-markdown/machine_management/user_infra/adding-compute-user-infra-general#adding-compute-user-infra-general)

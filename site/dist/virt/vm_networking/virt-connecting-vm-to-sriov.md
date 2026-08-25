@@ -14,4 +14,4 @@ To configure the SR-IOV network and attach the VM to that network, perform the f
 
 ## Additional resources {#additional-resources_virt-connecting-vm-to-sriov}
 
-- [Configuring DPDK workloads for improved performance](/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)
+- [Configuring DPDK workloads for improved performance](/openshift-docs-markdown/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)

@@ -15,10 +15,10 @@ You can configure these load balancers on a new or existing {{ aws_short }} clus
 
 ## Additional resources {#additional-resources_configuring-ingress-cluster-traffic-aws}
 
-- [Converting to a dual-stack cluster network](/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
-- [Creating the installation configuration file](/installing/installing_aws/ipi/installing-aws-customizations#installation-initializing_installing-aws-customizations)
-- [Infrastructure cluster configuration API](/rest_api/config_apis/infrastructure-config-openshift-io-v1#infrastructure-config-openshift-io-v1)
-- [Installing a cluster on AWS with network customizations](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
+- [Converting to a dual-stack cluster network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Creating the installation configuration file](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-initializing_installing-aws-customizations)
+- [Infrastructure cluster configuration API](/openshift-docs-markdown/rest_api/config_apis/infrastructure-config-openshift-io-v1#infrastructure-config-openshift-io-v1)
+- [Installing a cluster on AWS with network customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
 - [Network Load Balancer support on AWS](https://kubernetes.io/docs/concepts/services-networking/service/#aws-nlb-support)
 - [Configure proxy protocol support for your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html)

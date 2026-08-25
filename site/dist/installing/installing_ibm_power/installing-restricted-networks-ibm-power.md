@@ -11,23 +11,23 @@ You can install OpenShift Container Platform on {{ ibm_power_name }} infrastruct
 
 **Additional resources**
 
-- [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
-- [Persistent storage using {{ rh_storage }}](/storage/persistent_storage/persistent-storage-ocs#persistent-storage-ocs)
-- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
+- [Persistent storage using {{ rh_storage }}](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs#persistent-storage-ocs)
+- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 **Additional resources**
 
-- [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
+- [Configuring chrony time service](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
 **Additional resources**
 
-- [Installation configuration parameters for {{ ibm_power_name }}](/installing/installing_ibm_power/installation-config-parameters-ibm-power#installation-config-parameters-ibm-power)
+- [Installation configuration parameters for {{ ibm_power_name }}](/openshift-docs-markdown/installing/installing_ibm_power/installation-config-parameters-ibm-power#installation-config-parameters-ibm-power)
 
 **Additional resources**
 
@@ -36,8 +36,8 @@ You can install OpenShift Container Platform on {{ ibm_power_name }} infrastruct
 ## Additional resources {#additional-resources_installing-restricted-networks-ibm-power}
 
 - [Guidelines for deploying OpenShift Container Platform on non-tested platforms](https://access.redhat.com/articles/4207611)
-- [Enabling multipathing with kernel arguments on {{ op_system }}](/machine_configuration/machine-configs-configure#rhcos-enabling-multipath-day-2_machine-configs-configure)
-- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Configuring additional trust stores](/openshift_images/image-configuration#images-configuration-cas_image-configuration)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Registering your disconnected cluster](/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)
+- [Enabling multipathing with kernel arguments on {{ op_system }}](/openshift-docs-markdown/machine_configuration/machine-configs-configure#rhcos-enabling-multipath-day-2_machine-configs-configure)
+- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Configuring additional trust stores](/openshift-docs-markdown/openshift_images/image-configuration#images-configuration-cas_image-configuration)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Registering your disconnected cluster](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)

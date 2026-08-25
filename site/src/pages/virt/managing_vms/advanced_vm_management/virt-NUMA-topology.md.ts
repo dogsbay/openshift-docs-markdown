@@ -2,7 +2,7 @@
 // Source: virt/managing_vms/advanced_vm_management/virt-NUMA-topology.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Working with NUMA topology for virtual machines\n---\n\n# Working with NUMA topology for virtual machines {#virt-NUMA-topology}\n\n## Additional resources {#additional-resources_virt-NUMA-topology}\n\n- [Topology Manager policies](/scalability_and_performance/using-cpu-manager#using-cpu-manager_topology-manager-policies)\n- [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)\n";
+const body = "---\ntitle: Working with NUMA topology for virtual machines\n---\n\n# Working with NUMA topology for virtual machines {#virt-NUMA-topology}\n\n## Additional resources {#additional-resources_virt-NUMA-topology}\n\n- [Topology Manager policies](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager_topology-manager-policies)\n- [Creating virtual machines from instance types](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

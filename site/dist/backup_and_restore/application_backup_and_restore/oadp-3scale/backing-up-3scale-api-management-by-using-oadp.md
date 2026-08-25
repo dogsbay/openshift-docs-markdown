@@ -12,5 +12,5 @@ For more information about installing and configuring Red Hat 3scale API Manage
 
 - [Installing 3scale API Management on OpenShift](https://docs.redhat.com/en/documentation/red_hat_3scale_api_management/2.15/html/installing_red_hat_3scale_api_management/install-threescale-on-openshift-guide)
 - [Red Hat 3scale API Management](https://docs.redhat.com/en/documentation/red_hat_3scale_api_management)
-- [Installing the Data Protection Application](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-installing-dpa_installing-oadp-aws)
-- [Creating a Backup CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)
+- [Installing the Data Protection Application](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-installing-dpa_installing-oadp-aws)
+- [Creating a Backup CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)

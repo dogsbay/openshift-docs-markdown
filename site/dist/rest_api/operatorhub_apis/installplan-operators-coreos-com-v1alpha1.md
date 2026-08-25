@@ -22,7 +22,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | InstallPlanSpec defines a set of Application resources to be installed |
 | `status` | `object` | InstallPlanStatus represents the information about the status of steps required to complete installation. Status may trail the actual state of a system. |
 
@@ -315,7 +315,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlanList`](/rest_api/objects/index#com-coreos-operators-v1alpha1-InstallPlanList) schema |
+| 200 - OK | [`InstallPlanList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v1alpha1-InstallPlanList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans}
@@ -334,7 +334,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -351,7 +351,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlanList`](/rest_api/objects/index#com-coreos-operators-v1alpha1-InstallPlanList) schema |
+| 200 - OK | [`InstallPlanList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v1alpha1-InstallPlanList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -375,15 +375,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |  |
+| `body` | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
-| 201 - Created | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
-| 202 - Accepted | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 200 - OK | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 201 - Created | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 202 - Accepted | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }} {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name}
@@ -414,8 +414,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -432,7 +432,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 200 - OK | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -456,7 +456,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 200 - OK | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -480,14 +480,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |  |
+| `body` | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
-| 201 - Created | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 200 - OK | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 201 - Created | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}/status {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name_status}
@@ -512,7 +512,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 200 - OK | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -536,7 +536,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 200 - OK | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -560,12 +560,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |  |
+| `body` | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
-| 201 - Created | [`InstallPlan`](/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 200 - OK | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
+| 201 - Created | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |

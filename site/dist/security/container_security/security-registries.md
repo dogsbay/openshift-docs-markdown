@@ -19,4 +19,4 @@ From a security standpoint, some registries provide special features to check an
 
 **Additional resources**
 
-- [Integrated {{ product_registry }}](/registry/index#registry-overview)
+- [Integrated {{ product_registry }}](/openshift-docs-markdown/registry/index#registry-overview)

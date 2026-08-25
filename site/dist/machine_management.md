@@ -20,13 +20,13 @@ The Machine API Operator provisions the following resources:
 
 **Additional resources**
 
-- [Machine phases and lifecycle](/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)
+- [Machine phases and lifecycle](/openshift-docs-markdown/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)
 
 **Additional resources**
 
-- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
-- [Boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images)
+- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
+- [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
 
 **Additional resources**
 
-- [Adding compute machines to clusters with user-provisioned infrastructure manually](/machine_management/user_infra/adding-compute-user-infra-general#adding-compute-user-infra-general)
+- [Adding compute machines to clusters with user-provisioned infrastructure manually](/openshift-docs-markdown/machine_management/user_infra/adding-compute-user-infra-general#adding-compute-user-infra-general)

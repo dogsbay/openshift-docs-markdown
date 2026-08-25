@@ -19,7 +19,7 @@ SR-IOV legacy device
 
 Each of these methods can be used across either the NVIDIA GPUDirect RDMA over Converged Ethernet (RoCE) or Infiniband infrastructures, providing an aggregate total of six methods of configuration.
 
-- Install the [Node Feature Discovery Operator](/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator).
-- Install the [SR-IOV Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
+- Install the [Node Feature Discovery Operator](/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator).
+- Install the [SR-IOV Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
 - Install the [NVIDIA Network Operator](https://docs.nvidia.com/networking/display/kubernetes2501/getting-started-openshift.html#network-operator-installation-using-openshift-oc-cli) (NVIDIA documentation).
 - Install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/openshift/24.9.2/install-gpu-ocp.html) (NVIDIA documentation).

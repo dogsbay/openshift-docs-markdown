@@ -14,4 +14,4 @@ You can perform any of the following tasks to manage application memory:
 
 **Additional resources**
 
-- [Understanding compute resources and containers](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-reserving-memory_nodes-cluster-overcommit)
+- [Understanding compute resources and containers](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-reserving-memory_nodes-cluster-overcommit)

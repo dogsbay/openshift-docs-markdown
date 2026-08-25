@@ -8,4 +8,4 @@ Although the Compliance Operator automates many of the checks and remediations f
 
 ## Additional resources {#additional-resources_oc-compliance-plug-in-understanding}
 
-- [Understanding the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
+- [Understanding the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)

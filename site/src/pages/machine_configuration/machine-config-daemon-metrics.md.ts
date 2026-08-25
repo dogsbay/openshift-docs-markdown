@@ -2,7 +2,7 @@
 // Source: machine_configuration/machine-config-daemon-metrics.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Machine Config Daemon metrics overview\n---\n\n# Machine Config Daemon metrics overview {#machine-config-daemon-metrics}\n\nThe Machine Config Daemon, part of the Machine Config Operator, runs on every node in the cluster to manage configuration changes and updates on each of the nodes.\n\n**Additional resources**\n\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Gathering data about your cluster](/support/gathering-cluster-data#gathering-cluster-data)\n";
+const body = "---\ntitle: Machine Config Daemon metrics overview\n---\n\n# Machine Config Daemon metrics overview {#machine-config-daemon-metrics}\n\nThe Machine Config Daemon, part of the Machine Config Operator, runs on every node in the cluster to manage configuration changes and updates on each of the nodes.\n\n**Additional resources**\n\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#gathering-cluster-data)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

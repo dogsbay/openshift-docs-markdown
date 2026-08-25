@@ -8,11 +8,11 @@ Before you install an OpenShift Container Platform cluster on {{ azure_short }} 
 
 **Additional resources**
 
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
 **Additional resources**
 
-- [Install a cluster with customizations on installer-provisioned infrastructure](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
-- [Install a cluster into an existing VNet on installer-provisioned infrastructure](/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet)
-- [Install a private cluster on installer-provisioned infrastructure](/installing/installing_azure/ipi/installing-azure-private#installing-azure-private)
-- [Install a cluster into an government region on installer-provisioned infrastructure](/installing/installing_azure/ipi/installing-azure-government-region#installing-azure-government-region)
+- [Install a cluster with customizations on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
+- [Install a cluster into an existing VNet on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet)
+- [Install a private cluster on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-private#installing-azure-private)
+- [Install a cluster into an government region on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-government-region#installing-azure-government-region)

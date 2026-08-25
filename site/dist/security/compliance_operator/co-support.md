@@ -12,6 +12,6 @@ The Compliance Operator is a "Rolling Stream" Operator, meaning updates are avai
 
 ## Additional resources {#additional-resources_co-support}
 
-- [About the must-gather tool](/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
+- [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 - [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)
 - [Product Compliance](https://access.redhat.com/compliance)

@@ -14,5 +14,5 @@ Catalogd
 
 ## Additional resources {#additional-resources_olm-components}
 
-- [Operator Controller](/extensions/arch/operator-controller#operator-controller)
-- [Catalogd](/extensions/arch/catalogd#catalogd)
+- [Operator Controller](/openshift-docs-markdown/extensions/arch/operator-controller#operator-controller)
+- [Catalogd](/openshift-docs-markdown/extensions/arch/catalogd#catalogd)

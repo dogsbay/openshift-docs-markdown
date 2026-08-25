@@ -6,7 +6,7 @@ title: Understanding Service Mesh
 
 {{ SMProductName }} provides a platform for behavioral insight and operational control over your networked microservices in a service mesh. With {{ SMProductName }}, you can connect, secure, and monitor microservices in your OpenShift Container Platform environment.
 
-For information about how to install the 3scale adapter, refer to the [3scale Istio adapter documentation](/service_mesh/v2x/threescale-adapter#threescale-adapter)
+For information about how to install the 3scale adapter, refer to the [3scale Istio adapter documentation](/openshift-docs-markdown/service_mesh/v2x/threescale-adapter#threescale-adapter)
 
 ## Understanding Kiali {#_understanding_kiali}
 
@@ -24,4 +24,4 @@ A **span** represents a logical unit of work that has an operation name, the sta
 
 ## Next steps {#_next_steps}
 
-- [Prepare to install {{ SMProductName }}](/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation) in your OpenShift Container Platform environment.
+- [Prepare to install {{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation) in your OpenShift Container Platform environment.

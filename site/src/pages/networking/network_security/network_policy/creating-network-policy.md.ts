@@ -2,7 +2,7 @@
 // Source: networking/network_security/network_policy/creating-network-policy.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Creating a network policy\n---\n\n# Creating a network policy {#creating-network-policy}\n\nAs a cluster administrator, you can create a network policy for a namespace.\n\n## Additional resources {#_additional_resources}\n\n- [Accessing the web console](/web_console/web-console#web-console)\n- [Logging for egress firewall and network policy rules](/networking/network_security/logging-network-security#logging-network-security)\n";
+const body = "---\ntitle: Creating a network policy\n---\n\n# Creating a network policy {#creating-network-policy}\n\nAs a cluster administrator, you can create a network policy for a namespace.\n\n## Additional resources {#_additional_resources}\n\n- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)\n- [Logging for egress firewall and network policy rules](/openshift-docs-markdown/networking/network_security/logging-network-security#logging-network-security)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

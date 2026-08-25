@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"update-before-the-update","text":"Before you update the telco core CNF cluster"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration","post_installation_configuration/day_2_core_cnf_clusters","post_installation_configuration/day_2_core_cnf_clusters/updating"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Before you update the telco core CNF cluster {#update-before-the-update}\n\nBefore you start the cluster update, you must pause worker nodes, back up the etcd database, and do a final cluster health check before proceeding.\n\n**Additional resources**\n\n- [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n","mdUrl":"/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Before you update the telco core CNF cluster {#update-before-the-update}\n\nBefore you start the cluster update, you must pause worker nodes, back up the etcd database, and do a final cluster health check before proceeding.\n\n**Additional resources**\n\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +98,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/backup-etcd.md"></p>
       <p class="/modules/creating-single-etcd-backup.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd">Backing up etcd</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd">Backing up etcd</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

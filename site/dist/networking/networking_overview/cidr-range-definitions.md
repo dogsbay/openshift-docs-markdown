@@ -37,13 +37,13 @@ OVN-Kubernetes, the default network provider in OpenShift Container Platform 4.1
 
 **Additional resources**
 
-- [Configuring OVN-Kubernetes internal IP address subnets](/networking/ovn_kubernetes_network_provider/configure-ovn-kubernetes-subnets#configure-ovn-kubernetes-subnets)
+- [Configuring OVN-Kubernetes internal IP address subnets](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configure-ovn-kubernetes-subnets#configure-ovn-kubernetes-subnets)
 
 **Additional resources**
 
-- [Cluster Network Operator configuration](/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
+- [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 
 **Additional resources**
 
-- [Cluster Network Operator configuration](/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
-- [Configuring the cluster network range](/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
+- [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
+- [Configuring the cluster network range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)

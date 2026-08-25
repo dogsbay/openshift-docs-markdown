@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"about-advertise-for-ipaddress-pools","text":"About advertising for the IP address pools"},{"depth":2,"slug":"additional-resources_about-advertiseipaddress","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool";
+const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/ingress_load_balancing","networking/ingress_load_balancing/metallb"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About advertising for the IP address pools {#about-advertise-for-ipaddress-pools}\n\nYou can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both.\n\nWith layer 2, MetalLB provides a fault-tolerant external IP address. With BGP, MetalLB provides fault-tolerance for the external IP address and load balancing.\n\nMetalLB supports advertising by using Layer 2 and BGP for the same set of IP addresses.\n\nMetalLB provides the flexibility to assign address pools to specific BGP peers, effectively limiting advertising to a subset of nodes on the network. This allows for more complex configurations, such as facilitating the isolation of nodes or the segmentation of the network.\n\n## Additional resources {#additional-resources_about-advertiseipaddress}\n\n- [Configuring a community alias](/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias)\n- [Enable IP forwarding on specific interfaces](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config)\n","mdUrl":"/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About advertising for the IP address pools {#about-advertise-for-ipaddress-pools}\n\nYou can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both.\n\nWith layer 2, MetalLB provides a fault-tolerant external IP address. With BGP, MetalLB provides fault-tolerance for the external IP address and load balancing.\n\nMetalLB supports advertising by using Layer 2 and BGP for the same set of IP addresses.\n\nMetalLB provides the flexibility to assign address pools to specific BGP peers, effectively limiting advertising to a subset of nodes on the network. This allows for more complex configurations, such as facilitating the isolation of nodes or the segmentation of the network.\n\n## Additional resources {#additional-resources_about-advertiseipaddress}\n\n- [Configuring a community alias](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias)\n- [Enable IP forwarding on specific interfaces](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -111,8 +111,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/nw-metallb-configure-secondary-interface.md"></p>
       <h2 id="additional-resources_about-advertiseipaddress" class="group scroll-mt-20">Additional resources<a href="#additional-resources_about-advertiseipaddress" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias">Configuring a community alias</a></li>
-      <li><a href="/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config">Enable IP forwarding on specific interfaces</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias">Configuring a community alias</a></li>
+      <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config">Enable IP forwarding on specific interfaces</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

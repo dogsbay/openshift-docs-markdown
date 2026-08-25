@@ -10,6 +10,6 @@ Refer to tested object maximums when planning your environment for your specific
 
 - [{{ VirtProductName }} - Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)
 - [Virtualization limits for Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/rhel-kvm-limits)
-- [Planning your environment according to object maximums](/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)
-- [Managing the maximum number of pods per node](/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods)
+- [Planning your environment according to object maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)
+- [Managing the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods)
 - [{{ rh_rhacm_title }} documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)

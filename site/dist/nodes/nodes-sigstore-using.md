@@ -14,4 +14,4 @@ Sigstore is a collection of open source tools that you can use individually or t
 - [Fulcio certificate (Sigstore documentation)](https://docs.sigstore.dev/certificate_authority/overview/)
 - [Rekor verification in the Sigstore documentation](https://docs.sigstore.dev/logging/overview/)
 - [Cosign public and private key pair (Sigstore documentation)](https://docs.sigstore.dev/cosign/signing/overview/)
-- [About cluster and image policy parameters](/nodes/nodes-sigstore-using#nodes-sigstore-configure-parameters_nodes-sigstore-using)
+- [About cluster and image policy parameters](/openshift-docs-markdown/nodes/nodes-sigstore-using#nodes-sigstore-configure-parameters_nodes-sigstore-using)

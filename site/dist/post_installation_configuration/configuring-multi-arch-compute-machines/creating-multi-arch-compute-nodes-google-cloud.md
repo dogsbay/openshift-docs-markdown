@@ -10,7 +10,7 @@ You can also migrate your current cluster with single-architecture compute machi
 
 ## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-google-cloud}
 
-- [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
-- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
-- [Tested instance types for {{ gcp_short }} on 64-bit ARM infrastructures](/installing/installing_gcp/installing-gcp-customizations#installation-gcp-tested-machine-types-arm_installing-gcp-customizations)
+- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
+- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
+- [Tested instance types for {{ gcp_short }} on 64-bit ARM infrastructures](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-tested-machine-types-arm_installing-gcp-customizations)
 - [Setting custom metadata](https://cloud.google.com/compute/docs/metadata/setting-custom-metadata)

@@ -8,9 +8,9 @@ APIs change over time as components are updated. It is important to verify that 
 
 **Additional resources**
 
-- [Understanding API tiers](/rest_api/overview/understanding-api-support-tiers#understanding-api-support-tiers)
+- [Understanding API tiers](/openshift-docs-markdown/rest_api/overview/understanding-api-support-tiers#understanding-api-support-tiers)
 - [Kubernetes version skew policy](https://kubernetes.io/releases/version-skew-policy/)
 
 **Additional resources**
 
-- [Understanding update channels and releases](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
+- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)

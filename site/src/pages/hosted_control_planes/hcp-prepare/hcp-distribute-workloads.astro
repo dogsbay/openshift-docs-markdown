@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"hcp-distribute-workloads","text":"Distributing hosted cluster workloads"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-prepare/hcp-distribute-workloads";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-prepare"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Distributing hosted cluster workloads {#hcp-distribute-workloads}\n\nIn {{ hcp }} for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how you want to distribute your hosted cluster workloads.\n\n> [!IMPORTANT]\n> Do not use the management cluster for your workload. Workloads must not run on nodes where control planes run.\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Network isolation for hosted clusters](/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)\n","mdUrl":"/hosted_control_planes/hcp-prepare/hcp-distribute-workloads.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Distributing hosted cluster workloads {#hcp-distribute-workloads}\n\nIn {{ hcp }} for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how you want to distribute your hosted cluster workloads.\n\n> [!IMPORTANT]\n> Do not use the management cluster for your workload. Workloads must not run on nodes where control planes run.\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Network isolation for hosted clusters](/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,8 +105,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/hcp-node-labeling.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
-      <li><a href="/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking">Network isolation for hosted clusters</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking">Network isolation for hosted clusters</a></li>
       </ul>
       <p class="/modules/hcp-priority-classes.md"></p>
       <p class="/modules/hcp-virt-taints-tolerations.md"></p>

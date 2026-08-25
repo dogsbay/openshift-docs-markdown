@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"core-cluster-upgrades-overview","text":"About cluster updates with {{ rh_rhacm }} and {{ cgu_operator }}"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-overview","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-overview";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration","post_installation_configuration/day_2_core_cnf_clusters","post_installation_configuration/day_2_core_cnf_clusters/updating"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About cluster updates with {{ rh_rhacm }} and {{ cgu_operator }} {#core-cluster-upgrades-overview}\n\nYou can use {{ rh_rhacm_first }} and {{ cgu_operator_full }} ({{ cgu_operator }}) to perform z-stream, y-stream, and EUS-to-EUS updates on spoke clusters managed from a hub cluster.\n\nThe policy-based update workflow uses update policies that you define on the {{ rh_rhacm }} hub while {{ cgu_operator }} orchestrates their enforcement across target clusters.\n\nIf you are managing a single cluster or troubleshooting a specific cluster directly, see \"Updating an OpenShift Container Platform cluster\" for manual updates of individual clusters.\n\n## Additional resources {#additional-resources_core-cluster-upgrades-overview}\n\n- [Updating an OpenShift Container Platform cluster](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)\n- [Verifying cluster API versions between update versions](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-api)\n- [Using the {{ cgu_operator_full }} for cluster updates](/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates)\n- [Bare metal Core reference design specifications](/scalability_and_performance/telco-core-rds#telco-core-ref-design-specs)\n- [How to use the {{ cgu_operator_full }}](https://www.redhat.com/en/blog/how-to-use-the-topology-aware-lifecycle-manager)\n- [The ultimate guide to OpenShift release and update process for cluster administrators](https://www.redhat.com/en/blog/the-ultimate-guide-to-openshift-release-and-upgrade-process-for-cluster-administrators)\n- [OpenShift Container Platform update documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/)\n- [OpenShift Container Platform update lifecycle and support policy](https://access.redhat.com/support/policy/updates/openshift)\n","mdUrl":"/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About cluster updates with {{ rh_rhacm }} and {{ cgu_operator }} {#core-cluster-upgrades-overview}\n\nYou can use {{ rh_rhacm_first }} and {{ cgu_operator_full }} ({{ cgu_operator }}) to perform z-stream, y-stream, and EUS-to-EUS updates on spoke clusters managed from a hub cluster.\n\nThe policy-based update workflow uses update policies that you define on the {{ rh_rhacm }} hub while {{ cgu_operator }} orchestrates their enforcement across target clusters.\n\nIf you are managing a single cluster or troubleshooting a specific cluster directly, see \"Updating an OpenShift Container Platform cluster\" for manual updates of individual clusters.\n\n## Additional resources {#additional-resources_core-cluster-upgrades-overview}\n\n- [Updating an OpenShift Container Platform cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)\n- [Verifying cluster API versions between update versions](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-api)\n- [Using the {{ cgu_operator_full }} for cluster updates](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates)\n- [Bare metal Core reference design specifications](/openshift-docs-markdown/scalability_and_performance/telco-core-rds#telco-core-ref-design-specs)\n- [How to use the {{ cgu_operator_full }}](https://www.redhat.com/en/blog/how-to-use-the-topology-aware-lifecycle-manager)\n- [The ultimate guide to OpenShift release and update process for cluster administrators](https://www.redhat.com/en/blog/the-ultimate-guide-to-openshift-release-and-upgrade-process-for-cluster-administrators)\n- [OpenShift Container Platform update documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/)\n- [OpenShift Container Platform update lifecycle and support policy](https://access.redhat.com/support/policy/updates/openshift)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,10 +106,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/core-cluster-upgrade-scenario-policy-changes.md"></p>
       <h2 id="additional-resources_core-cluster-upgrades-overview" class="group scroll-mt-20">Additional resources<a href="#additional-resources_core-cluster-upgrades-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome">Updating an OpenShift Container Platform cluster</a></li>
-      <li><a href="/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-api">Verifying cluster API versions between update versions</a></li>
-      <li><a href="/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates">Using the {"{"}{"{"} cgu_operator_full {"}"}{"}"} for cluster updates</a></li>
-      <li><a href="/scalability_and_performance/telco-core-rds#telco-core-ref-design-specs">Bare metal Core reference design specifications</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome">Updating an OpenShift Container Platform cluster</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-api">Verifying cluster API versions between update versions</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates">Using the {"{"}{"{"} cgu_operator_full {"}"}{"}"} for cluster updates</a></li>
+      <li><a href="/openshift-docs-markdown/scalability_and_performance/telco-core-rds#telco-core-ref-design-specs">Bare metal Core reference design specifications</a></li>
       <li><a href="https://www.redhat.com/en/blog/how-to-use-the-topology-aware-lifecycle-manager">How to use the {"{"}{"{"} cgu_operator_full {"}"}{"}"}</a></li>
       <li><a href="https://www.redhat.com/en/blog/the-ultimate-guide-to-openshift-release-and-upgrade-process-for-cluster-administrators">The ultimate guide to OpenShift release and update process for cluster administrators</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/">OpenShift Container Platform update documentation</a></li>

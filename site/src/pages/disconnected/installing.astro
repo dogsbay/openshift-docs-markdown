@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-disconnected-environments","text":"Installing a cluster in a disconnected environment"},{"depth":2,"slug":"additional-resources_installing-disconnected-environments","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/disconnected/installing";
+const currentPath = "/openshift-docs-markdown/disconnected/installing";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["disconnected"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster in a disconnected environment {#installing-disconnected-environments}\n\nYou can install an OpenShift Container Platform cluster in a disconnected environment, choosing the installation method and infrastructure that best suits your requirements. This includes installing OpenShift Container Platform on either on-premise hardware or on a cloud hosting service such as Amazon Web Services (AWS).\n\nThe following sections outline all of the supported methods for installing a cluster in a disconnected environment.\n\n> [!NOTE]\n> To learn about other requirements for installing a cluster using a particular method, be sure to review other content in the procedure’s respective section of the documentation.\n>\n> For example, if you plan to install a cluster on {{ aws_short }} with installer-provisioned infrastructure, see \"Configuring an AWS account\" and \"Preparing to install a cluster on {{ aws_short }}\".\n\n## Additional resources {#additional-resources_installing-disconnected-environments}\n\n- [Configuring an AWS account](/installing/installing_aws/installing-aws-account#installing-aws-account)\n- [Preparing to install a cluster on {{ aws_short }}](/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install)\n","mdUrl":"/disconnected/installing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster in a disconnected environment {#installing-disconnected-environments}\n\nYou can install an OpenShift Container Platform cluster in a disconnected environment, choosing the installation method and infrastructure that best suits your requirements. This includes installing OpenShift Container Platform on either on-premise hardware or on a cloud hosting service such as Amazon Web Services (AWS).\n\nThe following sections outline all of the supported methods for installing a cluster in a disconnected environment.\n\n> [!NOTE]\n> To learn about other requirements for installing a cluster using a particular method, be sure to review other content in the procedure’s respective section of the documentation.\n>\n> For example, if you plan to install a cluster on {{ aws_short }} with installer-provisioned infrastructure, see \"Configuring an AWS account\" and \"Preparing to install a cluster on {{ aws_short }}\".\n\n## Additional resources {#additional-resources_installing-disconnected-environments}\n\n- [Configuring an AWS account](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account)\n- [Preparing to install a cluster on {{ aws_short }}](/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected/installing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -117,8 +117,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installing-vsphere.md"></p>
       <h2 id="additional-resources_installing-disconnected-environments" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-disconnected-environments" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/installing/installing_aws/installing-aws-account#installing-aws-account">Configuring an AWS account</a></li>
-      <li><a href="/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install">Preparing to install a cluster on {"{"}{"{"} aws_short {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account">Configuring an AWS account</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install">Preparing to install a cluster on {"{"}{"{"} aws_short {"}"}{"}"}</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

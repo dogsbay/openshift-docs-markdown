@@ -51,5 +51,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentLog`](/rest_api/workloads_apis/deploymentlog-apps-openshift-io-v1#deploymentlog-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentLog`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentlog-apps-openshift-io-v1#deploymentlog-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

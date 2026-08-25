@@ -11,7 +11,7 @@ The oc-mirror v2 plugin introduces major changes to image mirroring workflows. U
 
 ## Additional resources {#additional-resources_oc-mirror-migration-v1-to-v2}
 
-- [Mirroring an image set in a partially disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
-- [Mirroring an image set in a fully disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
-- [Changes from oc-mirror plugin v1 to v2](/disconnected/oc-mirror-migration-v1-to-v2#oc-mirror-migration-differences_oc-mirror-migration-v1-to-v2)
-- [Deletion of images from your disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-procedure-delete-v2_about-installing-oc-mirror-v2)
+- [Mirroring an image set in a partially disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
+- [Mirroring an image set in a fully disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
+- [Changes from oc-mirror plugin v1 to v2](/openshift-docs-markdown/disconnected/oc-mirror-migration-v1-to-v2#oc-mirror-migration-differences_oc-mirror-migration-v1-to-v2)
+- [Deletion of images from your disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-procedure-delete-v2_about-installing-oc-mirror-v2)

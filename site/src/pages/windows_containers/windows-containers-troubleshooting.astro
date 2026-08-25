@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"windows-containers-troubleshooting","text":"Troubleshooting Windows container workloads"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/windows_containers/windows-containers-troubleshooting";
+const currentPath = "/openshift-docs-markdown/windows_containers/windows-containers-troubleshooting";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["windows_containers"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting Windows container workloads {#windows-containers-troubleshooting}\n\nYou can troubleshoot Windows container workload issues to ensure that your Windows nodes are running correctly in your cluster.\n\n{% include \"./modules/accessing-windows-node.md\" %}\n\n{% include \"./modules/collecting-kube-node-logs-windows.md\" %}\n\n## Additional resources {#_additional_resources}\n\n- [Configuring hybrid networking](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)\n- [Containers on Windows troubleshooting (Microsoft documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting)\n- [Troubleshoot host and container image mismatches (Microsoft documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/update-containers#troubleshoot-host-and-container-image-mismatches)\n- [Common Kubernetes problems with Windows (Microsoft documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/common-problems)\n","mdUrl":"/windows_containers/windows-containers-troubleshooting.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting Windows container workloads {#windows-containers-troubleshooting}\n\nYou can troubleshoot Windows container workload issues to ensure that your Windows nodes are running correctly in your cluster.\n\n{% include \"./modules/accessing-windows-node.md\" %}\n\n{% include \"./modules/collecting-kube-node-logs-windows.md\" %}\n\n## Additional resources {#_additional_resources}\n\n- [Configuring hybrid networking](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)\n- [Containers on Windows troubleshooting (Microsoft documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting)\n- [Troubleshoot host and container image mismatches (Microsoft documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/update-containers#troubleshoot-host-and-container-image-mismatches)\n- [Common Kubernetes problems with Windows (Microsoft documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/common-problems)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/windows-containers-troubleshooting.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,7 +99,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/collecting-containerd-logs-windows.md /modules/collecting-windows-application-event-logs.md">{"{"}% include "./modules/collecting-kube-node-logs-windows.md" %{"}"} </p>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes">Configuring hybrid networking</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes">Configuring hybrid networking</a></li>
       <li><a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting">Containers on Windows troubleshooting (Microsoft documentation)</a></li>
       <li><a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/update-containers#troubleshoot-host-and-container-image-mismatches">Troubleshoot host and container image mismatches (Microsoft documentation)</a></li>
       <li><a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/common-problems">Common Kubernetes problems with Windows (Microsoft documentation)</a></li>

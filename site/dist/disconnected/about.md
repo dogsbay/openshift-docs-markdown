@@ -10,6 +10,6 @@ OpenShift Container Platform is designed to perform many automatic functions tha
 
 ## Additional resources {#about-additional-resources_about-disconnected-environments}
 
-- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
-- [Installing a cluster with customizations](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)
-- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)
+- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
+- [Installing a cluster with customizations](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)
+- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)

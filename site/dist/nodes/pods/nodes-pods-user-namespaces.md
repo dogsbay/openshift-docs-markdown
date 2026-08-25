@@ -17,9 +17,9 @@ When running a pod in an isolated user namespace, the UID/GID inside a pod conta
 > [!IMPORTANT]
 > Not all file systems currently support ID-mapped mounts, such as Network File Systems (NFS) and other network/distributed file systems. Any pod that is using an NFS-backed persistent volume from a vendor that does not support ID-mapped mounts might experience access or permission issues when running in a user namespace. This behavior is not specific to OpenShift Container Platform. It applies to all Kubernetes distributions from Kubernetes v1.33 onward.
 
-To check user namespaces support for storage options, see [CSI drivers supported by OpenShift Container Platform](/storage/container_storage_interface/persistent-storage-csi#csi-drivers-supported_persistent-storage-csi).
+To check user namespaces support for storage options, see [CSI drivers supported by OpenShift Container Platform](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#csi-drivers-supported_persistent-storage-csi).
 
 **Additional resources**
 
-- [Managing security context constraints](/authentication/managing-security-context-constraints#configuring-internal-oauth)
-- [OpenShift CLI administrator command reference](/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)
+- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#configuring-internal-oauth)
+- [OpenShift CLI administrator command reference](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)

@@ -11,5 +11,5 @@ OpenShift Container Platform uses a KubeletConfig custom resource (CR) to manage
 
 ## Additional resources {#additional-resources_nodes-nodes-managing}
 
-- [Managing control plane machines with control plane machine sets](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)
+- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)
 - [PSI - Pressure Stall Information (Linux Kernel documentation)](https://docs.kernel.org/accounting/psi.html)

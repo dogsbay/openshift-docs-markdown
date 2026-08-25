@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"security-registries","text":"Using container registries securely"}];
 const nav = navData;
-const currentPath = "/security/container_security/security-registries";
+const currentPath = "/openshift-docs-markdown/security/container_security/security-registries";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/container_security"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using container registries securely {#security-registries}\n\nYou can use container registries to store container images, making the images accessible to others either publicly or privately.\n\nBy using a registry, you can include multiple versions of an image, optionally limit access to images based on different authentication methods, or make them publicly available.\n\nThere are public container registries, such as Quay.io and Docker Hub where many people and organizations share their images. The Red Hat Registry offers supported Red Hat and partner images, while the Red Hat Ecosystem Catalog offers detailed descriptions and health checks for those images. To manage your own registry, you could purchase a container registry such as {{ quay }}.\n\nFrom a security standpoint, some registries provide special features to check and improve the health of your containers. For example, {{ quay }} offers container vulnerability scanning with Clair security scanner, build triggers to automatically rebuild images when source code changes in GitHub and other locations, and the ability to use role-based access control (RBAC) to secure access to images.\n\n**Additional resources**\n\n- [Red Hat Product Security Center](https://access.redhat.com/security/)\n- [Red Hat Security Advisories](https://access.redhat.com/security/security-updates/#/security-advisories)\n\n**Additional resources**\n\n- [Integrated {{ product_registry }}](/registry/index#registry-overview)\n","mdUrl":"/security/container_security/security-registries.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using container registries securely {#security-registries}\n\nYou can use container registries to store container images, making the images accessible to others either publicly or privately.\n\nBy using a registry, you can include multiple versions of an image, optionally limit access to images based on different authentication methods, or make them publicly available.\n\nThere are public container registries, such as Quay.io and Docker Hub where many people and organizations share their images. The Red Hat Registry offers supported Red Hat and partner images, while the Red Hat Ecosystem Catalog offers detailed descriptions and health checks for those images. To manage your own registry, you could purchase a container registry such as {{ quay }}.\n\nFrom a security standpoint, some registries provide special features to check and improve the health of your containers. For example, {{ quay }} offers container vulnerability scanning with Clair security scanner, build triggers to automatically rebuild images when source code changes in GitHub and other locations, and the ability to use role-based access control (RBAC) to secure access to images.\n\n**Additional resources**\n\n- [Red Hat Product Security Center](https://access.redhat.com/security/)\n- [Red Hat Security Advisories](https://access.redhat.com/security/security-updates/#/security-advisories)\n\n**Additional resources**\n\n- [Integrated {{ product_registry }}](/openshift-docs-markdown/registry/index#registry-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/container_security/security-registries.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,7 +105,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="https://access.redhat.com/security/security-updates/#/security-advisories">Red Hat Security Advisories</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/registry/index#registry-overview">Integrated {"{"}{"{"} product_registry {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/registry/index#registry-overview">Integrated {"{"}{"{"} product_registry {"}"}{"}"}</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

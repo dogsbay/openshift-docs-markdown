@@ -15,10 +15,10 @@ Passthrough mode is supported for {{ aws_first }}, {{ azure_first }}, {{ gcp_fir
 
 **Additional resources**
 
-- [vSphere CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-vsphere)
+- [vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere)
 
 ## Additional resources {#additional-resources_cco-mode-passthrough}
 
-- [Manually creating long-term credentials for AWS](/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
-- [Manually creating long-term credentials for Azure](/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)
-- [Manually creating long-term credentials for {{ gcp_short }}](/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)
+- [Manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
+- [Manually creating long-term credentials for Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)
+- [Manually creating long-term credentials for {{ gcp_short }}](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)

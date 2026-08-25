@@ -8,4 +8,4 @@ You can use `ClusterInstance` custom resources (CRs) to deploy custom functional
 
 **Additional resources**
 
-- [Customizing extra installation manifests in the {{ ztp }} pipeline](/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)
+- [Customizing extra installation manifests in the {{ ztp }} pipeline](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)

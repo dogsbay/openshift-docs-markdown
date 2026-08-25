@@ -12,4 +12,4 @@ Run `oc help` to list all commands or run `oc <command> --help` to get additiona
 
 ## Additional resources {#additional-resources_cli-developer-commands}
 
-- [OpenShift CLI administrator command reference](/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)
+- [OpenShift CLI administrator command reference](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)

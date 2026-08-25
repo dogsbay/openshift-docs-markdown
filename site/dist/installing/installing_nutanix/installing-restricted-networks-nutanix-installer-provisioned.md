@@ -28,21 +28,21 @@ In OpenShift Container Platform 4.22, you can install a cluster on Nutanix infra
 
 **Additional resources**
 
-- [Installation configuration parameters for Nutanix](/installing/installing_nutanix/installation-config-parameters-nutanix#installation-config-parameters-nutanix)
+- [Installation configuration parameters for Nutanix](/openshift-docs-markdown/installing/installing_nutanix/installation-config-parameters-nutanix#installation-config-parameters-nutanix)
 
 **Additional resources**
 
-- [Adding a catalog to a cluster in Extensions](/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)
+- [Adding a catalog to a cluster in Extensions](/openshift-docs-markdown/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)
 
 ## Additional resources {#_additional_resources}
 
-- [OpenShift Container Platform installation and update processes](/architecture/architecture-installation#architecture-installation)
-- [Configuring your firewall to grant required access](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Configuring your firewall to grant required access](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
 - [Nutanix AOS Security Guide](https://portal.nutanix.com/page/documents/details?targetId=Nutanix-Security-Guide-v6_1:mul-security-ssl-certificate-pc-t.html)
-- [Configuring a custom PKI](/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)
-- [*mirror registry for Red Hat OpenShift*](/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)
-- [oc-mirror OpenShift CLI (oc) plugin](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Registering your disconnected cluster](/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)
-- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Configuring a custom PKI](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)
+- [*mirror registry for Red Hat OpenShift*](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)
+- [oc-mirror OpenShift CLI (oc) plugin](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Registering your disconnected cluster](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)
+- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)

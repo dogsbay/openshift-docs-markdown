@@ -28,11 +28,11 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `capacity` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable. |
+| `capacity` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `maximumVolumeSize` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim. |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-<uuid>, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `nodeTopology` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable. |
+| `maximumVolumeSize` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim. |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-<uuid>, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `nodeTopology` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable. |
 | `storageClassName` | `string` | storageClassName represents the name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable. |
 
 ## API endpoints {#_api_endpoints}
@@ -79,7 +79,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIStorageCapacityList`](/rest_api/objects/index#io-k8s-api-storage-v1-CSIStorageCapacityList) schema |
+| 200 - OK | [`CSIStorageCapacityList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-storage-v1-CSIStorageCapacityList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/csistoragecapacities {#_apisstoragek8siov1watchcsistoragecapacities}
@@ -98,7 +98,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/namespaces/{{ namespace }}/csistoragecapacities {#_apisstoragek8siov1namespaces_namespace_csistoragecapacities}
@@ -123,7 +123,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -140,7 +140,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIStorageCapacityList`](/rest_api/objects/index#io-k8s-api-storage-v1-CSIStorageCapacityList) schema |
+| 200 - OK | [`CSIStorageCapacityList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-storage-v1-CSIStorageCapacityList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -164,15 +164,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |  |
+| `body` | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/namespaces/{{ namespace }}/csistoragecapacities {#_apisstoragek8siov1watchnamespaces_namespace_csistoragecapacities}
@@ -191,7 +191,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/namespaces/{{ namespace }}/csistoragecapacities/{{ name }} {#_apisstoragek8siov1namespaces_namespace_csistoragecapacities_name}
@@ -222,8 +222,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -240,7 +240,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -264,8 +264,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -289,14 +289,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |  |
+| `body` | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
-| 201 - Created | [`CSIStorageCapacity`](/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 200 - OK | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
+| 201 - Created | [`CSIStorageCapacity`](/openshift-docs-markdown/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/namespaces/{{ namespace }}/csistoragecapacities/{{ name }} {#_apisstoragek8siov1watchnamespaces_namespace_csistoragecapacities_name}
@@ -321,5 +321,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

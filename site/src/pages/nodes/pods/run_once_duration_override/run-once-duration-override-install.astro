@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"run-once-duration-override-install","text":"Overriding the active deadline for run-once pods"}];
 const nav = navData;
-const currentPath = "/nodes/pods/run_once_duration_override/run-once-duration-override-install";
+const currentPath = "/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/pods","nodes/pods/run_once_duration_override"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding the active deadline for run-once pods {#run-once-duration-override-install}\n\nYou can use the {{ run_once_operator }} to set a maximum active deadline for run-once pods in your cluster.\n\nBy enabling the run-once duration override on a namespace, all future run-once pods created or updated in that namespace have their `activeDeadlineSeconds` field set to the value specified by the {{ run_once_operator }}.\n\n> [!NOTE]\n> If both the run-once pod and the {{ run_once_operator }} have their `activeDeadlineSeconds` value set, the lower of the two values is used.\n","mdUrl":"/nodes/pods/run_once_duration_override/run-once-duration-override-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding the active deadline for run-once pods {#run-once-duration-override-install}\n\nYou can use the {{ run_once_operator }} to set a maximum active deadline for run-once pods in your cluster.\n\nBy enabling the run-once duration override on a namespace, all future run-once pods created or updated in that namespace have their `activeDeadlineSeconds` field set to the value specified by the {{ run_once_operator }}.\n\n> [!NOTE]\n> If both the run-once pod and the {{ run_once_operator }} have their `activeDeadlineSeconds` value set, the lower of the two values is used.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

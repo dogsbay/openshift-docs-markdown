@@ -2,4 +2,4 @@
 
 ## OpenShift sandboxed containers
 
-- [About OpenShift sandboxed containers](/sandboxed_containers/about-openshift-sandboxed-containers.md)
+- [About OpenShift sandboxed containers](https://dogsbay.github.io/openshift-docs-markdown/sandboxed_containers/about-openshift-sandboxed-containers.md)

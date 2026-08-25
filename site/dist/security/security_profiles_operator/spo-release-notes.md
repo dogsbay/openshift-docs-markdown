@@ -10,5 +10,5 @@ These release notes track the development of the Security Profiles Operator in O
 
 ## Additional resources {#spo-release-notes_additional-resources}
 
-- [Security Profiles Operator Overview (Kubernetes documentation)](/security/security_profiles_operator/spo-overview#spo-overview)
+- [Security Profiles Operator Overview (Kubernetes documentation)](/openshift-docs-markdown/security/security_profiles_operator/spo-overview#spo-overview)
 - [Kubernetes seccomp tutorial](https://kubernetes.io/docs/tutorials/security/seccomp/)

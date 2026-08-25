@@ -23,5 +23,5 @@ Persistent volumes are not bound to a single project or namespace, and you can s
 
 **Additional resources**
 
-- [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
+- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
 - [Azure Files](https://azure.microsoft.com/en-us/services/storage/files/)

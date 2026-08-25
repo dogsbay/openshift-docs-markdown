@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"template-apis","text":"Template APIs"},{"depth":2,"slug":"_brokertemplateinstance_templateopenshiftiov1","text":"BrokerTemplateInstance [template.openshift.io/v1]"},{"depth":2,"slug":"_podtemplate_v1","text":"PodTemplate [v1]"},{"depth":2,"slug":"_template_templateopenshiftiov1","text":"Template [template.openshift.io/v1]"},{"depth":2,"slug":"_templateinstance_templateopenshiftiov1","text":"TemplateInstance [template.openshift.io/v1]"}];
 const nav = navData;
-const currentPath = "/rest_api/template_apis/template-apis-index";
+const currentPath = "/openshift-docs-markdown/rest_api/template_apis/template-apis-index";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["rest_api","rest_api/template_apis"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Template APIs {#template-apis}\n\n## BrokerTemplateInstance \\[template.openshift.io/v1\\] {#_brokertemplateinstance_templateopenshiftiov1}\n\nDescription\n:   BrokerTemplateInstance holds the service broker-related state associated with a TemplateInstance.  BrokerTemplateInstance is part of an experimental API.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## PodTemplate \\[v1\\] {#_podtemplate_v1}\n\nDescription\n:   PodTemplate describes a template for creating copies of a predefined pod.\n\nType\n:   ```\n    `object`\n    ```\n\n## Template \\[template.openshift.io/v1\\] {#_template_templateopenshiftiov1}\n\nDescription\n:   Template contains the inputs needed to produce a Config.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## TemplateInstance \\[template.openshift.io/v1\\] {#_templateinstance_templateopenshiftiov1}\n\nDescription\n:   TemplateInstance requests and records the instantiation of a Template. TemplateInstance is part of an experimental API.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"/rest_api/template_apis/template-apis-index.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Template APIs {#template-apis}\n\n## BrokerTemplateInstance \\[template.openshift.io/v1\\] {#_brokertemplateinstance_templateopenshiftiov1}\n\nDescription\n:   BrokerTemplateInstance holds the service broker-related state associated with a TemplateInstance.  BrokerTemplateInstance is part of an experimental API.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## PodTemplate \\[v1\\] {#_podtemplate_v1}\n\nDescription\n:   PodTemplate describes a template for creating copies of a predefined pod.\n\nType\n:   ```\n    `object`\n    ```\n\n## Template \\[template.openshift.io/v1\\] {#_template_templateopenshiftiov1}\n\nDescription\n:   Template contains the inputs needed to produce a Config.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## TemplateInstance \\[template.openshift.io/v1\\] {#_templateinstance_templateopenshiftiov1}\n\nDescription\n:   TemplateInstance requests and records the instantiation of a Template. TemplateInstance is part of an experimental API.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/template_apis/template-apis-index.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

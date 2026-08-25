@@ -9,5 +9,5 @@ The OpenShift Container Platform control plane includes a built-in OAuth server.
 ## Additional resources {#_additional_resources}
 
 - [Issuer Identifier](https://openid.net/specs/openid-connect-core-1_0.html#IssuerIdentifier)
-- [Understanding identity provider configuration](/authentication/understanding-identity-provider#understanding-identity-provider)
-- [Cluster Operators reference page for the Cloud Credential Operator](/operators/operator-reference#cloud-credential-operator_operator-reference)
+- [Understanding identity provider configuration](/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider)
+- [Cluster Operators reference page for the Cloud Credential Operator](/openshift-docs-markdown/operators/operator-reference#cloud-credential-operator_operator-reference)

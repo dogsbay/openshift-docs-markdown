@@ -23,13 +23,13 @@ Required
 | `action` | `string` | What action was taken/failed regarding to the Regarding object. |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `count` | `integer` | The number of times this event has occurred. |
-| `eventTime` | [`MicroTime`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | Time when this Event was first observed. |
-| `firstTimestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The time at which the event was first recorded. (Time of server receipt is in TypeMeta.) |
+| `eventTime` | [`MicroTime`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | Time when this Event was first observed. |
+| `firstTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The time at which the event was first recorded. (Time of server receipt is in TypeMeta.) |
 | `involvedObject` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `lastTimestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The time at which the most recent occurrence of this event was recorded. |
+| `lastTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The time at which the most recent occurrence of this event was recorded. |
 | `message` | `string` | A human-readable description of the status of this operation. |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `reason` | `string` | This should be a short, machine understandable string that gives the reason for the transition into the object’s current status. |
 | `related` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `reportingComponent` | `string` | Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`. |
@@ -91,7 +91,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `count` | `integer` | Number of occurrences in this series up to the last heartbeat time |
-| `lastObservedTime` | [`MicroTime`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | Time of the last occurrence observed |
+| `lastObservedTime` | [`MicroTime`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | Time of the last occurrence observed |
 
 ### .source {#_source}
 
@@ -152,7 +152,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EventList`](/rest_api/objects/index#io-k8s-api-core-v1-EventList) schema |
+| 200 - OK | [`EventList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EventList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/events {#_apiv1watchevents}
@@ -171,7 +171,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/events {#_apiv1namespaces_namespace_events}
@@ -196,7 +196,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -213,7 +213,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`EventList`](/rest_api/objects/index#io-k8s-api-core-v1-EventList) schema |
+| 200 - OK | [`EventList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EventList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -237,15 +237,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |  |
+| `body` | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
-| 201 - Created | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
-| 202 - Accepted | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 200 - OK | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 201 - Created | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 202 - Accepted | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/events {#_apiv1watchnamespaces_namespace_events}
@@ -264,7 +264,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/events/{{ name }} {#_apiv1namespaces_namespace_events_name}
@@ -295,8 +295,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -313,7 +313,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 200 - OK | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -337,8 +337,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
-| 201 - Created | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 200 - OK | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 201 - Created | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -362,14 +362,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |  |
+| `body` | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
-| 201 - Created | [`Event`](/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 200 - OK | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
+| 201 - Created | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/events/{{ name }} {#_apiv1watchnamespaces_namespace_events_name}
@@ -394,5 +394,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

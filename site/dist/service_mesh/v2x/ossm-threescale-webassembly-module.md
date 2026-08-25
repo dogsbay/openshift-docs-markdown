@@ -25,9 +25,9 @@ Because of its self-contained design, it is possible to configure this module to
 
 ## Prerequisites {#prerequisites_ossm-threescale-webassembly-module}
 
-- The module works with all supported 3scale releases, except when configuring a service to use [OpenID connect (OIDC)](/authentication/identity_providers/configuring-oidc-identity-provider#configuring-oidc-identity-provider), which requires 3scale 2.11 or later.
+- The module works with all supported 3scale releases, except when configuring a service to use [OpenID connect (OIDC)](/openshift-docs-markdown/authentication/identity_providers/configuring-oidc-identity-provider#configuring-oidc-identity-provider), which requires 3scale 2.11 or later.
 
 **Additional resources**
 
-- [Migrating from `ServiceMeshExtension` to `WasmPlugin` resources](/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions)
+- [Migrating from `ServiceMeshExtension` to `WasmPlugin` resources](/openshift-docs-markdown/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions)
 - [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources)

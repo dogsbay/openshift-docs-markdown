@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"creating-multi-arch-compute-nodes-ibm-power","text":"Creating a cluster with multi-architecture compute machines on {{ ibm_power_title }}"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration","post_installation_configuration/configuring-multi-arch-compute-machines"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on {{ ibm_power_title }} {#creating-multi-arch-compute-nodes-ibm-power}\n\nTo create a cluster with multi-architecture compute machines on {{ ibm_power_name }} (`ppc64le`), you must have an existing single-architecture (`x86_64`) cluster. You can then add `ppc64le` compute machines to your OpenShift Container Platform cluster.\n\n> [!IMPORTANT]\n> Before you can add `ppc64le` nodes to your cluster, you must upgrade your cluster to one that uses the multi-architecture payload. For more information on migrating to the multi-architecture payload, see \"Migrating to a cluster with multi-architecture compute machines\".\n\nThe following procedures explain how to complete the following tasks:\n\n- Create a {{ op_system }} compute machine by using an ISO image or network PXE booting.\n- Add `ppc64le` nodes to your cluster and deploy a cluster with multi-architecture compute machines.\n\nTo create an {{ ibm_power_name }} (`ppc64le`) cluster with multi-architecture compute machines on `x86_64`, follow the instructions for \"Installing a cluster on {{ ibm_power_name }}\". You can then add `x86_64` compute machines as described in \"Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}\".\n\n> [!NOTE]\n> Before adding a secondary architecture node to your cluster, Red Hat recommends that you install the Multiarch Tuning Operator, and deploy a `ClusterPodPlacementConfig` object. For more information, see \"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator\".\n\n**Additional resources**\n\n- [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Installing a cluster on {{ ibm_power_name }}](/installing/installing_ibm_power/preparing-to-install-on-ibm-power#preparing-to-install-on-ibm-power)\n- [Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n","mdUrl":"/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on {{ ibm_power_title }} {#creating-multi-arch-compute-nodes-ibm-power}\n\nTo create a cluster with multi-architecture compute machines on {{ ibm_power_name }} (`ppc64le`), you must have an existing single-architecture (`x86_64`) cluster. You can then add `ppc64le` compute machines to your OpenShift Container Platform cluster.\n\n> [!IMPORTANT]\n> Before you can add `ppc64le` nodes to your cluster, you must upgrade your cluster to one that uses the multi-architecture payload. For more information on migrating to the multi-architecture payload, see \"Migrating to a cluster with multi-architecture compute machines\".\n\nThe following procedures explain how to complete the following tasks:\n\n- Create a {{ op_system }} compute machine by using an ISO image or network PXE booting.\n- Add `ppc64le` nodes to your cluster and deploy a cluster with multi-architecture compute machines.\n\nTo create an {{ ibm_power_name }} (`ppc64le`) cluster with multi-architecture compute machines on `x86_64`, follow the instructions for \"Installing a cluster on {{ ibm_power_name }}\". You can then add `x86_64` compute machines as described in \"Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}\".\n\n> [!NOTE]\n> Before adding a secondary architecture node to your cluster, Red Hat recommends that you install the Multiarch Tuning Operator, and deploy a `ClusterPodPlacementConfig` object. For more information, see \"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator\".\n\n**Additional resources**\n\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Installing a cluster on {{ ibm_power_name }}](/openshift-docs-markdown/installing/installing_ibm_power/preparing-to-install-on-ibm-power#preparing-to-install-on-ibm-power)\n- [Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -116,10 +116,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload">Migrating to a cluster with multi-architecture compute machines</a></li>
-      <li><a href="/installing/installing_ibm_power/preparing-to-install-on-ibm-power#preparing-to-install-on-ibm-power">Installing a cluster on {"{"}{"{"} ibm_power_name {"}"}{"}"}</a></li>
-      <li><a href="/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal">Creating a cluster with multi-architecture compute machines on bare metal, {"{"}{"{"} ibm_power_title {"}"}{"}"}, or {"{"}{"{"} ibm_z_title {"}"}{"}"}</a></li>
-      <li><a href="/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator">Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator</a></li>
+      <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload">Migrating to a cluster with multi-architecture compute machines</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/preparing-to-install-on-ibm-power#preparing-to-install-on-ibm-power">Installing a cluster on {"{"}{"{"} ibm_power_name {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal">Creating a cluster with multi-architecture compute machines on bare metal, {"{"}{"{"} ibm_power_title {"}"}{"}"}, or {"{"}{"{"} ibm_z_title {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator">Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator</a></li>
       </ul>
       <p class="/modules/machine-user-infra-machines-pxe.md"></p>
       <p class="/modules/installation-approve-csrs.md"></p>

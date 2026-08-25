@@ -6,7 +6,7 @@ title: Upgrading Service Mesh
 
 To access the most current features of {{ SMProductName }}, upgrade to the current version, {{ SMProductVersion }}.
 
-For more information about upgrading Operators, refer to the [Operator Lifecycle Manager](/operators/admin/olm-upgrading-operators) documentation.
+For more information about upgrading Operators, refer to the [Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-upgrading-operators) documentation.
 
 ## Upgrading the control plane {#upgrading-control-plane}
 
@@ -16,7 +16,7 @@ When you upgrade the service mesh control plane, all Operator managed resources,
 
 Although you can deploy multiple versions of the control plane in the same cluster, {{ SMProductName }} does not support canary upgrades of the service mesh. That is, you can have different SCMP resources with different values for `spec.version`, but they cannot be managing the same mesh.
 
-For more information about migrating your extensions, refer to [Migrating from ServiceMeshExtension to WasmPlugin resources](/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions).
+For more information about migrating your extensions, refer to [Migrating from ServiceMeshExtension to WasmPlugin resources](/openshift-docs-markdown/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions).
 
 ## Upgrading the data plane {#upgrading-data-plane}
 

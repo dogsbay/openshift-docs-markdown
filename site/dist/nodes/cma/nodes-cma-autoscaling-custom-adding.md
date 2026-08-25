@@ -10,5 +10,5 @@ You can create only one scaled object for each workload that you want to scale. 
 
 ## Additional resources {#nodes-cma-autoscaling-custom-adding-additional-resources}
 
-- [Understanding custom metrics autoscaler triggers](/nodes/cma/nodes-cma-autoscaling-custom-trigger#nodes-cma-autoscaling-custom-overview-trigger)
-- [Understanding custom metrics autoscaler trigger authentications](/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)
+- [Understanding custom metrics autoscaler triggers](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-trigger#nodes-cma-autoscaling-custom-overview-trigger)
+- [Understanding custom metrics autoscaler trigger authentications](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)

@@ -12,6 +12,6 @@ Volume group snapshots capture point-in-time copies of multiple volumes simultan
 
 ## Additional resources {#additional-resources_persistent-storage-csi-group-snapshots}
 
-- [Understanding persistent volumes](/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
-- [CSI volume snapshots](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)
+- [Understanding persistent volumes](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)

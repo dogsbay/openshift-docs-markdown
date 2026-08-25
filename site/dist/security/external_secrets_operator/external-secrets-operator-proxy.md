@@ -8,4 +8,4 @@ If a cluster-wide egress proxy is configured in OpenShift Container Platform, th
 
 ## Additional resources {#external-resources-operator-proxy_additional-resources}
 
-- [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
+- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)

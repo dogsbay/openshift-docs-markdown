@@ -11,4 +11,4 @@ You can create virtual machines (VMs) by importing operating system images from 
 
 ## Additional resources {#additional-resources_virt-creating-vms-from-web-images}
 
-- [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
+- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)

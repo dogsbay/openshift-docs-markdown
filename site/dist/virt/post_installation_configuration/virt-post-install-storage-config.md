@@ -23,6 +23,6 @@ The HPP is a local storage provisioner designed for {{ VirtProductName }}. To us
 
 ## Additional resources {#additional-resources_{{ context }}}
 
-- [Defining a storage class](/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
-- [Configuring storage profiles](/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)
-- [Storage configuration overview](/virt/storage/virt-storage-config-overview#virt-storage-config-overview)
+- [Defining a storage class](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
+- [Configuring storage profiles](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)
+- [Storage configuration overview](/openshift-docs-markdown/virt/storage/virt-storage-config-overview#virt-storage-config-overview)

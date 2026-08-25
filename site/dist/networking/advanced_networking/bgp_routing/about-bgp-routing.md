@@ -12,5 +12,5 @@ To integrate BGP with MetalLB and FRR-K8s in OpenShift Container Platform, you c
 ## Additional resources {#additional-resources_about-bgp-routing}
 
 - [FRRouting User Guide: BGP](https://docs.frrouting.org/en/latest/bgp.html)
-- [Migrating FRR-K8s resources](/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources#migrating-frr-k8s-resources)
-- [Improve east-west performance by routing pods on the underlay with BGP](/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)
+- [Migrating FRR-K8s resources](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources#migrating-frr-k8s-resources)
+- [Improve east-west performance by routing pods on the underlay with BGP](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)

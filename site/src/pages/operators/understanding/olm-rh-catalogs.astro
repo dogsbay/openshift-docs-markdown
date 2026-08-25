@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"olm-rh-catalogs","text":"Red Hat-provided Operator catalogs"}];
 const nav = navData;
-const currentPath = "/operators/understanding/olm-rh-catalogs";
+const currentPath = "/openshift-docs-markdown/operators/understanding/olm-rh-catalogs";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["operators","operators/understanding"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat-provided Operator catalogs {#olm-rh-catalogs}\n\nRed Hat provides several Operator catalogs that are included with OpenShift Container Platform by default.\n\n> [!IMPORTANT]\n> As of OpenShift Container Platform 4.11, the default Red Hat-provided Operator catalog releases in the file-based catalog format. The default Red Hat-provided Operator catalogs for OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.\n>\n> The `opm` subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.\n>\n> Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format. For more information about working with file-based catalogs, see \"Managing custom catalogs\", \"Operator Framework packaging format\", and \"Mirroring images for a disconnected installation using the oc-mirror plugin\".\n\n**Additional resources**\n\n- [Managing custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs)\n- [Packaging format](/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin](/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n\n**Additional resources**\n\n- [Community Operators (GitHub)](https://github.com/redhat-openshift-ecosystem/community-operators-prod/tree/main/operators)\n","mdUrl":"/operators/understanding/olm-rh-catalogs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat-provided Operator catalogs {#olm-rh-catalogs}\n\nRed Hat provides several Operator catalogs that are included with OpenShift Container Platform by default.\n\n> [!IMPORTANT]\n> As of OpenShift Container Platform 4.11, the default Red Hat-provided Operator catalog releases in the file-based catalog format. The default Red Hat-provided Operator catalogs for OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.\n>\n> The `opm` subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.\n>\n> Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format. For more information about working with file-based catalogs, see \"Managing custom catalogs\", \"Operator Framework packaging format\", and \"Mirroring images for a disconnected installation using the oc-mirror plugin\".\n\n**Additional resources**\n\n- [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs)\n- [Packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n\n**Additional resources**\n\n- [Community Operators (GitHub)](https://github.com/redhat-openshift-ecosystem/community-operators-prod/tree/main/operators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/understanding/olm-rh-catalogs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,10 +107,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/olm-about-catalogs.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs">Managing custom catalogs</a></li>
-      <li><a href="/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format">Packaging format</a></li>
-      <li><a href="/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected">Mirroring images for a disconnected installation using the oc-mirror plugin</a></li>
-      <li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs">Managing custom catalogs</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format">Packaging format</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected">Mirroring images for a disconnected installation using the oc-mirror plugin</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://github.com/redhat-openshift-ecosystem/community-operators-prod/tree/main/operators">Community Operators (GitHub)</a></li></ul>

@@ -18,11 +18,11 @@ You can manage your workloads in your hosted cluster by using the cluster autosc
 
 **Additional resources**
 
-- [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
+- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 - [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)
 
 **Additional resources**
 
-- [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)
-- [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)
-- [Scaling a node pool ({{ VirtProductName }})](/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt)
+- [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)
+- [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)
+- [Scaling a node pool ({{ VirtProductName }})](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt)

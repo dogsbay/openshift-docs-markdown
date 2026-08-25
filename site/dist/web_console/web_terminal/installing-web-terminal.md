@@ -27,4 +27,4 @@ You can install the web terminal by using the {{ web_terminal_op }} listed in th
 
    > [!NOTE]
    > The {{ web_terminal_op }} installs the DevWorkspace Operator as a dependency.
-7. After the Operator is installed, refresh your page to see the command-line terminal icon (![title="web terminal icon"](/_assets/images/odc-wto-icon.png)) in the masthead of the console.
+7. After the Operator is installed, refresh your page to see the command-line terminal icon (![title="web terminal icon"](/openshift-docs-markdown/_assets/images/odc-wto-icon.png)) in the masthead of the console.

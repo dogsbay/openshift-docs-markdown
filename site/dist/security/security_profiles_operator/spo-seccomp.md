@@ -11,7 +11,7 @@ Create and manage seccomp profiles and bind them to workloads.
 
 ## Additional resources {#additional-resources_spo-seccomp}
 
-- [Managing security context constraints](/authentication/managing-security-context-constraints#managing-pod-security-policies)
+- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#managing-pod-security-policies)
 - [Managing SCCs in OpenShift](https://cloud.redhat.com/blog/managing-sccs-in-openshift)
-- [Using the log enricher](/security/security_profiles_operator/spo-advanced#spo-log-enricher_spo-advanced)
-- [About security profiles](/security/security_profiles_operator/spo-understanding#spo-about_spo-understanding)
+- [Using the log enricher](/openshift-docs-markdown/security/security_profiles_operator/spo-advanced#spo-log-enricher_spo-advanced)
+- [About security profiles](/openshift-docs-markdown/security/security_profiles_operator/spo-understanding#spo-about_spo-understanding)

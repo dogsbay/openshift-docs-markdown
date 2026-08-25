@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"update-ocp-update-prep","text":"Preparing a bare-metal cluster for platform update"},{"depth":2,"slug":"update-environment-considerations_ocp-update-prep","text":"Disconnected environment considerations"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/day_2_core_cnf_clusters/updating/update-ocp-update-prep";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-ocp-update-prep";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration","post_installation_configuration/day_2_core_cnf_clusters","post_installation_configuration/day_2_core_cnf_clusters/updating"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing a bare-metal cluster for platform update {#update-ocp-update-prep}\n\nOn bare-metal hardware, you often must update the firmware to take on important security fixes, take on new functionality, or maintain compatibility with the new release of OpenShift Container Platform.\n\n## Disconnected environment considerations {#update-environment-considerations_ocp-update-prep}\n\nTo update clusters in disconnected environments, you must update your offline image repository.\n\n**Additional resources**\n\n- [API compatibility guidelines](/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n\n**Additional resources**\n\n- [Updating the worker nodes](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update)\n- [Updating all the OLM Operators](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update)\n\n**Additional resources**\n\n- [Node configuration management with machine config pools](/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)\n\n**Additional resources**\n\n- [Performing a Control Plane Only update](/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)\n- [Factors affecting update duration](/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration)\n- [Ensuring that CNF workloads run uninterrupted with pod disruption budgets](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pdb_update-cnf-update-prep)\n- [Ensuring that pods do not run on the same cluster node](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pod-anti-affinity_update-cnf-update-prep)\n\n**Additional resources**\n\n- [Investigating pod issues](/support/troubleshooting/investigating-pod-issues#investigating-pod-issues)\n","mdUrl":"/post_installation_configuration/day_2_core_cnf_clusters/updating/update-ocp-update-prep.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing a bare-metal cluster for platform update {#update-ocp-update-prep}\n\nOn bare-metal hardware, you often must update the firmware to take on important security fixes, take on new functionality, or maintain compatibility with the new release of OpenShift Container Platform.\n\n## Disconnected environment considerations {#update-environment-considerations_ocp-update-prep}\n\nTo update clusters in disconnected environments, you must update your offline image repository.\n\n**Additional resources**\n\n- [API compatibility guidelines](/openshift-docs-markdown/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n\n**Additional resources**\n\n- [Updating the worker nodes](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update)\n- [Updating all the OLM Operators](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update)\n\n**Additional resources**\n\n- [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)\n\n**Additional resources**\n\n- [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)\n- [Factors affecting update duration](/openshift-docs-markdown/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration)\n- [Ensuring that CNF workloads run uninterrupted with pod disruption budgets](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pdb_update-cnf-update-prep)\n- [Ensuring that pods do not run on the same cluster node](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pod-anti-affinity_update-cnf-update-prep)\n\n**Additional resources**\n\n- [Investigating pod issues](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#investigating-pod-issues)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-ocp-update-prep.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,27 +97,27 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>To update clusters in disconnected environments, you must update your offline image repository.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines">API compatibility guidelines</a></li>
-      <li><a href="/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
+      <li><a href="/openshift-docs-markdown/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines">API compatibility guidelines</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
       </ul>
       <p class="/modules/update-ensuring-that-layered-products-are-compatible.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update">Updating the worker nodes</a></li>
-      <li><a href="/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update">Updating all the OLM Operators</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update">Updating the worker nodes</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update">Updating all the OLM Operators</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_configuration/index#architecture-machine-config-pools_machine-config-overview">Node configuration management with machine config pools</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview">Node configuration management with machine config pools</a></li></ul>
       <p class="/modules/update-creating-mcp-groups-for-the-cluster.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update">Performing a Control Plane Only update</a></li>
-      <li><a href="/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration">Factors affecting update duration</a></li>
-      <li><a href="/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pdb_update-cnf-update-prep">Ensuring that CNF workloads run uninterrupted with pod disruption budgets</a></li>
-      <li><a href="/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pod-anti-affinity_update-cnf-update-prep">Ensuring that pods do not run on the same cluster node</a></li>
+      <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update">Performing a Control Plane Only update</a></li>
+      <li><a href="/openshift-docs-markdown/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration">Factors affecting update duration</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pdb_update-cnf-update-prep">Ensuring that CNF workloads run uninterrupted with pod disruption budgets</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pod-anti-affinity_update-cnf-update-prep">Ensuring that pods do not run on the same cluster node</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/support/troubleshooting/investigating-pod-issues#investigating-pod-issues">Investigating pod issues</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#investigating-pod-issues">Investigating pod issues</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

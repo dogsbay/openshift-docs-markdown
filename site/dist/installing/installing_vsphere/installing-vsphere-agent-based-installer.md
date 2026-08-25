@@ -13,5 +13,5 @@ Agent-based installation is a subcommand of the OpenShift Container Platform ins
 
 ## Additional resources {#_additional_resources}
 
-- [Preparing to install with the Agent-based Installer](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)
-- [vCenter requirements](/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_upi-vsphere-installation-reqs)
+- [Preparing to install with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)
+- [vCenter requirements](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_upi-vsphere-installation-reqs)

@@ -20,7 +20,7 @@ Type
 | `data` | `object (string)` | Data contains the secret data. Each key must consist of alphanumeric characters, '-', '\\_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4 |
 | `immutable` | `boolean` | Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `stringData` | `object (string)` | stringData allows specifying non-binary secret data in string form. It is provided as a write-only input field for convenience. All keys and values are merged into the data field on write, overwriting any existing values. The stringData field is never output when reading from the API. |
 | `type` | `string` | Used to facilitate programmatic handling of secret data. More info: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types |
 
@@ -68,7 +68,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecretList`](/rest_api/objects/index#io-k8s-api-core-v1-SecretList) schema |
+| 200 - OK | [`SecretList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-SecretList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/secrets {#_apiv1watchsecrets}
@@ -87,7 +87,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/secrets {#_apiv1namespaces_namespace_secrets}
@@ -112,7 +112,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -129,7 +129,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SecretList`](/rest_api/objects/index#io-k8s-api-core-v1-SecretList) schema |
+| 200 - OK | [`SecretList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-SecretList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -153,15 +153,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |  |
+| `body` | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
-| 201 - Created | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
-| 202 - Accepted | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 200 - OK | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 201 - Created | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 202 - Accepted | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/secrets {#_apiv1watchnamespaces_namespace_secrets}
@@ -180,7 +180,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/secrets/{{ name }} {#_apiv1namespaces_namespace_secrets_name}
@@ -211,8 +211,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -229,7 +229,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 200 - OK | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -253,8 +253,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
-| 201 - Created | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 200 - OK | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 201 - Created | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -278,14 +278,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |  |
+| `body` | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
-| 201 - Created | [`Secret`](/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 200 - OK | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 201 - Created | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/secrets/{{ name }} {#_apiv1watchnamespaces_namespace_secrets_name}
@@ -310,5 +310,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

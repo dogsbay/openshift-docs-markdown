@@ -8,6 +8,6 @@ You can configure advanced direct authentication fields in the `authentications.
 
 **Additional resources**
 
-- [Enabling direct authentication with an external OIDC identity provider](/authentication/external-auth#external-auth)
+- [Enabling direct authentication with an external OIDC identity provider](/openshift-docs-markdown/authentication/external-auth#external-auth)
 - [Common Expression Language (CEL) specification](https://cel.dev/)
 - [Common Expression Language in Kubernetes](https://kubernetes.io/docs/reference/using-api/cel/)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-using-virtctl-ssh","text":"Configure SSH by using the virtctl CLI tool"}];
 const nav = navData;
-const currentPath = "/virt/managing_vms/ssh/virt-using-virtctl-ssh";
+const currentPath = "/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-virtctl-ssh";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/ssh"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configure SSH by using the virtctl CLI tool {#virt-using-virtctl-ssh}\n\nYou can add a public SSH key to a virtual machine (VM) and connect to the VM by running the `virtctl ssh` command, or add the `virtctl port-foward` command to your `.ssh/config` file and connect to the VM by using OpenSSH.\n\n> [!IMPORTANT]\n> The `virtctl ssh` command method is not recommended for high traffic loads because it places a burden on the API server.\n\nYou can add public SSH keys to {{ op_system_base_full }} 9 VMs at runtime or at first boot to VMs with guest operating systems that can be configured by using a cloud-init data source.\n\n> [!TIP]\n> You can copy the `virtctl ssh` command in the web console by selecting **Copy SSH command** from the options {{ kebab }} menu beside a VM on the **VirtualMachines** page.\n>\n> Alternatively, right-click the VM in the tree view and select **Copy SSH command** from the menu to copy the `virtctl ssh` command.\n","mdUrl":"/virt/managing_vms/ssh/virt-using-virtctl-ssh.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configure SSH by using the virtctl CLI tool {#virt-using-virtctl-ssh}\n\nYou can add a public SSH key to a virtual machine (VM) and connect to the VM by running the `virtctl ssh` command, or add the `virtctl port-foward` command to your `.ssh/config` file and connect to the VM by using OpenSSH.\n\n> [!IMPORTANT]\n> The `virtctl ssh` command method is not recommended for high traffic loads because it places a burden on the API server.\n\nYou can add public SSH keys to {{ op_system_base_full }} 9 VMs at runtime or at first boot to VMs with guest operating systems that can be configured by using a cloud-init data source.\n\n> [!TIP]\n> You can copy the `virtctl ssh` command in the web console by selecting **Copy SSH command** from the options {{ kebab }} menu beside a VM on the **VirtualMachines** page.\n>\n> Alternatively, right-click the VM in the tree view and select **Copy SSH command** from the menu to copy the `virtctl ssh` command.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-virtctl-ssh.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

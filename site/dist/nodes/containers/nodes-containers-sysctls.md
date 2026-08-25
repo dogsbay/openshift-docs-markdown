@@ -20,15 +20,15 @@ Only those sysctls considered *safe* are enabled by default. A cluster administr
 
 **Additional resources**
 
-- [Configuring the node port service range](/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
+- [Configuring the node port service range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 
 ## Additional resources {#_additional_resources}
 
-- [Configuring ingress cluster traffic using a NodePort](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
+- [Configuring ingress cluster traffic using a NodePort](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
 
 ## Additional resources {#additional-resources_nodes-containers-sysctls}
 
 - [Linux networking documentation](https://docs.kernel.org/networking/ip-sysctl.html)
-- [Configuring system controls by using the tuning CNI](/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni)
-- [Using the Node Tuning Operator](/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator)
+- [Configuring system controls by using the tuning CNI](/openshift-docs-markdown/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni)
+- [Using the Node Tuning Operator](/openshift-docs-markdown/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator)
 - [Kernel.org documentation](https://www.kernel.org/doc/Documentation/sysctl/)

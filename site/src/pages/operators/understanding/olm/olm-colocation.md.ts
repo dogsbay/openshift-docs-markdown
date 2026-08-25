@@ -2,7 +2,7 @@
 // Source: operators/understanding/olm/olm-colocation.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Multitenancy and Operator colocation\n---\n\n# Multitenancy and Operator colocation {#olm-colocation}\n\nWhen Operators share a namespace, Operator Lifecycle Manager (OLM) treats them as related, which affects how they behave during updates.\n\n**Additional resources**\n\n- [Installing global Operators in custom namespaces](/operators/admin/olm-adding-operators-to-cluster#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster)\n- [Operators in multitenant clusters](/operators/understanding/olm-multitenancy#olm-multitenancy)\n";
+const body = "---\ntitle: Multitenancy and Operator colocation\n---\n\n# Multitenancy and Operator colocation {#olm-colocation}\n\nWhen Operators share a namespace, Operator Lifecycle Manager (OLM) treats them as related, which affects how they behave during updates.\n\n**Additional resources**\n\n- [Installing global Operators in custom namespaces](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster)\n- [Operators in multitenant clusters](/openshift-docs-markdown/operators/understanding/olm-multitenancy#olm-multitenancy)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

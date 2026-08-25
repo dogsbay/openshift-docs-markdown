@@ -15,28 +15,28 @@ You must set most of the network configuration parameters during installation, a
 
 **Additional resources**
 
-- [Installation configuration parameters for {{ aws_short }}](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
+- [Installation configuration parameters for {{ aws_short }}](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 **Additional resources**
 
-- [Installation configuration parameters for {{ aws_short }}](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
+- [Installation configuration parameters for {{ aws_short }}](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
 **Additional resources**
 
-- [Configuring Ingress cluster traffic on {{ aws_short }} using a Network Load Balancer](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-aws#nw-configuring-ingress-cluster-traffic-aws-network-load-balancer_configuring-ingress-cluster-traffic-aws)
+- [Configuring Ingress cluster traffic on {{ aws_short }} using a Network Load Balancer](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-aws#nw-configuring-ingress-cluster-traffic-aws-network-load-balancer_configuring-ingress-cluster-traffic-aws)
 
 **Additional resources**
 
-- [Understanding Windows container workloads](/windows_containers/understanding-windows-container-workloads#understanding-windows-container-workloads)
+- [Understanding Windows container workloads](/openshift-docs-markdown/windows_containers/understanding-windows-container-workloads#understanding-windows-container-workloads)
 
 ## Additional resources {#additional-resources_installing-aws-customizations}
 
-- [Accessing the web console](/web_console/web-console#web-console)
-- [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
-- [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Removing cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
+- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

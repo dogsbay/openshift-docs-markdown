@@ -6,49 +6,49 @@ title: Additional release notes
 
 {% include "./_attributes/common-attributes.md" %}
 
-Release notes for additional related components and products not included in the core [OpenShift Container Platform 4.22 release notes](/release_notes/ocp-4-22-release-notes#ocp-4-22-release-notes) are available in the following documentation.
+Release notes for additional related components and products not included in the core [OpenShift Container Platform 4.22 release notes](/openshift-docs-markdown/release_notes/ocp-4-22-release-notes#ocp-4-22-release-notes) are available in the following documentation.
 
 > [!IMPORTANT]
 > The following release notes are for downstream Red Hat products only; upstream or community release notes for related products are not included.
 
 A
-:   [AWS Load Balancer Operator](/networking/networking_operators/aws_load_balancer_operator/aws-load-balancer-operator-release-notes#aws-load-balancer-operator-release-notes)
+:   [AWS Load Balancer Operator](/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/aws-load-balancer-operator-release-notes#aws-load-balancer-operator-release-notes)
 
 B
 :   [{{ builds_v2title }}](https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift/1.1/html/about_builds/ob-release-notes#ob-release-notes)
 
 C
-:   [{{ cert_manager_operator }}](/security/cert_manager_operator/cert-manager-operator-release-notes#cert-manager-operator-release-notes)
+:   [{{ cert_manager_operator }}](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-release-notes#cert-manager-operator-release-notes)
 
-    [{{ cli_manager }}](/cli_reference/cli_manager/cli-manager-release-notes#cli-manager-release-notes)
+    [{{ cli_manager }}](/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-release-notes#cli-manager-release-notes)
 
     [{{ coo_first }}](https://docs.redhat.com/en/documentation/red_hat_openshift_cluster_observability_operator/1-latest/html/red_hat_openshift_cluster_observability_operator_release_notes/index)
 
-    [Compliance Operator](/security/compliance_operator/compliance-operator-release-notes#compliance-operator-release-notes)
+    [Compliance Operator](/openshift-docs-markdown/security/compliance_operator/compliance-operator-release-notes#compliance-operator-release-notes)
 
-    [Custom Metrics Autoscaler Operator](/nodes/cma/nodes-cma-rn/nodes-cma-autoscaling-custom-rn#nodes-cma-autoscaling-custom-rn)
+    [Custom Metrics Autoscaler Operator](/openshift-docs-markdown/nodes/cma/nodes-cma-rn/nodes-cma-autoscaling-custom-rn#nodes-cma-autoscaling-custom-rn)
 
 D
 :   [{{ rh_dev_hub }} Operator](https://docs.redhat.com/en/documentation/red_hat_developer_hub/#Release%20Notes)
 
 E
-:   [External DNS Operator](/networking/networking_operators/external_dns_operator/external-dns-operator-release-notes#external-dns-operator-release-notes)
+:   [External DNS Operator](/openshift-docs-markdown/networking/networking_operators/external_dns_operator/external-dns-operator-release-notes#external-dns-operator-release-notes)
 
-    [{{ external_secrets_operator }}](/security/external_secrets_operator/external-secrets-operator-release-notes#cert-manager-operator-release-notes)
+    [{{ external_secrets_operator }}](/openshift-docs-markdown/security/external_secrets_operator/external-secrets-operator-release-notes#cert-manager-operator-release-notes)
 
 F
-:   [File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes-v0)
+:   [File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes-v0)
 
 J
-:   [{{ js_operator }}](/ai_workloads/jobset_operator/jobset-release-notes#js-release-notes)
+:   [{{ js_operator }}](/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-release-notes#js-release-notes)
 
 K
-:   [{{ descheduler_operator }}](/nodes/scheduling/descheduler/nodes-descheduler-release-notes#nodes-descheduler-release-notes)
+:   [{{ descheduler_operator }}](/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-release-notes#nodes-descheduler-release-notes)
 
-    [{{ kueue_name }}](/ai_workloads/kueue/release-notes#release-notes)
+    [{{ kueue_name }}](/openshift-docs-markdown/ai_workloads/kueue/release-notes#release-notes)
 
 L
-:   [{{ lws_operator }}](/ai_workloads/leader_worker_set/lws-release-notes#lws-release-notes)
+:   [{{ lws_operator }}](/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-release-notes#lws-release-notes)
 
     [{{ logging_uc }}](https://docs.redhat.com/en/documentation/red_hat_openshift_logging)
 
@@ -56,12 +56,12 @@ M
 :   [{{ monitoring_title_c }}](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift)
 
 N
-:   [Network Observability Operator](/observability/network_observability/network-observability-operator-release-notes#network-observability-operator-release-notes)
+:   [Network Observability Operator](/openshift-docs-markdown/observability/network_observability/network-observability-operator-release-notes#network-observability-operator-release-notes)
 
-    [Network-bound Disk Encryption (NBDE) Tang Server Operator](/security/nbde_tang_server_operator/nbde-tang-server-operator-release-notes#nbde-tang-server-operator-release-notes)
+    [Network-bound Disk Encryption (NBDE) Tang Server Operator](/openshift-docs-markdown/security/nbde_tang_server_operator/nbde-tang-server-operator-release-notes#nbde-tang-server-operator-release-notes)
 
 O
-:   [{{ oadp_first }}](/backup_and_restore/application_backup_and_restore/release-notes/oadp-1-6-release-notes#oadp-1-6-release-notes)
+:   [{{ oadp_first }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/release-notes/oadp-1-6-release-notes#oadp-1-6-release-notes)
 
     [{{ openshift_dev_spaces_productname }}](https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/#Release%20Notes)
 
@@ -77,11 +77,11 @@ O
 
     [Red Hat {{ ServerlessProductName }}](https://docs.redhat.com/en/documentation/red_hat_openshift_serverless/1.33/html/about_openshift_serverless/serverless-release-notes#serverless-release-notes)
 
-    [{{ SMProductName }} 2.x](/service_mesh/v2x/servicemesh-release-notes#service-mesh-release-notes)
+    [{{ SMProductName }} 2.x](/openshift-docs-markdown/service_mesh/v2x/servicemesh-release-notes#service-mesh-release-notes)
 
     [{{ SMProductName }} 3.x](https://docs.openshift.com/service-mesh/3.0.0tp1/ossm-release-notes/ossm-release-notes-assembly.html)
 
-    [Red Hat {{ VirtProductName }}](/virt/release_notes/virt-4-22-release-notes#virt-4-22-release-notes)
+    [Red Hat {{ VirtProductName }}](/openshift-docs-markdown/virt/release_notes/virt-4-22-release-notes#virt-4-22-release-notes)
 
     [{{ OTELName }}](https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest/html-single/release_notes_for_the_red_hat_build_of_opentelemetry/index)
 
@@ -89,15 +89,15 @@ P
 :   [{{ PM_title_c }}](https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest/html/release_notes/index)
 
 R
-:   [{{ run_once_operator }}](/nodes/pods/run_once_duration_override/run-once-duration-override-release-notes#run-once-duration-override-release-notes)
+:   [{{ run_once_operator }}](/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-release-notes#run-once-duration-override-release-notes)
 
 S
-:   [{{ secondary_scheduler_operator_full }}](/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-release-notes#nodes-secondary-scheduler-release-notes)
+:   [{{ secondary_scheduler_operator_full }}](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-release-notes#nodes-secondary-scheduler-release-notes)
 
-    [Security Profiles Operator](/security/security_profiles_operator/spo-release-notes#spo-release-notes)
+    [Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-release-notes#spo-release-notes)
 
 W
-:   [{{ productwinc }}](/windows_containers/wmco_rn/windows-containers-release-notes#windows-containers-release-notes)
+:   [{{ productwinc }}](/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes#windows-containers-release-notes)
 
 Z
-:   [{{ zero_trust_full }}](/security/zero_trust_workload_identity_manager/zero-trust-manager-release-notes#zero-trust-manager-release-notes)
+:   [{{ zero_trust_full }}](/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-release-notes#zero-trust-manager-release-notes)

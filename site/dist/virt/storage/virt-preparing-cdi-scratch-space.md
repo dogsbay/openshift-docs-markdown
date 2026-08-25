@@ -8,4 +8,4 @@ To support image import and processing, configure the Containerized Data Importe
 
 ## Additional resources {#virt-preparing-cdi-scratch-space-additional-resources}
 
-- [Dynamic provisioning](/storage/dynamic-provisioning#about_dynamic-provisioning)
+- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#about_dynamic-provisioning)

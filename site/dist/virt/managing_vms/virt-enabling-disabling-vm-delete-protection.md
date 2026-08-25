@@ -14,5 +14,5 @@ You can also choose to remove availability of the delete protection option for a
 
 ## Additional resources {#additional-resources_virt-enabling-disabling-vm-delete-protection}
 
-- [Enabling or disabling virtual machine delete protection by using the web console](/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-web_virt-enabling-disabling-vm-delete-protection)
-- [Enabling or disabling virtual machine delete protection by using the CLI](/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-cli_virt-enabling-disabling-vm-delete-protection)
+- [Enabling or disabling virtual machine delete protection by using the web console](/openshift-docs-markdown/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-web_virt-enabling-disabling-vm-delete-protection)
+- [Enabling or disabling virtual machine delete protection by using the CLI](/openshift-docs-markdown/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-cli_virt-enabling-disabling-vm-delete-protection)

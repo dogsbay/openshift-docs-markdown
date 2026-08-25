@@ -8,4 +8,4 @@ You can schedule a virtual machine (VM) on a node by ensuring that the VM’s CP
 
  **Additional resources**
 
-- [Deploying a secondary scheduler](/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#nodes-secondary-scheduler-configuring-console_secondary-scheduler-configuring)
+- [Deploying a secondary scheduler](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#nodes-secondary-scheduler-configuring-console_secondary-scheduler-configuring)

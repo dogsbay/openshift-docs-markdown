@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `status` | `object` | SelfSubjectReviewStatus is filled by the kube-apiserver and sent back to a user. |
 
 ### .status {#_status}
@@ -94,13 +94,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`SelfSubjectReview`](/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |  |
+| `body` | [`SelfSubjectReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`SelfSubjectReview`](/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |
-| 201 - Created | [`SelfSubjectReview`](/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |
-| 202 - Accepted | [`SelfSubjectReview`](/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |
+| 200 - OK | [`SelfSubjectReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |
+| 201 - Created | [`SelfSubjectReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |
+| 202 - Accepted | [`SelfSubjectReview`](/openshift-docs-markdown/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1#selfsubjectreview-authentication-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

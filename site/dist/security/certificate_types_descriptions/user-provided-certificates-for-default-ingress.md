@@ -14,5 +14,5 @@ Use user-provided certificates for the default `IngressController` CR to complet
 
 ## Additional resources {#additional-resources_cert-types-user-provided-certificates-for-default-ingress}
 
-- [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
-- [Setting a custom default certificate](/networking/networking_operators/ingress-operator#nw-ingress-setting-a-custom-default-certificate_configuring-ingress)
+- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
+- [Setting a custom default certificate](/openshift-docs-markdown/networking/networking_operators/ingress-operator#nw-ingress-setting-a-custom-default-certificate_configuring-ingress)

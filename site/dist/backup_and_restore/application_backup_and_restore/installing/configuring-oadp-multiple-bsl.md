@@ -10,4 +10,4 @@ Configure multiple backup storage locations (BSLs) in the Data Protection Applic
 
 **Additional resources**
 
-- [Creating profiles for different credentials](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-aws-secrets-for-different-credentials_installing-oadp-aws)
+- [Creating profiles for different credentials](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-aws-secrets-for-different-credentials_installing-oadp-aws)

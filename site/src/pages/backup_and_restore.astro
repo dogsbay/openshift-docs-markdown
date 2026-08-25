@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"backup-restore-overview","text":"Backup and restore"}];
 const nav = navData;
-const currentPath = "/backup_and_restore";
+const currentPath = "/openshift-docs-markdown/backup_and_restore";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = null;
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backup and restore {#backup-restore-overview}\n\nLearn how to back up and restore your OpenShift Container Platform cluster’s control plane and how to back up and restore applications running on the cluster.\n\n**Additional resources**\n\n- [Quorum protection with machine lifecycle hooks](/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)\n","mdUrl":"/backup_and_restore.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backup and restore {#backup-restore-overview}\n\nLearn how to back up and restore your OpenShift Container Platform cluster’s control plane and how to back up and restore applications running on the cluster.\n\n**Additional resources**\n\n- [Quorum protection with machine lifecycle hooks](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Learn how to back up and restore your OpenShift Container Platform cluster’s control plane and how to back up and restore applications running on the cluster.</p>
       <p class="/modules/control-plane-backup-restore-operations-overview.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine">Quorum protection with machine lifecycle hooks</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine">Quorum protection with machine lifecycle hooks</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

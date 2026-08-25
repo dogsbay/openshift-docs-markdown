@@ -20,12 +20,12 @@ A disconnected cluster, also known as a restricted cluster, does not have an act
 
 **Additional resources**
 
-- [Mirroring an Operator catalog](/disconnected/using-olm#olm-mirror-catalog_olm-restricted-networks)
-- [OpenShift CLI administrator command reference](/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-catalog-mirror)
+- [Mirroring an Operator catalog](/openshift-docs-markdown/disconnected/using-olm#olm-mirror-catalog_olm-restricted-networks)
+- [OpenShift CLI administrator command reference](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-catalog-mirror)
 
 **Additional resources**
 
-- [Disabling the {{ insights_operator }}](/support/remote_health_monitoring/remote-health-reporting#insights-operator-new-pull-secret-disabled_remote-health-reporting)
+- [Disabling the {{ insights_operator }}](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#insights-operator-new-pull-secret-disabled_remote-health-reporting)
 
 **Additional resources**
 

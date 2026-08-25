@@ -27,18 +27,18 @@ You can complete the following configurations after you install a cluster on {{ 
 
 **Additional resources**
 
-- [Installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Supported platforms for OpenShift Container Platform clusters](/architecture/architecture-installation#supported-platforms-for-openshift-clusters_architecture-installation)
+- [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Supported platforms for OpenShift Container Platform clusters](/openshift-docs-markdown/architecture/architecture-installation#supported-platforms-for-openshift-clusters_architecture-installation)
 - [OpenShift Container Platform on {{ rh_openstack }} support matrix (Knowledgebase article)](https://access.redhat.com/articles/4679401)
-- [Mirroring images for a disconnected installation by using the `oc adm` command](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
-- [Recommended control plane practices](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-host-practices)
-- [Postinstallation cluster tasks](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- [Image configuration resources](/openshift_images/image-configuration#images-configuration-cas_image-configuration)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-- [Registering your disconnected cluster](/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
-- [Configuring network settings after installing {{ rh_openstack }}](/installing/installing_openstack/installing-openstack-network-config#installation-osp-configuring-api-floating-ip_installing-openstack-network-config)
+- [Mirroring images for a disconnected installation by using the `oc adm` command](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
+- [Recommended control plane practices](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-host-practices)
+- [Postinstallation cluster tasks](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Image configuration resources](/openshift-docs-markdown/openshift_images/image-configuration#images-configuration-cas_image-configuration)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Registering your disconnected cluster](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
+- [Configuring network settings after installing {{ rh_openstack }}](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-network-config#installation-osp-configuring-api-floating-ip_installing-openstack-network-config)
 
 **Additional resources**
 
@@ -47,12 +47,12 @@ You can complete the following configurations after you install a cluster on {{ 
 
 **Additional resources**
 
-- [Installation configuration parameters for {{ rh_openstack }}](/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
+- [Installation configuration parameters for {{ rh_openstack }}](/openshift-docs-markdown/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
 
 **Additional resources**
 
-- [Accessing the web console](/web_console/web-console#web-console)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
 **Additional resources**
 
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"modifying-machineset","text":"Modifying a compute machine set"}];
 const nav = navData;
-const currentPath = "/machine_management/modifying-machineset";
+const currentPath = "/openshift-docs-markdown/machine_management/modifying-machineset";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["machine_management"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Modifying a compute machine set {#modifying-machineset}\n\nTo add labels, change the instance type, change block storage, or make other changes, you can modify a compute machine set.\n\n> [!NOTE]\n> If you need to scale a compute machine set without making other changes, see \"Manually scaling a compute machine set\".\n\n**Additional resources**\n\n- [Lifecycle hooks for the machine deletion phase](/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)\n- [Manually scaling a compute machine set](/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset)\n- [Controlling pod placement using the scheduler](/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)\n","mdUrl":"/machine_management/modifying-machineset.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Modifying a compute machine set {#modifying-machineset}\n\nTo add labels, change the instance type, change block storage, or make other changes, you can modify a compute machine set.\n\n> [!NOTE]\n> If you need to scale a compute machine set without making other changes, see \"Manually scaling a compute machine set\".\n\n**Additional resources**\n\n- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)\n- [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset)\n- [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/modifying-machineset.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,9 +105,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/machineset-modifying.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine">Lifecycle hooks for the machine deletion phase</a></li>
-      <li><a href="/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset">Manually scaling a compute machine set</a></li>
-      <li><a href="/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about">Controlling pod placement using the scheduler</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine">Lifecycle hooks for the machine deletion phase</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset">Manually scaling a compute machine set</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about">Controlling pod placement using the scheduler</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

@@ -26,4 +26,4 @@ The conditions under which a snapshot is taken are reflected in the snapshot ind
 
 ## Additional resources {#_additional_resources}
 
-- [CSI Volume Snapshots](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)
+- [CSI Volume Snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)

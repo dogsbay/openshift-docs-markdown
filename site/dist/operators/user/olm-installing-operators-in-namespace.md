@@ -12,14 +12,14 @@ If a cluster administrator has delegated Operator installation permissions to yo
 
 **Additional resources**
 
-- [Allowing non-cluster administrators to install Operators](/operators/admin/olm-creating-policy#olm-creating-policy)
-- [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
+- [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)
+- [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 
 **Additional resources**
 
-- [Operator groups](/operators/understanding/olm/olm-understanding-olm#olm-operatorgroups-about_olm-understanding-olm)
-- [Channel names](/operators/understanding/olm/olm-understanding-olm#olm-subscription_olm-understanding-olm)
+- [Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-operatorgroups-about_olm-understanding-olm)
+- [Channel names](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-subscription_olm-understanding-olm)
 
 **Additional resources**
 
-- [Manually approving a pending Operator update](/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)
+- [Manually approving a pending Operator update](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)

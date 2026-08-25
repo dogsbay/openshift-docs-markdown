@@ -20,6 +20,6 @@ $ oc explain scansettingbindings
 
 ## Additional resources {#additional-resources_compliance-operator-scans}
 
-- [Increasing Compliance Operator resource limits](/security/compliance_operator/co-scans/compliance-operator-troubleshooting#compliance-increasing-operator-limits_compliance-troubleshooting)
+- [Increasing Compliance Operator resource limits](/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-troubleshooting#compliance-increasing-operator-limits_compliance-troubleshooting)
 - [Compliance Operator shows INCONSISTENT scan result with worker node](https://access.redhat.com/solutions/6970861)
-- [Managing Compliance Operator result and remediation](/security/compliance_operator/co-scans/compliance-operator-remediation#compliance-operator-remediation)
+- [Managing Compliance Operator result and remediation](/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-remediation#compliance-operator-remediation)

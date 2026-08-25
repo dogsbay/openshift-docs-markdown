@@ -15,5 +15,5 @@ A localnet topology connects the secondary network to the physical underlay. Thi
 
 ## Additional resources {#additional-resources_virt-connecting-vm-to-secondary-udn}
 
-- [About the `ClusterUserDefinedNetwork` CR](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-cudn_about-user-defined-networks)
-- [Multi-network policy API](/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)
+- [About the `ClusterUserDefinedNetwork` CR](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-cudn_about-user-defined-networks)
+- [Multi-network policy API](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)

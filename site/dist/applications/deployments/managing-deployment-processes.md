@@ -10,4 +10,4 @@ title: Managing deployment processes
 
 **Additional resources**
 
-- For more information about resource limits and requests, see [Understanding managing application memory](/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).
+- For more information about resource limits and requests, see [Understanding managing application memory](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).

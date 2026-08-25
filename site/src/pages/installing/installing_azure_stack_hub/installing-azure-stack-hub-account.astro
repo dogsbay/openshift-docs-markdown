@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-azure-stack-hub-account","text":"Configuring an Azure Stack Hub account"},{"depth":2,"slug":"additional-resources_installing-azure-stack-hub-account","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_azure_stack_hub/installing-azure-stack-hub-account";
+const currentPath = "/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_azure_stack_hub"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an Azure Stack Hub account {#installing-azure-stack-hub-account}\n\nBefore you can install OpenShift Container Platform, you must configure a Microsoft Azure account.\n\n> [!IMPORTANT]\n> All Azure resources that are available through public endpoints are subject to resource name restrictions, and you cannot create resources that use certain terms. For a list of terms that Azure restricts, see \"Resolve reserved resource name errors\".\n\n**Additional resources**\n\n- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n\n**Additional resources**\n\n- [Azure Stack Hub datacenter DNS integration (Microsoft documentation)](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-dns?view=azs-2102)\n\n**Additional resources**\n\n- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)\n\n## Additional resources {#additional-resources_installing-azure-stack-hub-account}\n\n- [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)\n- [Installing a cluster on Azure Stack Hub with customizations](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)\n- [Installing a cluster on Azure Stack Hub using ARM templates](/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra)\n","mdUrl":"/installing/installing_azure_stack_hub/installing-azure-stack-hub-account.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an Azure Stack Hub account {#installing-azure-stack-hub-account}\n\nBefore you can install OpenShift Container Platform, you must configure a Microsoft Azure account.\n\n> [!IMPORTANT]\n> All Azure resources that are available through public endpoints are subject to resource name restrictions, and you cannot create resources that use certain terms. For a list of terms that Azure restricts, see \"Resolve reserved resource name errors\".\n\n**Additional resources**\n\n- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n\n**Additional resources**\n\n- [Azure Stack Hub datacenter DNS integration (Microsoft documentation)](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-dns?view=azs-2102)\n\n**Additional resources**\n\n- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)\n\n## Additional resources {#additional-resources_installing-azure-stack-hub-account}\n\n- [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)\n- [Installing a cluster on Azure Stack Hub with customizations](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)\n- [Installing a cluster on Azure Stack Hub using ARM templates](/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,17 +104,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p class="/modules/installation-azure-limits.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-dns?view=azs-2102">Azure Stack Hub datacenter DNS integration (Microsoft documentation)</a></li></ul>
       <p class="/modules/installation-azure-service-principal.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes">About the Cloud Credential Operator</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes">About the Cloud Credential Operator</a></li></ul>
       <h2 id="additional-resources_installing-azure-stack-hub-account" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-azure-stack-hub-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name">Resolve reserved resource name errors (Azure documentation)</a></li>
-      <li><a href="/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default">Installing a cluster on Azure Stack Hub with customizations</a></li>
-      <li><a href="/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra">Installing a cluster on Azure Stack Hub using ARM templates</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default">Installing a cluster on Azure Stack Hub with customizations</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra">Installing a cluster on Azure Stack Hub using ARM templates</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

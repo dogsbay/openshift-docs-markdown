@@ -2,7 +2,7 @@
 // Source: networking/ingress_load_balancing/metallb/metallb-configure-bfd-profiles.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring MetalLB BFD profiles\n---\n\n# Configuring MetalLB BFD profiles {#metallb-configure-bfd-profiles}\n\nAs a cluster administrator, you can add, modify, and delete Bidirectional Forwarding Detection (BFD) profiles. The MetalLB Operator uses the BFD profile custom resources to identify which BGP sessions use BFD to provide faster path failure detection than BGP alone provides.\n\n## Additional resources {#additional-resources_metallb-configure-bfd-profiles}\n\n- [Configuring MetalLB BGP peers](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)\n";
+const body = "---\ntitle: Configuring MetalLB BFD profiles\n---\n\n# Configuring MetalLB BFD profiles {#metallb-configure-bfd-profiles}\n\nAs a cluster administrator, you can add, modify, and delete Bidirectional Forwarding Detection (BFD) profiles. The MetalLB Operator uses the BFD profile custom resources to identify which BGP sessions use BFD to provide faster path failure detection than BGP alone provides.\n\n## Additional resources {#additional-resources_metallb-configure-bfd-profiles}\n\n- [Configuring MetalLB BGP peers](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

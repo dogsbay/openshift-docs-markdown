@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"virt-connecting-vm-to-linux-bridge","text":"Connecting a virtual machine to a Linux bridge network"},{"depth":2,"slug":"additional-resources_virt-connecting-vm-to-linux-bridge","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/vm_networking/virt-connecting-vm-to-linux-bridge";
+const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Connecting a virtual machine to a Linux bridge network {#virt-connecting-vm-to-linux-bridge}\n\nBy default, {{ VirtProductName }} is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge.\n\nTo create a Linux bridge network and attach a VM to the network, perform the following steps:\n\n1. Prepare the node network by creating a Linux bridge node network configuration policy (NNCP).\n2. Define the secondary Linux bridge network by creating a network attachment definition (NAD).\n3. Attach the VM to the Linux bridge network.\n\n> [!NOTE]\n> {{ VirtProductName }} does not support Linux bridge bonding modes 0, 5, and 6. For more information, see \"Additional resources\".\n\n## Additional resources {#additional-resources_virt-connecting-vm-to-linux-bridge}\n\n- [Configuring IP addresses for virtual machines](/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)\n- [Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?](https://access.redhat.com/solutions/67546)\n","mdUrl":"/virt/vm_networking/virt-connecting-vm-to-linux-bridge.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Connecting a virtual machine to a Linux bridge network {#virt-connecting-vm-to-linux-bridge}\n\nBy default, {{ VirtProductName }} is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge.\n\nTo create a Linux bridge network and attach a VM to the network, perform the following steps:\n\n1. Prepare the node network by creating a Linux bridge node network configuration policy (NNCP).\n2. Define the secondary Linux bridge network by creating a network attachment definition (NAD).\n3. Attach the VM to the Linux bridge network.\n\n> [!NOTE]\n> {{ VirtProductName }} does not support Linux bridge bonding modes 0, 5, and 6. For more information, see \"Additional resources\".\n\n## Additional resources {#additional-resources_virt-connecting-vm-to-linux-bridge}\n\n- [Configuring IP addresses for virtual machines](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)\n- [Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?](https://access.redhat.com/solutions/67546)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -117,7 +117,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-attaching-vm-secondary-network-cli.md"></p>
       <h2 id="additional-resources_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms">Configuring IP addresses for virtual machines</a></li>
+      <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms">Configuring IP addresses for virtual machines</a></li>
       <li><a href="https://access.redhat.com/solutions/67546">Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?</a></li>
       </ul>
     </article>

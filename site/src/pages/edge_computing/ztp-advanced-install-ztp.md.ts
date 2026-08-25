@@ -2,7 +2,7 @@
 // Source: edge_computing/ztp-advanced-install-ztp.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Advanced managed cluster configuration with ClusterInstance resources\n---\n\n# Advanced managed cluster configuration with ClusterInstance resources {#ztp-advanced-install-ztp}\n\nYou can use `ClusterInstance` custom resources (CRs) to deploy custom functionality and configurations in your managed clusters at installation time.\n\n**Additional resources**\n\n- [Customizing extra installation manifests in the {{ ztp }} pipeline](/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)\n";
+const body = "---\ntitle: Advanced managed cluster configuration with ClusterInstance resources\n---\n\n# Advanced managed cluster configuration with ClusterInstance resources {#ztp-advanced-install-ztp}\n\nYou can use `ClusterInstance` custom resources (CRs) to deploy custom functionality and configurations in your managed clusters at installation time.\n\n**Additional resources**\n\n- [Customizing extra installation manifests in the {{ ztp }} pipeline](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -8,28 +8,28 @@ Use the following reference information to understand the {{ sno }} configuratio
 
 **Additional resources**
 
-- [Manually installing a {{ sno }} cluster with {{ ztp }}](/edge_computing/ztp-manual-install#ztp-manual-install)
-- [Deploying far edge sites with {{ ztp }}](/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)
+- [Manually installing a {{ sno }} cluster with {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-manual-install)
+- [Deploying far edge sites with {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)
 
 **Additional resources**
 
-- [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)
-- [Tuning nodes for low latency with the performance profile](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
+- [Tuning nodes for low latency with the performance profile](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-tuning-low-latency-nodes-with-perf-profile)
 
 **Additional resources**
 
-- [TPM encryption](/security/network_bound_disk_encryption/nbde-about-disk-encryption-technology#nbde-tpm-encryption_nbde-implementation)
+- [TPM encryption](/openshift-docs-markdown/security/network_bound_disk_encryption/nbde-about-disk-encryption-technology#nbde-tpm-encryption_nbde-implementation)
 
 **Additional resources**
 
-- [Advanced managed cluster configuration with ClusterInstance CRs](/edge_computing/ztp-advanced-install-ztp#ztp-advanced-install-ztp)
+- [Advanced managed cluster configuration with ClusterInstance CRs](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-advanced-install-ztp)
 
 **Additional resources**
 
 **Additional resources**
 
-- [Deploying a managed cluster with ClusterInstance and {{ ztp }}](/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-a-site_ztp-deploying-far-edge-sites)
+- [Deploying a managed cluster with ClusterInstance and {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-a-site_ztp-deploying-far-edge-sites)
 
 **Additional resources**
 
-- [Deploying far edge sites using ZTP](/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)
+- [Deploying far edge sites using ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)

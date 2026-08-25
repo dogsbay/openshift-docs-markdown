@@ -12,5 +12,5 @@ If you need to manually control upgrading the MetalLB Operator, set the `install
 
 ## Additional resources {#additional-resources}
 
-- [Introduction to OpenShift updates](/updating/understanding_updates/intro-to-updates#intro-to-updates_intro-to-updates)
-- [Installing the MetalLB Operator](/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)
+- [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#intro-to-updates_intro-to-updates)
+- [Installing the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)

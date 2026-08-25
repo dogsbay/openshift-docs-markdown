@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"k8s-nmstate-updating-node-network-config","text":"Observing and updating the node network state and configuration"}];
 const nav = navData;
-const currentPath = "/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config";
+const currentPath = "/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/k8s_nmstate"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Observing and updating the node network state and configuration {#k8s-nmstate-updating-node-network-config}\n\nTo observe and update the node network state and configuration in your cluster, you can use the Kubernetes NMState Operator. You can view network states, create and manage network configuration policies, and configure interfaces on cluster nodes.\n\nFor more information about how to install the NMState Operator, see [Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator).\n\n> [!IMPORTANT]\n> You cannot modify an existing `br-ex` bridge, an OVN-Kubernetes-managed Open vSwitch bridge, or any interfaces, bonds, VLANs, and so on that associate with the `br-ex` bridge. However, you can configure a customized br-ex bridge.\n>\n> For more information, see \"Creating a manifest object that includes a customized br-ex bridge\" in the *Deploying installer-provisioned clusters on bare metal* document or the *Installing a user-provisioned cluster on bare metal* document.\n\n**Additional resources**\n\n- [Example policy configurations for different interfaces](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-nmstate-example-policy-configurations_k8s-nmstate-updating-node-network-config)\n- [Removing an interface from nodes](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-removing-interface-from-nodes_k8s-nmstate-updating-node-network-config)\n\n**Additional resources**\n\n- [Example for creating multiple interfaces in the same policy](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-multiple-interfaces_k8s-nmstate-updating-node-network-config)\n- [Examples of different IP management methods in policies](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-IP-management_k8s-nmstate-updating-node-network-config)\n\n**Additional resources**\n\n- [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)\n- [Configuring hardware offloading](/networking/hardware_networks/configuring-hardware-offloading#configuring-hardware-offloading)\n\n**Additional resources**\n\n- [About virtual routing and forwarding](/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)\n- [Exposing a service through a network VRF](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)\n\n**Additional resources**\n\n- [The NMPolicy project - Policy syntax](https://nmstate.io/nmpolicy/user-guide/102-policy-syntax.html)\n\n**Additional resources**\n\n- [Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)\n- [Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)](/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)\n- [Routes (nmstate documentation)](https://nmstate.io/devel/yaml_api.html#routes)\n- [Route Rules (nmstate documentation)](https://nmstate.io/devel/yaml_api.html#route-rules)\n","mdUrl":"/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Observing and updating the node network state and configuration {#k8s-nmstate-updating-node-network-config}\n\nTo observe and update the node network state and configuration in your cluster, you can use the Kubernetes NMState Operator. You can view network states, create and manage network configuration policies, and configure interfaces on cluster nodes.\n\nFor more information about how to install the NMState Operator, see [Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator).\n\n> [!IMPORTANT]\n> You cannot modify an existing `br-ex` bridge, an OVN-Kubernetes-managed Open vSwitch bridge, or any interfaces, bonds, VLANs, and so on that associate with the `br-ex` bridge. However, you can configure a customized br-ex bridge.\n>\n> For more information, see \"Creating a manifest object that includes a customized br-ex bridge\" in the *Deploying installer-provisioned clusters on bare metal* document or the *Installing a user-provisioned cluster on bare metal* document.\n\n**Additional resources**\n\n- [Example policy configurations for different interfaces](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-nmstate-example-policy-configurations_k8s-nmstate-updating-node-network-config)\n- [Removing an interface from nodes](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-removing-interface-from-nodes_k8s-nmstate-updating-node-network-config)\n\n**Additional resources**\n\n- [Example for creating multiple interfaces in the same policy](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-multiple-interfaces_k8s-nmstate-updating-node-network-config)\n- [Examples of different IP management methods in policies](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-IP-management_k8s-nmstate-updating-node-network-config)\n\n**Additional resources**\n\n- [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)\n- [Configuring hardware offloading](/openshift-docs-markdown/networking/hardware_networks/configuring-hardware-offloading#configuring-hardware-offloading)\n\n**Additional resources**\n\n- [About virtual routing and forwarding](/openshift-docs-markdown/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)\n- [Exposing a service through a network VRF](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)\n\n**Additional resources**\n\n- [The NMPolicy project - Policy syntax](https://nmstate.io/nmpolicy/user-guide/102-policy-syntax.html)\n\n**Additional resources**\n\n- [Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)\n- [Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)\n- [Routes (nmstate documentation)](https://nmstate.io/devel/yaml_api.html#routes)\n- [Route Rules (nmstate documentation)](https://nmstate.io/devel/yaml_api.html#route-rules)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h1 id="k8s-nmstate-updating-node-network-config" class="group scroll-mt-20">Observing and updating the node network state and configuration<a href="#k8s-nmstate-updating-node-network-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p class="/_attributes/common-attributes.md"></p>
       <p>To observe and update the node network state and configuration in your cluster, you can use the Kubernetes NMState Operator. You can view network states, create and manage network configuration policies, and configure interfaces on cluster nodes.</p>
-      <p>For more information about how to install the NMState Operator, see <a href="/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator">Kubernetes NMState Operator</a>.</p>
+      <p>For more information about how to install the NMState Operator, see <a href="/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator">Kubernetes NMState Operator</a>.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
@@ -110,8 +110,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/node-network-configuration-policy-file.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-nmstate-example-policy-configurations_k8s-nmstate-updating-node-network-config">Example policy configurations for different interfaces</a></li>
-      <li><a href="/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-removing-interface-from-nodes_k8s-nmstate-updating-node-network-config">Removing an interface from nodes</a></li>
+      <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-nmstate-example-policy-configurations_k8s-nmstate-updating-node-network-config">Example policy configurations for different interfaces</a></li>
+      <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-removing-interface-from-nodes_k8s-nmstate-updating-node-network-config">Removing an interface from nodes</a></li>
       </ul>
       <p class="/modules/virt-monitor-node-network-config-console.md"></p>
       <p class="/modules/virt-create-node-network-config-console.md"></p>
@@ -123,8 +123,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-creating-interface-on-nodes.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-multiple-interfaces_k8s-nmstate-updating-node-network-config">Example for creating multiple interfaces in the same policy</a></li>
-      <li><a href="/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-IP-management_k8s-nmstate-updating-node-network-config">Examples of different IP management methods in policies</a></li>
+      <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-multiple-interfaces_k8s-nmstate-updating-node-network-config">Example for creating multiple interfaces in the same policy</a></li>
+      <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-nmstate-IP-management_k8s-nmstate-updating-node-network-config">Examples of different IP management methods in policies</a></li>
       </ul>
       <p class="/modules/virt-removing-interface-from-nodes.md"></p>
       <p class="/modules/k8s-nmstate-about-alternative-names.md"></p>
@@ -137,8 +137,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-example-vlan-nncp.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device">Configuring an SR-IOV network device</a></li>
-      <li><a href="/networking/hardware_networks/configuring-hardware-offloading#configuring-hardware-offloading">Configuring hardware offloading</a></li>
+      <li><a href="/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device">Configuring an SR-IOV network device</a></li>
+      <li><a href="/openshift-docs-markdown/networking/hardware_networks/configuring-hardware-offloading#configuring-hardware-offloading">Configuring hardware offloading</a></li>
       </ul>
       <p class="/modules/virt-example-nmstate-multiple-interfaces.md"></p>
       <p class="/modules/virt-example-vf-host-services.md"></p>
@@ -146,8 +146,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-example-predictable-route-table-id.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding">About virtual routing and forwarding</a></li>
-      <li><a href="/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers">Exposing a service through a network VRF</a></li>
+      <li><a href="/openshift-docs-markdown/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding">About virtual routing and forwarding</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers">Exposing a service through a network VRF</a></li>
       </ul>
       <p class="/modules/virt-example-dynamic-matching-templating.md"></p>
       <p class="/modules/virt-example-inherit-static-ip-from-nic.md"></p>
@@ -157,8 +157,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-routes-route-rules.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow">Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)</a></li>
-      <li><a href="/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal">Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow">Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal">Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)</a></li>
       <li><a href="https://nmstate.io/devel/yaml_api.html#routes">Routes (nmstate documentation)</a></li>
       <li><a href="https://nmstate.io/devel/yaml_api.html#route-rules">Route Rules (nmstate documentation)</a></li>
       </ul>

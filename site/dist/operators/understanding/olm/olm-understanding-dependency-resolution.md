@@ -8,7 +8,7 @@ To keep installed Operators compatible with each other, Operator Lifecycle Manag
 
 **Additional resources**
 
-- [Common Expression Language (CEL) constraints](/operators/understanding/olm/olm-understanding-dependency-resolution#olm-cel_olm-understanding-dependency-resolution)
+- [Common Expression Language (CEL) constraints](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-dependency-resolution#olm-cel_olm-understanding-dependency-resolution)
 
 **Additional resources**
 
@@ -16,7 +16,7 @@ To keep installed Operators compatible with each other, Operator Lifecycle Manag
 
 **Additional resources**
 
-- [Catalog health requirements](/operators/understanding/olm/olm-understanding-olm#olm-cs-health_olm-understanding-olm)
+- [Catalog health requirements](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-cs-health_olm-understanding-olm)
 
 **Additional resources**
 

@@ -8,7 +8,7 @@ OpenShift Container Platform can build images from your source code, deploy them
 
 **Additional resources**
 
-- [Image Registry Operator in OpenShift Container Platform](/registry/configuring-registry-operator#configuring-registry-operator)
+- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)
 
 **Additional resources**
 

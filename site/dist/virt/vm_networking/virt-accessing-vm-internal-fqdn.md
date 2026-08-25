@@ -11,4 +11,4 @@ You can access a virtual machine on a stable, fully qualified domain name (FQDN)
 
 ## Additional resources {#additional-resources_virt-accessing-vm-internal-fqdn}
 
-- [Exposing a VM by using a service](/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)
+- [Exposing a VM by using a service](/openshift-docs-markdown/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)

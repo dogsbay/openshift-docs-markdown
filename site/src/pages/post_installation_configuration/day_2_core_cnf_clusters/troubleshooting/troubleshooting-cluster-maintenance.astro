@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"troubleshooting-cluster-maintenance","text":"Cluster maintenance"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-cluster-maintenance";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-cluster-maintenance";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration","post_installation_configuration/day_2_core_cnf_clusters","post_installation_configuration/day_2_core_cnf_clusters/troubleshooting"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster maintenance {#troubleshooting-cluster-maintenance}\n\nWhen deploying OpenShift Container Platform on bare-metal infrastructure, you must pay more attention to certain configurations which can have a significant impact on cluster stability. You can troubleshoot more effectively by completing these tasks:\n\n- Monitor for failed or failing hardware components\n- Periodically check the status of the cluster Operators\n\n> [!NOTE]\n> For hardware monitoring, contact your hardware vendor to find the appropriate logging tool for your specific hardware.\n","mdUrl":"/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-cluster-maintenance.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster maintenance {#troubleshooting-cluster-maintenance}\n\nWhen deploying OpenShift Container Platform on bare-metal infrastructure, you must pay more attention to certain configurations which can have a significant impact on cluster stability. You can troubleshoot more effectively by completing these tasks:\n\n- Monitor for failed or failing hardware components\n- Periodically check the status of the cluster Operators\n\n> [!NOTE]\n> For hardware monitoring, contact your hardware vendor to find the appropriate logging tool for your specific hardware.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-cluster-maintenance.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -8,7 +8,7 @@ Using {{ SMProductName }}, you can control the flow of traffic and API calls bet
 
 **Additional resources**
 
-- [Configuring the node port service range](/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
+- [Configuring the node port service range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 
 ## Understanding automatic routes {#ossm-auto-route_traffic-management}
 
@@ -21,12 +21,12 @@ OpenShift routes for gateways are automatically managed in {{ SMProductShortName
 
 {{ SMProductName }} creates the route with the subdomain, but OpenShift Container Platform must be configured to enable it. Subdomains, for example `*.domain.com`, are supported, but not by default. Configure an OpenShift Container Platform wildcard policy before configuring a wildcard host gateway.
 
-For more information, see "Using wildcard routes" in [Ingress Operator in OpenShift Container Platform](/networking/networking_operators/ingress-operator#using-wildcard-routes).
+For more information, see "Using wildcard routes" in [Ingress Operator in OpenShift Container Platform](/openshift-docs-markdown/networking/networking_operators/ingress-operator#using-wildcard-routes).
 
 **Additional resources**
 
-- [Route-specific annotations](/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-route-specific-annotations).
+- [Route-specific annotations](/openshift-docs-markdown/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-route-specific-annotations).
 
 ## Routing Tutorial {#_routing_tutorial}
 
-This guide references the Bookinfo sample application to provide examples of routing in an example application. Install the [Bookinfo application](/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-tutorial-bookinfo-overview_ossm-create-mesh) to learn how these routing examples work.
+This guide references the Bookinfo sample application to provide examples of routing in an example application. Install the [Bookinfo application](/openshift-docs-markdown/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-tutorial-bookinfo-overview_ossm-create-mesh) to learn how these routing examples work.

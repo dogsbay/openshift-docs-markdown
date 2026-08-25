@@ -22,4 +22,4 @@ You prepare to install an OpenShift Container Platform cluster on vSphere by com
 
 ## Additional resources {#additional-resources_upi-vsphere-preparing-to-install}
 
-- [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
+- [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)

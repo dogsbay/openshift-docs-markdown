@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"generic-ephemeral-volumes","text":"Generic ephemeral volumes"}];
 const nav = navData;
-const currentPath = "/storage/generic-ephemeral-vols";
+const currentPath = "/openshift-docs-markdown/storage/generic-ephemeral-vols";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["storage"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Generic ephemeral volumes {#generic-ephemeral-volumes}\n\nGeneric ephemeral volumes provide per-pod temporary storage backed by any storage driver that supports dynamic provisioning, unlike `emptyDir` volumes which are limited to local node storage. This flexibility lets you use network storage backends, control storage classes and volume characteristics, and leverage delayed volume binding for optimal pod scheduling.\n\n**Additional resources**\n\n- [Creating generic ephemeral volumes](/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes)\n","mdUrl":"/storage/generic-ephemeral-vols.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Generic ephemeral volumes {#generic-ephemeral-volumes}\n\nGeneric ephemeral volumes provide per-pod temporary storage backed by any storage driver that supports dynamic provisioning, unlike `emptyDir` volumes which are limited to local node storage. This flexibility lets you use network storage backends, control storage classes and volume characteristics, and leverage delayed volume binding for optimal pod scheduling.\n\n**Additional resources**\n\n- [Creating generic ephemeral volumes](/openshift-docs-markdown/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/generic-ephemeral-vols.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/storage-ephemeral-vols-overview.md"></p>
       <p class="/modules/storage-ephemeral-vols-lifecycle.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes">Creating generic ephemeral volumes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes">Creating generic ephemeral volumes</a></li></ul>
       <p class="/modules/storage-ephemeral-vols-pvc-naming.md"></p>
       <p class="/modules/storage-ephemeral-vols-procedure.md"></p>
     </article>

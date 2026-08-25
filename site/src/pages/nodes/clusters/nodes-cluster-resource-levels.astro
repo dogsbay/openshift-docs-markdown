@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-cluster-resource-levels","text":"Estimating the number of pods your OpenShift Container Platform nodes can hold"},{"depth":2,"slug":"nodes-cluster-resource-levels_additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/clusters/nodes-cluster-resource-levels";
+const currentPath = "/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-levels";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/clusters"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Estimating the number of pods your OpenShift Container Platform nodes can hold {#nodes-cluster-resource-levels}\n\nAs a cluster administrator, you can use the OpenShift Cluster Capacity Tool to view the number of pods that can be scheduled in your cluster. This allows you to increase the current resources before they become exhausted and to ensure any future pods can be scheduled. This capacity comes from an individual node host in a cluster, and includes CPU, memory, disk space, and others.\n\n## Additional resources {#nodes-cluster-resource-levels_additional-resources}\n\n- [OpenShift Cluster Capacity Tool](https://catalog.redhat.com/software/containers/openshift4/ose-cluster-capacity/5cca0324d70cc57c44ae8eb6?container-tabs=overview)\n- [cluster-capacity repository](https://github.com/openshift/cluster-capacity)\n","mdUrl":"/nodes/clusters/nodes-cluster-resource-levels.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Estimating the number of pods your OpenShift Container Platform nodes can hold {#nodes-cluster-resource-levels}\n\nAs a cluster administrator, you can use the OpenShift Cluster Capacity Tool to view the number of pods that can be scheduled in your cluster. This allows you to increase the current resources before they become exhausted and to ensure any future pods can be scheduled. This capacity comes from an individual node host in a cluster, and includes CPU, memory, disk space, and others.\n\n## Additional resources {#nodes-cluster-resource-levels_additional-resources}\n\n- [OpenShift Cluster Capacity Tool](https://catalog.redhat.com/software/containers/openshift4/ose-cluster-capacity/5cca0324d70cc57c44ae8eb6?container-tabs=overview)\n- [cluster-capacity repository](https://github.com/openshift/cluster-capacity)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-levels.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

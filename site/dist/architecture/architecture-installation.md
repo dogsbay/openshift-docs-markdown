@@ -14,7 +14,7 @@ After you read the information in the Installation and update section, you can s
 
 - [{{ ai_full }}](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
 - [Agent-based Installer](https://console.redhat.com/openshift/install/metal/agent-based)
-- [Installing a cluster without an external registry](/installing/installing_with_agent_based_installer/installing-ove#installing-ove)
+- [Installing a cluster without an external registry](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove)
 
 **Additional resources**
 
@@ -23,9 +23,9 @@ After you read the information in the Installation and update section, you can s
 
 **Additional resources**
 
-- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
-- [Control plane node sizing](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#master-node-sizing_recommended-control-plane-practices)
-- [Available cluster customizations](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
+- [Control plane node sizing](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#master-node-sizing_recommended-control-plane-practices)
+- [Available cluster customizations](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 
 **Additional resources**
 
@@ -35,4 +35,4 @@ After you read the information in the Installation and update section, you can s
 
 ## Additional resources {#additional-resources_architecture-installation}
 
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)

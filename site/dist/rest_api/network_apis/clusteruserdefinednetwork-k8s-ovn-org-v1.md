@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ClusterUserDefinedNetworkSpec defines the desired state of ClusterUserDefinedNetwork. |
 | `status` | `object` | ClusterUserDefinedNetworkStatus contains the observed status of the ClusterUserDefinedNetwork. |
 
@@ -421,7 +421,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -438,7 +438,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetworkList`](/rest_api/objects/index#org-ovn-k8s-v1-ClusterUserDefinedNetworkList) schema |
+| 200 - OK | [`ClusterUserDefinedNetworkList`](/openshift-docs-markdown/rest_api/objects/index#org-ovn-k8s-v1-ClusterUserDefinedNetworkList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -462,15 +462,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |  |
+| `body` | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
-| 201 - Created | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
-| 202 - Accepted | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 201 - Created | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 202 - Accepted | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{{ name }} {#_apisk8sovnorgv1clusteruserdefinednetworks_name}
@@ -501,8 +501,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -519,7 +519,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -543,7 +543,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -567,14 +567,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |  |
+| `body` | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
-| 201 - Created | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 201 - Created | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{{ name }}/status {#_apisk8sovnorgv1clusteruserdefinednetworks_name_status}
@@ -599,7 +599,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -623,7 +623,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -647,12 +647,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |  |
+| `body` | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
-| 201 - Created | [`ClusterUserDefinedNetwork`](/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 200 - OK | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
+| 201 - Created | [`ClusterUserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |

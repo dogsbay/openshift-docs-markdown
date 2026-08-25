@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"pods-crash-or-restart-due-to-lack-of-memory-or-cpu","text":"Pods crash or restart due to lack of memory or CPU"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/troubleshooting"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pods crash or restart due to lack of memory or CPU {#pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nResolve Velero or Restic pod crashes caused by insufficient memory or CPU by configuring resource requests in the `DataProtectionApplication` custom resource (CR). This helps you allocate adequate CPU and memory resources to prevent pod restarts and ensure stable backup and restore operations.\n\nEnsure that the values for the resource request fields follow the same format as Kubernetes resource requirements.\n\nIf you do not specify `configuration.velero.podConfig.resourceAllocations` or `configuration.restic.podConfig.resourceAllocations`, see the following default `resources` specification configuration for a Velero or Restic pod:\n\n```yaml\nrequests:\n  cpu: 500m\n  memory: 128Mi\n```\n\n**Additional resources**\n\n- [Velero CPU and memory requirements based on collected data](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp)\n","mdUrl":"/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pods crash or restart due to lack of memory or CPU {#pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nResolve Velero or Restic pod crashes caused by insufficient memory or CPU by configuring resource requests in the `DataProtectionApplication` custom resource (CR). This helps you allocate adequate CPU and memory resources to prevent pod restarts and ensure stable backup and restore operations.\n\nEnsure that the values for the resource request fields follow the same format as Kubernetes resource requirements.\n\nIf you do not specify `configuration.velero.podConfig.resourceAllocations` or `configuration.restic.podConfig.resourceAllocations`, see the following default `resources` specification configuration for a Velero or Restic pod:\n\n```yaml\nrequests:\n  cpu: 500m\n  memory: 128Mi\n```\n\n**Additional resources**\n\n- [Velero CPU and memory requirements based on collected data](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +98,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>If you do not specify <code>configuration.velero.podConfig.resourceAllocations</code> or <code>configuration.restic.podConfig.resourceAllocations</code>, see the following default <code>resources</code> specification configuration for a Velero or Restic pod:</p>
       <CodeBlock code={"requests:\n  cpu: 500m\n  memory: 128Mi"} lang="yaml" />
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp">Velero CPU and memory requirements based on collected data</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp">Velero CPU and memory requirements based on collected data</a></li></ul>
       <p class="/modules/velero-oomkilled-large-kopia-repos.md"></p>
       <p class="/modules/oadp-pod-crash-set-resource-request-restic.md"></p>
       <p class="/modules/setting-resource-requests-for-a-nodeagent-pod.md"></p>

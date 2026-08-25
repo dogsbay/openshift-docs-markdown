@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"upgrading-ossm","text":"Upgrading Service Mesh"},{"depth":2,"slug":"upgrading-control-plane","text":"Upgrading the control plane"},{"depth":2,"slug":"upgrading-data-plane","text":"Upgrading the data plane"}];
 const nav = navData;
-const currentPath = "/service_mesh/v2x/upgrading-ossm";
+const currentPath = "/openshift-docs-markdown/service_mesh/v2x/upgrading-ossm";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Upgrading Service Mesh {#upgrading-ossm}\n\nTo access the most current features of {{ SMProductName }}, upgrade to the current version, {{ SMProductVersion }}.\n\nFor more information about upgrading Operators, refer to the [Operator Lifecycle Manager](/operators/admin/olm-upgrading-operators) documentation.\n\n## Upgrading the control plane {#upgrading-control-plane}\n\nYou must manually update the control plane for minor and major releases. The community Istio project recommends canary upgrades, {{ SMProductName }} only supports in-place upgrades. {{ SMProductName }} requires that you upgrade from each minor release to the next minor release in sequence. For example, you must upgrade from version 2.0 to version 2.1, and then upgrade to version 2.2. You cannot update from {{ SMProductName }} 2.0 to 2.2 directly.\n\nWhen you upgrade the service mesh control plane, all Operator managed resources, for example gateways, are also upgraded.\n\nAlthough you can deploy multiple versions of the control plane in the same cluster, {{ SMProductName }} does not support canary upgrades of the service mesh. That is, you can have different SCMP resources with different values for `spec.version`, but they cannot be managing the same mesh.\n\nFor more information about migrating your extensions, refer to [Migrating from ServiceMeshExtension to WasmPlugin resources](/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions).\n\n## Upgrading the data plane {#upgrading-data-plane}\n\nYour data plane will still function after you have upgraded the control plane. But in order to apply updates to the Envoy proxy and any changes to the proxy configuration, you must restart your application pods and workloads.\n","mdUrl":"/service_mesh/v2x/upgrading-ossm.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Upgrading Service Mesh {#upgrading-ossm}\n\nTo access the most current features of {{ SMProductName }}, upgrade to the current version, {{ SMProductVersion }}.\n\nFor more information about upgrading Operators, refer to the [Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-upgrading-operators) documentation.\n\n## Upgrading the control plane {#upgrading-control-plane}\n\nYou must manually update the control plane for minor and major releases. The community Istio project recommends canary upgrades, {{ SMProductName }} only supports in-place upgrades. {{ SMProductName }} requires that you upgrade from each minor release to the next minor release in sequence. For example, you must upgrade from version 2.0 to version 2.1, and then upgrade to version 2.2. You cannot update from {{ SMProductName }} 2.0 to 2.2 directly.\n\nWhen you upgrade the service mesh control plane, all Operator managed resources, for example gateways, are also upgraded.\n\nAlthough you can deploy multiple versions of the control plane in the same cluster, {{ SMProductName }} does not support canary upgrades of the service mesh. That is, you can have different SCMP resources with different values for `spec.version`, but they cannot be managing the same mesh.\n\nFor more information about migrating your extensions, refer to [Migrating from ServiceMeshExtension to WasmPlugin resources](/openshift-docs-markdown/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions).\n\n## Upgrading the data plane {#upgrading-data-plane}\n\nYour data plane will still function after you have upgraded the control plane. But in order to apply updates to the Envoy proxy and any changes to the proxy configuration, you must restart your application pods and workloads.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/upgrading-ossm.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,12 +98,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/ossm-upgrade-considerations.md"></p>
       <p class="/modules/ossm-upgrade-known-issues.md"></p>
       <p class="/modules/ossm-upgrading-operator.md"></p>
-      <p>For more information about upgrading Operators, refer to the <a href="/operators/admin/olm-upgrading-operators">Operator Lifecycle Manager</a> documentation.</p>
+      <p>For more information about upgrading Operators, refer to the <a href="/openshift-docs-markdown/operators/admin/olm-upgrading-operators">Operator Lifecycle Manager</a> documentation.</p>
       <h2 id="upgrading-control-plane" class="group scroll-mt-20">Upgrading the control plane<a href="#upgrading-control-plane" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>You must manually update the control plane for minor and major releases. The community Istio project recommends canary upgrades, {"{"}{"{"} SMProductName {"}"}{"}"} only supports in-place upgrades. {"{"}{"{"} SMProductName {"}"}{"}"} requires that you upgrade from each minor release to the next minor release in sequence. For example, you must upgrade from version 2.0 to version 2.1, and then upgrade to version 2.2. You cannot update from {"{"}{"{"} SMProductName {"}"}{"}"} 2.0 to 2.2 directly.</p>
       <p>When you upgrade the service mesh control plane, all Operator managed resources, for example gateways, are also upgraded.</p>
       <p>Although you can deploy multiple versions of the control plane in the same cluster, {"{"}{"{"} SMProductName {"}"}{"}"} does not support canary upgrades of the service mesh. That is, you can have different SCMP resources with different values for <code>spec.version</code>, but they cannot be managing the same mesh.</p>
-      <p>For more information about migrating your extensions, refer to <a href="/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions">Migrating from ServiceMeshExtension to WasmPlugin resources</a>.</p>
+      <p>For more information about migrating your extensions, refer to <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions">Migrating from ServiceMeshExtension to WasmPlugin resources</a>.</p>
       <p class="/modules/ossm-upgrade-25-26-changes.md"></p>
       <p class="/modules/ossm-upgrade-24-25-changes.md"></p>
       <p class="/modules/ossm-upgrade-23-24-changes.md"></p>

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"routing-http-requests-to-services","text":"Routing HTTP requests to services"}];
 const nav = navData;
-const currentPath = "/networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services";
+const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/ingress_load_balancing","networking/ingress_load_balancing/configuring_gateway_api"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Routing HTTP requests to services {#routing-http-requests-to-services}\n\nWhen you expose your applications through a gateway, you must configure an `HTTPRoute` custom resource (CR) to accurately direct incoming HTTP requests from your network listener to the appropriate backend services. A Gateway API `HTTPRoute` CR specifies the exact routing behavior for these requests by evaluating a set of rules.\n\nThe core configuration element of an `HTTPRoute` CR is a rule. You can configure up to 16 rules for a single route. Within each rule, you can establish the following routing behaviors:\n\n- `Matches`: Define the conditions an HTTP request must meet based on paths, headers, query parameters, or methods.\n- `Filters`: Apply processing directions to the request, such as header modifications, mirrors, or redirects.\n- `BackendRefs`: Designate the backend services where matching and filtered requests are delivered, including traffic weight distribution.\n- `Timeouts`: Establish strict time limits for the entire request or the backend hop.\n","mdUrl":"/networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Routing HTTP requests to services {#routing-http-requests-to-services}\n\nWhen you expose your applications through a gateway, you must configure an `HTTPRoute` custom resource (CR) to accurately direct incoming HTTP requests from your network listener to the appropriate backend services. A Gateway API `HTTPRoute` CR specifies the exact routing behavior for these requests by evaluating a set of rules.\n\nThe core configuration element of an `HTTPRoute` CR is a rule. You can configure up to 16 rules for a single route. Within each rule, you can establish the following routing behaviors:\n\n- `Matches`: Define the conditions an HTTP request must meet based on paths, headers, query parameters, or methods.\n- `Filters`: Apply processing directions to the request, such as header modifications, mirrors, or redirects.\n- `BackendRefs`: Designate the backend services where matching and filtered requests are delivered, including traffic weight distribution.\n- `Timeouts`: Establish strict time limits for the entire request or the backend hop.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

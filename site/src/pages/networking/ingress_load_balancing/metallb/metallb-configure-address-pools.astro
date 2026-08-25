@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"metallb-configure-address-pools","text":"Configuring MetalLB address pools"},{"depth":2,"slug":"additional-resources_metallb-configure-address-pools","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/networking/ingress_load_balancing/metallb/metallb-configure-address-pools";
+const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-address-pools";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/ingress_load_balancing","networking/ingress_load_balancing/metallb"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring MetalLB address pools {#metallb-configure-address-pools}\n\nTo allocate and manage the IP addresses assigned to load balancer services, configure MetalLB address pool custom resources. Defining these pools ensures that application workloads remain reachable through designated network ranges for consistent external access.\n\nThe namespaces used in the examples show `metallb-system` as the namespace.\n\nFor more information about how to install the MetalLB Operator, see [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb).\n\n## Additional resources {#additional-resources_metallb-configure-address-pools}\n\n- [Configuring MetalLB with an L2 advertisement and label](/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool)\n- [Configuring MetalLB BGP peers](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)\n- [Configuring services to use MetalLB](/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services)\n","mdUrl":"/networking/ingress_load_balancing/metallb/metallb-configure-address-pools.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring MetalLB address pools {#metallb-configure-address-pools}\n\nTo allocate and manage the IP addresses assigned to load balancer services, configure MetalLB address pool custom resources. Defining these pools ensures that application workloads remain reachable through designated network ranges for consistent external access.\n\nThe namespaces used in the examples show `metallb-system` as the namespace.\n\nFor more information about how to install the MetalLB Operator, see [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb).\n\n## Additional resources {#additional-resources_metallb-configure-address-pools}\n\n- [Configuring MetalLB with an L2 advertisement and label](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool)\n- [Configuring MetalLB BGP peers](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)\n- [Configuring services to use MetalLB](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-address-pools.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,16 +94,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/_attributes/common-attributes.md"></p>
       <p>To allocate and manage the IP addresses assigned to load balancer services, configure MetalLB address pool custom resources. Defining these pools ensures that application workloads remain reachable through designated network ranges for consistent external access.</p>
       <p>The namespaces used in the examples show <code>metallb-system</code> as the namespace.</p>
-      <p>For more information about how to install the MetalLB Operator, see <a href="/networking/networking_operators/metallb-operator/about-metallb#about-metallb">About MetalLB and the MetalLB Operator</a>.</p>
+      <p>For more information about how to install the MetalLB Operator, see <a href="/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb">About MetalLB and the MetalLB Operator</a>.</p>
       <p class="/modules/nw-metallb-addresspool-cr.md"></p>
       <p class="/modules/nw-metallb-configure-address-pool.md"></p>
       <p class="/modules/nw-metallb-configure-address-pool-vlan.md"></p>
       <p class="/modules/nw-metallb-example-addresspool.md"></p>
       <h2 id="additional-resources_metallb-configure-address-pools" class="group scroll-mt-20">Additional resources<a href="#additional-resources_metallb-configure-address-pools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool">Configuring MetalLB with an L2 advertisement and label</a></li>
-      <li><a href="/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers">Configuring MetalLB BGP peers</a></li>
-      <li><a href="/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services">Configuring services to use MetalLB</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool">Configuring MetalLB with an L2 advertisement and label</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers">Configuring MetalLB BGP peers</a></li>
+      <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services">Configuring services to use MetalLB</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

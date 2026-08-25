@@ -68,7 +68,7 @@ spec:
 
 **Additional resources**
 
-- [Deleting a TLS secret automatically upon Certificate removal](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-override-flag-controller_cert-manager-customizing-api-fields)
+- [Deleting a TLS secret automatically upon Certificate removal](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-override-flag-controller_cert-manager-customizing-api-fields)
 
 **Additional resources**
 
@@ -76,21 +76,21 @@ spec:
 
 **Additional resources**
 
-- [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
+- [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
 **Additional resources**
 
-- [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
+- [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
 **Additional resources**
 
-- [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
+- [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
 **Additional resources**
 
-- [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
+- [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
 **Additional resources**
 
-- [Understanding feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling)
-- [Understanding TLS security profiles](/security/tls-security-profiles#tls-profiles-understanding_tls-security-profiles)
+- [Understanding feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling)
+- [Understanding TLS security profiles](/openshift-docs-markdown/security/tls-security-profiles#tls-profiles-understanding_tls-security-profiles)

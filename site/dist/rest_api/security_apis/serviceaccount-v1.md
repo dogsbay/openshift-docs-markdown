@@ -21,7 +21,7 @@ Type
 | `imagePullSecrets` | `array` | ImagePullSecrets is a list of references to secrets in the same namespace to use for pulling any images in pods that reference this ServiceAccount. ImagePullSecrets are distinct from Secrets because Secrets can be mounted in the pod, but ImagePullSecrets are only accessed by the kubelet. More info: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod |
 | `imagePullSecrets[]` | `object` | LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `secrets` | `array` | Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". The "kubernetes.io/enforce-mountable-secrets" annotation is deprecated since v1.32. Prefer separate namespaces to isolate access to mounted secrets. This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret |
 | `secrets[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 
@@ -123,7 +123,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceAccountList`](/rest_api/objects/index#io-k8s-api-core-v1-ServiceAccountList) schema |
+| 200 - OK | [`ServiceAccountList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ServiceAccountList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/serviceaccounts {#_apiv1watchserviceaccounts}
@@ -142,7 +142,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/serviceaccounts {#_apiv1namespaces_namespace_serviceaccounts}
@@ -167,7 +167,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -184,7 +184,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceAccountList`](/rest_api/objects/index#io-k8s-api-core-v1-ServiceAccountList) schema |
+| 200 - OK | [`ServiceAccountList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ServiceAccountList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -208,15 +208,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |  |
+| `body` | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
-| 201 - Created | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
-| 202 - Accepted | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 200 - OK | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 201 - Created | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 202 - Accepted | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/serviceaccounts {#_apiv1watchnamespaces_namespace_serviceaccounts}
@@ -235,7 +235,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }} {#_apiv1namespaces_namespace_serviceaccounts_name}
@@ -266,8 +266,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
-| 202 - Accepted | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 200 - OK | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 202 - Accepted | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -284,7 +284,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 200 - OK | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -308,8 +308,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
-| 201 - Created | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 200 - OK | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 201 - Created | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -333,14 +333,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |  |
+| `body` | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
-| 201 - Created | [`ServiceAccount`](/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 200 - OK | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
+| 201 - Created | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/serviceaccounts/{{ name }} {#_apiv1watchnamespaces_namespace_serviceaccounts_name}
@@ -365,5 +365,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

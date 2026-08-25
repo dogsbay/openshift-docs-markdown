@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-assigning-compute-resources","text":"Assigning compute resources"},{"depth":2,"slug":"overcommitting_virt-assigning-compute-resources","text":"Overcommitting CPU resources"},{"depth":2,"slug":"additional-resources_virt-assigning-compute-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/managing_vms/advanced_vm_management/virt-assigning-compute-resources";
+const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-assigning-compute-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_management"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Assigning compute resources {#virt-assigning-compute-resources}\n\nIn {{ VirtProductName }}, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.\n\nGuaranteed CPUs, also known as CPU reservation, dedicate CPU cores or threads to a specific workload, which makes them unavailable to any other workload. Assigning guaranteed CPUs to a VM ensures that the VM will have sole access to a reserved physical CPU. Enable dedicated resources for VMs to use a guaranteed CPU.\n\nTime-sliced CPUs dedicate a slice of time on a shared physical CPU to each workload. You can specify the size of the slice during VM creation, or when the VM is offline. By default, each vCPU receives 100 milliseconds, or 1/10 of a second, of physical CPU time.\n\nThe type of CPU reservation depends on the instance type or VM configuration.\n\n## Overcommitting CPU resources {#overcommitting_virt-assigning-compute-resources}\n\nTime-slicing allows multiple virtual CPUs (vCPUs) to share a single physical CPU. This is known as *CPU overcommitment*. Guaranteed VMs can not be overcommitted.\n\nConfigure CPU overcommitment to prioritize VM density over performance when assigning CPUs to VMs. With a higher CPU over-commitment of vCPUs, more VMs fit onto a given node.\n\n## Additional resources {#additional-resources_virt-assigning-compute-resources}\n\n- [Enabling dedicated resources for virtual machines](/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm)\n- [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/)\n","mdUrl":"/virt/managing_vms/advanced_vm_management/virt-assigning-compute-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Assigning compute resources {#virt-assigning-compute-resources}\n\nIn {{ VirtProductName }}, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.\n\nGuaranteed CPUs, also known as CPU reservation, dedicate CPU cores or threads to a specific workload, which makes them unavailable to any other workload. Assigning guaranteed CPUs to a VM ensures that the VM will have sole access to a reserved physical CPU. Enable dedicated resources for VMs to use a guaranteed CPU.\n\nTime-sliced CPUs dedicate a slice of time on a shared physical CPU to each workload. You can specify the size of the slice during VM creation, or when the VM is offline. By default, each vCPU receives 100 milliseconds, or 1/10 of a second, of physical CPU time.\n\nThe type of CPU reservation depends on the instance type or VM configuration.\n\n## Overcommitting CPU resources {#overcommitting_virt-assigning-compute-resources}\n\nTime-slicing allows multiple virtual CPUs (vCPUs) to share a single physical CPU. This is known as *CPU overcommitment*. Guaranteed VMs can not be overcommitted.\n\nConfigure CPU overcommitment to prioritize VM density over performance when assigning CPUs to VMs. With a higher CPU over-commitment of vCPUs, more VMs fit onto a given node.\n\n## Additional resources {#additional-resources_virt-assigning-compute-resources}\n\n- [Enabling dedicated resources for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm)\n- [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-assigning-compute-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -102,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-setting-cpu-allocation-ratio.md"></p>
       <h2 id="additional-resources_virt-assigning-compute-resources" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-assigning-compute-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm">Enabling dedicated resources for virtual machines</a></li>
+      <li><a href="/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm">Enabling dedicated resources for virtual machines</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/">Pod Quality of Service Classes</a></li>
       </ul>
     </article>

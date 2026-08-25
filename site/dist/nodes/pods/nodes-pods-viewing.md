@@ -8,4 +8,4 @@ As an administrator, you can view cluster pods, check their health, and evaluate
 
 ## Additional resources {#additional-resources_nodes-pods-viewing}
 
-- [oc describe](/cli_reference/openshift_cli/developer-cli-commands#oc-describe)
+- [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"ztp-manual-install","text":"Manually installing a {{ sno }} cluster with {{ ztp }}"}];
 const nav = navData;
-const currentPath = "/edge_computing/ztp-manual-install";
+const currentPath = "/openshift-docs-markdown/edge_computing/ztp-manual-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["edge_computing"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually installing a {{ sno }} cluster with {{ ztp }} {#ztp-manual-install}\n\nYou can deploy a managed {{ sno }} cluster by using {{ rh_rhacm_first }} and the assisted service.\n\n> [!NOTE]\n> If you are creating multiple managed clusters, use the `ClusterInstance` method described in [Deploying far edge sites with ZTP](/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites).\n\n> [!IMPORTANT]\n> The target bare-metal host must meet the networking, firmware, and hardware requirements listed in [Recommended cluster configuration for vDU application workloads](/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu).\n\n**Additional resources**\n\n- [BMC addressing](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)\n- [About root device hints](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)\n- [{{ sno_caps }} ClusterInstance CR installation reference](/edge_computing/ztp-deploying-far-edge-sites#ztp-clusterinstance-config-reference_ztp-deploying-far-edge-sites)\n- [Connectivity prerequisites for managed cluster networks](/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-managed-cluster-network-prereqs_sno-configure-for-vdu)\n- [Deploying {{ lvms }} on {{ sno }} clusters](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-preface-sno-ran_logical-volume-manager-storage)\n- [Configuring {{ lvms }} using PolicyGenerator CRs](/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-provisioning-lvm-storage_ztp-advanced-policy-config)\n- [Configuring managed cluster policies by using PolicyGenerator resources](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)\n\n**Additional resources**\n\n- [Bind bare-metal hosts to clusters using the cluster-reference annotation in {{ ztp }} deployments](/edge_computing/ztp-manual-install#ztp-binding-bmh-to-cluster-using-annotation_ztp-manual-install)\n- [`BareMetalHost` cluster-reference annotation reference](/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install)\n- [Binding and unbinding hosts in the {{ rh_rhacm }} documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/clusters/cluster_mce_overview#bind-unbind-hosts)\n\n**Additional resources**\n\n- [Late binding for bare-metal host pools in {{ ztp }} deployments](/edge_computing/ztp-manual-install#ztp-late-binding-bare-metal-host-pools_ztp-manual-install)\n- [`BareMetalHost` cluster-reference annotation reference](/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install)\n- [Binding and unbinding hosts in the {{ rh_rhacm }} documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#binding-and-unbinding-hosts)\n","mdUrl":"/edge_computing/ztp-manual-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually installing a {{ sno }} cluster with {{ ztp }} {#ztp-manual-install}\n\nYou can deploy a managed {{ sno }} cluster by using {{ rh_rhacm_first }} and the assisted service.\n\n> [!NOTE]\n> If you are creating multiple managed clusters, use the `ClusterInstance` method described in [Deploying far edge sites with ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites).\n\n> [!IMPORTANT]\n> The target bare-metal host must meet the networking, firmware, and hardware requirements listed in [Recommended cluster configuration for vDU application workloads](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu).\n\n**Additional resources**\n\n- [BMC addressing](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)\n- [About root device hints](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)\n- [{{ sno_caps }} ClusterInstance CR installation reference](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-clusterinstance-config-reference_ztp-deploying-far-edge-sites)\n- [Connectivity prerequisites for managed cluster networks](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-managed-cluster-network-prereqs_sno-configure-for-vdu)\n- [Deploying {{ lvms }} on {{ sno }} clusters](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-preface-sno-ran_logical-volume-manager-storage)\n- [Configuring {{ lvms }} using PolicyGenerator CRs](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-provisioning-lvm-storage_ztp-advanced-policy-config)\n- [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)\n\n**Additional resources**\n\n- [Bind bare-metal hosts to clusters using the cluster-reference annotation in {{ ztp }} deployments](/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-binding-bmh-to-cluster-using-annotation_ztp-manual-install)\n- [`BareMetalHost` cluster-reference annotation reference](/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install)\n- [Binding and unbinding hosts in the {{ rh_rhacm }} documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/clusters/cluster_mce_overview#bind-unbind-hosts)\n\n**Additional resources**\n\n- [Late binding for bare-metal host pools in {{ ztp }} deployments](/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-late-binding-bare-metal-host-pools_ztp-manual-install)\n- [`BareMetalHost` cluster-reference annotation reference](/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install)\n- [Binding and unbinding hosts in the {{ rh_rhacm }} documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#binding-and-unbinding-hosts)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-manual-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,13 +99,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>If you are creating multiple managed clusters, use the <code>ClusterInstance</code> method described in <a href="/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites">Deploying far edge sites with ZTP</a>.</p>
+          <p>If you are creating multiple managed clusters, use the <code>ClusterInstance</code> method described in <a href="/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites">Deploying far edge sites with ZTP</a>.</p>
         </AlertDescription>
       </Alert>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>The target bare-metal host must meet the networking, firmware, and hardware requirements listed in <a href="/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Recommended cluster configuration for vDU application workloads</a>.</p>
+          <p>The target bare-metal host must meet the networking, firmware, and hardware requirements listed in <a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Recommended cluster configuration for vDU application workloads</a>.</p>
         </AlertDescription>
       </Alert>
       <p class="/modules/ztp-generating-install-and-config-crs-manually.md"></p>
@@ -114,24 +114,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/ztp-manually-install-a-single-managed-cluster.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow">BMC addressing</a></li>
-      <li><a href="/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer">About root device hints</a></li>
-      <li><a href="/edge_computing/ztp-deploying-far-edge-sites#ztp-clusterinstance-config-reference_ztp-deploying-far-edge-sites">{"{"}{"{"} sno_caps {"}"}{"}"} ClusterInstance CR installation reference</a></li>
-      <li><a href="/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-managed-cluster-network-prereqs_sno-configure-for-vdu">Connectivity prerequisites for managed cluster networks</a></li>
-      <li><a href="/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-preface-sno-ran_logical-volume-manager-storage">Deploying {"{"}{"{"} lvms {"}"}{"}"} on {"{"}{"{"} sno {"}"}{"}"} clusters</a></li>
-      <li><a href="/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-provisioning-lvm-storage_ztp-advanced-policy-config">Configuring {"{"}{"{"} lvms {"}"}{"}"} using PolicyGenerator CRs</a></li>
-      <li><a href="/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator">Configuring managed cluster policies by using PolicyGenerator resources</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow">BMC addressing</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer">About root device hints</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-clusterinstance-config-reference_ztp-deploying-far-edge-sites">{"{"}{"{"} sno_caps {"}"}{"}"} ClusterInstance CR installation reference</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-managed-cluster-network-prereqs_sno-configure-for-vdu">Connectivity prerequisites for managed cluster networks</a></li>
+      <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-preface-sno-ran_logical-volume-manager-storage">Deploying {"{"}{"{"} lvms {"}"}{"}"} on {"{"}{"{"} sno {"}"}{"}"} clusters</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-provisioning-lvm-storage_ztp-advanced-policy-config">Configuring {"{"}{"{"} lvms {"}"}{"}"} using PolicyGenerator CRs</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator">Configuring managed cluster policies by using PolicyGenerator resources</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/edge_computing/ztp-manual-install#ztp-binding-bmh-to-cluster-using-annotation_ztp-manual-install">Bind bare-metal hosts to clusters using the cluster-reference annotation in {"{"}{"{"} ztp {"}"}{"}"} deployments</a></li>
-      <li><a href="/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install"><code>BareMetalHost</code> cluster-reference annotation reference</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-binding-bmh-to-cluster-using-annotation_ztp-manual-install">Bind bare-metal hosts to clusters using the cluster-reference annotation in {"{"}{"{"} ztp {"}"}{"}"} deployments</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install"><code>BareMetalHost</code> cluster-reference annotation reference</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/clusters/cluster_mce_overview#bind-unbind-hosts">Binding and unbinding hosts in the {"{"}{"{"} rh_rhacm {"}"}{"}"} documentation</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/edge_computing/ztp-manual-install#ztp-late-binding-bare-metal-host-pools_ztp-manual-install">Late binding for bare-metal host pools in {"{"}{"{"} ztp {"}"}{"}"} deployments</a></li>
-      <li><a href="/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install"><code>BareMetalHost</code> cluster-reference annotation reference</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-late-binding-bare-metal-host-pools_ztp-manual-install">Late binding for bare-metal host pools in {"{"}{"{"} ztp {"}"}{"}"} deployments</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install"><code>BareMetalHost</code> cluster-reference annotation reference</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#binding-and-unbinding-hosts">Binding and unbinding hosts in the {"{"}{"{"} rh_rhacm {"}"}{"}"} documentation</a></li>
       </ul>
       <p class="/modules/ztp-checking-the-managed-cluster-status.md"></p>

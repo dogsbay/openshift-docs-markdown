@@ -2,7 +2,7 @@
 // Source: virt/nodes/virt-preventing-node-reconciliation.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Preventing node reconciliation\n---\n\n# Preventing node reconciliation {#virt-using-skip-node}\n\nUse `skip-node` annotation to prevent the `node-labeller` from reconciling a node.\n\n## Additional resources {#additional-resources_virt-preventing-node-reconciliation}\n\n- [Managing node labeling for obsolete CPU models](/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models)\n";
+const body = "---\ntitle: Preventing node reconciliation\n---\n\n# Preventing node reconciliation {#virt-using-skip-node}\n\nUse `skip-node` annotation to prevent the `node-labeller` from reconciling a node.\n\n## Additional resources {#additional-resources_virt-preventing-node-reconciliation}\n\n- [Managing node labeling for obsolete CPU models](/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

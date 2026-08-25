@@ -11,15 +11,15 @@ When developing consumer applications that make use of Precision Time Protocol (
 
 **Additional resources**
 
-- [PTP events REST API v2 reference](/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#ptp-events-rest-api-reference-v2)
+- [PTP events REST API v2 reference](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#ptp-events-rest-api-reference-v2)
 
 **Additional resources**
 
-- [Configuring linuxptp services as ordinary clock](/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
+- [Configuring linuxptp services as ordinary clock](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
 
 **Additional resources**
 
-- [api/ocloudNotifications/v2/subscriptions](/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#api-ocloud-notifications-v2-subscriptions_using-ptp-hardware-fast-events-framework-v2)
+- [api/ocloudNotifications/v2/subscriptions](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#api-ocloud-notifications-v2-subscriptions_using-ptp-hardware-fast-events-framework-v2)
 
 **Additional resources**
 

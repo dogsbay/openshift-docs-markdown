@@ -8,7 +8,7 @@ Proxy certificates allow platform components to trust custom certificate authori
 
 **Additional resources**
 
-- [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
+- [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 
 **Additional resources**
 

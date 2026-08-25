@@ -2,7 +2,7 @@
 // Source: backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Restoring applications\n---\n\n# Restoring applications {#restoring-applications}\n\nRestore application backups by previewing resources before running the restore, creating a `Restore` custom resource (CR), and configuring restore hooks to run commands in restored pods. This helps you to recover your application data and configuration while controlling the restore process.\n\n**Additional resources**\n\n- [Triggering updates on image stream changes](/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes)\n";
+const body = "---\ntitle: Restoring applications\n---\n\n# Restoring applications {#restoring-applications}\n\nRestore application backups by previewing resources before running the restore, creating a `Restore` custom resource (CR), and configuring restore hooks to run commands in restored pods. This helps you to recover your application data and configuration while controlling the restore process.\n\n**Additional resources**\n\n- [Triggering updates on image stream changes](/openshift-docs-markdown/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -8,6 +8,6 @@ Bonding at the pod level is vital to enable workloads inside pods that require h
 
 One scenario where pod level bonding is required is creating a bond interface from multiple SR-IOV virtual functions on different physical functions. Creating a bond interface from two different physical functions on the host can be used to achieve high availability and throughput at pod level.
 
-Before you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
+Before you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
 
-For guidance on tasks such as creating a SR-IOV network, network policies, network attachment definitions and pods, see  [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device).
+For guidance on tasks such as creating a SR-IOV network, network policies, network attachment definitions and pods, see  [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device).

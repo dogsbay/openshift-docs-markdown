@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-edit-boot-order","text":"Edit the boot order of a virtual machine"}];
 const nav = navData;
-const currentPath = "/virt/managing_vms/virt-edit-boot-order";
+const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-edit-boot-order";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Edit the boot order of a virtual machine {#virt-edit-boot-order}\n\nYou can configure the boot order of disks and network devices on your virtual machine (VM) by using the web console or the CLI.\n\nWith **Boot Order** in the **VirtualMachine details** page, you can:\n\n- Select a disk or network interface controller (NIC) and add it to the boot order list.\n- Edit the order of the disks or NICs in the boot order list.\n- Remove a disk or NIC from the boot order list, and return it back to the inventory of bootable sources.\n\n{% include \"./modules/virt-add-boot-order-web.md\" %} {% include \"./modules/virt-edit-boot-order-web.md\" %}\n","mdUrl":"/virt/managing_vms/virt-edit-boot-order.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Edit the boot order of a virtual machine {#virt-edit-boot-order}\n\nYou can configure the boot order of disks and network devices on your virtual machine (VM) by using the web console or the CLI.\n\nWith **Boot Order** in the **VirtualMachine details** page, you can:\n\n- Select a disk or network interface controller (NIC) and add it to the boot order list.\n- Edit the order of the disks or NICs in the boot order list.\n- Remove a disk or NIC from the boot order list, and return it back to the inventory of bootable sources.\n\n{% include \"./modules/virt-add-boot-order-web.md\" %} {% include \"./modules/virt-edit-boot-order-web.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-edit-boot-order.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -2,7 +2,7 @@
 // Source: authentication/identity_providers/configuring-oidc-identity-provider.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring an OpenID Connect identity provider\n---\n\n# Configuring an OpenID Connect identity provider {#configuring-oidc-identity-provider}\n\nConfigure the `oidc` identity provider to integrate with an OpenID Connect identity provider using an [Authorization Code Flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth).\n\n**Additional resources**\n\n- See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.\n";
+const body = "---\ntitle: Configuring an OpenID Connect identity provider\n---\n\n# Configuring an OpenID Connect identity provider {#configuring-oidc-identity-provider}\n\nConfigure the `oidc` identity provider to integrate with an OpenID Connect identity provider using an [Authorization Code Flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth).\n\n**Additional resources**\n\n- See [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

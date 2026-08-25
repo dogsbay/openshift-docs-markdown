@@ -2,7 +2,7 @@
 // Source: security/container_security/security-compliance.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Understanding compliance\n---\n\n# Understanding compliance {#security-compliance}\n\nYou should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.\n\n**Additional resources**\n\n- [Installing a cluster in FIPS mode](/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n";
+const body = "---\ntitle: Understanding compliance\n---\n\n# Understanding compliance {#security-compliance}\n\nYou should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.\n\n**Additional resources**\n\n- [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"deploying-openstack-on-local-disk","text":"Deploying on OpenStack with rootVolume and etcd on local disk"},{"depth":2,"slug":"additional-resources_deploying-openstack-on-local-disk","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_openstack/deploying-openstack-with-rootVolume-etcd-on-local-disk";
+const currentPath = "/openshift-docs-markdown/installing/installing_openstack/deploying-openstack-with-rootVolume-etcd-on-local-disk";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_openstack"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying on OpenStack with rootVolume and etcd on local disk {#deploying-openstack-on-local-disk}\n\nAfter installation, you can resolve and prevent performance issues of your {{ rh_openstack_first }} installation by moving etcd from a root volume (provided by {{ rh_openstack }} Cinder) to a dedicated ephemeral local disk.\n\n## Additional resources {#additional-resources_deploying-openstack-on-local-disk}\n\n- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)\n- [Overview of backup and restore options](/backup_and_restore/index#backup-restore-operations-overview)\n","mdUrl":"/installing/installing_openstack/deploying-openstack-with-rootVolume-etcd-on-local-disk.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying on OpenStack with rootVolume and etcd on local disk {#deploying-openstack-on-local-disk}\n\nAfter installation, you can resolve and prevent performance issues of your {{ rh_openstack_first }} installation by moving etcd from a root volume (provided by {{ rh_openstack }} Cinder) to a dedicated ephemeral local disk.\n\n## Additional resources {#additional-resources_deploying-openstack-on-local-disk}\n\n- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)\n- [Overview of backup and restore options](/openshift-docs-markdown/backup_and_restore/index#backup-restore-operations-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_openstack/deploying-openstack-with-rootVolume-etcd-on-local-disk.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,8 +96,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-osp-local-disk-deployment.md"></p>
       <h2 id="additional-resources_deploying-openstack-on-local-disk" class="group scroll-mt-20">Additional resources<a href="#additional-resources_deploying-openstack-on-local-disk" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
-      <li><a href="/backup_and_restore/index#backup-restore-operations-overview">Overview of backup and restore options</a></li>
+      <li><a href="/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/index#backup-restore-operations-overview">Overview of backup and restore options</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

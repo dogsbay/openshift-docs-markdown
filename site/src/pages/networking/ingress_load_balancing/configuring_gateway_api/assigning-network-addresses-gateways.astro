@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"assigning-network-addresses-gateways","text":"Assign network addresses to gateways"}];
 const nav = navData;
-const currentPath = "/networking/ingress_load_balancing/configuring_gateway_api/assigning-network-addresses-gateways";
+const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/assigning-network-addresses-gateways";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/ingress_load_balancing","networking/ingress_load_balancing/configuring_gateway_api"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Assign network addresses to gateways {#assigning-network-addresses-gateways}\n\nYou can configure network addresses for your gateway to provide a predictable entry point for external and internal traffic. This ensures that clients can reliably resolve and route requests to your load balancers.\n\nGateway API uses addresses to define the specific network locations that are assigned to your `Gateway` resource. In OpenShift Container Platform, you rely on the gateway controller to automatically provision and bind the necessary network addresses, such as an external or internal load balancer IP, to your gateway. On on-premise environments, this automatic provisioning requires a configured load balancer controller.\n\nTo successfully assign network addresses to your gateway, complete the following tasks:\n\n- Understand gateway address assignment and types to plan your DNS and load balancer configuration.\n- Understand on-premise gateway routing requirements to ensure your infrastructure can support Gateway API.\n- Configure automatic address assignment for a gateway to successfully deploy it without violating manual address constraints.\n- Configure an internal load balancer to restrict your gateway traffic to your private network.\n- Review cloud provider annotations to ensure your internal load balancer provisions correctly on your specific infrastructure.\n- Configure DNS for on-premise gateways to ensure clients can reliably resolve your gateway.\n","mdUrl":"/networking/ingress_load_balancing/configuring_gateway_api/assigning-network-addresses-gateways.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Assign network addresses to gateways {#assigning-network-addresses-gateways}\n\nYou can configure network addresses for your gateway to provide a predictable entry point for external and internal traffic. This ensures that clients can reliably resolve and route requests to your load balancers.\n\nGateway API uses addresses to define the specific network locations that are assigned to your `Gateway` resource. In OpenShift Container Platform, you rely on the gateway controller to automatically provision and bind the necessary network addresses, such as an external or internal load balancer IP, to your gateway. On on-premise environments, this automatic provisioning requires a configured load balancer controller.\n\nTo successfully assign network addresses to your gateway, complete the following tasks:\n\n- Understand gateway address assignment and types to plan your DNS and load balancer configuration.\n- Understand on-premise gateway routing requirements to ensure your infrastructure can support Gateway API.\n- Configure automatic address assignment for a gateway to successfully deploy it without violating manual address constraints.\n- Configure an internal load balancer to restrict your gateway traffic to your private network.\n- Review cloud provider annotations to ensure your internal load balancer provisions correctly on your specific infrastructure.\n- Configure DNS for on-premise gateways to ensure clients can reliably resolve your gateway.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/assigning-network-addresses-gateways.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

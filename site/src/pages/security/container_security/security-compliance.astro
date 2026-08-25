@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"security-compliance","text":"Understanding compliance"}];
 const nav = navData;
-const currentPath = "/security/container_security/security-compliance";
+const currentPath = "/openshift-docs-markdown/security/container_security/security-compliance";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/container_security"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding compliance {#security-compliance}\n\nYou should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.\n\n**Additional resources**\n\n- [Installing a cluster in FIPS mode](/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n","mdUrl":"/security/container_security/security-compliance.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding compliance {#security-compliance}\n\nYou should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.\n\n**Additional resources**\n\n- [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/container_security/security-compliance.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>You should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.</p>
       <p class="/modules/security-compliance-nist.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/installing-fips#installing-fips-mode_installing-fips">Installing a cluster in FIPS mode</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips">Installing a cluster in FIPS mode</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

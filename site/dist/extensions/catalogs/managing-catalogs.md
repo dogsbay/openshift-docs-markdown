@@ -17,4 +17,4 @@ You can manage catalogs and extensions declaratively from the CLI by using custo
 
 **Additional resources**
 
-- [File-based catalogs](/extensions/catalogs/fbc#fbc)
+- [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)

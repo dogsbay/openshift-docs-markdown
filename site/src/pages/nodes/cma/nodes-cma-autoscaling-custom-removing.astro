@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-cma-autoscaling-custom-removing","text":"Removing the Custom Metrics Autoscaler Operator"}];
 const nav = navData;
-const currentPath = "/nodes/cma/nodes-cma-autoscaling-custom-removing";
+const currentPath = "/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-removing";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/cma"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Removing the Custom Metrics Autoscaler Operator {#nodes-cma-autoscaling-custom-removing}\n\nYou can remove the custom metrics autoscaler from your OpenShift Container Platform cluster. After removing the Custom Metrics Autoscaler Operator, remove other components associated with the Operator to avoid potential issues.\n\n> [!NOTE]\n> Delete the `KedaController` custom resource (CR) first. If you do not delete the `KedaController` CR, OpenShift Container Platform can hang when you delete the `openshift-keda` project. If you delete the Custom Metrics Autoscaler Operator before deleting the CR, you are not able to delete the CR.\n","mdUrl":"/nodes/cma/nodes-cma-autoscaling-custom-removing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Removing the Custom Metrics Autoscaler Operator {#nodes-cma-autoscaling-custom-removing}\n\nYou can remove the custom metrics autoscaler from your OpenShift Container Platform cluster. After removing the Custom Metrics Autoscaler Operator, remove other components associated with the Operator to avoid potential issues.\n\n> [!NOTE]\n> Delete the `KedaController` custom resource (CR) first. If you do not delete the `KedaController` CR, OpenShift Container Platform can hang when you delete the `openshift-keda` project. If you delete the Custom Metrics Autoscaler Operator before deleting the CR, you are not able to delete the CR.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-removing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

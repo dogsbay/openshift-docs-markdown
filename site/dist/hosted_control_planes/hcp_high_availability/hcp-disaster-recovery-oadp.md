@@ -17,19 +17,19 @@ The disaster recovery process with {{ oadp_first }} involves the following steps
 
 **Additional resources**
 
-- [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
-- [Support for {{ oadp_first }}](/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
-- [Configuring the {{ oadp_full }} with AWS S3 compatible storage](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
+- [About installing {{ oadp_short }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
+- [Support for {{ oadp_first }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
+- [Configuring the {{ oadp_full }} with AWS S3 compatible storage](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
 
 **Additional resources**
 
-- [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
-- [Support for {{ oadp_first }}](/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
-- [Configuring the {{ oadp_full }} with Multicloud Object Gateway](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
+- [About installing {{ oadp_short }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
+- [Support for {{ oadp_first }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
+- [Configuring the {{ oadp_full }} with Multicloud Object Gateway](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
 
 **Additional resources**
 
-- [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
+- [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 
 **Additional resources**
 

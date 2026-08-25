@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-creating-vms-aws-li-windows","text":"Creating a license-compliant AWS EC2 Windows VM"}];
 const nav = navData;
-const currentPath = "/virt/creating_vm/virt-creating-vms-aws-li-windows";
+const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-aws-li-windows";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a license-compliant AWS EC2 Windows VM {#virt-creating-vms-aws-li-windows}\n\nIf you are running Windows virtual machines (VMs) on OpenShift Container Platform hosts, such as AMD64 bare metal EC2 instances with {{ aws_first }} Windows License Included (LI) enabled, you must ensure that any VMs you create are compliant with licensing requirements.\n\nWhen you configure your Windows VMs correctly, they activate automatically with the {{ aws_short }} Key Management Service (KMS), and run using optimized drivers for the underlying bare-metal hardware. Proper configuration also ensures that billing is correct.\n\nIf you do not configure your Windows VMs so that they are license-compliant, they might fail to activate, suffer degraded system performance due to sub-optimal CPU pinning, and risk failing a licensing audit.\n","mdUrl":"/virt/creating_vm/virt-creating-vms-aws-li-windows.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a license-compliant AWS EC2 Windows VM {#virt-creating-vms-aws-li-windows}\n\nIf you are running Windows virtual machines (VMs) on OpenShift Container Platform hosts, such as AMD64 bare metal EC2 instances with {{ aws_first }} Windows License Included (LI) enabled, you must ensure that any VMs you create are compliant with licensing requirements.\n\nWhen you configure your Windows VMs correctly, they activate automatically with the {{ aws_short }} Key Management Service (KMS), and run using optimized drivers for the underlying bare-metal hardware. Proper configuration also ensures that billing is correct.\n\nIf you do not configure your Windows VMs so that they are license-compliant, they might fail to activate, suffer degraded system performance due to sub-optimal CPU pinning, and risk failing a licensing audit.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-aws-li-windows.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

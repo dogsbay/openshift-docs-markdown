@@ -2,7 +2,7 @@
 // Source: nodes/scheduling/descheduler/nodes-descheduler-release-notes.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: \"{{ descheduler_operator }} release notes\"\n---\n\n# {{ descheduler_operator }} release notes {#nodes-descheduler-release-notes}\n\nReview the {{ descheduler_operator }} release notes to track its development and learn what is new and changed with each release.\n\nThe {{ descheduler_operator }} allows you to evict pods so that they can be rescheduled on more appropriate nodes.\n\nFor more information, see [About the descheduler](/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about).\n";
+const body = "---\ntitle: \"{{ descheduler_operator }} release notes\"\n---\n\n# {{ descheduler_operator }} release notes {#nodes-descheduler-release-notes}\n\nReview the {{ descheduler_operator }} release notes to track its development and learn what is new and changed with each release.\n\nThe {{ descheduler_operator }} allows you to evict pods so that they can be rescheduled on more appropriate nodes.\n\nFor more information, see [About the descheduler](/openshift-docs-markdown/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

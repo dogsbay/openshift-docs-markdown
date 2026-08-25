@@ -2,7 +2,7 @@
 // Source: authentication/identity_providers/configuring-gitlab-identity-provider.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring a GitLab identity provider\n---\n\n# Configuring a GitLab identity provider {#configuring-gitlab-identity-provider}\n\nConfigure the `gitlab` identity provider using [GitLab.com](https://gitlab.com/) or any other GitLab instance as an identity provider.\n\n**Additional resources**\n\n- See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.\n";
+const body = "---\ntitle: Configuring a GitLab identity provider\n---\n\n# Configuring a GitLab identity provider {#configuring-gitlab-identity-provider}\n\nConfigure the `gitlab` identity provider using [GitLab.com](https://gitlab.com/) or any other GitLab instance as an identity provider.\n\n**Additional resources**\n\n- See [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

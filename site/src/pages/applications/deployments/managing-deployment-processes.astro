@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"deployment-operations","text":"Managing deployment processes"},{"depth":2,"slug":"deploymentconfig-operations","text":"Managing DeploymentConfig objects"}];
 const nav = navData;
-const currentPath = "/applications/deployments/managing-deployment-processes";
+const currentPath = "/openshift-docs-markdown/applications/deployments/managing-deployment-processes";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["applications","applications/deployments"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing deployment processes {#deployment-operations}\n\n## Managing DeploymentConfig objects {#deploymentconfig-operations}\n\n`DeploymentConfig` objects can be managed from the OpenShift Container Platform web console’s **Workloads** page or using the `oc` CLI. The following procedures show CLI usage unless otherwise stated.\n\n**Additional resources**\n\n- For more information about resource limits and requests, see [Understanding managing application memory](/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).\n","mdUrl":"/applications/deployments/managing-deployment-processes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing deployment processes {#deployment-operations}\n\n## Managing DeploymentConfig objects {#deploymentconfig-operations}\n\n`DeploymentConfig` objects can be managed from the OpenShift Container Platform web console’s **Workloads** page or using the `oc` CLI. The following procedures show CLI usage unless otherwise stated.\n\n**Additional resources**\n\n- For more information about resource limits and requests, see [Understanding managing application memory](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/deployments/managing-deployment-processes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,7 +105,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/deployments-setting-triggers.md"></p>
       <p class="/modules/deployments-setting-resources.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li>For more information about resource limits and requests, see <a href="/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure">Understanding managing application memory</a>.</li></ul>
+      <ul><li>For more information about resource limits and requests, see <a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure">Understanding managing application memory</a>.</li></ul>
       <p class="/modules/deployments-accessing-private-repos.md"></p>
       <p class="/modules/deployments-assigning-pods-to-nodes.md"></p>
       <p class="/modules/deployments-running-pod-svc-acct.md"></p>

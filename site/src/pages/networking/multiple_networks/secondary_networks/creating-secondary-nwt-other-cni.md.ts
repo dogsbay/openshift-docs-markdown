@@ -2,7 +2,7 @@
 // Source: networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Creating secondary networks with other CNI plugins\n---\n\n# Creating secondary networks with other CNI plugins {#creating-secondary-networks-other-cni}\n\nThe specific configuration fields for secondary networks are described in the following sections.\n\n**Additional resources**\n\n- [Configuring a bond interface from two SR-IOV interfaces](/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding)\n\n**Additional resources**\n\n- [Setting SELinux booleans](/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing)\n";
+const body = "---\ntitle: Creating secondary networks with other CNI plugins\n---\n\n# Creating secondary networks with other CNI plugins {#creating-secondary-networks-other-cni}\n\nThe specific configuration fields for secondary networks are described in the following sections.\n\n**Additional resources**\n\n- [Configuring a bond interface from two SR-IOV interfaces](/openshift-docs-markdown/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding)\n\n**Additional resources**\n\n- [Setting SELinux booleans](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

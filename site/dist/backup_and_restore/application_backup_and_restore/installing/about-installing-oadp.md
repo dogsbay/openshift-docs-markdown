@@ -32,12 +32,12 @@ You create a default `Secret` and then you install the Data Protection Applicati
 
 ## Additional resources {#additional-resources_about-installing-oadp}
 
-- [Installing OADP on Amazon Web Services](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
-- [Installing OADP on Microsoft Azure](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure)
-- [Installing OADP on {{ gcp_full }}](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-gcp#installing-oadp-gcp)
-- [Installing OADP on Multicloud Object Gateway](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
-- [Installing OADP on {{ rh_storage }}](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#installing-oadp-ocs)
-- [Backing up applications with File System Backup: Kopia or Restic](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#backing-up-applications)
-- [Cluster service version](/operators/understanding/olm/olm-understanding-olm#olm-csv_olm-understanding-olm)
+- [Installing OADP on Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
+- [Installing OADP on Microsoft Azure](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure)
+- [Installing OADP on {{ gcp_full }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-gcp#installing-oadp-gcp)
+- [Installing OADP on Multicloud Object Gateway](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
+- [Installing OADP on {{ rh_storage }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#installing-oadp-ocs)
+- [Backing up applications with File System Backup: Kopia or Restic](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#backing-up-applications)
+- [Cluster service version](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-csv_olm-understanding-olm)
 
 {% include "./modules/about-oadp-update-channels.md" %}

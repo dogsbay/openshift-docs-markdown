@@ -8,12 +8,12 @@ To improve east-west performance on bare-metal clusters, configure no-overlay mo
 
 **Additional resources**
 
-- [About BGP routing](/networking/advanced_networking/bgp_routing/about-bgp-routing#about-bgp-routing)
-- [Enabling BGP routing](/networking/advanced_networking/bgp_routing/enabling-bgp-routing#enabling-bgp-routing)
+- [About BGP routing](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/about-bgp-routing#about-bgp-routing)
+- [Enabling BGP routing](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/enabling-bgp-routing#enabling-bgp-routing)
 
 ## Additional resources {#additional-resources_no-overlay-mode-bgp-routing}
 
-- [About BGP routing](/networking/advanced_networking/bgp_routing/about-bgp-routing#about-bgp-routing)
-- [About route advertisements](/networking/advanced_networking/route_advertisements/about-route-advertisements#about-route-advertisements)
-- [About user-defined networks](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
-- [Best practices for ClusterUserDefinedNetwork CRs](/networking/multiple_networks/primary_networks/about-user-defined-networks#considerations-for-cudn_user-defined-networks)
+- [About BGP routing](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/about-bgp-routing#about-bgp-routing)
+- [About route advertisements](/openshift-docs-markdown/networking/advanced_networking/route_advertisements/about-route-advertisements#about-route-advertisements)
+- [About user-defined networks](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
+- [Best practices for ClusterUserDefinedNetwork CRs](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#considerations-for-cudn_user-defined-networks)

@@ -12,6 +12,6 @@ title: Configuring CSI volumes
 
 **Additional resources**
 
-- [Setting up the AWS EFS CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-efs-csi-driver-operator-setup_persistent-storage-csi-aws-efs)
+- [Setting up the AWS EFS CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-efs-csi-driver-operator-setup_persistent-storage-csi-aws-efs)
 - [Red Hat ecosystem portal](https://catalog.redhat.com/)
 - [Third-party support policy](https://access.redhat.com/articles/third-party-software-support)

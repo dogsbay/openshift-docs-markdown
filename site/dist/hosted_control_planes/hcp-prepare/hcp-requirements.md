@@ -19,8 +19,8 @@ The following requirements apply to {{ hcp }}:
 ## Additional resources {#_additional_resources}
 
 - [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)
-- [Shared infrastructure between hosted and standalone control planes](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)
-- [Technology Preview features status](/hosted_control_planes/hcp-release-notes#hcp-release-notes-technology-preview-tables_hcp-release-notes)
+- [Shared infrastructure between hosted and standalone control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)
+- [Technology Preview features status](/openshift-docs-markdown/hosted_control_planes/hcp-release-notes#hcp-release-notes-technology-preview-tables_hcp-release-notes)
 - [Removing a cluster from management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-managed-cluster)
 - [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)
 
@@ -28,8 +28,8 @@ The following requirements apply to {{ hcp }}:
 
 - [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)
 - [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=multicluster-engine&&upgrade_path=4.14%20to%204.16)
-- [Shared infrastructure between hosted and standalone control planes](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)
+- [Shared infrastructure between hosted and standalone control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)
 
 **Additional resources**
 
-- [CIDR range definitions](/networking/networking_overview/cidr-range-definitions#cidr-range-definitions)
+- [CIDR range definitions](/openshift-docs-markdown/networking/networking_overview/cidr-range-definitions#cidr-range-definitions)

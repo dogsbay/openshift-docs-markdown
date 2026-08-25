@@ -19,9 +19,9 @@ After installing OpenShift Container Platform, a cluster administrator can confi
 
 ## Additional resources {#additional-resources_post-installation-configuration-overview}
 
-- [Configure operating system features](/machine_configuration/index#machine-config-overview)
-- [Configure cluster features](/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)
-- [Configuring a private cluster](/post_installation_configuration/configuring-private-cluster#configuring-private-cluster)
-- [Perform node operations](/post_installation_configuration/node-tasks#post-install-node-tasks)
-- [Configure users](/post_installation_configuration/preparing-for-users#post-install-preparing-for-users)
-- [Configuring alert notifications](/post_installation_configuration/configuring-alert-notifications#configuring-alert-notifications)
+- [Configure operating system features](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
+- [Configure cluster features](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)
+- [Configuring a private cluster](/openshift-docs-markdown/post_installation_configuration/configuring-private-cluster#configuring-private-cluster)
+- [Perform node operations](/openshift-docs-markdown/post_installation_configuration/node-tasks#post-install-node-tasks)
+- [Configure users](/openshift-docs-markdown/post_installation_configuration/preparing-for-users#post-install-preparing-for-users)
+- [Configuring alert notifications](/openshift-docs-markdown/post_installation_configuration/configuring-alert-notifications#configuring-alert-notifications)

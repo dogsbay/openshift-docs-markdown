@@ -16,7 +16,7 @@ OLM does not update the certificates of Operators that it manages in proxy envir
 
 ## Additional resources {#additional-resources_cert-types-olm-certificates}
 
-- [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
-- [Proxy certificates](/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)
-- [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
-- [Updating the CA bundle](/security/certificates/updating-ca-bundle#updating-ca-bundle)
+- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
+- [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)
+- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
+- [Updating the CA bundle](/openshift-docs-markdown/security/certificates/updating-ca-bundle#updating-ca-bundle)

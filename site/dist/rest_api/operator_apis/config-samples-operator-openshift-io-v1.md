@@ -24,7 +24,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConfigSpec contains the desired configuration and state for the Samples Operator, controlling various behavior around the imagestreams and templates it creates/updates in the openshift namespace. |
 | `status` | `object` | ConfigStatus contains the actual configuration in effect, as well as various details that describe the state of the Samples Operator. |
 
@@ -138,7 +138,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -155,7 +155,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`ConfigList`](/rest_api/objects/index#io-openshift-operator-samples-v1-ConfigList) schema |
+| 200 - OK | [`ConfigList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-samples-v1-ConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -179,15 +179,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |  |
+| `body` | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
-| 201 - Created | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
-| 202 - Accepted | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 200 - OK | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 201 - Created | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 202 - Accepted | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/samples.operator.openshift.io/v1/configs/{{ name }} {#_apissamplesoperatoropenshiftiov1configs_name}
@@ -218,8 +218,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -236,7 +236,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 200 - OK | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -260,7 +260,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 200 - OK | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -284,14 +284,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |  |
+| `body` | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
-| 201 - Created | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 200 - OK | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 201 - Created | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/samples.operator.openshift.io/v1/configs/{{ name }}/status {#_apissamplesoperatoropenshiftiov1configs_name_status}
@@ -316,7 +316,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 200 - OK | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -340,7 +340,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 200 - OK | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -364,12 +364,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |  |
+| `body` | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
-| 201 - Created | [`Config`](/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 200 - OK | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
+| 201 - Created | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

@@ -23,12 +23,12 @@ Security context constraints allow an administrator to control the following sec
 
 Default SCCs are created during installation and when you install some Operators or other components. As a cluster administrator, you can also create your own SCCs by using the OpenShift CLI (`oc`).
 
-For information about default security context constraints, see [Default security context constraints](/authentication/managing-security-context-constraints#default-sccs_configuring-internal-oauth).
+For information about default security context constraints, see [Default security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#default-sccs_configuring-internal-oauth).
 
 > [!IMPORTANT]
 > Do not modify the default SCCs. Customizing the default SCCs can lead to issues when some of the platform pods deploy or OpenShift Container Platform is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
 >
-> Instead of modifying the default SCCs, create and modify your own SCCs as needed. For detailed steps, see [Creating security context constraints](/authentication/managing-security-context-constraints#security-context-constraints-creating_configuring-internal-oauth).
+> Instead of modifying the default SCCs, create and modify your own SCCs as needed. For detailed steps, see [Creating security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-creating_configuring-internal-oauth).
 
 You can use the following basic SCCs:
 
@@ -87,4 +87,4 @@ The `restricted-v2` SCC explicitly denies everything except what it explicitly a
 - Allowed capabilities: `NET_BIND_SERVICE`. A pod can request this capability, but it is not added by default.
 - Allowed `seccomp` profiles: `runtime/default`.
 
-For more information, see [Managing security context constraints](/authentication/managing-security-context-constraints).
+For more information, see [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints).

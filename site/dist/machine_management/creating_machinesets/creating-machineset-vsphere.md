@@ -8,13 +8,13 @@ You can define and create a OpenShift Container Platform compute machine set on 
 
 **Additional resources**
 
-- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
+- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
 **Additional resources**
 
-- [Understanding the Machine Config Operator](/machine_configuration/index#machine-config-operator_machine-config-overview)
-- [Installing {{ op_system }} and starting the OpenShift Container Platform bootstrap process](/installing/installing_vsphere/upi/installing-vsphere#installation-vsphere-machines_installing-vsphere)
+- [Understanding the Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#machine-config-operator_machine-config-overview)
+- [Installing {{ op_system }} and starting the OpenShift Container Platform bootstrap process](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installation-vsphere-machines_installing-vsphere)
 
 **Additional resources**
 
-- [Cluster autoscaler resource definition](/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
+- [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)

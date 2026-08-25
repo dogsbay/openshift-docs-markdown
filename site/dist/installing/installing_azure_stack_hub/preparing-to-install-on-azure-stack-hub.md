@@ -24,7 +24,7 @@ You can install a cluster on Azure Stack Hub infrastructure that you provision, 
 
 ## Additional resources {#additional-resources_preparing-to-install-on-azure-stack-hub}
 
-- [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
-- [Installing a cluster](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)
-- [Installing a cluster on Azure Stack Hub using ARM templates](/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra)
-- [Configuring an Azure Stack Hub account](/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)
+- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)
+- [Installing a cluster](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)
+- [Installing a cluster on Azure Stack Hub using ARM templates](/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installing-azure-stack-hub-user-infra)
+- [Configuring an Azure Stack Hub account](/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)

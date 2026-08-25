@@ -8,7 +8,7 @@ Before you use the egress router pod, you must understand how the pod works. Doi
 
 ## Additional resources {#using-an-egress-router-ovn-additional-resources}
 
-- [Deploying an egress router in redirection mode](/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection#deploying-egress-router-ovn-redirection)
+- [Deploying an egress router in redirection mode](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection#deploying-egress-router-ovn-redirection)
 - [OpenShift on OpenStack: Egress router not working](https://access.redhat.com/solutions/2803331)
 - [MAC Address Changes](https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.security.doc/GUID-942BD3AA-731B-4A05-8196-66F2B4BF1ACB.html)
 - [Forged Transits](https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.security.doc/GUID-7DC6486F-5400-44DF-8A62-6273798A2F80.html)

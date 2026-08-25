@@ -14,12 +14,12 @@ Several ARM templates are provided to assist in completing these steps or to hel
 **Additional resources**
 
 - [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
-- [OpenShift Container Platform installation and update](/architecture/architecture-installation#architecture-installation)
-- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
-- [Configuring an Azure account](/installing/installing_azure/installing-azure-account#installing-azure-account)
+- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Configuring an Azure account](/openshift-docs-markdown/installing/installing_azure/installing-azure-account#installing-azure-account)
 - [Install the Azure CLI (Azure documentation)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-- [Alternatives to storing administrator-level secrets in the kube-system project](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-manual-modes_installing-azure-customizations)
-- [Configuring the firewall to allow required sites](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [Alternatives to storing administrator-level secrets in the kube-system project](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-manual-modes_installing-azure-customizations)
+- [Configuring the firewall to allow required sites](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
 
 **Additional resources**
 
@@ -27,20 +27,20 @@ Several ARM templates are provided to assist in completing these steps or to hel
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 - [Azure subscription and service limits, quotas, and constraints ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)
 
 **Additional resources**
 
-- [Example for creating DNS zones](/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra)
+- [Example for creating DNS zones](/openshift-docs-markdown/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra)
 
 **Additional resources**
 
-- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
+- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 **Additional resources**
 
@@ -52,7 +52,7 @@ Several ARM templates are provided to assist in completing these steps or to hel
 
 **Additional resources**
 
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
 ## Additional resources {#additional-resources_installing-azure-user-infra}
 

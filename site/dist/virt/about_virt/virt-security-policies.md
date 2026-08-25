@@ -16,9 +16,9 @@ title: Security policies
 ## Additional resources {#additional-resources_virt-security-policies}
 
 - [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
-- [About Security context constraints](/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)
-- [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
-- [Managing security context constraints](/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)
-- [Creating a cluster role](/authentication/using-rbac#creating-cluster-role_using-rbac)
-- [Cluster role binding commands](/authentication/using-rbac#cluster-role-binding-commands_using-rbac)
-- [Enabling user permissions to clone data volumes across namespaces](/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)
+- [About Security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)
+- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)
+- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)
+- [Creating a cluster role](/openshift-docs-markdown/authentication/using-rbac#creating-cluster-role_using-rbac)
+- [Cluster role binding commands](/openshift-docs-markdown/authentication/using-rbac#cluster-role-binding-commands_using-rbac)
+- [Enabling user permissions to clone data volumes across namespaces](/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)

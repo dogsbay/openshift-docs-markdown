@@ -8,5 +8,5 @@ Configure OpenShift Container Platform to use an external OpenID Connect (OIDC) 
 
 **Additional resources**
 
-- [Example OIDC provider configuration for CLI clients only](/authentication/external-auth#external-auth-cli_external-auth)
-- [Configuring advanced direct authentication fields](/authentication/structured-auth-config-fields#structured-auth-config-fields)
+- [Example OIDC provider configuration for CLI clients only](/openshift-docs-markdown/authentication/external-auth#external-auth-cli_external-auth)
+- [Configuring advanced direct authentication fields](/openshift-docs-markdown/authentication/structured-auth-config-fields#structured-auth-config-fields)

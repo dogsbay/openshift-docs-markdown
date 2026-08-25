@@ -8,10 +8,10 @@ The Network Observability Operator uses the `flowlogs-pipeline` component to gen
 
 **Additional resources**
 
-- [Network Flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+- [Network Flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 
 **Additional resources**
 
-- [Filtering eBPF flow data using a global rule](/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)
+- [Filtering eBPF flow data using a global rule](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)
 - [Creating alerting rules for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-a-developer#creating-alerting-rules-for-user-defined-projects_managing-alerts-as-a-developer)
-- [Troubleshooting high cardinality metrics- Determining why Prometheus is consuming a lot of disk space](/support/troubleshooting/investigating-monitoring-issues#determining-why-prometheus-is-consuming-disk-space_investigating-monitoring-issues)
+- [Troubleshooting high cardinality metrics- Determining why Prometheus is consuming a lot of disk space](/openshift-docs-markdown/support/troubleshooting/investigating-monitoring-issues#determining-why-prometheus-is-consuming-disk-space_investigating-monitoring-issues)

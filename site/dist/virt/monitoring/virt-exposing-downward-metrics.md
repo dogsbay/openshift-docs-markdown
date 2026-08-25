@@ -13,4 +13,4 @@ As an administrator, you can expose a set of host and virtual machine (VM) metri
 
 ## Additional resources {#additional-resources_virt-exposing-downward-metrics-for-vms}
 
-- [Viewing downward metrics by using the command line](/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics)
+- [Viewing downward metrics by using the command line](/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics)

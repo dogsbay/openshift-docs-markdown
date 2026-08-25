@@ -8,15 +8,15 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 
 **Additional resources**
 
-- [Installing the Kernel Module Management Operator](/hardware_enablement/kmm-kernel-module-management#kmm-install_kernel-module-management-operator)
+- [Installing the Kernel Module Management Operator](/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management#kmm-install_kernel-module-management-operator)
 
 **Additional resources**
 
-- [Configuring the Kernel Module Management Operator](/hardware_enablement/kmm-kernel-module-management#kmm-configuring-kmmo_kernel-module-management-operator)
+- [Configuring the Kernel Module Management Operator](/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management#kmm-configuring-kmmo_kernel-module-management-operator)
 
 **Additional resources**
 
-- [Understanding and managing pod security admission](/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)
+- [Understanding and managing pod security admission](/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)
 
 **Additional resources**
 
@@ -24,24 +24,24 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 
 **Additional resources**
 
-- [Replacing the CA Bundle certificate](/security/certificates/updating-ca-bundle#ca-bundle-replacing_updating-ca-bundle)
+- [Replacing the CA Bundle certificate](/openshift-docs-markdown/security/certificates/updating-ca-bundle#ca-bundle-replacing_updating-ca-bundle)
 
 **Additional resources**
 
-- [Driver Toolkit](/hardware_enablement/psap-driver-toolkit#driver-toolkit)
+- [Driver Toolkit](/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
 **Additional resources**
 
-- [Build configuration resources](/cicd/builds/build-configuration#build-configuration)
-- [Preflight validation for Kernel Module Management (KMM) Modules](/updating/preparing_for_updates/kmm-preflight-validation)
+- [Build configuration resources](/openshift-docs-markdown/cicd/builds/build-configuration#build-configuration)
+- [Preflight validation for Kernel Module Management (KMM) Modules](/openshift-docs-markdown/updating/preparing_for_updates/kmm-preflight-validation)
 
 **Additional resources**
 
-- [Driver Toolkit](/hardware_enablement/psap-driver-toolkit#driver-toolkit)
+- [Driver Toolkit](/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
 **Additional resources**
 
-- [Creating service accounts](/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts).
+- [Creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts).
 
 **Additional resources**
 
@@ -61,11 +61,11 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 
 **Additional resources**
 
-- [Machine Config Operator](/machine_configuration/index#machine-config-index)
+- [Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#machine-config-index)
 
 **Additional resources**
 
-- [Driver Toolkit](/hardware_enablement/psap-driver-toolkit#driver-toolkit)
+- [Driver Toolkit](/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
 **Additional resources**
 
@@ -73,8 +73,8 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 
 **Additional resources**
 
-- [Machine Config Operator](/machine_configuration/index#machine-config-operator_machine-config-overview)
+- [Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#machine-config-operator_machine-config-overview)
 
 **Additional resources**
 
-- [About the must-gather tool](/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
+- [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)

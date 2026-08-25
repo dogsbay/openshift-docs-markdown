@@ -8,8 +8,8 @@ The specific configuration fields for secondary networks are described in the fo
 
 **Additional resources**
 
-- [Configuring a bond interface from two SR-IOV interfaces](/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding)
+- [Configuring a bond interface from two SR-IOV interfaces](/openshift-docs-markdown/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding)
 
 **Additional resources**
 
-- [Setting SELinux booleans](/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing)
+- [Setting SELinux booleans](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing)

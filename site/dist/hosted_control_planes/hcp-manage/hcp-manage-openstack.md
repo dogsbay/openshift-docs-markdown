@@ -8,4 +8,4 @@ After you deploy {{ hcp }} on {{ rh_openstack_first }} agent machines, you can m
 
 **Additional resources**
 
-- [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sr-iov-operator_installing-sriov-operator)
+- [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sr-iov-operator_installing-sriov-operator)

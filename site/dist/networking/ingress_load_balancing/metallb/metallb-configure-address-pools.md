@@ -8,10 +8,10 @@ To allocate and manage the IP addresses assigned to load balancer services, conf
 
 The namespaces used in the examples show `metallb-system` as the namespace.
 
-For more information about how to install the MetalLB Operator, see [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb).
+For more information about how to install the MetalLB Operator, see [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb).
 
 ## Additional resources {#additional-resources_metallb-configure-address-pools}
 
-- [Configuring MetalLB with an L2 advertisement and label](/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool)
-- [Configuring MetalLB BGP peers](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)
-- [Configuring services to use MetalLB](/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services)
+- [Configuring MetalLB with an L2 advertisement and label](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool)
+- [Configuring MetalLB BGP peers](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)
+- [Configuring services to use MetalLB](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services)

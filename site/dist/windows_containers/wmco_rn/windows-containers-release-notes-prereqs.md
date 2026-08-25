@@ -10,7 +10,7 @@ You can review the following information for details on the supported platform v
 
 The WMCO fully supports installing Windows nodes into installer-provisioned infrastructure (IPI) clusters. This is the preferred OpenShift Container Platform installation method.
 
-For user-provisioned infrastructure (UPI) clusters, the WMCO supports installing Windows nodes only into a UPI cluster installed with the `platform: none` field set in the `install-config.yaml` file (bare-metal or provider-agnostic) and only for the [BYOH (Bring Your Own Host)](/windows_containers/byoh-windows-instance#byoh-windows-instance) use case. UPI is not supported for any other platform.
+For user-provisioned infrastructure (UPI) clusters, the WMCO supports installing Windows nodes only into a UPI cluster installed with the `platform: none` field set in the `install-config.yaml` file (bare-metal or provider-agnostic) and only for the [BYOH (Bring Your Own Host)](/openshift-docs-markdown/windows_containers/byoh-windows-instance#byoh-windows-instance) use case. UPI is not supported for any other platform.
 
 ## WMCO supported platforms and Windows Server versions {#wmco-prerequisites-supported_windows-containers-release-notes-prereqs}
 
@@ -95,4 +95,4 @@ Hybrid networking with OVN-Kubernetes is the only supported networking configura
 
 **Additional resources**
 
-- [Hybrid networking](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-networking)
+- [Hybrid networking](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-networking)

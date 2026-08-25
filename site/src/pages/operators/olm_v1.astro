@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"olmv1-about","text":"About Operator Lifecycle Manager v1"}];
 const nav = navData;
-const currentPath = "/operators/olm_v1";
+const currentPath = "/openshift-docs-markdown/operators/olm_v1";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["operators"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Operator Lifecycle Manager v1 {#olmv1-about}\n\n{{ olm_first }} was included with OpenShift Container Platform 4 from its initial release. OpenShift Container Platform 4.18 includes components for a next-generation iteration of {{ olm }} as a generally available feature, which is known during this phase as {{ olmv1 }}.\n\nThis updated framework evolves many of the concepts that have been part of previous versions of {{ olm }} and adds new capabilities. Starting in OpenShift Container Platform 4.17, documentation for {{ olmv1 }} has been moved to the new guide, \"Extensions ({{ olmv1 }})\".\n\n**Additional resources**\n\n- [Extensions ({{ olmv1 }})](/extensions/index#extensions-overview)\n","mdUrl":"/operators/olm_v1.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Operator Lifecycle Manager v1 {#olmv1-about}\n\n{{ olm_first }} was included with OpenShift Container Platform 4 from its initial release. OpenShift Container Platform 4.18 includes components for a next-generation iteration of {{ olm }} as a generally available feature, which is known during this phase as {{ olmv1 }}.\n\nThis updated framework evolves many of the concepts that have been part of previous versions of {{ olm }} and adds new capabilities. Starting in OpenShift Container Platform 4.17, documentation for {{ olmv1 }} has been moved to the new guide, \"Extensions ({{ olmv1 }})\".\n\n**Additional resources**\n\n- [Extensions ({{ olmv1 }})](/openshift-docs-markdown/extensions/index#extensions-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/olm_v1.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>{"{"}{"{"} olm_first {"}"}{"}"} was included with OpenShift Container Platform 4 from its initial release. OpenShift Container Platform 4.18 includes components for a next-generation iteration of {"{"}{"{"} olm {"}"}{"}"} as a generally available feature, which is known during this phase as {"{"}{"{"} olmv1 {"}"}{"}"}.</p>
       <p>This updated framework evolves many of the concepts that have been part of previous versions of {"{"}{"{"} olm {"}"}{"}"} and adds new capabilities. Starting in OpenShift Container Platform 4.17, documentation for {"{"}{"{"} olmv1 {"}"}{"}"} has been moved to the new guide, "Extensions ({"{"}{"{"} olmv1 {"}"}{"}"})".</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/extensions/index#extensions-overview">Extensions ({"{"}{"{"} olmv1 {"}"}{"}"})</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/extensions/index#extensions-overview">Extensions ({"{"}{"{"} olmv1 {"}"}{"}"})</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

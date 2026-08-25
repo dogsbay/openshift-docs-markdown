@@ -14,7 +14,7 @@ You can update the WMCO in any of the following scenarios:
 
 ## Additional resources {#additional-resources_windows-node-upgrades}
 
-- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
-- [Performing a Control Plane Only update](/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
-- [Installing the Windows Machine Config Operator using the CLI](/windows_containers/enabling-windows-container-workloads#installing-wmco-using-cli_enabling-windows-container-workloads)
-- [Deleting Operators from a cluster using the CLI](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operator-from-a-cluster-using-cli_olm-deleting-operators-from-a-cluster)
+- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+- [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
+- [Installing the Windows Machine Config Operator using the CLI](/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#installing-wmco-using-cli_enabling-windows-container-workloads)
+- [Deleting Operators from a cluster using the CLI](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operator-from-a-cluster-using-cli_olm-deleting-operators-from-a-cluster)

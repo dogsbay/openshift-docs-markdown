@@ -16,4 +16,4 @@ These release notes track the development of the AWS Load Balancer Operator in O
 
 **Additional resources**
 
-- [AWS Load Balancer Operator in OpenShift Container Platform](/networking/networking_operators/aws_load_balancer_operator/understanding-aws-load-balancer-operator#aws-load-balancer-operator)
+- [AWS Load Balancer Operator in OpenShift Container Platform](/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/understanding-aws-load-balancer-operator#aws-load-balancer-operator)

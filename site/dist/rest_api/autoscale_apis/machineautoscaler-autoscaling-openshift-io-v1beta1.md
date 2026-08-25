@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of constraints of a scalable resource |
 | `status` | `object` | Most recently observed status of a scalable resource |
 
@@ -137,7 +137,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscalerList`](/rest_api/objects/index#io-openshift-autoscaling-v1beta1-MachineAutoscalerList) schema |
+| 200 - OK | [`MachineAutoscalerList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-autoscaling-v1beta1-MachineAutoscalerList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers}
@@ -156,7 +156,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -173,7 +173,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscalerList`](/rest_api/objects/index#io-openshift-autoscaling-v1beta1-MachineAutoscalerList) schema |
+| 200 - OK | [`MachineAutoscalerList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-autoscaling-v1beta1-MachineAutoscalerList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -197,15 +197,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |  |
+| `body` | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
-| 201 - Created | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
-| 202 - Accepted | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 200 - OK | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 201 - Created | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 202 - Accepted | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }} {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name}
@@ -236,8 +236,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -254,7 +254,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 200 - OK | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -278,7 +278,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 200 - OK | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -302,14 +302,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |  |
+| `body` | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
-| 201 - Created | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 200 - OK | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 201 - Created | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}/status {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name_status}
@@ -334,7 +334,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 200 - OK | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -358,7 +358,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 200 - OK | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -382,12 +382,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |  |
+| `body` | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
-| 201 - Created | [`MachineAutoscaler`](/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 200 - OK | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
+| 201 - Created | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |

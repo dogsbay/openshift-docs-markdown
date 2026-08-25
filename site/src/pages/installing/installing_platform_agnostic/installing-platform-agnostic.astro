@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-platform-agnostic","text":"Installing a cluster on any platform"},{"depth":2,"slug":"additional-resources_installing-platform-agnostic","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_platform_agnostic/installing-platform-agnostic";
+const currentPath = "/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_platform_agnostic"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on any platform {#installing-platform-agnostic}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster on any infrastructure that you provision, including virtualization and cloud environments.\n\n> [!IMPORTANT]\n> See \"Deploying OpenShift 4.x on non-tested platforms using the bare metal install method\" before you try to install an OpenShift Container Platform cluster in virtualized or cloud environments.\n\n**Additional resources**\n\n- [Installation and update](/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)\n- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall)\n\n**Additional resources**\n\n- [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)\n\n**Additional resources**\n\n- [coreos-installer image mirror](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/coreos-installer/)\n\n**Additional resources**\n\n- [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)\n\n**Additional resources**\n\n- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n## Additional resources {#additional-resources_installing-platform-agnostic}\n\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method](https://access.redhat.com/articles/4207611)\n- [Available cluster customizations](/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Configuring the registry for bare metal](/registry/configuring_registry_storage/configuring-registry-storage-baremetal#configuring-registry-storage-baremetal)\n","mdUrl":"/installing/installing_platform_agnostic/installing-platform-agnostic.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on any platform {#installing-platform-agnostic}\n\nIn OpenShift Container Platform version 4.22, you can install a cluster on any infrastructure that you provision, including virtualization and cloud environments.\n\n> [!IMPORTANT]\n> See \"Deploying OpenShift 4.x on non-tested platforms using the bare metal install method\" before you try to install an OpenShift Container Platform cluster in virtualized or cloud environments.\n\n**Additional resources**\n\n- [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)\n- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall)\n\n**Additional resources**\n\n- [Configuring chrony time service](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)\n\n**Additional resources**\n\n- [coreos-installer image mirror](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/coreos-installer/)\n\n**Additional resources**\n\n- [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)\n\n**Additional resources**\n\n- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n\n## Additional resources {#additional-resources_installing-platform-agnostic}\n\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method](https://access.redhat.com/articles/4207611)\n- [Available cluster customizations](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Configuring the registry for bare metal](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-baremetal#configuring-registry-storage-baremetal)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,9 +105,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installing-ocp-agnostic-prereqs.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/architecture/architecture-installation#architecture-installation">Installation and update</a></li>
-      <li><a href="/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
-      <li><a href="/installing/install_config/configuring-firewall#configuring-firewall">Configuring your firewall</a></li>
+      <li><a href="/openshift-docs-markdown/architecture/architecture-installation#architecture-installation">Installation and update</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing">Selecting a cluster installation method and preparing it for users</a></li>
+      <li><a href="/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall">Configuring your firewall</a></li>
       </ul>
       <p class="/modules/installation-upi-requirements.md"></p>
       <p class="/modules/installation-machine-requirements.md"></p>
@@ -115,7 +115,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/csr-management.md"></p>
       <p class="/modules/installation-network-user-infra.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing">Configuring chrony time service</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing">Configuring chrony time service</a></li></ul>
       <p class="/modules/installation-dns-user-infra-example.md"></p>
       <p class="/modules/installation-load-balancing-user-infra.md"></p>
       <p class="/modules/installation-load-balancing-user-infra-example.md"></p>
@@ -159,13 +159,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/installation-complete-user-infra.md"></p>
       <p class="/modules/cluster-telemetry.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring">About remote health monitoring</a></li></ul>
       <h2 id="additional-resources_installing-platform-agnostic" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-platform-agnostic" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://access.redhat.com/articles/4207611">Deploying OpenShift 4.x on non-tested platforms using the bare metal install method</a></li>
-      <li><a href="/post_installation_configuration/cluster-tasks#available_cluster_customizations">Available cluster customizations</a></li>
-      <li><a href="/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
-      <li><a href="/registry/configuring_registry_storage/configuring-registry-storage-baremetal#configuring-registry-storage-baremetal">Configuring the registry for bare metal</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Available cluster customizations</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
+      <li><a href="/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-baremetal#configuring-registry-storage-baremetal">Configuring the registry for bare metal</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

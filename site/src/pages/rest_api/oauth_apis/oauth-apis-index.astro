@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"oauth-apis","text":"OAuth APIs"},{"depth":2,"slug":"_oauthaccesstoken_oauthopenshiftiov1","text":"OAuthAccessToken [oauth.openshift.io/v1]"},{"depth":2,"slug":"_oauthauthorizetoken_oauthopenshiftiov1","text":"OAuthAuthorizeToken [oauth.openshift.io/v1]"},{"depth":2,"slug":"_oauthclientauthorization_oauthopenshiftiov1","text":"OAuthClientAuthorization [oauth.openshift.io/v1]"},{"depth":2,"slug":"_oauthclient_oauthopenshiftiov1","text":"OAuthClient [oauth.openshift.io/v1]"},{"depth":2,"slug":"_useroauthaccesstoken_oauthopenshiftiov1","text":"UserOAuthAccessToken [oauth.openshift.io/v1]"}];
 const nav = navData;
-const currentPath = "/rest_api/oauth_apis/oauth-apis-index";
+const currentPath = "/openshift-docs-markdown/rest_api/oauth_apis/oauth-apis-index";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["rest_api","rest_api/oauth_apis"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OAuth APIs {#oauth-apis}\n\n## OAuthAccessToken \\[oauth.openshift.io/v1\\] {#_oauthaccesstoken_oauthopenshiftiov1}\n\nDescription\n:   OAuthAccessToken describes an OAuth access token. The name of a token must be prefixed with a `sha256~` string, must not contain \"/\" or \"%\" characters and must be at least 32 characters long.\n\n    The name of the token is constructed from the actual token by sha256-hashing it and using URL-safe unpadded base64-encoding (as described in RFC4648) on the hashed result.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## OAuthAuthorizeToken \\[oauth.openshift.io/v1\\] {#_oauthauthorizetoken_oauthopenshiftiov1}\n\nDescription\n:   OAuthAuthorizeToken describes an OAuth authorization token\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## OAuthClientAuthorization \\[oauth.openshift.io/v1\\] {#_oauthclientauthorization_oauthopenshiftiov1}\n\nDescription\n:   OAuthClientAuthorization describes an authorization created by an OAuth client\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## OAuthClient \\[oauth.openshift.io/v1\\] {#_oauthclient_oauthopenshiftiov1}\n\nDescription\n:   OAuthClient describes an OAuth client\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## UserOAuthAccessToken \\[oauth.openshift.io/v1\\] {#_useroauthaccesstoken_oauthopenshiftiov1}\n\nDescription\n:   UserOAuthAccessToken is a virtual resource to mirror OAuthAccessTokens to the user the access token was issued for\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"/rest_api/oauth_apis/oauth-apis-index.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OAuth APIs {#oauth-apis}\n\n## OAuthAccessToken \\[oauth.openshift.io/v1\\] {#_oauthaccesstoken_oauthopenshiftiov1}\n\nDescription\n:   OAuthAccessToken describes an OAuth access token. The name of a token must be prefixed with a `sha256~` string, must not contain \"/\" or \"%\" characters and must be at least 32 characters long.\n\n    The name of the token is constructed from the actual token by sha256-hashing it and using URL-safe unpadded base64-encoding (as described in RFC4648) on the hashed result.\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## OAuthAuthorizeToken \\[oauth.openshift.io/v1\\] {#_oauthauthorizetoken_oauthopenshiftiov1}\n\nDescription\n:   OAuthAuthorizeToken describes an OAuth authorization token\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## OAuthClientAuthorization \\[oauth.openshift.io/v1\\] {#_oauthclientauthorization_oauthopenshiftiov1}\n\nDescription\n:   OAuthClientAuthorization describes an authorization created by an OAuth client\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## OAuthClient \\[oauth.openshift.io/v1\\] {#_oauthclient_oauthopenshiftiov1}\n\nDescription\n:   OAuthClient describes an OAuth client\n\n    Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).\n\nType\n:   ```\n    `object`\n    ```\n\n## UserOAuthAccessToken \\[oauth.openshift.io/v1\\] {#_useroauthaccesstoken_oauthopenshiftiov1}\n\nDescription\n:   UserOAuthAccessToken is a virtual resource to mirror OAuthAccessTokens to the user the access token was issued for\n\nType\n:   ```\n    `object`\n    ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/oauth_apis/oauth-apis-index.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

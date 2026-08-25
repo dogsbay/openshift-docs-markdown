@@ -21,7 +21,7 @@ You can create virtual machines (VMs) from operating system images provided by R
 
 ## Additional resources {#additional-resources_virt-creating-vms-from-rh-images-overview}
 
-- [Managing Red Hat boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)
-- [Creating a VM from a template by using the web console](/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)
-- [Creating a VM from an instance type by using the web console](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
-- [Creating a VM from a `VirtualMachine` manifest by using the command line](/virt/creating_vm/virt-creating-vms-from-cli#virt-creating-vms-from-cli)
+- [Managing Red Hat boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)
+- [Creating a VM from a template by using the web console](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)
+- [Creating a VM from an instance type by using the web console](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
+- [Creating a VM from a `VirtualMachine` manifest by using the command line](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-cli#virt-creating-vms-from-cli)

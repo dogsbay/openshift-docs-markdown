@@ -10,10 +10,10 @@ Before you perform any tasks in the following documentation, ensure that you ins
 
 **Additional resources**
 
-- [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
-- [Configuring namespaced SR-IOV resources](/networking/hardware_networks/configuring-namespaced-sriov-resources#introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources)
+- [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
+- [Configuring namespaced SR-IOV resources](/openshift-docs-markdown/networking/hardware_networks/configuring-namespaced-sriov-resources#introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources)
 
 ## Additional resources {#configuring-sriov-net-attach-additional-resources}
 
-- [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
-- [Using CPU Manager](/scalability_and_performance/using-cpu-manager#using-cpu-manager)
+- [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
+- [Using CPU Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager)

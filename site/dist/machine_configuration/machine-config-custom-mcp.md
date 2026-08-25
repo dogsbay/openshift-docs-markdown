@@ -17,6 +17,6 @@ After you create the custom machine config pool, you can boot new nodes directly
 
 ## Additional resources {#additional-resources_machine-config-creating-custom-mcp}
 
-- [Node configuration management with machine config pools](/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)
-- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
-- [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)
+- [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)
+- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
+- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"installing-tkn","text":"Installing tkn"}];
 const nav = navData;
-const currentPath = "/cli_reference/tkn_cli/installing-tkn";
+const currentPath = "/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["cli_reference","cli_reference/tkn_cli"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing tkn {#installing-tkn}\n\nUse the CLI tool to manage {{ pipelines_title }} from a terminal. The following section describes how to install the CLI tool on different platforms.\n\nYou can also find the URL to the latest binaries from the OpenShift Container Platform web console by clicking the **?** icon in the upper-right corner and selecting **Command Line Tools**.\n\n> [!NOTE]\n> Both the archives and the RPMs contain the following executables:\n>\n> - `tkn`\n> - `tkn-pac`\n> - `opc`\n","mdUrl":"/cli_reference/tkn_cli/installing-tkn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing tkn {#installing-tkn}\n\nUse the CLI tool to manage {{ pipelines_title }} from a terminal. The following section describes how to install the CLI tool on different platforms.\n\nYou can also find the URL to the latest binaries from the OpenShift Container Platform web console by clicking the **?** icon in the upper-right corner and selecting **Command Line Tools**.\n\n> [!NOTE]\n> Both the archives and the RPMs contain the following executables:\n>\n> - `tkn`\n> - `tkn-pac`\n> - `opc`\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

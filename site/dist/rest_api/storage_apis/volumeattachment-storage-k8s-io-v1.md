@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | VolumeAttachmentSpec is the specification of a VolumeAttachment request. |
 | `status` | `object` | VolumeAttachmentStatus is the status of a VolumeAttachment request. |
 
@@ -60,7 +60,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `inlineVolumeSpec` | [`PersistentVolumeSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PersistentVolumeSpec) | inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod’s inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod’s inline VolumeSource to a PersistentVolumeSpec. This field is beta-level and is only honored by servers that enabled the CSIMigration feature. |
+| `inlineVolumeSpec` | [`PersistentVolumeSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PersistentVolumeSpec) | inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod’s inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod’s inline VolumeSource to a PersistentVolumeSpec. This field is beta-level and is only honored by servers that enabled the CSIMigration feature. |
 | `persistentVolumeName` | `string` | persistentVolumeName represents the name of the persistent volume to attach. |
 
 ### .status {#_status}
@@ -97,7 +97,7 @@ Type
 | --- | --- | --- |
 | `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations. This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
 | `message` | `string` | message represents the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information. |
-| `time` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
+| `time` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
 
 ### .status.detachError {#_statusdetacherror}
 
@@ -113,7 +113,7 @@ Type
 | --- | --- | --- |
 | `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations. This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
 | `message` | `string` | message represents the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information. |
-| `time` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
+| `time` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -164,7 +164,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -181,7 +181,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachmentList`](/rest_api/objects/index#io-k8s-api-storage-v1-VolumeAttachmentList) schema |
+| 200 - OK | [`VolumeAttachmentList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-storage-v1-VolumeAttachmentList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -205,15 +205,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |  |
+| `body` | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/volumeattachments {#_apisstoragek8siov1watchvolumeattachments}
@@ -232,7 +232,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/volumeattachments/{{ name }} {#_apisstoragek8siov1volumeattachments_name}
@@ -263,8 +263,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
-| 202 - Accepted | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 202 - Accepted | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -281,7 +281,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -305,8 +305,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -330,14 +330,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |  |
+| `body` | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/watch/volumeattachments/{{ name }} {#_apisstoragek8siov1watchvolumeattachments_name}
@@ -362,7 +362,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/storage.k8s.io/v1/volumeattachments/{{ name }}/status {#_apisstoragek8siov1volumeattachments_name_status}
@@ -387,7 +387,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -411,8 +411,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -436,12 +436,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |  |
+| `body` | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
-| 201 - Created | [`VolumeAttachment`](/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 200 - OK | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
+| 201 - Created | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |

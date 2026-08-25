@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the definition of the desired private IP request. |
 | `status` | `object` | status is the observed status of the desired private IP request. Read-only. |
 
@@ -133,7 +133,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -150,7 +150,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfigList`](/rest_api/objects/index#io-openshift-network-cloud-v1-CloudPrivateIPConfigList) schema |
+| 200 - OK | [`CloudPrivateIPConfigList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-network-cloud-v1-CloudPrivateIPConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -174,15 +174,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |  |
+| `body` | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
-| 201 - Created | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
-| 202 - Accepted | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 200 - OK | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 201 - Created | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 202 - Accepted | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }} {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name}
@@ -213,8 +213,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -231,7 +231,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 200 - OK | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -255,7 +255,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 200 - OK | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -279,14 +279,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |  |
+| `body` | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
-| 201 - Created | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 200 - OK | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 201 - Created | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}/status {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name_status}
@@ -311,7 +311,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 200 - OK | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -335,7 +335,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 200 - OK | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -359,12 +359,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |  |
+| `body` | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
-| 201 - Created | [`CloudPrivateIPConfig`](/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 200 - OK | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
+| 201 - Created | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

@@ -26,7 +26,7 @@ Type
 | `expiresIn` | `integer` | expiresIn is the seconds from CreationTime before this token expires. |
 | `inactivityTimeoutSeconds` | `integer` | inactivityTimeoutSeconds is the value in seconds, from the CreationTimestamp, after which this token can no longer be used. The value is automatically incremented when the token is used. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `redirectURI` | `string` | redirectURI is the redirection associated with the token. |
 | `refreshToken` | `string` | refreshToken is the value by which this token can be renewed. Can be blank. |
 | `scopes` | `array (string)` | scopes is an array of the requested scopes. |
@@ -77,7 +77,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -94,7 +94,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OAuthAccessTokenList`](/rest_api/objects/index#com-github-openshift-api-oauth-v1-OAuthAccessTokenList) schema |
+| 200 - OK | [`OAuthAccessTokenList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-oauth-v1-OAuthAccessTokenList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -118,15 +118,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |  |
+| `body` | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
-| 201 - Created | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
-| 202 - Accepted | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 200 - OK | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 201 - Created | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 202 - Accepted | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/oauth.openshift.io/v1/watch/oauthaccesstokens {#_apisoauthopenshiftiov1watchoauthaccesstokens}
@@ -145,7 +145,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/oauth.openshift.io/v1/oauthaccesstokens/{{ name }} {#_apisoauthopenshiftiov1oauthaccesstokens_name}
@@ -176,8 +176,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
-| 202 - Accepted | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 200 - OK | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 202 - Accepted | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -194,7 +194,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 200 - OK | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -218,8 +218,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
-| 201 - Created | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 200 - OK | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 201 - Created | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -243,14 +243,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |  |
+| `body` | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
-| 201 - Created | [`OAuthAccessToken`](/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 200 - OK | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
+| 201 - Created | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{{ name }} {#_apisoauthopenshiftiov1watchoauthaccesstokens_name}
@@ -275,5 +275,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

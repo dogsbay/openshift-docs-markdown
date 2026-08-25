@@ -2,7 +2,7 @@
 // Source: networking/networking_operators/sr-iov-operator/uninstalling-sriov-operator.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Uninstalling the SR-IOV Network Operator\n---\n\n# Uninstalling the SR-IOV Network Operator {#uninstalling-sriov-operator}\n\nTo uninstall the SR-IOV Network Operator, you must delete any running SR-IOV workloads, uninstall the Operator, and delete the webhooks that the Operator used.\n\n## Additional resources {#additional-resources_uninstalling-sr-iov-operator}\n\n- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n";
+const body = "---\ntitle: Uninstalling the SR-IOV Network Operator\n---\n\n# Uninstalling the SR-IOV Network Operator {#uninstalling-sriov-operator}\n\nTo uninstall the SR-IOV Network Operator, you must delete any running SR-IOV workloads, uninstall the Operator, and delete the webhooks that the Operator used.\n\n## Additional resources {#additional-resources_uninstalling-sr-iov-operator}\n\n- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -6,7 +6,7 @@ title: Differences between OpenShift Container Platform 3 and 4
 
 OpenShift Container Platform 4.22 introduces architectural changes and enhancements/ The procedures that you used to manage your OpenShift Container Platform 3 cluster might not apply to OpenShift Container Platform 4.
 
-For information on configuring your OpenShift Container Platform 4 cluster, review the appropriate sections of the OpenShift Container Platform documentation. For information on new features and other notable technical changes, review the [OpenShift Container Platform 4.22 release notes](/release_notes/ocp-4-22-release-notes#ocp-4-21-release-notes).
+For information on configuring your OpenShift Container Platform 4 cluster, review the appropriate sections of the OpenShift Container Platform documentation. For information on new features and other notable technical changes, review the [OpenShift Container Platform 4.22 release notes](/openshift-docs-markdown/release_notes/ocp-4-22-release-notes#ocp-4-21-release-notes).
 
 It is not possible to upgrade your existing OpenShift Container Platform 3 cluster to OpenShift Container Platform 4. You must start with a new OpenShift Container Platform 4 installation. Tools are available to assist in migrating your control plane settings and application workloads.
 
@@ -18,7 +18,7 @@ OpenShift Container Platform 4 represents a significant change in the way that O
 
 Beginning with OpenShift Container Platform 4.13, {{ op_system }} now uses {{ op_system_base_full }} 9.2 packages. This enhancement enables the latest fixes and features as well as the latest hardware support and driver updates. For more information about how this upgrade to RHEL 9.2 might affect your options configuration and services as well as driver and container support, see the [RHCOS now uses RHEL 9.2](https://docs.openshift.com/container-platform/4.13/release_notes/ocp-4-13-release-notes.html#ocp-4-13-rhel-9-considerations) in the *OpenShift Container Platform 4.13 release notes*.
 
-For more information, see [OpenShift Container Platform architecture](/architecture/architecture#architecture).
+For more information, see [OpenShift Container Platform architecture](/openshift-docs-markdown/architecture/architecture#architecture).
 
 ### Immutable infrastructure {#_immutable_infrastructure}
 
@@ -26,13 +26,13 @@ OpenShift Container Platform 4 uses {{ op_system_first }}, which is designed to 
 
 In OpenShift Container Platform 4, control plane nodes must run {{ op_system }}, ensuring that full-stack automation is maintained for the control plane. This makes rolling out updates and upgrades a much easier process than in OpenShift Container Platform 3.
 
-For more information, see [{{ op_system_first }}](/architecture/architecture-rhcos#architecture-rhcos).
+For more information, see [{{ op_system_first }}](/openshift-docs-markdown/architecture/architecture-rhcos#architecture-rhcos).
 
 ### Operators {#_operators}
 
 Operators are a method of packaging, deploying, and managing a Kubernetes application. Operators ease the operational complexity of running another piece of software. They watch over your environment and use the current state to make decisions in real time. Advanced Operators are designed to upgrade and react to failures automatically.
 
-For more information, see [Understanding Operators](/operators/understanding/olm-what-operators-are#olm-what-operators-are).
+For more information, see [Understanding Operators](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are).
 
 ## Installation and upgrade {#migration-differences-install}
 
@@ -42,19 +42,19 @@ To install OpenShift Container Platform 3.11, you prepared your {{ op_system_bas
 
 In OpenShift Container Platform 4.22, you use the OpenShift installation program to create a minimum set of resources required for a cluster. After the cluster is running, you use Operators to further configure your cluster and to install new services. After first boot, {{ op_system_first }} systems are managed by the Machine Config Operator (MCO) that runs in the OpenShift Container Platform cluster.
 
-For more information, see [Installation process](/architecture/architecture-installation#installation-process_architecture-installation).
+For more information, see [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation).
 
 ### Infrastructure options {#_infrastructure_options}
 
 In OpenShift Container Platform 3.11, you installed your cluster on infrastructure that you prepared and maintained. In addition to providing your own infrastructure, OpenShift Container Platform 4 offers an option to deploy a cluster on infrastructure that the OpenShift Container Platform installation program provisions and the cluster maintains.
 
-For more information, see [OpenShift Container Platform installation overview](/architecture/architecture-installation#installation-overview_architecture-installation).
+For more information, see [OpenShift Container Platform installation overview](/openshift-docs-markdown/architecture/architecture-installation#installation-overview_architecture-installation).
 
 ### Upgrading your cluster {#_upgrading_your_cluster}
 
 In OpenShift Container Platform 3.11, you upgraded your cluster by running Ansible playbooks. In OpenShift Container Platform 4.22, the cluster manages its own updates, including updates to {{ op_system_first }} on cluster nodes. You can easily upgrade your cluster by using the web console or by using the `oc adm upgrade` command from the OpenShift CLI and the Operators will automatically upgrade themselves. If your OpenShift Container Platform 4.22 cluster has {{ op_system_base }} worker machines, then you will still need to run an Ansible playbook to upgrade those worker machines.
 
-For more information, see [Updating clusters](/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console).
+For more information, see [Updating clusters](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console).
 
 ## Migration considerations {#migration-considerations}
 
@@ -68,19 +68,19 @@ Review the following storage changes to consider when transitioning from OpenShi
 
 Local storage is only supported by using the Local Storage Operator in OpenShift Container Platform 4.22. It is not supported to use the local provisioner method from OpenShift Container Platform 3.11.
 
-For more information, see [Persistent storage using local volumes](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume).
+For more information, see [Persistent storage using local volumes](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume).
 
 #### FlexVolume persistent storage {#_flexvolume_persistent_storage}
 
 The FlexVolume plugin location changed from OpenShift Container Platform 3.11. The new location in OpenShift Container Platform 4.22 is `/etc/kubernetes/kubelet-plugins/volume/exec`. Attachable FlexVolume plugins are no longer supported.
 
-For more information, see [Persistent storage using FlexVolume](/storage/persistent_storage/persistent-storage-flexvolume#persistent-storage-using-flexvolume).
+For more information, see [Persistent storage using FlexVolume](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-flexvolume#persistent-storage-using-flexvolume).
 
 #### Container Storage Interface (CSI) persistent storage {#_container_storage_interface_csi_persistent_storage}
 
-Persistent storage using the Container Storage Interface (CSI) was [Technology Preview](https://access.redhat.com/support/offerings/techpreview) in OpenShift Container Platform 3.11. OpenShift Container Platform 4.22 includes with [several CSI drivers](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi-drivers-supported_persistent-storage-csi). You can also install your own driver.
+Persistent storage using the Container Storage Interface (CSI) was [Technology Preview](https://access.redhat.com/support/offerings/techpreview) in OpenShift Container Platform 3.11. OpenShift Container Platform 4.22 includes with [several CSI drivers](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi-drivers-supported_persistent-storage-csi). You can also install your own driver.
 
-For more information, see [Persistent storage using the Container Storage Interface (CSI)](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-using-csi).
+For more information, see [Persistent storage using the Container Storage Interface (CSI)](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-using-csi).
 
 #### Red Hat OpenShift Data Foundation {#_red_hat_openshift_data_foundation}
 
@@ -88,7 +88,7 @@ OpenShift Container Storage 3, which is available for use with OpenShift Contain
 
 {{ rh_storage_first }} 4, which is available for use with OpenShift Container Platform 4, uses Red Hat Ceph Storage as the backing storage.
 
-For more information, see [Persistent storage using Red Hat OpenShift Data Foundation](/storage/persistent_storage/persistent-storage-ocs#red-hat-openshift-data-foundation) and the [interoperability matrix](https://access.redhat.com/articles/4731161) article.
+For more information, see [Persistent storage using Red Hat OpenShift Data Foundation](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs#red-hat-openshift-data-foundation) and the [interoperability matrix](https://access.redhat.com/articles/4731161) article.
 
 #### Unsupported persistent storage options {#_unsupported_persistent_storage_options}
 
@@ -100,7 +100,7 @@ Support for the following persistent storage options from OpenShift Container Pl
 
 If you used one of these in OpenShift Container Platform 3.11, you must choose a different persistent storage option for full support in OpenShift Container Platform 4.22.
 
-For more information, see [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage).
+For more information, see [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage).
 
 #### Migration of in-tree volumes to CSI drivers {#_migration_of_in-tree_volumes_to_csi_drivers}
 
@@ -118,7 +118,7 @@ OpenShift Container Platform 4 is migrating in-tree volume plugins to their Cont
 
 All aspects of volume lifecycle, such as creation, deletion, mounting, and unmounting, is handled by the CSI driver.
 
-For more information, see [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration).
+For more information, see [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration).
 
 ### Networking considerations {#migration-preparing-networking}
 
@@ -128,9 +128,9 @@ Review the following networking changes to consider when transitioning from Open
 
 The default network isolation mode for OpenShift Container Platform 3.11 was `ovs-subnet`, though users frequently switched to use `ovn-multitenant`. The default network isolation mode for OpenShift Container Platform 4.22 is controlled by a network policy.
 
-If your OpenShift Container Platform 3.11 cluster used the `ovs-subnet` or `ovs-multitenant` mode, it is recommended to switch to a network policy for your OpenShift Container Platform 4.22 cluster. Network policies are supported upstream, are more flexible, and they provide the functionality that `ovs-multitenant` does. If you want to maintain the `ovs-multitenant` behavior while using a network policy in OpenShift Container Platform 4.22, follow the steps to [configure multitenant isolation using network policy](/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy).
+If your OpenShift Container Platform 3.11 cluster used the `ovs-subnet` or `ovs-multitenant` mode, it is recommended to switch to a network policy for your OpenShift Container Platform 4.22 cluster. Network policies are supported upstream, are more flexible, and they provide the functionality that `ovs-multitenant` does. If you want to maintain the `ovs-multitenant` behavior while using a network policy in OpenShift Container Platform 4.22, follow the steps to [configure multitenant isolation using network policy](/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy).
 
-For more information, see [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy).
+For more information, see [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy).
 
 #### OVN-Kubernetes as the default networking plugin in Red Hat OpenShift Networking {#_ovn-kubernetes_as_the_default_networking_plugin_in_red_hat_openshift_networking}
 
@@ -140,11 +140,11 @@ For more information on the removal of the OpenShift SDN network plugin and why 
 
 For information on OVN-Kubernetes features that are similar to features in the OpenShift SDN plugin see:
 
-- [Configuring an egress IP address](/networking/ovn_kubernetes_network_provider/configuring-egress-ips-ovn#configuring-egress-ips)
-- [Configuring an egress firewall for a project](/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)
-- [Enabling multicast for a project](/networking/ovn_kubernetes_network_provider/enabling-multicast#enabling-multicast)
-- [Deploying an egress router pod in redirect mode](/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection#deploying-egress-router-ovn-redirection)
-- [Configuring multitenant isolation with network policy](/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy)
+- [Configuring an egress IP address](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-egress-ips-ovn#configuring-egress-ips)
+- [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)
+- [Enabling multicast for a project](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast#enabling-multicast)
+- [Deploying an egress router pod in redirect mode](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection#deploying-egress-router-ovn-redirection)
+- [Configuring multitenant isolation with network policy](/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy)
 
 > [!WARNING]
 > You should install OpenShift Container Platform 4 with the OVN-Kubernetes network plugin because it is not possible to upgrade a cluster to OpenShift Container Platform 4.17 or later if it is using the OpenShift SDN network plugin.
@@ -180,7 +180,7 @@ Configuration for identity providers has changed for OpenShift Container Platfor
 - The request header identity provider in OpenShift Container Platform 4.22 requires mutual TLS, where in OpenShift Container Platform 3.11 it did not.
 - The configuration of the OpenID Connect identity provider was simplified in OpenShift Container Platform 4.22. It now obtains data, which previously had to specified in OpenShift Container Platform 3.11, from the provider’s `/.well-known/openid-configuration` endpoint.
 
-For more information, see [Understanding identity provider configuration](/authentication/understanding-identity-provider#understanding-identity-provider).
+For more information, see [Understanding identity provider configuration](/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider).
 
 #### OAuth token storage format {#_oauth_token_storage_format}
 
@@ -190,7 +190,7 @@ Newly created OAuth HTTP bearer tokens no longer match the names of their OAuth 
 
 The `restricted` security context constraints (SCC) in OpenShift Container Platform 4 can no longer be accessed by any authenticated user as the `restricted` SCC in OpenShift Container Platform 3.11. The broad authenticated access is now granted to the `restricted-v2` SCC, which is more restrictive than the old `restricted` SCC. The `restricted` SCC still exists; users that want to use it must be specifically given permissions to do it.
 
-For more information, see [Managing security context constraints](/authentication/managing-security-context-constraints#managing-pod-security-policies).
+For more information, see [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#managing-pod-security-policies).
 
 ### Monitoring considerations {#migration-preparing-monitoring}
 

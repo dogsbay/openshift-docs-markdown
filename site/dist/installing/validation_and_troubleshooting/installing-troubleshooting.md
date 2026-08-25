@@ -17,6 +17,6 @@ If you are unable to resolve the issue by using the logs and debug information, 
 
 ## Additional resources {#additional-resources_installing-troubleshooting}
 
-- [Determining where installation issues occur](/support/troubleshooting/troubleshooting-installations#determining-where-installation-issues-occur_troubleshooting-installations)
-- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
-- [Installing an OpenShift Container Platform cluster](/installing/overview/index#ocp-installation-overview)
+- [Determining where installation issues occur](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#determining-where-installation-issues-occur_troubleshooting-installations)
+- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [Installing an OpenShift Container Platform cluster](/openshift-docs-markdown/installing/overview/index#ocp-installation-overview)

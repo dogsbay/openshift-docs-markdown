@@ -8,4 +8,4 @@ Machines move through a *lifecycle* that has several defined phases. Understandi
 
 ## Additional resources {#_additional_resources}
 
-- [Lifecycle hooks for the machine deletion phase](/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)
+- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)

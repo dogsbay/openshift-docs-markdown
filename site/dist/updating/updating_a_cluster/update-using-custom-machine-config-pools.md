@@ -16,5 +16,5 @@ In these scenarios, you can create multiple custom machine config pools (MCPs) t
 
 **Additional resources**
 
-- [Updating a cluster using the web console](/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
-- [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli)
+- [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
+- [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli)

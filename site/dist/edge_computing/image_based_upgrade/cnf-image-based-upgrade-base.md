@@ -10,14 +10,14 @@ When you deploy the {{ lcao }} on a cluster, an `ImageBasedUpgrade` CR is automa
 
 **Additional resources**
 
-- [Creating ConfigMap objects for the image-based upgrade with {{ lcao }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-prep-resources#cnf-image-based-upgrade-prep-resources)
-- [Configuring image registry repository mirroring](/openshift_images/image-configuration#images-configuration-registry-mirror-configuring_image-configuration)
+- [Creating ConfigMap objects for the image-based upgrade with {{ lcao }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-prep-resources#cnf-image-based-upgrade-prep-resources)
+- [Configuring image registry repository mirroring](/openshift-docs-markdown/openshift_images/image-configuration#images-configuration-registry-mirror-configuring_image-configuration)
 
 **Additional resources**
 
-- [Moving to the Rollback stage of the image-based upgrade with {{ lcao }}](/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade-rollback_cnf-non-gitops)
-- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-cluster)
+- [Moving to the Rollback stage of the image-based upgrade with {{ lcao }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade-rollback_cnf-non-gitops)
+- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-cluster)
 
 **Additional resources**
 
-- [Recovering from expired control plane certificates](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-scenario-3-recovering-expired-certs_dr-recovering-expired-certs)
+- [Recovering from expired control plane certificates](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-scenario-3-recovering-expired-certs_dr-recovering-expired-certs)

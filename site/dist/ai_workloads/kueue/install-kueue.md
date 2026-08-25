@@ -8,4 +8,4 @@ You can install {{ kueue_name }} by using the {{ kueue_op }} in OperatorHub.
 
 **Additional resources**
 
-- [Installing the {{ cert_manager_operator }}](/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
+- [Installing the {{ cert_manager_operator }}](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)

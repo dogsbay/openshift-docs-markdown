@@ -8,8 +8,8 @@ To diagnose and resolve issues with virtual machine (VM) and cluster components,
 
 ## Additional resources {#additional-resources_virt-troubleshooting}
 
-- [OpenShift Container Platform events](/nodes/clusters/nodes-containers-events#nodes-containers-events)
-- [List of events](/nodes/clusters/nodes-containers-events#nodes-containers-events-list_nodes-containers-events)
-- [Aggregated logs](/virt/support/virt-troubleshooting#virt-viewing-logs-loki_virt-troubleshooting)
-- [Connecting to virtual machine consoles](/virt/managing_vms/virt-accessing-vm-consoles#virt-accessing-vm-consoles)
+- [OpenShift Container Platform events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events)
+- [List of events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events-list_nodes-containers-events)
+- [Aggregated logs](/openshift-docs-markdown/virt/support/virt-troubleshooting#virt-viewing-logs-loki_virt-troubleshooting)
+- [Connecting to virtual machine consoles](/openshift-docs-markdown/virt/managing_vms/virt-accessing-vm-consoles#virt-accessing-vm-consoles)
 - [LogQL log queries](https://grafana.com/docs/loki/latest/logql/log_queries/)

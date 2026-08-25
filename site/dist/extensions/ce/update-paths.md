@@ -31,11 +31,11 @@ By supporting {{ olmv0 }} semantics, {{ olmv1 }} accurately reflects the update 
 
 **Additional resources**
 
-- [{{ olmv0_caps }} upgrade semantics](/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)
+- [{{ olmv0_caps }} upgrade semantics](/openshift-docs-markdown/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)
 
 **Additional resources**
 
-- [Support for version ranges](/extensions/ce/update-paths#olmv1-version-range-support_update-paths)
+- [Support for version ranges](/openshift-docs-markdown/extensions/ce/update-paths#olmv1-version-range-support_update-paths)
 
 **Additional resources**
 
@@ -43,7 +43,7 @@ By supporting {{ olmv0 }} semantics, {{ olmv1 }} accurately reflects the update 
 
 **Additional resources**
 
-- [Understanding cluster Operator condition types](/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates)
-- [Upgrading installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
-- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
-- [Cluster Operators reference -> {{ olmv1_first }} Operator](/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)
+- [Understanding cluster Operator condition types](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates)
+- [Upgrading installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
+- [Cluster Operators reference -> {{ olmv1_first }} Operator](/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)

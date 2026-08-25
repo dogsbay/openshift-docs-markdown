@@ -2,7 +2,7 @@
 // Source: windows_containers/disabling-windows-container-workloads.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Disabling Windows container workloads\n---\n\n# Disabling Windows container workloads {#disabling-windows-container-workloads}\n\nYou can disable the capability to run Windows container workloads by uninstalling the Windows Machine Config Operator (WMCO) and deleting the namespace that was added by default when you installed the WMCO.\n\n## Additional resources {#_additional_resources}\n\n- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n- [Removing Windows nodes](/windows_containers/removing-windows-nodes#removing-windows-nodes)\n";
+const body = "---\ntitle: Disabling Windows container workloads\n---\n\n# Disabling Windows container workloads {#disabling-windows-container-workloads}\n\nYou can disable the capability to run Windows container workloads by uninstalling the Windows Machine Config Operator (WMCO) and deleting the namespace that was added by default when you installed the WMCO.\n\n## Additional resources {#_additional_resources}\n\n- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n- [Removing Windows nodes](/openshift-docs-markdown/windows_containers/removing-windows-nodes#removing-windows-nodes)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

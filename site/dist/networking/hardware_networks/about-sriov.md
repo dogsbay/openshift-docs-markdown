@@ -9,7 +9,7 @@ To share a single physical device with multiple pods, implement the Single Root 
 > [!NOTE]
 > As of OpenShift Container Platform 4.21, the SR-IOV Operator can support ARM hardware.
 
-You can configure a Single Root I/O Virtualization (SR-IOV) device in your cluster by using the [SR-IOV Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
+You can configure a Single Root I/O Virtualization (SR-IOV) device in your cluster by using the [SR-IOV Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
 
 SR-IOV can segment a compliant network device, recognized on the host node as a physical function (PF), into multiple virtual functions (VFs). The VF is used like any other network device. The SR-IOV network device driver for the device determines how the VF is exposed in the container:
 
@@ -44,7 +44,7 @@ $ oc label node <node_name> feature.node.kubernetes.io/network-sriov.capable="tr
 
 ## Additional resources {#additional-resources-about-sr-iov_about-sriov}
 
-- [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
+- [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
 
 ## Components that manage SR-IOV network devices {#components-sr-iov-network-devices}
 
@@ -81,13 +81,13 @@ SR-IOV InfiniBand CNI plugin
 
 ## Additional resources {#configure-multi-networks-additional-resources}
 
-- [Configuring multi-network policy](/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)
+- [Configuring multi-network policy](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)
 
 ## Next steps {#about-sriov-next-steps}
 
-- [Configuring the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator)
-- [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
-- If you use {{ VirtProductName }}: [Connecting a virtual machine to an SR-IOV network](/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
-- [Configuring an SR-IOV network attachment](/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)
-- [Ethernet network attachement: Adding a pod to an SR-IOV additional network](/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)
-- [InfiniBand network attachement: Adding a pod to an SR-IOV additional network](/networking/hardware_networks/configuring-sriov-ib-attach#configuring-sriov-ib-attach)
+- [Configuring the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator)
+- [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
+- If you use {{ VirtProductName }}: [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
+- [Configuring an SR-IOV network attachment](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)
+- [Ethernet network attachement: Adding a pod to an SR-IOV additional network](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)
+- [InfiniBand network attachement: Adding a pod to an SR-IOV additional network](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-ib-attach#configuring-sriov-ib-attach)

@@ -8,4 +8,4 @@ Use `skip-node` annotation to prevent the `node-labeller` from reconciling a nod
 
 ## Additional resources {#additional-resources_virt-preventing-node-reconciliation}
 
-- [Managing node labeling for obsolete CPU models](/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models)
+- [Managing node labeling for obsolete CPU models](/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models)

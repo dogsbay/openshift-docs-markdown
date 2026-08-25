@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"persistent-storage-using-gce","text":"Persistent storage using GCE Persistent Disk"}];
 const nav = navData;
-const currentPath = "/storage/persistent_storage/persistent-storage-gce";
+const currentPath = "/openshift-docs-markdown/storage/persistent_storage/persistent-storage-gce";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["storage","storage/persistent_storage"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using GCE Persistent Disk {#persistent-storage-using-gce}\n\nOpenShift Container Platform supports GCE Persistent Disk volumes (gcePD). You can provision your OpenShift Container Platform cluster with persistent storage using GCE. Some familiarity with Kubernetes and GCE is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure.\n\nGCE Persistent Disk volumes can be provisioned dynamically.\n\nPersistent volumes are not bound to a single project or namespace; they can be shared across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace and can be requested by users.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.12 and later provides automatic migration for the GCE Persist Disk in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes.\n>\n> For more information about migration, see CSI automatic migration.\n\n> [!IMPORTANT]\n> High availability of storage in the infrastructure is left to the underlying storage provider.\n\n**Additional resources**\n\n- [GCE Persistent Disk](https://cloud.google.com/compute/docs/disks/)\n- [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n","mdUrl":"/storage/persistent_storage/persistent-storage-gce.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using GCE Persistent Disk {#persistent-storage-using-gce}\n\nOpenShift Container Platform supports GCE Persistent Disk volumes (gcePD). You can provision your OpenShift Container Platform cluster with persistent storage using GCE. Some familiarity with Kubernetes and GCE is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure.\n\nGCE Persistent Disk volumes can be provisioned dynamically.\n\nPersistent volumes are not bound to a single project or namespace; they can be shared across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace and can be requested by users.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.12 and later provides automatic migration for the GCE Persist Disk in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes.\n>\n> For more information about migration, see CSI automatic migration.\n\n> [!IMPORTANT]\n> High availability of storage in the infrastructure is left to the underlying storage provider.\n\n**Additional resources**\n\n- [GCE Persistent Disk](https://cloud.google.com/compute/docs/disks/)\n- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-gce.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -116,7 +116,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://cloud.google.com/compute/docs/disks/">GCE Persistent Disk</a></li>
-      <li><a href="/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration">CSI automatic migration</a></li>
+      <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration">CSI automatic migration</a></li>
       </ul>
       <p class="/modules/storage-persistent-storage-volume-format.md /modules/storage-persistent-storage-creating-volume-claim.md"></p>
     </article>

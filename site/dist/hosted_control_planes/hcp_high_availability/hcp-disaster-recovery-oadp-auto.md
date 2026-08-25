@@ -16,16 +16,16 @@ The process involves the following steps:
 
 **Additional resources**
 
-- [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
+- [About installing {{ oadp_short }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 - [{{ odf_full }}](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/)
 - [MinIO](https://min.io/)
-- [Support for {{ oadp_first }}](/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
+- [Support for {{ oadp_first }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
 
 **Additional resources**
 
-- [Configuring the {{ oadp_full }} with AWS S3 compatible storage](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
-- [Configuring the {{ oadp_full }} with Multicloud Object Gateway](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
+- [Configuring the {{ oadp_full }} with AWS S3 compatible storage](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
+- [Configuring the {{ oadp_full }} with Multicloud Object Gateway](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
 
 **Additional resources**
 
-- [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
+- [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)

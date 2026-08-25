@@ -2,7 +2,7 @@
 // Source: security/compliance_operator/co-management/compliance-operator-manage.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Managing the Compliance Operator\n---\n\n# Managing the Compliance Operator {#compliance-operator-understanding}\n\nYou can manage the Compliance Operator security content lifecycle to keep compliance profiles current and create custom `ProfileBundle` objects tailored to your organization security requirements.\n\n## Additional resources {#additional-resources_managing-compliance}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n";
+const body = "---\ntitle: Managing the Compliance Operator\n---\n\n# Managing the Compliance Operator {#compliance-operator-understanding}\n\nYou can manage the Compliance Operator security content lifecycle to keep compliance profiles current and create custom `ProfileBundle` objects tailored to your organization security requirements.\n\n## Additional resources {#additional-resources_managing-compliance}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

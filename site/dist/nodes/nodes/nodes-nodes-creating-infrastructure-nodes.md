@@ -11,8 +11,8 @@ You can use infrastructure machine sets to create machines that host only infras
 
 ## Additional resources {#additional-resources_creating-infrastructure-nodes}
 
-- [Moving resources to infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets)
-- [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)
-- [Creating a compute machine set](/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets)
-- [Creating an infrastructure node](/nodes/nodes/nodes-nodes-creating-infrastructure-nodes#creating-an-infra-node_creating-infrastructure-nodes)
-- [Creating a machine config pool for infrastructure machines](/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets)
+- [Moving resources to infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets)
+- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)
+- [Creating a compute machine set](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets)
+- [Creating an infrastructure node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-creating-infrastructure-nodes#creating-an-infra-node_creating-infrastructure-nodes)
+- [Creating a machine config pool for infrastructure machines](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets)

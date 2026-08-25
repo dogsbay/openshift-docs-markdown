@@ -2,7 +2,7 @@
 // Source: installing/installing_oda/installing-oda-assisted.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Installing a cluster on {{ oda }} by using the Assisted Installer\n---\n\n# Installing a cluster on {{ oda }} by using the Assisted Installer {#installing-oda-assisted-installer}\n\nYou can use the {{ ai_full }} to install a cluster on {{ oda_first }}.\n\n**Additional resources**\n\n- [Generating a key pair for cluster node SSH access](/installing/installing_platform_agnostic/installing-platform-agnostic#ssh-agent-using_installing-platform-agnostic)\n";
+const body = "---\ntitle: Installing a cluster on {{ oda }} by using the Assisted Installer\n---\n\n# Installing a cluster on {{ oda }} by using the Assisted Installer {#installing-oda-assisted-installer}\n\nYou can use the {{ ai_full }} to install a cluster on {{ oda_first }}.\n\n**Additional resources**\n\n- [Generating a key pair for cluster node SSH access](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#ssh-agent-using_installing-platform-agnostic)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

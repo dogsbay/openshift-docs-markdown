@@ -13,9 +13,9 @@ The {{ cert_manager_operator }} sets the `features.operators.openshift.io/token-
 
 **Additional resources**
 
-- [Supported {{ cert_manager_operator }} versions](/security/cert_manager_operator/index#cert-manager-operator-supported-versions_cert-manager-operator-about)
+- [Supported {{ cert_manager_operator }} versions](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-supported-versions_cert-manager-operator-about)
 
 ## Additional resources {#cert-manager-operator-install_additional-resources}
 
-- [Adding Operators to a cluster](/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
-- [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+- [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
+- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)

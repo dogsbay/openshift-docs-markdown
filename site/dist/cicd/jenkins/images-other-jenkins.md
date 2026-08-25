@@ -37,13 +37,13 @@ The Jenkins image can be run with mounted volumes to enable persistent storage f
 
 **Additional resources**
 
-- [Important changes to OpenShift Jenkins images](/cicd/jenkins/important-changes-to-openshift-jenkins-images#important-changes-to-openshift-jenkins-images)
+- [Important changes to OpenShift Jenkins images](/openshift-docs-markdown/cicd/jenkins/important-changes-to-openshift-jenkins-images#important-changes-to-openshift-jenkins-images)
 
 **Additional resources**
 
-- [Important changes to OpenShift Jenkins images](/cicd/jenkins/important-changes-to-openshift-jenkins-images#important-changes-to-openshift-jenkins-images)
+- [Important changes to OpenShift Jenkins images](/openshift-docs-markdown/cicd/jenkins/important-changes-to-openshift-jenkins-images#important-changes-to-openshift-jenkins-images)
 
 ## Additional resources {#_additional_resources}
 
-- See [Base image options](/architecture/understanding-development#base-image-options) for more information about the [Red Hat Universal Base Images](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/index#using_red_hat_base_container_images_standard_and_minimal) (UBI).
-- [Important changes to OpenShift Jenkins images](/cicd/jenkins/important-changes-to-openshift-jenkins-images#important-changes-to-openshift-jenkins-images)
+- See [Base image options](/openshift-docs-markdown/architecture/understanding-development#base-image-options) for more information about the [Red Hat Universal Base Images](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/index#using_red_hat_base_container_images_standard_and_minimal) (UBI).
+- [Important changes to OpenShift Jenkins images](/openshift-docs-markdown/cicd/jenkins/important-changes-to-openshift-jenkins-images#important-changes-to-openshift-jenkins-images)

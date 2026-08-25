@@ -68,24 +68,24 @@ where
 
 **Additional resources**
 
-- [Configuring the automatic image cleanup of the container storage disk](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup#cnf-image-based-upgrade-configure-auto-image-cleanup)
-- [Performing an image-based upgrade for {{ sno }} clusters with {{ lcao }}](/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
-- [Performing an image-based upgrade for {{ sno }} clusters using {{ ztp }}](/edge_computing/image_based_upgrade/ztp-image-based-upgrade#ztp-image-based-upgrade)
+- [Configuring the automatic image cleanup of the container storage disk](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup#cnf-image-based-upgrade-configure-auto-image-cleanup)
+- [Performing an image-based upgrade for {{ sno }} clusters with {{ lcao }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
+- [Performing an image-based upgrade for {{ sno }} clusters using {{ ztp }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/ztp-image-based-upgrade#ztp-image-based-upgrade)
 
 **Additional resources**
 
-- [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
+- [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
 
 **Additional resources**
 
-- [Configuring a shared container partition between ostree stateroots](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#cnf-image-based-upgrade-shared-container-partition_shared-container-partition)
-- [Configuring a shared container partition between ostree stateroots when using {{ ztp }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
-- [Seed image configuration](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-generate-seed#cnf-image-based-upgrade-seed-image-config_generate-seed)
+- [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#cnf-image-based-upgrade-shared-container-partition_shared-container-partition)
+- [Configuring a shared container partition between ostree stateroots when using {{ ztp }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
+- [Seed image configuration](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-generate-seed#cnf-image-based-upgrade-seed-image-config_generate-seed)
 
 **Additional resources**
 
-- [Performing an image-based upgrade for {{ sno }} clusters with {{ lcao }}](/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
-- [Preparing the hub cluster for ZTP](/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-hub-cluster)
-- [Creating ConfigMap objects for the image-based upgrade with {{ lcao }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-prep-resources#cnf-image-based-upgrade-prep-oadp_cnf-non-gitops)
-- [Creating ConfigMap objects for the image-based upgrade with {{ ztp }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/ztp-image-based-upgrade-prep-resources#ztp-image-based-upgrade-prep-resources)
-- [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
+- [Performing an image-based upgrade for {{ sno }} clusters with {{ lcao }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
+- [Preparing the hub cluster for ZTP](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-hub-cluster)
+- [Creating ConfigMap objects for the image-based upgrade with {{ lcao }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-prep-resources#cnf-image-based-upgrade-prep-oadp_cnf-non-gitops)
+- [Creating ConfigMap objects for the image-based upgrade with {{ ztp }}](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/ztp-image-based-upgrade-prep-resources#ztp-image-based-upgrade-prep-resources)
+- [About installing {{ oadp_short }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)

@@ -10,4 +10,4 @@ As a cluster administrator, you can install the Single Root I/O Virtualization (
 
 ## Additional resources {#additional-resources_installing-sriov-operator}
 
-- [Configuring the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator)
+- [Configuring the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator)

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-security-policies","text":"Security policies"},{"depth":2,"slug":"additional-resources_virt-security-policies","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/about_virt/virt-security-policies";
+const currentPath = "/openshift-docs-markdown/virt/about_virt/virt-security-policies";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/about_virt"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security policies {#virt-security-policies}\n\n{{ VirtProductName }} provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment.\n\n**Key points**\n\n- {{ VirtProductName }} adheres to the `restricted` Kubernetes pod security standards profile, which aims to enforce the current best practices for pod security.\n- Virtual machine (VM) workloads run as unprivileged pods.\n- Security context constraints (SCCs) are defined for the `kubevirt-controller` service account. For more information about SSCs, see \"Additional resources\".\n- TLS certificates for {{ VirtProductName }} components are renewed and rotated automatically.\n\n## Additional resources {#additional-resources_virt-security-policies}\n\n- [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)\n- [About Security context constraints](/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)\n- [Managing security context constraints](/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Creating a cluster role](/authentication/using-rbac#creating-cluster-role_using-rbac)\n- [Cluster role binding commands](/authentication/using-rbac#cluster-role-binding-commands_using-rbac)\n- [Enabling user permissions to clone data volumes across namespaces](/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)\n","mdUrl":"/virt/about_virt/virt-security-policies.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security policies {#virt-security-policies}\n\n{{ VirtProductName }} provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment.\n\n**Key points**\n\n- {{ VirtProductName }} adheres to the `restricted` Kubernetes pod security standards profile, which aims to enforce the current best practices for pod security.\n- Virtual machine (VM) workloads run as unprivileged pods.\n- Security context constraints (SCCs) are defined for the `kubevirt-controller` service account. For more information about SSCs, see \"Additional resources\".\n- TLS certificates for {{ VirtProductName }} components are renewed and rotated automatically.\n\n## Additional resources {#additional-resources_virt-security-policies}\n\n- [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)\n- [About Security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)\n- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Creating a cluster role](/openshift-docs-markdown/authentication/using-rbac#creating-cluster-role_using-rbac)\n- [Cluster role binding commands](/openshift-docs-markdown/authentication/using-rbac#cluster-role-binding-commands_using-rbac)\n- [Enabling user permissions to clone data volumes across namespaces](/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-security-policies.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -108,12 +108,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="additional-resources_virt-security-policies" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted">Pod Security Standards</a></li>
-      <li><a href="/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth">About Security context constraints</a></li>
-      <li><a href="/authentication/using-rbac#using-rbac">Using RBAC to define and apply permissions</a></li>
-      <li><a href="/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth">Managing security context constraints</a></li>
-      <li><a href="/authentication/using-rbac#creating-cluster-role_using-rbac">Creating a cluster role</a></li>
-      <li><a href="/authentication/using-rbac#cluster-role-binding-commands_using-rbac">Cluster role binding commands</a></li>
-      <li><a href="/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes">Enabling user permissions to clone data volumes across namespaces</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth">About Security context constraints</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/using-rbac#using-rbac">Using RBAC to define and apply permissions</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth">Managing security context constraints</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/using-rbac#creating-cluster-role_using-rbac">Creating a cluster role</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/using-rbac#cluster-role-binding-commands_using-rbac">Cluster role binding commands</a></li>
+      <li><a href="/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes">Enabling user permissions to clone data volumes across namespaces</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

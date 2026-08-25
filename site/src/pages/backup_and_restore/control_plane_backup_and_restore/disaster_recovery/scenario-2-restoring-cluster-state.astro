@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"dr-restoring-cluster-state","text":"Restoring to an earlier cluster state"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/control_plane_backup_and_restore","backup_and_restore/control_plane_backup_and_restore/disaster_recovery"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restoring to an earlier cluster state {#dr-restoring-cluster-state}\n\nTo return your OpenShift Container Platform cluster to a known good state, restore from a saved etcd snapshot after quorum loss or critical resource deletion. Understanding restore impact helps you decide whether rollback is appropriate before you begin.\n\n**Additional resources**\n\n- [Recovering a degraded etcd Operator](/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)\n- [Deleting the Local Storage Operator resources](/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local)\n","mdUrl":"/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restoring to an earlier cluster state {#dr-restoring-cluster-state}\n\nTo return your OpenShift Container Platform cluster to a known good state, restore from a saved etcd snapshot after quorum loss or critical resource deletion. Understanding restore impact helps you decide whether rollback is appropriate before you begin.\n\n**Additional resources**\n\n- [Recovering a degraded etcd Operator](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)\n- [Deleting the Local Storage Operator resources](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -99,8 +99,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/dr-scenario-cluster-state-issues.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting">Recovering a degraded etcd Operator</a></li>
-      <li><a href="/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local">Deleting the Local Storage Operator resources</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting">Recovering a degraded etcd Operator</a></li>
+      <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local">Deleting the Local Storage Operator resources</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

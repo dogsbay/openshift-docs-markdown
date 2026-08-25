@@ -9,9 +9,9 @@ The {{ external_secrets_operator }} operates as a cluster-wide service to deploy
 ## Additional resources {#external-secrets-operator-about_additional-resources}
 
 - [external-secrets application](https://external-secrets.io/latest/)
-- [Understanding compliance](/security/container_security/security-compliance#security-compliance)
-- [Installing a cluster in FIPS mode](/installing/overview/installing-fips#installing-fips-mode_installing-fips)
-- [Do you need extra security for your cluster?](/installing/overview/installing-preparing#installing-preparing-security_installing-preparing)
+- [Understanding compliance](/openshift-docs-markdown/security/container_security/security-compliance#security-compliance)
+- [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)
+- [Do you need extra security for your cluster?](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing-security_installing-preparing)
 - [Security considerations](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html/planning_your_deployment/security-considerations_rhodf)
 - [Security Best Practices](https://external-secrets.io/latest/guides/security-best-practices/)
 - [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)

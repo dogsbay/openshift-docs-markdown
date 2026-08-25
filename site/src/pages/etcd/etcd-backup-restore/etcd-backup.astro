@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"etcd-backup","text":"Backing up and restoring etcd data"}];
 const nav = navData;
-const currentPath = "/etcd/etcd-backup-restore/etcd-backup";
+const currentPath = "/openshift-docs-markdown/etcd/etcd-backup-restore/etcd-backup";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["etcd","etcd/etcd-backup-restore"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring etcd data {#etcd-backup}\n\nBack up etcd data regularly and store it in a secure location so you can restore your cluster to a previous state, using a snapshot from the same z-stream release.\n\nAs the key-value store for OpenShift Container Platform, etcd persists the state of all resource objects.\n\nBack up the etcd data for your cluster regularly and store it in a secure location, ideally outside the OpenShift Container Platform environment. Do not take an etcd backup before the first certificate rotation completes, which occurs 24 hours after installation, otherwise the backup will contain expired certificates. It is also recommended to take etcd backups during non-peak usage hours because the etcd snapshot has a high I/O cost.\n\nBe sure to take an etcd backup before you update your cluster. Taking a backup before you update is important because when you restore your cluster, you must use an etcd backup that was taken from the same z-stream release. For example, an OpenShift Container Platform 4.17.5 cluster must use an etcd backup that was taken from 4.17.5.\n\n> [!IMPORTANT]\n> Back up your cluster’s etcd data by performing a single invocation of the backup script on a control plane host. Do not take a backup for each control plane host.\n\nAfter you have an etcd backup, you can restore to a previous cluster state.\n\n**Additional resources**\n\n- [Restoring to an earlier cluster state](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)\n- [Recovering an unhealthy etcd cluster for {{ hcp }}](/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster)\n","mdUrl":"/etcd/etcd-backup-restore/etcd-backup.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring etcd data {#etcd-backup}\n\nBack up etcd data regularly and store it in a secure location so you can restore your cluster to a previous state, using a snapshot from the same z-stream release.\n\nAs the key-value store for OpenShift Container Platform, etcd persists the state of all resource objects.\n\nBack up the etcd data for your cluster regularly and store it in a secure location, ideally outside the OpenShift Container Platform environment. Do not take an etcd backup before the first certificate rotation completes, which occurs 24 hours after installation, otherwise the backup will contain expired certificates. It is also recommended to take etcd backups during non-peak usage hours because the etcd snapshot has a high I/O cost.\n\nBe sure to take an etcd backup before you update your cluster. Taking a backup before you update is important because when you restore your cluster, you must use an etcd backup that was taken from the same z-stream release. For example, an OpenShift Container Platform 4.17.5 cluster must use an etcd backup that was taken from 4.17.5.\n\n> [!IMPORTANT]\n> Back up your cluster’s etcd data by performing a single invocation of the backup script on a control plane host. Do not take a backup for each control plane host.\n\nAfter you have an etcd backup, you can restore to a previous cluster state.\n\n**Additional resources**\n\n- [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)\n- [Recovering an unhealthy etcd cluster for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/etcd/etcd-backup-restore/etcd-backup.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -109,8 +109,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/backup-etcd.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state">Restoring to an earlier cluster state</a></li>
-      <li><a href="/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster">Recovering an unhealthy etcd cluster for {"{"}{"{"} hcp {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state">Restoring to an earlier cluster state</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster">Recovering an unhealthy etcd cluster for {"{"}{"{"} hcp {"}"}{"}"}</a></li>
       </ul>
       <p class="/modules/creating-single-etcd-backup.md"></p>
       <p class="/modules/creating-recurring-etcd-backups.md"></p>

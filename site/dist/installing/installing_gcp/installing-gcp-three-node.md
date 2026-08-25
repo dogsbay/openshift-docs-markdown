@@ -10,5 +10,5 @@ You can install a three-node cluster by using either installer-provisioned or us
 
 ## Additional resources {#additional-resources_installing-gcp-three-node}
 
-- [Installing a cluster on {{ gcp_short }} with customizations](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
-- [Installing a cluster on user-provisioned infrastructure in {{ gcp_short }} by using Infrastructure Manager templates](/installing/installing_gcp/installing-gcp-user-infra#installing-gcp-user-infra)
+- [Installing a cluster on {{ gcp_short }} with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
+- [Installing a cluster on user-provisioned infrastructure in {{ gcp_short }} by using Infrastructure Manager templates](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-user-infra#installing-gcp-user-infra)

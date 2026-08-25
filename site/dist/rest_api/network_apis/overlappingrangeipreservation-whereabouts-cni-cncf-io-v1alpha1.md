@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OverlappingRangeIPReservationSpec defines the desired state of OverlappingRangeIPReservation |
 
 ### .spec {#_spec}
@@ -78,7 +78,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OverlappingRangeIPReservationList`](/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-OverlappingRangeIPReservationList) schema |
+| 200 - OK | [`OverlappingRangeIPReservationList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-OverlappingRangeIPReservationList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations}
@@ -97,7 +97,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -114,7 +114,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OverlappingRangeIPReservationList`](/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-OverlappingRangeIPReservationList) schema |
+| 200 - OK | [`OverlappingRangeIPReservationList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-OverlappingRangeIPReservationList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -138,15 +138,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |  |
+| `body` | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
-| 201 - Created | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
-| 202 - Accepted | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 201 - Created | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 202 - Accepted | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations/{{ name }} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations_name}
@@ -177,8 +177,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -195,7 +195,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -219,7 +219,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -243,12 +243,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |  |
+| `body` | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
-| 201 - Created | [`OverlappingRangeIPReservation`](/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 200 - OK | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
+| 201 - Created | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |

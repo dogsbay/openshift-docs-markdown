@@ -22,7 +22,7 @@ The section explains options for assets you can create when you build and deploy
 **Additional resources**
 
 - [Dockerfile (dockerdocs documentation)](https://docs.docker.com/engine/reference/builder/)
-- [Custom image builds with Buildah](/cicd/builds/custom-builds-buildah#custom-builds-buildah)
+- [Custom image builds with Buildah](/openshift-docs-markdown/cicd/builds/custom-builds-buildah#custom-builds-buildah)
 
 **Additional resources**
 
@@ -49,13 +49,13 @@ The section explains options for assets you can create when you build and deploy
 - [`Ingress` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Volumes (Kubernetes documentation)](https://kubernetes.io/docs/concepts/storage/volumes/)
 - [`Deployment` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
-- [`DeploymentConfig` (Kubernetes documentation)](/applications/deployments/what-deployments-are#what-deployments-are)
+- [`DeploymentConfig` (Kubernetes documentation)](/openshift-docs-markdown/applications/deployments/what-deployments-are#what-deployments-are)
 
 **Additional resources**
 
 - [`Job` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
 - [`CronJob` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)
-- [Deployment (Kubernetes documentation)](/applications/deployments/what-deployments-are#deployments-kube-deployments)
+- [Deployment (Kubernetes documentation)](/openshift-docs-markdown/applications/deployments/what-deployments-are#deployments-kube-deployments)
 - [ReplicaSet (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
 - [DaemonSet (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 - [Operator (Kubernetes documentation)](https://www.redhat.com/en/technologies/cloud-computing/openshift/what-are-openshift-operators)

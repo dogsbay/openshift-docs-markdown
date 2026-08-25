@@ -19,16 +19,16 @@ Using {{ rh_rhacm }} and `{{ policy_gen_cr }}` CRs is the recommended approach f
 
 **Additional resources**
 
-- [Preparing the {{ ztp }} site configuration repository](/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)
+- [Preparing the {{ ztp }} site configuration repository](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)
 
 **Additional resources**
 
-- [Signalling {{ ztp }} cluster deployment completion with validator inform policies](/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-creating-a-validator-inform-policy_ztp-advanced-policy-config)
+- [Signalling {{ ztp }} cluster deployment completion with validator inform policies](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-creating-a-validator-inform-policy_ztp-advanced-policy-config)
 
 **Additional resources**
 
-- [Customizing a managed cluster with PolicyGenerator CRs](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-customizing-a-managed-site-using-pgt_ztp-configuring-managed-clusters-policygenerator)
+- [Customizing a managed cluster with PolicyGenerator CRs](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-customizing-a-managed-site-using-pgt_ztp-configuring-managed-clusters-policygenerator)
 
 **Additional resources**
 
-- For information about using {{ cgu_operator_first }} to construct your own `ClusterGroupUpgrade` CR, see [About the ClusterGroupUpgrade CR](/edge_computing/cnf-talm-for-cluster-upgrades#talo-about-cgu-crs_cnf-topology-aware-lifecycle-manager).
+- For information about using {{ cgu_operator_first }} to construct your own `ClusterGroupUpgrade` CR, see [About the ClusterGroupUpgrade CR](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#talo-about-cgu-crs_cnf-topology-aware-lifecycle-manager).

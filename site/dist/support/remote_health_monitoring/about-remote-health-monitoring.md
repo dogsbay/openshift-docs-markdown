@@ -20,33 +20,33 @@ More information is provided in this document about these two processes.
 
 **Additional resources**
 
-- [OpenShift Container Platform update documentation](/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
+- [OpenShift Container Platform update documentation](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
 
 **Additional resources**
 
-- [Showing data collected by Telemetry](/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)
+- [Showing data collected by Telemetry](/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)
 - [Upstream cluster-monitoring-operator source code](https://github.com/openshift/cluster-monitoring-operator/blob/master/manifests/0000_50_cluster-monitoring-operator_04-config.yaml)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
 
 **Additional resources**
 
 - [{{ red_hat_lightspeed }} Data & Application Security](https://console.redhat.com/security/insights)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
 
 **Additional resources**
 
-- [Showing data collected by the {{ insights_operator }}](/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#insights-operator-showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)
+- [Showing data collected by the {{ insights_operator }}](/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#insights-operator-showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)
 - [What data is being collected by the {{ insights_operator }} in OpenShift? (Knowledgebase article)](https://access.redhat.com/solutions/7066188)
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [{{ insights_operator }} upstream project (GitHub)](https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md)
 
 **Additional resources**
 
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
-- [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall)
+- [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall)
 
 **Additional resources**
 
-- [Information collected by Telemetry](/support/remote_health_monitoring/about-remote-health-monitoring#what-information-is-collected_about-remote-health-monitoring)
-- [Information collected by the {{ insights_operator }}](/support/remote_health_monitoring/about-remote-health-monitoring#insights-operator-what-information-is-collected_about-remote-health-monitoring)
-- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Information collected by Telemetry](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#what-information-is-collected_about-remote-health-monitoring)
+- [Information collected by the {{ insights_operator }}](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#insights-operator-what-information-is-collected_about-remote-health-monitoring)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

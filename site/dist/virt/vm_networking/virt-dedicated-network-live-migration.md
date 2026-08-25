@@ -8,5 +8,5 @@ You can configure a dedicated secondary network for live migration. A dedicated 
 
 ## Additional resources {#additional-resources_virt-dedicated-network-live-migration}
 
-- [Configuring live migration limits and timeouts](/virt/live_migration/virt-configuring-live-migration#virt-configuring-live-migration)
-- [Connecting a VM to a Linux bridge network](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
+- [Configuring live migration limits and timeouts](/openshift-docs-markdown/virt/live_migration/virt-configuring-live-migration#virt-configuring-live-migration)
+- [Connecting a VM to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)

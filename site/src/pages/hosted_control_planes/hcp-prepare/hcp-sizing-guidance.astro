@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"hcp-sizing-guidance","text":"Sizing guidance for {{ hcp }}"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-prepare/hcp-sizing-guidance";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-prepare"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Sizing guidance for {{ hcp }} {#hcp-sizing-guidance}\n\nMany factors, including hosted cluster workload and worker node count, affect how many hosted control planes can fit within a certain number of worker nodes.\n\nUse this sizing guide to help with hosted cluster capacity planning.\n\nThis guidance assumes a highly available {{ hcp }} topology. The load-based sizing examples were measured on a bare-metal cluster. Cloud-based instances might have different limiting factors, such as memory size.\n\nYou can override the following resource utilization sizing measurements and disable the metric service monitoring.\n\nSee the following highly available {{ hcp }} requirements, which were tested with OpenShift Container Platform version 4.12.9 and later:\n\n- 78 pods\n- Three 8 GiB PVs for etcd\n- Minimum vCPU: approximately 5.5 cores\n- Minimum memory: approximately 19 GiB\n\n**Additional resources**\n\n- [Overriding resource utilization measurements](/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)\n- [Distributing hosted cluster workloads](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)\n\n**Additional resources**\n\n- [Configuring the maximum number of pods per node](/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)\n\n**Additional resources**\n\n- [Sizing guidance for {{ hcp }}](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)\n","mdUrl":"/hosted_control_planes/hcp-prepare/hcp-sizing-guidance.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Sizing guidance for {{ hcp }} {#hcp-sizing-guidance}\n\nMany factors, including hosted cluster workload and worker node count, affect how many hosted control planes can fit within a certain number of worker nodes.\n\nUse this sizing guide to help with hosted cluster capacity planning.\n\nThis guidance assumes a highly available {{ hcp }} topology. The load-based sizing examples were measured on a bare-metal cluster. Cloud-based instances might have different limiting factors, such as memory size.\n\nYou can override the following resource utilization sizing measurements and disable the metric service monitoring.\n\nSee the following highly available {{ hcp }} requirements, which were tested with OpenShift Container Platform version 4.12.9 and later:\n\n- 78 pods\n- Three 8 GiB PVs for etcd\n- Minimum vCPU: approximately 5.5 cores\n- Minimum memory: approximately 19 GiB\n\n**Additional resources**\n\n- [Overriding resource utilization measurements](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)\n- [Distributing hosted cluster workloads](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)\n\n**Additional resources**\n\n- [Configuring the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)\n\n**Additional resources**\n\n- [Sizing guidance for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -105,16 +105,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util">Overriding resource utilization measurements</a></li>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads">Distributing hosted cluster workloads</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util">Overriding resource utilization measurements</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads">Distributing hosted cluster workloads</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods">Configuring the maximum number of pods per node</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods">Configuring the maximum number of pods per node</a></li></ul>
       <p class="/modules/hcp-load-based-limit.md"></p>
       <p class="/modules/hcp-sizing-calculation.md"></p>
       <p class="/modules/hcp-shared-infra.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance">Sizing guidance for {"{"}{"{"} hcp {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance">Sizing guidance for {"{"}{"{"} hcp {"}"}{"}"}</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

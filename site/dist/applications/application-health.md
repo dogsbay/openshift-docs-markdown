@@ -8,5 +8,5 @@ In software systems, components can become unhealthy due to transient issues suc
 
 **Additional resources**
 
-- For details on switching to the **Developer** perspective in the web console, see [About the **Developer** perspective](/web_console/web-console-overview#about-developer-perspective_web-console-overview).
-- For details on adding health checks while creating and deploying an application, see **Advanced Options** in the [Creating applications using the Developer perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective) section.
+- For details on switching to the **Developer** perspective in the web console, see [About the **Developer** perspective](/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview).
+- For details on adding health checks while creating and deploying an application, see **Advanced Options** in the [Creating applications using the Developer perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective) section.

@@ -18,4 +18,4 @@ After enabling OLM in a disconnected environment, you can continue to use your u
 
 ## Additional resources {#additional-resources_olm-restricted-networks}
 
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

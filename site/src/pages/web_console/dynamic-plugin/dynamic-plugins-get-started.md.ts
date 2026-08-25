@@ -2,7 +2,7 @@
 // Source: web_console/dynamic-plugin/dynamic-plugins-get-started.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Getting started with dynamic plugins\n---\n\n# Getting started with dynamic plugins {#dynamic-plugins-get-started_{{ context }}}\n\nTo get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see [Adding a tab to the pods page](/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example).\n";
+const body = "---\ntitle: Getting started with dynamic plugins\n---\n\n# Getting started with dynamic plugins {#dynamic-plugins-get-started_{{ context }}}\n\nTo get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see [Adding a tab to the pods page](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

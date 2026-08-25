@@ -2,7 +2,7 @@
 // Source: support/troubleshooting/troubleshooting-s2i.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Troubleshooting the Source-to-Image process\n---\n\n# Troubleshooting the Source-to-Image process {#troubleshooting-s2i}\n\nA cluster administrator can observe the S2I stages to determine where in the S2I process a failure occurred and gather diagnostic data to resolve Source-to-Image issues.\n\n## Additional resources {#_additional_resources}\n\n- [Source-to-Image (S2I) build](/cicd/builds/build-strategies#build-strategy-s2i_build-strategies)\n";
+const body = "---\ntitle: Troubleshooting the Source-to-Image process\n---\n\n# Troubleshooting the Source-to-Image process {#troubleshooting-s2i}\n\nA cluster administrator can observe the S2I stages to determine where in the S2I process a failure occurred and gather diagnostic data to resolve Source-to-Image issues.\n\n## Additional resources {#_additional_resources}\n\n- [Source-to-Image (S2I) build](/openshift-docs-markdown/cicd/builds/build-strategies#build-strategy-s2i_build-strategies)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

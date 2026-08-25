@@ -10,4 +10,4 @@ The `virtctl` command provides more virtualization options than the `oc` command
 
 ## Additional resources {#additional-resources_virt-manage-vmis}
 
-- [Using the CLI tools](/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)
+- [Using the CLI tools](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

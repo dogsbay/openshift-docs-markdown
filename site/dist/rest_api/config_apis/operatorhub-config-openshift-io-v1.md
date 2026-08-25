@@ -20,7 +20,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OperatorHubSpec defines the desired state of OperatorHub |
 | `status` | `object` | OperatorHubStatus defines the observed state of OperatorHub. The current state of the default hub sources will always be reflected here. |
 
@@ -144,7 +144,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -161,7 +161,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHubList`](/rest_api/objects/index#io-openshift-config-v1-OperatorHubList) schema |
+| 200 - OK | [`OperatorHubList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-config-v1-OperatorHubList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -185,15 +185,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |  |
+| `body` | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
-| 201 - Created | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
-| 202 - Accepted | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 200 - OK | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 201 - Created | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 202 - Accepted | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/config.openshift.io/v1/operatorhubs/{{ name }} {#_apisconfigopenshiftiov1operatorhubs_name}
@@ -224,8 +224,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -242,7 +242,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 200 - OK | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -266,7 +266,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 200 - OK | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -290,14 +290,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |  |
+| `body` | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
-| 201 - Created | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 200 - OK | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 201 - Created | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/config.openshift.io/v1/operatorhubs/{{ name }}/status {#_apisconfigopenshiftiov1operatorhubs_name_status}
@@ -322,7 +322,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 200 - OK | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -346,7 +346,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 200 - OK | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -370,12 +370,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |  |
+| `body` | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
-| 201 - Created | [`OperatorHub`](/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 200 - OK | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
+| 201 - Created | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

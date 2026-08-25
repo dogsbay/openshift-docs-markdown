@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Metal3RemediationTemplateSpec defines the desired state of Metal3RemediationTemplate. |
 | `status` | `object` | Metal3RemediationTemplateStatus defines the observed state of Metal3RemediationTemplate. |
 
@@ -159,7 +159,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplateList`](/rest_api/objects/index#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationTemplateList) schema |
+| 200 - OK | [`Metal3RemediationTemplateList`](/openshift-docs-markdown/rest_api/objects/index#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates}
@@ -178,7 +178,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -195,7 +195,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplateList`](/rest_api/objects/index#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationTemplateList) schema |
+| 200 - OK | [`Metal3RemediationTemplateList`](/openshift-docs-markdown/rest_api/objects/index#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -219,15 +219,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |  |
+| `body` | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
-| 201 - Created | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
-| 202 - Accepted | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 201 - Created | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 202 - Accepted | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }} {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name}
@@ -258,8 +258,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -276,7 +276,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -300,7 +300,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -324,14 +324,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |  |
+| `body` | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
-| 201 - Created | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 201 - Created | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}/status {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name_status}
@@ -356,7 +356,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -380,7 +380,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -404,12 +404,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |  |
+| `body` | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
-| 201 - Created | [`Metal3RemediationTemplate`](/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
+| 201 - Created | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |

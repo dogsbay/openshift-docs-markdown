@@ -2,7 +2,7 @@
 // Source: etcd/etcd-practices.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Recommended etcd practices\n---\n\n# Recommended etcd practices {#etcd-practices}\n\nFollow storage, latency, and hardware validation guidance for etcd to reduce leader elections, API timeouts, and control plane instability on OpenShift Container Platform.\n\n**Additional resources**\n\n- [Setting tuning parameters for etcd](/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)\n\n**Additional resources**\n\n- [How to use `fio` to check etcd disk performance in OpenShift Container Platform](https://access.redhat.com/solutions/4885641)\n- [etcd performance troubleshooting guide for OpenShift Container Platform](https://access.redhat.com/articles/6271341)\n";
+const body = "---\ntitle: Recommended etcd practices\n---\n\n# Recommended etcd practices {#etcd-practices}\n\nFollow storage, latency, and hardware validation guidance for etcd to reduce leader elections, API timeouts, and control plane instability on OpenShift Container Platform.\n\n**Additional resources**\n\n- [Setting tuning parameters for etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)\n\n**Additional resources**\n\n- [How to use `fio` to check etcd disk performance in OpenShift Container Platform](https://access.redhat.com/solutions/4885641)\n- [etcd performance troubleshooting guide for OpenShift Container Platform](https://access.redhat.com/articles/6271341)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

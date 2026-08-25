@@ -8,4 +8,4 @@ To resolve issues with your OpenShift Container Platform cluster, you can search
 
 ## Additional resources {#getting-support-additional-resources}
 
-- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)
+- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)

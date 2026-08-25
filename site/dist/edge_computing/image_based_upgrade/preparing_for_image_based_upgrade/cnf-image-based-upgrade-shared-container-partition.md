@@ -8,4 +8,4 @@ Your {{ sno }} clusters need to have a shared `/var/lib/containers` partition fo
 
 **Additional resources**
 
-- [Installing Butane](/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)
+- [Installing Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)

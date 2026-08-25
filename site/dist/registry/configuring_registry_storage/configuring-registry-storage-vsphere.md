@@ -8,6 +8,6 @@ Configure image registry storage for vSphere clusters after installation. Becaus
 
 ## Additional resources {#configuring-registry-storage-vsphere-addtl-resources}
 
-- [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
-- [Recommended configurable storage technology](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
+- [Recommended configurable storage technology](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 - [Configuring Image Registry to use {{ rh_storage }}](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/managing_and_allocating_storage_resources/index#configuring-image-registry-to-use-openshift-data-foundation_rhodf)

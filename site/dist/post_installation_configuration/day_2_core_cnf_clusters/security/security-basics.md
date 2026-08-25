@@ -10,20 +10,20 @@ You can enhance security for high-bandwidth network deployments by following key
 
 **Additional resources**
 
-- [Using RBAC to define and apply permissions](/authentication/using-rbac#authorization-overview_using-rbac)
+- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac)
 
 **Additional resources**
 
-- [Understanding and creating service accounts](/authentication/understanding-and-creating-service-accounts#understanding-and-creating-service-accounts)
+- [Understanding and creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#understanding-and-creating-service-accounts)
 
 **Additional resources**
 
-- [Understanding identity provider configuration](/authentication/understanding-identity-provider#understanding-identity-provider)
+- [Understanding identity provider configuration](/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider)
 
 **Additional resources**
 
-- [Configuring an htpasswd identity provider](/authentication/identity_providers/configuring-htpasswd-identity-provider#identity-provider-htpasswd-about_configuring-htpasswd-identity-provider)
+- [Configuring an htpasswd identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#identity-provider-htpasswd-about_configuring-htpasswd-identity-provider)
 
 **Additional resources**
 
-- [Upgrading an OpenShift cluster](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)
+- [Upgrading an OpenShift cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)

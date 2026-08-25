@@ -13,7 +13,7 @@ After you install a cluster extension managed by {{ olmv1_first }}, the extensio
 
 **Additional resources**
 
-- ["Managing extensions" -> "Cluster extension permissions"](/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce)
+- ["Managing extensions" -> "Cluster extension permissions"](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce)
 
 **Additional resources**
 

@@ -10,4 +10,4 @@ You can inject any CA certificates that are required for proxying HTTPS connecti
 
 ## Additional resources {#cert-manager-operator-proxy_additional-resources}
 
-- [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
+- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)

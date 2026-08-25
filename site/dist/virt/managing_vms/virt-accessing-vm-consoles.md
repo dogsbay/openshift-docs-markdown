@@ -11,7 +11,7 @@ By using VNC, serial, or desktop viewer consoles, you can access the console of 
 
 ## Additional resources {#_additional-resources_virt-accessing-vm-consoles}
 
-- [About the Scheduling, Scale, and Performance (SSP) Operator](/virt/about_virt/virt-architecture#virt-about-ssp-operator_virt-architecture)
-- [Connect to the serial console by using the web console](/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-serial-console-virtctl_virt-accessing-vm-consoles)
-- [Connect to the VNC console by using virtctl](/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-vnc-console-virtctl_virt-accessing-vm-consoles)
-- [Installing virtctl](/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools)
+- [About the Scheduling, Scale, and Performance (SSP) Operator](/openshift-docs-markdown/virt/about_virt/virt-architecture#virt-about-ssp-operator_virt-architecture)
+- [Connect to the serial console by using the web console](/openshift-docs-markdown/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-serial-console-virtctl_virt-accessing-vm-consoles)
+- [Connect to the VNC console by using virtctl](/openshift-docs-markdown/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-vnc-console-virtctl_virt-accessing-vm-consoles)
+- [Installing virtctl](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools)

@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the specification of AlertmanagerConfigSpec |
 | `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled. Most recent observed status of the ServiceMonitor. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 
@@ -10359,7 +10359,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfigList`](/rest_api/objects/index#com-coreos-monitoring-v1beta1-AlertmanagerConfigList) schema |
+| 200 - OK | [`AlertmanagerConfigList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-monitoring-v1beta1-AlertmanagerConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs}
@@ -10378,7 +10378,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -10395,7 +10395,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfigList`](/rest_api/objects/index#com-coreos-monitoring-v1beta1-AlertmanagerConfigList) schema |
+| 200 - OK | [`AlertmanagerConfigList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-monitoring-v1beta1-AlertmanagerConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -10419,15 +10419,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |  |
+| `body` | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
-| 201 - Created | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
-| 202 - Accepted | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 200 - OK | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 201 - Created | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 202 - Accepted | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs/{{ name }} {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs_name}
@@ -10458,8 +10458,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -10476,7 +10476,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 200 - OK | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -10500,7 +10500,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 200 - OK | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -10524,14 +10524,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |  |
+| `body` | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
-| 201 - Created | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 200 - OK | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 201 - Created | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs/{{ name }}/status {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs_name_status}
@@ -10556,7 +10556,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 200 - OK | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -10580,7 +10580,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 200 - OK | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -10604,12 +10604,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |  |
+| `body` | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
-| 201 - Created | [`AlertmanagerConfig`](/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 200 - OK | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
+| 201 - Created | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |

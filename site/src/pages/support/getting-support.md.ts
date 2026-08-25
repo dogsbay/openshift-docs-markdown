@@ -2,7 +2,7 @@
 // Source: support/getting-support.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Getting support\n---\n\n# Getting support {#getting-support}\n\nTo resolve issues with your OpenShift Container Platform cluster, you can search the Red Hat Knowledgebase, submit a support case, and use remote health monitoring tools.\n\n## Additional resources {#getting-support-additional-resources}\n\n- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)\n";
+const body = "---\ntitle: Getting support\n---\n\n# Getting support {#getting-support}\n\nTo resolve issues with your OpenShift Container Platform cluster, you can search the Red Hat Knowledgebase, submit a support case, and use remote health monitoring tools.\n\n## Additional resources {#getting-support-additional-resources}\n\n- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

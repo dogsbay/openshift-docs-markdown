@@ -16,5 +16,5 @@ You can update Operators previously installed with Operator Lifecycle Manager (O
 ## Additional resources {#additional-resources_olm-upgrading-operators}
 
 - [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)
-- [Multitenancy and Operator colocation](/operators/understanding/olm/olm-colocation#olm-colocation)
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

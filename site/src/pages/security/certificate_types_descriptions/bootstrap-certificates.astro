@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"cert-types-bootstrap-certificates","text":"Bootstrap certificates"},{"depth":2,"slug":"bootstrap-certificates-purpose_cert-types-bootstrap-certificates","text":"Purpose"},{"depth":2,"slug":"bootstrap-certificates-management_cert-types-bootstrap-certificates","text":"Management"},{"depth":2,"slug":"bootstrap-certificates-expiration_cert-types-bootstrap-certificates","text":"Expiration"},{"depth":2,"slug":"bootstrap-certificates-customization_cert-types-bootstrap-certificates","text":"Customization"}];
 const nav = navData;
-const currentPath = "/security/certificate_types_descriptions/bootstrap-certificates";
+const currentPath = "/openshift-docs-markdown/security/certificate_types_descriptions/bootstrap-certificates";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["security","security/certificate_types_descriptions"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Bootstrap certificates {#cert-types-bootstrap-certificates}\n\nYou should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.\n\n## Purpose {#bootstrap-certificates-purpose_cert-types-bootstrap-certificates}\n\nThe kubelet, in OpenShift Container Platform 4 and later, uses the bootstrap certificate located in `/etc/kubernetes/kubeconfig` to initially bootstrap. This is followed by the bootstrap initialization process and the authorization of the kubelet to create a certificate signing request (CSR).\n\nIn that process, the kubelet generates a CSR while communicating over the bootstrap channel. The controller manager signs the CSR, resulting in a certificate that the kubelet manages. For more information, see \"Bootstrap initialization\" and \"Authorize kubelet to create a CSR\" in the *Additional resources* section.\n\n## Management {#bootstrap-certificates-management_cert-types-bootstrap-certificates}\n\nThese certificates are managed by the system and not the user.\n\n## Expiration {#bootstrap-certificates-expiration_cert-types-bootstrap-certificates}\n\nThis bootstrap certificate is valid for 10 years.\n\nThe kubelet-managed certificate is valid for one year and rotates automatically at around the 80 percent mark of that one year.\n\n> [!NOTE]\n> OpenShift Lifecycle Manager (OLM) does not update the bootstrap certificate.\n\n## Customization {#bootstrap-certificates-customization_cert-types-bootstrap-certificates}\n\nYou cannot customize the bootstrap certificates.\n\n**Additional resources**\n\n- [Bootstrap initialization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#bootstrap-initialization)\n- [Authorize kubelet to create a CSR](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#authorize-kubelet-to-create-csr)\n","mdUrl":"/security/certificate_types_descriptions/bootstrap-certificates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Bootstrap certificates {#cert-types-bootstrap-certificates}\n\nYou should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.\n\n## Purpose {#bootstrap-certificates-purpose_cert-types-bootstrap-certificates}\n\nThe kubelet, in OpenShift Container Platform 4 and later, uses the bootstrap certificate located in `/etc/kubernetes/kubeconfig` to initially bootstrap. This is followed by the bootstrap initialization process and the authorization of the kubelet to create a certificate signing request (CSR).\n\nIn that process, the kubelet generates a CSR while communicating over the bootstrap channel. The controller manager signs the CSR, resulting in a certificate that the kubelet manages. For more information, see \"Bootstrap initialization\" and \"Authorize kubelet to create a CSR\" in the *Additional resources* section.\n\n## Management {#bootstrap-certificates-management_cert-types-bootstrap-certificates}\n\nThese certificates are managed by the system and not the user.\n\n## Expiration {#bootstrap-certificates-expiration_cert-types-bootstrap-certificates}\n\nThis bootstrap certificate is valid for 10 years.\n\nThe kubelet-managed certificate is valid for one year and rotates automatically at around the 80 percent mark of that one year.\n\n> [!NOTE]\n> OpenShift Lifecycle Manager (OLM) does not update the bootstrap certificate.\n\n## Customization {#bootstrap-certificates-customization_cert-types-bootstrap-certificates}\n\nYou cannot customize the bootstrap certificates.\n\n**Additional resources**\n\n- [Bootstrap initialization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#bootstrap-initialization)\n- [Authorize kubelet to create a CSR](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#authorize-kubelet-to-create-csr)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/certificate_types_descriptions/bootstrap-certificates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

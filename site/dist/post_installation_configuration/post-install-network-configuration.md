@@ -28,12 +28,12 @@ As a cluster administrator, you can modify the new project template to automatic
 
 ## Additional resources {#additional-resources_post-install-network-configuration}
 
-- [Cluster Network Operator in OpenShift Container Platform](/networking/networking_operators/cluster-network-operator#nw-cluster-network-operator_cluster-network-operator)
-- [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
-- [Configuring ingress cluster traffic overview](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/overview-traffic#overview-traffic)
-- [Configuring the node port service range](/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
-- [Configuring IPsec encryption](/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
-- [Create a network policy](/networking/network_security/network_policy/creating-network-policy#creating-network-policy)
-- [Configure multitenant isolation with network policies](/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy)
-- [Optimizing routing](/scalability_and_performance/optimization/routing-optimization#routing-optimization)
-- [Understanding multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)
+- [Cluster Network Operator in OpenShift Container Platform](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-cluster-network-operator_cluster-network-operator)
+- [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
+- [Configuring ingress cluster traffic overview](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/overview-traffic#overview-traffic)
+- [Configuring the node port service range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
+- [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
+- [Create a network policy](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#creating-network-policy)
+- [Configure multitenant isolation with network policies](/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy#multitenant-network-policy)
+- [Optimizing routing](/openshift-docs-markdown/scalability_and_performance/optimization/routing-optimization#routing-optimization)
+- [Understanding multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)

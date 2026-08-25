@@ -8,13 +8,13 @@ In environments where the cloud identity and access management (IAM) APIs are no
 
 <a name="additional-resources_configuring-iam-ibm-cloud-about-cco"></a>**Additional resources**
 
-- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
+- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 
 <a name="additional-resources_configuring-iam-ibm-cloud-refreshing-ids"></a>**Additional resources**
 
-- [Rotating API keys for {{ ibm_cloud_name }}](/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)
+- [Rotating API keys for {{ ibm_cloud_name }}](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)
 
 ## Additional resources {#additional-resources_configuring-iam-ibm-cloud}
 
-- [Installing a cluster on {{ ibm_cloud_name }} with customizations](/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
-- [Preparing to update a cluster with manually maintained credentials](/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)
+- [Installing a cluster on {{ ibm_cloud_name }} with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
+- [Preparing to update a cluster with manually maintained credentials](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"control-plane","text":"Control plane architecture"}];
 const nav = navData;
-const currentPath = "/architecture/control-plane";
+const currentPath = "/openshift-docs-markdown/architecture/control-plane";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["architecture"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Control plane architecture {#control-plane}\n\nYou can use a *control plane*, which is composed of control plane machines, to manage the OpenShift Container Platform cluster. The control plane machines manage workloads on the compute machines, which are also known as worker machines.\n\nThe cluster manages all upgrades to the machines by the actions of the Cluster Version Operator (CVO), the Machine Config Operator,\n\nand a set of individual Operators.\n\n**Additional resources**\n\n- [Understanding configuration drift detection](/machine_configuration/index#machine-config-drift-detection_machine-config-overview)\n\n**Additional resources**\n\n- [Cluster Operators reference](/operators/operator-reference#operator-reference)\n\n**Additional resources**\n\n- [Operator Lifecycle Manager (OLM) concepts and resources](/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)\n- [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)\n\n **Additional resources**\n\n- [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)\n- [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)\n","mdUrl":"/architecture/control-plane.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Control plane architecture {#control-plane}\n\nYou can use a *control plane*, which is composed of control plane machines, to manage the OpenShift Container Platform cluster. The control plane machines manage workloads on the compute machines, which are also known as worker machines.\n\nThe cluster manages all upgrades to the machines by the actions of the Cluster Version Operator (CVO), the Machine Config Operator,\n\nand a set of individual Operators.\n\n**Additional resources**\n\n- [Understanding configuration drift detection](/openshift-docs-markdown/machine_configuration/index#machine-config-drift-detection_machine-config-overview)\n\n**Additional resources**\n\n- [Cluster Operators reference](/openshift-docs-markdown/operators/operator-reference#operator-reference)\n\n**Additional resources**\n\n- [Operator Lifecycle Manager (OLM) concepts and resources](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)\n- [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)\n\n **Additional resources**\n\n- [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/architecture/control-plane.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,20 +97,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>and a set of individual Operators.</p>
       <p class="/modules/architecture-machine-config-pools.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_configuration/index#machine-config-drift-detection_machine-config-overview">Understanding configuration drift detection</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_configuration/index#machine-config-drift-detection_machine-config-overview">Understanding configuration drift detection</a></li></ul>
       <p class="/modules/operators-overview.md"></p>
       <p class="/modules/arch-cluster-operators.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/operators/operator-reference#operator-reference">Cluster Operators reference</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/operator-reference#operator-reference">Cluster Operators reference</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm">Operator Lifecycle Manager (OLM) concepts and resources</a></li>
-      <li><a href="/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog">Understanding the software catalog</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm">Operator Lifecycle Manager (OLM) concepts and resources</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog">Understanding the software catalog</a></li>
       </ul>
       <p class="/modules/etcd-overview.md"> <strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
-      <li><a href="/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd">Backing up etcd</a></li>
+      <li><a href="/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices">Recommended etcd practices</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd">Backing up etcd</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

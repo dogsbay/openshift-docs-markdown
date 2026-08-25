@@ -8,4 +8,4 @@ The descheduler evicts running pods so that the default scheduler can place them
 
 **Additional resources**
 
-- [Default scheduling](/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
+- [Default scheduling](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)

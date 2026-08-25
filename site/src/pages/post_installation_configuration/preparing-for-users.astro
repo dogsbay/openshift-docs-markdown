@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"post-install-preparing-for-users","text":"Preparing for users"},{"depth":2,"slug":"post-install-understanding-identity-provider","text":"Understanding identity provider configuration"}];
 const nav = navData;
-const currentPath = "/post_installation_configuration/preparing-for-users";
+const currentPath = "/openshift-docs-markdown/post_installation_configuration/preparing-for-users";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["post_installation_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing for users {#post-install-preparing-for-users}\n\nYou can prepare your cluster for users by configuring authentication and permissions, managing initial administrative access, and making Operators available through the software catalog.\n\nAfter installing OpenShift Container Platform, you can further expand and customize your cluster to your requirements, including taking steps to prepare for users.\n\n## Understanding identity provider configuration {#post-install-understanding-identity-provider}\n\nThe OpenShift Container Platform control plane includes a built-in OAuth server. Developers and administrators obtain OAuth access tokens to authenticate themselves to the API.\n\nAs an administrator, you can configure OAuth to specify an identity provider after you install your cluster.\n\n**Additional resources**\n\n- [RBAC rules allow execution privileges](https://access.redhat.com/solutions/6989997)\n- [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)\n\n**Additional resources**\n\n- [Kubernetes documentation on namespaces](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/)\n\n**Additional resources**\n\n- [Guaranteed Scheduling For Critical Add-On Pods (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/#rescheduler-guaranteed-scheduling-of-critical-add-ons)\n\n**Additional resources**\n\n- [Mirroring Operator catalogs for use with disconnected clusters](/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)\n\n**Additional resources**\n\n- [Accessing images for Operators from private registries](/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)\n- [Image template for custom catalog sources](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)\n- [Image pull policy](/openshift_images/managing_images/image-pull-policy#image-pull-policy)\n\n**Additional resources**\n\n- [About OperatorGroups](/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups)\n","mdUrl":"/post_installation_configuration/preparing-for-users.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing for users {#post-install-preparing-for-users}\n\nYou can prepare your cluster for users by configuring authentication and permissions, managing initial administrative access, and making Operators available through the software catalog.\n\nAfter installing OpenShift Container Platform, you can further expand and customize your cluster to your requirements, including taking steps to prepare for users.\n\n## Understanding identity provider configuration {#post-install-understanding-identity-provider}\n\nThe OpenShift Container Platform control plane includes a built-in OAuth server. Developers and administrators obtain OAuth access tokens to authenticate themselves to the API.\n\nAs an administrator, you can configure OAuth to specify an identity provider after you install your cluster.\n\n**Additional resources**\n\n- [RBAC rules allow execution privileges](https://access.redhat.com/solutions/6989997)\n- [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)\n\n**Additional resources**\n\n- [Kubernetes documentation on namespaces](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/)\n\n**Additional resources**\n\n- [Guaranteed Scheduling For Critical Add-On Pods (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/#rescheduler-guaranteed-scheduling-of-critical-add-ons)\n\n**Additional resources**\n\n- [Mirroring Operator catalogs for use with disconnected clusters](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)\n\n**Additional resources**\n\n- [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)\n- [Image template for custom catalog sources](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)\n- [Image pull policy](/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy#image-pull-policy)\n\n**Additional resources**\n\n- [About OperatorGroups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/preparing-for-users.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -125,18 +125,18 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/authentication-remove-kubeadmin.md"></p>
       <p class="/modules/post-install-mirrored-catalogs.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images">Mirroring Operator catalogs for use with disconnected clusters</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images">Mirroring Operator catalogs for use with disconnected clusters</a></li></ul>
       <p class="/modules/olm-creating-catalog-from-index.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs">Accessing images for Operators from private registries</a></li>
-      <li><a href="/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm">Image template for custom catalog sources</a></li>
-      <li><a href="/openshift_images/managing_images/image-pull-policy#image-pull-policy">Image pull policy</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs">Accessing images for Operators from private registries</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm">Image template for custom catalog sources</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy#image-pull-policy">Image pull policy</a></li>
       </ul>
       <p class="/modules/olm-installing-from-software-catalog-using-web-console.md"></p>
       <p class="/modules/olm-installing-from-software-catalog-using-cli.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups">About OperatorGroups</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups">About OperatorGroups</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

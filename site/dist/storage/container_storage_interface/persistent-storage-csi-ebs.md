@@ -8,16 +8,16 @@ You can provision and manage AWS Elastic Block Storage (EBS) in OpenShift Contai
 
 **Additional resources**
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-- [Managing the default storage class](/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
-- [Creating the EBS storage class](/storage/persistent_storage/persistent-storage-aws#storage-create-storage-class_persistent-storage-aws)
-- [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
+- [Creating the EBS storage class](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-aws#storage-create-storage-class_persistent-storage-aws)
+- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)
 
 **Additional resources**
 
-- [Optional AWS configuration parameters](/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional-aws_installation-config-parameters-aws)
+- [Optional AWS configuration parameters](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional-aws_installation-config-parameters-aws)
 
 **Additional resources**
 
-- [AWS EUSC region](/installing/installing_aws/installing-aws-account#installation-aws-eusc_region_installing-aws-account)
+- [AWS EUSC region](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installation-aws-eusc_region_installing-aws-account)

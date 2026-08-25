@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"olm-status","text":"Viewing Operator status"}];
 const nav = navData;
-const currentPath = "/operators/admin/olm-status";
+const currentPath = "/openshift-docs-markdown/operators/admin/olm-status";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["operators","operators/admin"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing Operator status {#olm-status}\n\nYou can view the status of installed Operators in OpenShift Container Platform through Operator Lifecycle Manager (OLM). OLM reports subscription and catalog source conditions to help you assess Operator health.\n\n**Additional resources**\n\n- [Refreshing failing subscriptions](/operators/admin/olm-deleting-operators-from-cluster#olm-refresh-subs_olm-deleting-operators-from-a-cluster)\n\n**Additional resources**\n\n- [Operator Lifecycle Manager concepts and resources -> Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)\n- [gRPC documentation: States of Connectivity](https://grpc.github.io/grpc/core/md_doc_connectivity-semantics-and-api.html)\n- [Accessing images for Operators from private registries](/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)\n","mdUrl":"/operators/admin/olm-status.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing Operator status {#olm-status}\n\nYou can view the status of installed Operators in OpenShift Container Platform through Operator Lifecycle Manager (OLM). OLM reports subscription and catalog source conditions to help you assess Operator health.\n\n**Additional resources**\n\n- [Refreshing failing subscriptions](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-refresh-subs_olm-deleting-operators-from-a-cluster)\n\n**Additional resources**\n\n- [Operator Lifecycle Manager concepts and resources -> Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)\n- [gRPC documentation: States of Connectivity](https://grpc.github.io/grpc/core/md_doc_connectivity-semantics-and-api.html)\n- [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/admin/olm-status.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,13 +95,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>You can view the status of installed Operators in OpenShift Container Platform through Operator Lifecycle Manager (OLM). OLM reports subscription and catalog source conditions to help you assess Operator health.</p>
       <p class="/modules/olm-status-conditions.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/operators/admin/olm-deleting-operators-from-cluster#olm-refresh-subs_olm-deleting-operators-from-a-cluster">Refreshing failing subscriptions</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-refresh-subs_olm-deleting-operators-from-a-cluster">Refreshing failing subscriptions</a></li></ul>
       <p class="/modules/olm-cs-status-cli.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm">Operator Lifecycle Manager concepts and resources -&gt; Catalog source</a></li>
+      <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm">Operator Lifecycle Manager concepts and resources -&gt; Catalog source</a></li>
       <li><a href="https://grpc.github.io/grpc/core/md_doc_connectivity-semantics-and-api.html">gRPC documentation: States of Connectivity</a></li>
-      <li><a href="/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs">Accessing images for Operators from private registries</a></li>
+      <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs">Accessing images for Operators from private registries</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

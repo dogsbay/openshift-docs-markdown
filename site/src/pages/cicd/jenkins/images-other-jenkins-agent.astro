@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"images-other-jenkins-agent","text":"Jenkins agent"}];
 const nav = navData;
-const currentPath = "/cicd/jenkins/images-other-jenkins-agent";
+const currentPath = "/openshift-docs-markdown/cicd/jenkins/images-other-jenkins-agent";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["cicd","cicd/jenkins"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Jenkins agent {#images-other-jenkins-agent}\n\nOpenShift Container Platform provides a base image for use as a Jenkins agent.\n\nThe Base image for Jenkins agents does the following:\n\n- Pulls in both the required tools, headless Java, the Jenkins JNLP client, and the useful ones, including `git`, `tar`, `zip`, and `nss`, among others.\n- Establishes the JNLP agent as the entry point.\n- Includes the `oc` client tool for invoking command-line operations from within Jenkins jobs.\n- Provides Dockerfiles for both Red Hat Enterprise Linux (RHEL) and `localdev` images.\n\n> [!IMPORTANT]\n> Use a version of the agent image that is appropriate for your OpenShift Container Platform release version. Embedding an `oc` client version that is not compatible with the OpenShift Container Platform version can cause unexpected behavior.\n\nThe OpenShift Container Platform Jenkins image also defines the following sample `java-builder` pod template to illustrate how you can use the agent image with the Jenkins Kubernetes plugin.\n\nThe `java-builder` pod template employs two containers:\n\n- A `jnlp` container that uses the OpenShift Container Platform Base agent image and handles the JNLP contract for starting and stopping Jenkins agents.\n- A `java` container that uses the `java` OpenShift Container Platform Sample ImageStream, which contains the various Java binaries, including the Maven binary `mvn`, for building code.\n","mdUrl":"/cicd/jenkins/images-other-jenkins-agent.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Jenkins agent {#images-other-jenkins-agent}\n\nOpenShift Container Platform provides a base image for use as a Jenkins agent.\n\nThe Base image for Jenkins agents does the following:\n\n- Pulls in both the required tools, headless Java, the Jenkins JNLP client, and the useful ones, including `git`, `tar`, `zip`, and `nss`, among others.\n- Establishes the JNLP agent as the entry point.\n- Includes the `oc` client tool for invoking command-line operations from within Jenkins jobs.\n- Provides Dockerfiles for both Red Hat Enterprise Linux (RHEL) and `localdev` images.\n\n> [!IMPORTANT]\n> Use a version of the agent image that is appropriate for your OpenShift Container Platform release version. Embedding an `oc` client version that is not compatible with the OpenShift Container Platform version can cause unexpected behavior.\n\nThe OpenShift Container Platform Jenkins image also defines the following sample `java-builder` pod template to illustrate how you can use the agent image with the Jenkins Kubernetes plugin.\n\nThe `java-builder` pod template employs two containers:\n\n- A `jnlp` container that uses the OpenShift Container Platform Base agent image and handles the JNLP contract for starting and stopping Jenkins agents.\n- A `java` container that uses the `java` OpenShift Container Platform Sample ImageStream, which contains the various Java binaries, including the Maven binary `mvn`, for building code.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/images-other-jenkins-agent.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

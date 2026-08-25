@@ -2,7 +2,7 @@
 // Source: cli_reference/openshift_cli/managing-cli-profiles.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Managing CLI profiles\n---\n\n# Managing CLI profiles {#managing-cli-profiles}\n\nYou can use a CLI configuration file to create different profiles, or contexts, for use with the {{ oc_first }}. A context consists of user authentication and a OpenShift Container Platform server information associated with a *nickname*.\n\n## Additional resources {#additional-resources_managing-cli-profiles}\n\n- [CLI tools overview](/cli_reference/index#cli-tools-overview)\n- [Understanding authentication](/authentication/understanding-authentication#understanding-authentication)\n";
+const body = "---\ntitle: Managing CLI profiles\n---\n\n# Managing CLI profiles {#managing-cli-profiles}\n\nYou can use a CLI configuration file to create different profiles, or contexts, for use with the {{ oc_first }}. A context consists of user authentication and a OpenShift Container Platform server information associated with a *nickname*.\n\n## Additional resources {#additional-resources_managing-cli-profiles}\n\n- [CLI tools overview](/openshift-docs-markdown/cli_reference/index#cli-tools-overview)\n- [Understanding authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

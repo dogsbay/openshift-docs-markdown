@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"install-kueue","text":"Installing {{ kueue_name }}"}];
 const nav = navData;
-const currentPath = "/ai_workloads/kueue/install-kueue";
+const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/install-kueue";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing {{ kueue_name }} {#install-kueue}\n\nYou can install {{ kueue_name }} by using the {{ kueue_op }} in OperatorHub.\n\n**Additional resources**\n\n- [Installing the {{ cert_manager_operator }}](/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n","mdUrl":"/ai_workloads/kueue/install-kueue.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing {{ kueue_name }} {#install-kueue}\n\nYou can install {{ kueue_name }} by using the {{ kueue_op }} in OperatorHub.\n\n**Additional resources**\n\n- [Installing the {{ cert_manager_operator }}](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/install-kueue.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/kueue-compatible-environments.md"></p>
       <p class="/modules/kueue-install-kueue-operator.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift">Installing the {"{"}{"{"} cert_manager_operator {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift">Installing the {"{"}{"{"} cert_manager_operator {"}"}{"}"}</a></li></ul>
       <p class="/modules/kueue-create-kueue-cr.md"></p>
       <p class="/modules/kueue-label-namespaces.md"></p>
     </article>

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"catalogd","text":"Catalogd"}];
 const nav = navData;
-const currentPath = "/extensions/arch/catalogd";
+const currentPath = "/openshift-docs-markdown/extensions/arch/catalogd";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["extensions","extensions/arch"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Catalogd {#catalogd}\n\n{{ olmv1_first }} uses the catalogd component and its resources to manage Operator and extension catalogs.\n\n**Additional resources**\n\n- [File-based catalogs](/extensions/catalogs/fbc#fbc)\n- [Adding a catalog to a cluster](/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)\n- [Red Hat-provided catalogs](/extensions/catalogs/rh-catalogs#rh-catalogs)\n","mdUrl":"/extensions/arch/catalogd.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Catalogd {#catalogd}\n\n{{ olmv1_first }} uses the catalogd component and its resources to manage Operator and extension catalogs.\n\n**Additional resources**\n\n- [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)\n- [Adding a catalog to a cluster](/openshift-docs-markdown/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)\n- [Red Hat-provided catalogs](/openshift-docs-markdown/extensions/catalogs/rh-catalogs#rh-catalogs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/arch/catalogd.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,9 +96,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/olmv1-about-catalogs.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/extensions/catalogs/fbc#fbc">File-based catalogs</a></li>
-      <li><a href="/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs">Adding a catalog to a cluster</a></li>
-      <li><a href="/extensions/catalogs/rh-catalogs#rh-catalogs">Red Hat-provided catalogs</a></li>
+      <li><a href="/openshift-docs-markdown/extensions/catalogs/fbc#fbc">File-based catalogs</a></li>
+      <li><a href="/openshift-docs-markdown/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs">Adding a catalog to a cluster</a></li>
+      <li><a href="/openshift-docs-markdown/extensions/catalogs/rh-catalogs#rh-catalogs">Red Hat-provided catalogs</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

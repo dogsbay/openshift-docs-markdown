@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"oc-mirror-migration-v1-to-v2","text":"Migrating from oc-mirror plugin v1 to v2"},{"depth":2,"slug":"additional-resources_oc-mirror-migration-v1-to-v2","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/disconnected/oc-mirror-migration-v1-to-v2";
+const currentPath = "/openshift-docs-markdown/disconnected/oc-mirror-migration-v1-to-v2";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["disconnected"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Migrating from oc-mirror plugin v1 to v2 {#oc-mirror-migration-v1-to-v2}\n\nThe oc-mirror v2 plugin introduces major changes to image mirroring workflows. Understand the migration process and check for compatibility with oc-mirror plugin v2 to ensure a successful migration.\n\n> [!IMPORTANT]\n> You must manually update the configurations by modifying the API version and removing deprecated fields. For more information, see \"Changes from oc-mirror plugin v1 to v2\".\n\n## Additional resources {#additional-resources_oc-mirror-migration-v1-to-v2}\n\n- [Mirroring an image set in a partially disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)\n- [Mirroring an image set in a fully disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)\n- [Changes from oc-mirror plugin v1 to v2](/disconnected/oc-mirror-migration-v1-to-v2#oc-mirror-migration-differences_oc-mirror-migration-v1-to-v2)\n- [Deletion of images from your disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-procedure-delete-v2_about-installing-oc-mirror-v2)\n","mdUrl":"/disconnected/oc-mirror-migration-v1-to-v2.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Migrating from oc-mirror plugin v1 to v2 {#oc-mirror-migration-v1-to-v2}\n\nThe oc-mirror v2 plugin introduces major changes to image mirroring workflows. Understand the migration process and check for compatibility with oc-mirror plugin v2 to ensure a successful migration.\n\n> [!IMPORTANT]\n> You must manually update the configurations by modifying the API version and removing deprecated fields. For more information, see \"Changes from oc-mirror plugin v1 to v2\".\n\n## Additional resources {#additional-resources_oc-mirror-migration-v1-to-v2}\n\n- [Mirroring an image set in a partially disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)\n- [Mirroring an image set in a fully disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)\n- [Changes from oc-mirror plugin v1 to v2](/openshift-docs-markdown/disconnected/oc-mirror-migration-v1-to-v2#oc-mirror-migration-differences_oc-mirror-migration-v1-to-v2)\n- [Deletion of images from your disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-procedure-delete-v2_about-installing-oc-mirror-v2)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected/oc-mirror-migration-v1-to-v2.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -106,10 +106,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/oc-mirror-migration-process.md"></p>
       <h2 id="additional-resources_oc-mirror-migration-v1-to-v2" class="group scroll-mt-20">Additional resources<a href="#additional-resources_oc-mirror-migration-v1-to-v2" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2">Mirroring an image set in a partially disconnected environment</a></li>
-      <li><a href="/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2">Mirroring an image set in a fully disconnected environment</a></li>
-      <li><a href="/disconnected/oc-mirror-migration-v1-to-v2#oc-mirror-migration-differences_oc-mirror-migration-v1-to-v2">Changes from oc-mirror plugin v1 to v2</a></li>
-      <li><a href="/disconnected/about-installing-oc-mirror-v2#oc-mirror-procedure-delete-v2_about-installing-oc-mirror-v2">Deletion of images from your disconnected environment</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2">Mirroring an image set in a partially disconnected environment</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2">Mirroring an image set in a fully disconnected environment</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/oc-mirror-migration-v1-to-v2#oc-mirror-migration-differences_oc-mirror-migration-v1-to-v2">Changes from oc-mirror plugin v1 to v2</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-procedure-delete-v2_about-installing-oc-mirror-v2">Deletion of images from your disconnected environment</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

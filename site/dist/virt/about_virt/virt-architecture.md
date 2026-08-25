@@ -21,8 +21,8 @@ The `HyperConverged` CR creates corresponding CRs for the operators of all other
 
 The OLM deploys the Hostpath Provisioner (HPP) Operator, but it is not functional until you create a `hostpath-provisioner` CR.
 
-![Deployments](/_assets/images/cnv_components_main.png)
+![Deployments](/openshift-docs-markdown/_assets/images/cnv_components_main.png)
 
 ## Additional resources {#additional-resources_virt-architecture}
 
-- [virtctl client commands](/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)
+- [virtctl client commands](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

@@ -23,4 +23,4 @@ This feature offers the following benefits:
 
 ## Additional resources {#_additional_resources}
 
-- [Understanding multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)
+- [Understanding multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)

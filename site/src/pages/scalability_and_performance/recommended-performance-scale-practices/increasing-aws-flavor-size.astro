@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"increasing-aws-flavor-size","text":"Selecting a larger AWS instance type for control plane machines"}];
 const nav = navData;
-const currentPath = "/scalability_and_performance/recommended-performance-scale-practices/increasing-aws-flavor-size";
+const currentPath = "/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/increasing-aws-flavor-size";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["scalability_and_performance","scalability_and_performance/recommended-performance-scale-practices"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Selecting a larger AWS instance type for control plane machines {#increasing-aws-flavor-size}\n\nIf the control plane machines in an {{ aws_first }} cluster require more resources, you can select a larger {{ aws_short }} instance type for the control plane machines to use.\n\n> [!NOTE]\n> The procedure for clusters that use a control plane machine set is different from the procedure for clusters that do not use a control plane machine set.\n>\n> If you are uncertain about the state of the `ControlPlaneMachineSet` CR in your cluster, you can verify the CR status.\n\n**Additional resources**\n\n- [Verify the CR status](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)\n\n**Additional resources**\n\n- [Managing control plane machines with control plane machine sets](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n\n**Additional resources**\n\n- [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)\n- [AWS documentation about changing the instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)\n","mdUrl":"/scalability_and_performance/recommended-performance-scale-practices/increasing-aws-flavor-size.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Selecting a larger AWS instance type for control plane machines {#increasing-aws-flavor-size}\n\nIf the control plane machines in an {{ aws_first }} cluster require more resources, you can select a larger {{ aws_short }} instance type for the control plane machines to use.\n\n> [!NOTE]\n> The procedure for clusters that use a control plane machine set is different from the procedure for clusters that do not use a control plane machine set.\n>\n> If you are uncertain about the state of the `ControlPlaneMachineSet` CR in your cluster, you can verify the CR status.\n\n**Additional resources**\n\n- [Verify the CR status](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)\n\n**Additional resources**\n\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n\n**Additional resources**\n\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)\n- [AWS documentation about changing the instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/increasing-aws-flavor-size.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,12 +104,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started">Verify the CR status</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started">Verify the CR status</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines">Managing control plane machines with control plane machine sets</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines">Managing control plane machines with control plane machine sets</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd">Backing up etcd</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd">Backing up etcd</a></li>
       <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html">AWS documentation about changing the instance type</a></li>
       </ul>
     </article>

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"about-hardware-enablement","text":"About specialized hardware and driver enablement"}];
 const nav = navData;
-const currentPath = "/hardware_enablement/about-hardware-enablement";
+const currentPath = "/openshift-docs-markdown/hardware_enablement/about-hardware-enablement";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hardware_enablement"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About specialized hardware and driver enablement {#about-hardware-enablement}\n\nThe Driver Toolkit (DTK) is a container image in the OpenShift Container Platform payload that you can use as a base image to build driver containers. The Driver Toolkit image contains the kernel packages and tools commonly required to build or install kernel modules, and the package versions match the kernel version running on the {{ op_system_first }} nodes in the corresponding OpenShift Container Platform release.\n\nYou can use driver containers to build and deploy out-of-tree kernel modules and drivers on container operating systems such as {{ op_system }}. These kernel modules and drivers are software libraries that run with a high level of privilege in the operating system kernel. They extend the kernel functionalities or provide the hardware-specific code required to control new devices. Examples include hardware devices such as field-programmable gate arrays (FPGA) or graphics processing units (GPU), and software-defined storage solutions, which all require kernel modules on client machines. Driver containers are the first layer of the software stack to enable these technologies on OpenShift Container Platform deployments.\n","mdUrl":"/hardware_enablement/about-hardware-enablement.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About specialized hardware and driver enablement {#about-hardware-enablement}\n\nThe Driver Toolkit (DTK) is a container image in the OpenShift Container Platform payload that you can use as a base image to build driver containers. The Driver Toolkit image contains the kernel packages and tools commonly required to build or install kernel modules, and the package versions match the kernel version running on the {{ op_system_first }} nodes in the corresponding OpenShift Container Platform release.\n\nYou can use driver containers to build and deploy out-of-tree kernel modules and drivers on container operating systems such as {{ op_system }}. These kernel modules and drivers are software libraries that run with a high level of privilege in the operating system kernel. They extend the kernel functionalities or provide the hardware-specific code required to control new devices. Examples include hardware devices such as field-programmable gate arrays (FPGA) or graphics processing units (GPU), and software-defined storage solutions, which all require kernel modules on client machines. Driver containers are the first layer of the software stack to enable these technologies on OpenShift Container Platform deployments.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/about-hardware-enablement.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

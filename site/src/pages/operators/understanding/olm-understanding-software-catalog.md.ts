@@ -2,7 +2,7 @@
 // Source: operators/understanding/olm-understanding-software-catalog.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Understanding the software catalog\n---\n\n# Understanding the software catalog {#olm-understanding-software-catalog}\n\nThe software catalog in OpenShift Container Platform provides a web console interface for discovering, installing, and managing Operators through Operator Lifecycle Manager (OLM).\n\n## Additional resources {#olm-understanding-software-catalog-resources}\n\n- [Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)\n- [Operator installation and upgrade workflow in OLM](/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)\n- [Red Hat Partner Connect](https://connect.redhat.com)\n";
+const body = "---\ntitle: Understanding the software catalog\n---\n\n# Understanding the software catalog {#olm-understanding-software-catalog}\n\nThe software catalog in OpenShift Container Platform provides a web console interface for discovering, installing, and managing Operators through Operator Lifecycle Manager (OLM).\n\n## Additional resources {#olm-understanding-software-catalog-resources}\n\n- [Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)\n- [Operator installation and upgrade workflow in OLM](/openshift-docs-markdown/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)\n- [Red Hat Partner Connect](https://connect.redhat.com)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

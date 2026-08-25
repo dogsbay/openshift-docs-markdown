@@ -25,7 +25,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | DeploymentConfigSpec represents the desired state of the deployment. |
 | `status` | `object` | DeploymentConfigStatus represents the current deployment state. |
 
@@ -47,7 +47,7 @@ Type
 | `revisionHistoryLimit` | `integer` | revisionHistoryLimit is the number of old ReplicationControllers to retain to allow for rollbacks. This field is a pointer to allow for differentiation between an explicit zero and not specified. Defaults to 10. (This only applies to DeploymentConfigs created via the new group API resource, not the legacy resource.) |
 | `selector` | `object (string)` | selector is a label query over pods that should match the Replicas count. |
 | `strategy` | `object` | DeploymentStrategy describes how to perform a deployment. |
-| `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the object that describes the pod that will be created if insufficient replicas are detected. |
+| `template` | [`PodTemplateSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the object that describes the pod that will be created if insufficient replicas are detected. |
 | `test` | `boolean` | test ensures that this deployment config will have zero replicas except while a deployment is running. This allows the deployment config to be used as a continuous deployment test - triggering on images, running the deployment, and then succeeding or failing. Post strategy hooks and After actions can be used to integrate successful deployment with an action. |
 | `triggers` | `array` | triggers determine how updates to a DeploymentConfig result in new deployments. If no triggers are defined, a new deployment can only occur as a result of an explicit client update to the DeploymentConfig with a new LatestVersion. If null, defaults to having a config change trigger. |
 | `triggers[]` | `object` | DeploymentTriggerPolicy describes a policy for a single trigger that results in a new deployment. |
@@ -69,7 +69,7 @@ Type
 | `customParams` | `object` | CustomDeploymentStrategyParams are the input to the Custom deployment strategy. |
 | `labels` | `object (string)` | labels is a set of key, value pairs added to custom deployer and lifecycle pre/post hook pods. |
 | `recreateParams` | `object` | RecreateDeploymentStrategyParams are the input to the Recreate deployment strategy. |
-| `resources` | [`ResourceRequirements`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources contains resource requirements to execute the deployment and any hooks. |
+| `resources` | [`ResourceRequirements`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources contains resource requirements to execute the deployment and any hooks. |
 | `rollingParams` | `object` | RollingDeploymentStrategyParams are the input to the Rolling deployment strategy. |
 | `type` | `string` | type is the name of a deployment strategy. |
 
@@ -86,7 +86,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `command` | `array (string)` | command is optional and overrides CMD in the container Image. |
-| `environment` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | environment holds the environment which will be given to the container for Image. |
+| `environment` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | environment holds the environment which will be given to the container for Image. |
 | `image` | `string` | image specifies a container image which can carry out a deployment. |
 
 ### .spec.strategy.recreateParams {#_specstrategyrecreateparams}
@@ -144,7 +144,7 @@ Required
 | --- | --- | --- |
 | `command` | `array (string)` | command is the action command and its arguments. |
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
 
 ### .spec.strategy.recreateParams.mid.tagImages {#_specstrategyrecreateparamsmidtagimages}
@@ -174,7 +174,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
-| `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+| `to` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
 
 ### .spec.strategy.recreateParams.post {#_specstrategyrecreateparamspost}
 
@@ -214,7 +214,7 @@ Required
 | --- | --- | --- |
 | `command` | `array (string)` | command is the action command and its arguments. |
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
 
 ### .spec.strategy.recreateParams.post.tagImages {#_specstrategyrecreateparamsposttagimages}
@@ -244,7 +244,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
-| `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+| `to` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
 
 ### .spec.strategy.recreateParams.pre {#_specstrategyrecreateparamspre}
 
@@ -284,7 +284,7 @@ Required
 | --- | --- | --- |
 | `command` | `array (string)` | command is the action command and its arguments. |
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
 
 ### .spec.strategy.recreateParams.pre.tagImages {#_specstrategyrecreateparamspretagimages}
@@ -314,7 +314,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
-| `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+| `to` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
 
 ### .spec.strategy.rollingParams {#_specstrategyrollingparams}
 
@@ -329,8 +329,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `intervalSeconds` | `integer` | intervalSeconds is the time to wait between polling deployment status after update. If the value is nil, a default will be used. |
-| `maxSurge` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxSurge is the maximum number of pods that can be scheduled above the original number of pods. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxUnavailable is 0. By default, 25% is used. Example: when this is set to 30%, the new RC can be scaled up by 30% immediately when the rolling update starts. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is atmost 130% of original pods. |
-| `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxUnavailable is the maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of update (ex: 10%). Absolute number is calculated from percentage by rounding down. This cannot be 0 if MaxSurge is 0. By default, 25% is used. Example: when this is set to 30%, the old RC can be scaled down by 30% immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that at least 70% of original number of pods are available at all times during the update. |
+| `maxSurge` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxSurge is the maximum number of pods that can be scheduled above the original number of pods. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxUnavailable is 0. By default, 25% is used. Example: when this is set to 30%, the new RC can be scaled up by 30% immediately when the rolling update starts. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is atmost 130% of original pods. |
+| `maxUnavailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxUnavailable is the maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of update (ex: 10%). Absolute number is calculated from percentage by rounding down. This cannot be 0 if MaxSurge is 0. By default, 25% is used. Example: when this is set to 30%, the old RC can be scaled down by 30% immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that at least 70% of original number of pods are available at all times during the update. |
 | `post` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `pre` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `timeoutSeconds` | `integer` | timeoutSeconds is the time to wait for updates before giving up. If the value is nil, a default will be used. |
@@ -374,7 +374,7 @@ Required
 | --- | --- | --- |
 | `command` | `array (string)` | command is the action command and its arguments. |
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
 
 ### .spec.strategy.rollingParams.post.tagImages {#_specstrategyrollingparamsposttagimages}
@@ -404,7 +404,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
-| `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+| `to` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
 
 ### .spec.strategy.rollingParams.pre {#_specstrategyrollingparamspre}
 
@@ -444,7 +444,7 @@ Required
 | --- | --- | --- |
 | `command` | `array (string)` | command is the action command and its arguments. |
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
 
 ### .spec.strategy.rollingParams.pre.tagImages {#_specstrategyrollingparamspretagimages}
@@ -474,7 +474,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
-| `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+| `to` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
 
 ### .spec.triggers {#_spectriggers}
 
@@ -518,7 +518,7 @@ Required
 | --- | --- | --- |
 | `automatic` | `boolean` | automatic means that the detection of a new tag value should result in an image update inside the pod template. |
 | `containerNames` | `array (string)` | containerNames is used to restrict tag updates to the specified set of container names in a pod. If multiple triggers point to the same containers, the resulting behavior is undefined. Future API versions will make this a validation error. If ContainerNames does not point to a valid container, the trigger will be ignored. Future API versions will make this a validation error. |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to an image stream tag to watch for changes. From.Name is the only required subfield - if From.Namespace is blank, the namespace of the current deployment trigger will be used. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to an image stream tag to watch for changes. From.Name is the only required subfield - if From.Namespace is blank, the namespace of the current deployment trigger will be used. |
 | `lastTriggeredImage` | `string` | lastTriggeredImage is the last image to be triggered. |
 
 ### .status {#_status}
@@ -570,8 +570,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time the condition transitioned from one status to another. |
-| `lastUpdateTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time this condition was updated. |
+| `lastTransitionTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time the condition transitioned from one status to another. |
+| `lastUpdateTime` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The last time this condition was updated. |
 | `message` | `string` | A human readable message indicating details about the transition. |
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -639,7 +639,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to the changed object which triggered a deployment. The field may have the kinds DockerImage, ImageStreamTag, or ImageStreamImage. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to the changed object which triggered a deployment. The field may have the kinds DockerImage, ImageStreamTag, or ImageStreamImage. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -690,7 +690,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfigList`](/rest_api/objects/index#com-github-openshift-api-apps-v1-DeploymentConfigList) schema |
+| 200 - OK | [`DeploymentConfigList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-apps-v1-DeploymentConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps.openshift.io/v1/watch/deploymentconfigs {#_apisappsopenshiftiov1watchdeploymentconfigs}
@@ -709,7 +709,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs}
@@ -734,7 +734,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -751,7 +751,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfigList`](/rest_api/objects/index#com-github-openshift-api-apps-v1-DeploymentConfigList) schema |
+| 200 - OK | [`DeploymentConfigList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-apps-v1-DeploymentConfigList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -775,15 +775,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |  |
+| `body` | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
-| 201 - Created | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
-| 202 - Accepted | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 201 - Created | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 202 - Accepted | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs}
@@ -802,7 +802,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }} {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name}
@@ -833,8 +833,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -851,7 +851,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -875,8 +875,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
-| 201 - Created | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 201 - Created | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -900,14 +900,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |  |
+| `body` | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
-| 201 - Created | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 201 - Created | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs/{{ name }} {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs_name}
@@ -932,7 +932,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/status {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_status}
@@ -957,7 +957,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -981,8 +981,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
-| 201 - Created | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 201 - Created | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -1006,12 +1006,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |  |
+| `body` | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
-| 201 - Created | [`DeploymentConfig`](/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
+| 201 - Created | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

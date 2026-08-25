@@ -2,5 +2,5 @@
 
 ## Release notes
 
-- [OpenShift Container Platform 4.22 release notes](/release_notes/ocp-4-22-release-notes.md)
-- [Additional release notes](/release_notes/addtl-release-notes.md): {% include "./_attributes/common-attributes.md" %}
+- [OpenShift Container Platform 4.22 release notes](https://dogsbay.github.io/openshift-docs-markdown/release_notes/ocp-4-22-release-notes.md)
+- [Additional release notes](https://dogsbay.github.io/openshift-docs-markdown/release_notes/addtl-release-notes.md): {% include "./_attributes/common-attributes.md" %}

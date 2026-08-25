@@ -8,6 +8,6 @@ If you need to remove a machine from your cluster, you can delete a specific mac
 
 ## Additional resources {#additional-resources_unhealthy-etcd-member}
 
-- [Machine phases and lifecycle](/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)
-- [Replacing an unhealthy etcd member](/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member#replacing-unhealthy-etcd-member)
-- [Managing control plane machines with control plane machine sets](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)
+- [Machine phases and lifecycle](/openshift-docs-markdown/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)
+- [Replacing an unhealthy etcd member](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member#replacing-unhealthy-etcd-member)
+- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)

@@ -28,6 +28,6 @@ After you logged in to the registry by using the `podman login` command, you can
 
 ## Additional resources {#accessing-the-registry-additional-resources}
 
-- [Allowing pods to reference images across projects](/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets)
-- [Removing the kubeadmin user](/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin)
-- [Understanding identity provider configuration](/authentication/understanding-identity-provider#understanding-identity-provider_understanding-identity-provider)
+- [Allowing pods to reference images across projects](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets)
+- [Removing the kubeadmin user](/openshift-docs-markdown/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin)
+- [Understanding identity provider configuration](/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider_understanding-identity-provider)

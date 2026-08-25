@@ -14,7 +14,7 @@ To hot swap a VM secondary network, you must edit the network configuration of t
 
 ## Additional resources {#additional-resources_virt-hot-swap-vm-secondary-network}
 
-- [About live migration](/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
-- [Connecting a virtual machine to a secondary localnet user-defined network](/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)
-- [Creating a Linux bridge network attachment definition](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
-- [Creating an SR-IOV network attachment definition](/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)
+- [About live migration](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
+- [Connecting a virtual machine to a secondary localnet user-defined network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)
+- [Creating a Linux bridge network attachment definition](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
+- [Creating an SR-IOV network attachment definition](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)

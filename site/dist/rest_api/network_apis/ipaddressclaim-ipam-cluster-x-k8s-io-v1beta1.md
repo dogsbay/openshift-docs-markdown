@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the desired state of IPAddressClaim. |
 | `status` | `object` | status is the observed state of IPAddressClaim. |
 
@@ -216,7 +216,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaimList`](/rest_api/objects/index#io-x-k8s-cluster-ipam-v1beta1-IPAddressClaimList) schema |
+| 200 - OK | [`IPAddressClaimList`](/openshift-docs-markdown/rest_api/objects/index#io-x-k8s-cluster-ipam-v1beta1-IPAddressClaimList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims}
@@ -235,7 +235,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -252,7 +252,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaimList`](/rest_api/objects/index#io-x-k8s-cluster-ipam-v1beta1-IPAddressClaimList) schema |
+| 200 - OK | [`IPAddressClaimList`](/openshift-docs-markdown/rest_api/objects/index#io-x-k8s-cluster-ipam-v1beta1-IPAddressClaimList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -276,15 +276,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |  |
+| `body` | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
-| 201 - Created | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
-| 202 - Accepted | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 201 - Created | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 202 - Accepted | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }} {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name}
@@ -315,8 +315,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -333,7 +333,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -357,7 +357,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -381,14 +381,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |  |
+| `body` | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
-| 201 - Created | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 201 - Created | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}/status {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name_status}
@@ -413,7 +413,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -437,7 +437,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -461,12 +461,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |  |
+| `body` | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
-| 201 - Created | [`IPAddressClaim`](/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 200 - OK | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
+| 201 - Created | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |

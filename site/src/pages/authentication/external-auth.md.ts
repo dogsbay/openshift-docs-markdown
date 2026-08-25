@@ -2,7 +2,7 @@
 // Source: authentication/external-auth.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Enabling direct authentication with an external OIDC identity provider\n---\n\n# Enabling direct authentication with an external OIDC identity provider {#external-auth}\n\nConfigure OpenShift Container Platform to use an external OpenID Connect (OIDC) identity provider directly for token-based authentication, replacing the built-in OAuth server with your organization’s existing identity infrastructure.\n\n**Additional resources**\n\n- [Example OIDC provider configuration for CLI clients only](/authentication/external-auth#external-auth-cli_external-auth)\n- [Configuring advanced direct authentication fields](/authentication/structured-auth-config-fields#structured-auth-config-fields)\n";
+const body = "---\ntitle: Enabling direct authentication with an external OIDC identity provider\n---\n\n# Enabling direct authentication with an external OIDC identity provider {#external-auth}\n\nConfigure OpenShift Container Platform to use an external OpenID Connect (OIDC) identity provider directly for token-based authentication, replacing the built-in OAuth server with your organization’s existing identity infrastructure.\n\n**Additional resources**\n\n- [Example OIDC provider configuration for CLI clients only](/openshift-docs-markdown/authentication/external-auth#external-auth-cli_external-auth)\n- [Configuring advanced direct authentication fields](/openshift-docs-markdown/authentication/structured-auth-config-fields#structured-auth-config-fields)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

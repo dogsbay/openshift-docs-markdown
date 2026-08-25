@@ -2,7 +2,7 @@
 // Source: installing/installing_bare_metal/upi/installation-config-parameters-bare-metal.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Installation configuration parameters for bare metal\n---\n\n# Installation configuration parameters for bare metal {#installation-config-parameters-bare-metal}\n\nBefore you deploy an OpenShift Container Platform cluster, you provide a customized `install-config.yaml` installation configuration file that describes the details for your environment.\n\n**Additional resources**\n\n- [OVN-Kubernetes IPv6 and dual-stack limitations](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-limitations_about-ovn-kubernetes)\n";
+const body = "---\ntitle: Installation configuration parameters for bare metal\n---\n\n# Installation configuration parameters for bare metal {#installation-config-parameters-bare-metal}\n\nBefore you deploy an OpenShift Container Platform cluster, you provide a customized `install-config.yaml` installation configuration file that describes the details for your environment.\n\n**Additional resources**\n\n- [OVN-Kubernetes IPv6 and dual-stack limitations](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-limitations_about-ovn-kubernetes)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

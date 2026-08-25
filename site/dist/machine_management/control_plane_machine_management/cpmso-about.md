@@ -13,5 +13,5 @@ Control plane machine sets provide for control plane machines similar management
 
 ## Additional resources {#additional-resources_cpmso-about}
 
-- [Control Plane Machine Set Operator reference](/operators/operator-reference#control-plane-machine-set-operator_operator-reference)
-- [`ControlPlaneMachineSet` custom resource](/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)
+- [Control Plane Machine Set Operator reference](/openshift-docs-markdown/operators/operator-reference#control-plane-machine-set-operator_operator-reference)
+- [`ControlPlaneMachineSet` custom resource](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)

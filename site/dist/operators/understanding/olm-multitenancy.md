@@ -12,20 +12,20 @@ Consider the following scenarios to determine which Operator installation workfl
 
 **Additional resources**
 
-- [Common terms: Multitenant](/operators/understanding/olm-common-terms#olm-common-terms-multitenancy_olm-common-terms)
-- [Limitations for multitenant Operator management](/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-limitations)
+- [Common terms: Multitenant](/openshift-docs-markdown/operators/understanding/olm-common-terms#olm-common-terms-multitenancy_olm-common-terms)
+- [Limitations for multitenant Operator management](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-limitations)
 
 **Additional resources**
 
-- [Adding Operators to a cluster](/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
-- [Install modes types](/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-membership_olm-understanding-operatorgroups)
+- [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
+- [Install modes types](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-membership_olm-understanding-operatorgroups)
 
 **Additional resources**
 
-- [Preparing for multiple instances of an Operator for multitenant clusters](/operators/admin/olm-adding-operators-to-cluster#olm-preparing-operators-multitenant_olm-adding-operators-to-a-cluster)
-- [Allowing non-cluster administrators to install Operators](/operators/admin/olm-creating-policy#olm-creating-policy)
-- [Disabling the default OperatorHub catalog sources](/operators/admin/olm-managing-custom-catalogs#olm-restricted-networks-operatorhub_olm-managing-custom-catalogs)
+- [Preparing for multiple instances of an Operator for multitenant clusters](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-preparing-operators-multitenant_olm-adding-operators-to-a-cluster)
+- [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)
+- [Disabling the default OperatorHub catalog sources](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-restricted-networks-operatorhub_olm-managing-custom-catalogs)
 
 **Additional resources**
 
-- [Multitenancy and Operator colocation](/operators/understanding/olm/olm-colocation#olm-colocation)
+- [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)

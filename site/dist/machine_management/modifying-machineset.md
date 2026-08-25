@@ -11,6 +11,6 @@ To add labels, change the instance type, change block storage, or make other cha
 
 **Additional resources**
 
-- [Lifecycle hooks for the machine deletion phase](/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)
-- [Manually scaling a compute machine set](/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset)
-- [Controlling pod placement using the scheduler](/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
+- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)
+- [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset)
+- [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)

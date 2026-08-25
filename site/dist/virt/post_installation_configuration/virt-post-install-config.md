@@ -23,6 +23,6 @@ After you have installed {{ VirtProductName }}, there are procedures that you ca
 
 ## Additional resources {#additional-resources_virt-post-install-config}
 
-- [Specifying nodes for {{ VirtProductName }} components](/virt/post_installation_configuration/virt-node-placement-virt-components#virt-node-placement-virt-components)
-- [Postinstallation network configuration](/virt/post_installation_configuration/virt-post-install-network-config#virt-post-install-network-config)
-- [Postinstallation storage configuration](/virt/post_installation_configuration/virt-post-install-storage-config#virt-post-install-storage-config)
+- [Specifying nodes for {{ VirtProductName }} components](/openshift-docs-markdown/virt/post_installation_configuration/virt-node-placement-virt-components#virt-node-placement-virt-components)
+- [Postinstallation network configuration](/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-network-config#virt-post-install-network-config)
+- [Postinstallation storage configuration](/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-storage-config#virt-post-install-storage-config)

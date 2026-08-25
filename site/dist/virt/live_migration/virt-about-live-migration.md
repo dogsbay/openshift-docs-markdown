@@ -8,6 +8,6 @@ Live migration moves a running virtual machine to another node without interrupt
 
 ## Additional resources {#additional-resources_virt-about-live-migration}
 
-- [Default cluster roles for {{ VirtProductName }}](/virt/about_virt/virt-security-policies#default-cluster-roles-for-virt_virt-security-policies)
-- [Prometheus queries for live migration](/virt/monitoring/virt-prometheus-queries#virt-live-migration-metrics_virt-prometheus-queries)
-- [Configure eviction and run strategies](/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)
+- [Default cluster roles for {{ VirtProductName }}](/openshift-docs-markdown/virt/about_virt/virt-security-policies#default-cluster-roles-for-virt_virt-security-policies)
+- [Prometheus queries for live migration](/openshift-docs-markdown/virt/monitoring/virt-prometheus-queries#virt-live-migration-metrics_virt-prometheus-queries)
+- [Configure eviction and run strategies](/openshift-docs-markdown/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)

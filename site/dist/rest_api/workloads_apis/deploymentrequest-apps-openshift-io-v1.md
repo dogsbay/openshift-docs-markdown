@@ -67,13 +67,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`DeploymentRequest`](/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |  |
+| `body` | [`DeploymentRequest`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`DeploymentRequest`](/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |
-| 201 - Created | [`DeploymentRequest`](/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |
-| 202 - Accepted | [`DeploymentRequest`](/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |
+| 200 - OK | [`DeploymentRequest`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |
+| 201 - Created | [`DeploymentRequest`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |
+| 202 - Accepted | [`DeploymentRequest`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentrequest-apps-openshift-io-v1#deploymentrequest-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

@@ -9,5 +9,5 @@ Keep a stable network across your {{ OCP_short }} nodes, {{ aws_short }} Simple 
 ## Additional resources {#_additional_resources}
 
 - \[Configuring network settings\](https://docs.redhat.com/en/documentation/openshift_container_platform/{{ ocp_version }}/html/configuring_network_settings/index)
-- [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
-- [Troubleshooting](/backup_and_restore/application_backup_and_restore/troubleshooting/troubleshooting#troubleshooting)
+- [About installing {{ oadp_short }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
+- [Troubleshooting](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/troubleshooting#troubleshooting)

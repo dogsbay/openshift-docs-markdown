@@ -25,23 +25,23 @@ A failure domain represents a single Prism Element instance where new control pl
 
 **Additional resources**
 
-- [Checking the control plane machine set custom resource state](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)
-- [Replacing a control plane machine](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-replace_cpmso-managing-machines)
+- [Checking the control plane machine set custom resource state](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)
+- [Replacing a control plane machine](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-replace_cpmso-managing-machines)
 
 **Additional resources**
 
-- [Editing existing compute machine sets to implement failure domains](/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-edit_nutanix-failure-domains)
-- [Replacing existing compute machine sets to implement failure domains](/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-replace_nutanix-failure-domains)
+- [Editing existing compute machine sets to implement failure domains](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-edit_nutanix-failure-domains)
+- [Replacing existing compute machine sets to implement failure domains](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-replace_nutanix-failure-domains)
 
 **Additional resources**
 
-- [Modifying a compute machine set](/machine_management/modifying-machineset#modifying-machineset)
+- [Modifying a compute machine set](/openshift-docs-markdown/machine_management/modifying-machineset#modifying-machineset)
 
 **Additional resources**
 
-- [Creating a compute machine set on Nutanix](/machine_management/creating_machinesets/creating-machineset-nutanix#creating-machineset-nutanix)
+- [Creating a compute machine set on Nutanix](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-nutanix#creating-machineset-nutanix)
 
 ## Additional resources {#additional-resources_nutanix-failure-domains}
 
-- [Configuring failure domains](/installing/installing_nutanix/installing-nutanix-installer-provisioned#installation-configuring-nutanix-failure-domains_installing-nutanix-installer-provisioned)
-- [Adding failure domains to an existing Nutanix cluster](/installing/installing_nutanix/nutanix-failure-domains#nutanix-failure-domains-adding-to-existing-cluster_nutanix-failure-domains)
+- [Configuring failure domains](/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-installer-provisioned#installation-configuring-nutanix-failure-domains_installing-nutanix-installer-provisioned)
+- [Adding failure domains to an existing Nutanix cluster](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#nutanix-failure-domains-adding-to-existing-cluster_nutanix-failure-domains)

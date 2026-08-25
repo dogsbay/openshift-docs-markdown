@@ -14,4 +14,4 @@ The OpenShift Container Platform web console is a user interface accessible from
 **Additional resources**
 
 - [OpenShift Container Platform 4.x Tested Integrations](https://access.redhat.com/articles/4128421)
-- [Enabling feature sets using the web console](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Enabling feature sets using the web console](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

@@ -27,7 +27,7 @@ import TableRow from "@ui/table/TableRow.astro";
 
 const headings = [{"depth":1,"slug":"preparing-to-install-with-agent-based-installer","text":"Preparing to install with the Agent-based Installer"},{"depth":2,"slug":"additional-resources_preparing-to-install-with-agent-based-installer","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer";
+const currentPath = "/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -46,9 +46,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["installing","installing/installing_with_agent_based_installer"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to install with the Agent-based Installer {#preparing-to-install-with-agent-based-installer}\n\nThe Agent-based Installer provides the flexibility to boot your on-premise servers in any way that you choose. It combines the ease of use of the Assisted Installation service with the ability to run offline, including in air-gapped environments.\n\nThe Agent-based Installer uses a subcommand of the OpenShift Container Platform installation program. It generates a bootable ISO image containing all of the information required to deploy an OpenShift Container Platform cluster, with an available release image.\n\nThe configuration is in the same format as for the installer-provisioned infrastructure and user-provisioned infrastructure installation methods. The Agent-based Installer can also optionally generate or accept Zero Touch Provisioning (ZTP) custom resources. ZTP allows you to provision new edge sites with declarative configurations of bare-metal equipment.\n\n> [!NOTE]\n> To deploy clusters with virtualized control planes running on {{ VirtProductName }} VMs, you can use KubeVirt Redfish to expose VMs as Redfish-compatible endpoints. For more information about using virtualized control planes, see \"Using virtualized control planes\".\n\n**Agent-based Installer supported architectures**\n\n| CPU architecture | Connected installation | Disconnected installation |\n| --- | --- | --- |\n| `64-bit x86` | ✓ | ✓ |\n| `64-bit ARM` | ✓ | ✓ |\n| `ppc64le` | ✓ | ✓ |\n| `s390x` | ✓ | ✓ |\n\n**Additional resources**\n\n- [Understanding virtualized control planes](/vcp/vcp-overview#vcp-overview)\n\n**Additional resources**\n\n- [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)\n- [Requirements for a cluster using the platform \"none\" option](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installation-requirements-platform-none_preparing-to-install-with-agent-based-installer)\n- [Increase the network MTU](/installing/installing_bare_metal/ipi/ipi-install-prerequisites#network-requirements-increase-mtu_ipi-install-prerequisites)\n- [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)\n- [About a local arbiter node](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)\n\n**Additional resources**\n\n- [OpenShift Security Guide Book](https://access.redhat.com/articles/5059881)\n- [Support for FIPS cryptography](/installing/overview/installing-fips#installing-fips)\n\n**Additional resources**\n\n- [Port requirements for the rendezvous host](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer)\n- [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)\n\n**Additional resources**\n\n- [Configuring network bonding](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking)\n\n## Additional resources {#additional-resources_preparing-to-install-with-agent-based-installer}\n\n- [Installing a cluster](/installing/installing_with_agent_based_installer/installing-with-agent-basic#installing-with-agent-basic)\n- [Installing a cluster with customizations](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)\n","mdUrl":"/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to install with the Agent-based Installer {#preparing-to-install-with-agent-based-installer}\n\nThe Agent-based Installer provides the flexibility to boot your on-premise servers in any way that you choose. It combines the ease of use of the Assisted Installation service with the ability to run offline, including in air-gapped environments.\n\nThe Agent-based Installer uses a subcommand of the OpenShift Container Platform installation program. It generates a bootable ISO image containing all of the information required to deploy an OpenShift Container Platform cluster, with an available release image.\n\nThe configuration is in the same format as for the installer-provisioned infrastructure and user-provisioned infrastructure installation methods. The Agent-based Installer can also optionally generate or accept Zero Touch Provisioning (ZTP) custom resources. ZTP allows you to provision new edge sites with declarative configurations of bare-metal equipment.\n\n> [!NOTE]\n> To deploy clusters with virtualized control planes running on {{ VirtProductName }} VMs, you can use KubeVirt Redfish to expose VMs as Redfish-compatible endpoints. For more information about using virtualized control planes, see \"Using virtualized control planes\".\n\n**Agent-based Installer supported architectures**\n\n| CPU architecture | Connected installation | Disconnected installation |\n| --- | --- | --- |\n| `64-bit x86` | ✓ | ✓ |\n| `64-bit ARM` | ✓ | ✓ |\n| `ppc64le` | ✓ | ✓ |\n| `s390x` | ✓ | ✓ |\n\n**Additional resources**\n\n- [Understanding virtualized control planes](/openshift-docs-markdown/vcp/vcp-overview#vcp-overview)\n\n**Additional resources**\n\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)\n- [Requirements for a cluster using the platform \"none\" option](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installation-requirements-platform-none_preparing-to-install-with-agent-based-installer)\n- [Increase the network MTU](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-prerequisites#network-requirements-increase-mtu_ipi-install-prerequisites)\n- [Adding worker nodes to {{ sno }} clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)\n- [About a local arbiter node](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)\n\n**Additional resources**\n\n- [OpenShift Security Guide Book](https://access.redhat.com/articles/5059881)\n- [Support for FIPS cryptography](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips)\n\n**Additional resources**\n\n- [Port requirements for the rendezvous host](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer)\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)\n\n**Additional resources**\n\n- [Configuring network bonding](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking)\n\n## Additional resources {#additional-resources_preparing-to-install-with-agent-based-installer}\n\n- [Installing a cluster](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-basic#installing-with-agent-basic)\n- [Installing a cluster with customizations](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -89,10 +89,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -143,21 +143,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </TableBody>
       </Table>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/vcp/vcp-overview#vcp-overview">Understanding virtualized control planes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/vcp/vcp-overview#vcp-overview">Understanding virtualized control planes</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/overview/cluster-capabilities#cluster-capabilities">Cluster capabilities</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities">Cluster capabilities</a></li>
       <li><a href="https://access.redhat.com/articles/4207611">Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)</a></li>
-      <li><a href="/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installation-requirements-platform-none_preparing-to-install-with-agent-based-installer">Requirements for a cluster using the platform "none" option</a></li>
-      <li><a href="/installing/installing_bare_metal/ipi/ipi-install-prerequisites#network-requirements-increase-mtu_ipi-install-prerequisites">Increase the network MTU</a></li>
-      <li><a href="/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes">Adding worker nodes to {"{"}{"{"} sno {"}"}{"}"} clusters</a></li>
-      <li><a href="/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer">About a local arbiter node</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installation-requirements-platform-none_preparing-to-install-with-agent-based-installer">Requirements for a cluster using the platform "none" option</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-prerequisites#network-requirements-increase-mtu_ipi-install-prerequisites">Increase the network MTU</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes">Adding worker nodes to {"{"}{"{"} sno {"}"}{"}"} clusters</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer">About a local arbiter node</a></li>
       </ul>
       <p class="/modules/agent-installer-configuring-fips-compliance.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/articles/5059881">OpenShift Security Guide Book</a></li>
-      <li><a href="/installing/overview/installing-fips#installing-fips">Support for FIPS cryptography</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/installing-fips#installing-fips">Support for FIPS cryptography</a></li>
       </ul>
       <p class="/modules/agent-host-roles.md"></p>
       <p class="/modules/agent-install-ipi-install-root-device-hints.md"></p>
@@ -167,8 +167,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/agent-install-load-balancing-none.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer">Port requirements for the rendezvous host</a></li>
-      <li><a href="/installing/overview/cluster-capabilities#cluster-capabilities">Cluster capabilities</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer">Port requirements for the rendezvous host</a></li>
+      <li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities">Cluster capabilities</a></li>
       <li><a href="https://access.redhat.com/articles/4207611">Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)</a></li>
       </ul>
       <p class="/modules/agent-install-sample-config-bonds-vlans.md"></p>
@@ -178,8 +178,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/validations-before-agent-iso-creation.md"></p>
       <h2 id="additional-resources_preparing-to-install-with-agent-based-installer" class="group scroll-mt-20">Additional resources<a href="#additional-resources_preparing-to-install-with-agent-based-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/installing/installing_with_agent_based_installer/installing-with-agent-basic#installing-with-agent-basic">Installing a cluster</a></li>
-      <li><a href="/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer">Installing a cluster with customizations</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-basic#installing-with-agent-basic">Installing a cluster</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer">Installing a cluster with customizations</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

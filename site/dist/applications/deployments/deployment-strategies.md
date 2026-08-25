@@ -24,10 +24,10 @@ A deployment strategy uses readiness checks to determine if a new pod is ready f
 
 **Additional resources**
 
-- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
-- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)
+- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
+- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)
 
 **Additional resources**
 
-- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
-- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)
+- [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
+- [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)

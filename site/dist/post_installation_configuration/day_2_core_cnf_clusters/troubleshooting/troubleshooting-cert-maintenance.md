@@ -13,32 +13,32 @@ Learn about certificates in OpenShift Container Platform and how to maintain the
 
 **Additional resources**
 
-- [Proxy certificates](/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)
+- [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)
 
 **Additional resources**
 
-- [User-provisioned certificates for the API server](/security/certificate_types_descriptions/user-provided-certificates-for-api-server#cert-types-user-provided-certificates-for-the-api-server)
+- [User-provisioned certificates for the API server](/openshift-docs-markdown/security/certificate_types_descriptions/user-provided-certificates-for-api-server#cert-types-user-provided-certificates-for-the-api-server)
 
 **Additional resources**
 
-- [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)
-- [Node certificates](/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
-- [Bootstrap certificates](/security/certificate_types_descriptions/bootstrap-certificates#cert-types-bootstrap-certificates_cert-types-bootstrap-certificates)
-- [etcd certificates](/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates-cert-types-etcd-certificates)
-- [OLM certificates](/security/certificate_types_descriptions/olm-certificates#cert-types-olm-certificates_cert-types-olm-certificates)
-- [Machine Config Operator certificates](/security/certificate_types_descriptions/machine-config-operator-certificates#cert-types-machine-config-operator-certificates_cert-types-machine-config-operator-certificates)
-- [Monitoring and cluster logging Operator component certificates](/security/certificate_types_descriptions/monitoring-and-cluster-logging-operator-component-certificates#cert-types-monitoring-and-cluster-logging-operator-component-certificates_cert-types-monitoring-and-cluster-logging-operator-component-certificates)
-- [Control plane certificates](/security/certificate_types_descriptions/control-plane-certificates#cert-types-control-plane-certificates_cert-types-control-plane-certificates)
-- [Ingress certificates](/security/certificate_types_descriptions/ingress-certificates#cert-types-ingress-certificates_cert-types-ingress-certificates)
+- [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)
+- [Node certificates](/openshift-docs-markdown/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
+- [Bootstrap certificates](/openshift-docs-markdown/security/certificate_types_descriptions/bootstrap-certificates#cert-types-bootstrap-certificates_cert-types-bootstrap-certificates)
+- [etcd certificates](/openshift-docs-markdown/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates-cert-types-etcd-certificates)
+- [OLM certificates](/openshift-docs-markdown/security/certificate_types_descriptions/olm-certificates#cert-types-olm-certificates_cert-types-olm-certificates)
+- [Machine Config Operator certificates](/openshift-docs-markdown/security/certificate_types_descriptions/machine-config-operator-certificates#cert-types-machine-config-operator-certificates_cert-types-machine-config-operator-certificates)
+- [Monitoring and cluster logging Operator component certificates](/openshift-docs-markdown/security/certificate_types_descriptions/monitoring-and-cluster-logging-operator-component-certificates#cert-types-monitoring-and-cluster-logging-operator-component-certificates_cert-types-monitoring-and-cluster-logging-operator-component-certificates)
+- [Control plane certificates](/openshift-docs-markdown/security/certificate_types_descriptions/control-plane-certificates#cert-types-control-plane-certificates_cert-types-control-plane-certificates)
+- [Ingress certificates](/openshift-docs-markdown/security/certificate_types_descriptions/ingress-certificates#cert-types-ingress-certificates_cert-types-ingress-certificates)
 
 **Additional resources**
 
-- [etcd certificates](/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates_cert-types-etcd-certificates)
+- [etcd certificates](/openshift-docs-markdown/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates_cert-types-etcd-certificates)
 
 **Additional resources**
 
-- [Node certificates](/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
+- [Node certificates](/openshift-docs-markdown/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
 
 **Additional resources**
 
-- [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)
+- [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)

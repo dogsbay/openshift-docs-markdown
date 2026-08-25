@@ -25,7 +25,7 @@ import TableRow from "@ui/table/TableRow.astro";
 
 const headings = [{"depth":1,"slug":"nodemetrics-metrics-k8s-io-v1beta1","text":"NodeMetrics [metrics.k8s.io/v1beta1]"},{"depth":2,"slug":"_specification","text":"Specification"},{"depth":2,"slug":"_api_endpoints","text":"API endpoints"},{"depth":3,"slug":"_apismetricsk8siov1beta1nodes","text":"/apis/metrics.k8s.io/v1beta1/nodes"},{"depth":3,"slug":"_apismetricsk8siov1beta1nodes_name","text":"/apis/metrics.k8s.io/v1beta1/nodes/{{ name }}"}];
 const nav = navData;
-const currentPath = "/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1";
+const currentPath = "/openshift-docs-markdown/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -44,9 +44,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["rest_api","rest_api/monitoring_apis"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# NodeMetrics \\[metrics.k8s.io/v1beta1\\] {#nodemetrics-metrics-k8s-io-v1beta1}\n\nDescription\n:   NodeMetrics sets resource usage metrics of a node.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `timestamp`\n    - `window`\n    - `usage`\n\n## Specification {#_specification}\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |\n| `timestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval \\[Timestamp-Window, Timestamp\\]. |\n| `usage` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | The memory usage is the memory working set. |\n| `window` | [`Duration`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |\n\n## API endpoints {#_api_endpoints}\n\nThe following API endpoints are available:\n\n- `/apis/metrics.k8s.io/v1beta1/nodes`\n\n  - `GET`: list objects of kind NodeMetrics\n- `/apis/metrics.k8s.io/v1beta1/nodes/{{ name }}`\n\n  - `GET`: read the specified NodeMetrics\n\n### /apis/metrics.k8s.io/v1beta1/nodes {#_apismetricsk8siov1beta1nodes}\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    list objects of kind NodeMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`NodeMetricsList`](/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-NodeMetricsList) schema |\n\n### /apis/metrics.k8s.io/v1beta1/nodes/{{ name }} {#_apismetricsk8siov1beta1nodes_name}\n\n**Global path parameters**\n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | name of the NodeMetrics |\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    read the specified NodeMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`NodeMetrics`](/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1#nodemetrics-metrics-k8s-io-v1beta1) schema |\n","mdUrl":"/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# NodeMetrics \\[metrics.k8s.io/v1beta1\\] {#nodemetrics-metrics-k8s-io-v1beta1}\n\nDescription\n:   NodeMetrics sets resource usage metrics of a node.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `timestamp`\n    - `window`\n    - `usage`\n\n## Specification {#_specification}\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |\n| `timestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval \\[Timestamp-Window, Timestamp\\]. |\n| `usage` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | The memory usage is the memory working set. |\n| `window` | [`Duration`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |\n\n## API endpoints {#_api_endpoints}\n\nThe following API endpoints are available:\n\n- `/apis/metrics.k8s.io/v1beta1/nodes`\n\n  - `GET`: list objects of kind NodeMetrics\n- `/apis/metrics.k8s.io/v1beta1/nodes/{{ name }}`\n\n  - `GET`: read the specified NodeMetrics\n\n### /apis/metrics.k8s.io/v1beta1/nodes {#_apismetricsk8siov1beta1nodes}\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    list objects of kind NodeMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`NodeMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-NodeMetricsList) schema |\n\n### /apis/metrics.k8s.io/v1beta1/nodes/{{ name }} {#_apismetricsk8siov1beta1nodes_name}\n\n**Global path parameters**\n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | name of the NodeMetrics |\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    read the specified NodeMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`NodeMetrics`](/openshift-docs-markdown/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1#nodemetrics-metrics-k8s-io-v1beta1) schema |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -87,10 +87,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -134,22 +134,22 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </TableRow>
       <TableRow>
       <TableCell><code>metadata</code></TableCell>
-      <TableCell><a href="/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta"><code>ObjectMeta</code></a></TableCell>
+      <TableCell><a href="/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta"><code>ObjectMeta</code></a></TableCell>
       <TableCell>Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</TableCell>
       </TableRow>
       <TableRow>
       <TableCell><code>timestamp</code></TableCell>
-      <TableCell><a href="/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time"><code>Time</code></a></TableCell>
+      <TableCell><a href="/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time"><code>Time</code></a></TableCell>
       <TableCell>The following fields define time interval from which metrics were collected from the interval [Timestamp-Window, Timestamp].</TableCell>
       </TableRow>
       <TableRow>
       <TableCell><code>usage</code></TableCell>
-      <TableCell><a href="/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity"><code>object (Quantity)</code></a></TableCell>
+      <TableCell><a href="/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity"><code>object (Quantity)</code></a></TableCell>
       <TableCell>The memory usage is the memory working set.</TableCell>
       </TableRow>
       <TableRow>
       <TableCell><code>window</code></TableCell>
-      <TableCell><a href="/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration"><code>Duration</code></a></TableCell>
+      <TableCell><a href="/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration"><code>Duration</code></a></TableCell>
       <TableCell></TableCell>
       </TableRow>
       </TableBody>
@@ -184,7 +184,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableBody>
       <TableRow>
       <TableCell>200 - OK</TableCell>
-      <TableCell><a href="/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-NodeMetricsList"><code>NodeMetricsList</code></a> schema</TableCell>
+      <TableCell><a href="/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-NodeMetricsList"><code>NodeMetricsList</code></a> schema</TableCell>
       </TableRow>
       </TableBody>
       </Table>
@@ -223,7 +223,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableBody>
       <TableRow>
       <TableCell>200 - OK</TableCell>
-      <TableCell><a href="/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1#nodemetrics-metrics-k8s-io-v1beta1"><code>NodeMetrics</code></a> schema</TableCell>
+      <TableCell><a href="/openshift-docs-markdown/rest_api/monitoring_apis/nodemetrics-metrics-k8s-io-v1beta1#nodemetrics-metrics-k8s-io-v1beta1"><code>NodeMetrics</code></a> schema</TableCell>
       </TableRow>
       </TableBody>
       </Table>

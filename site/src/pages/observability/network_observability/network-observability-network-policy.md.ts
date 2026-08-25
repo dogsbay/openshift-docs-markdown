@@ -2,7 +2,7 @@
 // Source: observability/network_observability/network-observability-network-policy.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Network Policy\n---\n\n# Network Policy {#network-observability-network-policy}\n\nAs an administrator, you can create a network policy for the `netobserv` namespace. This policy secures inbound and outbound access to the Network Observability Operator.\n\n**Additional resources**\n\n- [Creating a network policy using the CLI](/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy)\n";
+const body = "---\ntitle: Network Policy\n---\n\n# Network Policy {#network-observability-network-policy}\n\nAs an administrator, you can create a network policy for the `netobserv` namespace. This policy secures inbound and outbound access to the Network Observability Operator.\n\n**Additional resources**\n\n- [Creating a network policy using the CLI](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

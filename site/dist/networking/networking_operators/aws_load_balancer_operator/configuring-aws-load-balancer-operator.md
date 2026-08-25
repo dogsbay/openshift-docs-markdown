@@ -8,4 +8,4 @@ To automate the provisioning of AWS Load Balancers for your applications, config
 
 **Additional resources**
 
-- [Certificate injection using Operators](/networking/configuring_network_settings/configuring-a-custom-pki#certificate-injection-using-operators_configuring-a-custom-pki)
+- [Certificate injection using Operators](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#certificate-injection-using-operators_configuring-a-custom-pki)

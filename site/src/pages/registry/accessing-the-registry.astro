@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"accessing-the-registry","text":"Accessing the registry"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"},{"depth":2,"slug":"accessing-the-registry-additional-resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/registry/accessing-the-registry";
+const currentPath = "/openshift-docs-markdown/registry/accessing-the-registry";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["registry"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing the registry {#accessing-the-registry}\n\n\\[role=\"\\_abstract\"\\] You can access a registry to view logs and metrics. You can also secure and expose the registry.\n\nAfter you logged in to the registry by using the `podman login` command, you can push or pull images from the integrated registry directly by using `podman push` or `podman pull` commands. The commands that you can use depend on your user permissions.\n\n## Prerequisites {#_prerequisites}\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You must have configured an identity provider (IDP).\n- For pulling images, for example when using the `podman pull` command, the user must have the `registry-viewer` role. To add this role, run the following command:\n\n  ```terminal\n  $ oc policy add-role-to-user registry-viewer <user_name>\n  ```\n- For writing or pushing images, such as using `podman push` command, complete the following steps:\n\n  - Your account has the `registry-editor` role. To add this role, run the following command:\n\n    ```terminal\n    $ oc policy add-role-to-user registry-editor <user_name>\n    ```\n  - Your cluster must have an existing project where the images can be pushed to.\n\n## Additional resources {#accessing-the-registry-additional-resources}\n\n- [Allowing pods to reference images across projects](/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets)\n- [Removing the kubeadmin user](/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin)\n- [Understanding identity provider configuration](/authentication/understanding-identity-provider#understanding-identity-provider_understanding-identity-provider)\n","mdUrl":"/registry/accessing-the-registry.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing the registry {#accessing-the-registry}\n\n\\[role=\"\\_abstract\"\\] You can access a registry to view logs and metrics. You can also secure and expose the registry.\n\nAfter you logged in to the registry by using the `podman login` command, you can push or pull images from the integrated registry directly by using `podman push` or `podman pull` commands. The commands that you can use depend on your user permissions.\n\n## Prerequisites {#_prerequisites}\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You must have configured an identity provider (IDP).\n- For pulling images, for example when using the `podman pull` command, the user must have the `registry-viewer` role. To add this role, run the following command:\n\n  ```terminal\n  $ oc policy add-role-to-user registry-viewer <user_name>\n  ```\n- For writing or pushing images, such as using `podman push` command, complete the following steps:\n\n  - Your account has the `registry-editor` role. To add this role, run the following command:\n\n    ```terminal\n    $ oc policy add-role-to-user registry-editor <user_name>\n    ```\n  - Your cluster must have an existing project where the images can be pushed to.\n\n## Additional resources {#accessing-the-registry-additional-resources}\n\n- [Allowing pods to reference images across projects](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets)\n- [Removing the kubeadmin user](/openshift-docs-markdown/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin)\n- [Understanding identity provider configuration](/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider_understanding-identity-provider)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/accessing-the-registry.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -119,9 +119,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/registry-accessing-metrics.md"></p>
       <h2 id="accessing-the-registry-additional-resources" class="group scroll-mt-20">Additional resources<a href="#accessing-the-registry-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets">Allowing pods to reference images across projects</a></li>
-      <li><a href="/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin">Removing the kubeadmin user</a></li>
-      <li><a href="/authentication/understanding-identity-provider#understanding-identity-provider_understanding-identity-provider">Understanding identity provider configuration</a></li>
+      <li><a href="/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets">Allowing pods to reference images across projects</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin">Removing the kubeadmin user</a></li>
+      <li><a href="/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider_understanding-identity-provider">Understanding identity provider configuration</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

@@ -18,9 +18,9 @@ You can configure eviction strategies for virtual machines (VMs) or for the clus
 
 ## Additional resources {#_additional_resources}
 
-- [Live migration policies](/virt/live_migration/virt-configuring-live-migration#virt-live-migration-policies_virt-configuring-live-migration)
-- [About listing all the nodes in a cluster](/nodes/nodes/nodes-nodes-viewing#nodes-nodes-viewing-listing_nodes-nodes-viewing)
+- [Live migration policies](/openshift-docs-markdown/virt/live_migration/virt-configuring-live-migration#virt-live-migration-policies_virt-configuring-live-migration)
+- [About listing all the nodes in a cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-viewing#nodes-nodes-viewing-listing_nodes-nodes-viewing)
 - [OpenShift Virtualization - Fencing and VM High Availability Guide](https://access.redhat.com/articles/7057929)
 - [How to destroy all the data from server for decommission?](https://access.redhat.com/solutions/84663)
-- [Listing all virtual machine instances using the CLI](/virt/managing_vms/virt-manage-vmis#virt-listing-vmis-cli_virt-manage-vmis)
-- [Deleting nodes from a bare-metal cluster](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-deleting-bare-metal_nodes-nodes-working)
+- [Listing all virtual machine instances using the CLI](/openshift-docs-markdown/virt/managing_vms/virt-manage-vmis#virt-listing-vmis-cli_virt-manage-vmis)
+- [Deleting nodes from a bare-metal cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-deleting-bare-metal_nodes-nodes-working)

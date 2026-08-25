@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"nodes-secondary-scheduler-about","text":"Secondary scheduler overview"}];
 const nav = navData;
-const currentPath = "/nodes/scheduling/secondary_scheduler";
+const currentPath = "/openshift-docs-markdown/nodes/scheduling/secondary_scheduler";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/scheduling"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Secondary scheduler overview {#nodes-secondary-scheduler-about}\n\nYou can install the {{ secondary_scheduler_operator }} to run a custom secondary scheduler alongside the default scheduler to schedule pods.\n","mdUrl":"/nodes/scheduling/secondary_scheduler.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Secondary scheduler overview {#nodes-secondary-scheduler-about}\n\nYou can install the {{ secondary_scheduler_operator }} to run a custom secondary scheduler alongside the default scheduler to schedule pods.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/secondary_scheduler.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

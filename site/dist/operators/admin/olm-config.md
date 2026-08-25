@@ -8,4 +8,4 @@ Cluster administrators can enable or disable Operator Lifecycle Manager (OLM) cl
 
 **Additional resources**
 
-- [Install modes](/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-membership_olm-understanding-operatorgroups)
+- [Install modes](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-membership_olm-understanding-operatorgroups)

@@ -2,7 +2,7 @@
 // Source: virt/managing_vms/virt-controlling-vm-states.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Control virtual machine states\n---\n\n# Control virtual machine states {#virt-controlling-vm-states}\n\nYou can use `virtctl` to manage virtual machine states and perform other actions from the CLI. For example, you can use `virtctl` to force stop a VM or expose a port.\n\nYou can stop, start, restart, reset, pause, and unpause virtual machines from the web console.\n\n## Additional resources {#additional-resources_virt-controlling-vm-states}\n\n- [Using the CLI tools](/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)\n";
+const body = "---\ntitle: Control virtual machine states\n---\n\n# Control virtual machine states {#virt-controlling-vm-states}\n\nYou can use `virtctl` to manage virtual machine states and perform other actions from the CLI. For example, you can use `virtctl` to force stop a VM or expose a port.\n\nYou can stop, start, restart, reset, pause, and unpause virtual machines from the web console.\n\n## Additional resources {#additional-resources_virt-controlling-vm-states}\n\n- [Using the CLI tools](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

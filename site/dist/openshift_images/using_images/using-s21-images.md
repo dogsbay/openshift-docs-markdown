@@ -10,8 +10,8 @@ To create containerized applications in OpenShift Container Platform without man
 
 - [Red Hat Software Collections container images](https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index)
 - [Introduction to source-to-image for OpenShift with Red Hat build of OpenJDK](https://docs.redhat.com/en/documentation/red_hat_build_of_openjdk/11/html/using_source-to-image_for_openshift_with_red_hat_build_of_openjdk_11/openjdk-overview-s2i-openshift)
-- [Configuring the Cluster Samples Operator](/openshift_images/configuring-samples-operator#configuring-samples-operator)
-- [Using build strategies](/cicd/builds/build-strategies#builds-strategy-s2i-build_build-strategies)
-- [Troubleshooting the Source-to-Image process](/support/troubleshooting/troubleshooting-s2i#troubleshooting-s2i)
-- [Creating images from source code with source-to-image](/openshift_images/create-images#images-create-s2i_create-images)
-- [About testing source-to-image images](/openshift_images/create-images#images-test-s2i_create-images)
+- [Configuring the Cluster Samples Operator](/openshift-docs-markdown/openshift_images/configuring-samples-operator#configuring-samples-operator)
+- [Using build strategies](/openshift-docs-markdown/cicd/builds/build-strategies#builds-strategy-s2i-build_build-strategies)
+- [Troubleshooting the Source-to-Image process](/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i#troubleshooting-s2i)
+- [Creating images from source code with source-to-image](/openshift-docs-markdown/openshift_images/create-images#images-create-s2i_create-images)
+- [About testing source-to-image images](/openshift-docs-markdown/openshift_images/create-images#images-test-s2i_create-images)

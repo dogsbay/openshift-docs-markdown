@@ -25,7 +25,7 @@ The activation value has more priority than the scaling value in case of differe
 
 **Figure 1. Custom metrics autoscaler workflow**
 
-![Custom metrics autoscaler workflow](/_assets/images/564_OpenShift_Custom_Metrics_Autoscaler_0224.png)
+![Custom metrics autoscaler workflow](/openshift-docs-markdown/_assets/images/564_OpenShift_Custom_Metrics_Autoscaler_0224.png)
 
 1. You create or modify a scaled object custom resource for a workload on a cluster. The object contains the scaling configuration for that workload. Prior to accepting the new object, the OpenShift API server sends it to the custom metrics autoscaler admission webhooks process to ensure that the object is valid. If validation succeeds, the API server persists the object.
 2. The custom metrics autoscaler controller watches for new or modified scaled objects. When the OpenShift API server notifies the controller of a change, the controller monitors any external trigger sources, also known as data sources, that are specified in the object for changes to the metrics data. One or more scalers request scaling data from the external trigger source. For example, for a Kafka trigger type, the controller uses the Kafka scaler to communicate with a Kafka instance to obtain the data requested by the trigger.
@@ -39,7 +39,7 @@ The activation value has more priority than the scaling value in case of differe
 
 By default, the Custom Metrics Autoscaler Operator uses automatically-generated service CA certificates to connect to on-cluster services.
 
-If you want to use off-cluster services that require custom CA certificates, you can add the required certificates to a config map. Then, add the config map to the `KedaController` custom resource as described in [Installing the custom metrics autoscaler](/nodes/cma/nodes-cma-autoscaling-custom-install#nodes-cma-autoscaling-custom-install). The Operator loads those certificates on start-up and registers them as trusted by the Operator.
+If you want to use off-cluster services that require custom CA certificates, you can add the required certificates to a config map. Then, add the config map to the `KedaController` custom resource as described in [Installing the custom metrics autoscaler](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-install#nodes-cma-autoscaling-custom-install). The Operator loads those certificates on start-up and registers them as trusted by the Operator.
 
 The config maps can contain one or more certificate files that contain one or more PEM-encoded CA certificates. Or, you can use separate config maps for each certificate file.
 

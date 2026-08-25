@@ -2,7 +2,7 @@
 // Source: networking/networking_operators/dpu-operator/dpu-operator.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: DPU Operator\n---\n\n# DPU Operator {#dpu-operator}\n\nAs a cluster administrator, you can add the Data Processing Unit (DPU) Operator to your cluster to manage DPU devices and network attachments.\n\n**Additional resources**\n\n- [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n";
+const body = "---\ntitle: DPU Operator\n---\n\n# DPU Operator {#dpu-operator}\n\nAs a cluster administrator, you can add the Data Processing Unit (DPU) Operator to your cluster to manage DPU devices and network attachments.\n\n**Additional resources**\n\n- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

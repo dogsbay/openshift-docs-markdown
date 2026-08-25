@@ -15,5 +15,5 @@ The following sections outline all of the supported methods for installing a clu
 
 ## Additional resources {#additional-resources_installing-disconnected-environments}
 
-- [Configuring an AWS account](/installing/installing_aws/installing-aws-account#installing-aws-account)
-- [Preparing to install a cluster on {{ aws_short }}](/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install)
+- [Configuring an AWS account](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account)
+- [Preparing to install a cluster on {{ aws_short }}](/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install)

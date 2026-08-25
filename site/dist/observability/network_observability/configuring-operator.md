@@ -10,19 +10,19 @@ The `FlowCollector` is explicitly created during installation. Since this resour
 
 **Additional resources**
 
-- [FlowCollector API reference](/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
-- [Working with conversation tracking](/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic)
+- [FlowCollector API reference](/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
+- [Working with conversation tracking](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic)
 
 **Additional resources**
 
-- [Network flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+- [Network flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 
 **Additional resources**
 
-- [Filtering eBPF flow data using multiple rules](/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)
+- [Filtering eBPF flow data using multiple rules](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)
 
 **Additional resources**
 
-- [Observing the network traffic from the traffic flows view](/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic)
-- [Network observability without Loki](/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)
-- [Network Flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+- [Observing the network traffic from the traffic flows view](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic)
+- [Network observability without Loki](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)
+- [Network Flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)

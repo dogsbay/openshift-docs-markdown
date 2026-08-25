@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"updating-hardware-on-nodes-running-on-vsphere","text":"Updating hardware on nodes running on vSphere"}];
 const nav = navData;
-const currentPath = "/updating/updating_a_cluster/updating-hardware-on-nodes-running-on-vsphere";
+const currentPath = "/openshift-docs-markdown/updating/updating_a_cluster/updating-hardware-on-nodes-running-on-vsphere";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["updating","updating/updating_a_cluster"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating hardware on nodes running on vSphere {#updating-hardware-on-nodes-running-on-vsphere}\n\nYou must ensure that your nodes running in vSphere are running on the hardware version supported by OpenShift Container Platform. Currently, hardware version 15 or later is supported for vSphere virtual machines in a cluster. You can update your virtual hardware immediately or schedule an update in vCenter.\n\n> [!IMPORTANT]\n> - Version 4.22 of OpenShift Container Platform requires VMware virtual hardware version 15 or later.\n> - Before upgrading OpenShift 4.12 to OpenShift 4.13, you must update vSphere to **v8.0 Update 1 or later**; otherwise, the OpenShift 4.12 cluster is marked **un-upgradeable**.\n\n> [!WARNING]\n> Updating custom API certificates triggers the Machine Config Operator (MCO) to initiate a rolling reboot of the control plane nodes. These nodes must be updated serially. Ensure each node returns to a `Ready` state and the `etcd` static pods are healthy before the next node in the sequence begins its update. Failure to do so might result in a loss of etcd quorum and cluster-wide downtime.\n\n**Additional resources**\n\n- [Evacuating pods on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n","mdUrl":"/updating/updating_a_cluster/updating-hardware-on-nodes-running-on-vsphere.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating hardware on nodes running on vSphere {#updating-hardware-on-nodes-running-on-vsphere}\n\nYou must ensure that your nodes running in vSphere are running on the hardware version supported by OpenShift Container Platform. Currently, hardware version 15 or later is supported for vSphere virtual machines in a cluster. You can update your virtual hardware immediately or schedule an update in vCenter.\n\n> [!IMPORTANT]\n> - Version 4.22 of OpenShift Container Platform requires VMware virtual hardware version 15 or later.\n> - Before upgrading OpenShift 4.12 to OpenShift 4.13, you must update vSphere to **v8.0 Update 1 or later**; otherwise, the OpenShift 4.12 cluster is marked **un-upgradeable**.\n\n> [!WARNING]\n> Updating custom API certificates triggers the Machine Config Operator (MCO) to initiate a rolling reboot of the control plane nodes. These nodes must be updated serially. Ensure each node returns to a `Ready` state and the `etcd` static pods are healthy before the next node in the sequence begins its update. Failure to do so might result in a loss of etcd quorum and cluster-wide downtime.\n\n**Additional resources**\n\n- [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/updating_a_cluster/updating-hardware-on-nodes-running-on-vsphere.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -114,7 +114,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/update-vsphere-virtual-hardware-on-control-plane-nodes.md"></p>
       <p class="/modules/update-vsphere-virtual-hardware-on-compute-nodes.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working">Evacuating pods on nodes</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working">Evacuating pods on nodes</a></li></ul>
       <p class="/modules/scheduling-virtual-hardware-update-on-vsphere.md"></p>
     </article>
   </MarkdownContentStack>

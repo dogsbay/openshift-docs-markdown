@@ -10,4 +10,4 @@ The following sections define config maps, explain how to create and use them, a
 
 **Additional resources**
 
-- [Creating and using config maps](/nodes/pods/nodes-pods-configmaps)
+- [Creating and using config maps](/openshift-docs-markdown/nodes/pods/nodes-pods-configmaps)

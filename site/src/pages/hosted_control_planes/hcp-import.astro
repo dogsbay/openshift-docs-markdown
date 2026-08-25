@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"hcp-import","text":"Manually importing a hosted cluster"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-import";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-import";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually importing a hosted cluster {#hcp-import}\n\nHosted clusters are automatically imported into {{ mce_short }} after the hosted control plane becomes available.\n\n**Additional resources**\n\n- [Updating node pools in a hosted cluster](/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)\n- [Updating a control plane in a hosted cluster](/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)\n- [Discovering {{ mce }} hosted clusters in {{ rh_rhacm_title }}](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/hosted-acm#discover-hosted-acm)\n","mdUrl":"/hosted_control_planes/hcp-import.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually importing a hosted cluster {#hcp-import}\n\nHosted clusters are automatically imported into {{ mce_short }} after the hosted control plane becomes available.\n\n**Additional resources**\n\n- [Updating node pools in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)\n- [Updating a control plane in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)\n- [Discovering {{ mce }} hosted clusters in {{ rh_rhacm_title }}](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/hosted-acm#discover-hosted-acm)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-import.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,8 +96,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/hcp-import-limitations.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating">Updating node pools in a hosted cluster</a></li>
-      <li><a href="/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating">Updating a control plane in a hosted cluster</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating">Updating node pools in a hosted cluster</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating">Updating a control plane in a hosted cluster</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/hosted-acm#discover-hosted-acm">Discovering {"{"}{"{"} mce {"}"}{"}"} hosted clusters in {"{"}{"{"} rh_rhacm_title {"}"}{"}"}</a></li>
       </ul>
       <p class="/modules/hcp-import-manual-aws.md"></p>

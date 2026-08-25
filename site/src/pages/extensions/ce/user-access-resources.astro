@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"user-access-resources","text":"User access to extension resources"}];
 const nav = navData;
-const currentPath = "/extensions/ce/user-access-resources";
+const currentPath = "/openshift-docs-markdown/extensions/ce/user-access-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["extensions","extensions/ce"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User access to extension resources {#user-access-resources}\n\nAfter you install a cluster extension managed by {{ olmv1_first }}, the extension might provide `CustomResourceDefinition` (CRD) objects that expose new cluster APIs. While cluster administrators automatically have full access to these resources, regular users usually require additional permissions.\n\n{{ olmv1 }} does not automatically configure or manage role-based access control (RBAC) for regular users to interact with the APIs provided by installed extensions. Cluster administrators must define the required RBAC policy to create, view, or edit these custom resources (CRs) for such users.\n\n> [!NOTE]\n> The RBAC permissions described for user access to extension resources are different from the permissions that must be added to a service account to enable {{ olmv1 }}-based initial installation of a cluster extension itself. For more on RBAC requirements while installing an extension, see \"Cluster extension permissions\" in \"Managing extensions\".\n\n**Additional resources**\n\n- [\"Managing extensions\" -> \"Cluster extension permissions\"](/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce)\n\n**Additional resources**\n\n- [User-facing roles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)\n\n**Additional resources**\n\n- [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)\n","mdUrl":"/extensions/ce/user-access-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User access to extension resources {#user-access-resources}\n\nAfter you install a cluster extension managed by {{ olmv1_first }}, the extension might provide `CustomResourceDefinition` (CRD) objects that expose new cluster APIs. While cluster administrators automatically have full access to these resources, regular users usually require additional permissions.\n\n{{ olmv1 }} does not automatically configure or manage role-based access control (RBAC) for regular users to interact with the APIs provided by installed extensions. Cluster administrators must define the required RBAC policy to create, view, or edit these custom resources (CRs) for such users.\n\n> [!NOTE]\n> The RBAC permissions described for user access to extension resources are different from the permissions that must be added to a service account to enable {{ olmv1 }}-based initial installation of a cluster extension itself. For more on RBAC requirements while installing an extension, see \"Cluster extension permissions\" in \"Managing extensions\".\n\n**Additional resources**\n\n- [\"Managing extensions\" -> \"Cluster extension permissions\"](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce)\n\n**Additional resources**\n\n- [User-facing roles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)\n\n**Additional resources**\n\n- [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/ce/user-access-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -104,7 +104,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce">"Managing extensions" -&gt; "Cluster extension permissions"</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce">"Managing extensions" -&gt; "Cluster extension permissions"</a></li></ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles">User-facing roles (Kubernetes documentation)</a></li></ul>
       <p class="/modules/olmv1-granting-user-access-binding.md"></p>

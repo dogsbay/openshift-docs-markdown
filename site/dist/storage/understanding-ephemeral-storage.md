@@ -8,4 +8,4 @@ Ephemeral storage provides temporary per-pod storage for scratch data, caches, a
 
 **Additional resources**
 
-- [Resources managed by quotas](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)
+- [Resources managed by quotas](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)

@@ -8,11 +8,11 @@ You can provision and manage vSphere storage in OpenShift Container Platform by 
 
 **Additional resources**
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-- [Managing the default storage class](/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)
 - [Overview of available file systems](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/managing_file_systems/overview-of-available-file-systems_managing-file-systems)
-- [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
+- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
 
 **Additional resources**
 
@@ -20,17 +20,17 @@ You can provision and manage vSphere storage in OpenShift Container Platform by 
 
 **Additional resources**
 
-- [Removing a third-party vSphere CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-install-issues_persistent-storage-csi-vsphere)
+- [Removing a third-party vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-install-issues_persistent-storage-csi-vsphere)
 
 **Additional resources**
 
-- [Requirements for encrypting virtual machines](/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)
-- [During installation: Step 7 of Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/installing/installing_vsphere/upi/installing-vsphere#installation-vsphere-machines_installing-vsphere)
-- [Enabling encryption on a vSphere cluster](/installing/installing_vsphere/vsphere-post-installation-encryption#vsphere-post-installation-encryption)
+- [Requirements for encrypting virtual machines](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)
+- [During installation: Step 7 of Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installation-vsphere-machines_installing-vsphere)
+- [Enabling encryption on a vSphere cluster](/openshift-docs-markdown/installing/installing_vsphere/vsphere-post-installation-encryption#vsphere-post-installation-encryption)
 
 <a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
 
-- [Installation configuration parameters for vSphere](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
+- [Installation configuration parameters for vSphere](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
 <a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
 
@@ -38,11 +38,11 @@ You can provision and manage vSphere storage in OpenShift Container Platform by 
 
 <a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
 
-- [Configuring regions and zones for a VMware vCenter](/installing/installing_vsphere/ipi/installing-vsphere-installer-provisioned-customizations#configuring-vsphere-regions-zones_installing-vsphere-installer-provisioned-customizations)
+- [Configuring regions and zones for a VMware vCenter](/openshift-docs-markdown/installing/installing_vsphere/ipi/installing-vsphere-installer-provisioned-customizations#configuring-vsphere-regions-zones_installing-vsphere-installer-provisioned-customizations)
 
 <a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
 
-- [Specifying multiple regions and zones for your cluster on vSphere](/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#specifying-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
+- [Specifying multiple regions and zones for your cluster on vSphere](/openshift-docs-markdown/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#specifying-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
 - [VMware vSphere tag documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-16422FF7-235B-4A44-92E2-532F6AED0923.html?hWord=N4IghgNiBcIC5gOYgL5A)
 
 <a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
@@ -62,8 +62,8 @@ You can provision and manage vSphere storage in OpenShift Container Platform by 
 
 {% include "./modules/persistent-storage-csi-vsphere-adding-bm-nodes.md" %}  <a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
 
-- [Disabling and enabling storage on vSphere](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-overview_persistent-storage-csi-vsphere)
-- [Adding bare-metal compute machines to a vSphere cluster](/machine_management/user_infra/adding-bare-metal-compute-vsphere-user-infra)
+- [Disabling and enabling storage on vSphere](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-overview_persistent-storage-csi-vsphere)
+- [Adding bare-metal compute machines to a vSphere cluster](/openshift-docs-markdown/machine_management/user_infra/adding-bare-metal-compute-vsphere-user-infra)
 
 ## Additional resources {#additional-resources_persistent-storage-csi-vsphere}
 

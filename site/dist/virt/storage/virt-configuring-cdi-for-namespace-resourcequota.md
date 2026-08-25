@@ -8,4 +8,4 @@ You can configure the Containerized Data Importer (CDI) to import, upload, and c
 
 ## Additional resources {#virt-configuring-cdi-for-namespace-resourcequota_additional-resources}
 
-- [Resource quotas per project](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)
+- [Resource quotas per project](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)

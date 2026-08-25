@@ -56,13 +56,13 @@ Manage automatic boot source updates
 
 ## Additional resources {#additional-resources_virt-storage-config-overview}
 
-- [Defining a storage class](/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
-- [Configure storage profiles](/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)
-- [Reserve additional PVC space for file system overhead](/virt/storage/virt-reserving-pvc-space-fs-overhead#virt-reserving-pvc-space-fs-overhead)
-- [Configure local storage by using the hostpath provisioner](/virt/storage/virt-configuring-local-storage-with-hpp#virt-configuring-local-storage-with-hpp)
-- [Configure user permissions to clone data volumes between namespaces](/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)
-- [Override the resource request limits of a namespace](/virt/storage/virt-configuring-cdi-for-namespace-resourcequota#virt-configuring-cdi-for-namespace-resourcequota)
-- [Configure CDI scratch space](/virt/storage/virt-preparing-cdi-scratch-space#virt-preparing-cdi-scratch-space)
-- [Enable preallocation for data volumes](/virt/storage/virt-using-preallocation-for-datavolumes#virt-using-preallocation-for-datavolumes)
-- [Manage data volume annotations](/virt/storage/virt-managing-data-volume-annotations#virt-managing-data-volume-annotations)
-- [Manage automatic boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)
+- [Defining a storage class](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
+- [Configure storage profiles](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)
+- [Reserve additional PVC space for file system overhead](/openshift-docs-markdown/virt/storage/virt-reserving-pvc-space-fs-overhead#virt-reserving-pvc-space-fs-overhead)
+- [Configure local storage by using the hostpath provisioner](/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp#virt-configuring-local-storage-with-hpp)
+- [Configure user permissions to clone data volumes between namespaces](/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)
+- [Override the resource request limits of a namespace](/openshift-docs-markdown/virt/storage/virt-configuring-cdi-for-namespace-resourcequota#virt-configuring-cdi-for-namespace-resourcequota)
+- [Configure CDI scratch space](/openshift-docs-markdown/virt/storage/virt-preparing-cdi-scratch-space#virt-preparing-cdi-scratch-space)
+- [Enable preallocation for data volumes](/openshift-docs-markdown/virt/storage/virt-using-preallocation-for-datavolumes#virt-using-preallocation-for-datavolumes)
+- [Manage data volume annotations](/openshift-docs-markdown/virt/storage/virt-managing-data-volume-annotations#virt-managing-data-volume-annotations)
+- [Manage automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)

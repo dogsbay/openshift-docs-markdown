@@ -10,4 +10,4 @@ When you perform node management operations, the CLI interacts with node objects
 
 ## Additional resources {#additional-resources_nodes-nodes-viewing}
 
-- [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)
+- [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)

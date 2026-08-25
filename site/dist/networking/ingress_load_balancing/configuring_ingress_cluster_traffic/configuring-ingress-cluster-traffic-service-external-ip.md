@@ -19,8 +19,8 @@ Before you begin the procedure, ensure that you meet the following prerequisite:
 
 ## Additional resources {#configuring-ingress-cluster-traffic-service-external-ip-additional-resources}
 
-[Configuring ExternalIPs for services](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)
+[Configuring ExternalIPs for services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)
 
-- [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb)
-- [Configuring IP failover](/networking/configuring_network_settings/configuring-ipfailover#configuring-ipfailover)
-- [Configuring ExternalIPs for services](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)
+- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)
+- [Configuring IP failover](/openshift-docs-markdown/networking/configuring_network_settings/configuring-ipfailover#configuring-ipfailover)
+- [Configuring ExternalIPs for services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)

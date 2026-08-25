@@ -2,7 +2,7 @@
 // Source: virt/creating_vm/virt-creating-vms-from-web-images.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Creating VMs by importing images from web pages\n---\n\n# Creating VMs by importing images from web pages {#virt-creating-vms-from-web-images}\n\nYou can create virtual machines (VMs) by importing operating system images from web pages.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-web-images}\n\n- [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n";
+const body = "---\ntitle: Creating VMs by importing images from web pages\n---\n\n# Creating VMs by importing images from web pages {#virt-creating-vms-from-web-images}\n\nYou can create virtual machines (VMs) by importing operating system images from web pages.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-web-images}\n\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

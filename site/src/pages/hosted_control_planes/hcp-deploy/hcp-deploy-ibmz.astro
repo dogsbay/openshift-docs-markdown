@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"hcp-deploy-ibmz","text":"Deploying {{ hcp }} on {{ ibm_z_title }}"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-deploy/hcp-deploy-ibmz";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibmz";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-deploy"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ ibm_z_title }} {#hcp-deploy-ibmz}\n\nYou can deploy {{ hcp }} on {{ ibm_z_title }} by configuring a cluster to function as a management cluster. The management cluster is the OpenShift Container Platform cluster where the control planes are hosted. The management cluster is also known as the *hosting* cluster.\n\n> [!NOTE]\n> The *management* cluster is not the *managed* cluster. A managed cluster is a cluster that the hub cluster manages. The *management* cluster can run on either the x86_64 architecture, supported beginning with OpenShift Container Platform 4.17 and {{ mce }} 2.7, or the s390x architecture, supported beginning with OpenShift Container Platform 4.20 and {{ mce }} 2.10.\n\nYou can convert a managed cluster to a management cluster by using the `hypershift` add-on to deploy the HyperShift Operator on that cluster. Then, you can start to create the hosted cluster.\n\nThe {{ mce_short }} supports only the default `local-cluster`, which is a hub cluster that is managed, and the hub cluster as the management cluster.\n\nTo provision {{ hcp }} on bare metal, you can use the Agent platform. The Agent platform uses the central infrastructure management service to add worker nodes to a hosted cluster. For more information, see \"Enabling the central infrastructure management service\".\n\nEach {{ ibm_z_title }} system host must be started with the PXE or ISO images that are provided by the central infrastructure management. After each host starts, it runs an Agent process to discover the details of the host and completes the installation. An Agent custom resource represents each host.\n\nWhen you create a hosted cluster with the Agent platform, HyperShift Operator installs the Agent Cluster API provider in the hosted control plane namespace.\n\n**Additional resources**\n\n- [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)\n- [Installing the {{ hcp }} command-line interface](/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)\n\n**Additional resources**\n\n- [Manually importing a hosted cluster](/hosted_control_planes/hcp-import#hcp-import)\n- [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)\n- [Creating a hosted cluster on bare metal by using the console](/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc-console_hcp-deploy-bm)\n\n**Additional resources**\n\n- [Installing in an LPAR](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/performing_a_standard_rhel_8_installation/installing-in-an-lpar_installing-rhel)\n","mdUrl":"/hosted_control_planes/hcp-deploy/hcp-deploy-ibmz.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ ibm_z_title }} {#hcp-deploy-ibmz}\n\nYou can deploy {{ hcp }} on {{ ibm_z_title }} by configuring a cluster to function as a management cluster. The management cluster is the OpenShift Container Platform cluster where the control planes are hosted. The management cluster is also known as the *hosting* cluster.\n\n> [!NOTE]\n> The *management* cluster is not the *managed* cluster. A managed cluster is a cluster that the hub cluster manages. The *management* cluster can run on either the x86_64 architecture, supported beginning with OpenShift Container Platform 4.17 and {{ mce }} 2.7, or the s390x architecture, supported beginning with OpenShift Container Platform 4.20 and {{ mce }} 2.10.\n\nYou can convert a managed cluster to a management cluster by using the `hypershift` add-on to deploy the HyperShift Operator on that cluster. Then, you can start to create the hosted cluster.\n\nThe {{ mce_short }} supports only the default `local-cluster`, which is a hub cluster that is managed, and the hub cluster as the management cluster.\n\nTo provision {{ hcp }} on bare metal, you can use the Agent platform. The Agent platform uses the central infrastructure management service to add worker nodes to a hosted cluster. For more information, see \"Enabling the central infrastructure management service\".\n\nEach {{ ibm_z_title }} system host must be started with the PXE or ISO images that are provided by the central infrastructure management. After each host starts, it runs an Agent process to discover the details of the host and completes the installation. An Agent custom resource represents each host.\n\nWhen you create a hosted cluster with the Agent platform, HyperShift Operator installs the Agent Cluster API provider in the hosted control plane namespace.\n\n**Additional resources**\n\n- [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)\n- [Installing the {{ hcp }} command-line interface](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)\n\n**Additional resources**\n\n- [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import)\n- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)\n- [Creating a hosted cluster on bare metal by using the console](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc-console_hcp-deploy-bm)\n\n**Additional resources**\n\n- [Installing in an LPAR](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/performing_a_standard_rhel_8_installation/installing-in-an-lpar_installing-rhel)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibmz.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -112,16 +112,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine">Advanced configuration</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim">Enabling the central infrastructure management service</a></li>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli">Installing the {"{"}{"{"} hcp {"}"}{"}"} command-line interface</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli">Installing the {"{"}{"{"} hcp {"}"}{"}"} command-line interface</a></li>
       </ul>
       <p class="/modules/hcp-ibm-z-dns.md /modules/hcp-ibm-z-infra-reqs.md"></p>
       <p class="/modules/hcp-custom-dns.md"></p>
       <p class="/modules/hcp-ibmz-create-hc.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/hosted_control_planes/hcp-import#hcp-import">Manually importing a hosted cluster</a></li>
-      <li><a href="/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm">Extracting the release image digest</a></li>
-      <li><a href="/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc-console_hcp-deploy-bm">Creating a hosted cluster on bare metal by using the console</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import">Manually importing a hosted cluster</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm">Extracting the release image digest</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc-console_hcp-deploy-bm">Creating a hosted cluster on bare metal by using the console</a></li>
       </ul>
       <p class="/modules/hcp-cluster-capabilities-ref.md"></p>
       <p class="/modules/hcp-cluster-capabilities-proc.md"></p>

@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"nodes-nodes-creating-infrastructure-nodes","text":"Creating infrastructure nodes"},{"depth":2,"slug":"additional-resources_creating-infrastructure-nodes","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/nodes/nodes/nodes-nodes-creating-infrastructure-nodes";
+const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-creating-infrastructure-nodes";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating infrastructure nodes {#nodes-nodes-creating-infrastructure-nodes}\n\nYou can use infrastructure machine sets to create machines that host only infrastructure components, such as the default router, the integrated container image registry, and the components for cluster metrics and monitoring. These infrastructure machines are not counted toward the total number of subscriptions that are required to run the environment.\n\n> [!NOTE]\n> After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).\n\n## Additional resources {#additional-resources_creating-infrastructure-nodes}\n\n- [Moving resources to infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets)\n- [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n- [Creating a compute machine set](/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets)\n- [Creating an infrastructure node](/nodes/nodes/nodes-nodes-creating-infrastructure-nodes#creating-an-infra-node_creating-infrastructure-nodes)\n- [Creating a machine config pool for infrastructure machines](/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets)\n","mdUrl":"/nodes/nodes/nodes-nodes-creating-infrastructure-nodes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating infrastructure nodes {#nodes-nodes-creating-infrastructure-nodes}\n\nYou can use infrastructure machine sets to create machines that host only infrastructure components, such as the default router, the integrated container image registry, and the components for cluster metrics and monitoring. These infrastructure machines are not counted toward the total number of subscriptions that are required to run the environment.\n\n> [!NOTE]\n> After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).\n\n## Additional resources {#additional-resources_creating-infrastructure-nodes}\n\n- [Moving resources to infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets)\n- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n- [Creating a compute machine set](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets)\n- [Creating an infrastructure node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-creating-infrastructure-nodes#creating-an-infra-node_creating-infrastructure-nodes)\n- [Creating a machine config pool for infrastructure machines](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-creating-infrastructure-nodes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,11 +107,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/creating-an-infra-node.md"></p>
       <h2 id="additional-resources_creating-infrastructure-nodes" class="group scroll-mt-20">Additional resources<a href="#additional-resources_creating-infrastructure-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets">Moving resources to infrastructure machine sets</a></li>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets">Creating infrastructure machine sets</a></li>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets">Creating a compute machine set</a></li>
-      <li><a href="/nodes/nodes/nodes-nodes-creating-infrastructure-nodes#creating-an-infra-node_creating-infrastructure-nodes">Creating an infrastructure node</a></li>
-      <li><a href="/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets">Creating a machine config pool for infrastructure machines</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets">Moving resources to infrastructure machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets">Creating infrastructure machine sets</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets">Creating a compute machine set</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-creating-infrastructure-nodes#creating-an-infra-node_creating-infrastructure-nodes">Creating an infrastructure node</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infra-machines_creating-infrastructure-machinesets">Creating a machine config pool for infrastructure machines</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

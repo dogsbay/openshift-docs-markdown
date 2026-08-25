@@ -8,5 +8,5 @@ You can provision and manage Azure Stack Hub Storage in OpenShift Container Plat
 
 ## Additional resources {#persistent-storage-csi-azure-stack-hub-add-resources_persistent-storage-csi-azure-stack-hub}
 
-- [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
-- [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

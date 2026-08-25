@@ -16,8 +16,8 @@ Public certificates and private keys are critical to zero trust networking. Thes
 
 Leverage:
 
-- OpenShift Container Platform: OpenShift creates a [cluster CA at installation](/security/certificate_types_descriptions/bootstrap-certificates#cert-types-bootstrap-certificates) that is used to secure the cluster resources. However, OpenShift Container Platform can also create and sign [certificates for services](/security/certificates/service-serving-certificate#add-service-serving) in the cluster, and can inject the cluster CA bundle into a pod if requested. [Service certificates](/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates) created and signed by OpenShift Container Platform have a 26-month time to live (TTL) and are rotated automatically at 13 months. They can also be rotated manually if necessary.
-- [OpenShift cert-manager Operator](/security/cert_manager_operator/index#cert-manager-operator-about): cert-manager allows you to request keys that are signed by an external root of trust. There are many configurable issuers to integrate with external issuers, along with ways to run with a delegated signing certificate. The cert-manager API can be used by other software in zero trust networking to request the necessary certificates (for example, {{ SMProductName }}), or can be used directly by customer software.
+- OpenShift Container Platform: OpenShift creates a [cluster CA at installation](/openshift-docs-markdown/security/certificate_types_descriptions/bootstrap-certificates#cert-types-bootstrap-certificates) that is used to secure the cluster resources. However, OpenShift Container Platform can also create and sign [certificates for services](/openshift-docs-markdown/security/certificates/service-serving-certificate#add-service-serving) in the cluster, and can inject the cluster CA bundle into a pod if requested. [Service certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates) created and signed by OpenShift Container Platform have a 26-month time to live (TTL) and are rotated automatically at 13 months. They can also be rotated manually if necessary.
+- [OpenShift cert-manager Operator](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-about): cert-manager allows you to request keys that are signed by an external root of trust. There are many configurable issuers to integrate with external issuers, along with ways to run with a delegated signing certificate. The cert-manager API can be used by other software in zero trust networking to request the necessary certificates (for example, {{ SMProductName }}), or can be used directly by customer software.
 
 ## Traffic authentication and encryption {#zero-trust-traffic-authentication-and-encryption}
 
@@ -25,9 +25,9 @@ Ensure that all traffic on the wire is encrypted and the endpoints are identifia
 
 Leverage:
 
-- OpenShift Container Platform: With transparent [pod-to-pod IPsec](/networking/network_security/configuring-ipsec-ovn#pod-to-pod-ipsec_configuring-ipsec-ovn), the source and destination of the traffic can be identified by the IP address. There is the capability for egress traffic to be [encrypted using IPsec](/networking/network_security/configuring-ipsec-ovn#nw-ovn-ipsec-north-south-enable_configuring-ipsec-ovn). By using the [egress IP](/networking/ovn_kubernetes_network_provider/configuring-egress-ips-ovn#configuring-egress-ips-ovn) feature, the source IP address of the traffic can be used to identify the source of the traffic inside the cluster.
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): Provides powerful [mTLS capabilities](/service_mesh/v2x/ossm-security#ossm-security-mtls_ossm-security) that can transparently augment traffic leaving a pod to provide authentication and encryption.
-- [OpenShift cert-manager Operator](/security/cert_manager_operator/index#cert-manager-operator-about): Use custom resource definitions (CRDs) to request certificates that can be mounted for your programs to use for SSL/TLS protocols.
+- OpenShift Container Platform: With transparent [pod-to-pod IPsec](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#pod-to-pod-ipsec_configuring-ipsec-ovn), the source and destination of the traffic can be identified by the IP address. There is the capability for egress traffic to be [encrypted using IPsec](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#nw-ovn-ipsec-north-south-enable_configuring-ipsec-ovn). By using the [egress IP](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-egress-ips-ovn#configuring-egress-ips-ovn) feature, the source IP address of the traffic can be used to identify the source of the traffic inside the cluster.
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): Provides powerful [mTLS capabilities](/openshift-docs-markdown/service_mesh/v2x/ossm-security#ossm-security-mtls_ossm-security) that can transparently augment traffic leaving a pod to provide authentication and encryption.
+- [OpenShift cert-manager Operator](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-about): Use custom resource definitions (CRDs) to request certificates that can be mounted for your programs to use for SSL/TLS protocols.
 
 ## Identification and authentication {#zero-trust-identification-and-authentication}
 
@@ -35,10 +35,10 @@ After you have the ability to mint certificates using a CA, you can use it to es
 
 Leverage:
 
-- OpenShift Container Platform: Cluster-signed [service certificates](/security/certificates/service-serving-certificate#add-service-serving) to ensure that a client is talking to a trusted endpoint. This requires that the service uses SSL/TLS and that the client uses the [cluster CA](/security/certificates/service-serving-certificate#add-service-certificate-configmap_service-serving-certificate). The client identity must be provided using some other means.
-- [Red Hat Single Sign-On](/security/container_security/security-platform#security-platform-red-hat-sso_security-platform): Provides request authentication integration with enterprise user directories or third-party identity providers.
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): [Transparent upgrade](/service_mesh/v2x/ossm-architecture#ossm-architecture) of connections to mTLS, auto-rotation, custom certificate expiration, and request authentication with JSON web token (JWT).
-- [OpenShift cert-manager Operator](/security/cert_manager_operator/index#cert-manager-operator-about): Creation and management of certificates for use by your application. Certificates can be controlled by CRDs and mounted as secrets, or your application can be changed to interact directly with the cert-manager API.
+- OpenShift Container Platform: Cluster-signed [service certificates](/openshift-docs-markdown/security/certificates/service-serving-certificate#add-service-serving) to ensure that a client is talking to a trusted endpoint. This requires that the service uses SSL/TLS and that the client uses the [cluster CA](/openshift-docs-markdown/security/certificates/service-serving-certificate#add-service-certificate-configmap_service-serving-certificate). The client identity must be provided using some other means.
+- [Red Hat Single Sign-On](/openshift-docs-markdown/security/container_security/security-platform#security-platform-red-hat-sso_security-platform): Provides request authentication integration with enterprise user directories or third-party identity providers.
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): [Transparent upgrade](/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#ossm-architecture) of connections to mTLS, auto-rotation, custom certificate expiration, and request authentication with JSON web token (JWT).
+- [OpenShift cert-manager Operator](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-about): Creation and management of certificates for use by your application. Certificates can be controlled by CRDs and mounted as secrets, or your application can be changed to interact directly with the cert-manager API.
 
 ## Inter-service authorization {#zero-trust-inter-service-authorization}
 
@@ -46,8 +46,8 @@ It is critical to be able to control access to services based on the identity of
 
 Leverage:
 
-- OpenShift Container Platform: Can enforce isolation in the networking layer of the platform using the Kubernetes [`NetworkPolicy`](/networking/network_security/network_policy/about-network-policy#about-network-policy) and [`AdminNetworkPolicy`](/networking/network_security/AdminNetworkPolicy/ovn-k-anp#ovn-k-anp) objects.
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): Sophisticated L4 and L7 [control of traffic](/service_mesh/v2x/ossm-security#ossm-security) using standard Istio objects and using mTLS to identify the source and destination of traffic and then apply policies based on that information.
+- OpenShift Container Platform: Can enforce isolation in the networking layer of the platform using the Kubernetes [`NetworkPolicy`](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy) and [`AdminNetworkPolicy`](/openshift-docs-markdown/networking/network_security/AdminNetworkPolicy/ovn-k-anp#ovn-k-anp) objects.
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): Sophisticated L4 and L7 [control of traffic](/openshift-docs-markdown/service_mesh/v2x/ossm-security#ossm-security) using standard Istio objects and using mTLS to identify the source and destination of traffic and then apply policies based on that information.
 
 ## Transaction-level verification {#zero-trust-transaction-level-verification}
 
@@ -55,7 +55,7 @@ In addition to the ability to identify and authenticate connections, it is also 
 
 Leverage:
 
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): Perform L7 inspection of requests, rejecting malformed HTTP requests, transaction-level [observability and reporting](/service_mesh/v2x/ossm-architecture#understanding-kiali). {{ SMProductShortName }} can also provide [request-based authentication](/service_mesh/v2x/ossm-security#restrict-access-with-json-web-token) using JWT.
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): Perform L7 inspection of requests, rejecting malformed HTTP requests, transaction-level [observability and reporting](/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#understanding-kiali). {{ SMProductShortName }} can also provide [request-based authentication](/openshift-docs-markdown/service_mesh/v2x/ossm-security#restrict-access-with-json-web-token) using JWT.
 
 ## Risk assessment {#zero-trust-risk-assessment}
 
@@ -63,7 +63,7 @@ As the number of security policies in a cluster increase, visualization of what 
 
 Leverage:
 
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): Create and visualize Kubernetes `NetworkPolicy` and `AdminNetworkPolicy`, and OpenShift Networking `EgressFirewall` objects using the [OpenShift web console](/web_console/web-console-overview#web-console-overview).
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): Create and visualize Kubernetes `NetworkPolicy` and `AdminNetworkPolicy`, and OpenShift Networking `EgressFirewall` objects using the [OpenShift web console](/openshift-docs-markdown/web_console/web-console-overview#web-console-overview).
 - [Red Hat Advanced Cluster Security for Kubernetes](https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes): Advanced [visualization of objects](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_security_for_kubernetes/4.3/html/operating/index).
 
 ## Site-wide policy enforcement and distribution {#zero-trust-sitewide-policy-enforcement-and-distribution}
@@ -72,7 +72,7 @@ After deploying applications on a cluster, it becomes challenging to manage all 
 
 Leverage:
 
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): RBAC to [control policy object](/security/container_security/security-platform#security-platform-multi-tenancy_security-platform)s and delegate control.
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): RBAC to [control policy object](/openshift-docs-markdown/security/container_security/security-platform#security-platform-multi-tenancy_security-platform)s and delegate control.
 - [Red Hat Advanced Cluster Security for Kubernetes](https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes): [Policy enforcement](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_security_for_kubernetes/4.1/html/operating/manage-security-policies#doc-wrapper) engine.
 - [{{ rh_rhacm_first }} for Kubernetes](https://www.redhat.com/en/technologies/management/advanced-cluster-management): Centralized policy control.
 
@@ -82,10 +82,10 @@ After you have a running cluster, you want to be able to observe the traffic and
 
 Leverage:
 
-- [Network Observability Operator](/observability/network_observability/installing-operators#installing-network-observability-operators): Allows for inspection, monitoring, and alerting on network connections to pods and nodes in the cluster.
+- [Network Observability Operator](/openshift-docs-markdown/observability/network_observability/installing-operators#installing-network-observability-operators): Allows for inspection, monitoring, and alerting on network connections to pods and nodes in the cluster.
 - [{{ rh_rhacm_first }} for Kubernetes](https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes): Monitors, collects, and evaluates system-level events such as process execution, network connections and flows, and privilege escalation. It can determine a baseline for a cluster, and then detect anomalous activity and alert you about it.
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): Can [monitor traffic](/service_mesh/v2x/ossm-architecture#ossm-kiali-overview_ossm-architecture) entering and leaving a pod.
-- [{{ DTProductName }}](/service_mesh/v2x/ossm-architecture#understanding-distributed-tracing): For suitably instrumented applications, you can see all traffic associated with a particular action as it splits into sub-requests to microservices. This allows you to identify bottlenecks within a distributed application.
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): Can [monitor traffic](/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#ossm-kiali-overview_ossm-architecture) entering and leaving a pod.
+- [{{ DTProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#understanding-distributed-tracing): For suitably instrumented applications, you can see all traffic associated with a particular action as it splits into sub-requests to microservices. This allows you to identify bottlenecks within a distributed application.
 
 ## Endpoint security {#zero-trust-endpoint-security}
 
@@ -93,7 +93,7 @@ It is important to be able to trust that the software running the services in yo
 
 Leverage:
 
-- OpenShift Container Platform: Secureboot can ensure that the nodes in the cluster are running trusted software, so the platform itself (including the container runtime) have not been tampered with. You can configure OpenShift Container Platform to only run images that have been [signed by certain signatures](/security/container_security/security-container-signature#security-container-signature).
+- OpenShift Container Platform: Secureboot can ensure that the nodes in the cluster are running trusted software, so the platform itself (including the container runtime) have not been tampered with. You can configure OpenShift Container Platform to only run images that have been [signed by certain signatures](/openshift-docs-markdown/security/container_security/security-container-signature#security-container-signature).
 - [Red Hat Trusted Artifact Signer](https://catalog.redhat.com/software/container-stacks/detail/6525b71aa53de2eb01ac9628): This can be used in a trusted build chain and produce signed container images.
 
 ## Extending trust outside of the cluster {#extending-trust-outside-the-cluster}
@@ -102,5 +102,5 @@ You might want to extend trust outside of the cluster by allowing a cluster to m
 
 Leverage:
 
-- [OpenShift cert-manager Operator](/security/cert_manager_operator/index#cert-manager-operator-about): You can use cert-manager to manage delegated CAs so that you can distribute trust across different clusters, or through your organization.
-- [{{ SMProductName }}](/service_mesh/v2x/ossm-about#ossm-about): Can use SPIFFE to provide remote attestation of workloads to endpoints running in remote or local clusters.
+- [OpenShift cert-manager Operator](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-about): You can use cert-manager to manage delegated CAs so that you can distribute trust across different clusters, or through your organization.
+- [{{ SMProductName }}](/openshift-docs-markdown/service_mesh/v2x/ossm-about#ossm-about): Can use SPIFFE to provide remote attestation of workloads to endpoints running in remote or local clusters.

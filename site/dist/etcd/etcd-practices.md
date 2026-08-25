@@ -8,7 +8,7 @@ Follow storage, latency, and hardware validation guidance for etcd to reduce lea
 
 **Additional resources**
 
-- [Setting tuning parameters for etcd](/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)
+- [Setting tuning parameters for etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)
 
 **Additional resources**
 

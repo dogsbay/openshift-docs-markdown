@@ -10,7 +10,7 @@ If DRA device quota is not configured, {{ kueue_name }} does not account for GPU
 
 ## Additional resources {#additional-resources_kueue-dra-integrating-dynamic-resource-allocation}
 
-- [Allocating GPUs to pods by using DRA](/nodes/pods/nodes-pods-allocate-dra#nodes-pods-allocate-dra)
-- [Configuring quotas](/ai_workloads/kueue/configuring-quotas#configuring-quotas)
-- [Creating a Kueue custom resource](/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)
-- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Allocating GPUs to pods by using DRA](/openshift-docs-markdown/nodes/pods/nodes-pods-allocate-dra#nodes-pods-allocate-dra)
+- [Configuring quotas](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-quotas)
+- [Creating a Kueue custom resource](/openshift-docs-markdown/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)
+- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

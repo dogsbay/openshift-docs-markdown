@@ -2,7 +2,7 @@
 // Source: support/troubleshooting/troubleshooting-network-issues.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Troubleshooting network issues\n---\n\n# Troubleshooting network issues {#troubleshooting-network-issues}\n\nUse the following sections to troubleshoot network issues.\n\n**Additional resources**\n\n- [Configure an external gateway on the default network](/networking/ovn_kubernetes_network_provider/configuring-secondary-external-gateway#configuring-secondary-external-gateway)\n\n**Additional resources**\n\n- [Understanding the Machine Config Operator](/machine_configuration/index#machine-config-operator_machine-config-overview)\n- [Checking machine config pool status](/machine_configuration/index#checking-mco-status_machine-config-overview)\n";
+const body = "---\ntitle: Troubleshooting network issues\n---\n\n# Troubleshooting network issues {#troubleshooting-network-issues}\n\nUse the following sections to troubleshoot network issues.\n\n**Additional resources**\n\n- [Configure an external gateway on the default network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-secondary-external-gateway#configuring-secondary-external-gateway)\n\n**Additional resources**\n\n- [Understanding the Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#machine-config-operator_machine-config-overview)\n- [Checking machine config pool status](/openshift-docs-markdown/machine_configuration/index#checking-mco-status_machine-config-overview)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

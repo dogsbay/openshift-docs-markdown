@@ -32,4 +32,4 @@ When a pod is created, the operands perform the following actions:
 
 **Additional resources**
 
-- [Installing from the software catalog by using the CLI](/operators/user/olm-installing-operators-in-namespace#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace)
+- [Installing from the software catalog by using the CLI](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace)

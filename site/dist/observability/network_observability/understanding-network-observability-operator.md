@@ -8,4 +8,4 @@ The Network Observability Operator for OpenShift Container Platform deploys a mo
 
 **Additional resources**
 
-- [Network Observability without Loki](/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)
+- [Network Observability without Loki](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)

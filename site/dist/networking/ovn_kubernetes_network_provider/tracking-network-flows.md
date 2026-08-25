@@ -31,4 +31,4 @@ Collecting the network flows data and sending the records to collectors affects 
 
 ## Additional resources {#additional-resources_tracking-network-flows}
 
-- \[Network [operator.openshift.io/v1\]](/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)
+- \[Network [operator.openshift.io/v1\]](/openshift-docs-markdown/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)

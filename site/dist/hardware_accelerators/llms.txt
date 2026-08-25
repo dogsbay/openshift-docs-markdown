@@ -2,8 +2,8 @@
 
 ## Hardware accelerators
 
-- [About hardware accelerators](/hardware_accelerators/about-hardware-accelerators.md)
-- [NVIDIA GPU architecture](/hardware_accelerators/nvidia-gpu-architecture.md)
-- [AMD GPU Operator](/hardware_accelerators/amd-gpu-operator.md)
-- [Intel Gaudi AI accelerators](/hardware_accelerators/gaudi-ai-accelerator.md)
-- [Remote Direct Memory Access (RDMA)](/hardware_accelerators/rdma-remote-direct-memory-access.md)
+- [About hardware accelerators](https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/about-hardware-accelerators.md)
+- [NVIDIA GPU architecture](https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/nvidia-gpu-architecture.md)
+- [AMD GPU Operator](https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/amd-gpu-operator.md)
+- [Intel Gaudi AI accelerators](https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/gaudi-ai-accelerator.md)
+- [Remote Direct Memory Access (RDMA)](https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/rdma-remote-direct-memory-access.md)

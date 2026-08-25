@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"understand-gateway-api_{{ context }}","text":"Understand Gateway API"}];
 const nav = navData;
-const currentPath = "/networking/ingress_load_balancing/configuring_gateway_api/understand-gateway-api";
+const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/understand-gateway-api";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/ingress_load_balancing","networking/ingress_load_balancing/configuring_gateway_api"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understand Gateway API {#understand-gateway-api_{{ context }}}\n\nTo optimize network traffic management and implement routing policies in OpenShift Container Platform, use Gateway API. By adopting this community-managed Kubernetes mechanism, you can configure advanced routing at both the transport (L4) and application (L7) layers while leveraging various vendor-supported implementations to meet your specific networking requirements.\n\nA well-designed Gateway API deployment helps you achieve a portable, role-oriented routing infrastructure. To successfully plan your Gateway API implementation, review the following concepts:\n\n- Understand the benefits and limitations of Gateway API.\n- Review OpenShift Container Platform implementation specifics to avoid unsupported features.\n- Choose between shared or dedicated deployment topologies.\n\n> [!IMPORTANT]\n> Gateway API does not support user-defined networks (UDN).\n","mdUrl":"/networking/ingress_load_balancing/configuring_gateway_api/understand-gateway-api.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understand Gateway API {#understand-gateway-api_{{ context }}}\n\nTo optimize network traffic management and implement routing policies in OpenShift Container Platform, use Gateway API. By adopting this community-managed Kubernetes mechanism, you can configure advanced routing at both the transport (L4) and application (L7) layers while leveraging various vendor-supported implementations to meet your specific networking requirements.\n\nA well-designed Gateway API deployment helps you achieve a portable, role-oriented routing infrastructure. To successfully plan your Gateway API implementation, review the following concepts:\n\n- Understand the benefits and limitations of Gateway API.\n- Review OpenShift Container Platform implementation specifics to avoid unsupported features.\n- Choose between shared or dedicated deployment topologies.\n\n> [!IMPORTANT]\n> Gateway API does not support user-defined networks (UDN).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/understand-gateway-api.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -2,7 +2,7 @@
 // Source: nodes/nodes/nodes-update-boot-images.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Boot image management\n---\n\n# Boot image management {#nodes-update-boot-images}\n\n## Additional resources {#additional-resources_nodes-update-boot-images}\n\n- [Disabling boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)\n- [Enabling boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)\n- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n";
+const body = "---\ntitle: Boot image management\n---\n\n# Boot image management {#nodes-update-boot-images}\n\n## Additional resources {#additional-resources_nodes-update-boot-images}\n\n- [Disabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)\n- [Enabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

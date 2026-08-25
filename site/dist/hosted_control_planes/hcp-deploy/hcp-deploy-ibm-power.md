@@ -21,16 +21,16 @@ When you create a hosted cluster with the Agent platform, HyperShift installs th
 
 - [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 - [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
-- [Installing the hosted control plane command-line interface](/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)
-- [Manually enabling the {{ hcp }} feature](/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)
-- [Disabling the {{ hcp }} feature](/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)
+- [Installing the hosted control plane command-line interface](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)
+- [Manually enabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)
+- [Disabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)
 
 **Additional resources**
 
-- [Requirements for hosted control planes](/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements)
-- [DNS configurations on bare metal](/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-dns_hcp-deploy-bm)
-- [Manually importing a hosted cluster](/hosted_control_planes/hcp-import#hcp-import)
-- [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
+- [Requirements for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements)
+- [DNS configurations on bare metal](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-dns_hcp-deploy-bm)
+- [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import)
+- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
 
 **Additional resources**
 

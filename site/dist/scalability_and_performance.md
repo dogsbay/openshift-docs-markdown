@@ -15,5 +15,5 @@ To contact Red Hat support, see "Getting support".
 
 ## Additional resources {#additional-resources_index}
 
-- [Getting support](/support/getting-support#getting-support)
+- [Getting support](/openshift-docs-markdown/support/getting-support#getting-support)
 - [OpenShift Operators](https://access.redhat.com/support/policy/updates/openshift_operators)

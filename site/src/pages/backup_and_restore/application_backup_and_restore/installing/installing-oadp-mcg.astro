@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"installing-oadp-mcg","text":"Configuring the OpenShift API for Data Protection with Multicloud Object Gateway"},{"depth":2,"slug":"additional-resources_installing-oadp-mcg","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/application_backup_and_restore","backup_and_restore/application_backup_and_restore/installing"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the OpenShift API for Data Protection with Multicloud Object Gateway {#installing-oadp-mcg}\n\nConfigure {{ oadp_first }} to use Multicloud Object Gateway (MCG), a component of {{ rh_storage }}, as a backup storage location by setting up credentials, secrets, and the Data Protection Application.\n\nYou can install the {{ oadp_first }} with MCG by installing the OADP Operator. The Operator installs Velero {{ velero_version }}.\n\nYou can create a `Secret` CR for the backup location and install the Data Protection Application.\n\nTo install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog.\n\n## Additional resources {#additional-resources_installing-oadp-mcg}\n\n- \\[Velero {{ velero_version }}\\](https://{{ velero_domain }}/docs/v{{ velero_version }}/)\n- [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)\n- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)\n- [Performance tuning guide for Multicloud Object Gateway](https://access.redhat.com/solutions/6719951)\n- [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)\n- [Running tasks in pods using jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)\n- [Configuring the {{ oadp_first }} with multiple backup storage locations](/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-bsl#configuring-oadp-multiple-bsl)\n- [Configuring node agents and node labels](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#oadp-configuring-node-agents_installing-oadp-mcg)\n","mdUrl":"/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the OpenShift API for Data Protection with Multicloud Object Gateway {#installing-oadp-mcg}\n\nConfigure {{ oadp_first }} to use Multicloud Object Gateway (MCG), a component of {{ rh_storage }}, as a backup storage location by setting up credentials, secrets, and the Data Protection Application.\n\nYou can install the {{ oadp_first }} with MCG by installing the OADP Operator. The Operator installs Velero {{ velero_version }}.\n\nYou can create a `Secret` CR for the backup location and install the Data Protection Application.\n\nTo install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog.\n\n## Additional resources {#additional-resources_installing-oadp-mcg}\n\n- \\[Velero {{ velero_version }}\\](https://{{ velero_domain }}/docs/v{{ velero_version }}/)\n- [Installing the OADP Operator](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- [Performance tuning guide for Multicloud Object Gateway](https://access.redhat.com/solutions/6719951)\n- [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)\n- [Running tasks in pods using jobs](/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)\n- [Configuring the {{ oadp_first }} with multiple backup storage locations](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-bsl#configuring-oadp-multiple-bsl)\n- [Configuring node agents and node labels](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#oadp-configuring-node-agents_installing-oadp-mcg)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -120,13 +120,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="additional-resources_installing-oadp-mcg" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-oadp-mcg" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li>[Velero {"{"}{"{"} velero_version {"}"}{"}"}](https://{"{"}{"{"} velero_domain {"}"}{"}"}/docs/v{"{"}{"{"} velero_version {"}"}{"}"}/)</li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc">Installing the OADP Operator</a></li>
-      <li><a href="/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc">Installing the OADP Operator</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
       <li><a href="https://access.redhat.com/solutions/6719951">Performance tuning guide for Multicloud Object Gateway</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt">Installing the Data Protection Application with the <code>kubevirt</code> and <code>openshift</code> plugins</a></li>
-      <li><a href="/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs">Running tasks in pods using jobs</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-bsl#configuring-oadp-multiple-bsl">Configuring the {"{"}{"{"} oadp_first {"}"}{"}"} with multiple backup storage locations</a></li>
-      <li><a href="/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#oadp-configuring-node-agents_installing-oadp-mcg">Configuring node agents and node labels</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt">Installing the Data Protection Application with the <code>kubevirt</code> and <code>openshift</code> plugins</a></li>
+      <li><a href="/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs">Running tasks in pods using jobs</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-bsl#configuring-oadp-multiple-bsl">Configuring the {"{"}{"{"} oadp_first {"}"}{"}"} with multiple backup storage locations</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#oadp-configuring-node-agents_installing-oadp-mcg">Configuring node agents and node labels</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

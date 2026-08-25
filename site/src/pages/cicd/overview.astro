@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"ci-cd-overview","text":"About CI/CD"},{"depth":2,"slug":"openshift-builds","text":"OpenShift Builds"},{"depth":2,"slug":"openshift-pipelines","text":"{{ pipelines_shortname }}"},{"depth":2,"slug":"openshift-gitops","text":"OpenShift GitOps"},{"depth":2,"slug":"jenkins-ci-cd","text":"Jenkins"}];
 const nav = navData;
-const currentPath = "/cicd/overview";
+const currentPath = "/openshift-docs-markdown/cicd/overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["cicd"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About CI/CD {#ci-cd-overview}\n\nOpenShift Container Platform is an enterprise-ready Kubernetes platform for developers, which enables organizations to automate the application delivery process through DevOps practices, such as continuous integration (CI) and continuous delivery (CD). To meet your organizational needs, the OpenShift Container Platform provides the following CI/CD solutions:\n\n- OpenShift Builds\n- {{ pipelines_shortname }}\n- OpenShift GitOps\n- Jenkins\n\n## OpenShift Builds {#openshift-builds}\n\nOpenShift Builds provides you the following options to configure and run a build:\n\n- Builds using Shipwright is an extensible build framework based on the Shipwright project. You can use it to build container images on a cluster. You can build container images from source code and Dockerfile by using image build tools, such as Source-to-Image (S2I) and Buildah.\n\n  For more information, see [builds for Red Hat OpenShift](https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift).\n- Builds using `BuildConfig` objects is a declarative build process to create cloud-native apps. You can define the build process in a YAML file that you use to create a `BuildConfig` object. This definition includes attributes such as build triggers, input parameters, and source code. When deployed, the `BuildConfig` object builds a runnable image and pushes the image to a container image registry. With the `BuildConfig` object, you can create a Docker, Source-to-image (S2I), or custom build.\n\n  For more information, see [Understanding image builds](/cicd/builds/understanding-image-builds#understanding-image-builds).\n\n## {{ pipelines_shortname }} {#openshift-pipelines}\n\n{{ pipelines_shortname }} provides a Kubernetes-native CI/CD framework to design and run each step of the CI/CD pipeline in its own container. It can scale independently to meet the on-demand pipelines with predictable outcomes.\n\nFor more information, see [Red Hat OpenShift Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines).\n\n## OpenShift GitOps {#openshift-gitops}\n\nOpenShift GitOps is an Operator that uses Argo CD as the declarative GitOps engine. It enables GitOps workflows across multicluster OpenShift and Kubernetes infrastructure. Using OpenShift GitOps, administrators can consistently configure and deploy Kubernetes-based infrastructure and applications across clusters and development lifecycles.\n\nFor more information, see [Red Hat OpenShift GitOps](https://docs.redhat.com/en/documentation/red_hat_openshift_gitops).\n\n## Jenkins {#jenkins-ci-cd}\n\nJenkins automates the process of building, testing, and deploying applications and projects. OpenShift Developer Tools provides a Jenkins image that integrates directly with OpenShift Container Platform. Jenkins can be deployed on OpenShift by using the Samples Operator templates or certified Helm chart.\n\nFor more information, see [Configuring Jenkins images](/cicd/jenkins/images-other-jenkins#images-other-jenkins).\n","mdUrl":"/cicd/overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About CI/CD {#ci-cd-overview}\n\nOpenShift Container Platform is an enterprise-ready Kubernetes platform for developers, which enables organizations to automate the application delivery process through DevOps practices, such as continuous integration (CI) and continuous delivery (CD). To meet your organizational needs, the OpenShift Container Platform provides the following CI/CD solutions:\n\n- OpenShift Builds\n- {{ pipelines_shortname }}\n- OpenShift GitOps\n- Jenkins\n\n## OpenShift Builds {#openshift-builds}\n\nOpenShift Builds provides you the following options to configure and run a build:\n\n- Builds using Shipwright is an extensible build framework based on the Shipwright project. You can use it to build container images on a cluster. You can build container images from source code and Dockerfile by using image build tools, such as Source-to-Image (S2I) and Buildah.\n\n  For more information, see [builds for Red Hat OpenShift](https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift).\n- Builds using `BuildConfig` objects is a declarative build process to create cloud-native apps. You can define the build process in a YAML file that you use to create a `BuildConfig` object. This definition includes attributes such as build triggers, input parameters, and source code. When deployed, the `BuildConfig` object builds a runnable image and pushes the image to a container image registry. With the `BuildConfig` object, you can create a Docker, Source-to-image (S2I), or custom build.\n\n  For more information, see [Understanding image builds](/openshift-docs-markdown/cicd/builds/understanding-image-builds#understanding-image-builds).\n\n## {{ pipelines_shortname }} {#openshift-pipelines}\n\n{{ pipelines_shortname }} provides a Kubernetes-native CI/CD framework to design and run each step of the CI/CD pipeline in its own container. It can scale independently to meet the on-demand pipelines with predictable outcomes.\n\nFor more information, see [Red Hat OpenShift Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines).\n\n## OpenShift GitOps {#openshift-gitops}\n\nOpenShift GitOps is an Operator that uses Argo CD as the declarative GitOps engine. It enables GitOps workflows across multicluster OpenShift and Kubernetes infrastructure. Using OpenShift GitOps, administrators can consistently configure and deploy Kubernetes-based infrastructure and applications across clusters and development lifecycles.\n\nFor more information, see [Red Hat OpenShift GitOps](https://docs.redhat.com/en/documentation/red_hat_openshift_gitops).\n\n## Jenkins {#jenkins-ci-cd}\n\nJenkins automates the process of building, testing, and deploying applications and projects. OpenShift Developer Tools provides a Jenkins image that integrates directly with OpenShift Container Platform. Jenkins can be deployed on OpenShift by using the Samples Operator templates or certified Helm chart.\n\nFor more information, see [Configuring Jenkins images](/openshift-docs-markdown/cicd/jenkins/images-other-jenkins#images-other-jenkins).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -108,7 +108,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </li>
       <li>
       Builds using <code>BuildConfig</code> objects is a declarative build process to create cloud-native apps. You can define the build process in a YAML file that you use to create a <code>BuildConfig</code> object. This definition includes attributes such as build triggers, input parameters, and source code. When deployed, the <code>BuildConfig</code> object builds a runnable image and pushes the image to a container image registry. With the <code>BuildConfig</code> object, you can create a Docker, Source-to-image (S2I), or custom build.
-      <p>For more information, see <a href="/cicd/builds/understanding-image-builds#understanding-image-builds">Understanding image builds</a>.</p>
+      <p>For more information, see <a href="/openshift-docs-markdown/cicd/builds/understanding-image-builds#understanding-image-builds">Understanding image builds</a>.</p>
       </li>
       </ul>
       <h2 id="openshift-pipelines" class="group scroll-mt-20">{"{"}{"{"} pipelines_shortname {"}"}{"}"}<a href="#openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
@@ -119,7 +119,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_gitops">Red Hat OpenShift GitOps</a>.</p>
       <h2 id="jenkins-ci-cd" class="group scroll-mt-20">Jenkins<a href="#jenkins-ci-cd" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>Jenkins automates the process of building, testing, and deploying applications and projects. OpenShift Developer Tools provides a Jenkins image that integrates directly with OpenShift Container Platform. Jenkins can be deployed on OpenShift by using the Samples Operator templates or certified Helm chart.</p>
-      <p>For more information, see <a href="/cicd/jenkins/images-other-jenkins#images-other-jenkins">Configuring Jenkins images</a>.</p>
+      <p>For more information, see <a href="/openshift-docs-markdown/cicd/jenkins/images-other-jenkins#images-other-jenkins">Configuring Jenkins images</a>.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

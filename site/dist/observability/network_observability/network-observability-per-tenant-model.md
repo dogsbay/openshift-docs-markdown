@@ -8,4 +8,4 @@ Use the `FlowCollectorSlice` resource to delegate network traffic analysis manag
 
 ## Additional resources {#additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration}
 
-- [FlowCollector API reference](/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
+- [FlowCollector API reference](/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)

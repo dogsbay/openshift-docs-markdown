@@ -21,7 +21,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `target` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 
 ### .target {#_target}
@@ -78,15 +78,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |  |
+| `body` | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |
-| 201 - Created | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |
-| 202 - Accepted | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |
+| 200 - OK | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |
+| 201 - Created | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |
+| 202 - Accepted | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/binding {#_apiv1namespaces_namespace_pods_name_binding}
@@ -118,13 +118,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |  |
+| `body` | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |
-| 201 - Created | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |
-| 202 - Accepted | [`Binding`](/rest_api/metadata_apis/binding-v1#binding-v1) schema |
+| 200 - OK | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |
+| 201 - Created | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |
+| 202 - Accepted | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |
 | 401 - Unauthorized | Empty |

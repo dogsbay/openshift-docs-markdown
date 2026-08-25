@@ -2,7 +2,7 @@
 // Source: service_mesh/v2x/ossm-deploy-production.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring Service Mesh for production\n---\n\n# Configuring Service Mesh for production {#ossm-production}\n\nWhen you are ready to move from a basic installation to production, you must configure your control plane, tracing, and security certificates to meet production requirements.\n\n**Prerequisites**\n\n- Install and configure {{ SMProductName }}.\n- Test your configuration in a staging environment.\n\n## Additional resources {#additional-resources_ossm-production}\n\n- For more information about tuning {{ SMProductShortName }} for performance, see [Performance and scalability](/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability).\n";
+const body = "---\ntitle: Configuring Service Mesh for production\n---\n\n# Configuring Service Mesh for production {#ossm-production}\n\nWhen you are ready to move from a basic installation to production, you must configure your control plane, tracing, and security certificates to meet production requirements.\n\n**Prerequisites**\n\n- Install and configure {{ SMProductName }}.\n- Test your configuration in a staging environment.\n\n## Additional resources {#additional-resources_ossm-production}\n\n- For more information about tuning {{ SMProductShortName }} for performance, see [Performance and scalability](/openshift-docs-markdown/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

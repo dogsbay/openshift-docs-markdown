@@ -23,7 +23,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
 
@@ -214,7 +214,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -231,7 +231,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGateList`](/rest_api/objects/index#io-openshift-config-v1-FeatureGateList) schema |
+| 200 - OK | [`FeatureGateList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-config-v1-FeatureGateList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -255,15 +255,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |  |
+| `body` | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
-| 201 - Created | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
-| 202 - Accepted | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 200 - OK | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 201 - Created | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 202 - Accepted | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/config.openshift.io/v1/featuregates/{{ name }} {#_apisconfigopenshiftiov1featuregates_name}
@@ -294,8 +294,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -312,7 +312,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 200 - OK | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -336,7 +336,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 200 - OK | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -360,14 +360,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |  |
+| `body` | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
-| 201 - Created | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 200 - OK | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 201 - Created | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/config.openshift.io/v1/featuregates/{{ name }}/status {#_apisconfigopenshiftiov1featuregates_name_status}
@@ -392,7 +392,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 200 - OK | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -416,7 +416,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 200 - OK | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -440,12 +440,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |  |
+| `body` | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
-| 201 - Created | [`FeatureGate`](/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 200 - OK | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
+| 201 - Created | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

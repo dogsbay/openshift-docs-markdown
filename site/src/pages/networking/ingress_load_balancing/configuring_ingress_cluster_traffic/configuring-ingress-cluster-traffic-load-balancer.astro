@@ -19,7 +19,7 @@ import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
 const headings = [{"depth":1,"slug":"configuring-ingress-cluster-traffic-load-balancer","text":"Configuring ingress cluster traffic using a load balancer"}];
 const nav = navData;
-const currentPath = "/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer";
+const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -38,9 +38,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["networking","networking/ingress_load_balancing","networking/ingress_load_balancing/configuring_ingress_cluster_traffic"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic using a load balancer {#configuring-ingress-cluster-traffic-load-balancer}\n\nOpenShift Container Platform provides methods for communicating from outside the cluster with services running in the cluster. This method uses a load balancer.\n\nBefore starting the following procedures, the administrator must complete the following prerequisite tasks:\n\n- Set up the external port to the cluster networking environment so that requests can reach the cluster.\n- Have an OpenShift Container Platform cluster with at least one control plane node, at least one compute node, and a system outside the cluster that has network access to the cluster. This procedure assumes that the external system is on the same subnet as the cluster. The additional networking required for external systems on a different subnet is out-of-scope for this topic.\n- Make sure there is at least one user with cluster admin role. To add this role to a user, run the following command:\n\n  ```terminal\n  $ oc adm policy add-cluster-role-to-user cluster-admin username\n  ```\n","mdUrl":"/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic using a load balancer {#configuring-ingress-cluster-traffic-load-balancer}\n\nOpenShift Container Platform provides methods for communicating from outside the cluster with services running in the cluster. This method uses a load balancer.\n\nBefore starting the following procedures, the administrator must complete the following prerequisite tasks:\n\n- Set up the external port to the cluster networking environment so that requests can reach the cluster.\n- Have an OpenShift Container Platform cluster with at least one control plane node, at least one compute node, and a system outside the cluster that has network access to the cluster. This procedure assumes that the external system is on the same subnet as the cluster. The additional networking required for external systems on a different subnet is out-of-scope for this topic.\n- Make sure there is at least one user with cluster admin role. To add this role to a user, run the following command:\n\n  ```terminal\n  $ oc adm policy add-cluster-role-to-user cluster-admin username\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,10 +81,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -15,5 +15,5 @@ You can install a three-node cluster by using either installer-provisioned or us
 
 ## Additional resources {#additional-resources_installing-azure-three-node}
 
-- [Installing a cluster on Azure with customizations](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
-- [Installing a cluster on Azure using ARM templates](/installing/installing_azure/upi/installing-azure-user-infra#installing-azure-user-infra)
+- [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
+- [Installing a cluster on Azure using ARM templates](/openshift-docs-markdown/installing/installing_azure/upi/installing-azure-user-infra#installing-azure-user-infra)

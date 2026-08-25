@@ -8,4 +8,4 @@ Operator Lifecycle Manager (OLM) automatically configures managed Operators with
 
 ## Additional resources {#zero-trust-manager-proxy_additional-resources}
 
-- [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
+- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)

@@ -16,33 +16,33 @@ With {{ hcp }} on {{ azure_first }}, you can reduce the cost associated with ded
 
 **Additional resources**
 
-- [Creating {{ azure_short }} Workload Identities](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)
+- [Creating {{ azure_short }} Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)
 
 **Additional resources**
 
-- [Configuring an {{ azure_short }} management cluster for {{ hcp }}](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-mgmt-cluster_hcp-deploy-azure)
-- [Setting up an OIDC issuer](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
+- [Configuring an {{ azure_short }} management cluster for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-mgmt-cluster_hcp-deploy-azure)
+- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
 
 **Additional resources**
 
-- [Setting up an OIDC issuer](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
+- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
 
 **Additional resources**
 
-- [Setting up an OIDC issuer](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
-- [Creating {{ azure_short }} Workload Identities](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)
+- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
+- [Creating {{ azure_short }} Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)
 
 **Additional resources**
 
-- [Setting up an OIDC issuer](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
+- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
 
 **Additional resources**
 
-- [Preparing a subnet for a private hosted cluster on {{ azure_short }}](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-subnet_hcp-deploy-azure)
-- [Installing the HyperShift Operator with private platform support](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-operator_hcp-deploy-azure)
-- [Configuring IAM resources for a private hosted cluster](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-iam_hcp-deploy-azure)
-- [Creating infrastructure for a private hosted cluster](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-infra_hcp-deploy-azure)
+- [Preparing a subnet for a private hosted cluster on {{ azure_short }}](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-subnet_hcp-deploy-azure)
+- [Installing the HyperShift Operator with private platform support](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-operator_hcp-deploy-azure)
+- [Configuring IAM resources for a private hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-iam_hcp-deploy-azure)
+- [Creating infrastructure for a private hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-infra_hcp-deploy-azure)
 
 **Additional resources**
 
-- [Creating a private {{ azure_short }} hosted cluster](/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-hosted_hcp-deploy-azure)
+- [Creating a private {{ azure_short }} hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-hosted_hcp-deploy-azure)

@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | LimitRangeSpec defines a min/max usage limit for resources that match on kind. |
 
 ### .spec {#_spec}
@@ -64,11 +64,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `default` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Default resource requirement limit value by resource name if resource limit is omitted. |
-| `defaultRequest` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | DefaultRequest is the default resource requirement request value by resource name if resource request is omitted. |
-| `max` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Max usage constraints on this kind by resource name. |
-| `maxLimitRequestRatio` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | MaxLimitRequestRatio if specified, the named resource must have a request and limit that are both non-zero where limit divided by request is less than or equal to the enumerated value; this represents the max burst for the named resource. |
-| `min` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Min usage constraints on this kind by resource name. |
+| `default` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Default resource requirement limit value by resource name if resource limit is omitted. |
+| `defaultRequest` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | DefaultRequest is the default resource requirement request value by resource name if resource request is omitted. |
+| `max` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Max usage constraints on this kind by resource name. |
+| `maxLimitRequestRatio` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | MaxLimitRequestRatio if specified, the named resource must have a request and limit that are both non-zero where limit divided by request is less than or equal to the enumerated value; this represents the max burst for the named resource. |
+| `min` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Min usage constraints on this kind by resource name. |
 | `type` | `string` | Type of resource that this limit applies to. |
 
 ## API endpoints {#_api_endpoints}
@@ -115,7 +115,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LimitRangeList`](/rest_api/objects/index#io-k8s-api-core-v1-LimitRangeList) schema |
+| 200 - OK | [`LimitRangeList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LimitRangeList) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/limitranges {#_apiv1watchlimitranges}
@@ -134,7 +134,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/limitranges {#_apiv1namespaces_namespace_limitranges}
@@ -159,7 +159,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -176,7 +176,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LimitRangeList`](/rest_api/objects/index#io-k8s-api-core-v1-LimitRangeList) schema |
+| 200 - OK | [`LimitRangeList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-LimitRangeList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -200,15 +200,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |  |
+| `body` | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
-| 201 - Created | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
-| 202 - Accepted | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 200 - OK | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 201 - Created | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 202 - Accepted | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/limitranges {#_apiv1watchnamespaces_namespace_limitranges}
@@ -227,7 +227,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/namespaces/{{ namespace }}/limitranges/{{ name }} {#_apiv1namespaces_namespace_limitranges_name}
@@ -258,8 +258,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -276,7 +276,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 200 - OK | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -300,8 +300,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
-| 201 - Created | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 200 - OK | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 201 - Created | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -325,14 +325,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |  |
+| `body` | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
-| 201 - Created | [`LimitRange`](/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 200 - OK | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
+| 201 - Created | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /api/v1/watch/namespaces/{{ namespace }}/limitranges/{{ name }} {#_apiv1watchnamespaces_namespace_limitranges_name}
@@ -357,5 +357,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

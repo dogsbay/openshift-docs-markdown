@@ -14,7 +14,7 @@ The following example YAML file snippets use `nodePlacement`, `affinity`, and `t
 
 ## Additional resources {#additional-resources_virt-specifying-nodes-for-vms}
 
-- [Specifying nodes for virtualization components](/virt/post_installation_configuration/virt-node-placement-virt-components#virt-node-placement-virt-components)
-- [Placing pods on specific nodes using node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
-- [Controlling pod placement on nodes using node affinity rules](/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)
-- [Controlling pod placement using node taints](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)
+- [Specifying nodes for virtualization components](/openshift-docs-markdown/virt/post_installation_configuration/virt-node-placement-virt-components#virt-node-placement-virt-components)
+- [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
+- [Controlling pod placement on nodes using node affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity)
+- [Controlling pod placement using node taints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)

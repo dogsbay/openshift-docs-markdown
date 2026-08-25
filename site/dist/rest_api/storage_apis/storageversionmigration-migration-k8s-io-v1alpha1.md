@@ -18,7 +18,7 @@ Type
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the migration. |
 | `status` | `object` | Status of the migration. |
 
@@ -140,7 +140,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -157,7 +157,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigrationList`](/rest_api/objects/index#io-k8s-migration-v1alpha1-StorageVersionMigrationList) schema |
+| 200 - OK | [`StorageVersionMigrationList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-migration-v1alpha1-StorageVersionMigrationList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -181,15 +181,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |  |
+| `body` | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
-| 201 - Created | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
-| 202 - Accepted | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 200 - OK | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 201 - Created | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 202 - Accepted | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }} {#_apismigrationk8siov1alpha1storageversionmigrations_name}
@@ -220,8 +220,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
-| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 200 - OK | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -238,7 +238,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 200 - OK | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -262,7 +262,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 200 - OK | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -286,14 +286,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |  |
+| `body` | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
-| 201 - Created | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 200 - OK | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 201 - Created | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}/status {#_apismigrationk8siov1alpha1storageversionmigrations_name_status}
@@ -318,7 +318,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 200 - OK | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -342,7 +342,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 200 - OK | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -366,12 +366,12 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |  |
+| `body` | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
-| 201 - Created | [`StorageVersionMigration`](/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 200 - OK | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
+| 201 - Created | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |

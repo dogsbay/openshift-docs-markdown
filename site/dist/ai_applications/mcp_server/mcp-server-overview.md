@@ -8,8 +8,8 @@ When problems occur on your OpenShift Container Platform cluster, you want to de
 
 **Additional resources**
 
-- [Revoke access to Custom Resources](/ai_applications/mcp_server/mcp-server-overview#ai-app-mcp-server-revoke-cr-access_mcp-server-overview)
-- [Install the MCP server](/ai_applications/mcp_server/mcp-server-overview#ai-app-mcp-server-install-helm_mcp-server-overview)
+- [Revoke access to Custom Resources](/openshift-docs-markdown/ai_applications/mcp_server/mcp-server-overview#ai-app-mcp-server-revoke-cr-access_mcp-server-overview)
+- [Install the MCP server](/openshift-docs-markdown/ai_applications/mcp_server/mcp-server-overview#ai-app-mcp-server-install-helm_mcp-server-overview)
 
 **Additional resources**
 

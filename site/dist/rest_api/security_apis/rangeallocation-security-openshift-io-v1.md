@@ -25,7 +25,7 @@ Required
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `data` | `string` | data is a byte array representing the serialized state of a range allocation.  It is a bitmap with each bit set to one to represent a range is taken. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `range` | `string` | range is a string representing a unique label for a range of uids, "1000000000-2000000000/10000". |
 
 ## API endpoints {#_api_endpoints}
@@ -72,7 +72,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -89,7 +89,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RangeAllocationList`](/rest_api/objects/index#com-github-openshift-api-security-v1-RangeAllocationList) schema |
+| 200 - OK | [`RangeAllocationList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-security-v1-RangeAllocationList) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -113,15 +113,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |  |
+| `body` | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
-| 201 - Created | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
-| 202 - Accepted | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 200 - OK | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 201 - Created | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 202 - Accepted | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/security.openshift.io/v1/watch/rangeallocations {#_apissecurityopenshiftiov1watchrangeallocations}
@@ -140,7 +140,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/security.openshift.io/v1/rangeallocations/{{ name }} {#_apissecurityopenshiftiov1rangeallocations_name}
@@ -171,8 +171,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
-| 202 - Accepted | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 200 - OK | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
+| 202 - Accepted | [`Status_v2`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -189,7 +189,7 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 200 - OK | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -213,8 +213,8 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
-| 201 - Created | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 200 - OK | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 201 - Created | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 HTTP method
@@ -238,14 +238,14 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |  |
+| `body` | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
-| 201 - Created | [`RangeAllocation`](/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 200 - OK | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
+| 201 - Created | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/security.openshift.io/v1/watch/rangeallocations/{{ name }} {#_apissecurityopenshiftiov1watchrangeallocations_name}
@@ -270,5 +270,5 @@ Description
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`WatchEvent`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |

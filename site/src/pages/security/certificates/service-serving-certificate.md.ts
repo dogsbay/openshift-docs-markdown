@@ -2,7 +2,7 @@
 // Source: security/certificates/service-serving-certificate.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Securing service traffic using service serving certificate secrets\n---\n\n# Securing service traffic using service serving certificate secrets {#add-service-serving}\n\nService serving certificates provide automatic TLS encryption for service-to-service communication. Configure certificates for services, ConfigMaps, APIServices, CRDs, and webhooks to secure internal cluster traffic.\n\n**Additional resources**\n\n- [Creating a re-encrypt route with a custom certificate](/networking/ingress_load_balancing/routes/securing-routes#nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_secured-routes)\n";
+const body = "---\ntitle: Securing service traffic using service serving certificate secrets\n---\n\n# Securing service traffic using service serving certificate secrets {#add-service-serving}\n\nService serving certificates provide automatic TLS encryption for service-to-service communication. Configure certificates for services, ConfigMaps, APIServices, CRDs, and webhooks to secure internal cluster traffic.\n\n**Additional resources**\n\n- [Creating a re-encrypt route with a custom certificate](/openshift-docs-markdown/networking/ingress_load_balancing/routes/securing-routes#nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_secured-routes)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"hcp-requirements","text":"Requirements for {{ hcp }}"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes/hcp-prepare/hcp-requirements";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-prepare"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Requirements for {{ hcp }} {#hcp-requirements}\n\nEnsure you are familiar with the general requirements to deploy {{ hcp }}.\n\nThe following requirements apply to {{ hcp }}:\n\n- In order to run the HyperShift Operator, your management cluster needs at least three worker nodes. In the context of {{ hcp }}, a *management cluster* is an OpenShift Container Platform cluster where the HyperShift Operator is deployed and where the control planes for hosted clusters are hosted.\n\n  The control plane is associated with a hosted cluster and runs as pods in a single namespace. When the cluster service consumer creates a hosted cluster, it creates a worker node that is independent of the control plane.\n- You must open the firewall port `53` on Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) to allow the Domain Name Service (DNS) protocol to work as expected.\n- You can run both the management cluster and the worker nodes on-premise, such as on a bare-metal platform or on {{ VirtProductName }}. In addition, you can run both the management cluster and the worker nodes on cloud infrastructure, such as {{ aws_first }}.\n- If you use a mixed infrastructure, such as running the management cluster on {{ aws_short }} and your worker nodes on-premise, or running your worker nodes on {{ aws_short }} and your management cluster on-premise, you must use the `PublicAndPrivate` publishing strategy and follow the latency requirements in the support matrix.\n- In Bare Metal Host (BMH) deployments, where the Bare Metal Operator starts machines, the hosted control plane must be able to reach baseboard management controllers (BMCs). If your security profile does not permit the Cluster Baremetal Operator to access the network where the BMHs have their BMCs in order to enable Redfish automation, you can use BYO ISO support. However, in BYO mode, OpenShift Container Platform cannot automate the powering on of BMHs.\n\n## Additional resources {#_additional_resources}\n\n- [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)\n- [Shared infrastructure between hosted and standalone control planes](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)\n- [Technology Preview features status](/hosted_control_planes/hcp-release-notes#hcp-release-notes-technology-preview-tables_hcp-release-notes)\n- [Removing a cluster from management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-managed-cluster)\n- [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)\n\n**Additional resources**\n\n- [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)\n- [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=multicluster-engine&&upgrade_path=4.14%20to%204.16)\n- [Shared infrastructure between hosted and standalone control planes](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)\n\n**Additional resources**\n\n- [CIDR range definitions](/networking/networking_overview/cidr-range-definitions#cidr-range-definitions)\n","mdUrl":"/hosted_control_planes/hcp-prepare/hcp-requirements.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Requirements for {{ hcp }} {#hcp-requirements}\n\nEnsure you are familiar with the general requirements to deploy {{ hcp }}.\n\nThe following requirements apply to {{ hcp }}:\n\n- In order to run the HyperShift Operator, your management cluster needs at least three worker nodes. In the context of {{ hcp }}, a *management cluster* is an OpenShift Container Platform cluster where the HyperShift Operator is deployed and where the control planes for hosted clusters are hosted.\n\n  The control plane is associated with a hosted cluster and runs as pods in a single namespace. When the cluster service consumer creates a hosted cluster, it creates a worker node that is independent of the control plane.\n- You must open the firewall port `53` on Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) to allow the Domain Name Service (DNS) protocol to work as expected.\n- You can run both the management cluster and the worker nodes on-premise, such as on a bare-metal platform or on {{ VirtProductName }}. In addition, you can run both the management cluster and the worker nodes on cloud infrastructure, such as {{ aws_first }}.\n- If you use a mixed infrastructure, such as running the management cluster on {{ aws_short }} and your worker nodes on-premise, or running your worker nodes on {{ aws_short }} and your management cluster on-premise, you must use the `PublicAndPrivate` publishing strategy and follow the latency requirements in the support matrix.\n- In Bare Metal Host (BMH) deployments, where the Bare Metal Operator starts machines, the hosted control plane must be able to reach baseboard management controllers (BMCs). If your security profile does not permit the Cluster Baremetal Operator to access the network where the BMHs have their BMCs in order to enable Redfish automation, you can use BYO ISO support. However, in BYO mode, OpenShift Container Platform cannot automate the powering on of BMHs.\n\n## Additional resources {#_additional_resources}\n\n- [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)\n- [Shared infrastructure between hosted and standalone control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)\n- [Technology Preview features status](/openshift-docs-markdown/hosted_control_planes/hcp-release-notes#hcp-release-notes-technology-preview-tables_hcp-release-notes)\n- [Removing a cluster from management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-managed-cluster)\n- [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)\n\n**Additional resources**\n\n- [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)\n- [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=multicluster-engine&&upgrade_path=4.14%20to%204.16)\n- [Shared infrastructure between hosted and standalone control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)\n\n**Additional resources**\n\n- [CIDR range definitions](/openshift-docs-markdown/networking/networking_overview/cidr-range-definitions#cidr-range-definitions)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -107,8 +107,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://access.redhat.com/support/policy/updates/openshift_operators">OpenShift Operator Life Cycles</a></li>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance">Shared infrastructure between hosted and standalone control planes</a></li>
-      <li><a href="/hosted_control_planes/hcp-release-notes#hcp-release-notes-technology-preview-tables_hcp-release-notes">Technology Preview features status</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance">Shared infrastructure between hosted and standalone control planes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-release-notes#hcp-release-notes-technology-preview-tables_hcp-release-notes">Technology Preview features status</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-managed-cluster">Removing a cluster from management</a></li>
       <li><a href="https://access.redhat.com/articles/7142379">The multicluster engine for Kubernetes operator 2.17 Support Matrix</a></li>
       </ul>
@@ -116,10 +116,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li><a href="https://access.redhat.com/articles/7142379">The multicluster engine for Kubernetes operator 2.17 Support Matrix</a></li>
       <li><a href="https://access.redhat.com/labs/ocpouic/?operator=multicluster-engine&amp;&amp;upgrade_path=4.14%20to%204.16">Red Hat OpenShift Container Platform Operator Update Information Checker</a></li>
-      <li><a href="/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance">Shared infrastructure between hosted and standalone control planes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance">Shared infrastructure between hosted and standalone control planes</a></li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/networking/networking_overview/cidr-range-definitions#cidr-range-definitions">CIDR range definitions</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/networking/networking_overview/cidr-range-definitions#cidr-range-definitions">CIDR range definitions</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -11,6 +11,6 @@ To run Windows 11 or other workloads that require a Trusted Platform Module, you
 
 ## Additional resources {#additional-resources_virt-using-vtpm-devices}
 
-- [Exporting virtual machines](/virt/managing_vms/virt-exporting-vms#virt-exporting-vms)
-- [Creating a snapshot by using the CLI](/virt/backup_restore/virt-backup-restore-snapshots#virt-creating-vm-snapshot-cli_virt-backup-restore-snapshots)
-- [Restoring a virtual machine from a snapshot by using the CLI](/virt/backup_restore/virt-backup-restore-snapshots#virt-restoring-vm-from-snapshot-cli_virt-backup-restore-snapshots)
+- [Exporting virtual machines](/openshift-docs-markdown/virt/managing_vms/virt-exporting-vms#virt-exporting-vms)
+- [Creating a snapshot by using the CLI](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots#virt-creating-vm-snapshot-cli_virt-backup-restore-snapshots)
+- [Restoring a virtual machine from a snapshot by using the CLI](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots#virt-restoring-vm-from-snapshot-cli_virt-backup-restore-snapshots)

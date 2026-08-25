@@ -12,4 +12,4 @@ When you delete the CR, the Control Plane Machine Set Operator performs cleanup 
 
 **Additional resources**
 
-- [Activating the control plane machine set custom resource](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started)
+- [Activating the control plane machine set custom resource](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started)

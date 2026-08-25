@@ -2,7 +2,7 @@
 // Source: hosted_control_planes/hcp-manage/hcp-manage-ibm-power.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Managing {{ hcp }} on {{ ibm_power_title }}\n---\n\n# Managing {{ hcp }} on {{ ibm_power_title }} {#hcp-manage-ibm-power}\n\nAfter you deploy {{ hcp }} on {{ ibm_power_title }}, you can manage a hosted cluster.\n\n**Additional resources**\n\n- [Initial Operator configuration](/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)\n- [Scaling down the data plane to zero](/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)\n";
+const body = "---\ntitle: Managing {{ hcp }} on {{ ibm_power_title }}\n---\n\n# Managing {{ hcp }} on {{ ibm_power_title }} {#hcp-manage-ibm-power}\n\nAfter you deploy {{ hcp }} on {{ ibm_power_title }}, you can manage a hosted cluster.\n\n**Additional resources**\n\n- [Initial Operator configuration](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)\n- [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

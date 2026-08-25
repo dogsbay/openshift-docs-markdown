@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"hcp-overview","text":"{{ hcp_capital }} overview"}];
 const nav = navData;
-const currentPath = "/hosted_control_planes";
+const currentPath = "/openshift-docs-markdown/hosted_control_planes";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = null;
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ hcp_capital }} overview {#hcp-overview}\n\nYou can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or {{ hcp }}.\n\nThe standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With {{ hcp }} for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.\n\n**Additional resources**\n\n- [Cluster lifecycle with {{ mce }} overview ({{ rh_rhacm_title }} official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview)\n\n**Additional resources**\n\n- [Enabling etcd encryption](/etcd/etcd-encrypt#etcd-encrypt)\n\n**Additional resources**\n\n- [Discovering {{ mce_short }} hosted clusters in {{ rh_rhacm_title }} ({{ rh_rhacm_title }} official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm)\n\n**Additional resources**\n\n- [Kubernetes API versioning](https://kubernetes.io/docs/reference/using-api/#api-versioning)\n- [AMD64 release images](https://amd64.ocp.releases.ci.openshift.org/)\n- [ARM64 release images](https://arm64.ocp.releases.ci.openshift.org/)\n- [Multi-arch release images](https://multi.ocp.releases.ci.openshift.org/)\n","mdUrl":"/hosted_control_planes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ hcp_capital }} overview {#hcp-overview}\n\nYou can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or {{ hcp }}.\n\nThe standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With {{ hcp }} for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.\n\n**Additional resources**\n\n- [Cluster lifecycle with {{ mce }} overview ({{ rh_rhacm_title }} official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview)\n\n**Additional resources**\n\n- [Enabling etcd encryption](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)\n\n**Additional resources**\n\n- [Discovering {{ mce_short }} hosted clusters in {{ rh_rhacm_title }} ({{ rh_rhacm_title }} official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm)\n\n**Additional resources**\n\n- [Kubernetes API versioning](https://kubernetes.io/docs/reference/using-api/#api-versioning)\n- [AMD64 release images](https://amd64.ocp.releases.ci.openshift.org/)\n- [ARM64 release images](https://arm64.ocp.releases.ci.openshift.org/)\n- [Multi-arch release images](https://multi.ocp.releases.ci.openshift.org/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +98,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview">Cluster lifecycle with {"{"}{"{"} mce {"}"}{"}"} overview ({"{"}{"{"} rh_rhacm_title {"}"}{"}"} official documentation)</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/etcd/etcd-encrypt#etcd-encrypt">Enabling etcd encryption</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt">Enabling etcd encryption</a></li></ul>
       <p class="/modules/hcp-acm-discover.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm">Discovering {"{"}{"{"} mce_short {"}"}{"}"} hosted clusters in {"{"}{"{"} rh_rhacm_title {"}"}{"}"} ({"{"}{"{"} rh_rhacm_title {"}"}{"}"} official documentation)</a></li></ul>

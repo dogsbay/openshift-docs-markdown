@@ -8,7 +8,7 @@ Tune nodes for low latency by using the cluster performance profile. You can res
 
 **Additional resources**
 
-- [Gathering data about your cluster](/support/gathering-cluster-data#nodes-nodes-managing)
+- [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#nodes-nodes-managing)
 
 ## Reference performance profiles {#cnf-create-performance-profiles-reference}
 
@@ -20,9 +20,9 @@ Use the following reference performance profiles as the basis to develop your ow
 
 **Additional resources**
 
-- [About the Performance Profile Creator](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)
-- [Disabling power saving mode for high priority pods](/scalability_and_performance/cnf-provisioning-low-latency-workloads#cnf-configuring-high-priority-workload-pods_cnf-provisioning-low-latency)
-- [Managing device interrupt processing for guaranteed pod isolated CPUs](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#managing-device-interrupt-processing-for-guaranteed-pod-isolated-cpus_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [About the Performance Profile Creator](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)
+- [Disabling power saving mode for high priority pods](/openshift-docs-markdown/scalability_and_performance/cnf-provisioning-low-latency-workloads#cnf-configuring-high-priority-workload-pods_cnf-provisioning-low-latency)
+- [Managing device interrupt processing for guaranteed pod isolated CPUs](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#managing-device-interrupt-processing-for-guaranteed-pod-isolated-cpus_cnf-tuning-low-latency-nodes-with-perf-profile)
 
 **Additional resources**
 

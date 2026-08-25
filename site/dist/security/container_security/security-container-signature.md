@@ -14,7 +14,7 @@ To verify the integrity of those images between Red Hat registries and your infr
 
 - [Quay.io](https://quay.io/)
 - [Red Hat Ecosystem Catalog Container images](https://catalog.redhat.com/software/containers/explore)
-- [Introduction to OpenShift Updates](/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)
-- [Machine Config Overview](/machine_configuration/index#machine-config-overview)
+- [Introduction to OpenShift Updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)
+- [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
 - [OpenShift release signatures mirror site](https://mirror.openshift.com/pub/openshift-v4/signatures/openshift-release-dev/ocp-release/)
 - [Red Hat GPG release key](https://access.redhat.com/security/data/fd431d51.txt)

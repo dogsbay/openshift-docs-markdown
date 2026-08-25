@@ -8,6 +8,6 @@ title: Catalogd
 
 **Additional resources**
 
-- [File-based catalogs](/extensions/catalogs/fbc#fbc)
-- [Adding a catalog to a cluster](/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)
-- [Red Hat-provided catalogs](/extensions/catalogs/rh-catalogs#rh-catalogs)
+- [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)
+- [Adding a catalog to a cluster](/openshift-docs-markdown/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)
+- [Red Hat-provided catalogs](/openshift-docs-markdown/extensions/catalogs/rh-catalogs#rh-catalogs)

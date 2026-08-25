@@ -15,5 +15,5 @@ You can install a three-node cluster using either installer-provisioned or user-
 
 ## Additional resources {#_additional_resources}
 
-- [Installing a cluster on AWS with customizations](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
-- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)
+- [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
+- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)

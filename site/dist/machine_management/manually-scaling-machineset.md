@@ -15,6 +15,6 @@ You can manually add or remove an instance of a machine in a compute machine set
 
 ## Additional resources {#additional-resources_manually-scaling-machineset}
 
-- [Modifying a compute machine set](/machine_management/modifying-machineset#modifying-machineset)
-- [Add the compute machines to the Proxy object’s `noProxy` field](/networking/configuring_network_settings/enable-cluster-wide-proxy#nw-proxy-configure-object_config-cluster-wide-proxy)
-- [Lifecycle hooks for the machine deletion phase](/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)
+- [Modifying a compute machine set](/openshift-docs-markdown/machine_management/modifying-machineset#modifying-machineset)
+- [Add the compute machines to the Proxy object’s `noProxy` field](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#nw-proxy-configure-object_config-cluster-wide-proxy)
+- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)

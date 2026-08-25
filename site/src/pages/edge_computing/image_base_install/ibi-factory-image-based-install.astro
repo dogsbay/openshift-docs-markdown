@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"ibi-factory-image-based-install","text":"Preinstalling {{ sno }} using an image-based installation"}];
 const nav = navData;
-const currentPath = "/edge_computing/image_base_install/ibi-factory-image-based-install";
+const currentPath = "/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["edge_computing","edge_computing/image_base_install"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preinstalling {{ sno }} using an image-based installation {#ibi-factory-image-based-install}\n\nUse the `openshift-install` program to create a live installation ISO for preinstalling {{ sno }} on bare-metal hosts. For more information about downloading the installation program, see \"Installation process\" in the \"Additional resources\" section.\n\nThe installation program takes a seed image URL and other inputs, such as the release version of the seed image and the disk to use for the installation process, and creates a live installation ISO. You can then start the host using the live installation ISO to begin preinstallation. When preinstallation is complete, the host is ready to ship to a remote site for the final site-specific configuration and deployment.\n\nThe following are the high-level steps to preinstall a {{ sno }} cluster using an image-based installation:\n\n- Generate a seed image.\n- Create a live installation ISO using the `openshift-install` installation program.\n- Boot the host using the live installation ISO to preinstall the host.\n\n**Additional resources**\n\n- [Installation process](/installing/overview/index#installation-process_ocp-installation-overview)\n\n**Additional resources**\n\n- [Reference specifications for the `image-based-installation-config.yaml` manifest](/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)\n\n**Additional resources**\n\n- [Configuring a shared container partition between ostree stateroots](/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)\n","mdUrl":"/edge_computing/image_base_install/ibi-factory-image-based-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preinstalling {{ sno }} using an image-based installation {#ibi-factory-image-based-install}\n\nUse the `openshift-install` program to create a live installation ISO for preinstalling {{ sno }} on bare-metal hosts. For more information about downloading the installation program, see \"Installation process\" in the \"Additional resources\" section.\n\nThe installation program takes a seed image URL and other inputs, such as the release version of the seed image and the disk to use for the installation process, and creates a live installation ISO. You can then start the host using the live installation ISO to begin preinstallation. When preinstallation is complete, the host is ready to ship to a remote site for the final site-specific configuration and deployment.\n\nThe following are the high-level steps to preinstall a {{ sno }} cluster using an image-based installation:\n\n- Generate a seed image.\n- Create a live installation ISO using the `openshift-install` installation program.\n- Boot the host using the live installation ISO to preinstall the host.\n\n**Additional resources**\n\n- [Installation process](/openshift-docs-markdown/installing/overview/index#installation-process_ocp-installation-overview)\n\n**Additional resources**\n\n- [Reference specifications for the `image-based-installation-config.yaml` manifest](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)\n\n**Additional resources**\n\n- [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,13 +101,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Boot the host using the live installation ISO to preinstall the host.</li>
       </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/installing/overview/index#installation-process_ocp-installation-overview">Installation process</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/overview/index#installation-process_ocp-installation-overview">Installation process</a></li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install">Reference specifications for the <code>image-based-installation-config.yaml</code> manifest</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install">Reference specifications for the <code>image-based-installation-config.yaml</code> manifest</a></li></ul>
       <p class="/modules/ibi-provision-install-iso-to-bmh.md"></p>
       <p class="/modules/ibi-installer-installation-config.md"></p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install">Configuring a shared container partition between ostree stateroots</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install">Configuring a shared container partition between ostree stateroots</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

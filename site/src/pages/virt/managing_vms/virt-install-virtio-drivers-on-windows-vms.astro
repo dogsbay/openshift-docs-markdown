@@ -24,7 +24,7 @@ import TableRow from "@ui/table/TableRow.astro";
 
 const headings = [{"depth":1,"slug":"virt-install-virtio-drivers-on-windows-vms","text":"Install VirtIO drivers on Windows VMs"}];
 const nav = navData;
-const currentPath = "/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms";
+const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -43,9 +43,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Install VirtIO drivers on Windows VMs {#virt-install-virtio-drivers-on-windows-vms}\n\nVirtIO drivers are paravirtualized device drivers required for Microsoft Windows virtual machines (VMs) to run in {{ VirtProductName }}. The drivers are shipped with the rest of the images and do not require a separate download.\n\nThe `container-native-virtualization/virtio-win` container disk must be attached to the VM as a SATA CD drive to enable driver installation. You can install VirtIO drivers during Windows installation or add them to an existing Windows installation.\n\nAfter the drivers are installed, the `container-native-virtualization/virtio-win` container disk can be removed from the VM.\n\n**Supported drivers**\n\n| Driver name | Hardware ID | Description |\n| --- | --- | --- |\n| **viostor** | VEN_1AF4&DEV_1001, VEN_1AF4&DEV_1042 | The block driver. Sometimes labeled as an **SCSI Controller** in the **Other devices** group. |\n| **viorng** | VEN_1AF4&DEV_1005, VEN_1AF4&DEV_1044 | The entropy source driver. Sometimes labeled as a **PCI Device** in the **Other devices** group. |\n| **NetKVM** | VEN_1AF4&DEV_1000, VEN_1AF4&DEV_1041 | The network driver. Sometimes labeled as an **Ethernet Controller** in the **Other devices** group. Available only if a VirtIO NIC is configured. |\n","mdUrl":"/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Install VirtIO drivers on Windows VMs {#virt-install-virtio-drivers-on-windows-vms}\n\nVirtIO drivers are paravirtualized device drivers required for Microsoft Windows virtual machines (VMs) to run in {{ VirtProductName }}. The drivers are shipped with the rest of the images and do not require a separate download.\n\nThe `container-native-virtualization/virtio-win` container disk must be attached to the VM as a SATA CD drive to enable driver installation. You can install VirtIO drivers during Windows installation or add them to an existing Windows installation.\n\nAfter the drivers are installed, the `container-native-virtualization/virtio-win` container disk can be removed from the VM.\n\n**Supported drivers**\n\n| Driver name | Hardware ID | Description |\n| --- | --- | --- |\n| **viostor** | VEN_1AF4&DEV_1001, VEN_1AF4&DEV_1042 | The block driver. Sometimes labeled as an **SCSI Controller** in the **Other devices** group. |\n| **viorng** | VEN_1AF4&DEV_1005, VEN_1AF4&DEV_1044 | The entropy source driver. Sometimes labeled as a **PCI Device** in the **Other devices** group. |\n| **NetKVM** | VEN_1AF4&DEV_1000, VEN_1AF4&DEV_1041 | The network driver. Sometimes labeled as an **Ethernet Controller** in the **Other devices** group. Available only if a VirtIO NIC is configured. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -86,10 +86,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >

@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"virt-post-install-network-config","text":"Postinstallation network configuration"},{"depth":2,"slug":"additional-resources_virt-post-install-network-config","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/virt/post_installation_configuration/virt-post-install-network-config";
+const currentPath = "/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-network-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["virt","virt/post_installation_configuration"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation network configuration {#virt-post-install-network-config}\n\nBy default, {{ VirtProductName }} uses a single internal pod network after installation.\n\nAfter you install {{ VirtProductName }}, you can install networking Operators and configure additional networks.\n\n- You must install the Kubernetes NMState Operator to configure a Linux bridge network for live migration or external access to virtual machines (VMs).\n- You can install the SR-IOV Operator to manage SR-IOV network devices and network attachments.\n- You can add the MetalLB Operator to manage the lifecycle for an instance of MetalLB on your cluster.\n\n## Additional resources {#additional-resources_virt-post-install-network-config}\n\n- [Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)\n- [SR-IOV Operator](/networking/hardware_networks/about-sriov#about-sriov)\n- [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Attaching a virtual machine (VM) to a Linux bridge network](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge)\n- [Attaching a virtual machine (VM) to an SR-IOV network](/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)\n","mdUrl":"/virt/post_installation_configuration/virt-post-install-network-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation network configuration {#virt-post-install-network-config}\n\nBy default, {{ VirtProductName }} uses a single internal pod network after installation.\n\nAfter you install {{ VirtProductName }}, you can install networking Operators and configure additional networks.\n\n- You must install the Kubernetes NMState Operator to configure a Linux bridge network for live migration or external access to virtual machines (VMs).\n- You can install the SR-IOV Operator to manage SR-IOV network devices and network attachments.\n- You can add the MetalLB Operator to manage the lifecycle for an instance of MetalLB on your cluster.\n\n## Additional resources {#additional-resources_virt-post-install-network-config}\n\n- [Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)\n- [SR-IOV Operator](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Attaching a virtual machine (VM) to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge)\n- [Attaching a virtual machine (VM) to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-network-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -108,11 +108,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/virt-configuring-cdiuploadproxy-routes.md"></p>
       <h2 id="additional-resources_virt-post-install-network-config" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-post-install-network-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator">Kubernetes NMState Operator</a></li>
-      <li><a href="/networking/hardware_networks/about-sriov#about-sriov">SR-IOV Operator</a></li>
-      <li><a href="/networking/networking_operators/metallb-operator/about-metallb#about-metallb">About MetalLB and the MetalLB Operator</a></li>
-      <li><a href="/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge">Attaching a virtual machine (VM) to a Linux bridge network</a></li>
-      <li><a href="/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov">Attaching a virtual machine (VM) to an SR-IOV network</a></li>
+      <li><a href="/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator">Kubernetes NMState Operator</a></li>
+      <li><a href="/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov">SR-IOV Operator</a></li>
+      <li><a href="/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb">About MetalLB and the MetalLB Operator</a></li>
+      <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge">Attaching a virtual machine (VM) to a Linux bridge network</a></li>
+      <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov">Attaching a virtual machine (VM) to an SR-IOV network</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

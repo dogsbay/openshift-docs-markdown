@@ -18,7 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 
 const headings = [{"depth":1,"slug":"about-disconnected-environments","text":"About disconnected environments"},{"depth":2,"slug":"about-additional-resources_about-disconnected-environments","text":"Additional resources"}];
 const nav = navData;
-const currentPath = "/disconnected/about";
+const currentPath = "/openshift-docs-markdown/disconnected/about";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -37,9 +37,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["disconnected"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About disconnected environments {#about-disconnected-environments}\n\nA disconnected environment is an environment that does not have full access to the internet.\n\nOpenShift Container Platform is designed to perform many automatic functions that depend on an internet connection, such as retrieving release images from a registry or retrieving update paths and recommendations for the cluster. Without a direct internet connection, you must perform additional setup and configuration for your cluster to maintain full functionality in the disconnected environment.\n\n## Additional resources {#about-additional-resources_about-disconnected-environments}\n\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n- [Installing a cluster with customizations](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)\n- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)\n","mdUrl":"/disconnected/about.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About disconnected environments {#about-disconnected-environments}\n\nA disconnected environment is an environment that does not have full access to the internet.\n\nOpenShift Container Platform is designed to perform many automatic functions that depend on an internet connection, such as retrieving release images from a registry or retrieving update paths and recommendations for the cluster. Without a direct internet connection, you must perform additional setup and configuration for your cluster to maintain full functionality in the disconnected environment.\n\n## Additional resources {#about-additional-resources_about-disconnected-environments}\n\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n- [Installing a cluster with customizations](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)\n- [Updating a cluster in a disconnected environment using the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected/about.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -80,10 +80,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,9 +98,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/pref-methods-working-discc-env.md"></p>
       <h2 id="about-additional-resources_about-disconnected-environments" class="group scroll-mt-20">Additional resources<a href="#about-additional-resources_about-disconnected-environments" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
-      <li><a href="/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer">Installing a cluster with customizations</a></li>
-      <li><a href="/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus">Updating a cluster in a disconnected environment using the OpenShift Update Service</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer">Installing a cluster with customizations</a></li>
+      <li><a href="/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus">Updating a cluster in a disconnected environment using the OpenShift Update Service</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

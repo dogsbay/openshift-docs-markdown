@@ -2,8 +2,8 @@
 
 ## Specialized hardware and driver enablement
 
-- [About specialized hardware and driver enablement](/hardware_enablement/about-hardware-enablement.md)
-- [Driver Toolkit](/hardware_enablement/psap-driver-toolkit.md)
-- [Node Feature Discovery Operator](/hardware_enablement/psap-node-feature-discovery-operator.md)
-- [Kernel Module Management Operator](/hardware_enablement/kmm-kernel-module-management.md)
-- [Kernel Module Management Operator release notes](/hardware_enablement/kmm-release-notes.md)
+- [About specialized hardware and driver enablement](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/about-hardware-enablement.md)
+- [Driver Toolkit](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit.md)
+- [Node Feature Discovery Operator](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator.md)
+- [Kernel Module Management Operator](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management.md)
+- [Kernel Module Management Operator release notes](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/kmm-release-notes.md)

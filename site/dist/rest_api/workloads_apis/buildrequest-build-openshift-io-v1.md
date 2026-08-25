@@ -21,16 +21,16 @@ Type
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `binary` | `object` | BinaryBuildSource describes a binary file to be used for the Docker and Source build strategies, where the file will be extracted and used as the build source. |
 | `dockerStrategyOptions` | `object` | DockerStrategyOptions contains extra strategy options for container image builds |
-| `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
-| `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is the reference to the ImageStreamTag that triggered the build. |
+| `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is the reference to the ImageStreamTag that triggered the build. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `lastVersion` | `integer` | lastVersion (optional) is the LastVersion of the BuildConfig that was used to generate the build. If the BuildConfig in the generator doesn’t match, a build will not be generated. |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `sourceStrategyOptions` | `object` | SourceStrategyOptions contains extra strategy options for Source builds |
 | `triggeredBy` | `array` | triggeredBy describes which triggers started the most recent update to the build configuration and contains information about those triggers. |
 | `triggeredBy[]` | `object` | BuildTriggerCause holds information about a triggered build. It is used for displaying build trigger data for each build and build configuration in oc describe. It is also used to describe which triggers led to the most recent update in the build configuration. |
-| `triggeredByImage` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | triggeredByImage is the Image that triggered this build. |
+| `triggeredByImage` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | triggeredByImage is the Image that triggered this build. |
 
 ### .binary {#_binary}
 
@@ -58,7 +58,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `buildArgs` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | Args contains any build arguments that are to be passed to Docker.  See https://docs.docker.com/engine/reference/builder/#/arg for more details |
+| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | Args contains any build arguments that are to be passed to Docker.  See https://docs.docker.com/engine/reference/builder/#/arg for more details |
 | `noCache` | `boolean` | noCache overrides the docker-strategy noCache option in the build config |
 
 ### .revision {#_revision}
@@ -501,7 +501,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `fromRef` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | fromRef contains detailed information about an image that triggered a build. |
+| `fromRef` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | fromRef contains detailed information about an image that triggered a build. |
 | `imageID` | `string` | imageID is the ID of the image that triggered a new build. |
 
 ## API endpoints {#_api_endpoints}
@@ -544,15 +544,15 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`BuildRequest`](/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |  |
+| `body` | [`BuildRequest`](/openshift-docs-markdown/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`BuildRequest`](/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |
-| 201 - Created | [`BuildRequest`](/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |
-| 202 - Accepted | [`BuildRequest`](/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |
+| 200 - OK | [`BuildRequest`](/openshift-docs-markdown/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |
+| 201 - Created | [`BuildRequest`](/openshift-docs-markdown/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |
+| 202 - Accepted | [`BuildRequest`](/openshift-docs-markdown/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
 ### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/instantiate {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_instantiate}
@@ -584,13 +584,13 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `body` | [`BuildRequest`](/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |  |
+| `body` | [`BuildRequest`](/openshift-docs-markdown/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |  |
 
 **HTTP responses**
 
 | HTTP code | Reponse body |
 | --- | --- |
-| 200 - OK | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
-| 201 - Created | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
-| 202 - Accepted | [`Build`](/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 200 - OK | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
+| 202 - Accepted | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |

@@ -2,7 +2,7 @@
 // Source: storage/understanding-ephemeral-storage.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Understanding ephemeral storage\n---\n\n# Understanding ephemeral storage {#understanding-ephemeral-storage}\n\nEphemeral storage provides temporary per-pod storage for scratch data, caches, and logs that do not persist beyond the pod’s lifetime. Understanding different ephemeral storage types and resource management helps you choose options for stateless workloads while preventing node storage exhaustion.\n\n**Additional resources**\n\n- [Resources managed by quotas](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)\n";
+const body = "---\ntitle: Understanding ephemeral storage\n---\n\n# Understanding ephemeral storage {#understanding-ephemeral-storage}\n\nEphemeral storage provides temporary per-pod storage for scratch data, caches, and logs that do not persist beyond the pod’s lifetime. Understanding different ephemeral storage types and resource management helps you choose options for stateless workloads while preventing node storage exhaustion.\n\n**Additional resources**\n\n- [Resources managed by quotas](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

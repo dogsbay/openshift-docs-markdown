@@ -21,7 +21,7 @@ import AlertTitle from "@ui/alert/AlertTitle.astro";
 
 const headings = [{"depth":1,"slug":"replacing-unhealthy-etcd-member","text":"Replacing an unhealthy etcd member"}];
 const nav = navData;
-const currentPath = "/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member";
+const currentPath = "/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member";
 const _navForPagination = filterNavByAxis(nav as any[], {
   basePath: "/docs",
   version: null ?? undefined,
@@ -40,9 +40,9 @@ const pageType = null;
 const pageAudience = null;
 const pageCategory = ["backup_and_restore","backup_and_restore/control_plane_backup_and_restore"];
 const pageTaxonomies = null;
-const tagsIndexPath = "/tags";
+const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Replacing an unhealthy etcd member {#replacing-unhealthy-etcd-member}\n\nTo restore etcd quorum when a single member is unhealthy, identify the member and determine whether its machine is stopped, its node is not ready, or its pod is crashlooping. You can then follow the replacement procedure that matches that state.\n\n> [!NOTE]\n> If you have lost the majority of your control plane hosts, follow the steps in \"Restoring to an earlier cluster state\" instead of this procedure..\n>\n> If the control plane certificates are not valid on the member being replaced, then you must follow the steps in \"Recovering from expired control plane certificates\" instead of this procedure.\n>\n> If a control plane node is lost and a new one is created, the etcd cluster Operator handles generating the new TLS certificates and adding the node as an etcd member.\n\n**Additional resources**\n\n- [Recovering a degraded etcd Operator](/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)\n- [Replacing a control plane node on an unhealthy cluster](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/expanding-the-cluster#installing-control-plane-node-unhealthy-cluster_expanding-the-cluster)\n\n**Additional resources**\n\n- [Restoring to an earlier cluster state](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)\n- [Recovering from expired control plane certificates](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs)\n- [Quorum protection with machine lifecycle hooks](/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)\n","mdUrl":"/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Replacing an unhealthy etcd member {#replacing-unhealthy-etcd-member}\n\nTo restore etcd quorum when a single member is unhealthy, identify the member and determine whether its machine is stopped, its node is not ready, or its pod is crashlooping. You can then follow the replacement procedure that matches that state.\n\n> [!NOTE]\n> If you have lost the majority of your control plane hosts, follow the steps in \"Restoring to an earlier cluster state\" instead of this procedure..\n>\n> If the control plane certificates are not valid on the member being replaced, then you must follow the steps in \"Recovering from expired control plane certificates\" instead of this procedure.\n>\n> If a control plane node is lost and a new one is created, the etcd cluster Operator handles generating the new TLS certificates and adding the node as an etcd member.\n\n**Additional resources**\n\n- [Recovering a degraded etcd Operator](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)\n- [Replacing a control plane node on an unhealthy cluster](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/expanding-the-cluster#installing-control-plane-node-unhealthy-cluster_expanding-the-cluster)\n\n**Additional resources**\n\n- [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)\n- [Recovering from expired control plane certificates](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs)\n- [Quorum protection with machine lifecycle hooks](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -83,10 +83,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
-  basePath={""}
+  basePath={"/openshift-docs-markdown"}
   navMode={"client"}
-  pagefindUrl={"/pagefind/"}
-  favicon={"/favicon.ico"}
+  pagefindUrl={"/openshift-docs-markdown/pagefind/"}
+  favicon={"/openshift-docs-markdown/favicon.ico"}
   wideLayout={false}
   toc={"top"}
 >
@@ -109,15 +109,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p class="/modules/restore-replace-stopped-etcd-member.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting">Recovering a degraded etcd Operator</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting">Recovering a degraded etcd Operator</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/expanding-the-cluster#installing-control-plane-node-unhealthy-cluster_expanding-the-cluster">Replacing a control plane node on an unhealthy cluster</a></li>
       </ul>
       <p class="/modules/restore-replace-stopped-baremetal-etcd-member.md"></p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state">Restoring to an earlier cluster state</a></li>
-      <li><a href="/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs">Recovering from expired control plane certificates</a></li>
-      <li><a href="/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine">Quorum protection with machine lifecycle hooks</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state">Restoring to an earlier cluster state</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs">Recovering from expired control plane certificates</a></li>
+      <li><a href="/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine">Quorum protection with machine lifecycle hooks</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

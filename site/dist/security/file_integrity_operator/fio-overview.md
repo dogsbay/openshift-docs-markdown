@@ -11,12 +11,12 @@ The File Integrity Operator continually runs file integrity checks on the cluste
 
 ## Additional resources {#fio-overview_additional-resources}
 
-- [File Integrity Operator release notes](/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes)
-- [File Integrity Operator support](/security/file_integrity_operator/fio-support#fio-support)
-- [Installing the File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-installation#installing-file-integrity-operator)
-- [Updating the File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-updating#file-integrity-operator-updating)
-- [Understanding the File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator)
-- [Configuring the Custom File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-configuring#configuring-file-integrity-operator)
-- [Performing advanced Custom File Integrity Operator tasks](/security/file_integrity_operator/file-integrity-operator-advanced-usage#file-integrity-operator-advanced-usage)
-- [Troubleshooting the File Integrity Operator](/security/file_integrity_operator/file-integrity-operator-troubleshooting#troubleshooting-file-integrity-operator)
-- [Uninstalling the File Integrity Operator](/security/file_integrity_operator/fio-uninstalling#fio-uninstalling)
+- [File Integrity Operator release notes](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes)
+- [File Integrity Operator support](/openshift-docs-markdown/security/file_integrity_operator/fio-support#fio-support)
+- [Installing the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-installation#installing-file-integrity-operator)
+- [Updating the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-updating#file-integrity-operator-updating)
+- [Understanding the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator)
+- [Configuring the Custom File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-configuring#configuring-file-integrity-operator)
+- [Performing advanced Custom File Integrity Operator tasks](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-advanced-usage#file-integrity-operator-advanced-usage)
+- [Troubleshooting the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-troubleshooting#troubleshooting-file-integrity-operator)
+- [Uninstalling the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/fio-uninstalling#fio-uninstalling)

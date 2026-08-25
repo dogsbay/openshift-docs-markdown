@@ -2,7 +2,7 @@
 // Source: storage/generic-ephemeral-vols.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Generic ephemeral volumes\n---\n\n# Generic ephemeral volumes {#generic-ephemeral-volumes}\n\nGeneric ephemeral volumes provide per-pod temporary storage backed by any storage driver that supports dynamic provisioning, unlike `emptyDir` volumes which are limited to local node storage. This flexibility lets you use network storage backends, control storage classes and volume characteristics, and leverage delayed volume binding for optimal pod scheduling.\n\n**Additional resources**\n\n- [Creating generic ephemeral volumes](/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes)\n";
+const body = "---\ntitle: Generic ephemeral volumes\n---\n\n# Generic ephemeral volumes {#generic-ephemeral-volumes}\n\nGeneric ephemeral volumes provide per-pod temporary storage backed by any storage driver that supports dynamic provisioning, unlike `emptyDir` volumes which are limited to local node storage. This flexibility lets you use network storage backends, control storage classes and volume characteristics, and leverage delayed volume binding for optimal pod scheduling.\n\n**Additional resources**\n\n- [Creating generic ephemeral volumes](/openshift-docs-markdown/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes)\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

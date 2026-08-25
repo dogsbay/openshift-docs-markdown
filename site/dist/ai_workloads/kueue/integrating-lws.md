@@ -10,12 +10,12 @@ The {{ lws_operator }} allows you to manage multi-node AI/ML inference deploymen
 
  **Additional resources**
 
-- [About the {{ lws_operator }}](/ai_workloads/leader_worker_set/index#lws-about_lws-about)
+- [About the {{ lws_operator }}](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about)
 - [LeaderWorkerSet API (Kubernetes documentation)](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/)
-- [Installing the {{ cert_manager_operator }} by using the web console](/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
+- [Installing the {{ cert_manager_operator }} by using the web console](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
 
  **Additional resources**
 
-- [Configuring a cluster queue](/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)
-- [Configuring a resource flavor](/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)
-- [Configuring a local queue](/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)
+- [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)
+- [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)
+- [Configuring a local queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)

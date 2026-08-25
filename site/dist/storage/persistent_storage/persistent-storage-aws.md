@@ -20,5 +20,5 @@ The Kubernetes persistent volume framework allows administrators to provision a 
 
 - [Amazon EC2 documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 - [AWS EBS CSI driver](https://github.com/openshift/aws-ebs-csi-driver)
-- [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
-- [AWS Elastic Block Store CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-ebs#persistent-storage-csi-ebs)
+- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
+- [AWS Elastic Block Store CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ebs#persistent-storage-csi-ebs)

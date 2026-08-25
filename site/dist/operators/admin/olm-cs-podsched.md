@@ -21,21 +21,21 @@ As an administrator, you can override these defaults by configuring fields in th
 
 **Additional resources**
 
-- [OLM concepts and resources -> Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
+- [OLM concepts and resources -> Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
 
 **Additional resources**
 
-- [OperatorHub custom resource](/operators/understanding/olm-understanding-software-catalog#olm-software-catalog-arch-operatorhub-crd_olm-understanding-software-catalog)
-- [Disabling the default OperatorHub catalog sources](/disconnected/using-olm#olm-restricted-networks-operatorhub_olm-restricted-networks)
+- [OperatorHub custom resource](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-software-catalog-arch-operatorhub-crd_olm-understanding-software-catalog)
+- [Disabling the default OperatorHub catalog sources](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks-operatorhub_olm-restricted-networks)
 
 **Additional resources**
 
-- [Placing pods on specific nodes using node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
+- [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
 
 **Additional resources**
 
-- [Pod priority classes](/nodes/pods/nodes-pods-priority#admin-guide-priority-preemption-priority-class_nodes-pods-priority)
+- [Pod priority classes](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#admin-guide-priority-preemption-priority-class_nodes-pods-priority)
 
 **Additional resources**
 
-- [Understanding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
+- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)

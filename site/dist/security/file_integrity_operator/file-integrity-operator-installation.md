@@ -11,4 +11,4 @@ Install the File Integrity Operator on your cluster by using the OpenShift Conta
 
 ## Additional resources {#additional-resources-installing-the-file-integrity-operator}
 
-- [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

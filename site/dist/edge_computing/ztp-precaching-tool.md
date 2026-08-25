@@ -18,11 +18,11 @@ The {{ factory_prestaging_tool }} does the following:
 
 **Additional resources**
 
-- [About Butane](/installing/install_config/installing-customizing#installation-special-config-butane-about_installing-customizing)
-- [Creating a custom live {{ op_system }} ISO for remote server access](/installing/installing_sno/install-sno-installing-sno#create-custom-live-rhcos-iso_install-sno-installing-sno-with-the-assisted-installer)
+- [About Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-about_installing-customizing)
+- [Creating a custom live {{ op_system }} ISO for remote server access](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#create-custom-live-rhcos-iso_install-sno-installing-sno-with-the-assisted-installer)
 - [Integrated Dell Remote Access Controller 9 RACADM CLI Guide](https://www.dell.com/support/manuals/en-ie/poweredge-r440/idrac9_6.xx_racadm_pub/supported-racadm-interfaces?guid=guid-a5747353-fc88-4438-b617-c50ca260448e&lang=en-us)
 - [Using HPONCFG](https://support.hpe.com/hpesc/public/docDisplay?docId=emr_na-a00007610en_us)
-- [Booting from an HTTP-hosted ISO image using the Redfish API](/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)
+- [Booting from an HTTP-hosted ISO image using the Redfish API](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)
 
 **Additional resources**
 

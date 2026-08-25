@@ -15,23 +15,23 @@ A resource quota, defined by a `ResourceQuota` object, provides constraints that
 
 ## Additional resources {#additional-resources_using-quotas-and-limit-ranges}
 
-- [Resources managed by quotas](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)
-- [Resource requests and overcommitment](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-resource-requests_nodes-cluster-overcommit)
+- [Resources managed by quotas](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)
+- [Resource requests and overcommitment](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-resource-requests_nodes-cluster-overcommit)
 
 ## Additional resources {#_additional_resources}
 
-- [Resources managed by quotas](/applications/quotas/quotas-setting-per-project#quotas-resources-managed_quotas-setting-per-project)
-- [Working with projects](/applications/projects/working-with-projects#working-with-projects-create-project_working-with-projects-create-project)
-- [Understanding deployments](/applications/deployments/what-deployments-are#what-deployments-are_what-deployments-are)
+- [Resources managed by quotas](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-resources-managed_quotas-setting-per-project)
+- [Working with projects](/openshift-docs-markdown/applications/projects/working-with-projects#working-with-projects-create-project_working-with-projects-create-project)
+- [Understanding deployments](/openshift-docs-markdown/applications/deployments/what-deployments-are#what-deployments-are_what-deployments-are)
 
 ## Additional resources {#_additional_resources}
 
-- [Managing images streams](/openshift_images/image-streams-manage#images-imagestream-use_image-streams-managing)
-- [Restrict resource consumption with limit ranges](/nodes/clusters/nodes-cluster-limit-ranges#nodes-cluster-limit-stream-limits_nodes-cluster-limit-stream-limits)
-- [About limit ranges](/nodes/clusters/nodes-cluster-limit-ranges#nodes-cluster-limit-ranges-about_nodes-cluster-limit-ranges)
-- [Recommended control plane practices](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_recommended-control-plane-practices)
-- [Understanding ephemeral storage](/storage/understanding-ephemeral-storage#storage-ephemeral-storage-overview_understanding-ephemeral-storage)
+- [Managing images streams](/openshift-docs-markdown/openshift_images/image-streams-manage#images-imagestream-use_image-streams-managing)
+- [Restrict resource consumption with limit ranges](/openshift-docs-markdown/nodes/clusters/nodes-cluster-limit-ranges#nodes-cluster-limit-stream-limits_nodes-cluster-limit-stream-limits)
+- [About limit ranges](/openshift-docs-markdown/nodes/clusters/nodes-cluster-limit-ranges#nodes-cluster-limit-ranges-about_nodes-cluster-limit-ranges)
+- [Recommended control plane practices](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_recommended-control-plane-practices)
+- [Understanding ephemeral storage](/openshift-docs-markdown/storage/understanding-ephemeral-storage#storage-ephemeral-storage-overview_understanding-ephemeral-storage)
 
 ## Additional resources {#_additional_resources}
 
-- [Resource quotas per projects](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)
+- [Resource quotas per projects](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)

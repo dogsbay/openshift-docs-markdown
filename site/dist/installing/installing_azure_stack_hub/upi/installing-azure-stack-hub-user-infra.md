@@ -17,24 +17,24 @@ Several Azure Resource Manager (ARM) templates are provided to assist in complet
 
 **Additional resources**
 
-- [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 **Additional resources**
 
 - [Azure Stack Hub datacenter DNS integration (Microsoft documentation)](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-dns?view=azs-2102)
-- [Example for creating DNS zones](/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
+- [Example for creating DNS zones](/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
 
 **Additional resources**
 
-- [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
+- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
 **Additional resources**
 
-- [Installation configuration parameters for Azure Stack Hub](/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
+- [Installation configuration parameters for Azure Stack Hub](/openshift-docs-markdown/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
 
 **Additional resources**
 
-- [Manually manage cloud credentials](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)
+- [Manually manage cloud credentials](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)
 
 **Additional resources**
 
@@ -42,11 +42,11 @@ Several Azure Resource Manager (ARM) templates are provided to assist in complet
 
 **Additional resources**
 
-- [Example for creating DNS zones](/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
+- [Example for creating DNS zones](/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
 
 **Additional resources**
 
-- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
 ## Additional resources {#additional-resources_installing-azure-stack-hub-user-infra}
 

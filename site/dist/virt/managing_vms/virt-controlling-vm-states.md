@@ -10,4 +10,4 @@ You can stop, start, restart, reset, pause, and unpause virtual machines from th
 
 ## Additional resources {#additional-resources_virt-controlling-vm-states}
 
-- [Using the CLI tools](/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)
+- [Using the CLI tools](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

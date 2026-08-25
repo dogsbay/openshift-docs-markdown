@@ -11,5 +11,5 @@ You can use boot image skew enforcement to help ensure that the boot images in a
 
 ## Additional resources {#additional-resources_mco-update-boot-skew-mgmt}
 
-- [Boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images)
-- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
+- [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
+- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

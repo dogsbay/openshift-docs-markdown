@@ -12,7 +12,7 @@ By using the {{ cert_manager_operator }}, you can manage certificates, handling 
 
 ## Additional resources {#additional-resources_cert-manager-creating-certificate}
 
-- [Supported issuer types](/security/cert_manager_operator/index#cert-manager-issuer-types_cert-manager-operator-about)
-- [Configuring an ACME issuer](/security/cert_manager_operator/cert-manager-operator-issuer-acme#cert-manager-operator-issuer-acme)
-- [Adding an API server named certificate](/security/certificates/api-server#customize-certificates-api-add-named_api-server-certificates)
-- [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
+- [Supported issuer types](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-issuer-types_cert-manager-operator-about)
+- [Configuring an ACME issuer](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-issuer-acme#cert-manager-operator-issuer-acme)
+- [Adding an API server named certificate](/openshift-docs-markdown/security/certificates/api-server#customize-certificates-api-add-named_api-server-certificates)
+- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
